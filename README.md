@@ -60,7 +60,7 @@ org.gradle.jvmargs=-Xmx1536M -XX:+UseParallelGC
 "android\gradle\wrapper\gradle-wrapper.properties"
 
 ```
-distributionUrl=https\://services.gradle.org/distributions/gradle-7.4.2-all.zip
+distributionUrl=https\://services.gradle.org/distributions/gradle-7.5.1-all.zip
 ```
 
 ### app\build.gradle

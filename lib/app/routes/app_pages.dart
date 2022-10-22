@@ -3,8 +3,8 @@
 import 'package:flutter/animation.dart';
 import 'package:get/get.dart';
 
-import '../splash/binding/splash_binding.dart';
-import '../splash/view/splash_view.dart';
+import '../modules/splash/binding/splash_binding.dart';
+import '../modules/splash/view/splash_view.dart';
 
 part 'app_routes.dart';
 

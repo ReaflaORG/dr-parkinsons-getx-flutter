@@ -5,7 +5,7 @@ import 'dart:async';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 
-import '../../service/global_service.dart';
+import '../../../service/global_service.dart';
 
 class SplashController extends GetxController {
   static SplashController get to => Get.find();
