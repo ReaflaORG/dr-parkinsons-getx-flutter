@@ -105,6 +105,7 @@ class TextPath {
     fontStyle: FontStyle.normal,
     fontSize: 13.0,
   );
+
   static TextStyle xsMedium = TextStyle(
     color: ColorPath.TextGrey1,
     fontWeight: FontWeight.w500,
@@ -120,6 +121,7 @@ class TextPath {
     fontStyle: FontStyle.normal,
     fontSize: 12.0,
   );
+
   static TextStyle xxsMedium = TextStyle(
     color: ColorPath.TextGrey1,
     fontWeight: FontWeight.w500,

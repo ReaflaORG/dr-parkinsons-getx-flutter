@@ -1,6 +1,7 @@
 // ignore_for_file: depend_on_referenced_packages
 
-import 'package:firebase_core/firebase_core.dart';
+import 'dart:io';
+
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:get/get.dart';
@@ -33,14 +34,15 @@ class FCMService extends GetxService {
       FlutterLocalNotificationsPlugin();
   InitializationSettings initializationSettings = const InitializationSettings(
     android: AndroidInitializationSettings('@mipmap/ic_launcher'),
-    iOS: IOSInitializationSettings(),
+    iOS: IOSInitializationSettings(
+      requestAlertPermission: true,
+      requestBadgePermission: true,
+      requestSoundPermission: true,
+    ),
   );
 
   @override
   Future<void> onInit() async {
-    /// Firebase 초기화
-    Firebase.initializeApp();
-
     /// Android Notification Plugin
     await flutterLocalNotificationsPlugin
         .resolvePlatformSpecificImplementation<
@@ -57,14 +59,14 @@ class FCMService extends GetxService {
     await handleGetStorage();
 
     /// 포그라운드 메세지 처리
-    handleOnForegroundMessageSettings(
+    await handleOnForegroundMessageSettings(
       initializationSettings: initializationSettings,
       flutterLocalNotificationsPlugin: flutterLocalNotificationsPlugin,
       channel: channel,
     );
 
     // 백그라운드 메세지 처리
-    handleOnBackgroundMessageSettings();
+    await handleOnBackgroundMessageSettings();
 
     super.onInit();
   }
@@ -119,11 +121,30 @@ Future<void> handleOnForegroundMessageSettings({
   required initializationSettings,
   required flutterLocalNotificationsPlugin,
   required channel,
-}) async =>
-    FirebaseMessaging.onMessage.listen(
-      (RemoteMessage message) async {
-        // 메세지가 온 경우에만 체크
-        if (message.notification != null) {
+}) async {
+  FirebaseMessaging.onMessage.listen(
+    (RemoteMessage message) async {
+      AndroidNotification? android = message.notification?.android;
+      Logger().d('''
+[Android]
+android : $android
+channelId : ${android?.channelId}
+clickAction : ${android?.clickAction}
+color : ${android?.color}
+count : ${android?.count}
+imageUrl : ${android?.imageUrl}
+link : ${android?.link}
+priority : ${android?.priority}
+smallIcon : ${android?.smallIcon}
+sound : ${android?.sound}
+tag : ${android?.tag}
+ticker : ${android?.ticker}
+visibility : ${android?.visibility}
+''');
+
+      // 메세지가 온 경우에만 체크
+      if (message.notification != null) {
+        if (Platform.isAndroid) {
           // 메세지 출력 부분
           await flutterLocalNotificationsPlugin.show(
             message.notification!.hashCode,
@@ -137,27 +158,25 @@ Future<void> handleOnForegroundMessageSettings({
                 icon: '@mipmap/ic_launcher',
                 importance: Importance.high,
               ),
-              iOS: const IOSNotificationDetails(
-                presentAlert: true,
-                presentBadge: true,
-                presentSound: true,
-              ),
+              iOS: const IOSNotificationDetails(),
             ),
           );
-
-          /// 포그라운드 상태에서 알림 메세지를 사용자가 눌렀을때
-          await flutterLocalNotificationsPlugin.initialize(
-              initializationSettings, onSelectNotification: (payload) {
-            if (payload != null) {
-              // Get.to(const NextPage(), arguments: payload);
-              handleOnForegroundMessageOpenedApp(message: message);
-            }
-          });
-
-          await handleOnForegroundMessage(message: message);
         }
-      },
-    );
+
+        // 포그라운드 상태에서 알림 메세지를 사용자가 눌렀을때
+        await flutterLocalNotificationsPlugin.initialize(initializationSettings,
+            onSelectNotification: (payload) {
+          if (payload != null) {
+            // Get.to(const NextPage(), arguments: payload);
+            handleOnForegroundMessageOpenedApp(message: message);
+          }
+        });
+
+        await handleOnForegroundMessage(message: message);
+      }
+    },
+  );
+}
 
 /// 백그라운드 메세지 처리
 Future<void> handleOnBackgroundMessageSettings() async {
@@ -195,13 +214,13 @@ Future<void> handleOnForegroundMessage({
   return;
 }
 
+/// 포그라운드 상태에서 알림 메세지를 사용자가 눌렀을때
 Future<void> handleOnForegroundMessageOpenedApp({
   required RemoteMessage message,
 }) async {
-  Logger().d('[FCM] 앱 포그라운드 알림 메세지 클릭 : ${message.data}');
-
-  if (message.data != null) {
-    // MainController.to.handleWebViewControllerLoadURL(message: message);
+  if (message.notification != null) {
+    Logger().d('[FCM] 앱 포그라운드 알림 메세지 클릭 : ${message.data}');
+    // await MainController.to.handleWebViewControllerLoadURL(message: message);
   }
 }
 
@@ -218,9 +237,8 @@ Future<void> handleOnBackgroundMessage(RemoteMessage message) async {
 Future<void> handleOnBackgroundMessageOpenedApp({
   required RemoteMessage message,
 }) async {
-  Logger().d('[FCM] 앱 백그라운드에서 알림 메세지 클릭 : ${message.data}');
-
-  if (message.data != null) {
-    // MainController.to.handleWebViewControllerLoadURL(message: message);
+  if (message.notification != null) {
+    Logger().d('[FCM] 앱 백그라운드에서 알림 메세지 클릭 : ${message.data}');
+    // await MainController.to.handleWebViewControllerLoadURL(message: message);
   }
 }
