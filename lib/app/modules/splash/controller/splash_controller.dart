@@ -10,6 +10,8 @@ import '../../../service/global_service.dart';
 class SplashController extends GetxController {
   static SplashController get to => Get.find();
 
+  RxBool isChecked = false.obs;
+
   // Funcion ▼ ========================================
 
   /// 페이지 이동

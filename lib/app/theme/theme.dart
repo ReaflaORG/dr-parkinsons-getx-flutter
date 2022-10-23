@@ -20,12 +20,14 @@ const double DEFAULT_FONT_S_SIZE = 14;
 
 /// 메인 테마
 ThemeData theme() => ThemeData(
-      useMaterial3: true,
+      useMaterial3: false,
       fontFamily: FONT_FAMILY,
       brightness: Brightness.light,
       splashColor: Colors.white,
       scaffoldBackgroundColor: Colors.white,
       primaryColor: ColorPath.PrimaryColor,
+      primaryColorDark: ColorPath.PrimaryDarkColor,
+      primaryColorLight: ColorPath.PrimaryLightColor,
       backgroundColor: Colors.white,
       bottomAppBarColor: Colors.white,
       dividerColor: Colors.grey.shade400,
@@ -35,20 +37,20 @@ ThemeData theme() => ThemeData(
       // hintColor: ColorPath.PrimaryColor,
       // errorColor: ColorPath.ErrorColor,
       // toggleableActiveColor: ColorPath.PrimaryColor,
-      appBarTheme: appBarThemeData(),
+      // appBarTheme: appBarThemeData(),
       colorScheme: ColorScheme.fromSwatch().copyWith(
         primary: ColorPath.PrimaryColor,
         secondary: ColorPath.SecondaryColor,
       ),
-      textTheme: textThemeData(),
-      inputDecorationTheme: inputDecorationThemeData(),
-      buttonTheme: buttonThemeData(),
-      checkboxTheme: checkboxThemeData(),
-      chipTheme: chipThemeData(),
-      elevatedButtonTheme: elevatedButtonThemeData(),
-      textButtonTheme: textButtonThemeData(),
-      bottomSheetTheme: bottomSheetThemeData(),
-      textSelectionTheme: textSelectionThemeData(),
+      // textTheme: textThemeData(),
+      // inputDecorationTheme: inputDecorationThemeData(),
+      // buttonTheme: buttonThemeData(),
+      // checkboxTheme: checkboxThemeData(),
+      // chipTheme: chipThemeData(),
+      // elevatedButtonTheme: elevatedButtonThemeData(),
+      // textButtonTheme: textButtonThemeData(),
+      // bottomSheetTheme: bottomSheetThemeData(),
+      // textSelectionTheme: textSelectionThemeData(),
       visualDensity: VisualDensity.adaptivePlatformDensity,
     );
 
@@ -191,7 +193,7 @@ InputDecorationTheme inputDecorationThemeData() => InputDecorationTheme(
         fontSize: 14,
         fontWeight: FontWeight.normal,
       ),
-      focusColor: ColorPath.BlackColor,
+      focusColor: ColorPath.FocusedColor,
       hoverColor: ColorPath.BlackColor,
       errorBorder: UnderlineInputBorder(
         borderSide: BorderSide(
@@ -242,10 +244,16 @@ TextTheme textThemeData() => TextTheme(
       // labelLarge:,
       // labelMedium:,
       // labelSmall:,
+      // heading1: TextStyle(
+      //   FONT_FAMILY,
+      //   color: ColorPath.BlackColor,
+      //   fontSize: 18.0,
+      //   fontWeight: FontWeight.normal,
+      // ),
       headline1: TextStyle(
         fontFamily: FONT_FAMILY,
         color: ColorPath.BlackColor,
-        fontSize: 96.0,
+        fontSize: 18.0,
         fontWeight: FontWeight.normal,
       ),
       headline2: TextStyle(
@@ -296,12 +304,14 @@ TextTheme textThemeData() => TextTheme(
         fontSize: DEFAULT_FONT_SIZE,
         fontWeight: FontWeight.normal,
       ),
+      // 텍스트 메인
       bodyText2: TextStyle(
         fontFamily: FONT_FAMILY,
         color: ColorPath.BlackColor,
         fontSize: DEFAULT_FONT_SIZE,
         fontWeight: FontWeight.normal,
       ),
+
       caption: TextStyle(
         fontFamily: FONT_FAMILY,
         color: ColorPath.BlackColor,
