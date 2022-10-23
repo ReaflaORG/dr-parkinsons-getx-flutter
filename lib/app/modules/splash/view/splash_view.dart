@@ -79,7 +79,8 @@ class SplashView extends GetView<SplashController> {
                   ),
                   Text(
                     'Text style 적용',
-                    style: TextPath.bodyRegular.copyWith(color: Colors.black45),
+                    style: TextPath.bodyRegular
+                        .copyWith(color: ColorPath.TextGrey4),
                     // style: TextPath.bodyMedium(color: Colors.grey),
                   )
                 ],

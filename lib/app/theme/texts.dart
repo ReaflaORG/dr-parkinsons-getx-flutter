@@ -47,6 +47,7 @@ class TextPath {
   //       fontStyle: FontStyle.normal,
   //       fontSize: 16.0,
   //     );
+
   static TextStyle bodyMedium = TextStyle(
     color: ColorPath.TextGrey1,
     fontWeight: FontWeight.w500,
