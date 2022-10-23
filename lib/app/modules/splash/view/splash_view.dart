@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../theme/colors.dart';
+import '../../../theme/texts.dart';
 import '../controller/splash_controller.dart';
 
 class SplashView extends GetView<SplashController> {
@@ -72,7 +73,14 @@ class SplashView extends GetView<SplashController> {
                   ),
                   const Text(
                     'Text style 적용',
-                    style: TextStyle(color: ColorPath.TextBodyColor),
+                    style: TextStyle(
+                      color: ColorPath.TextBodyColor,
+                    ),
+                  ),
+                  Text(
+                    'Text style 적용',
+                    style: TextPath.bodyRegular.copyWith(color: Colors.black45),
+                    // style: TextPath.bodyMedium(color: Colors.grey),
                   )
                 ],
               ),
