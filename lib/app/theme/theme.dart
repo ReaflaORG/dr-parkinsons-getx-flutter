@@ -48,6 +48,7 @@ ThemeData theme() => ThemeData(
       checkboxTheme: checkboxThemeData(),
       chipTheme: chipThemeData(),
       elevatedButtonTheme: elevatedButtonThemeData(),
+      outlinedButtonTheme: outlinedButtonThemeData(),
       textButtonTheme: textButtonThemeData(),
       bottomSheetTheme: bottomSheetThemeData(),
       textSelectionTheme: textSelectionThemeData(),
@@ -116,6 +117,7 @@ ThemeData darkTheme({
       checkboxTheme: checkboxThemeData(),
       chipTheme: chipThemeData(),
       elevatedButtonTheme: elevatedButtonThemeData(),
+      outlinedButtonTheme: outlinedButtonThemeData(),
       bottomSheetTheme: bottomSheetThemeData(),
       visualDensity: VisualDensity.adaptivePlatformDensity,
     );
@@ -367,6 +369,25 @@ ElevatedButtonThemeData elevatedButtonThemeData() => ElevatedButtonThemeData(
         backgroundColor: ColorPath.PrimaryColor,
         disabledForegroundColor: Colors.grey.withOpacity(0.38),
         disabledBackgroundColor: Colors.grey.withOpacity(0.12),
+        shape: const RoundedRectangleBorder(
+          borderRadius: BorderRadius.all(
+            Radius.circular(5),
+          ),
+        ),
+      ),
+    );
+
+/// OutlinedButton ▼ =============================
+OutlinedButtonThemeData outlinedButtonThemeData() => OutlinedButtonThemeData(
+      style: OutlinedButton.styleFrom(
+        backgroundColor: ColorPath.BackgroundWhite,
+        disabledForegroundColor: Colors.grey.withOpacity(0.38),
+        disabledBackgroundColor: Colors.grey.withOpacity(0.12),
+        shape: const RoundedRectangleBorder(
+          borderRadius: BorderRadius.all(
+            Radius.circular(5),
+          ),
+        ),
       ),
     );
 

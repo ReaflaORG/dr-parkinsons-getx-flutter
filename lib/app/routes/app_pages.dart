@@ -3,6 +3,18 @@
 import 'package:flutter/animation.dart';
 import 'package:get/get.dart';
 
+import '../modules/doctor/binding/doctor_binding.dart';
+import '../modules/doctor/view/doctor_view.dart';
+import '../modules/healthcare/binding/healthcare_binding.dart';
+import '../modules/healthcare/view/healthcare_view.dart';
+import '../modules/home/binding/home_binding.dart';
+import '../modules/home/view/home_view.dart';
+import '../modules/main/binding/main_binding.dart';
+import '../modules/main/view/main_view.dart';
+import '../modules/mission/binding/mission_binding.dart';
+import '../modules/mission/view/mission_view.dart';
+import '../modules/myinfo/binding/myinfo_binding.dart';
+import '../modules/myinfo/view/myinfo_view.dart';
 import '../modules/permission/binding/permission_binding.dart';
 import '../modules/permission/view/permission_view.dart';
 import '../modules/signin/binding/signin_binding.dart';
@@ -55,6 +67,66 @@ class AppPages {
       name: Routes.SIGNIN,
       page: () => const SignInView(),
       binding: SignInBinding(),
+      transition: Transition.fadeIn,
+      transitionDuration: Duration.zero,
+      curve: Curves.easeIn,
+      popGesture: false,
+    ),
+    GetPage(
+      title: '메인',
+      name: Routes.MAIN,
+      page: () => const MainView(),
+      binding: MainBinding(),
+      transition: Transition.fadeIn,
+      transitionDuration: Duration.zero,
+      curve: Curves.easeIn,
+      popGesture: false,
+    ),
+    GetPage(
+      title: '홈',
+      name: Routes.HOME,
+      page: () => const HomeView(),
+      binding: HomeBinding(),
+      transition: Transition.fadeIn,
+      transitionDuration: Duration.zero,
+      curve: Curves.easeIn,
+      popGesture: false,
+    ),
+    GetPage(
+      title: '건강관리',
+      name: Routes.HEALTHCARE,
+      page: () => const HealthCareView(),
+      binding: HealthCareBinding(),
+      transition: Transition.fadeIn,
+      transitionDuration: Duration.zero,
+      curve: Curves.easeIn,
+      popGesture: false,
+    ),
+    GetPage(
+      title: '미션관리',
+      name: Routes.MISSION,
+      page: () => const MissionView(),
+      binding: MissionBinding(),
+      transition: Transition.fadeIn,
+      transitionDuration: Duration.zero,
+      curve: Curves.easeIn,
+      popGesture: false,
+    ),
+    GetPage(
+      title: '주치의찾기',
+      name: Routes.DOCTOR,
+      page: () => const DoctorView(),
+      binding: DoctorBinding(),
+      transition: Transition.fadeIn,
+      transitionDuration: Duration.zero,
+      curve: Curves.easeIn,
+      popGesture: false,
+    ),
+    GetPage(
+      title: '내정보',
+      name: Routes.MY_INFO,
+      page: () => const MyInfoView(),
+      binding: MyInfoBinding(),
       transition: Transition.fadeIn,
       transitionDuration: Duration.zero,
       curve: Curves.easeIn,

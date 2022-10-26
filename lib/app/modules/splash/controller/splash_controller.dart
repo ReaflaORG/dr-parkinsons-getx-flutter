@@ -36,7 +36,8 @@ class SplashController extends GetxController {
           await Get.offAllNamed('/permission');
         }
       } else {
-        await Get.offAllNamed('/signin');
+        await Get.offAllNamed('/permission');
+        // await Get.offAllNamed('/signin');
       }
     });
   }

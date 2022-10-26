@@ -30,6 +30,7 @@ analyzer:
     unnecessary_null_comparison: warning
     argument_type_not_assignable: warning
     # invalid_assignment: ignore
+    inference_failure_on_function_invocation: ignore
   exclude:
     - "bin/cache/**"
       # Ignore protoc generated files

@@ -1,11 +1,14 @@
 // ignore_for_file: unnecessary_overrides, cast_nullable_to_non_nullable, inference_failure_on_collection_literal, inference_failure_on_function_invocation
 
+import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:logger/logger.dart';
 import 'package:permission_handler/permission_handler.dart';
 
 import '../global_widget/global_dialog_widget.dart';
+import '../model/permission_model.dart';
 
 class PermissionService extends GetxService {
   static PermissionService get to => Get.find();
@@ -13,17 +16,17 @@ class PermissionService extends GetxService {
   // Data ▼ ============================================
 
   RxList<dynamic> permissionList = [
-    // PermissionModel(
-    //   title: '위치기반',
-    //   icon: Icon(
-    //     Icons.location_on_outlined,
-    //     size: 38.sp,
-    //     color: Colors.grey.shade700,
-    //   ),
-    //   description: '주변 업체 정보 제공',
-    //   isRequired: true,
-    //   isExpanded: false,
-    // ),
+    PermissionModel(
+      title: '위치기반',
+      icon: Icon(
+        Icons.location_on_outlined,
+        size: 38.sp,
+        color: Colors.grey.shade700,
+      ),
+      description: '주변 업체 정보 제공',
+      isRequired: true,
+      isExpanded: false,
+    ),
   ].obs;
 
   // Variable ▼ ========================================
@@ -104,7 +107,7 @@ class PermissionService extends GetxService {
   Future<dynamic> handlePermissionGranted() async {
     await GetStorage().write('initialize_permission', true);
     // Get.back();
-    await Get.offAllNamed('/main');
+    await Get.offAllNamed('/signin');
   }
 
   @override

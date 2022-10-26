@@ -34,6 +34,7 @@ dependencies:
   package_info_plus: ^1.4.3+1
   fluttertoast: ^8.0.9
   url_launcher: ^6.1.5
+  carousel_slider: ^4.1.1
 
 dev_dependencies:
   flutter_test:
@@ -48,6 +49,9 @@ flutter:
     - .env
     - assets/images/logo/
     - assets/images/splash/
+    - assets/images/permission/
+    - assets/images/signin/
+    - assets/images/navigation/
 
   fonts:
     - family: SUIT

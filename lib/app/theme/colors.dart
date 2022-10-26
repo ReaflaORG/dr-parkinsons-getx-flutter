@@ -41,7 +41,7 @@ class ColorPath {
   /// #9499b7
   ///
   /// ![](https://flutter.s3.ap-northeast-2.amazonaws.com/color/9499b7.jpg)
-  // static final SecondaryDarkColor = Color('9499b7');
+  static final SecondaryDarkColor = Color('9499b7');
 
   /// #FF80AB
   ///
@@ -55,9 +55,9 @@ class ColorPath {
 
   // * Text ▼ =======================================
 
-  /// #FFFFFFFF
+  /// #FFFFFF
   ///
-  /// ![](https://flutter.s3.ap-northeast-2.amazonaws.com/color/FFFFFFFF.jpg)
+  /// ![](https://flutter.s3.ap-northeast-2.amazonaws.com/color/FFFFFF.jpg)
   static final TextWhite = Color('FFFFFF');
 
   /// #212121
@@ -108,6 +108,11 @@ class ColorPath {
   ///
   /// ![](https://flutter.s3.ap-northeast-2.amazonaws.com/color/D9D9D9.jpg)
   static final Background2HD9D9D9 = Color('D9D9D9');
+
+  /// #FEE500
+  ///
+  /// ![](https://flutter.s3.ap-northeast-2.amazonaws.com/color/FEE500.jpg)
+  static final Background3HFEE500 = Color('FEE500');
 
   // * Fucntional Colors ▼ ==========================
 
