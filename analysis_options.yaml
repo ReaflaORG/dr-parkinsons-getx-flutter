@@ -21,12 +21,15 @@ analyzer:
   language:
     strict-casts: true
     strict-raw-types: true
+    strict-inference: true
   errors:
     # allow self-reference to deprecated members (we do this because otherwise we have
     # to annotate every member in every test, assert, etc, when we deprecate something)
     deprecated_member_use_from_same_package: ignore
     # Turned off until null-safe rollout is complete.
-    unnecessary_null_comparison: ignore
+    unnecessary_null_comparison: warning
+    argument_type_not_assignable: warning
+    # invalid_assignment: ignore
   exclude:
     - "bin/cache/**"
       # Ignore protoc generated files
@@ -47,7 +50,7 @@ linter:
     - avoid_bool_literals_in_conditional_expressions
     # - avoid_catches_without_on_clauses # blocked on https://github.com/dart-lang/linter/issues/3023
     # - avoid_catching_errors # blocked on https://github.com/dart-lang/linter/issues/3023
-    - avoid_classes_with_only_static_members
+    # - avoid_classes_with_only_static_members
     - avoid_double_and_int_checks
     # - avoid_dynamic_calls
     - avoid_empty_else
@@ -185,7 +188,7 @@ linter:
     - secure_pubspec_urls
     - sized_box_for_whitespace
     # - sized_box_shrink_expand # not yet tested
-    - slash_for_doc_comments
+    # - slash_for_doc_comments
     - sort_child_properties_last
     # - sort_constructors_first
     # - sort_pub_dependencies # prevents separating pinned transitive dependencies

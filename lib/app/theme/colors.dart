@@ -1,65 +1,174 @@
-// ignore_for_file: constant_identifier_names, non_constant_identifier_names, avoid_classes_with_only_static_members
+// ignore_for_file: finalant_identifier_names, non_finalant_identifier_names, slash_for_doc_comments, non_constant_identifier_names, constant_identifier_names
 
-import 'package:flutter/material.dart';
+import '../utils/color_hex_convert.dart';
+
+/**
+ * * 컬러 색상표
+ * * @url https://material.io/resources/color/#!/?view.left=0&view.right=0&secondary.color=C5CAE9&primary.color=7d63fd&secondary.text.color=FAFAFA
+ * * 빈도수가 높은 컬러는 기본 설정으로 빼기 (의견)
+ */
 
 class ColorPath {
-  /// 색상표
-  /// https://material.io/resources/color/#!/?view.left=0&view.right=0&secondary.color=C5CAE9&primary.color=7d63fd&secondary.text.color=FAFAFA
+  // * Primary ▼ ====================================
 
-  // 메인 색상
-  static const PrimaryDarkColor = Color(0XFF2F7ABA);
-  static const PrimaryColor = Color(0XFF468CC0);
-  static const PrimaryLightColor = Color(0XFFE3F2FD);
+  /// #2F7ABA
+  ///
+  /// ![](https://flutter.s3.ap-northeast-2.amazonaws.com/color/2F7ABA.jpg)
+  static final PrimaryDarkColor = Color('2F7ABA');
 
-  // 보조 색상
-  static const SecondaryColor = Color(0XFF04A8B4);
-  static const SecondaryLightColor = Color(0XFFCDEEF0);
-  // static const SecondaryDarkColor = Color(0XFF9499b7);
-  static const TertiaryColor = Color(0XFFFF80AB);
-  static const TertiaryLightColor = Color(0XFFFFDDD3);
+  /// #468CC0
+  ///
+  /// ![](https://flutter.s3.ap-northeast-2.amazonaws.com/color/468CC0.jpg)
+  static final PrimaryColor = Color('468CC0');
 
-  //*  빈도수가 높은 컬러는 기본 설정으로 빼기 (의견)
-  // text2, border2
+  /// #E3F2FD
+  ///
+  /// ![](https://flutter.s3.ap-northeast-2.amazonaws.com/color/E3F2FD.jpg)
+  static final PrimaryLightColor = Color('E3F2FD');
 
-  // Text
-  static Color TextGrey1 = Colors.grey.shade900;
-  static Color TextGrey2 = Colors.grey.shade800;
-  static Color TextGrey3 = Colors.grey.shade700;
-  static Color TextGrey4 = Colors.grey;
-  static Color TextGray5 = Colors.white;
+  // * Secondary ▼ ==================================
 
-  // Border
-  static Color Border1 = Colors.grey;
-  static Color Border2 = Colors.blueGrey.shade50;
+  /// #04A8B4
+  ///
+  /// ![](https://flutter.s3.ap-northeast-2.amazonaws.com/color/04A8B4.jpg)
+  static final SecondaryColor = Color('04A8B4');
 
-  // Background
-  static Color Background1 = Colors.blueGrey.shade50;
-  static Color Background2 = Colors.blueGrey.shade300;
-  static Color Background3 = Colors.white;
+  /// #CDEEF0
+  ///
+  /// ![](https://flutter.s3.ap-northeast-2.amazonaws.com/color/CDEEF0.jpg)
+  static final SecondaryLightColor = Color('CDEEF0');
 
-  // Fucntional Colors
-  static Color ErrorColor = Colors.red.shade900;
-  static Color WarningColor = Colors.amber;
-  static Color SuccessColor = Colors.green;
-  static Color FocusedColor = Colors.blue;
+  /// #9499b7
+  ///
+  /// ![](https://flutter.s3.ap-northeast-2.amazonaws.com/color/9499b7.jpg)
+  // static final SecondaryDarkColor = Color('9499b7');
 
-  //ETC
-  static Color BlackColor = const Color(0XFF383A3F);
+  /// #FF80AB
+  ///
+  /// ![](https://flutter.s3.ap-northeast-2.amazonaws.com/color/FF80AB.jpg)
+  static final TertiaryColor = Color('FF80AB');
 
-  static const TextBodyColor = Color(0xFF424242);
-  static Color GreyColor = Colors.grey.shade300;
-  static Color GreyLightColor = Colors.grey.shade200;
-  static Color GreyDarkColor = Colors.grey.shade600;
+  /// #FFDDD3
+  ///
+  /// ![](https://flutter.s3.ap-northeast-2.amazonaws.com/color/FFDDD3.jpg)
+  static final TertiaryLightColor = Color('FFDDD3');
 
-  // Input Placeholder 색상
-  static Color PlaceholderColor = Colors.grey;
-  // static Color PlaceholderColor = Colors.grey.shade400;
+  // * Text ▼ =======================================
 
-  // 오류 색상
-  // const kPrimaryGradientColor = LinearGradient(
-  //   begin: Alignment.topLeft,
-  //   end: Alignment.bottomRight,
-  //   colors: [Color(0xFFFFA53E), Color(0xFFFF7643)],
-  // );
-  // const kTextColor = Color(0xFF757575);
+  /// #FFFFFFFF
+  ///
+  /// ![](https://flutter.s3.ap-northeast-2.amazonaws.com/color/FFFFFFFF.jpg)
+  static final TextWhite = Color('FFFFFF');
+
+  /// #212121
+  ///
+  /// ![](https://flutter.s3.ap-northeast-2.amazonaws.com/color/212121.jpg)
+  static final TextGrey1H212121 = Color('212121');
+
+  /// #424242
+  ///
+  /// ![](https://flutter.s3.ap-northeast-2.amazonaws.com/color/424242.jpg)
+  static final TextGrey2H424242 = Color('424242');
+
+  /// #616161
+  ///
+  /// ![](https://flutter.s3.ap-northeast-2.amazonaws.com/color/616161.jpg)
+  static final TextGrey3H616161 = Color('616161');
+
+  /// #9E9E9E
+  ///
+  /// ![](https://flutter.s3.ap-northeast-2.amazonaws.com/color/9E9E9E.jpg)
+  static final TextGrey4H9E9E9E = Color('9E9E9E');
+
+  // * Border ▼ =====================================
+
+  /// #9E9E9E
+  ///
+  /// ![](https://flutter.s3.ap-northeast-2.amazonaws.com/color/9E9E9E.jpg)
+  static final Border1H9E9E9E = Color('9E9E9E');
+
+  /// #ECEFF1
+  ///
+  /// ![](https://flutter.s3.ap-northeast-2.amazonaws.com/color/ECEFF1.jpg)
+  static final Border2HECEFF1 = Color('ECEFF1');
+
+  // * Background ▼ =================================
+
+  /// #FFFFFF
+  ///
+  /// ![](https://flutter.s3.ap-northeast-2.amazonaws.com/color/FFFFFF.jpg)
+  static final BackgroundWhite = Color('FFFFFF');
+
+  /// #ECEFF1
+  ///
+  /// ![](https://flutter.s3.ap-northeast-2.amazonaws.com/color/ECEFF1.jpg)
+  static final Background1HECEFF1 = Color('ECEFF1');
+
+  /// #D9D9D9
+  ///
+  /// ![](https://flutter.s3.ap-northeast-2.amazonaws.com/color/D9D9D9.jpg)
+  static final Background2HD9D9D9 = Color('D9D9D9');
+
+  // * Fucntional Colors ▼ ==========================
+
+  /// #B00020
+  ///
+  /// ![](https://flutter.s3.ap-northeast-2.amazonaws.com/color/B00020.jpg)
+  static final ErrorColor = Color('B00020');
+
+  /// #FFC107
+  ///
+  /// ![](https://flutter.s3.ap-northeast-2.amazonaws.com/color/FFC107.jpg)
+  static final WarningColor = Color('FFC107');
+
+  /// #4CAF50
+  ///
+  /// ![](https://flutter.s3.ap-northeast-2.amazonaws.com/color/4CAF50.jpg)
+  static final SuccessColor = Color('4CAF50');
+
+  /// #2196F3
+  ///
+  /// ![](https://flutter.s3.ap-northeast-2.amazonaws.com/color/2196F3.jpg)
+  static final FocusedColor = Color('2196F3');
+
+  /// * PlaceHolder ▼ ===============================
+
+  /// #BDBDBD
+  ///
+  /// ![](https://flutter.s3.ap-northeast-2.amazonaws.com/color/BDBDBD.jpg)
+  static final PlaceholderColor = Color('BDBDBD');
+
+  /// * Disabled ▼ ==================================
+
+  /// #BDBDBD
+  ///
+  /// ![](https://flutter.s3.ap-northeast-2.amazonaws.com/color/BDBDBD.jpg)
+  static final DisabledColor = Color('BDBDBD');
+
+  // * Etc ▼ ========================================
+
+  /// #383A3F
+  ///
+  /// ![](https://flutter.s3.ap-northeast-2.amazonaws.com/color/383A3F.jpg)
+  static final BlackColor = Color('383A3F');
+
+  /// #424242
+  ///
+  /// ![](https://flutter.s3.ap-northeast-2.amazonaws.com/color/424242.jpg)
+  static final TextBodyColor = Color('424242');
+
+  /// #E0E0E0
+  ///
+  /// ![](https://flutter.s3.ap-northeast-2.amazonaws.com/color/E0E0E0.jpg)
+  static final GreyColor = Color('E0E0E0');
+
+  /// #EEEEEE
+  ///
+  /// ![](https://flutter.s3.ap-northeast-2.amazonaws.com/color/EEEEEE.jpg)
+  static final GreyLightColor = Color('EEEEEE');
+
+  /// #757575
+  ///
+  /// ![](https://flutter.s3.ap-northeast-2.amazonaws.com/color/757575.jpg)
+  static final GreyDarkColor = Color('757575');
 }

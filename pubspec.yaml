@@ -32,6 +32,8 @@ dependencies:
   firebase_messaging: ^13.0.0
   flutter_local_notifications: ^9.9.1
   package_info_plus: ^1.4.3+1
+  fluttertoast: ^8.0.9
+  url_launcher: ^6.1.5
 
 dev_dependencies:
   flutter_test:
@@ -46,3 +48,25 @@ flutter:
     - .env
     - assets/images/logo/
     - assets/images/splash/
+
+  fonts:
+    - family: SUIT
+      fonts:
+        - asset: assets/fonts/suit/SUIT-Thin.ttf
+          weight: 100
+        - asset: assets/fonts/suit/SUIT-ExtraLight.ttf
+          weight: 200
+        - asset: assets/fonts/suit/SUIT-Light.ttf
+          weight: 300
+        - asset: assets/fonts/suit/SUIT-Regular.ttf
+          weight: 400
+        - asset: assets/fonts/suit/SUIT-Medium.ttf
+          weight: 500
+        - asset: assets/fonts/suit/SUIT-SemiBold.ttf
+          weight: 600
+        - asset: assets/fonts/suit/SUIT-Bold.ttf
+          weight: 700
+        - asset: assets/fonts/suit/SUIT-ExtraBold.ttf
+          weight: 800
+        - asset: assets/fonts/suit/SUIT-Heavy.ttf
+          weight: 900

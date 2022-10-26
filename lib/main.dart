@@ -11,6 +11,7 @@ import 'app/modules/splash/binding/splash_binding.dart';
 import 'app/modules/splash/view/splash_view.dart';
 import 'app/routes/app_pages.dart';
 import 'app/service/global_service.dart';
+import 'app/service/permission_service.dart';
 import 'app/theme/theme.dart';
 
 void main() async {
@@ -34,9 +35,17 @@ Future<void> initialize() async {
   /// 가로모드 방지
   SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
 
-  /// 글로벌 서비스 초기화
+  /// Firebase 초기화
+  // await Firebase.initializeApp();
+
+  /// 글로벌 서비스
   Get.put(GlobalService());
+
+  /// FCM 서비스
   // Get.put(FCMService());
+
+  /// 퍼미션 서비스
+  Get.lazyPut(() => PermissionService());
 }
 
 class MyApp extends StatelessWidget {
@@ -44,16 +53,16 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => ScreenUtilInit(
-        designSize: const Size(411.4, 852.6),
+        designSize: const Size(360, 640),
         minTextAdapt: true,
         splitScreenMode: true,
         builder: (BuildContext context, Widget? child) => GetMaterialApp(
           title: dotenv.env['APP_EN_NAME']!,
           initialRoute: '/splash',
           initialBinding: SplashBinding(),
+          home: const SplashView(),
           getPages: AppPages.routes,
           smartManagement: SmartManagement.full,
-          home: const SplashView(),
           builder: (BuildContext context, Widget? child) => MediaQuery(
             data: MediaQuery.of(context).copyWith(textScaleFactor: 1.0),
             child: child!,

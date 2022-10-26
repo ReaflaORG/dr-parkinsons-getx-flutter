@@ -1,27 +1,27 @@
-// ignore_for_file: constant_identifier_names, non_constant_identifier_names
+// ignore_for_file: constant_identifier_names, non_constant_identifier_names, slash_for_doc_comments
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 import 'colors.dart';
 
-/// 테마
-/// 폰트
-/// - 작은 사이즈 14
-/// - 기본 사이즈 18
-/// 버튼
-/// - 높이 48
-/// 텍스트 폼 필드
-/// - 높이 기본
+/**
+ * * 테마
+ */
 
-const FONT_FAMILY = 'NotoSansKR';
-const double DEFAULT_FONT_SIZE = 16;
-const double DEFAULT_FONT_S_SIZE = 14;
+/// Primary FontFamily ▼ =========================
+const FontFamily = 'NotoSansKR';
 
-/// 메인 테마
+/// Primary FontSize ▼ ===========================
+const double PrimaryFontSize = 16;
+
+/// Secondary FontSize ▼ =========================
+const double SecondaryFontSize = 14;
+
+/// Main Theme ▼ =================================
 ThemeData theme() => ThemeData(
       useMaterial3: false,
-      fontFamily: FONT_FAMILY,
+      fontFamily: FontFamily,
       brightness: Brightness.light,
       splashColor: Colors.white,
       scaffoldBackgroundColor: Colors.white,
@@ -31,32 +31,32 @@ ThemeData theme() => ThemeData(
       backgroundColor: Colors.white,
       bottomAppBarColor: Colors.white,
       dividerColor: Colors.grey.shade400,
-      disabledColor: ColorPath.GreyColor,
-      // selectedRowColor: ColorPath.PrimaryColor,
+      disabledColor: ColorPath.DisabledColor,
+      // selectedRowColor: ColorPath.PrimaryColor as Color,
       unselectedWidgetColor: Colors.grey,
-      // hintColor: ColorPath.PrimaryColor,
+      // hintColor: ColorPath.PrimaryColor as Color,
       // errorColor: ColorPath.ErrorColor,
-      // toggleableActiveColor: ColorPath.PrimaryColor,
+      // toggleableActiveColor: ColorPath.PrimaryColor as Color,
       // appBarTheme: appBarThemeData(),
       colorScheme: ColorScheme.fromSwatch().copyWith(
         primary: ColorPath.PrimaryColor,
         secondary: ColorPath.SecondaryColor,
       ),
-      // textTheme: textThemeData(),
-      // inputDecorationTheme: inputDecorationThemeData(),
-      // buttonTheme: buttonThemeData(),
-      // checkboxTheme: checkboxThemeData(),
-      // chipTheme: chipThemeData(),
-      // elevatedButtonTheme: elevatedButtonThemeData(),
-      // textButtonTheme: textButtonThemeData(),
-      // bottomSheetTheme: bottomSheetThemeData(),
-      // textSelectionTheme: textSelectionThemeData(),
+      textTheme: textThemeData(),
+      inputDecorationTheme: inputDecorationThemeData(),
+      buttonTheme: buttonThemeData(),
+      checkboxTheme: checkboxThemeData(),
+      chipTheme: chipThemeData(),
+      elevatedButtonTheme: elevatedButtonThemeData(),
+      textButtonTheme: textButtonThemeData(),
+      bottomSheetTheme: bottomSheetThemeData(),
+      textSelectionTheme: textSelectionThemeData(),
       visualDensity: VisualDensity.adaptivePlatformDensity,
     );
 
-/// ExpansionTile 위젯 dividerColor 색상 투명
+/// ExpansionTile, dividerColor ▼ ================
 ThemeData themeExpansionTile() => ThemeData(
-      fontFamily: FONT_FAMILY,
+      fontFamily: FontFamily,
       brightness: Brightness.light,
       splashColor: Colors.white,
       scaffoldBackgroundColor: Colors.white,
@@ -64,12 +64,12 @@ ThemeData themeExpansionTile() => ThemeData(
       backgroundColor: Colors.white,
       bottomAppBarColor: Colors.white,
       dividerColor: Colors.transparent,
-      disabledColor: ColorPath.GreyColor,
-      // selectedRowColor: ColorPath.PrimaryColor,
+      disabledColor: ColorPath.DisabledColor,
+      // selectedRowColor: ColorPath.PrimaryColor as Color,
       unselectedWidgetColor: Colors.grey,
-      // hintColor: ColorPath.PrimaryColor,
+      // hintColor: ColorPath.PrimaryColor as Color,
       // errorColor: ColorPath.ErrorColor,
-      // toggleableActiveColor: ColorPath.PrimaryColor,
+      // toggleableActiveColor: ColorPath.PrimaryColor as Color,
       appBarTheme: appBarThemeData(),
       colorScheme: ColorScheme.fromSwatch().copyWith(
         primary: ColorPath.PrimaryColor,
@@ -87,7 +87,7 @@ ThemeData themeExpansionTile() => ThemeData(
       visualDensity: VisualDensity.adaptivePlatformDensity,
     );
 
-/// 다크 테마
+/// Dark Theme ▼ =================================
 ThemeData darkTheme({
   required BuildContext context,
 }) =>
@@ -120,7 +120,7 @@ ThemeData darkTheme({
       visualDensity: VisualDensity.adaptivePlatformDensity,
     );
 
-/// 앱바 테마
+/// Appbar ▼ =====================================
 AppBarTheme appBarThemeData() => AppBarTheme(
       color: Colors.white,
       foregroundColor: Colors.white,
@@ -138,49 +138,55 @@ AppBarTheme appBarThemeData() => AppBarTheme(
         bodyText2: TextStyle(
           color: ColorPath.BlackColor,
           fontSize: 18,
+          height: 1.1,
         ),
       ).bodyText2,
       titleTextStyle: TextTheme(
         headline6: TextStyle(
           color: ColorPath.BlackColor,
           fontSize: 18,
+          height: 1.1,
         ),
       ).headline6,
       systemOverlayStyle: SystemUiOverlayStyle.light,
     );
 
-/// 텍스트 위젯 테마
+/// Text Selection ▼ =============================
 TextSelectionThemeData textSelectionThemeData() => TextSelectionThemeData(
       cursorColor: ColorPath.BlackColor,
       selectionColor: ColorPath.BlackColor,
       selectionHandleColor: ColorPath.BlackColor,
     );
 
-/// 텍스트폼필드 위젯 데코레이션 테마
+/// TextFormField ▼ ==============================
 InputDecorationTheme inputDecorationThemeData() => InputDecorationTheme(
       // 상단 라벨
       labelStyle: TextStyle(
         color: Colors.grey.shade400,
         fontSize: 20,
         fontWeight: FontWeight.normal,
+        height: 1.1,
       ),
       // Placeholder
       hintStyle: TextStyle(
         color: ColorPath.PlaceholderColor,
-        fontSize: DEFAULT_FONT_SIZE,
+        fontSize: PrimaryFontSize,
         fontWeight: FontWeight.normal,
+        height: 1.1,
       ),
       // 하단 도움말
       helperStyle: TextStyle(
         color: ColorPath.PlaceholderColor,
         fontSize: 14,
         fontWeight: FontWeight.normal,
+        height: 1.1,
       ),
       // 하단 오류 메세지
       errorStyle: TextStyle(
         color: ColorPath.ErrorColor,
         fontSize: 14,
         fontWeight: FontWeight.normal,
+        height: 1.1,
       ),
       iconColor: ColorPath.GreyColor,
       prefixIconColor: ColorPath.GreyColor,
@@ -192,6 +198,7 @@ InputDecorationTheme inputDecorationThemeData() => InputDecorationTheme(
         color: Colors.grey.shade400,
         fontSize: 14,
         fontWeight: FontWeight.normal,
+        height: 1.1,
       ),
       focusColor: ColorPath.FocusedColor,
       hoverColor: ColorPath.BlackColor,
@@ -202,7 +209,7 @@ InputDecorationTheme inputDecorationThemeData() => InputDecorationTheme(
       ),
       focusedBorder: UnderlineInputBorder(
         borderSide: BorderSide(
-          color: ColorPath.GreyColor,
+          color: ColorPath.Border1H9E9E9E,
         ),
       ),
       focusedErrorBorder: UnderlineInputBorder(
@@ -227,7 +234,7 @@ InputDecorationTheme inputDecorationThemeData() => InputDecorationTheme(
       ),
     );
 
-/// 텍스트 위젯 테마
+/// Text ▼ =======================================
 TextTheme textThemeData() => TextTheme(
       // displayLarge:
       // displayMedium:,
@@ -245,102 +252,116 @@ TextTheme textThemeData() => TextTheme(
       // labelMedium:,
       // labelSmall:,
       // heading1: TextStyle(
-      //   FONT_FAMILY,
-      //   color: ColorPath.BlackColor,
+      //   FontFamily,
+      //   color: ColorPath.BlackColor as Color,
       //   fontSize: 18.0,
       //   fontWeight: FontWeight.normal,
+      //   height: 1.1,
       // ),
       headline1: TextStyle(
-        fontFamily: FONT_FAMILY,
+        fontFamily: FontFamily,
         color: ColorPath.BlackColor,
         fontSize: 18.0,
         fontWeight: FontWeight.normal,
+        height: 1.1,
       ),
       headline2: TextStyle(
-        fontFamily: FONT_FAMILY,
+        fontFamily: FontFamily,
         color: ColorPath.BlackColor,
         fontSize: 60.0,
         fontWeight: FontWeight.normal,
+        height: 1.1,
       ),
       headline3: TextStyle(
-        fontFamily: FONT_FAMILY,
+        fontFamily: FontFamily,
         color: ColorPath.BlackColor,
         fontSize: 48.0,
         fontWeight: FontWeight.normal,
+        height: 1.1,
       ),
       headline4: TextStyle(
-        fontFamily: FONT_FAMILY,
+        fontFamily: FontFamily,
         color: ColorPath.BlackColor,
         fontSize: 34.0,
         fontWeight: FontWeight.normal,
+        height: 1.1,
       ),
       headline5: TextStyle(
-        fontFamily: FONT_FAMILY,
+        fontFamily: FontFamily,
         color: ColorPath.BlackColor,
         fontSize: 24.0,
         fontWeight: FontWeight.normal,
+        height: 1.1,
       ),
       headline6: TextStyle(
-        fontFamily: FONT_FAMILY,
+        fontFamily: FontFamily,
         color: ColorPath.BlackColor,
         fontSize: 20.0,
         fontWeight: FontWeight.normal,
+        height: 1.1,
       ),
       subtitle1: TextStyle(
-        fontFamily: FONT_FAMILY,
+        fontFamily: FontFamily,
         color: ColorPath.BlackColor,
         fontSize: 16.0,
         fontWeight: FontWeight.normal,
+        height: 1.1,
       ),
       subtitle2: TextStyle(
-        fontFamily: FONT_FAMILY,
+        fontFamily: FontFamily,
         color: ColorPath.BlackColor,
         fontSize: 14.0,
         fontWeight: FontWeight.normal,
+        height: 1.1,
       ),
       bodyText1: TextStyle(
-        fontFamily: FONT_FAMILY,
+        fontFamily: FontFamily,
         color: ColorPath.BlackColor,
-        fontSize: DEFAULT_FONT_SIZE,
+        fontSize: PrimaryFontSize,
         fontWeight: FontWeight.normal,
+        height: 1.1,
       ),
       // 텍스트 메인
       bodyText2: TextStyle(
-        fontFamily: FONT_FAMILY,
+        fontFamily: FontFamily,
         color: ColorPath.BlackColor,
-        fontSize: DEFAULT_FONT_SIZE,
+        fontSize: PrimaryFontSize,
         fontWeight: FontWeight.normal,
+        height: 1.1,
       ),
 
       caption: TextStyle(
-        fontFamily: FONT_FAMILY,
+        fontFamily: FontFamily,
         color: ColorPath.BlackColor,
         fontWeight: FontWeight.normal,
+        height: 1.1,
       ),
       button: TextStyle(
-        fontFamily: FONT_FAMILY,
+        fontFamily: FontFamily,
         color: ColorPath.BlackColor,
-        fontSize: DEFAULT_FONT_SIZE,
+        fontSize: PrimaryFontSize,
         fontWeight: FontWeight.normal,
+        height: 1.1,
       ),
       overline: TextStyle(
-        fontFamily: FONT_FAMILY,
+        fontFamily: FontFamily,
         color: ColorPath.BlackColor,
         fontWeight: FontWeight.normal,
+        height: 1.1,
       ),
     );
 
-/// 버튼 위젯 테마
+/// Button ▼ =====================================
 ButtonThemeData buttonThemeData() => ButtonThemeData(
       buttonColor: ColorPath.BlackColor,
-      disabledColor: ColorPath.GreyColor,
+      disabledColor: ColorPath.DisabledColor,
       focusColor: ColorPath.BlackColor,
       hoverColor: ColorPath.BlackColor,
       highlightColor: ColorPath.BlackColor,
       splashColor: ColorPath.BlackColor,
     );
 
-/// ElevatedButton 버튼 위젯 테마
+/// ElevatedButton ▼ =============================
 ElevatedButtonThemeData elevatedButtonThemeData() => ElevatedButtonThemeData(
       style: ElevatedButton.styleFrom(
         backgroundColor: ColorPath.PrimaryColor,
@@ -349,7 +370,7 @@ ElevatedButtonThemeData elevatedButtonThemeData() => ElevatedButtonThemeData(
       ),
     );
 
-/// TextButton 버튼 위젯 테마
+/// TextButton ▼ =================================
 TextButtonThemeData textButtonThemeData() => TextButtonThemeData(
       style: TextButton.styleFrom(
         foregroundColor: ColorPath.PrimaryColor,
@@ -357,13 +378,13 @@ TextButtonThemeData textButtonThemeData() => TextButtonThemeData(
       ),
     );
 
-/// 바텀시트 위젯 테마
+/// BottomSheet ▼ ================================
 BottomSheetThemeData bottomSheetThemeData() => const BottomSheetThemeData(
       backgroundColor: Colors.white,
       modalBackgroundColor: Colors.white,
     );
 
-/// 체크박스 위젯 테마
+/// Checkbox ▼ ===================================
 CheckboxThemeData checkboxThemeData() => CheckboxThemeData(
       fillColor: MaterialStateProperty.all(
         ColorPath.PrimaryColor,
@@ -376,7 +397,7 @@ CheckboxThemeData checkboxThemeData() => CheckboxThemeData(
       ),
     );
 
-/// 칩(Chip) 위젯 테마
+/// Chip ▼ =======================================
 ChipThemeData chipThemeData() => ChipThemeData(
       backgroundColor: Colors.grey.shade300,
       deleteIconColor: Colors.white,
@@ -393,9 +414,11 @@ ChipThemeData chipThemeData() => ChipThemeData(
       // OutlinedBorder? shape,
       labelStyle: const TextStyle(
         color: Colors.white,
+        height: 1.1,
       ),
       secondaryLabelStyle: const TextStyle(
         color: Colors.white,
+        height: 1.1,
       ),
       brightness: Brightness.light,
       elevation: 0.0,

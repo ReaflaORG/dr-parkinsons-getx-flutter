@@ -1,36 +1,64 @@
 // ignore_for_file: unnecessary_overrides
 
 import 'dart:async';
+import 'dart:io';
 
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:url_launcher/url_launcher.dart';
 
+import '../../../global_widget/global_dialog_widget.dart';
 import '../../../service/global_service.dart';
+import '../../../service/permission_service.dart';
 
 class SplashController extends GetxController {
   static SplashController get to => Get.find();
 
   RxBool isChecked = false.obs;
 
-  // Funcion ▼ ========================================
+  // Data ▼ ============================================
 
-  /// 페이지 이동
-  void handleGetTo({required bool status}) => Future.delayed(
-        const Duration(milliseconds: 1000),
-        () => status == true
-            ? Get.offAndToNamed('/main')
-            : Get.offAndToNamed('/signin'),
-      );
+  // Variable ▼ ========================================
+
+  // Function ▼ ========================================
+
+  /// 스플래시 화면 처리
+  Future<void> handleSplashDelayed({
+    int milliseconds = 2500,
+  }) async {
+    Future.delayed(Duration(milliseconds: milliseconds), () async {
+      if (GetStorage().read('initialize_permission') == null) {
+        if (PermissionService.to.permissionList.isEmpty) {
+          await Get.offAllNamed('/permission');
+          // await Get.offAllNamed('/signin');
+        } else {
+          await Get.offAllNamed('/permission');
+        }
+      } else {
+        await Get.offAllNamed('/signin');
+      }
+    });
+  }
 
   /// 컨트롤러 초기화
   Future<void> handleInitialization() async {
-    // 권한(이용) 안내 (전화 + 저장 + 주소록)
-    if (GetStorage().read('initialize_permission') == null ||
-        GetStorage().read('initialize_permission') == false) {
-      // Future.delayed(const Duration(milliseconds: 3000),
-      //     () => Get.offAndToNamed("/permission"));
+    /// 앱 버전 체크
+    if (await GlobalService.to.handleAppVersionCheck()) {
+      GlobalAppVersionUpgradeModalWidget(
+        cancelOnPressed: () async {
+          Get.back();
+          await handleSplashDelayed();
+        },
+        okOnPressed: () async {
+          await handleSplashDelayed();
+          await launchUrl(Uri.parse(Platform.isAndroid
+              ? "market://details?id=${dotenv.env['APP_AOS_PACKAGE_NAME']}"
+              : "itms-appss://apps.apple.com/app/${dotenv.env['APP_IOS_ID']}"));
+        },
+      );
     } else {
-      handleGetTo(status: false);
+      await handleSplashDelayed();
     }
   }
 
