@@ -30,47 +30,72 @@ class MainView extends GetView<MainController> {
                 topLeft: Radius.circular(12),
                 topRight: Radius.circular(12),
               ),
-              child: BottomNavigationBar(
-                type: BottomNavigationBarType.fixed,
-                currentIndex: controller.navigationIndex.value,
-                backgroundColor: ColorPath.BackgroundWhite,
-                elevation: 10,
-                selectedItemColor: ColorPath.BlackColor,
-                unselectedItemColor: ColorPath.TextGrey4H9E9E9E,
-                selectedLabelStyle: TextPath.TextF12W400,
-                unselectedLabelStyle: TextPath.TextF12W400.copyWith(
-                  color: ColorPath.TextGrey4H9E9E9E,
-                ),
-                onTap: (index) {
-                  controller.navigationIndex.value = index;
-                },
-                items: List.generate(
-                  controller.navigationData.length,
-                  (index) {
-                    return BottomNavigationBarItem(
-                      activeIcon: Container(
-                        padding: const EdgeInsets.only(bottom: 5),
-                        child: Image.asset(
-                          controller.navigationData[index].image!,
-                          width: 25.w,
-                          height: 24.h,
-                        ),
-                      ),
-                      icon: Container(
-                        padding: const EdgeInsets.only(bottom: 5),
-                        child: Image.asset(
-                          controller.navigationData[index].image!,
-                          width: 25.w,
-                          height: 24.h,
-                        ),
-                      ),
-                      label: controller.navigationData[index].title,
-                    );
+              child: SizedBox(
+                height: 62,
+                child: BottomNavigationBar(
+                  type: BottomNavigationBarType.fixed,
+                  currentIndex: controller.navigationIndex.value,
+                  backgroundColor: ColorPath.BackgroundWhite,
+                  elevation: 10,
+                  selectedItemColor: ColorPath.BlackColor,
+                  unselectedItemColor: ColorPath.TextGrey4H9E9E9E,
+                  selectedLabelStyle: TextPath.TextF12W600,
+                  unselectedLabelStyle: TextPath.TextF12W400.copyWith(
+                    color: ColorPath.TextGrey4H9E9E9E,
+                  ),
+                  onTap: (index) {
+                    controller.navigationIndex.value = index;
                   },
+                  items: List.generate(
+                    controller.navigationData.length,
+                    (index) {
+                      return BottomNavigationBarItem(
+                        activeIcon: IconWidget(
+                          index: index,
+                          image: controller.navigationData[index].imageActive!,
+                          width: controller.navigationData[index].width!,
+                          height: controller.navigationData[index].height!,
+                        ),
+                        icon: IconWidget(
+                          index: index,
+                          image: controller.navigationData[index].image!,
+                          width: controller.navigationData[index].width!,
+                          height: controller.navigationData[index].height!,
+                        ),
+                        label: controller.navigationData[index].title,
+                      );
+                    },
+                  ),
                 ),
               ),
             ),
           ),
+        ),
+      );
+}
+
+class IconWidget extends GetView<MainController> {
+  final int index;
+  final String image;
+  final int width;
+  final int height;
+
+  const IconWidget({
+    super.key,
+    required this.index,
+    required this.image,
+    required this.width,
+    required this.height,
+  });
+
+  @override
+  Widget build(BuildContext context) => Container(
+        padding: const EdgeInsets.only(bottom: 5),
+        child: Image.asset(
+          image,
+          width: width.w,
+          height: height.h,
+          fit: BoxFit.cover,
         ),
       );
 }

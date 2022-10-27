@@ -26,22 +26,33 @@ class MainController extends GetxController {
     NavigationModel(
       title: '홈',
       image: 'assets/images/navigation/navigation_1.png',
+      imageActive: 'assets/images/navigation/navigation_1_active.png',
     ),
     NavigationModel(
       title: '건강관리',
       image: 'assets/images/navigation/navigation_2.png',
+      imageActive: 'assets/images/navigation/navigation_2_active.png',
+      width: 27,
+      height: 26,
     ),
     NavigationModel(
       title: '미션관리',
       image: 'assets/images/navigation/navigation_3.png',
+      imageActive: 'assets/images/navigation/navigation_3_active.png',
+      width: 27,
+      height: 26,
     ),
     NavigationModel(
       title: '주치의찾기',
       image: 'assets/images/navigation/navigation_4.png',
+      imageActive: 'assets/images/navigation/navigation_4_active.png',
+      width: 27,
+      height: 26,
     ),
     NavigationModel(
       title: '내정보',
       image: 'assets/images/navigation/navigation_5.png',
+      imageActive: 'assets/images/navigation/navigation_5_active.png',
     ),
   ];
 

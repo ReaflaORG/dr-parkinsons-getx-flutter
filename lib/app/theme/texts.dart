@@ -294,4 +294,20 @@ class TextPath {
     height: 12 / 12,
     letterSpacing: 0,
   );
+
+  /// fontFamily: SUIT
+  ///
+  /// fontSize: 12
+  ///
+  /// fontWeight: Semibold 600
+  static TextStyle TextF12W600 = TextStyle(
+    color: ColorPath.TextGrey1H212121,
+    fontFamily: 'SUIT',
+    fontSize: 12.0.sp,
+    fontWeight: FontWeight.w600,
+    fontStyle: FontStyle.normal,
+    decoration: TextDecoration.none,
+    height: 12 / 12,
+    letterSpacing: 0,
+  );
 }

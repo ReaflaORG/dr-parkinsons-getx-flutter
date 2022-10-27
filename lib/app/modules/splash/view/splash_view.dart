@@ -13,7 +13,7 @@ class SplashView extends GetView<SplashController> {
         color: Colors.white,
         child: Center(
           child: Image.asset(
-            'assets/images/logo/logo_@4x.png',
+            'assets/images/logo/logo.png',
             fit: BoxFit.contain,
           ),
         ),

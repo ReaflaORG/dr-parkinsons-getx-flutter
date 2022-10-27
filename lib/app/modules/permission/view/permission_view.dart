@@ -60,7 +60,7 @@ class PermissionView extends GetView<PermissionController> {
                                     width: 28.w,
                                     height: 22.67.h,
                                     child: Image.asset(
-                                      'assets/images/logo/logo_small@4x.png',
+                                      'assets/images/logo/logo_small.png',
                                       // fit: BoxFit.contain,
                                     ),
                                   ),
@@ -126,7 +126,7 @@ class PermissionView extends GetView<PermissionController> {
                 ),
                 SizedBox(
                   width: double.infinity,
-                  height: 48,
+                  height: 48.h,
                   child: TextButton(
                     onPressed: () {
                       PermissionService.to.handlePermissionOnPressed();
