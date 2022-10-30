@@ -27,9 +27,34 @@ class PermissionService extends GetxService {
       isRequired: true,
       isExpanded: false,
     ),
+    // PermissionModel(
+    //   title: '카메라 및 앨범',
+    //   icon: Icon(
+    //     Icons.camera_alt_rounded,
+    //     size: 32,
+    //     color: Colors.grey.shade700,
+    //   ),
+    //   description: '프로필 이미지 업로드에 사용',
+    //   isRequired: true,
+    //   isExpanded: false,
+    // ),
+    // PermissionModel(
+    //   title: '마이크',
+    //   icon: Icon(
+    //     Icons.mic_rounded,
+    //     size: 32,
+    //     color: Colors.grey.shade700,
+    //   ),
+    //   description: '프로필 동영상 업로드시 녹화에 사용',
+    //   isRequired: true,
+    //   isExpanded: false,
+    // ),
   ].obs;
 
   // Variable ▼ ========================================
+
+  /// 권한 프로세스 종료 체크
+  RxBool isPermissionSuccess = false.obs;
 
   /// 위치기반 허용 여부
   RxBool isLocationPermissionsGranted = false.obs;
@@ -40,46 +65,53 @@ class PermissionService extends GetxService {
   Future<dynamic> handlePermissionOnPressed() async {
     final Map<Permission, PermissionStatus> permissionStatus = await [
       Permission.location,
+      // Permission.camera,
+      // Permission.photos,
+      // Permission.microphone,
     ].request();
 
-    switch (permissionStatus[Permission.location]) {
-      case PermissionStatus.denied:
-        Logger().d('사용자가 요청한 기능에 대한 액세스를 거부한 경우');
+    for (var index = 0; index < permissionStatus.length; index++) {
+      if (index == permissionStatus.length - 1) {
+        isPermissionSuccess.value = true;
+      }
 
-        isLocationPermissionsGranted.value = false;
-        await GlobalPermissionModalOpenAppSettingsWidget(controller: this);
-        break;
-      case PermissionStatus.granted:
-        Logger().d('사용자가 요청한 기능에 대한 액세스 권한을 부여한 경우');
+      switch (permissionStatus[Permission.location]) {
+        case PermissionStatus.denied:
+          Logger().d('사용자가 요청한 기능에 대한 액세스를 거부한 경우');
 
-        handlePermissionGranted();
-        break;
-      case PermissionStatus.limited:
-        Logger().d('사용자가 제한된 액세스를 위해 이 애플리케이션을 승인했습니다. iOS(iOS14+)에서만 지원됨');
+          isLocationPermissionsGranted.value = false;
+          await GlobalPermissionModalOpenAppSettingsWidget(controller: this);
+          break;
+        case PermissionStatus.granted:
+          Logger().d('사용자가 요청한 기능에 대한 액세스 권한을 부여한 경우');
 
-        isLocationPermissionsGranted.value = false;
-        break;
-      case PermissionStatus.permanentlyDenied:
-        Logger().d(
-            '요청된 기능에 대한 권한이 영구적으로 거부되면 이 권한을 요청할 때 권한 대화 상자가 표시되지 않습니다. 사용자는 여전히 설정에서 권한 상태를 변경할 수 있습니다. Android에서만 지원됩니다.');
+          handlePermissionGranted();
+          break;
+        case PermissionStatus.limited:
+          Logger().d('사용자가 제한된 액세스를 위해 이 애플리케이션을 승인했습니다. iOS(iOS14+)에서만 지원됨');
 
-        isLocationPermissionsGranted.value = false;
-        Get.back();
-        await GlobalPermissionModalOpenAppSettingsWidget(controller: this);
-        break;
-      case PermissionStatus.restricted:
-        Logger().d(
-            'OS가 요청한 기능에 대한 액세스를 거부했습니다. 사용자는 자녀 보호 기능과 같은 활성 제한으로 인해 이 앱의 상태를 변경할 수 없습니다. iOS에서만 지원됩니다.');
+          isLocationPermissionsGranted.value = false;
+          break;
+        case PermissionStatus.permanentlyDenied:
+          Logger().d(
+              '요청된 기능에 대한 권한이 영구적으로 거부되면 이 권한을 요청할 때 권한 대화 상자가 표시되지 않습니다. 사용자는 여전히 설정에서 권한 상태를 변경할 수 있습니다. Android에서만 지원됩니다.');
 
-        isLocationPermissionsGranted.value = false;
-        await GlobalPermissionModalOpenAppSettingsWidget(controller: this);
-        break;
-      default:
-        Logger().d('default');
+          isLocationPermissionsGranted.value = false;
+          Get.back();
+          await GlobalPermissionModalOpenAppSettingsWidget(controller: this);
+          break;
+        case PermissionStatus.restricted:
+          Logger().d(
+              'OS가 요청한 기능에 대한 액세스를 거부했습니다. 사용자는 자녀 보호 기능과 같은 활성 제한으로 인해 이 앱의 상태를 변경할 수 없습니다. iOS에서만 지원됩니다.');
 
-        isLocationPermissionsGranted.value = false;
-        await GlobalPermissionModalOpenAppSettingsWidget(controller: this);
-        break;
+          isLocationPermissionsGranted.value = false;
+          await GlobalPermissionModalOpenAppSettingsWidget(controller: this);
+          break;
+        default:
+          // * 여러 권한이 있는 경우에는 해당되지 않을 경우 넘긴다.
+          handlePermissionGranted();
+          break;
+      }
     }
 
     // handlePermissionGranted();
@@ -105,9 +137,11 @@ class PermissionService extends GetxService {
 
   /// 권한 허용
   Future<dynamic> handlePermissionGranted() async {
-    await GetStorage().write('initialize_permission', true);
-    // Get.back();
-    await Get.offAllNamed('/signin');
+    if (isPermissionSuccess.value) {
+      await GetStorage().write('initialize_permission', true);
+      // Get.back();
+      await Get.offAllNamed('/signin');
+    }
   }
 
   @override
