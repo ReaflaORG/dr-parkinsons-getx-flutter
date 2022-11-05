@@ -52,6 +52,7 @@ flutter:
     - assets/images/permission/
     - assets/images/signin/
     - assets/images/navigation/
+    - assets/images/icon/3d/
 
   fonts:
     - family: SUIT

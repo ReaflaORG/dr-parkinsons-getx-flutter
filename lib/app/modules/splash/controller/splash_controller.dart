@@ -10,7 +10,6 @@ import 'package:url_launcher/url_launcher.dart';
 
 import '../../../global_widget/global_dialog_widget.dart';
 import '../../../service/global_service.dart';
-import '../../../service/permission_service.dart';
 
 class SplashController extends GetxController {
   static SplashController get to => Get.find();
@@ -29,14 +28,15 @@ class SplashController extends GetxController {
   }) async {
     Future.delayed(Duration(milliseconds: milliseconds), () async {
       if (GetStorage().read('initialize_permission') == null) {
-        if (PermissionService.to.permissionList.isEmpty) {
-          await Get.offAllNamed('/permission');
-          // await Get.offAllNamed('/signin');
-        } else {
-          await Get.offAllNamed('/permission');
-        }
+        // if (PermissionService.to.permissionList.isEmpty) {
+        //   await Get.offAllNamed('/permission');
+        //   // await Get.offAllNamed('/signin');
+        // } else {
+        //   await Get.offAllNamed('/permission');
+        // }
+        await Get.offAllNamed('/signin');
       } else {
-        await Get.offAllNamed('/permission');
+        await Get.offAllNamed('/signin');
         // await Get.offAllNamed('/signin');
       }
     });

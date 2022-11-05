@@ -11,7 +11,6 @@ import 'app/modules/splash/binding/splash_binding.dart';
 import 'app/modules/splash/view/splash_view.dart';
 import 'app/routes/app_pages.dart';
 import 'app/service/global_service.dart';
-import 'app/service/permission_service.dart';
 import 'app/theme/theme.dart';
 
 void main() async {
@@ -45,7 +44,7 @@ Future<void> initialize() async {
   // Get.put(FCMService());
 
   /// 퍼미션 서비스
-  Get.lazyPut(() => PermissionService());
+  // Get.lazyPut(() => PermissionService());
 }
 
 class MyApp extends StatelessWidget {
