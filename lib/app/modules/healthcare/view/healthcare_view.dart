@@ -53,53 +53,10 @@ class HealthCareView extends GetView<HealthCareController> {
                             childAspectRatio: 1,
                             mainAxisSpacing: 20.w,
                             crossAxisSpacing: 20.w,
-                            children: [
-                              HealthcareMainbtn(
-                                  name: "약물검색",
-                                  color: ColorPath.PrimaryLightColor,
-                                  icon: 'assets/images/icon/3d/48 pill.png',
-                                  onClick: () {
-                                    print('123');
-                                  }),
-                              HealthcareMainbtn(
-                                  name: "주의해야할 약",
-                                  color: ColorPath.TertiaryLightColor,
-                                  icon: 'assets/images/icon/3d/48 pill.png',
-                                  onClick: () {
-                                    print('121');
-                                    // Get.toNamed(page)
-                                  }),
-                              HealthcareMainbtn(
-                                  name: "약물검색",
-                                  color: ColorPath.SecondaryLightColor,
-                                  icon: 'assets/images/icon/3d/48 pill.png',
-                                  onClick: () {
-                                    print('123');
-                                  }),
-                              HealthcareMainbtn(
-                                  name: "주의해야할 약",
-                                  color: ColorPath.SecondaryLightColor,
-                                  icon: 'assets/images/icon/3d/48 pill.png',
-                                  onClick: () {
-                                    print('121');
-                                    // Get.toNamed(page)
-                                  }),
-                              HealthcareMainbtn(
-                                  name: "약물검색",
-                                  color: ColorPath.SecondaryLightColor,
-                                  icon: 'assets/images/icon/3d/48 pill.png',
-                                  onClick: () {
-                                    print('123');
-                                  }),
-                              HealthcareMainbtn(
-                                  name: "주의해야할 약",
-                                  color: ColorPath.TertiaryLightColor,
-                                  icon: 'assets/images/icon/3d/48 pill.png',
-                                  onClick: () {
-                                    print('121');
-                                    // Get.toNamed(page)
-                                  }),
-                            ]),
+                            children: List.generate(
+                                controller.btns.length,
+                                (index) => HealthcareMainbtn(
+                                    item: controller.btns[index])))
                       ],
                     ),
                   ),
