@@ -6,7 +6,9 @@ import 'package:get/get.dart';
 import '../modules/doctor/binding/doctor_binding.dart';
 import '../modules/doctor/view/doctor_view.dart';
 import '../modules/healthcare/binding/healthcare_binding.dart';
+import '../modules/healthcare/binding/medicine_binding.dart';
 import '../modules/healthcare/view/healthcare_view.dart';
+import '../modules/healthcare/view/medicine_view.dart';
 import '../modules/home/binding/home_binding.dart';
 import '../modules/home/view/home_view.dart';
 import '../modules/main/binding/main_binding.dart';
@@ -97,6 +99,16 @@ class AppPages {
       name: Routes.HEALTHCARE,
       page: () => const HealthCareView(),
       binding: HealthCareBinding(),
+      transition: Transition.fadeIn,
+      transitionDuration: Duration.zero,
+      curve: Curves.easeIn,
+      popGesture: false,
+    ),
+    GetPage(
+      title: '약물검색',
+      name: Routes.MEDICINE,
+      page: () => const MedicineView(),
+      binding: MedicineBinding(),
       transition: Transition.fadeIn,
       transitionDuration: Duration.zero,
       curve: Curves.easeIn,

@@ -26,6 +26,9 @@ abstract class Routes {
   /// 건강관리
   static const HEALTHCARE = _Paths.HEALTHCARE;
 
+  /// 약물검색
+  static const MEDICINE = _Paths.MEDICINE;
+
   /// 미션관리
   static const MISSION = _Paths.MISSION;
 
@@ -59,6 +62,9 @@ abstract class _Paths {
 
   /// 건강관리
   static const HEALTHCARE = '/healthcare';
+
+  /// 건강관리 - 약물검색
+  static const MEDICINE = '/medicine';
 
   /// 미션관리
   static const MISSION = '/mission';

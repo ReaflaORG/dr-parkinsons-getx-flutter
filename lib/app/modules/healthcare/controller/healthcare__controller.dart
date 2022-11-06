@@ -4,6 +4,7 @@ import 'dart:async';
 
 import 'package:get/get.dart';
 
+import '../../../routes/app_pages.dart';
 import '../../../theme/colors.dart';
 import '../models/healthcare_btn_model.dart';
 
@@ -13,40 +14,37 @@ class HealthCareController extends GetxController {
   // Data ▼ ============================================
   RxList<HealthCareBtnModel> btns = <HealthCareBtnModel>[
     HealthCareBtnModel(
-        name: "약물검색",
+        name: '약물검색',
         color: ColorPath.PrimaryLightColor,
-        icon: "assets/images/icon/3d/48 pill.png",
+        icon: 'assets/images/icon/3d/48pharmacy.png',
         onClick: () {
-          print("1234");
+          Get.toNamed(Routes.MEDICINE);
         }),
     HealthCareBtnModel(
-        name: "약물검색",
-        color: ColorPath.PrimaryLightColor,
-        icon: "assets/images/icon/3d/48 pill.png",
-        onClick: () {
-          print("1234");
-        }),
+        name: '주의해야할 약',
+        color: ColorPath.TertiaryLightColor,
+        icon: 'assets/images/icon/3d/48pill1.png',
+        onClick: () {}),
     HealthCareBtnModel(
-        name: "약물검색",
-        color: ColorPath.PrimaryLightColor,
-        icon: "assets/images/icon/3d/48 pill.png",
-        onClick: () {
-          print("1234");
-        }),
+        name: '파킨슨 자가진단',
+        color: ColorPath.SecondaryLightColor,
+        icon: 'assets/images/icon/3d/48test1.png',
+        onClick: () {}),
     HealthCareBtnModel(
-        name: "약물검색",
-        color: ColorPath.PrimaryLightColor,
-        icon: "assets/images/icon/3d/48 pill.png",
-        onClick: () {
-          print("1234");
-        }),
+        name: '파킨슨 심리진단',
+        color: ColorPath.SecondaryLightColor,
+        icon: 'assets/images/icon/3d/48test2.png',
+        onClick: () {}),
     HealthCareBtnModel(
-        name: "약물검색",
-        color: ColorPath.PrimaryLightColor,
-        icon: "assets/images/icon/3d/48 pill.png",
-        onClick: () {
-          print("1234");
-        }),
+        name: '수면장애진단',
+        color: ColorPath.SecondaryLightColor,
+        icon: 'assets/images/icon/3d/48test3.png',
+        onClick: () {}),
+    HealthCareBtnModel(
+        name: '미션관리',
+        color: ColorPath.Background1HECEFF1,
+        icon: 'assets/images/icon/3d/48timer.png',
+        onClick: () {}),
   ].obs;
 
   // Function ▼ ========================================
