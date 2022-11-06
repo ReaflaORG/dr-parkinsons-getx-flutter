@@ -1,9 +1,9 @@
-import 'package:base/app/modules/healthcare/models/healthcare_btn_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../theme/colors.dart';
 import '../../../theme/texts.dart';
+import '../models/healthcare_btn_model.dart';
 
 class HealthcareMainbtn extends StatelessWidget {
   // ignore: use_key_in_widget_constructors
@@ -20,7 +20,7 @@ class HealthcareMainbtn extends StatelessWidget {
           color: item.color,
           borderRadius: BorderRadius.circular(8.r),
         ),
-        padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 24.w),
+        padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 24.w),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           crossAxisAlignment: CrossAxisAlignment.start,

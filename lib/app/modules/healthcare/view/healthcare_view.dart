@@ -18,7 +18,7 @@ class HealthCareView extends GetView<HealthCareController> {
             elevation: 0,
             centerTitle: false,
             title: Container(
-              padding: EdgeInsets.symmetric(horizontal: 4),
+              padding: EdgeInsets.symmetric(horizontal: 14),
               child: Text(
                 '건강관리',
                 style: TextPath.Heading2F18W600.copyWith(
@@ -27,6 +27,19 @@ class HealthCareView extends GetView<HealthCareController> {
                 textAlign: TextAlign.left,
               ),
             ),
+            actions: [
+              InkWell(
+                onTap: () {},
+                child: SizedBox(
+                  width: 24.w,
+                  height: 24.h,
+                  child: Image.asset(
+                    'assets/images/icon/2d/24alert.png',
+                  ),
+                ),
+              ),
+              const SizedBox(width: 20),
+            ],
           ),
           body: Container(
             padding: const EdgeInsets.symmetric(horizontal: 20),
@@ -36,7 +49,41 @@ class HealthCareView extends GetView<HealthCareController> {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  const Text('hey'),
+                  Container(
+                    width: 320.w,
+                    height: 36.h,
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 20,
+                    ),
+                    decoration: BoxDecoration(
+                      color: ColorPath.Background1HECEFF1,
+                      borderRadius: BorderRadius.circular(36),
+                    ),
+                    child: InkWell(
+                      onTap: () {
+                        print('hello1');
+                      },
+                      child: Row(
+                        children: [
+                          SizedBox(
+                            width: 18.w,
+                            height: 18.w,
+                            child:
+                                Image.asset('assets/images/icon/2d/18loud.png'),
+                          ),
+                          SizedBox(
+                            width: 10.w,
+                          ),
+                          Text(
+                            '[복지] 노인장기요양보험 안내',
+                            style: TextPath.TextF13W400.copyWith(
+                              color: ColorPath.TextGrey3H616161,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
                   const SizedBox(
                     height: 18,
                   ),
