@@ -18,7 +18,7 @@ class HealthCareView extends GetView<HealthCareController> {
             elevation: 0,
             centerTitle: false,
             title: Container(
-              padding: EdgeInsets.symmetric(horizontal: 14),
+              padding: const EdgeInsets.symmetric(horizontal: 18),
               child: Text(
                 '건강관리',
                 style: TextPath.Heading2F18W600.copyWith(
