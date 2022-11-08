@@ -11,7 +11,9 @@ class MedicineBtn extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () {},
+      onTap: () {
+        item.onClick();
+      },
       child: Container(
         width: 140.w,
         height: 140.w,

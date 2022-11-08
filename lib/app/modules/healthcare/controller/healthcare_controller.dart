@@ -24,27 +24,37 @@ class HealthCareController extends GetxController {
         name: '주의해야할 약',
         color: ColorPath.TertiaryLightColor,
         icon: 'assets/images/icon/3d/48pill1.png',
-        onClick: () {}),
+        onClick: () {
+          Get.toNamed(Routes.DRUGMISUSE);
+        }),
     HealthCareBtnModel(
         name: '파킨슨 자가진단',
         color: ColorPath.SecondaryLightColor,
         icon: 'assets/images/icon/3d/48test1.png',
-        onClick: () {}),
+        onClick: () {
+          Get.toNamed(Routes.DIAGNOSIS);
+        }),
     HealthCareBtnModel(
         name: '파킨슨 심리진단',
         color: ColorPath.SecondaryLightColor,
         icon: 'assets/images/icon/3d/48test2.png',
-        onClick: () {}),
+        onClick: () {
+          Get.toNamed(Routes.DIAGNOSIS);
+        }),
     HealthCareBtnModel(
         name: '수면장애진단',
         color: ColorPath.SecondaryLightColor,
         icon: 'assets/images/icon/3d/48test3.png',
-        onClick: () {}),
+        onClick: () {
+          Get.toNamed(Routes.DIAGNOSIS);
+        }),
     HealthCareBtnModel(
         name: '미션관리',
         color: ColorPath.Background1HECEFF1,
         icon: 'assets/images/icon/3d/48timer.png',
-        onClick: () {}),
+        onClick: () {
+          Get.toNamed(Routes.MISSION);
+        }),
   ].obs;
 
   // Function ▼ ========================================

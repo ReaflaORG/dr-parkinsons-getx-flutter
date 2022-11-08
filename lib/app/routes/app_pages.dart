@@ -3,6 +3,8 @@
 import 'package:flutter/animation.dart';
 import 'package:get/get.dart';
 
+import '../modules/diagnosis/binding/diagnosis_binding.dart';
+import '../modules/diagnosis/view/diagnosis_view.dart';
 import '../modules/doctor/binding/doctor_binding.dart';
 import '../modules/doctor/view/doctor_view.dart';
 import '../modules/healthcare/binding/drugmisuse_binding.dart';
@@ -148,9 +150,9 @@ class AppPages {
     /// 건강관리 - 자가진단
     GetPage(
       title: '자가진단',
-      name: Routes.MEDICINE,
-      page: () => const MedicineView(),
-      binding: MedicineBinding(),
+      name: Routes.DIAGNOSIS,
+      page: () => const DiagnosisView(),
+      binding: DiagnosisBinding(),
       transition: Transition.fadeIn,
       transitionDuration: Duration.zero,
       curve: Curves.easeIn,

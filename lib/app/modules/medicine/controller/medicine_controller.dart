@@ -3,6 +3,7 @@ import 'dart:async';
 
 import 'package:get/get.dart';
 
+import '../../../routes/app_pages.dart';
 import '../model/medicine_btn_model.dart';
 
 class MedicineController extends GetxController {
@@ -14,27 +15,39 @@ class MedicineController extends GetxController {
     MedicineBtnModel(
         name: '도파민제',
         icon: 'assets/images/icon/3d/48mpill1.png',
-        onClick: () {}),
+        onClick: () {
+          Get.toNamed(Routes.MEDICINEINFO);
+        }),
     MedicineBtnModel(
         name: '복합체',
         icon: 'assets/images/icon/3d/48mpill2.png',
-        onClick: () {}),
+        onClick: () {
+          Get.toNamed(Routes.MEDICINEINFO);
+        }),
     MedicineBtnModel(
         name: '도파민 작용제',
         icon: 'assets/images/icon/3d/48mpill3.png',
-        onClick: () {}),
+        onClick: () {
+          Get.toNamed(Routes.MEDICINEINFO);
+        }),
     MedicineBtnModel(
         name: '콤트 억제제',
         icon: 'assets/images/icon/3d/48mpill4.png',
-        onClick: () {}),
+        onClick: () {
+          Get.toNamed(Routes.MEDICINEINFO);
+        }),
     MedicineBtnModel(
         name: '마오비 억제제',
         icon: 'assets/images/icon/3d/48mpill5.png',
-        onClick: () {}),
+        onClick: () {
+          Get.toNamed(Routes.MEDICINEINFO);
+        }),
     MedicineBtnModel(
         name: '기타약제',
         icon: 'assets/images/icon/3d/48mpill6.png',
-        onClick: () {}),
+        onClick: () {
+          Get.toNamed(Routes.MEDICINEINFO);
+        }),
   ];
 
   // Function ▼ ========================================
