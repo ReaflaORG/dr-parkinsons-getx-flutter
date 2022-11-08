@@ -7,7 +7,7 @@ import 'package:get/get.dart';
 
 import '../../doctor/controller/doctor_controller.dart';
 import '../../doctor/view/doctor_view.dart';
-import '../../healthcare/controller/healthcare__controller.dart';
+import '../../healthcare/controller/healthcare_controller.dart';
 import '../../healthcare/view/healthcare_view.dart';
 import '../../home/controller/home_controller.dart';
 import '../../home/view/home_view.dart';

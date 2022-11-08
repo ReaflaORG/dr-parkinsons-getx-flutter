@@ -1,6 +1,6 @@
 import 'package:get/get.dart';
 
-import '../controller/healthcare__controller.dart';
+import '../controller/healthcare_controller.dart';
 
 class HealthCareBinding implements Bindings {
   @override

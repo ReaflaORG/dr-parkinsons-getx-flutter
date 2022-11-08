@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 
 import '../../../theme/colors.dart';
 import '../../../theme/texts.dart';
-import '../controller/healthcare__controller.dart';
+import '../controller/healthcare_controller.dart';
 import '../widgets/healthcare_mainbtn.dart';
 
 class HealthCareView extends GetView<HealthCareController> {
