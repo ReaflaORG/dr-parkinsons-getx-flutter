@@ -30,7 +30,8 @@ class DrugMisuseInfoBox extends StatelessWidget {
           ),
           child: Text(
             box.title,
-            style: TextPath.TextF13W500,
+            style: TextPath.TextF13W500.copyWith(
+                color: ColorPath.TextGrey1H212121),
           ),
         ),
         Container(
@@ -46,7 +47,8 @@ class DrugMisuseInfoBox extends StatelessWidget {
           ),
           child: Text(
             box.text,
-            style: TextPath.TextF13W500,
+            style: TextPath.TextF13W500.copyWith(
+                color: ColorPath.TextGrey2H424242),
           ),
         )
       ],

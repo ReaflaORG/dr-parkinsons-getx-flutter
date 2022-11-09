@@ -92,13 +92,15 @@ class DrugMisuseView extends GetView<DrugMisuseController> {
                                     height: 18.w,
                                     child: Text(
                                       '도마틸정',
-                                      style: TextPath.TextF13W500,
+                                      style: TextPath.TextF13W500.copyWith(
+                                          color: ColorPath.TextGrey1H212121),
                                     ),
                                   ),
                                   // const Spacer(),
                                   Text(
                                     '대우제약',
-                                    style: TextPath.TextF12W400,
+                                    style: TextPath.TextF12W400.copyWith(
+                                        color: ColorPath.TextGrey4H9E9E9E),
                                   ),
                                 ],
                               ),
@@ -107,7 +109,8 @@ class DrugMisuseView extends GetView<DrugMisuseController> {
                                 height: 20.w,
                                 child: Text(
                                   '#위장약 #클로르프로마진',
-                                  style: TextPath.TextF13W400,
+                                  style: TextPath.TextF13W400.copyWith(
+                                      color: ColorPath.TextGrey3H616161),
                                   maxLines: 1,
                                   overflow: TextOverflow.ellipsis,
                                 ),

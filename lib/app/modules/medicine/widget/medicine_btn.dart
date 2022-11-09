@@ -42,7 +42,8 @@ class MedicineBtn extends StatelessWidget {
               alignment: Alignment.center,
               child: Text(
                 item.name,
-                style: TextPath.TextF16W500,
+                style: TextPath.TextF16W500.copyWith(
+                    color: ColorPath.TextGrey1H212121),
               ),
             ),
           ],

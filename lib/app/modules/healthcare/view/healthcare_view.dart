@@ -44,7 +44,7 @@ class HealthCareView extends GetView<HealthCareController> {
           body: SingleChildScrollView(
             child: Column(
               children: [
-                Container(
+                Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 20),
                   child: Column(
                     children: [
