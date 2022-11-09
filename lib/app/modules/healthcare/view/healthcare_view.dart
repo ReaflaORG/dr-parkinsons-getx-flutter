@@ -34,7 +34,7 @@ class HealthCareView extends GetView<HealthCareController> {
                   width: 24.w,
                   height: 24.h,
                   child: Image.asset(
-                    'assets/images/icon/2d/24alert.png',
+                    'assets/images/icons/2d/24alert.png',
                   ),
                 ),
               ),
@@ -68,8 +68,8 @@ class HealthCareView extends GetView<HealthCareController> {
                           SizedBox(
                             width: 18.w,
                             height: 18.w,
-                            child:
-                                Image.asset('assets/images/icon/2d/18loud.png'),
+                            child: Image.asset(
+                                'assets/images/icons/2d/18loud.png'),
                           ),
                           SizedBox(
                             width: 10.w,
@@ -95,15 +95,17 @@ class HealthCareView extends GetView<HealthCareController> {
                       crossAxisAlignment: CrossAxisAlignment.stretch,
                       children: [
                         GridView.count(
-                            shrinkWrap: true,
-                            crossAxisCount: 2,
-                            childAspectRatio: 1,
-                            mainAxisSpacing: 20.w,
-                            crossAxisSpacing: 20.w,
-                            children: List.generate(
-                                controller.btns.length,
-                                (index) => HealthcareMainbtn(
-                                    item: controller.btns[index])))
+                          shrinkWrap: true,
+                          crossAxisCount: 2,
+                          childAspectRatio: 1,
+                          mainAxisSpacing: 20.w,
+                          crossAxisSpacing: 20.w,
+                          children: List.generate(
+                            controller.btns.length,
+                            (index) =>
+                                HealthcareMainbtn(item: controller.btns[index]),
+                          ),
+                        ),
                       ],
                     ),
                   ),
@@ -114,11 +116,3 @@ class HealthCareView extends GetView<HealthCareController> {
         ),
       );
 }
-
-// // elevation: 0,
-//             // shadowColor: Colors.white,
-//             title: Text(
-//               '건강관리',
-//               // style: TextPath.Heading2F18W600.copyWith(
-//                 // color: ColorPath.TextGrey1H212121,
-//               ),

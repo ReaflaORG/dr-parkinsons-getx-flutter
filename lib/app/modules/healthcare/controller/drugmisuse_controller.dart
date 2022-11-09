@@ -4,9 +4,18 @@ import 'dart:async';
 
 import 'package:get/get.dart';
 
+import '../models/drugmisuse_infobox_model.dart';
+
 class DrugMisuseController extends GetxController {
   static DrugMisuseController get to => Get.find();
   // Data ▼ ============================================
+  RxList<DrugMisuseInfoBoxModel> boxes = <DrugMisuseInfoBoxModel>[
+    DrugMisuseInfoBoxModel(title: 'test', text: 'text testing texting test'),
+    DrugMisuseInfoBoxModel(title: 'test', text: 'text testing texting test'),
+    DrugMisuseInfoBoxModel(title: 'test', text: 'text testing texting test'),
+  ].obs;
+
+  // RxList<
   // Function ▼ ========================================
 
   // Variable ▼ ========================================

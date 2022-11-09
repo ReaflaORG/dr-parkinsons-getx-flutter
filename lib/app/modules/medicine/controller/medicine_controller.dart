@@ -14,37 +14,37 @@ class MedicineController extends GetxController {
   List<MedicineBtnModel> pillBtns = <MedicineBtnModel>[
     MedicineBtnModel(
         name: '도파민제',
-        icon: 'assets/images/icon/3d/48mpill1.png',
+        icon: 'assets/images/icons/3d/48mpill1.png',
         onClick: () {
           Get.toNamed(Routes.MEDICINEINFO);
         }),
     MedicineBtnModel(
         name: '복합체',
-        icon: 'assets/images/icon/3d/48mpill2.png',
+        icon: 'assets/images/icons/3d/48mpill2.png',
         onClick: () {
           Get.toNamed(Routes.MEDICINEINFO);
         }),
     MedicineBtnModel(
         name: '도파민 작용제',
-        icon: 'assets/images/icon/3d/48mpill3.png',
+        icon: 'assets/images/icons/3d/48mpill3.png',
         onClick: () {
           Get.toNamed(Routes.MEDICINEINFO);
         }),
     MedicineBtnModel(
         name: '콤트 억제제',
-        icon: 'assets/images/icon/3d/48mpill4.png',
+        icon: 'assets/images/icons/3d/48mpill4.png',
         onClick: () {
           Get.toNamed(Routes.MEDICINEINFO);
         }),
     MedicineBtnModel(
         name: '마오비 억제제',
-        icon: 'assets/images/icon/3d/48mpill5.png',
+        icon: 'assets/images/icons/3d/48mpill5.png',
         onClick: () {
           Get.toNamed(Routes.MEDICINEINFO);
         }),
     MedicineBtnModel(
         name: '기타약제',
-        icon: 'assets/images/icon/3d/48mpill6.png',
+        icon: 'assets/images/icons/3d/48mpill6.png',
         onClick: () {
           Get.toNamed(Routes.MEDICINEINFO);
         }),
