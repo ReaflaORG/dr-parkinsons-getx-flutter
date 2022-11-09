@@ -40,17 +40,18 @@ class DrugMisuseView extends GetView<DrugMisuseController> {
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisSize: MainAxisSize.min,
               children: [
-                ListView.builder(
-                  physics: const NeverScrollableScrollPhysics(),
-                  shrinkWrap: true,
-                  itemCount: controller.boxes.length,
-                  itemBuilder: (BuildContext context, int index) => Padding(
-                    padding: const EdgeInsets.only(bottom: 5),
-                    child: DrugMisuseInfoBox(
-                      box: controller.boxes[index],
-                    ),
-                  ),
-                ),
+                ListView(
+                    physics: const NeverScrollableScrollPhysics(),
+                    shrinkWrap: true,
+                    children: List.generate(
+                      controller.boxes.length,
+                      (index) => Padding(
+                        padding: const EdgeInsets.only(bottom: 5),
+                        child: DrugMisuseInfoBox(
+                          box: controller.boxes[index],
+                        ),
+                      ),
+                    )),
                 const SizedBox(height: 10),
                 GestureDetector(
                   onTap: () {},

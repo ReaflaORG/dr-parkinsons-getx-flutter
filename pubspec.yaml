@@ -54,6 +54,7 @@ flutter:
     - assets/images/navigation/
     - assets/images/icons/3d/
     - assets/images/icons/2d/
+    - assets/images/samples/
 
   fonts:
     - family: SUIT
