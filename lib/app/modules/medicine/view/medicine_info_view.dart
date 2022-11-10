@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import '../../../theme/colors.dart';
 import '../../../theme/texts.dart';
 import '../controller/medicine_info_controller.dart';
+import '../widget/medicine_info.dart';
 
 class MedicineInfoView extends GetView<MedicineInfoController> {
   const MedicineInfoView({super.key});
@@ -37,26 +38,7 @@ class MedicineInfoView extends GetView<MedicineInfoController> {
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisSize: MainAxisSize.min,
             children: [
-              Container(
-                alignment: Alignment.centerLeft,
-                child: Text(
-                  '섹션 관련 이름',
-                  textAlign: TextAlign.left,
-                  style: TextPath.TextF14W400.copyWith(
-                      color: ColorPath.TextGrey3H616161),
-                ),
-              ),
-              SizedBox(
-                height: 10,
-              ),
-              Container(
-                alignment: Alignment.centerLeft,
-                child: Text(
-                  '약품에 대한 정보를 입력합니다.',
-                  style: TextPath.TextF14W500.copyWith(
-                      color: ColorPath.TextGrey1H212121),
-                ),
-              ),
+              MedicineInfo(),
             ],
           ),
         ),

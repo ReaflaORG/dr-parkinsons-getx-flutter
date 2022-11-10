@@ -56,7 +56,8 @@ class DrugMisuseView extends GetView<DrugMisuseController> {
                 GestureDetector(
                   onTap: () {},
                   child: Container(
-                    padding: EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+                    padding:
+                        const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
                     width: 320,
                     // height: 52,
                     decoration: BoxDecoration(
@@ -72,6 +73,7 @@ class DrugMisuseView extends GetView<DrugMisuseController> {
                         Container(
                           alignment: Alignment.topLeft,
                           width: 26,
+                          height: 20.w,
                           child: Image.asset(
                               width: 18.w,
                               height: 18.w,
@@ -89,10 +91,10 @@ class DrugMisuseView extends GetView<DrugMisuseController> {
                                 children: [
                                   Container(
                                     alignment: Alignment.centerLeft,
-                                    height: 18.w,
+                                    height: 20.w,
                                     child: Text(
                                       '도마틸정',
-                                      style: TextPath.TextF13W500.copyWith(
+                                      style: TextPath.TextF14W500.copyWith(
                                           color: ColorPath.TextGrey1H212121),
                                     ),
                                   ),
