@@ -7,8 +7,8 @@ import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:timeago/timeago.dart' as timeago;
 
-import 'app/modules/splash/binding/splash_binding.dart';
-import 'app/modules/splash/view/splash_view.dart';
+import 'app/modules/main/binding/main_binding.dart';
+import 'app/modules/main/view/main_view.dart';
 import 'app/routes/app_pages.dart';
 import 'app/service/global_service.dart';
 import 'app/theme/theme.dart';
@@ -58,8 +58,8 @@ class MyApp extends StatelessWidget {
         builder: (BuildContext context, Widget? child) => GetMaterialApp(
           title: dotenv.env['APP_EN_NAME']!,
           initialRoute: '/main',
-          // initialBinding: SplashBinding(),
-          // home: const SplashView(),
+          initialBinding: MainBinding(),
+          home: const MainView(),
           getPages: AppPages.routes,
           smartManagement: SmartManagement.full,
           builder: (BuildContext context, Widget? child) => MediaQuery(
