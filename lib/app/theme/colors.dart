@@ -92,6 +92,11 @@ class ColorPath {
   /// ![](https://flutter.s3.ap-northeast-2.amazonaws.com/color/ECEFF1.jpg)
   static final Border2HECEFF1 = Color('ECEFF1');
 
+  /// #E7E7E7
+  ///
+  /// ![](https://flutter.s3.ap-northeast-2.amazonaws.com/color/E7E7E7.jpg)
+  static final Border3E7E7E7 = Color('E7E7E7');
+
   // * Background ▼ =================================
 
   /// #FFFFFF
@@ -176,4 +181,19 @@ class ColorPath {
   ///
   /// ![](https://flutter.s3.ap-northeast-2.amazonaws.com/color/757575.jpg)
   static final GreyDarkColor = Color('757575');
+
+  /// #cccccc
+  ///
+  /// ![](https://flutter.s3.ap-northeast-2.amazonaws.com/color/cccccc.jpg)
+  static final GrayCCCColor = Color('cccccc');
+
+  /// #333333
+  ///
+  /// ![](https://flutter.s3.ap-northeast-2.amazonaws.com/color/333333.jpg)
+  static final Gray333Color = Color('333333');
+
+  /// #2F7ABA
+  ///
+  /// ![](https://flutter.s3.ap-northeast-2.amazonaws.com/color/2F7ABA.jpg)
+  static final Blue2F7ABAColor = Color('2F7ABA');
 }
