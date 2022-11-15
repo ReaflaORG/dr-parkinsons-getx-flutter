@@ -35,7 +35,7 @@ class TextPath {
     fontWeight: FontWeight.w600,
     fontStyle: FontStyle.normal,
     decoration: TextDecoration.none,
-    height: 24 / 24,
+    height: 1.3,
     letterSpacing: 0,
   );
 
@@ -51,7 +51,7 @@ class TextPath {
     fontWeight: FontWeight.w600,
     fontStyle: FontStyle.normal,
     decoration: TextDecoration.none,
-    height: 18 / 18,
+    height: 1.3,
     letterSpacing: 0,
   );
 
@@ -67,7 +67,7 @@ class TextPath {
     fontWeight: FontWeight.w600,
     fontStyle: FontStyle.normal,
     decoration: TextDecoration.none,
-    height: 16 / 16,
+    height: 1.3,
     letterSpacing: 0,
   );
 
@@ -83,7 +83,55 @@ class TextPath {
     fontWeight: FontWeight.w600,
     fontStyle: FontStyle.normal,
     decoration: TextDecoration.none,
-    height: 16 / 16,
+    height: 1.3,
+    letterSpacing: 0,
+  );
+
+  /// fontFamily: SUIT
+  ///
+  /// fontSize: 24
+  ///
+  /// fontWeight: Regular 600
+  static TextStyle TextF24W600 = TextStyle(
+    color: ColorPath.TextGrey1H212121,
+    fontFamily: 'SUIT',
+    fontSize: 24.0.sp,
+    fontWeight: FontWeight.w600,
+    fontStyle: FontStyle.normal,
+    decoration: TextDecoration.none,
+    height: 1.3,
+    letterSpacing: 0,
+  );
+
+  /// fontFamily: SUIT
+  ///
+  /// fontSize: 20
+  ///
+  /// fontWeight: Regular 600
+  static TextStyle TextF20W600 = TextStyle(
+    color: ColorPath.TextGrey1H212121,
+    fontFamily: 'SUIT',
+    fontSize: 20.0.sp,
+    fontWeight: FontWeight.w600,
+    fontStyle: FontStyle.normal,
+    decoration: TextDecoration.none,
+    height: 1.3,
+    letterSpacing: 0,
+  );
+
+  /// fontFamily: SUIT
+  ///
+  /// fontSize: 20
+  ///
+  /// fontWeight: Regular 400
+  static TextStyle TextF20W400 = TextStyle(
+    color: ColorPath.TextGrey1H212121,
+    fontFamily: 'SUIT',
+    fontSize: 20.0.sp,
+    fontWeight: FontWeight.w400,
+    fontStyle: FontStyle.normal,
+    decoration: TextDecoration.none,
+    height: 1.3,
     letterSpacing: 0,
   );
 
@@ -99,7 +147,23 @@ class TextPath {
     fontWeight: FontWeight.w400,
     fontStyle: FontStyle.normal,
     decoration: TextDecoration.none,
-    height: 16 / 16,
+    height: 1.3,
+    letterSpacing: 0,
+  );
+
+  /// fontFamily: SUIT
+  ///
+  /// fontSize: 18
+  ///
+  /// fontWeight: Regular 600
+  static TextStyle TextF18W600 = TextStyle(
+    color: ColorPath.TextGrey1H212121,
+    fontFamily: 'SUIT',
+    fontSize: 18.0.sp,
+    fontWeight: FontWeight.w600,
+    fontStyle: FontStyle.normal,
+    decoration: TextDecoration.none,
+    height: 1.3,
     letterSpacing: 0,
   );
 
@@ -115,7 +179,7 @@ class TextPath {
     fontWeight: FontWeight.w400,
     fontStyle: FontStyle.normal,
     decoration: TextDecoration.none,
-    height: 16 / 16,
+    height: 1.3,
     letterSpacing: 0,
   );
 
@@ -131,7 +195,7 @@ class TextPath {
     fontWeight: FontWeight.w500,
     fontStyle: FontStyle.normal,
     decoration: TextDecoration.none,
-    height: 16 / 16,
+    height: 1.3,
     letterSpacing: 0,
   );
 
@@ -155,7 +219,23 @@ class TextPath {
   ///
   /// fontSize: 16
   ///
-  /// fontWeight: Medium 500
+  /// fontWeight: Medium 600
+  static TextStyle TextF16W600 = TextStyle(
+    color: ColorPath.TextGrey1H212121,
+    fontFamily: 'SUIT',
+    fontSize: 16.0.sp,
+    fontWeight: FontWeight.w600,
+    fontStyle: FontStyle.normal,
+    decoration: TextDecoration.none,
+    height: 1.3,
+    letterSpacing: 0,
+  );
+
+  /// fontFamily: SUIT
+  ///
+  /// fontSize: 16
+  ///
+  /// fontWeight: Medium 700
   static TextStyle TextF16W700 = TextStyle(
     color: ColorPath.TextGrey1H212121,
     fontFamily: 'SUIT',
@@ -163,7 +243,7 @@ class TextPath {
     fontWeight: FontWeight.w700,
     fontStyle: FontStyle.normal,
     decoration: TextDecoration.none,
-    height: 16 / 16,
+    height: 1.3,
     letterSpacing: 0,
   );
 
@@ -179,7 +259,7 @@ class TextPath {
     fontWeight: FontWeight.w400,
     fontStyle: FontStyle.normal,
     decoration: TextDecoration.none,
-    height: 14 / 14,
+    height: 1.3,
     letterSpacing: 0,
   );
 
@@ -195,7 +275,7 @@ class TextPath {
     fontWeight: FontWeight.w500,
     fontStyle: FontStyle.normal,
     decoration: TextDecoration.none,
-    height: 14 / 14,
+    height: 1.3,
     letterSpacing: 0,
   );
 
@@ -211,7 +291,7 @@ class TextPath {
     fontWeight: FontWeight.w600,
     fontStyle: FontStyle.normal,
     decoration: TextDecoration.none,
-    height: 14 / 14,
+    height: 1.3,
     letterSpacing: 0,
   );
 
@@ -243,7 +323,7 @@ class TextPath {
     fontWeight: FontWeight.w400,
     fontStyle: FontStyle.normal,
     decoration: TextDecoration.none,
-    height: 13 / 13,
+    height: 1.3,
     letterSpacing: 0,
   );
 
@@ -259,7 +339,39 @@ class TextPath {
     fontWeight: FontWeight.w500,
     fontStyle: FontStyle.normal,
     decoration: TextDecoration.none,
-    height: 13 / 13,
+    height: 1.3,
+    letterSpacing: 0,
+  );
+
+  // fontFamily: SUIT
+  ///
+  /// fontSize: 12
+  ///
+  /// fontWeight: Regular 200
+  static TextStyle TextF12W200 = TextStyle(
+    color: ColorPath.TextGrey1H212121,
+    fontFamily: 'SUIT',
+    fontSize: 12.0.sp,
+    fontWeight: FontWeight.w200,
+    fontStyle: FontStyle.normal,
+    decoration: TextDecoration.none,
+    height: 1.3,
+    letterSpacing: 0,
+  );
+
+  /// fontFamily: SUIT
+  ///
+  /// fontSize: 13
+  ///
+  /// fontWeight: Medium 500
+  static TextStyle TextF13W500Expand = TextStyle(
+    color: ColorPath.TextGrey1H212121,
+    fontFamily: 'SUIT',
+    fontSize: 13.0.sp,
+    fontWeight: FontWeight.w500,
+    fontStyle: FontStyle.normal,
+    decoration: TextDecoration.none,
+    height: 21 / 13,
     letterSpacing: 0,
   );
 
@@ -275,7 +387,7 @@ class TextPath {
     fontWeight: FontWeight.w400,
     fontStyle: FontStyle.normal,
     decoration: TextDecoration.none,
-    height: 12 / 12,
+    height: 1.3,
     letterSpacing: 0,
   );
 
@@ -291,7 +403,7 @@ class TextPath {
     fontWeight: FontWeight.w500,
     fontStyle: FontStyle.normal,
     decoration: TextDecoration.none,
-    height: 12 / 12,
+    height: 1.3,
     letterSpacing: 0,
   );
 
@@ -307,7 +419,7 @@ class TextPath {
     fontWeight: FontWeight.w600,
     fontStyle: FontStyle.normal,
     decoration: TextDecoration.none,
-    height: 12 / 12,
+    height: 1.3,
     letterSpacing: 0,
   );
 }

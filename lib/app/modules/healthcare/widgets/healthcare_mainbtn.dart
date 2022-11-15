@@ -3,31 +3,24 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../theme/colors.dart';
 import '../../../theme/texts.dart';
+import '../models/healthcare_btn_model.dart';
 
 class HealthcareMainbtn extends StatelessWidget {
   // ignore: use_key_in_widget_constructors
-  const HealthcareMainbtn({
-    required this.name,
-    required this.color,
-    required this.icon,
-    required this.onClick,
-  });
-  final String name;
-  final Color color;
-  final String icon;
-  final Function onClick;
+  const HealthcareMainbtn({required this.item});
+  final HealthCareBtnModel item;
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () => onClick(),
+      onTap: () => item.onClick(),
       child: Container(
         // width: 140.w,
         // height: 140.w,
         decoration: BoxDecoration(
-          color: color,
+          color: item.color,
           borderRadius: BorderRadius.circular(8.r),
         ),
-        padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 24.w),
+        padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 24.w),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -38,7 +31,7 @@ class HealthcareMainbtn extends StatelessWidget {
               width: double.infinity,
               alignment: Alignment.centerLeft,
               child: Text(
-                name,
+                item.name,
                 style: TextPath.TextF16W500.copyWith(
                     color: ColorPath.TextGrey1H212121),
               ),
@@ -50,7 +43,7 @@ class HealthcareMainbtn extends StatelessWidget {
                 height: 60.w,
                 child: CircleAvatar(
                   backgroundColor: ColorPath.BackgroundWhite,
-                  child: Image.asset(width: 44.w, height: 44.w, icon),
+                  child: Image.asset(width: 44.w, height: 44.w, item.icon),
                 ),
               ),
             ),

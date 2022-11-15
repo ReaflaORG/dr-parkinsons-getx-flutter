@@ -371,7 +371,7 @@ ElevatedButtonThemeData elevatedButtonThemeData() => ElevatedButtonThemeData(
         disabledBackgroundColor: Colors.grey.withOpacity(0.12),
         shape: const RoundedRectangleBorder(
           borderRadius: BorderRadius.all(
-            Radius.circular(5),
+            Radius.circular(4),
           ),
         ),
       ),
@@ -385,7 +385,7 @@ OutlinedButtonThemeData outlinedButtonThemeData() => OutlinedButtonThemeData(
         disabledBackgroundColor: Colors.grey.withOpacity(0.12),
         shape: const RoundedRectangleBorder(
           borderRadius: BorderRadius.all(
-            Radius.circular(5),
+            Radius.circular(4),
           ),
         ),
       ),

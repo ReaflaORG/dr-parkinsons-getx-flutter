@@ -1,0 +1,13 @@
+// view my symptoms item model
+class ViewMySymptomsItemModel {
+  ViewMySymptomsItemModel(
+      {required this.title,
+      required this.dateWritten,
+      required this.content,
+      this.imagePath});
+
+  String title;
+  String dateWritten;
+  String content;
+  String? imagePath;
+}
