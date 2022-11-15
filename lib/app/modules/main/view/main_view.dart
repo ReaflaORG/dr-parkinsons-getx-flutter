@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -31,7 +33,7 @@ class MainView extends GetView<MainController> {
                 topRight: Radius.circular(12),
               ),
               child: SizedBox(
-                height: 62,
+                height: Platform.isIOS ? 62.h : 62.h,
                 child: BottomNavigationBar(
                   type: BottomNavigationBarType.fixed,
                   currentIndex: controller.navigationIndex.value,

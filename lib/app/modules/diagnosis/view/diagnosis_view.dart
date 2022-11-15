@@ -199,53 +199,53 @@ class DiagnosisView extends GetView<DiagnosisController> {
                 ],
               ),
             ),
-            Container(
-              padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 30.w),
-              child: Row(
-                children: [
-                  InkWell(
-                    onTap: () {},
-                    child: Container(
-                      width: 130.w,
-                      alignment: Alignment.center,
-                      decoration: BoxDecoration(
-                          color: ColorPath.BackgroundWhite,
-                          borderRadius: const BorderRadius.all(
-                            Radius.circular(4),
-                          ),
-                          border:
-                              Border.all(color: ColorPath.PrimaryLightColor)),
-                      height: 44.w,
-                      child: Text(
-                        '뒤로가기',
-                        style: TextPath.TextF14W400.copyWith(
-                            color: ColorPath.TextGrey2H424242),
-                      ),
-                    ),
-                  ),
-                  const SizedBox(width: 10),
-                  InkWell(
-                    onTap: () {},
-                    child: Container(
-                      width: 180.w,
-                      alignment: Alignment.center,
-                      decoration: BoxDecoration(
-                        color: ColorPath.PrimaryDarkColor,
-                        borderRadius: const BorderRadius.all(
-                          Radius.circular(4),
-                        ),
-                      ),
-                      height: 44.w,
-                      child: Text(
-                        '다음',
-                        style: TextPath.TextF14W400.copyWith(
-                            color: ColorPath.TextWhite),
-                      ),
-                    ),
-                  )
-                ],
-              ),
-            ),
+            // Container(
+            //   padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 30.w),
+            //   child: Row(
+            //     children: [
+            //       InkWell(
+            //         onTap: () {},
+            //         child: Container(
+            //           width: 130.w,
+            //           alignment: Alignment.center,
+            //           decoration: BoxDecoration(
+            //               color: ColorPath.BackgroundWhite,
+            //               borderRadius: const BorderRadius.all(
+            //                 Radius.circular(4),
+            //               ),
+            //               border:
+            //                   Border.all(color: ColorPath.PrimaryLightColor)),
+            //           height: 44.w,
+            //           child: Text(
+            //             '뒤로가기',
+            //             style: TextPath.TextF14W400.copyWith(
+            //                 color: ColorPath.TextGrey2H424242),
+            //           ),
+            //         ),
+            //       ),
+            //       const SizedBox(width: 10),
+            //       InkWell(
+            //         onTap: () {},
+            //         child: Container(
+            //           width: 180.w,
+            //           alignment: Alignment.center,
+            //           decoration: BoxDecoration(
+            //             color: ColorPath.PrimaryDarkColor,
+            //             borderRadius: const BorderRadius.all(
+            //               Radius.circular(4),
+            //             ),
+            //           ),
+            //           height: 44.w,
+            //           child: Text(
+            //             '다음',
+            //             style: TextPath.TextF14W400.copyWith(
+            //                 color: ColorPath.TextWhite),
+            //           ),
+            //         ),
+            //       )
+            //     ],
+            //   ),
+            // ),
           ],
         ),
       );

@@ -1,7 +1,6 @@
-// ignore_for_file: unnecessary_overrides, cast_nullable_to_non_nullable, inference_failure_on_collection_literal, inference_failure_on_function_invocation
+// ignore_for_file: unnecessary_overrides, cast_nullable_to_non_nullable
 
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:logger/logger.dart';
@@ -15,40 +14,40 @@ class PermissionService extends GetxService {
 
   // Data ▼ ============================================
 
-  RxList<dynamic> permissionList = [
+  RxList<PermissionModel> permissionList = [
+    // PermissionModel(
+    //   title: '위치기반',
+    //   icon: Icon(
+    //     Icons.location_on_outlined,
+    //     size: 38,
+    //     color: Colors.grey.shade700,
+    //   ),
+    //   description: '주변 업체 정보 제공',
+    //   isRequired: true,
+    //   isExpanded: false,
+    // ),
     PermissionModel(
-      title: '위치기반',
+      title: '카메라 및 앨범',
       icon: Icon(
-        Icons.location_on_outlined,
-        size: 38.sp,
+        Icons.camera_alt_rounded,
+        size: 32,
         color: Colors.grey.shade700,
       ),
-      description: '주변 업체 정보 제공',
+      description: '프로필 이미지 업로드에 사용',
       isRequired: true,
       isExpanded: false,
     ),
-    // PermissionModel(
-    //   title: '카메라 및 앨범',
-    //   icon: Icon(
-    //     Icons.camera_alt_rounded,
-    //     size: 32,
-    //     color: Colors.grey.shade700,
-    //   ),
-    //   description: '프로필 이미지 업로드에 사용',
-    //   isRequired: true,
-    //   isExpanded: false,
-    // ),
-    // PermissionModel(
-    //   title: '마이크',
-    //   icon: Icon(
-    //     Icons.mic_rounded,
-    //     size: 32,
-    //     color: Colors.grey.shade700,
-    //   ),
-    //   description: '프로필 동영상 업로드시 녹화에 사용',
-    //   isRequired: true,
-    //   isExpanded: false,
-    // ),
+    PermissionModel(
+      title: '마이크',
+      icon: Icon(
+        Icons.mic_rounded,
+        size: 32,
+        color: Colors.grey.shade700,
+      ),
+      description: '프로필 동영상 업로드시 녹화에 사용',
+      isRequired: true,
+      isExpanded: false,
+    ),
   ].obs;
 
   // Variable ▼ ========================================
@@ -65,9 +64,9 @@ class PermissionService extends GetxService {
   Future<dynamic> handlePermissionOnPressed() async {
     final Map<Permission, PermissionStatus> permissionStatus = await [
       Permission.location,
-      // Permission.camera,
-      // Permission.photos,
-      // Permission.microphone,
+      Permission.camera,
+      Permission.photos,
+      Permission.microphone,
     ].request();
 
     for (var index = 0; index < permissionStatus.length; index++) {
@@ -75,7 +74,7 @@ class PermissionService extends GetxService {
         isPermissionSuccess.value = true;
       }
 
-      switch (permissionStatus[Permission.location]) {
+      switch (permissionStatus[index]) {
         case PermissionStatus.denied:
           Logger().d('사용자가 요청한 기능에 대한 액세스를 거부한 경우');
 
@@ -122,7 +121,7 @@ class PermissionService extends GetxService {
     Get.back();
 
     /// 권한의 허용이 필수인 경우
-    // await Future.delayed(const Duration(milliseconds: 100), () async {
+    // Future.delayed(const Duration(milliseconds: 100), () async {
     //   await GlobalPermissionModalBottomSheetWidget(
     //     controller: this,
     //   );
@@ -140,7 +139,7 @@ class PermissionService extends GetxService {
     if (isPermissionSuccess.value) {
       await GetStorage().write('initialize_permission', true);
       // Get.back();
-      await Get.offAllNamed('/signin');
+      await Get.offAllNamed('/main');
     }
   }
 

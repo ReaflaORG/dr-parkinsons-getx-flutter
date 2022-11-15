@@ -23,6 +23,27 @@ abstract class Routes {
   /// 홈
   static const HOME = _Paths.HOME;
 
+  /// 파킨슨 병 소개
+  static const DISORDER = _Paths.DISORDER;
+
+  /// 학회 및 앱 소개
+  static const SEMINAR = _Paths.SEMINAR;
+
+  /// 오해와 진실
+  static const FACT = _Paths.FACT;
+
+  /// 오해와 진실 포스트
+  static const FACTPOST = _Paths.FACTPOST;
+
+  /// 사회복지제도
+  static const SOCIALWELFARE = _Paths.SOCIALWELFARE;
+
+  /// 사회복지제도 포스트
+  static const SOCIALWELFAREPOST = _Paths.SOCIALWELFAREPOST;
+
+  /// 보호자 알람 서비스
+  static const PROTECTOR = _Paths.PROTECTOR;
+
   /// 건강관리
   static const HEALTHCARE = _Paths.HEALTHCARE;
 
@@ -101,6 +122,27 @@ abstract class _Paths {
 
   /// 홈
   static const HOME = '/home';
+
+  /// 파킨슨 병 소개
+  static const DISORDER = '/disorder';
+
+  /// 학회 및 앱 소개
+  static const SEMINAR = '/seminar';
+
+  /// 오해와 진실
+  static const FACT = '/fact';
+
+  /// 오해와 진실 포스트
+  static const FACTPOST = '/fact/factpost';
+
+  ///사회복지제도
+  static const SOCIALWELFARE = '/socialwelfare';
+
+  ///사회복지제도 포스트
+  static const SOCIALWELFAREPOST = '/socialwelfare/socialwelfarepost';
+
+  /// 보호자 알람 서비스
+  static const PROTECTOR = '/protector';
 
   /// 건강관리
   static const HEALTHCARE = '/healthcare';

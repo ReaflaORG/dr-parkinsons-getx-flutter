@@ -9,6 +9,8 @@ import 'package:get_storage/get_storage.dart';
 import 'package:logger/logger.dart';
 
 class FCMService extends GetxService {
+  static FCMService get to => Get.find();
+
   /// AndroidNotificationChannel
   /// id: 임의 ID
   /// name: 설정에 보일 채널명
@@ -34,12 +36,14 @@ class FCMService extends GetxService {
       FlutterLocalNotificationsPlugin();
   InitializationSettings initializationSettings = const InitializationSettings(
     android: AndroidInitializationSettings('@mipmap/ic_launcher'),
-    iOS: IOSInitializationSettings(
+    iOS: DarwinInitializationSettings(
       requestAlertPermission: true,
       requestBadgePermission: true,
       requestSoundPermission: true,
     ),
   );
+
+  Rx<RemoteMessage> message = const RemoteMessage().obs;
 
   @override
   Future<void> onInit() async {
@@ -118,13 +122,13 @@ TOKEN : $token''');
 
 /// 포그라운드 메세지 처리
 Future<void> handleOnForegroundMessageSettings({
-  required initializationSettings,
-  required flutterLocalNotificationsPlugin,
-  required channel,
+  required InitializationSettings initializationSettings,
+  required FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin,
+  required AndroidNotificationChannel channel,
 }) async {
   FirebaseMessaging.onMessage.listen(
     (RemoteMessage message) async {
-      AndroidNotification? android = message.notification?.android;
+      final AndroidNotification? android = message.notification?.android;
       Logger().d('''
 [Android]
 android : $android
@@ -144,6 +148,8 @@ visibility : ${android?.visibility}
 
       // 메세지가 온 경우에만 체크
       if (message.notification != null) {
+        FCMService.to.message.value = message;
+
         if (Platform.isAndroid) {
           // 메세지 출력 부분
           await flutterLocalNotificationsPlugin.show(
@@ -152,27 +158,31 @@ visibility : ${android?.visibility}
             message.notification!.body,
             NotificationDetails(
               android: AndroidNotificationDetails(
-                channel.id.toString(),
-                channel.name.toString(),
+                channel.id,
+                channel.name,
                 channelDescription: channel.description.toString(),
                 icon: '@mipmap/ic_launcher',
                 importance: Importance.high,
               ),
-              iOS: const IOSNotificationDetails(),
+              iOS: const DarwinNotificationDetails(),
             ),
           );
         }
 
-        // 포그라운드 상태에서 알림 메세지를 사용자가 눌렀을때
-        await flutterLocalNotificationsPlugin.initialize(initializationSettings,
-            onSelectNotification: (payload) {
-          if (payload != null) {
-            // Get.to(const NextPage(), arguments: payload);
-            handleOnForegroundMessageOpenedApp(message: message);
-          }
-        });
-
+        // 포그라운드 상태에서 메세지가 호출되었을때
         await handleOnForegroundMessage(message: message);
+
+        // 포그라운드 상태에서 알림 메세지를 사용자가 눌렀을때
+        // onDidReceiveBackgroundNotificationResponse 옵션 사용시 top-level 오류 발생함
+        flutterLocalNotificationsPlugin.initialize(
+          initializationSettings,
+          onDidReceiveNotificationResponse: (details) {
+            // ignore: unnecessary_null_comparison
+            if (details != null) {
+              handleOnForegroundMessageOpenedApp();
+            }
+          },
+        );
       }
     },
   );
@@ -207,21 +217,18 @@ Future<void> handleOnBackgroundMessageSettings() async {
 Future<void> handleOnForegroundMessage({
   required RemoteMessage message,
 }) async {
-  if (message.notification != null) {
-    Logger().d('[FCM] 앱 포그라운드 상태 메세지 : ${message.messageId}');
-  }
+  // if (message.notification != null) {
+  Logger().d('[FCM] 앱 포그라운드 상태 메세지 : ${FCMService.to.message.value.messageId}');
+  // }
 
   return;
 }
 
 /// 포그라운드 상태에서 알림 메세지를 사용자가 눌렀을때
-Future<void> handleOnForegroundMessageOpenedApp({
-  required RemoteMessage message,
-}) async {
-  if (message.notification != null) {
-    Logger().d('[FCM] 앱 포그라운드 알림 메세지 클릭 : ${message.data}');
-    // await MainController.to.handleWebViewControllerLoadURL(message: message);
-  }
+Future<void> handleOnForegroundMessageOpenedApp() async {
+  Logger().d('[FCM] 앱 포그라운드 알림 메세지 클릭 : ${FCMService.to.message.value.data}');
+  // await MainController.to
+  //     .handleWebViewControllerLoadURL(message: FCMService.to.message.value);
 }
 
 /// 백그라운드 메세지

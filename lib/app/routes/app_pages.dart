@@ -5,10 +5,16 @@ import 'package:get/get.dart';
 
 import '../modules/diagnosis/binding/diagnosis_binding.dart';
 import '../modules/diagnosis/view/diagnosis_view.dart';
+import '../modules/disorder/binding/disorder_binding.dart';
+import '../modules/disorder/view/disorder_view.dart';
 import '../modules/doctor/binding/doctor_binding.dart';
 import '../modules/doctor/binding/search_doctors_binding.dart';
 import '../modules/doctor/view/doctor_view.dart';
 import '../modules/doctor/view/search_doctors_view.dart';
+import '../modules/fact/binding/fact_binding.dart';
+import '../modules/fact/view/fact_view.dart';
+import '../modules/factpost/binding/factpost_binding.dart';
+import '../modules/factpost/view/factpost_view.dart';
 import '../modules/healthcare/binding/drugmisuse_binding.dart';
 import '../modules/healthcare/binding/healthcare_binding.dart';
 import '../modules/healthcare/view/drugmisuse_view.dart';
@@ -47,8 +53,16 @@ import '../modules/myinfo/view/view_my_symptoms_view.dart';
 import '../modules/myinfo/view/write_my_symptoms_view.dart';
 import '../modules/permission/binding/permission_binding.dart';
 import '../modules/permission/view/permission_view.dart';
+import '../modules/protector/binding/protector_binding.dart';
+import '../modules/protector/view/protector_view.dart';
+import '../modules/seminar/binding/seminar_binding.dart';
+import '../modules/seminar/view/seminar_view.dart';
 import '../modules/signin/binding/signin_binding.dart';
 import '../modules/signin/view/signin_view.dart';
+import '../modules/socialwelfare/binding/socialwelfare_binding.dart';
+import '../modules/socialwelfare/view/socialwelfare_view.dart';
+import '../modules/socialwelfarepost/binding/socialwelfarepost_binding.dart';
+import '../modules/socialwelfarepost/view/socialwelfarepost_view.dart';
 import '../modules/splash/binding/splash_binding.dart';
 import '../modules/splash/view/splash_view.dart';
 import '../modules/theme/binding/theme_binding.dart';
@@ -123,6 +137,80 @@ class AppPages {
       popGesture: false,
     ),
     GetPage(
+      title: '파킨슨 병 소개',
+      name: Routes.DISORDER,
+      page: () => const DisorderView(),
+      binding: DisorderBinding(),
+      transition: Transition.fadeIn,
+      transitionDuration: Duration.zero,
+      curve: Curves.easeIn,
+      popGesture: false,
+    ),
+    GetPage(
+      title: '학회 및 앱 소개',
+      name: Routes.SEMINAR,
+      page: () => const SeminarView(),
+      binding: SeminarBinding(),
+      transition: Transition.fadeIn,
+      transitionDuration: Duration.zero,
+      curve: Curves.easeIn,
+      popGesture: false,
+    ),
+    GetPage(
+      title: '보호자 알림 서비스',
+      name: Routes.PROTECTOR,
+      page: () => const ProtectorView(),
+      binding: ProtectorBinding(),
+      transition: Transition.fadeIn,
+      transitionDuration: Duration.zero,
+      curve: Curves.easeIn,
+      popGesture: false,
+    ),
+    GetPage(
+      title: '오해와 진실',
+      name: Routes.FACT,
+      page: () => const FactView(),
+      binding: FactBinding(),
+      transition: Transition.fadeIn,
+      transitionDuration: Duration.zero,
+      curve: Curves.easeIn,
+      popGesture: false,
+      children: [
+        GetPage(
+          title: '오해와 진실 포스트',
+          name: '/factpost',
+          page: () => const FactPostView(),
+          binding: FactPostBinding(),
+          transition: Transition.fadeIn,
+          transitionDuration: Duration.zero,
+          curve: Curves.easeIn,
+          popGesture: false,
+        ),
+      ],
+    ),
+    GetPage(
+      title: '사회복지제도',
+      name: Routes.SOCIALWELFARE,
+      page: () => const SocialWelfareView(),
+      binding: SocialWelfareBinding(),
+      transition: Transition.fadeIn,
+      transitionDuration: Duration.zero,
+      curve: Curves.easeIn,
+      popGesture: false,
+      children: [
+        GetPage(
+          title: '사회복지제도 포스트',
+          name: '/socialwelfarepost',
+          page: () => const SocialWelfarePostView(),
+          binding: SocialWelfarePostBinding(),
+          transition: Transition.fadeIn,
+          transitionDuration: Duration.zero,
+          curve: Curves.easeIn,
+          popGesture: false,
+        ),
+      ],
+    ),
+    GetPage(
       title: '건강관리',
       name: Routes.HEALTHCARE,
       page: () => const HealthCareView(),
@@ -132,10 +220,8 @@ class AppPages {
       curve: Curves.easeIn,
       popGesture: false,
     ),
-
-    /// 건강관리 - 약물검색
     GetPage(
-      title: '약물검색',
+      title: '건강관리 - 약물검색',
       name: Routes.MEDICINE,
       page: () => const MedicineView(),
       binding: MedicineBinding(),
@@ -144,10 +230,8 @@ class AppPages {
       curve: Curves.easeIn,
       popGesture: false,
     ),
-
-    /// 건강관리 - 약물검색 - 약물정보
     GetPage(
-      title: '약물정보',
+      title: '건강관리 - 약물검색 - 약물정보',
       name: Routes.MEDICINEINFO,
       page: () => const MedicineInfoView(),
       binding: MedicineInfoBinding(),
@@ -156,10 +240,8 @@ class AppPages {
       curve: Curves.easeIn,
       popGesture: false,
     ),
-
-    /// 건강관리 - 주의약품
     GetPage(
-      title: '주의해야할 약',
+      title: '건강관리 - 주의약품',
       name: Routes.DRUGMISUSE,
       page: () => const DrugMisuseView(),
       binding: DrugMisuseBinding(),
@@ -168,10 +250,8 @@ class AppPages {
       curve: Curves.easeIn,
       popGesture: false,
     ),
-
-    /// 건강관리 - 자가진단
     GetPage(
-      title: '자가진단',
+      title: '건강관리 - 자가진단',
       name: Routes.DIAGNOSIS,
       page: () => const DiagnosisView(),
       binding: DiagnosisBinding(),

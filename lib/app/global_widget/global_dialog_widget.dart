@@ -8,6 +8,7 @@ import 'package:get/get.dart';
 
 import '../service/permission_service.dart';
 import '../theme/colors.dart';
+import '../theme/texts.dart';
 
 Future<dynamic> GlobalWillPopScopeDialogWidget({String? type}) =>
     Get.bottomSheet(
@@ -103,194 +104,6 @@ Future<dynamic> GlobalWillPopScopeDialogWidget({String? type}) =>
       exitBottomSheetDuration: const Duration(milliseconds: 100),
     );
 
-Future<dynamic> GlobalPermissionModalBottomSheetWidget({
-  required PermissionService controller,
-}) =>
-    Get.dialog(
-      WillPopScope(
-        onWillPop: () => Future(() => false),
-        child: Scaffold(
-          backgroundColor: Colors.transparent,
-          body: Center(
-            child: Container(
-              // margin: const EdgeInsets.all(30),
-              width: 320.w,
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(5),
-              ),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.all(20),
-                    child: ListView(
-                      physics: const NeverScrollableScrollPhysics(),
-                      shrinkWrap: true,
-                      children: [
-                        SizedBox(
-                          height: 150.h,
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              Text(
-                                "${dotenv.env["APP_KO_NAME"]} 이용 안내",
-                                style: TextStyle(
-                                  color: Colors.black,
-                                  fontSize: 22.sp,
-                                  fontWeight: FontWeight.normal,
-                                  decoration: TextDecoration.none,
-                                ),
-                              ),
-                              SizedBox(height: 10.h),
-                              Text(
-                                "${dotenv.env["APP_KO_NAME"]}을 이용하려면\r\n아래의 권한을 허용해 주세요",
-                                style: TextStyle(
-                                  color: Colors.grey.shade600,
-                                  fontSize: 14.sp,
-                                  height: 1.h,
-                                ),
-                                textAlign: TextAlign.center,
-                              ),
-                            ],
-                          ),
-                        ),
-                        ListView.builder(
-                          scrollDirection: Axis.vertical,
-                          shrinkWrap: true,
-                          physics: const NeverScrollableScrollPhysics(),
-                          itemCount: controller.permissionList.length,
-                          itemBuilder: (BuildContext context, index) => Theme(
-                            data: ThemeData().copyWith(
-                              // unselectedWidgetColor: Colors.white,
-                              colorScheme: ColorScheme.light(
-                                primary: Colors.grey.shade600,
-                              ),
-                              dividerColor: Colors.transparent,
-                            ),
-                            child: ExpansionTile(
-                              title: Row(
-                                children: [
-                                  Icon(
-                                    controller.permissionList[index]['icon']
-                                        as IconData,
-                                    size: 16,
-                                    color: Colors.grey.shade600,
-                                  ),
-                                  SizedBox(width: 10.w),
-                                  Text(
-                                    controller.permissionList[index]['title']
-                                        .toString(),
-                                    style: const TextStyle(
-                                      color: Colors.black,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                              initiallyExpanded: true,
-                              tilePadding: EdgeInsets.zero,
-                              children: [
-                                Container(
-                                  margin:
-                                      const EdgeInsets.only(left: 0, right: 20),
-                                  child: Text(
-                                    controller.permissionList[index]
-                                            ['description']
-                                        .toString(),
-                                    style: TextStyle(
-                                      color: Colors.grey.shade600,
-                                      fontSize: 14.sp,
-                                    ),
-                                  ),
-                                ),
-                                SizedBox(height: 20.h),
-                                Divider(
-                                  height: 1,
-                                  color: Colors.grey.shade400,
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
-                        SizedBox(height: 20.h),
-                        Row(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Icon(
-                              Icons.info_rounded,
-                              color: Colors.grey.shade600,
-                              size: 16,
-                            ),
-                            SizedBox(width: 10.w),
-                            Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  "권한 허용 후 ${dotenv.env["APP_KO_NAME"]}을 시작합니다",
-                                  style: TextStyle(
-                                    color: Colors.grey.shade600,
-                                    fontSize: 14.sp,
-                                  ),
-                                ),
-                                Text(
-                                  "아래 '허용하기'를 눌러 권한을 허용해 주세요",
-                                  style: TextStyle(
-                                    color: Colors.grey.shade600,
-                                    fontSize: 14.sp,
-                                  ),
-                                ),
-                              ],
-                            )
-                          ],
-                        ),
-                      ],
-                    ),
-                  ),
-                  SizedBox(height: 40.h),
-                  SizedBox(
-                    width: Get.width,
-                    height: 60.h,
-                    child: ElevatedButton(
-                      onPressed: () => controller.handlePermissionOnPressed(),
-                      style: ButtonStyle(
-                        backgroundColor: MaterialStateProperty.all(
-                          const Color(0XFF82c736),
-                        ),
-                        shape:
-                            MaterialStateProperty.all<RoundedRectangleBorder>(
-                          const RoundedRectangleBorder(
-                            borderRadius: BorderRadius.only(
-                              bottomLeft: Radius.circular(5),
-                              bottomRight: Radius.circular(5),
-                            ),
-                          ),
-                        ),
-                      ),
-                      child: Text(
-                        '허용하기',
-                        style: TextStyle(
-                          fontSize: 16.sp,
-                        ),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ),
-        ),
-      ),
-      name: 'PermissionModalBottomSheetWidget',
-      barrierDismissible: false,
-      // transitionDuration: const Duration(milliseconds: 800),
-      // transitionCurve: Curves.easeIn,
-      routeSettings:
-          const RouteSettings(name: 'PermissionModalBottomSheetWidget'),
-    );
-
 Future<dynamic> GlobalPermissionModalOpenAppSettingsWidget({
   required PermissionService controller,
   Future<void> Function()? okOnPressed,
@@ -381,6 +194,222 @@ Future<dynamic> GlobalPermissionModalOpenAppSettingsWidget({
       routeSettings: const RouteSettings(
           name: 'GlobalPermissionModalOpenAppSettingsWidget'),
     );
+
+Future<dynamic> GlobalEmergencyModalWidget({required BuildContext context}) =>
+    showDialog(
+      context: context,
+      barrierDismissible: true,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          shape: const RoundedRectangleBorder(
+            borderRadius: BorderRadius.all(Radius.circular(16)),
+          ),
+          content: Column(
+            mainAxisSize: MainAxisSize.min,
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              const SizedBox(height: 30),
+              SizedBox(
+                width: 80.w,
+                height: 80.h,
+                child: Image.asset('assets/images/icons/page2/80 alert.png'),
+              ),
+              const SizedBox(height: 12),
+              Text(
+                '응급 문자 보내기',
+                style: TextPath.Heading2F18W600.copyWith(
+                  color: ColorPath.TextGrey1H212121,
+                ),
+              ),
+              const SizedBox(height: 4),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    '보호자 연락처',
+                    style: TextPath.TextF12W400.copyWith(
+                      color: ColorPath.TextGrey2H424242,
+                    ),
+                  ),
+                  const SizedBox(
+                    width: 5,
+                  ),
+                  Text(
+                    '010 - XXXX - XXXX',
+                    style: TextPath.TextF12W400.copyWith(
+                      color: ColorPath.TextGrey2H424242,
+                    ),
+                  ),
+                ],
+              ),
+              const SizedBox(height: 40),
+              Row(
+                children: [
+                  Expanded(
+                    flex: 1,
+                    child: InkWell(
+                      onTap: () {
+                        Get.back();
+                      },
+                      child: Container(
+                        alignment: Alignment.center,
+                        decoration: BoxDecoration(
+                          color: ColorPath.Background1HECEFF1,
+                          borderRadius: const BorderRadius.only(
+                            bottomLeft: Radius.circular(16),
+                          ),
+                        ),
+                        height: 48.h,
+                        child: Text(
+                          '취소',
+                          style: TextPath.TextF14W500.copyWith(
+                            color: ColorPath.TextGrey1H212121,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                  Expanded(
+                    flex: 1,
+                    child: InkWell(
+                      onTap: () {
+                        Get.back();
+                      },
+                      child: Container(
+                        alignment: Alignment.center,
+                        decoration: BoxDecoration(
+                            color: ColorPath.PrimaryColor,
+                            borderRadius: const BorderRadius.only(
+                              bottomRight: Radius.circular(16),
+                            )),
+                        height: 48.h,
+                        child: Text(
+                          '전송',
+                          style: TextPath.TextF14W500.copyWith(
+                            color: ColorPath.BackgroundWhite,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              )
+            ],
+          ),
+          contentPadding: EdgeInsets.zero,
+        );
+      },
+    );
+
+class GlobalDrugmisuseModalWidget extends StatelessWidget {
+  final String title;
+  final void Function()? okOnPressed;
+
+  const GlobalDrugmisuseModalWidget({
+    super.key,
+    required this.title,
+    required this.okOnPressed,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: Colors.transparent,
+      body: Center(
+        child: ClipRRect(
+          borderRadius: BorderRadius.circular(15),
+          child: Container(
+            padding: const EdgeInsets.all(20),
+            width: MediaQuery.of(context).size.width - 20,
+            height: 200.h,
+            color: Colors.white,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                SizedBox(height: 10),
+                Text(
+                  '주의해야할 약품',
+                  style: TextPath.Heading2F18W600,
+                ),
+                SizedBox(height: 20),
+                Text(
+                  '$title(은/는)\r\n파킨슨 증상을 악화시킬 수 있는 약물이므로,\r\n전문의와 상의하시기 바랍니다.',
+                  style: TextPath.TextF14W400.copyWith(
+                    color: Color(0XFF475467),
+                  ),
+                ),
+                SizedBox(height: 30),
+                SizedBox(
+                  width: double.infinity,
+                  height: 44.h,
+                  child: ElevatedButton(
+                    onPressed: okOnPressed,
+                    child: Text(
+                      '확인',
+                      style: TextPath.Heading3F16W600.copyWith(
+                        color: Colors.white,
+                      ),
+                    ),
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: ColorPath.PrimaryDarkColor,
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+// Future<dynamic> GlobalDrugmisuseModalWidget({
+//   required String title,
+//   void Function()? okOnPressed,
+// }) =>
+//     Get.dialog(
+//       Dialog(
+//         child: ClipRRect(
+//           borderRadius: BorderRadius.circular(15),
+//           child: Container(
+//             padding: const EdgeInsets.all(20),
+//             width:
+//                 MediaQuery.of(Get.overlayContext as BuildContext).size.width -
+//                     10.w,
+//             height: 195.h,
+//             child: Column(
+//               mainAxisAlignment: MainAxisAlignment.spaceBetween,
+//               crossAxisAlignment: CrossAxisAlignment.start,
+//               children: [
+//                 SizedBox(height: 20),
+//                 Text(
+//                   title,
+//                   style: TextPath.Heading2F18W600,
+//                 ),
+//                 SizedBox(height: 20),
+//                 Text(
+//                     '$title(은/는)\r\n파킨슨 증상을 악화시킬 수 있는 약물이므로,\r\n전문의와 상의하시기 바랍니다.'),
+//                 SizedBox(height: 20),
+//                 SizedBox(
+//                   width: double.infinity,
+//                   height: 44.h,
+//                   child: ElevatedButton(
+//                     onPressed: okOnPressed,
+//                     child: Text('확인'),
+//                   ),
+//                 ),
+//               ],
+//             ),
+//           ),
+//         ),
+//       ),
+//       name: 'GlobalDrugmisuseModalWidget',
+//       barrierDismissible: false,
+//       routeSettings: const RouteSettings(name: 'GlobalDrugmisuseModalWidget'),
+//     );
 
 Future<dynamic> GlobalAppVersionUpgradeModalWidget({
   Future<void> Function()? cancelOnPressed,
