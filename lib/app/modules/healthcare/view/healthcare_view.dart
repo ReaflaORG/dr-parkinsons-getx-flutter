@@ -13,33 +13,38 @@ class HealthCareView extends GetView<HealthCareController> {
   @override
   Widget build(BuildContext context) => SafeArea(
         child: Scaffold(
-          appBar: AppBar(
-            backgroundColor: ColorPath.BackgroundWhite,
-            elevation: 0,
-            centerTitle: false,
-            title: Container(
-              padding: const EdgeInsets.symmetric(horizontal: 18),
-              child: Text(
-                '건강관리',
-                style: TextPath.Heading2F18W600.copyWith(
-                  color: ColorPath.TextGrey1H212121,
+          appBar: PreferredSize(
+            preferredSize: Size.fromHeight(62.w),
+            child: Padding(
+              padding: const EdgeInsets.all(14.0),
+              child: AppBar(
+                toolbarHeight: 62.w,
+                automaticallyImplyLeading: false,
+                backgroundColor: ColorPath.BackgroundWhite,
+                elevation: 0,
+                centerTitle: false,
+                title: Text(
+                  '건강관리',
+                  style: TextPath.Heading2F18W600.copyWith(
+                    color: ColorPath.TextGrey1H212121,
+                  ),
+                  textAlign: TextAlign.left,
                 ),
-                textAlign: TextAlign.left,
+                actions: [
+                  InkWell(
+                    onTap: () {},
+                    child: SizedBox(
+                      width: 24.w,
+                      height: 24.h,
+                      child: Image.asset(
+                        'assets/images/icons/2d/24alert.png',
+                      ),
+                    ),
+                  ),
+                  const SizedBox(width: 20),
+                ],
               ),
             ),
-            actions: [
-              InkWell(
-                onTap: () {},
-                child: SizedBox(
-                  width: 24.w,
-                  height: 24.h,
-                  child: Image.asset(
-                    'assets/images/icons/2d/24alert.png',
-                  ),
-                ),
-              ),
-              const SizedBox(width: 20),
-            ],
           ),
           body: SingleChildScrollView(
             child: Column(
@@ -121,13 +126,13 @@ class HealthCareView extends GetView<HealthCareController> {
                   height: 20.w,
                 ),
                 Container(
-                  padding: EdgeInsets.symmetric(
+                  padding: const EdgeInsets.symmetric(
                     vertical: 40,
                     horizontal: 20,
                   ),
                   decoration: BoxDecoration(
                     color: ColorPath.Background1HECEFF1,
-                    borderRadius: BorderRadius.only(
+                    borderRadius: const BorderRadius.only(
                         topLeft: Radius.circular(30),
                         topRight: Radius.circular(30)),
                   ),
@@ -135,7 +140,7 @@ class HealthCareView extends GetView<HealthCareController> {
                     children: [
                       Container(
                         width: 340,
-                        padding: EdgeInsets.only(bottom: 12),
+                        padding: const EdgeInsets.only(bottom: 12),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
@@ -165,51 +170,107 @@ class HealthCareView extends GetView<HealthCareController> {
                           ],
                         ),
                       ),
-                      InkWell(
-                        onTap: () {},
-                        child: Container(
-                          alignment: Alignment.bottomLeft,
-                          padding: const EdgeInsets.only(
-                            left: 16,
-                            bottom: 8,
-                          ),
-                          width: 320.w,
-                          height: 130.w,
-                          decoration: BoxDecoration(
-                              image: const DecorationImage(
-                                image: AssetImage(
-                                    'assets/images/samples/sample1.jpg'),
-                                fit: BoxFit.cover,
+                      Column(
+                        children: [
+                          InkWell(
+                            onTap: () {},
+                            child: Container(
+                              alignment: Alignment.bottomLeft,
+                              padding: const EdgeInsets.only(
+                                left: 16,
+                                bottom: 8,
                               ),
-                              borderRadius: BorderRadius.circular(16)),
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.end,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Container(
-                                color: ColorPath.SecondaryLightColor,
-                                padding: const EdgeInsets.fromLTRB(4, 2, 4, 0),
-                                child: Text(
-                                  '22.10.23',
-                                  style: TextPath.TextF13W500.copyWith(
-                                      color: ColorPath.TextGrey3H616161),
-                                ),
-                              ),
-                              const SizedBox(height: 4),
-                              Container(
-                                padding: const EdgeInsets.fromLTRB(6, 6, 6, 4),
-                                color:
-                                    ColorPath.SecondaryColor.withOpacity(0.8),
-                                child: Text(
-                                  '노인 장기요양보험 제도',
-                                  style: TextPath.Heading3F16W600.copyWith(
-                                    color: ColorPath.BackgroundWhite,
+                              width: 320.w,
+                              height: 130.w,
+                              decoration: BoxDecoration(
+                                  image: const DecorationImage(
+                                    image: AssetImage(
+                                        'assets/images/samples/sample1.jpg'),
+                                    fit: BoxFit.cover,
                                   ),
-                                ),
+                                  borderRadius: BorderRadius.circular(16)),
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.end,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Container(
+                                    color: ColorPath.SecondaryLightColor,
+                                    padding:
+                                        const EdgeInsets.fromLTRB(4, 2, 4, 0),
+                                    child: Text(
+                                      '22.10.23',
+                                      style: TextPath.TextF13W500.copyWith(
+                                          color: ColorPath.TextGrey3H616161),
+                                    ),
+                                  ),
+                                  const SizedBox(height: 4),
+                                  Container(
+                                    padding:
+                                        const EdgeInsets.fromLTRB(6, 6, 6, 4),
+                                    color:
+                                        ColorPath.PrimaryColor.withOpacity(0.8),
+                                    child: Text(
+                                      '노인 장기요양보험 제도',
+                                      style: TextPath.Heading3F16W600.copyWith(
+                                        color: ColorPath.BackgroundWhite,
+                                      ),
+                                    ),
+                                  ),
+                                ],
                               ),
-                            ],
+                            ),
                           ),
-                        ),
+                          SizedBox(height: 20.w),
+                          InkWell(
+                            onTap: () {},
+                            child: Container(
+                              alignment: Alignment.bottomLeft,
+                              padding: const EdgeInsets.only(
+                                left: 16,
+                                bottom: 8,
+                              ),
+                              width: 320.w,
+                              height: 130.w,
+                              decoration: BoxDecoration(
+                                  image: const DecorationImage(
+                                    image: AssetImage(
+                                        'assets/images/samples/sample6.jpg'),
+                                    fit: BoxFit.cover,
+                                  ),
+                                  borderRadius: BorderRadius.circular(16)),
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.end,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Container(
+                                    color: ColorPath.SecondaryLightColor,
+                                    padding:
+                                        const EdgeInsets.fromLTRB(4, 2, 4, 0),
+                                    child: Text(
+                                      '22.09.08',
+                                      style: TextPath.TextF13W500.copyWith(
+                                          color: ColorPath.TextGrey3H616161),
+                                    ),
+                                  ),
+                                  const SizedBox(height: 4),
+                                  Container(
+                                    padding:
+                                        const EdgeInsets.fromLTRB(6, 6, 6, 4),
+                                    color:
+                                        ColorPath.PrimaryColor.withOpacity(0.8),
+                                    child: Text(
+                                      '본인부담금 산정특례제도',
+                                      style: TextPath.Heading3F16W600.copyWith(
+                                        color: ColorPath.BackgroundWhite,
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                          SizedBox(height: 20.w),
+                        ],
                       ),
                     ],
                   ),

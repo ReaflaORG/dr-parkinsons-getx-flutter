@@ -13,31 +13,45 @@ class DrugMisuseView extends GetView<DrugMisuseController> {
 
   @override
   Widget build(BuildContext context) => Scaffold(
-        appBar: AppBar(
-          leading: IconButton(
-            onPressed: () => Get.back(),
-            icon: Icon(
-              Icons.arrow_back,
-              color: ColorPath.TextGrey1H212121,
+        appBar: PreferredSize(
+          preferredSize: Size.fromHeight(74.w),
+          child: AppBar(
+            toolbarHeight: 84,
+            backgroundColor: ColorPath.TertiaryLightColor,
+            leadingWidth: 60,
+            leading: Container(
+              margin: const EdgeInsets.only(
+                left: 20,
+              ),
+              child: CircleAvatar(
+                backgroundColor: ColorPath.BackgroundWhite,
+                radius: 24,
+                child: IconButton(
+                  onPressed: () => Get.back(),
+                  icon: Icon(
+                    Icons.arrow_back,
+                    color: ColorPath.TextGrey1H212121,
+                  ),
+                ),
+              ),
+            ),
+            centerTitle: false,
+            elevation: 0,
+            shadowColor: Colors.white,
+            title: Text(
+              '주의해야할 약 검색',
+              style: TextPath.Heading2F18W600.copyWith(
+                color: ColorPath.TextGrey1H212121,
+              ),
             ),
           ),
-          centerTitle: false,
-          elevation: 0,
-          shadowColor: Colors.white,
-          title: Text(
-            '주의해야할 약 검색',
-            style: TextPath.Heading2F18W600.copyWith(
-              color: ColorPath.TextGrey1H212121,
-            ),
-          ),
-          backgroundColor: Colors.white,
         ),
         body: SingleChildScrollView(
           child: Column(
             children: [
               Container(
-                alignment: Alignment.center,
-                height: 72.w,
+                alignment: Alignment.topCenter,
+                height: 58.w,
                 width: double.infinity,
                 decoration: BoxDecoration(
                   color: ColorPath.TertiaryLightColor,
@@ -58,13 +72,13 @@ class DrugMisuseView extends GetView<DrugMisuseController> {
                   ),
                   child: Row(
                     children: [
-                      CircleAvatar(
-                        backgroundColor: ColorPath.BackgroundWhite,
-                        child: Image.asset(
-                            width: 22.w,
-                            height: 22.w,
-                            '/assets/images/icons/2d/24search.png'),
-                      ),
+                      // CircleAvatar(
+                      //   backgroundColor: ColorPath.BackgroundWhite,
+                      //   child: Image.asset(
+                      //       width: 22.w,
+                      //       height: 22.w,
+                      //       '/assets/images/icons/2d/24search.png'),
+                      // ),
                       SizedBox(width: 16.w),
                       Text(
                         '약품명 또는 약제명을 입력하세요',
@@ -89,7 +103,7 @@ class DrugMisuseView extends GetView<DrugMisuseController> {
                         children: List.generate(
                           controller.boxes.length,
                           (index) => Padding(
-                            padding: const EdgeInsets.only(bottom: 5),
+                            padding: const EdgeInsets.only(bottom: 20),
                             child: DrugMisuseInfoBox(
                               box: controller.boxes[index],
                             ),

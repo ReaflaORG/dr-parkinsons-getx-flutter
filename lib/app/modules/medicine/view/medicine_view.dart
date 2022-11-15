@@ -12,27 +12,41 @@ class MedicineView extends GetView<MedicineController> {
 
   @override
   Widget build(BuildContext context) => Scaffold(
-        appBar: AppBar(
-          leading: IconButton(
-            onPressed: () => Get.back(),
-            icon: Icon(
-              Icons.arrow_back,
-              color: ColorPath.TextGrey1H212121,
+        appBar: PreferredSize(
+          preferredSize: Size.fromHeight(74.w),
+          child: AppBar(
+            toolbarHeight: 84,
+            backgroundColor: ColorPath.PrimaryLightColor,
+            leadingWidth: 60,
+            leading: Container(
+              margin: const EdgeInsets.only(
+                left: 20,
+              ),
+              child: CircleAvatar(
+                backgroundColor: ColorPath.BackgroundWhite,
+                radius: 24,
+                child: IconButton(
+                  onPressed: () => Get.back(),
+                  icon: Icon(
+                    Icons.arrow_back,
+                    color: ColorPath.TextGrey1H212121,
+                  ),
+                ),
+              ),
+            ),
+            centerTitle: false,
+            elevation: 0,
+            shadowColor: Colors.white,
+            title: Text(
+              '파킨슨 자가진단',
+              style: TextPath.Heading2F18W600.copyWith(
+                color: ColorPath.TextGrey1H212121,
+              ),
             ),
           ),
-          centerTitle: false,
-          elevation: 0,
-          shadowColor: Colors.white,
-          title: Text(
-            '파킨슨 약물검색',
-            style: TextPath.Heading2F18W600.copyWith(
-              color: ColorPath.TextGrey1H212121,
-            ),
-          ),
-          backgroundColor: Colors.white,
         ),
         body: Container(
-          padding: const EdgeInsets.symmetric(horizontal: 30),
+          padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 30),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
