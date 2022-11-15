@@ -265,6 +265,22 @@ class TextPath {
 
   /// fontFamily: SUIT
   ///
+  /// fontSize: 13
+  ///
+  /// fontWeight: Medium 500
+  static TextStyle TextF13W500Expand = TextStyle(
+    color: ColorPath.TextGrey1H212121,
+    fontFamily: 'SUIT',
+    fontSize: 13.0.sp,
+    fontWeight: FontWeight.w500,
+    fontStyle: FontStyle.normal,
+    decoration: TextDecoration.none,
+    height: 21 / 13,
+    letterSpacing: 0,
+  );
+
+  /// fontFamily: SUIT
+  ///
   /// fontSize: 12
   ///
   /// fontWeight: Regular 400

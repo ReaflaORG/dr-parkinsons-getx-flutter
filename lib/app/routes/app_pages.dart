@@ -3,14 +3,22 @@
 import 'package:flutter/animation.dart';
 import 'package:get/get.dart';
 
+import '../modules/diagnosis/binding/diagnosis_binding.dart';
+import '../modules/diagnosis/view/diagnosis_view.dart';
 import '../modules/doctor/binding/doctor_binding.dart';
 import '../modules/doctor/view/doctor_view.dart';
+import '../modules/healthcare/binding/drugmisuse_binding.dart';
 import '../modules/healthcare/binding/healthcare_binding.dart';
+import '../modules/healthcare/view/drugmisuse_view.dart';
 import '../modules/healthcare/view/healthcare_view.dart';
 import '../modules/home/binding/home_binding.dart';
 import '../modules/home/view/home_view.dart';
 import '../modules/main/binding/main_binding.dart';
 import '../modules/main/view/main_view.dart';
+import '../modules/medicine/binding/medicine_binding.dart';
+import '../modules/medicine/binding/medicine_info_binding.dart';
+import '../modules/medicine/view/medicine_info_view.dart';
+import '../modules/medicine/view/medicine_view.dart';
 import '../modules/mission/binding/mission_binding.dart';
 import '../modules/mission/view/mission_view.dart';
 import '../modules/myinfo/binding/myinfo_binding.dart';
@@ -97,6 +105,54 @@ class AppPages {
       name: Routes.HEALTHCARE,
       page: () => const HealthCareView(),
       binding: HealthCareBinding(),
+      transition: Transition.fadeIn,
+      transitionDuration: Duration.zero,
+      curve: Curves.easeIn,
+      popGesture: false,
+    ),
+
+    /// 건강관리 - 약물검색
+    GetPage(
+      title: '약물검색',
+      name: Routes.MEDICINE,
+      page: () => const MedicineView(),
+      binding: MedicineBinding(),
+      transition: Transition.fadeIn,
+      transitionDuration: Duration.zero,
+      curve: Curves.easeIn,
+      popGesture: false,
+    ),
+
+    /// 건강관리 - 약물검색 - 약물정보
+    GetPage(
+      title: '약물정보',
+      name: Routes.MEDICINEINFO,
+      page: () => const MedicineInfoView(),
+      binding: MedicineInfoBinding(),
+      transition: Transition.fadeIn,
+      transitionDuration: Duration.zero,
+      curve: Curves.easeIn,
+      popGesture: false,
+    ),
+
+    /// 건강관리 - 주의약품
+    GetPage(
+      title: '주의해야할 약',
+      name: Routes.DRUGMISUSE,
+      page: () => const DrugMisuseView(),
+      binding: DrugMisuseBinding(),
+      transition: Transition.fadeIn,
+      transitionDuration: Duration.zero,
+      curve: Curves.easeIn,
+      popGesture: false,
+    ),
+
+    /// 건강관리 - 자가진단
+    GetPage(
+      title: '자가진단',
+      name: Routes.DIAGNOSIS,
+      page: () => const DiagnosisView(),
+      binding: DiagnosisBinding(),
       transition: Transition.fadeIn,
       transitionDuration: Duration.zero,
       curve: Curves.easeIn,

@@ -4,8 +4,8 @@ import 'dart:async';
 
 import 'package:get/get.dart';
 
-class HealthCareController extends GetxController {
-  static HealthCareController get to => Get.find();
+class MedicineInfoController extends GetxController {
+  static MedicineInfoController get to => Get.find();
 
   // Data ▼ ============================================
 

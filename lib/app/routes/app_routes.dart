@@ -26,6 +26,18 @@ abstract class Routes {
   /// 건강관리
   static const HEALTHCARE = _Paths.HEALTHCARE;
 
+  /// 약물검색
+  static const MEDICINE = _Paths.MEDICINE;
+
+  /// 건강관리 - 약물검색 - 약물정보
+  static const MEDICINEINFO = _Paths.MEDICINEINFO;
+
+  /// 건강관리 - 주의약품
+  static const DRUGMISUSE = _Paths.DRUGMISUSE;
+
+  /// 건강관리 - 자가진단
+  static const DIAGNOSIS = _Paths.DIAGNOSIS;
+
   /// 미션관리
   static const MISSION = _Paths.MISSION;
 
@@ -59,6 +71,18 @@ abstract class _Paths {
 
   /// 건강관리
   static const HEALTHCARE = '/healthcare';
+
+  /// 건강관리 - 약물검색
+  static const MEDICINE = '/medicine';
+
+  /// 건강관리 - 약물검색 - 약물정보
+  static const MEDICINEINFO = '/medicineinfo';
+
+  /// 건강관리 - 주의약품
+  static const DRUGMISUSE = '/drugmisuse';
+
+  /// 건강관리 - 자가진단
+  static const DIAGNOSIS = '/diagnosis';
 
   /// 미션관리
   static const MISSION = '/mission';
