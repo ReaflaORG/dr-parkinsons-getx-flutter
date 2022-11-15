@@ -55,8 +55,8 @@ flutter:
     - assets/images/icons/3d/
     - assets/images/icons/2d/
     - assets/images/samples/
-    - assets/images/etc/
     - assets/images/medicine/
+    - assets/images/etc/
 
   fonts:
     - family: SUIT

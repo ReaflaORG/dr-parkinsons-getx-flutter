@@ -105,8 +105,27 @@ class MedicineInfo extends StatelessWidget {
                 color: ColorPath.TextGrey1H212121),
           ),
         ),
-        const SizedBox(
-          height: 20,
+        Container(
+          alignment: Alignment.centerLeft,
+          height: 30.w,
+          child: Text(
+            '퍼킨슨 일반정',
+            style: TextPath.TextF14W500.copyWith(
+                color: ColorPath.TextGrey3H616161),
+          ),
+        ),
+        SizedBox(
+          // height: 30.w,
+          // width: 60.w,
+          child: Image.asset('/assets/images/medicine/pill0101.jpg'),
+        ),
+        Container(
+          alignment: Alignment.centerLeft,
+          child: Text(
+            '''  레보도파 100mg, 카르비도파수화물 27mg''',
+            style: TextPath.TextF14W400.copyWith(
+                color: ColorPath.TextGrey2H424242),
+          ),
         ),
       ],
     );
