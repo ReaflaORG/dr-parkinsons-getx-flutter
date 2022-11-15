@@ -57,9 +57,9 @@ class MyApp extends StatelessWidget {
         splitScreenMode: true,
         builder: (BuildContext context, Widget? child) => GetMaterialApp(
           title: dotenv.env['APP_EN_NAME']!,
-          initialRoute: '/splash',
-          initialBinding: SplashBinding(),
-          home: const SplashView(),
+          initialRoute: '/main',
+          // initialBinding: SplashBinding(),
+          // home: const SplashView(),
           getPages: AppPages.routes,
           smartManagement: SmartManagement.full,
           builder: (BuildContext context, Widget? child) => MediaQuery(

@@ -5,16 +5,16 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../doctor/controller/doctor_controller.dart';
-import '../../doctor/view/doctor_view.dart';
+import '../../doctor/controller/search_doctors_controller.dart';
+import '../../doctor/view/search_doctors_view.dart';
 import '../../healthcare/controller/healthcare__controller.dart';
 import '../../healthcare/view/healthcare_view.dart';
 import '../../home/controller/home_controller.dart';
 import '../../home/view/home_view.dart';
 import '../../mission/controller/mission_controller.dart';
 import '../../mission/view/mission_view.dart';
-import '../../myinfo/controller/myinfo_controller.dart';
-import '../../myinfo/view/myinfo_view.dart';
+import '../../myinfo/controller/my_info_controller.dart';
+import '../../myinfo/view/my_info_view.dart';
 import '../model/main_model.dart';
 
 class MainController extends GetxController {
@@ -77,9 +77,9 @@ class MainController extends GetxController {
         builder: (_) => const MissionView(),
         init: MissionController(),
       ),
-      GetBuilder<DoctorController>(
-        builder: (_) => const DoctorView(),
-        init: DoctorController(),
+      GetBuilder<SearchDoctorsController>(
+        builder: (_) => const SearchDoctorsView(),
+        init: SearchDoctorsController(),
       ),
       GetBuilder<MyInfoController>(
         builder: (_) => const MyInfoView(),
