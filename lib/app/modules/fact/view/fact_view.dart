@@ -75,7 +75,8 @@ class FactView extends GetView<FactController> {
                                   horizontal: 6,
                                   vertical: 2,
                                 ),
-                                color: ColorPath.PrimaryColor.withOpacity(0.7),
+                                color:
+                                    ColorPath.PrimaryDarkColor.withOpacity(0.8),
                                 child: Text(
                                   controller.factData[index].title as String,
                                   style: TextPath.Heading3F16W600.copyWith(

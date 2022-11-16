@@ -80,7 +80,7 @@ class SocialWelfarePostView extends GetView<SocialWelfarePostController> {
                           children: [
                             Text(
                               '고령이나 노인성 질병 등의 사유로 일상생활을 혼자서 수행하기 어려운 노인 등에게 신체활동 또는 가사활동 지원 등의 장기요양급여를 제공하는 사회보험제도입니다. 보통 만65세 이상 노인이 대상이지만, 파킨슨병 환자는 65세 이하라도 노인성 질병으로 분류되어 신청할 수 있습니다.',
-                              style: TextPath.TextF14W400Expand.copyWith(
+                              style: TextPath.TextF16W400.copyWith(
                                   color: ColorPath.TextGrey2H424242),
                             ),
                             Text(

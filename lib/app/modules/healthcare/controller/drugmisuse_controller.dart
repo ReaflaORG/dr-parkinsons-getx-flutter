@@ -4,6 +4,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:logger/logger.dart';
 
 import '../../../model/drugmisuse_model.dart';
 import '../models/drugmisuse_infobox_model.dart';
@@ -107,32 +108,25 @@ class DrugMisuseController extends GetxController {
   // Function ▼ ========================================
 
   /// * 이메일 텍스트 폼 필드 OnChanged
-  void handleEmailTextFormFieldOnChanged({
+  Future<void> handleEmailTextFormFieldOnChanged({
     required String value,
-  }) {
+  }) async {
     // 값 저장
     globalFormKey.value.currentState!.save();
 
     // 벨리데이터
-    handleValidator(value: value);
-  }
-
-  /// * 텍스트 폼 필드 벨리데이션 체크
-  String? handleValidator({
-    required String value,
-  }) {
     if (value.isNotEmpty) {
       isSearch.value = true;
     } else {
       isSearch.value = false;
     }
 
-    boxesSearchData.clear();
-    boxesSearchData.addAll(
-        boxesDefaultData.where((element) => element.title.contains(value)));
+    // boxesSearchData.clear();
+    boxesSearchData.assignAll(boxesDefaultData.where(
+      (element) => element.title.contains(value),
+    ));
+    Logger().d(boxesSearchData.toJson());
     boxesSearchData.refresh();
-
-    return null;
   }
 
   @override

@@ -188,94 +188,96 @@ class SearchAfterWigdet extends GetView<DrugMisuseController> {
 
   @override
   Widget build(BuildContext context) {
-    return Flexible(
-      child: ListView.builder(
-        physics: const AlwaysScrollableScrollPhysics(),
-        itemCount: controller.boxesSearchData.length,
-        itemBuilder: (BuildContext context, int index) {
-          return Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 30),
-            child: InkWell(
-              onTap: () => Get.dialog(
-                GlobalDrugmisuseModalWidget(
-                  title: controller.boxesSearchData[index].title,
-                  okOnPressed: () => Get.back(),
-                ),
-              ),
-              child: Container(
-                margin: index == 0
-                    ? const EdgeInsets.only(top: 20, bottom: 14)
-                    : const EdgeInsets.only(bottom: 14),
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 12,
-                  vertical: 8,
-                ),
-                decoration: BoxDecoration(
-                  border: Border.all(color: ColorPath.Background1HECEFF1),
-                  borderRadius: const BorderRadius.all(
-                    Radius.circular(6),
+    return Obx(
+      () => Flexible(
+        child: ListView.builder(
+          physics: const AlwaysScrollableScrollPhysics(),
+          itemCount: controller.boxesSearchData.length,
+          itemBuilder: (BuildContext context, int index) {
+            return Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 30),
+              child: InkWell(
+                onTap: () => Get.dialog(
+                  GlobalDrugmisuseModalWidget(
+                    title: controller.boxesSearchData[index].title,
+                    okOnPressed: () => Get.back(),
                   ),
                 ),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Container(
-                      alignment: Alignment.topLeft,
-                      width: 26,
-                      height: 20.w,
-                      child: Image.asset(
-                        width: 18.w,
-                        height: 18.w,
-                        'assets/images/icons/2d/18checker.png',
-                      ),
+                child: Container(
+                  margin: index == 0
+                      ? const EdgeInsets.only(top: 20, bottom: 14)
+                      : const EdgeInsets.only(bottom: 14),
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 12,
+                    vertical: 8,
+                  ),
+                  decoration: BoxDecoration(
+                    border: Border.all(color: ColorPath.Background1HECEFF1),
+                    borderRadius: const BorderRadius.all(
+                      Radius.circular(6),
                     ),
-                    Expanded(
-                      child: Column(
-                        mainAxisSize: MainAxisSize.min,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            mainAxisSize: MainAxisSize.max,
-                            children: [
-                              Container(
-                                alignment: Alignment.centerLeft,
-                                height: 20.w,
-                                child: Text(
-                                  controller.boxesSearchData[index].title,
-                                  style: TextPath.TextF14W500.copyWith(
-                                      color: ColorPath.TextGrey1H212121),
+                  ),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Container(
+                        alignment: Alignment.topLeft,
+                        width: 26,
+                        height: 20.w,
+                        child: Image.asset(
+                          width: 18.w,
+                          height: 18.w,
+                          'assets/images/icons/2d/18checker.png',
+                        ),
+                      ),
+                      Expanded(
+                        child: Column(
+                          mainAxisSize: MainAxisSize.min,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              mainAxisSize: MainAxisSize.max,
+                              children: [
+                                Container(
+                                  alignment: Alignment.centerLeft,
+                                  height: 20.w,
+                                  child: Text(
+                                    controller.boxesSearchData[index].title,
+                                    style: TextPath.TextF14W500.copyWith(
+                                        color: ColorPath.TextGrey1H212121),
+                                  ),
                                 ),
-                              ),
-                              // const Spacer(),
-                              Text(
-                                controller.boxesSearchData[index].company,
-                                style: TextPath.TextF12W400.copyWith(
-                                    color: ColorPath.TextGrey4H9E9E9E),
-                              ),
-                            ],
-                          ),
-                          Container(
-                            alignment: Alignment.centerLeft,
-                            height: 20.w,
-                            child: Text(
-                              '#위장약 #클로르프로마진',
-                              style: TextPath.TextF13W400.copyWith(
-                                  color: ColorPath.TextGrey3H616161),
-                              maxLines: 1,
-                              overflow: TextOverflow.ellipsis,
+                                // const Spacer(),
+                                Text(
+                                  controller.boxesSearchData[index].company,
+                                  style: TextPath.TextF12W400.copyWith(
+                                      color: ColorPath.TextGrey4H9E9E9E),
+                                ),
+                              ],
                             ),
-                          ),
-                        ],
+                            Container(
+                              alignment: Alignment.centerLeft,
+                              height: 20.w,
+                              child: Text(
+                                '#위장약 #클로르프로마진',
+                                style: TextPath.TextF13W400.copyWith(
+                                    color: ColorPath.TextGrey3H616161),
+                                maxLines: 1,
+                                overflow: TextOverflow.ellipsis,
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
               ),
-            ),
-          );
-        },
+            );
+          },
+        ),
       ),
     );
   }

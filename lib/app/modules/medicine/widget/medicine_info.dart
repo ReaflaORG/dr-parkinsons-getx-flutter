@@ -115,9 +115,12 @@ class MedicineInfo extends StatelessWidget {
           ),
         ),
         SizedBox(
+          width: double.infinity,
           // height: 30.w,
-          // width: 60.w,
-          child: Image.asset('/assets/images/medicine/pill0101.jpg'),
+          child: Image.asset(
+            'assets/images/medicine/pill0101.jpg',
+            fit: BoxFit.cover,
+          ),
         ),
         Container(
           alignment: Alignment.centerLeft,
