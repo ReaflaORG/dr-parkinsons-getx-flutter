@@ -32,12 +32,12 @@ class DiagnosisAnswer extends StatelessWidget {
                   child: SizedBox(
                     width: 24.w,
                     height: 24.w,
-                    child: Image.asset('assets/images/icons/2d/24false1.png'),
+                    child: Image.asset('assets/images/icons/2d/24false.png'),
                   ),
                 ),
                 Expanded(
                   child: Text(
-                    '매우 그렇다.',
+                    '예',
                     style: TextPath.TextF16W500.copyWith(
                       color: ColorPath.TextGrey2H424242,
                     ),
@@ -73,7 +73,7 @@ class DiagnosisAnswer extends StatelessWidget {
                   ),
                   Expanded(
                       child: Text(
-                    '매우 그렇다.',
+                    '아니오',
                     style: TextPath.TextF16W500.copyWith(
                       color: ColorPath.TextGrey2H424242,
                     ),

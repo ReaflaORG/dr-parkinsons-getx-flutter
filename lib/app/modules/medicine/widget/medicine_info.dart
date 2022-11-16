@@ -114,11 +114,11 @@ class MedicineInfo extends StatelessWidget {
                 color: ColorPath.TextGrey3H616161),
           ),
         ),
-        SizedBox(
-          // height: 30.w,
-          // width: 60.w,
-          child: Image.asset('/assets/images/medicine/pill0101.jpg'),
-        ),
+        // SizedBox(
+        //   // height: 30.w,
+        //   // width: 60.w,
+        //   child: Image.asset('/assets/images/medicine/pill0101.jpg'),
+        // ),
         Container(
           alignment: Alignment.centerLeft,
           child: Text(

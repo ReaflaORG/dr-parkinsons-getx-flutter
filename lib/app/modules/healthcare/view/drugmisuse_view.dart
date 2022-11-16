@@ -72,6 +72,7 @@ class DrugMisuseView extends GetView<DrugMisuseController> {
                   ),
                   child: Row(
                     children: [
+                      // TODO: search 이미지 안들어감
                       // CircleAvatar(
                       //   backgroundColor: ColorPath.BackgroundWhite,
                       //   child: Image.asset(
