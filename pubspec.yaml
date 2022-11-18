@@ -5,7 +5,7 @@ publish_to: "REAFELA"
 version: 1.0.0+1
 
 environment:
-  sdk: ">=2.18.2 <3.0.0"
+  sdk: ">=2.18.4 <3.0.0"
 
 dependencies:
   flutter:
@@ -27,14 +27,17 @@ dependencies:
   flutter_dotenv: ^5.0.2
   toast: ^0.3.0
   flutter_screenutil: ^5.5.1
-  permission_handler: ^9.2.0
+  permission_handler: ^10.0.0
   app_settings: ^4.1.6
-  firebase_messaging: ^13.0.0
-  flutter_local_notifications: ^9.9.1
-  package_info_plus: ^1.4.3+1
+  firebase_messaging: ^14.1.0
+  flutter_local_notifications: ^12.0.3
+  package_info_plus: ^3.0.2
   fluttertoast: ^8.0.9
   url_launcher: ^6.1.5
   carousel_slider: ^4.1.1
+  dotted_border: ^2.0.0+3
+  youtube_player_flutter: ^8.1.1
+  percent_indicator: ^4.2.2
 
 dev_dependencies:
   flutter_test:
@@ -48,15 +51,22 @@ flutter:
   assets:
     - .env
     - assets/images/logo/
-    - assets/images/splash/
+    # - assets/images/splash/
     - assets/images/permission/
     - assets/images/signin/
     - assets/images/navigation/
+    - assets/search_doctors/
+    - assets/doctor/
+    - assets/myinfo/
+    - assets/my_symptoms/
     - assets/images/icons/3d/
     - assets/images/icons/2d/
     - assets/images/samples/
     - assets/images/medicine/
     - assets/images/etc/
+    - assets/images/icons/page2/
+    - assets/images/icons/page4/
+    - assets/images/mock/page2/
 
   fonts:
     - family: SUIT
