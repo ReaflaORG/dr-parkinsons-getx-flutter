@@ -204,6 +204,22 @@ class TextPath {
   /// fontSize: 16
   ///
   /// fontWeight: Medium 500
+  static TextStyle TextF16W400Expand = TextStyle(
+    color: ColorPath.TextGrey1H212121,
+    fontFamily: 'SUIT',
+    fontSize: 16.0.sp,
+    fontWeight: FontWeight.w400,
+    fontStyle: FontStyle.normal,
+    decoration: TextDecoration.none,
+    height: 26 / 16,
+    letterSpacing: 0,
+  );
+
+  /// fontFamily: SUIT
+  ///
+  /// fontSize: 16
+  ///
+  /// fontWeight: Medium 500
   static TextStyle TextF16W500Expand = TextStyle(
     color: ColorPath.TextGrey1H212121,
     fontFamily: 'SUIT',
@@ -211,7 +227,7 @@ class TextPath {
     fontWeight: FontWeight.w500,
     fontStyle: FontStyle.normal,
     decoration: TextDecoration.none,
-    height: 24 / 16,
+    height: 26 / 16,
     letterSpacing: 0,
   );
 

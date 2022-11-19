@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../theme/colors.dart';
 import '../../../theme/texts.dart';
@@ -19,14 +18,7 @@ class FaqItemWidget extends StatelessWidget {
       data: Theme.of(context).copyWith(dividerColor: Colors.transparent),
       child: ExpansionTile(
         backgroundColor: Colors.transparent,
-        title: Text(
-          item.question,
-          style: TextStyle(
-            color: ColorPath.TextGrey1H212121,
-            fontWeight: FontWeight.w500,
-            fontFamily: "SUIT",
-          ),
-        ),
+        title: Text(item.question, style: TextPath.TextF16W500),
         trailing: Image.asset(
           'assets/my_symptoms/expandable_lower_icon.png',
           width: 12,
@@ -42,6 +34,7 @@ class FaqItemWidget extends StatelessWidget {
                 ),
                 child: Text(
                   item.content,
+                  style: TextPath.TextF16W400Expand,
                 ),
               ),
             ],

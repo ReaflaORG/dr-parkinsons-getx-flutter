@@ -13,6 +13,9 @@ class DiagnosisController extends GetxController {
 
   // Variable ▼ ========================================
 
+  // 테스트가 진행중일때 True
+  RxBool isTesting = true.obs;
+
   @override
   Future<void> onInit() async {
     super.onInit();
