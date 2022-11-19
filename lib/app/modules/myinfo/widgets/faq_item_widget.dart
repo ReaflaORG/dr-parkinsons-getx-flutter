@@ -35,7 +35,7 @@ class FaqItemWidget extends StatelessWidget {
                 padding: EdgeInsets.fromLTRB(18, 16, 18, 16),
                 decoration: BoxDecoration(
                   color: ColorPath.Background1HECEFF1,
-                ),
+                ), 
                 child: Text(
                   item.content,
                   style: TextPath.TextF16W400Expand.copyWith(
