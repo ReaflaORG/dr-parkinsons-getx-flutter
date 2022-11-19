@@ -18,7 +18,11 @@ class FaqItemWidget extends StatelessWidget {
       data: Theme.of(context).copyWith(dividerColor: Colors.transparent),
       child: ExpansionTile(
         backgroundColor: Colors.transparent,
-        title: Text(item.question, style: TextPath.TextF16W500),
+        title: Text(
+          item.question,
+          style:
+              TextPath.TextF16W500.copyWith(color: ColorPath.TextGrey2H424242),
+        ),
         trailing: Image.asset(
           'assets/my_symptoms/expandable_lower_icon.png',
           width: 12,
@@ -34,7 +38,9 @@ class FaqItemWidget extends StatelessWidget {
                 ),
                 child: Text(
                   item.content,
-                  style: TextPath.TextF16W400Expand,
+                  style: TextPath.TextF16W400Expand.copyWith(
+                    color: ColorPath.TextGrey1H212121,
+                  ),
                 ),
               ),
             ],
