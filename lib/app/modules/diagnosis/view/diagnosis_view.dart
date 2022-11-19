@@ -89,42 +89,43 @@ class DiagnosisView extends GetView<DiagnosisController> {
                                 Radius.circular(16),
                               ),
                             ),
-                            child: Column(
-                              children: [
-                                Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  crossAxisAlignment: CrossAxisAlignment.center,
-                                  children: [
-                                    Text(
-                                      '자가진단 테스트 ',
-                                      style: TextPath.TextF16W500.copyWith(
-                                          color: ColorPath.TextGrey2H424242),
-                                    ),
-                                    Text(
-                                      '13 ',
-                                      style: TextPath.TextF16W500.copyWith(
-                                          color: ColorPath.TertiaryColor),
-                                    ),
-                                    Text(
-                                      '/ 20',
-                                      style: TextPath.TextF16W500.copyWith(
-                                          color: ColorPath.TextGrey2H424242),
-                                    ),
-                                  ],
-                                ),
-                                SizedBox(
-                                  height: 16.w,
-                                ),
-                                SizedBox(
-                                  width: 260,
-                                  child: Text(
-                                    '1. 숙면을 취하기 어렵고 불안하고 예민해진 느낌이 든다.',
-                                    style: TextPath.TextF16W500Expand,
-                                    maxLines: 3,
-                                  ),
-                                ),
-                              ],
-                            ),
+                            child: TestInProgressWidget(),
+                            // child: Column(
+                            //   children: [
+                            //     Row(
+                            //       mainAxisAlignment: MainAxisAlignment.center,
+                            //       crossAxisAlignment: CrossAxisAlignment.center,
+                            //       children: [
+                            //         Text(
+                            //           '자가진단 테스트 ',
+                            //           style: TextPath.TextF16W500.copyWith(
+                            //               color: ColorPath.TextGrey2H424242),
+                            //         ),
+                            //         Text(
+                            //           '13 ',
+                            //           style: TextPath.TextF16W500.copyWith(
+                            //               color: ColorPath.TertiaryColor),
+                            //         ),
+                            //         Text(
+                            //           '/ 20',
+                            //           style: TextPath.TextF16W500.copyWith(
+                            //               color: ColorPath.TextGrey2H424242),
+                            //         ),
+                            //       ],
+                            //     ),
+                            //     SizedBox(
+                            //       height: 16.w,
+                            //     ),
+                            //     SizedBox(
+                            //       width: 260,
+                            //       child: Text(
+                            //         '1. 숙면을 취하기 어렵고 불안하고 예민해진 느낌이 든다.',
+                            //         style: TextPath.TextF16W500Expand,
+                            //         maxLines: 3,
+                            //       ),
+                            //     ),
+                            //   ],
+                            // ),
                           ),
                         ),
                       ],
@@ -249,4 +250,58 @@ class DiagnosisView extends GetView<DiagnosisController> {
           ],
         ),
       );
+}
+
+class TestAfterWidget extends GetView<DiagnosisController> {
+  // const TestAfterWigdet({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Obx(() => (Text('hello')));
+  }
+}
+
+class TestInProgressWidget extends GetView<DiagnosisController> {
+  // TestAfterWigdet({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Text(
+              '자가진단 테스트 ',
+              style: TextPath.TextF16W500.copyWith(
+                  color: ColorPath.TextGrey2H424242),
+            ),
+            Text(
+              '13 ',
+              style:
+                  TextPath.TextF16W500.copyWith(color: ColorPath.TertiaryColor),
+            ),
+            Text(
+              '/ 20',
+              style: TextPath.TextF16W500.copyWith(
+                  color: ColorPath.TextGrey2H424242),
+            ),
+          ],
+        ),
+        SizedBox(
+          height: 16.w,
+        ),
+        SizedBox(
+          width: 260,
+          child: Text(
+            '1. 숙면을 취하기 어렵고 불안하고 예민해진 느낌이 든다.',
+            style: TextPath.TextF16W500Expand,
+            maxLines: 3,
+          ),
+        ),
+      ],
+      // ),
+    );
+  }
 }
