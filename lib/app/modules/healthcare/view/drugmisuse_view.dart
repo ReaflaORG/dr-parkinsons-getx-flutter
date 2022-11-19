@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:get/get_state_manager/src/simple/get_view.dart';
 
 import '../../../global_widget/global_dialog_widget.dart';
 import '../../../theme/colors.dart';
@@ -58,9 +57,9 @@ class DrugMisuseView extends GetView<DrugMisuseController> {
                 width: double.infinity,
                 decoration: BoxDecoration(
                   color: ColorPath.TertiaryLightColor,
-                  borderRadius: const BorderRadius.only(
-                    bottomLeft: Radius.circular(36),
-                    bottomRight: Radius.circular(36),
+                  borderRadius: BorderRadius.only(
+                    bottomLeft: Radius.circular(36.w),
+                    bottomRight: Radius.circular(36.w),
                   ),
                 ),
                 child: Container(
@@ -75,21 +74,7 @@ class DrugMisuseView extends GetView<DrugMisuseController> {
                   ),
                   child: Row(
                     children: [
-<<<<<<< HEAD
-                      // TODO: search 이미지 안들어감
-                      // CircleAvatar(
-                      //   backgroundColor: ColorPath.BackgroundWhite,
-                      //   child: Image.asset(
-                      //       width: 22.w,
-                      //       height: 22.w,
-                      //       '/assets/images/icons/2d/24search.png'),
-                      // ),
                       SizedBox(width: 16.w),
-                      Text(
-                        '약품명 또는 약제명을 입력하세요',
-                        style: TextPath.TextF13W400.copyWith(
-                            color: ColorPath.TextGrey4H9E9E9E),
-=======
                       Center(
                         child: Image.asset(
                           width: 22.w,
@@ -141,13 +126,16 @@ class DrugMisuseView extends GetView<DrugMisuseController> {
                               // );
                             },
                             onChanged: (String text) {
-                              controller.handleEmailTextFormFieldOnChanged(
+                              // Logger().d(text);
+                              // controller.handleSearchFieldOnChanged(
+                              //   value: text,
+                              // );
+                              controller.handleSearchFieldOnChanged(
                                 value: text,
                               );
                             },
                           ),
                         ),
->>>>>>> origin/main
                       ),
                     ],
                   ),

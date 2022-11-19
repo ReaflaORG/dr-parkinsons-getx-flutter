@@ -114,13 +114,6 @@ class MedicineInfo extends StatelessWidget {
                 color: ColorPath.TextGrey3H616161),
           ),
         ),
-<<<<<<< HEAD
-        // SizedBox(
-        //   // height: 30.w,
-        //   // width: 60.w,
-        //   child: Image.asset('/assets/images/medicine/pill0101.jpg'),
-        // ),
-=======
         SizedBox(
           width: double.infinity,
           // height: 30.w,
@@ -129,7 +122,6 @@ class MedicineInfo extends StatelessWidget {
             fit: BoxFit.cover,
           ),
         ),
->>>>>>> origin/main
         Container(
           alignment: Alignment.centerLeft,
           child: Text(

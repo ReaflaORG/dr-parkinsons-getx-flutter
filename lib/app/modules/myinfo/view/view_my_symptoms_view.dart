@@ -3,7 +3,6 @@ import 'package:get/get.dart';
 
 import '../../../theme/colors.dart';
 import '../../../theme/texts.dart';
-
 import '../controller/view_my_symtoms_controller.dart';
 import '../models/view_my_symptoms_item_model.dart';
 import '../widgets/view_my_symptoms_item_widget.dart';

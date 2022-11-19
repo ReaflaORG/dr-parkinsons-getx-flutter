@@ -104,7 +104,7 @@ class DrugMisuseController extends GetxController {
   // Variable ▼ ========================================
 
   RxBool isSearch = false.obs;
-
+  RxBool isValue = false.obs;
   // Function ▼ ========================================
 
   /// * 이메일 텍스트 폼 필드 OnChanged
@@ -127,6 +127,27 @@ class DrugMisuseController extends GetxController {
     ));
 
     Logger().d(boxesSearchData.toJson());
+    boxesSearchData.refresh();
+  }
+
+  // 사용자가 값을 입력 했을 때, boxDefaultData에서 사용자 입력값을 일치하는 것을 찾아서 boxSearchData를 뿌려준다.
+  void searchFieldOnChange({
+    required String value,
+  }) {
+    // 1 데이터 받아와서 사용자에게 입력값을 보여준다.
+    Logger().d(value.isNotEmpty);
+    // 2 사용자 입력값이 null 이면 isValue는 false, 입력값이 있을 때, true.
+    if (value.isNotEmpty) {
+      isValue.value = true;
+    } else {
+      isValue.value = false;
+    }
+
+    // 3 boxDefaultData에서 사용자 입력값을 포함하는 것을 찾아서 boxSearchData를 뿌려준다.
+    boxesSearchData.assignAll(
+        boxesDefaultData.where((element) => element.company.contains(value)));
+
+    //4 배열을 새로고침 해줌
     boxesSearchData.refresh();
   }
 

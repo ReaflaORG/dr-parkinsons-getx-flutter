@@ -5,8 +5,6 @@ import 'package:get/get.dart';
 import '../../../routes/app_pages.dart';
 import '../../../theme/colors.dart';
 import '../../../theme/texts.dart';
-
-import '../../doctor/view/search_doctors_view.dart';
 import '../controller/my_info_controller.dart';
 import '../models/my_info_item_model.dart';
 import '../widgets/my_info_item_widget.dart';
