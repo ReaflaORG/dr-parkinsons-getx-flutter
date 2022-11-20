@@ -100,7 +100,12 @@ class DiagnosisView extends GetView<DiagnosisController> {
                       SizedBox(
                         height: 54.w,
                       ),
-                      const DiagnosisAnswer(),
+                      DiagnosisAnswer(
+                        onPick: (int value) {
+                          controller.pickAnswer.value = value;
+                        },
+                        pick: controller.pickAnswer.value,
+                      ),
                     ],
                   ),
                 ),
@@ -126,7 +131,7 @@ class DiagnosisView extends GetView<DiagnosisController> {
                         //change width and height on your need width = 200 and height = 50
                         minimumSize: Size(180.w, 44.w),
                       ),
-                      onPressed: () {},
+                      onPressed: () => controller.nextQuestion(),
                       child: Text(
                         '다음',
                         style: TextPath.TextF14W400.copyWith(
@@ -199,41 +204,44 @@ class TestAfterWidget extends GetView<DiagnosisController> {
 class TestInProgressWidget extends GetView<DiagnosisController> {
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Text(
-              '자가진단 테스트 ',
-              style: TextPath.TextF16W500.copyWith(
-                  color: ColorPath.TextGrey2H424242),
-            ),
-            Text(
-              '13 ',
-              style:
-                  TextPath.TextF16W500.copyWith(color: ColorPath.TertiaryColor),
-            ),
-            Text(
-              '/ 20',
-              style: TextPath.TextF16W500.copyWith(
-                  color: ColorPath.TextGrey2H424242),
-            ),
-          ],
-        ),
-        SizedBox(
-          height: 16.w,
-        ),
-        SizedBox(
-          width: 260,
-          child: Text(
-            '1. 숙면을 취하기 어렵고 불안하고 예민해진 느낌이 든다.',
-            style: TextPath.TextF16W500Expand,
-            maxLines: 3,
+    return Obx(
+      () => Column(
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Text(
+                '자가진단 테스트 ',
+                style: TextPath.TextF16W500.copyWith(
+                    color: ColorPath.TextGrey2H424242),
+              ),
+              Text(
+                "${controller.questionNumber.value + 1} ",
+                style: TextPath.TextF16W500.copyWith(
+                    color: ColorPath.TertiaryColor),
+              ),
+              Text(
+                '/ ${controller.mentalHealth.length}',
+                style: TextPath.TextF16W500.copyWith(
+                    color: ColorPath.TextGrey2H424242),
+              ),
+            ],
           ),
-        ),
-      ],
+          SizedBox(
+            height: 16.w,
+          ),
+          SizedBox(
+            width: 260,
+            child: Text(
+              controller
+                  .mentalHealth[controller.questionNumber.value].questionText,
+              style: TextPath.TextF16W500Expand,
+              maxLines: 3,
+            ),
+          ),
+        ],
+      ),
     );
   }
 }
