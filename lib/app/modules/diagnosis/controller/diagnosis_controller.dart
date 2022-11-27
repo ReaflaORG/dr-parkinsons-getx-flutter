@@ -26,7 +26,7 @@ class DiagnosisController extends GetxController {
 
   // * 유저가 다음 문제로 이동하는 함수
   void nextQuestion() {
-    // 무조건 갑을 선택해야 한다.
+    // 무조건 값을 선택해야 한다.
     if (pickAnswer.value != 2) {
       // todo 1. 현재 문제 개수보다 Number값이 크면 종료 , 아니면 현재 넘버를 증가한다.
       if (questionNumber < mentalHealth.length - 1) {
