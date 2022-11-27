@@ -252,7 +252,7 @@ class AppPages {
     ),
     GetPage(
       title: '건강관리 - 자가진단',
-      name: Routes.DIAGNOSIS,
+      name: "${Routes.DIAGNOSIS}/:id",
       page: () => const DiagnosisView(),
       binding: DiagnosisBinding(),
       transition: Transition.fadeIn,

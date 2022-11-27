@@ -32,21 +32,21 @@ class HealthCareController extends GetxController {
         color: ColorPath.SecondaryLightColor,
         icon: 'assets/images/icons/3d/48test1.png',
         onClick: () {
-          Get.toNamed(Routes.DIAGNOSIS);
+          Get.toNamed("${Routes.DIAGNOSIS}/1");
         }),
     HealthCareBtnModel(
         name: '파킨슨 심리진단',
         color: ColorPath.SecondaryLightColor,
         icon: 'assets/images/icons/3d/48test2.png',
         onClick: () {
-          Get.toNamed(Routes.DIAGNOSIS);
+          Get.toNamed("${Routes.DIAGNOSIS}/2");
         }),
     HealthCareBtnModel(
         name: '수면장애진단',
         color: ColorPath.SecondaryLightColor,
         icon: 'assets/images/icons/3d/48test3.png',
         onClick: () {
-          Get.toNamed(Routes.DIAGNOSIS);
+          Get.toNamed("${Routes.DIAGNOSIS}/3");
         }),
     HealthCareBtnModel(
         name: '미션관리',
