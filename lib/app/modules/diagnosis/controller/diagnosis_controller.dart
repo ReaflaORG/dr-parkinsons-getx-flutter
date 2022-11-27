@@ -10,7 +10,7 @@ class DiagnosisController extends GetxController {
   // Data ▼ ============================================
   Rx<int> questionNumber = 0.obs;
   Rx<int> score = 0.obs;
-  Rx<bool> isFinish = false.obs;
+  Rx<bool> isFinish = true.obs;
   //백엔드가 올때까지 값을 모르므로 late
   late Rx<Survey> survey;
   //사용자가 선택하는  문제답
@@ -22,7 +22,7 @@ class DiagnosisController extends GetxController {
   void nextQuestion() {
     //! questionNumber.value => 현재 문제 번호
     //! survey.value.quizes[questionNumber.value].userAnswer => 현재 문제에 유저가 답을 작성했는지 : 안했으면 999 , 했으면 0,1
-    // 유저가 문제에 대한 답을 선택하지 않았을 경우 디폴트값이 0 이므로 아무 액션 않함
+    // 유저가 문제에 대한 답을 선택하지 않았을 경우 디폴트값이 0 이므로 아무 액션 안함
     if (survey.value.quizes[questionNumber.value].userAnswer == 999) return;
     // 현재 문제 번호가 문제 전체 개수보다 크거나 같으면 종료 [ 스코어 점수 계산 ]
     if (questionNumber.value >= survey.value.quizes.length) {
