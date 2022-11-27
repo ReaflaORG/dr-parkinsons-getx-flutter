@@ -30,7 +30,7 @@ class SurveyQuiz {
       {required this.surveyId,
       required this.surveyQuizId,
       required this.questionText,
-      required this.userAnswer,
+      this.userAnswer = 999,
       required this.answers});
   // 문제, 사용자 값 int, 문항
   int surveyId;
