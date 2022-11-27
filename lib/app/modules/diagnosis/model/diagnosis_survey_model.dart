@@ -9,7 +9,7 @@ class Survey {
   // 인덱스, 문제, 정답, 사용자가 선택한 답안, // 설문시간, 점수
   int surveyId;
   String nameOfSurvey;
-  List<SurveyQuiz> quizes;
+  List<SurveyQuiz> quizes; //20문제
   int totalScore;
   DateTime? created_at;
 }
@@ -20,8 +20,8 @@ class SurveyQuiz {
       required this.userAnswer,
       required this.answers});
   // 문제, 사용자 값 int, 문항
-  String questionText;
-  int userAnswer;
+  String questionText; // 질문
+  bool userAnswer; // 유저의 답변 인덱스
   List<Answer> answers;
 }
 
