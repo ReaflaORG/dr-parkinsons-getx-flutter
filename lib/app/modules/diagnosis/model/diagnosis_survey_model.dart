@@ -21,8 +21,16 @@ class Survey {
   // 인덱스, 문제, 정답, 사용자가 선택한 답안, // 설문시간, 점수
   int surveyId;
   String nameOfSurvey;
+
   List<SurveyQuiz> quizes; //20문제
 
+  Map<String, dynamic> toJson() {
+    return {
+      "surveyId": surveyId,
+      "nameOfSurvey": nameOfSurvey,
+      "quizes": quizes.map((e) => e.toJson()),
+    };
+  }
 }
 
 class SurveyQuiz {
@@ -38,6 +46,16 @@ class SurveyQuiz {
   String questionText; // 질문
   int userAnswer; // 유저의 답변 인덱스
   List<Answer> answers;
+
+  Map<String, dynamic> toJson() {
+    return {
+      "surveyId": surveyId,
+      "surveyQuizId": surveyQuizId,
+      "questionText": questionText,
+      "userAnswer": userAnswer,
+      "answers": answers.map((e) => e.toJson()),
+    };
+  }
 }
 
 class Answer {
@@ -49,4 +67,12 @@ class Answer {
   int surveyQuizId;
   String answerText;
   int answerScore;
+
+  Map<String, dynamic> toJson() {
+    return {
+      "surveyQuizId": surveyQuizId,
+      "answerText": answerText,
+      "answerScore": answerScore,
+    };
+  }
 }

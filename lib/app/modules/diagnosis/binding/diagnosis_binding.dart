@@ -6,6 +6,6 @@ class DiagnosisBinding implements Bindings {
   @override
   void dependencies() {
     // Get.put(DiagnosisController());
-    Get.lazyPut(() => DiagnosisController(), fenix: true);
+    Get.lazyPut(() => DiagnosisController());
   }
 }
