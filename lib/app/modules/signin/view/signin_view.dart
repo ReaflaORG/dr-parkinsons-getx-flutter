@@ -134,7 +134,7 @@ class CarouselSliderWidget extends GetView<SignInController> {
 }
 
 /// * 소셜 로그인 버튼
-class SocialLoginButtonWidget extends StatelessWidget {
+class SocialLoginButtonWidget extends GetView<SignInController> {
   const SocialLoginButtonWidget({super.key});
 
   @override
@@ -146,9 +146,7 @@ class SocialLoginButtonWidget extends StatelessWidget {
               width: double.infinity,
               height: 50.h,
               child: ElevatedButton(
-                onPressed: () {
-                  Get.offAllNamed('/main');
-                },
+                onPressed: () async => await controller.handleKakaoProvider(),
                 style: ElevatedButton.styleFrom(
                   backgroundColor: ColorPath.Background3HFEE500,
                   shape: const RoundedRectangleBorder(

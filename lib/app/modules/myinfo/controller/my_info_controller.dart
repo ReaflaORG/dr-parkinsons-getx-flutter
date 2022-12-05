@@ -14,14 +14,14 @@ class MyInfoController extends GetxController {
   // Data ▼ ============================================
   // myinfo item model
   RxList<MyInfoItemModel> listArray = [
-    MyInfoItemModel(title: "내 증상 기록", vc: Routes.MY_SYMPTOMS),
-    MyInfoItemModel(title: "정책제안", vc: Routes.SUGGEST_POLICY),
-    MyInfoItemModel(title: "프로필 설정", vc: Routes.PROFILE_SETTING),
-    MyInfoItemModel(title: "자주 묻는 질문", vc: Routes.FAQ),
-    MyInfoItemModel(title: "알람 설정", vc: Routes.ALARM_SETTING),
-    MyInfoItemModel(title: "약관 및 정책", vc: Routes.TERMS_AND_CONDITION),
-    MyInfoItemModel(title: "회원 관리", vc: Routes.MANAGE_MEMBER),
-    MyInfoItemModel(title: "버전 정보 v1.0.0", vc: null),
+    MyInfoItemModel(title: '내 증상 기록', vc: Routes.MY_SYMPTOMS),
+    MyInfoItemModel(title: '정책제안', vc: Routes.SUGGEST_POLICY),
+    MyInfoItemModel(title: '프로필 설정', vc: Routes.PROFILE_SETTING),
+    MyInfoItemModel(title: '자주 묻는 질문', vc: Routes.FAQ),
+    MyInfoItemModel(title: '알람 설정', vc: Routes.ALARM_SETTING),
+    MyInfoItemModel(title: '약관 및 정책', vc: Routes.TERMS_AND_CONDITION),
+    MyInfoItemModel(title: '회원 관리', vc: Routes.MANAGE_MEMBER),
+    MyInfoItemModel(title: '버전 정보 v1.0.0', vc: null),
   ].obs;
 
   // Function ▼ ========================================

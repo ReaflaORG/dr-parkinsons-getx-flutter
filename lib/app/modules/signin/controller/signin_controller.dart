@@ -2,8 +2,17 @@
 
 import 'dart:async';
 
+import 'package:base/app/global/global_toast_widget.dart';
+import 'package:base/app/model/base_response_model.dart';
+import 'package:base/app/model/doctor_model.dart';
+import 'package:base/app/model/user_model.dart';
+import 'package:base/app/provider/main_provider.dart';
+import 'package:base/app/service/auth_service.dart';
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
+import 'package:kakao_flutter_sdk/kakao_flutter_sdk.dart';
+import 'package:logger/logger.dart';
 
 import '../../../model/carousel_slide_model.dart';
 
@@ -44,7 +53,74 @@ class SignInController extends GetxController {
 
   // Funcion ▼ =========================================
 
+  /// * 카카오 로그인 프로바이더
+  Future<void> handleKakaoProvider() async {
+    if (await isKakaoTalkInstalled()) {
+      try {
+        await UserApi.instance.loginWithKakaoTalk();
+      } catch (error) {
+        if (error is PlatformException && error.code == 'CANCELED') {
+          return;
+        }
+
+        try {
+          await UserApi.instance.loginWithKakaoAccount();
+          print('카카오계정으로 로그인 성공');
+        } catch (error) {
+          print('카카오계정으로 로그인 실패 $error');
+          return;
+        }
+      }
+    } else {
+      try {
+        await UserApi.instance.loginWithKakaoAccount();
+        print('카카오계정으로 로그인 성공');
+      } catch (error) {
+        print('카카오계정으로 로그인 실패 $error');
+        return;
+      }
+    }
+    try {
+      User user = await UserApi.instance.me();
+
+      Account? userInfo = user.kakaoAccount;
+
+      if (userInfo == null) return;
+      Map<String, dynamic> request = {
+        'provider': 'kakao',
+        'provider_id': user.id.toString(),
+        'user_email': userInfo.email,
+        'device_token': DateTime.now().millisecondsSinceEpoch.toString(),
+      };
+
+      AuthBaseResponseModel response = await AuthProvider.dio(
+          method: 'POST', url: '/auth/register/kakao', requestModel: request);
+
+      switch (response.statusCode) {
+        case 201:
+          UserModel response_user = UserModel.fromJson(response.data['user']);
+          String token = response.data['access_token'];
+          DoctorModel? doctor;
+          if (response_user.doctorId != null) {
+            doctor = DoctorModel.fromJson(response.data['doctor']);
+          }
+          await AuthService.to.handleLogin(
+              user: response_user, responseAccessToken: token, doctor: doctor);
+          Get.offAllNamed('/main');
+          break;
+        default:
+          throw Exception(response.message);
+      }
+    } catch (e) {
+      Logger().d(e);
+      GlobalToastWidget(message: e.toString().substring(11));
+      return;
+    }
+  }
+
   // Variable ▼ ========================================
+  RxSet<OAuthToken> kakaoToken = <OAuthToken>{}.obs;
+  RxSet<AccessTokenInfo> userData = <AccessTokenInfo>{}.obs;
 
   Rx<int> carouselSliderIndex = 0.obs;
 

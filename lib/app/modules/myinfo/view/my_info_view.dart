@@ -1,3 +1,4 @@
+import 'package:base/app/service/auth_service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -6,7 +7,6 @@ import '../../../routes/app_pages.dart';
 import '../../../theme/colors.dart';
 import '../../../theme/texts.dart';
 
-import '../../doctor/view/search_doctors_view.dart';
 import '../controller/my_info_controller.dart';
 import '../models/my_info_item_model.dart';
 import '../widgets/my_info_item_widget.dart';
@@ -34,7 +34,7 @@ class MyInfoView extends GetView<MyInfoController> {
             ),
           ),
           body: SingleChildScrollView(
-            physics: ClampingScrollPhysics(),
+            physics: const ClampingScrollPhysics(),
             child: Stack(
               children: [
                 Container(
@@ -46,19 +46,17 @@ class MyInfoView extends GetView<MyInfoController> {
                   height: 230,
                 ),
                 Container(
-                  child: Container(
-                    padding: EdgeInsets.symmetric(horizontal: 20.w),
-                    child: Column(
-                      children: [
-                        SizedBox(height: MediaQuery.of(context).padding.top),
-                        MyInfoHeader(),
-                        MyInfoBodyView(),
-                        // Expanded(
-                        //   child: MyInfoBodyView(),
-                        // ),
-                        SizedBox(height: MediaQuery.of(context).padding.bottom),
-                      ],
-                    ),
+                  padding: EdgeInsets.symmetric(horizontal: 20.w),
+                  child: Column(
+                    children: [
+                      SizedBox(height: MediaQuery.of(context).padding.top),
+                      MyInfoHeader(),
+                      MyInfoBodyView(),
+                      // Expanded(
+                      //   child: MyInfoBodyView(),
+                      // ),
+                      SizedBox(height: MediaQuery.of(context).padding.bottom),
+                    ],
                   ),
                 )
               ],
@@ -70,46 +68,54 @@ class MyInfoView extends GetView<MyInfoController> {
 
 // my info header
 class MyInfoHeader extends GetView<MyInfoController> {
-  bool isSetting = false;
-  bool isGuardian = false;
-
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: double.infinity,
-      padding: EdgeInsets.symmetric(horizontal: 10.w),
-      child: Column(
-        children: [
-          SizedBox(height: 15),
-          Container(
-            child: Column(
+    return Obx(
+      () => Container(
+        width: double.infinity,
+        padding: EdgeInsets.symmetric(horizontal: 10.w),
+        child: Column(
+          children: [
+            SizedBox(height: 15.w),
+            Column(
               children: [
-                Container(
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Container(
-                        alignment: Alignment.center,
-                        child: Text(
-                          '김철수',
-                          style: TextPath.TextF24W600.copyWith(
-                            color: ColorPath.TextGrey1H212121,
+                AuthService.to.userData.value.userName != null
+                    ? Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Container(
+                            alignment: Alignment.center,
+                            child: Text(
+                              AuthService.to.userData.value.userName!,
+                              style: TextPath.TextF24W600.copyWith(
+                                color: ColorPath.TextGrey1H212121,
+                              ),
+                            ),
+                          ),
+                          Container(
+                            padding: EdgeInsets.only(left: 10.w),
+                            alignment: Alignment.center,
+                            child: Text(
+                              '님',
+                              style: TextPath.TextF14W400.copyWith(
+                                color: ColorPath.TextGrey3H616161,
+                              ),
+                            ),
+                          ),
+                        ],
+                      )
+                    : InkWell(
+                        onTap: () => Get.toNamed(Routes.PROFILE_SETTING),
+                        child: Container(
+                          alignment: Alignment.center,
+                          child: Text(
+                            '이름을 설정해주세요.',
+                            style: TextPath.TextF24W600.copyWith(
+                              color: ColorPath.TextGrey1H212121,
+                            ),
                           ),
                         ),
                       ),
-                      Container(
-                        padding: EdgeInsets.only(left: 10.w),
-                        alignment: Alignment.center,
-                        child: Text(
-                          '님',
-                          style: TextPath.TextF14W400.copyWith(
-                            color: ColorPath.TextGrey3H616161,
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
                 Container(
                   margin: EdgeInsets.only(top: 30.w),
                   padding:
@@ -128,7 +134,7 @@ class MyInfoHeader extends GetView<MyInfoController> {
                   ),
                   child: Column(
                     children: [
-                      isSetting == false
+                      !AuthService.to.isMyDoctor
                           ? myinfoSearchDoctor(context)
                           : myinfoMyDoctor(),
                       Container(
@@ -138,70 +144,68 @@ class MyInfoHeader extends GetView<MyInfoController> {
                           color: ColorPath.GrayCCCColor,
                         ),
                       ),
-                      isGuardian == false
+                      AuthService.to.userData.value.guardianName == null
                           ? myinfoSettingProfile()
-                          : myinfoMyProfile(),
+                          : myinfoMyGuardianProfile(),
                     ],
                   ),
                 ),
               ],
             ),
-          ),
-          SizedBox(height: 15.w),
-        ],
+            SizedBox(height: 15.w),
+          ],
+        ),
       ),
     );
   }
 
   // my info my doctor
   Widget myinfoMyDoctor() {
-    return Container(
-      child: Row(
-        children: [
-          Container(
-            alignment: Alignment.centerLeft,
-            width: 60.w,
-            child: Text(
-              '내 주치의',
-              style: TextPath.TextF12W200.copyWith(
-                color: ColorPath.TextGrey3H616161,
-              ),
+    return Row(
+      children: [
+        Container(
+          alignment: Alignment.centerLeft,
+          width: 60.w,
+          child: Text(
+            '내 주치의',
+            style: TextPath.TextF12W200.copyWith(
+              color: ColorPath.TextGrey3H616161,
             ),
           ),
-          Container(
-            alignment: Alignment.centerLeft,
-            padding: EdgeInsets.only(left: 4.5.w),
-            child: Text(
-              '강경훈 의사',
-              style: TextPath.TextF14W400.copyWith(
-                color: ColorPath.TextGrey1H212121,
-              ),
+        ),
+        Container(
+          alignment: Alignment.centerLeft,
+          padding: EdgeInsets.only(left: 4.5.w),
+          child: Text(
+            AuthService.to.myDoctor.value.doctorName,
+            style: TextPath.TextF14W400.copyWith(
+              color: ColorPath.TextGrey1H212121,
             ),
           ),
-          Container(
-            alignment: Alignment.centerLeft,
-            padding: EdgeInsets.only(left: 4.5.w),
-            child: Text(
-              '(칠곡경북대병원)',
-              style: TextPath.TextF12W400.copyWith(
-                color: ColorPath.TextGrey1H212121,
-              ),
+        ),
+        Container(
+          alignment: Alignment.centerLeft,
+          padding: EdgeInsets.only(left: 4.5.w),
+          child: Text(
+            '(${AuthService.to.myDoctor.value.hospitalName})',
+            style: TextPath.TextF12W400.copyWith(
+              color: ColorPath.TextGrey1H212121,
             ),
           ),
-          Spacer(),
-          InkWell(
-            onTap: () {},
-            child: Container(
-              alignment: Alignment.centerRight,
-              child: Image.asset(
-                'assets/myinfo/trash_icon.png',
-                width: 18.w,
-                height: 18.w,
-              ),
+        ),
+        const Spacer(),
+        InkWell(
+          onTap: () {},
+          child: Container(
+            alignment: Alignment.centerRight,
+            child: Image.asset(
+              'assets/myinfo/trash_icon.png',
+              width: 18.w,
+              height: 18.w,
             ),
           ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 
@@ -216,15 +220,9 @@ class MyInfoHeader extends GetView<MyInfoController> {
               style: TextPath.TextF12W400.copyWith(),
             ),
           ),
-          Spacer(),
+          const Spacer(),
           InkWell(
             onTap: () {
-              // Navigator.push(
-              //   context,
-              //   MaterialPageRoute(
-              //     builder: (context) => SearchDoctorsView(),
-              //   ),
-              // );
               Get.toNamed(Routes.SEARCH_DOCTOR);
             },
             child: Container(
@@ -246,8 +244,8 @@ class MyInfoHeader extends GetView<MyInfoController> {
     );
   }
 
-  // my info my profile
-  Widget myinfoMyProfile() {
+  // my info MyGuardian Profile
+  Widget myinfoMyGuardianProfile() {
     return Container(
       child: Row(
         children: [
@@ -265,7 +263,7 @@ class MyInfoHeader extends GetView<MyInfoController> {
             alignment: Alignment.centerLeft,
             padding: EdgeInsets.only(left: 4.5.w),
             child: Text(
-              '김하나 님',
+              AuthService.to.userData.value.guardianName!,
               style: TextPath.TextF14W400.copyWith(
                 color: ColorPath.TextGrey1H212121,
               ),
@@ -275,7 +273,7 @@ class MyInfoHeader extends GetView<MyInfoController> {
           Container(
             alignment: Alignment.centerRight,
             child: Text(
-              '010-XXXX-XXXX',
+              AuthService.to.userData.value.guardianPhoneNumber!,
               style: TextPath.TextF12W400.copyWith(
                 color: ColorPath.TextGrey1H212121,
               ),
@@ -295,19 +293,19 @@ class MyInfoHeader extends GetView<MyInfoController> {
           style: TextPath.TextF12W400.copyWith(),
           children: [
             TextSpan(
-              text: "하단의 ",
+              text: '하단의 ',
               style: TextStyle(
                 color: ColorPath.TextGrey3H616161,
               ),
             ),
-            TextSpan(
-              text: "프로필 설정 ",
+            const TextSpan(
+              text: '프로필 설정 ',
               style: TextStyle(
                 color: Colors.red,
               ),
             ),
             TextSpan(
-              text: "에서 보호자를 설정해 주세요.",
+              text: '에서 보호자를 설정해 주세요.',
               style: TextStyle(
                 color: ColorPath.TextGrey3H616161,
               ),
@@ -327,7 +325,7 @@ class MyInfoBodyView extends GetView<MyInfoController> {
       () => ListView.builder(
         padding: EdgeInsets.only(top: 40.w),
         shrinkWrap: true,
-        physics: NeverScrollableScrollPhysics(),
+        physics: const NeverScrollableScrollPhysics(),
         itemCount: controller.listArray.length,
         itemBuilder: (BuildContext context, int index) {
           MyInfoItemModel item = controller.listArray[index];

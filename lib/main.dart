@@ -1,3 +1,4 @@
+import 'package:base/app/service/auth_service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
@@ -5,6 +6,7 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:kakao_flutter_sdk/kakao_flutter_sdk.dart';
 import 'package:timeago/timeago.dart' as timeago;
 
 import 'app/modules/splash/binding/splash_binding.dart';
@@ -37,8 +39,14 @@ Future<void> initialize() async {
   /// Firebase 초기화
   // await Firebase.initializeApp();
 
+  // Kakao 초기화
+  KakaoSdk.init(nativeAppKey: dotenv.env['APP_KAKAO_NATIVE_APP_KEY']);
+
   /// 글로벌 서비스
   Get.put(GlobalService());
+
+  /// 인증 서비스
+  Get.put(AuthService());
 
   /// FCM 서비스
   // Get.put(FCMService());
