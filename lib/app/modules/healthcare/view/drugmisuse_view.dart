@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:get/get_state_manager/src/simple/get_view.dart';
 
 import '../../../global/global_dialog_widget.dart';
 import '../../../theme/colors.dart';
@@ -58,9 +57,9 @@ class DrugMisuseView extends GetView<DrugMisuseController> {
                 width: double.infinity,
                 decoration: BoxDecoration(
                   color: ColorPath.TertiaryLightColor,
-                  borderRadius: const BorderRadius.only(
-                    bottomLeft: Radius.circular(36),
-                    bottomRight: Radius.circular(36),
+                  borderRadius: BorderRadius.only(
+                    bottomLeft: Radius.circular(36.w),
+                    bottomRight: Radius.circular(36.w),
                   ),
                 ),
                 child: Container(
@@ -75,6 +74,7 @@ class DrugMisuseView extends GetView<DrugMisuseController> {
                   ),
                   child: Row(
                     children: [
+                      SizedBox(width: 16.w),
                       Center(
                         child: Image.asset(
                           width: 22.w,
@@ -126,7 +126,11 @@ class DrugMisuseView extends GetView<DrugMisuseController> {
                               // );
                             },
                             onChanged: (String text) {
-                              controller.handleEmailTextFormFieldOnChanged(
+                              // Logger().d(text);
+                              // controller.handleSearchFieldOnChanged(
+                              //   value: text,
+                              // );
+                              controller.handleSearchFieldOnChanged(
                                 value: text,
                               );
                             },
