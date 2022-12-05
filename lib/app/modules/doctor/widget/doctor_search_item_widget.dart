@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import '../../../model/doctor_search_item_model.dart';
 import '../../../theme/colors.dart';
 import '../../../theme/texts.dart';
-import '../model/search_doctors_item_model.dart';
 
 // search doctors item widget
-class SearchDoctorsItemWidget extends StatelessWidget {
-  const SearchDoctorsItemWidget({
+class DoctorSearchItemWidget extends StatelessWidget {
+  const DoctorSearchItemWidget({
     super.key,
     required this.onClick,
     required this.item,
   });
-  final SearchDoctorsItemModel item;
+  final DoctorSearchItemModel item;
   final Function onClick;
 
   @override

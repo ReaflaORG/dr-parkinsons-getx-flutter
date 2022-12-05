@@ -4,7 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:get/get_state_manager/src/simple/get_view.dart';
 
-import '../../../global_widget/global_dialog_widget.dart';
+import '../../../global/global_dialog_widget.dart';
 import '../../../theme/colors.dart';
 import '../../../theme/texts.dart';
 import '../controller/drugmisuse_controller.dart';

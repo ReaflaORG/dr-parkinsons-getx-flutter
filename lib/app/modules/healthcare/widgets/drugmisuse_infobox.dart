@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import '../../../model/drugmisuse_infobox_model.dart';
 import '../../../theme/colors.dart';
 import '../../../theme/texts.dart';
-import '../models/drugmisuse_infobox_model.dart';
 
 class DrugMisuseInfoBox extends StatelessWidget {
   // ignore: use_key_in_widget_constructors

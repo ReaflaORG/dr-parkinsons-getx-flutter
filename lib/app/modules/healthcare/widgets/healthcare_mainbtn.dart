@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import '../../../model/healthcare_btn_model.dart';
 import '../../../theme/colors.dart';
 import '../../../theme/texts.dart';
-import '../models/healthcare_btn_model.dart';
 
 class HealthcareMainbtn extends StatelessWidget {
   // ignore: use_key_in_widget_constructors

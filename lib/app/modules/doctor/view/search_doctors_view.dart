@@ -1,3 +1,4 @@
+import 'package:base/app/model/doctor_search_item_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -5,12 +6,11 @@ import 'package:get/get.dart';
 import '../../../routes/app_pages.dart';
 import '../../../theme/colors.dart';
 import '../../../theme/texts.dart';
-import '../controller/search_doctors_controller.dart';
-import '../model/search_doctors_item_model.dart';
-import '../widget/search_doctors_item_widget.dart';
+import '../controller/doctor_search_controller.dart';
+import '../widget/doctor_search_item_widget.dart';
 
 // search doctors view
-class SearchDoctorsView extends GetView<SearchDoctorsController> {
+class SearchDoctorsView extends GetView<DoctorSearchController> {
   const SearchDoctorsView({super.key});
 
   @override
@@ -71,7 +71,7 @@ class SearchDoctorsView extends GetView<SearchDoctorsController> {
 }
 
 // search doctors header
-class SearchDoctorsHeader extends GetView<SearchDoctorsController> {
+class SearchDoctorsHeader extends GetView<DoctorSearchController> {
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -198,7 +198,7 @@ class SearchDoctorsHeader extends GetView<SearchDoctorsController> {
 }
 
 // search doctors body view - call item widget with listview
-class SearchDoctorsBodyView extends GetView<SearchDoctorsController> {
+class SearchDoctorsBodyView extends GetView<DoctorSearchController> {
   @override
   Widget build(BuildContext context) {
     return Obx(
@@ -207,8 +207,8 @@ class SearchDoctorsBodyView extends GetView<SearchDoctorsController> {
         physics: NeverScrollableScrollPhysics(),
         itemCount: controller.listArray.length,
         itemBuilder: (BuildContext context, int index) {
-          SearchDoctorsItemModel item = controller.listArray[index];
-          return SearchDoctorsItemWidget(
+          DoctorSearchItemModel item = controller.listArray[index];
+          return DoctorSearchItemWidget(
             onClick: () {
               // Navigator.push(
               //   context,

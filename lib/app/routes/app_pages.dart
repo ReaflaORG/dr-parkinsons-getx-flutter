@@ -1,6 +1,5 @@
 // ignore_for_file: non_constant_identifier_names, constant_identifier_names
 
-import 'package:flutter/animation.dart';
 import 'package:get/get.dart';
 
 import '../modules/diagnosis/binding/diagnosis_binding.dart';
@@ -81,9 +80,7 @@ class AppPages {
       name: Routes.THEME,
       page: () => const ThemeView(),
       binding: ThemeBinding(),
-      transition: Transition.fadeIn,
-      transitionDuration: Duration.zero,
-      curve: Curves.easeIn,
+      transition: Transition.native,
       popGesture: false,
     ),
     GetPage(
@@ -91,9 +88,7 @@ class AppPages {
       name: INITIAL,
       page: () => const SplashView(),
       binding: SplashBinding(),
-      transition: Transition.fadeIn,
-      transitionDuration: Duration.zero,
-      curve: Curves.easeIn,
+      transition: Transition.native,
       popGesture: false,
     ),
     GetPage(
@@ -101,9 +96,7 @@ class AppPages {
       name: Routes.PERMISSION,
       page: () => const PermissionView(),
       binding: PermissionBinding(),
-      transition: Transition.fadeIn,
-      transitionDuration: Duration.zero,
-      curve: Curves.easeIn,
+      transition: Transition.native,
       popGesture: false,
     ),
     GetPage(
@@ -111,9 +104,7 @@ class AppPages {
       name: Routes.SIGNIN,
       page: () => const SignInView(),
       binding: SignInBinding(),
-      transition: Transition.fadeIn,
-      transitionDuration: Duration.zero,
-      curve: Curves.easeIn,
+      transition: Transition.native,
       popGesture: false,
     ),
     GetPage(
@@ -121,9 +112,7 @@ class AppPages {
       name: Routes.MAIN,
       page: () => const MainView(),
       binding: MainBinding(),
-      transition: Transition.fadeIn,
-      transitionDuration: Duration.zero,
-      curve: Curves.easeIn,
+      transition: Transition.native,
       popGesture: false,
     ),
     GetPage(
@@ -131,9 +120,7 @@ class AppPages {
       name: Routes.HOME,
       page: () => const HomeView(),
       binding: HomeBinding(),
-      transition: Transition.fadeIn,
-      transitionDuration: Duration.zero,
-      curve: Curves.easeIn,
+      transition: Transition.native,
       popGesture: false,
     ),
     GetPage(
@@ -141,9 +128,7 @@ class AppPages {
       name: Routes.DISORDER,
       page: () => const DisorderView(),
       binding: DisorderBinding(),
-      transition: Transition.fadeIn,
-      transitionDuration: Duration.zero,
-      curve: Curves.easeIn,
+      transition: Transition.native,
       popGesture: false,
     ),
     GetPage(
@@ -151,9 +136,7 @@ class AppPages {
       name: Routes.SEMINAR,
       page: () => const SeminarView(),
       binding: SeminarBinding(),
-      transition: Transition.fadeIn,
-      transitionDuration: Duration.zero,
-      curve: Curves.easeIn,
+      transition: Transition.native,
       popGesture: false,
     ),
     GetPage(
@@ -161,9 +144,7 @@ class AppPages {
       name: Routes.PROTECTOR,
       page: () => const ProtectorView(),
       binding: ProtectorBinding(),
-      transition: Transition.fadeIn,
-      transitionDuration: Duration.zero,
-      curve: Curves.easeIn,
+      transition: Transition.native,
       popGesture: false,
     ),
     GetPage(
@@ -171,9 +152,7 @@ class AppPages {
       name: Routes.FACT,
       page: () => const FactView(),
       binding: FactBinding(),
-      transition: Transition.fadeIn,
-      transitionDuration: Duration.zero,
-      curve: Curves.easeIn,
+      transition: Transition.native,
       popGesture: false,
       children: [
         GetPage(
@@ -181,9 +160,7 @@ class AppPages {
           name: '/factpost',
           page: () => const FactPostView(),
           binding: FactPostBinding(),
-          transition: Transition.fadeIn,
-          transitionDuration: Duration.zero,
-          curve: Curves.easeIn,
+          transition: Transition.native,
           popGesture: false,
         ),
       ],
@@ -193,9 +170,7 @@ class AppPages {
       name: Routes.SOCIALWELFARE,
       page: () => const SocialWelfareView(),
       binding: SocialWelfareBinding(),
-      transition: Transition.fadeIn,
-      transitionDuration: Duration.zero,
-      curve: Curves.easeIn,
+      transition: Transition.native,
       popGesture: false,
       children: [
         GetPage(
@@ -203,9 +178,7 @@ class AppPages {
           name: '/socialwelfarepost',
           page: () => const SocialWelfarePostView(),
           binding: SocialWelfarePostBinding(),
-          transition: Transition.fadeIn,
-          transitionDuration: Duration.zero,
-          curve: Curves.easeIn,
+          transition: Transition.native,
           popGesture: false,
         ),
       ],
@@ -215,9 +188,7 @@ class AppPages {
       name: Routes.HEALTHCARE,
       page: () => const HealthCareView(),
       binding: HealthCareBinding(),
-      transition: Transition.fadeIn,
-      transitionDuration: Duration.zero,
-      curve: Curves.easeIn,
+      transition: Transition.native,
       popGesture: false,
     ),
     GetPage(
@@ -225,9 +196,7 @@ class AppPages {
       name: Routes.MEDICINE,
       page: () => const MedicineView(),
       binding: MedicineBinding(),
-      transition: Transition.fadeIn,
-      transitionDuration: Duration.zero,
-      curve: Curves.easeIn,
+      transition: Transition.native,
       popGesture: false,
     ),
     GetPage(
@@ -235,9 +204,7 @@ class AppPages {
       name: Routes.MEDICINEINFO,
       page: () => const MedicineInfoView(),
       binding: MedicineInfoBinding(),
-      transition: Transition.fadeIn,
-      transitionDuration: Duration.zero,
-      curve: Curves.easeIn,
+      transition: Transition.native,
       popGesture: false,
     ),
     GetPage(
@@ -245,9 +212,7 @@ class AppPages {
       name: Routes.DRUGMISUSE,
       page: () => const DrugMisuseView(),
       binding: DrugMisuseBinding(),
-      transition: Transition.fadeIn,
-      transitionDuration: Duration.zero,
-      curve: Curves.easeIn,
+      transition: Transition.native,
       popGesture: false,
     ),
     GetPage(
@@ -255,9 +220,7 @@ class AppPages {
       name: Routes.DIAGNOSIS,
       page: () => const DiagnosisView(),
       binding: DiagnosisBinding(),
-      transition: Transition.fadeIn,
-      transitionDuration: Duration.zero,
-      curve: Curves.easeIn,
+      transition: Transition.native,
       popGesture: false,
     ),
     GetPage(
@@ -265,9 +228,7 @@ class AppPages {
       name: Routes.MISSION,
       page: () => const MissionView(),
       binding: MissionBinding(),
-      transition: Transition.fadeIn,
-      transitionDuration: Duration.zero,
-      curve: Curves.easeIn,
+      transition: Transition.native,
       popGesture: false,
     ),
     GetPage(
@@ -275,9 +236,7 @@ class AppPages {
       name: Routes.SEARCH_DOCTOR,
       page: () => const SearchDoctorsView(),
       binding: SearchDoctorsBinding(),
-      transition: Transition.fadeIn,
-      transitionDuration: Duration.zero,
-      curve: Curves.easeIn,
+      transition: Transition.native,
       popGesture: false,
     ),
     GetPage(
@@ -285,9 +244,7 @@ class AppPages {
       name: Routes.DOCTOR,
       page: () => const DoctorView(),
       binding: DoctorBinding(),
-      transition: Transition.fadeIn,
-      transitionDuration: Duration.zero,
-      curve: Curves.easeIn,
+      transition: Transition.native,
       popGesture: false,
     ),
     GetPage(
@@ -295,9 +252,7 @@ class AppPages {
       name: Routes.MY_INFO,
       page: () => const MyInfoView(),
       binding: MyInfoBinding(),
-      transition: Transition.fadeIn,
-      transitionDuration: Duration.zero,
-      curve: Curves.easeIn,
+      transition: Transition.native,
       popGesture: false,
     ),
     GetPage(
@@ -305,9 +260,7 @@ class AppPages {
       name: Routes.MY_SYMPTOMS,
       page: () => const MySymptomsView(),
       binding: MySymptomsBinding(),
-      transition: Transition.fadeIn,
-      transitionDuration: Duration.zero,
-      curve: Curves.easeIn,
+      transition: Transition.native,
       popGesture: false,
     ),
     GetPage(
@@ -315,9 +268,7 @@ class AppPages {
       name: Routes.WRITE_MY_SYMPTOMS,
       page: () => const WriteMySymptomsView(),
       binding: WriteMySymptomsBinding(),
-      transition: Transition.fadeIn,
-      transitionDuration: Duration.zero,
-      curve: Curves.easeIn,
+      transition: Transition.native,
       popGesture: false,
     ),
     GetPage(
@@ -325,9 +276,7 @@ class AppPages {
       name: Routes.EDIT_MY_SYMPTOMS,
       page: () => const EditMySymptomsView(),
       binding: EditMySymptomsBinding(),
-      transition: Transition.fadeIn,
-      transitionDuration: Duration.zero,
-      curve: Curves.easeIn,
+      transition: Transition.native,
       popGesture: false,
     ),
     GetPage(
@@ -335,9 +284,7 @@ class AppPages {
       name: Routes.VIEW_MY_SYMPTOMS,
       page: () => const ViewMySymptomsView(),
       binding: ViewMySymptomsBinding(),
-      transition: Transition.fadeIn,
-      transitionDuration: Duration.zero,
-      curve: Curves.easeIn,
+      transition: Transition.native,
       popGesture: false,
     ),
     GetPage(
@@ -345,9 +292,7 @@ class AppPages {
       name: Routes.SUGGEST_POLICY,
       page: () => const SuggestPolicyView(),
       binding: SuggestPolicyBinding(),
-      transition: Transition.fadeIn,
-      transitionDuration: Duration.zero,
-      curve: Curves.easeIn,
+      transition: Transition.native,
       popGesture: false,
     ),
     GetPage(
@@ -355,9 +300,7 @@ class AppPages {
       name: Routes.PROFILE_SETTING,
       page: () => const ProfileSettingView(),
       binding: ProfileSettingBinding(),
-      transition: Transition.fadeIn,
-      transitionDuration: Duration.zero,
-      curve: Curves.easeIn,
+      transition: Transition.native,
       popGesture: false,
     ),
     GetPage(
@@ -365,9 +308,7 @@ class AppPages {
       name: Routes.FAQ,
       page: () => const FaqView(),
       binding: FaqBinding(),
-      transition: Transition.fadeIn,
-      transitionDuration: Duration.zero,
-      curve: Curves.easeIn,
+      transition: Transition.native,
       popGesture: false,
     ),
     GetPage(
@@ -375,9 +316,7 @@ class AppPages {
       name: Routes.ALARM_SETTING,
       page: () => const AlarmSettingView(),
       binding: AlarmSettingBinding(),
-      transition: Transition.fadeIn,
-      transitionDuration: Duration.zero,
-      curve: Curves.easeIn,
+      transition: Transition.native,
       popGesture: false,
     ),
     GetPage(
@@ -385,9 +324,7 @@ class AppPages {
       name: Routes.TERMS_AND_CONDITION,
       page: () => const TermsAndConditionView(),
       binding: TermsAndConditionBinding(),
-      transition: Transition.fadeIn,
-      transitionDuration: Duration.zero,
-      curve: Curves.easeIn,
+      transition: Transition.native,
       popGesture: false,
     ),
     GetPage(
@@ -395,9 +332,7 @@ class AppPages {
       name: Routes.MANAGE_MEMBER,
       page: () => const ManageMemberView(),
       binding: ManageMemberBinding(),
-      transition: Transition.fadeIn,
-      transitionDuration: Duration.zero,
-      curve: Curves.easeIn,
+      transition: Transition.native,
       popGesture: false,
     ),
   ];

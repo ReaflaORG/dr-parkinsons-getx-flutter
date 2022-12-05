@@ -6,7 +6,7 @@ import 'package:get_storage/get_storage.dart';
 import 'package:logger/logger.dart';
 import 'package:permission_handler/permission_handler.dart';
 
-import '../global_widget/global_dialog_widget.dart';
+import '../global/global_dialog_widget.dart';
 import '../model/permission_model.dart';
 
 class PermissionService extends GetxService {

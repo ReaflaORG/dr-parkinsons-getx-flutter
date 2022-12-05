@@ -8,7 +8,7 @@ import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-import '../../../global_widget/global_dialog_widget.dart';
+import '../../../global/global_dialog_widget.dart';
 import '../../../service/global_service.dart';
 
 class SplashController extends GetxController {

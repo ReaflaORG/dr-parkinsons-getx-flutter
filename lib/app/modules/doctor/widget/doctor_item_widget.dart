@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import '../../../model/doctor_item_model.dart';
 import '../../../theme/colors.dart';
 import '../../../theme/texts.dart';
-import '../model/doctor_item_model.dart';
 
 // doctor item widget
 class DoctorItemWidget extends StatelessWidget {

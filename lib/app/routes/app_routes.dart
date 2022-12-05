@@ -133,7 +133,7 @@ abstract class _Paths {
   static const FACT = '/fact';
 
   /// 오해와 진실 포스트
-  static const FACTPOST = '/fact/factpost';
+  static const FACTPOST = '/factpost';
 
   ///사회복지제도
   static const SOCIALWELFARE = '/socialwelfare';

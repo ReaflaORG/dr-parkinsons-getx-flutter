@@ -51,32 +51,36 @@ class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
   @override
-  Widget build(BuildContext context) => ScreenUtilInit(
-        designSize: const Size(360, 640),
-        minTextAdapt: true,
-        splitScreenMode: true,
-        builder: (BuildContext context, Widget? child) => GetMaterialApp(
-          title: dotenv.env['APP_EN_NAME']!,
-          initialRoute: '/splash',
-          initialBinding: SplashBinding(),
-          home: const SplashView(),
-          getPages: AppPages.routes,
-          smartManagement: SmartManagement.full,
-          builder: (BuildContext context, Widget? child) => MediaQuery(
+  Widget build(BuildContext context) {
+    return ScreenUtilInit(
+      designSize: const Size(360, 640),
+      minTextAdapt: true,
+      splitScreenMode: true,
+      builder: (BuildContext context, Widget? child) => GetMaterialApp(
+        title: dotenv.env['APP_EN_NAME']!,
+        initialRoute: '/splash',
+        initialBinding: SplashBinding(),
+        home: const SplashView(),
+        getPages: AppPages.routes,
+        smartManagement: SmartManagement.full,
+        builder: (BuildContext context, Widget? child) {
+          return MediaQuery(
             data: MediaQuery.of(context).copyWith(textScaleFactor: 1.0),
             child: child!,
-          ),
-          localizationsDelegates: const [
-            GlobalMaterialLocalizations.delegate,
-            GlobalWidgetsLocalizations.delegate,
-            GlobalCupertinoLocalizations.delegate,
-          ],
-          supportedLocales: const [
-            Locale('ko'),
-          ],
-          debugShowCheckedModeBanner: false,
-          theme: theme(),
-          // darkTheme: darkTheme(context: context),
-        ),
-      );
+          );
+        },
+        localizationsDelegates: const [
+          GlobalMaterialLocalizations.delegate,
+          GlobalWidgetsLocalizations.delegate,
+          GlobalCupertinoLocalizations.delegate,
+        ],
+        supportedLocales: const [
+          Locale('ko'),
+        ],
+        debugShowCheckedModeBanner: false,
+        theme: theme(),
+        // darkTheme: darkTheme(context: context),
+      ),
+    );
+  }
 }

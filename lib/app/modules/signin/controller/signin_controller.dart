@@ -5,7 +5,7 @@ import 'dart:async';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:get/get.dart';
 
-import '../model/carousel_slide_model.dart';
+import '../../../model/carousel_slide_model.dart';
 
 class SignInController extends GetxController {
   static SignInController get to => Get.find();
