@@ -48,7 +48,7 @@ showAlertDialog(
                   )),
               child: Text(
                 '확인',
-                style: TextPath.TextF16W600.copyWith(),
+                style: TextPath.TextF16W600White.copyWith(),
               ),
             ),
           )
