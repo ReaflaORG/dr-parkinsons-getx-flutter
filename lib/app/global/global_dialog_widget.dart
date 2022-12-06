@@ -1,10 +1,15 @@
 // ignore_for_file: non_constant_identifier_names
 
+import 'package:base/app/modules/home/controller/home_controller.dart';
+import 'package:base/app/modules/mission/controller/mission_controller.dart';
+import 'package:base/app/modules/mission/widgets/alarm.dart';
+import 'package:base/app/routes/app_pages.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:syncfusion_flutter_datepicker/datepicker.dart';
 
 import '../service/permission_service.dart';
 import '../theme/colors.dart';
@@ -274,6 +279,7 @@ Future<dynamic> GlobalEmergencyModalWidget({required BuildContext context}) =>
                     flex: 1,
                     child: InkWell(
                       onTap: () {
+                        HomeController.to.sendEmergency();
                         Get.back();
                       },
                       child: Container(
@@ -286,6 +292,105 @@ Future<dynamic> GlobalEmergencyModalWidget({required BuildContext context}) =>
                         height: 48.h,
                         child: Text(
                           '전송',
+                          style: TextPath.TextF14W500.copyWith(
+                            color: ColorPath.BackgroundWhite,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              )
+            ],
+          ),
+          contentPadding: EdgeInsets.zero,
+        );
+      },
+    );
+
+///* 보호자 번호 추가 해야하는 모달
+Future<dynamic> GlobalEmergencyModalWidget2({required BuildContext context}) =>
+    showDialog(
+      context: context,
+      barrierDismissible: true,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          shape: const RoundedRectangleBorder(
+            borderRadius: BorderRadius.all(Radius.circular(16)),
+          ),
+          content: Column(
+            mainAxisSize: MainAxisSize.min,
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              const SizedBox(height: 30),
+              SizedBox(
+                width: 80.w,
+                height: 80.h,
+                child: Image.asset('assets/images/icons/page2/80 alert.png'),
+              ),
+              const SizedBox(height: 12),
+              Text(
+                '응급 문자 보내기',
+                style: TextPath.Heading2F18W600.copyWith(
+                  color: ColorPath.TextGrey1H212121,
+                ),
+              ),
+              const SizedBox(height: 4),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    '보호자 연락처가 등록되어 있지 않습니다.',
+                    style: TextPath.TextF12W400.copyWith(
+                      color: ColorPath.TertiaryColor,
+                    ),
+                  ),
+                ],
+              ),
+              const SizedBox(height: 40),
+              Row(
+                children: [
+                  Expanded(
+                    flex: 1,
+                    child: InkWell(
+                      onTap: () {
+                        Get.back();
+                      },
+                      child: Container(
+                        alignment: Alignment.center,
+                        decoration: BoxDecoration(
+                          color: ColorPath.Background1HECEFF1,
+                          borderRadius: const BorderRadius.only(
+                            bottomLeft: Radius.circular(16),
+                          ),
+                        ),
+                        height: 48.h,
+                        child: Text(
+                          '뒤로가기',
+                          style: TextPath.TextF14W500.copyWith(
+                            color: ColorPath.TextGrey1H212121,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                  Expanded(
+                    flex: 1,
+                    child: InkWell(
+                      onTap: () {
+                        Get.toNamed(Routes.PROFILE_SETTING);
+                      },
+                      child: Container(
+                        alignment: Alignment.center,
+                        decoration: BoxDecoration(
+                            color: ColorPath.PrimaryColor,
+                            borderRadius: const BorderRadius.only(
+                              bottomRight: Radius.circular(16),
+                            )),
+                        height: 48.h,
+                        child: Text(
+                          '프로필 설정',
                           style: TextPath.TextF14W500.copyWith(
                             color: ColorPath.BackgroundWhite,
                           ),
@@ -328,12 +433,12 @@ class GlobalDrugmisuseModalWidget extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                SizedBox(height: 10),
+                const SizedBox(height: 10),
                 Text(
                   '주의해야할 약품',
                   style: TextPath.Heading2F18W600,
                 ),
-                SizedBox(height: 20),
+                const SizedBox(height: 20),
                 Text(
                   '$title(은/는)\r\n파킨슨 증상을 악화시킬 수 있는 약물이므로,\r\n전문의와 상의하시기 바랍니다.',
                   style: TextPath.TextF14W400.copyWith(
@@ -459,4 +564,205 @@ Future<dynamic> GlobalAppVersionUpgradeModalWidget({
       barrierDismissible: false,
       routeSettings:
           const RouteSettings(name: 'GlobalAppVersionUpgradeModalWidget'),
+    );
+
+///*투약 모달
+Future<dynamic> GlobalMakeAlarm({required BuildContext context}) => showDialog(
+      context: context,
+      barrierDismissible: true,
+      builder: (BuildContext context) {
+        return Obx(
+          () => AlertDialog(
+            backgroundColor: ColorPath.Background1HECEFF1,
+            shape: const RoundedRectangleBorder(
+              borderRadius: BorderRadius.all(Radius.circular(16)),
+            ),
+            content: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Container(
+                  padding: const EdgeInsets.only(
+                      top: 30, left: 20, right: 20, bottom: 30),
+                  child: Column(
+                    children: <Widget>[
+                      Container(
+                        alignment: Alignment.centerLeft,
+                        child: Text(
+                          '알람 종류 선택',
+                          style: TextPath.Heading3F16W600.copyWith(
+                            color: ColorPath.TextGrey1H212121,
+                          ),
+                        ),
+                      ),
+                      const SizedBox(
+                        height: 14,
+                      ),
+                      SizedBox(
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          children: [
+                            Alarm(
+                                isPick: MissionController.to.alarm[0] ==
+                                    MissionController.to.type.value,
+                                ontap: () async {
+                                  await MissionController.to.updateType(
+                                      MissionController.to.alarm[0]);
+                                },
+                                imageUrl:
+                                    'assets/images/icons/page4/36 (2).png',
+                                text: MissionController.to.alarm[0]),
+                            Alarm(
+                                isPick: MissionController.to.alarm[1] ==
+                                    MissionController.to.type.value,
+                                ontap: () async {
+                                  await MissionController.to.updateType(
+                                      MissionController.to.alarm[1]);
+                                },
+                                imageUrl:
+                                    'assets/images/icons/page4/36 (2).png',
+                                text: MissionController.to.alarm[1]),
+                            Alarm(
+                                isPick: MissionController.to.alarm[2] ==
+                                    MissionController.to.type.value,
+                                ontap: () async {
+                                  await MissionController.to.updateType(
+                                      MissionController.to.alarm[2]);
+                                },
+                                imageUrl:
+                                    'assets/images/icons/page4/36 (3).png',
+                                text: MissionController.to.alarm[2]),
+                            Alarm(
+                                isPick: MissionController.to.alarm[3] ==
+                                    MissionController.to.type.value,
+                                ontap: () async {
+                                  await MissionController.to.updateType(
+                                      MissionController.to.alarm[3]);
+                                },
+                                imageUrl:
+                                    'assets/images/icons/page4/36 (4).png',
+                                text: MissionController.to.alarm[3]),
+                            Alarm(
+                                isPick: MissionController.to.alarm[4] ==
+                                    MissionController.to.type.value,
+                                ontap: () async {
+                                  await MissionController.to.updateType(
+                                      MissionController.to.alarm[4]);
+                                },
+                                imageUrl:
+                                    'assets/images/icons/page4/36 (4).png',
+                                text: MissionController.to.alarm[4]),
+                          ],
+                        ),
+                      ),
+                      const SizedBox(height: 30),
+                      Container(
+                        alignment: Alignment.centerLeft,
+                        child: Text(
+                          '시간 설정하기',
+                          style: TextPath.Heading3F16W600.copyWith(
+                            color: ColorPath.TextGrey1H212121,
+                          ),
+                        ),
+                      ),
+                      const SizedBox(height: 12),
+                      InkWell(
+                        onTap: () => {},
+                        child: Container(
+                          alignment: Alignment.center,
+                          padding: const EdgeInsets.all(10),
+                          width: double.infinity,
+                          decoration: BoxDecoration(
+                              color: ColorPath.BackgroundWhite,
+                              borderRadius:
+                                  const BorderRadius.all(Radius.circular(6))),
+                          child: Row(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              const Icon(Icons.access_time),
+                              const SizedBox(width: 10),
+                              Container(
+                                alignment: Alignment.center,
+                                width: 89.w,
+                                height: 17.h,
+                                child: Text(
+                                  "오후 12시 00분",
+                                  style: TextPath.TextF14W500.copyWith(
+                                      color: ColorPath.TextGrey1H212121),
+                                ),
+                              ),
+                              Container(
+                                alignment: Alignment.centerRight,
+                                width: 90.w,
+                                height: 18.h,
+                                child: Text(
+                                  "변경",
+                                  style: TextPath.TextF12W400.copyWith(
+                                    color: ColorPath.TextGrey2H424242,
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                SizedBox(
+                  height: 48,
+                  child: Row(
+                    children: [
+                      Expanded(
+                        flex: 1,
+                        child: GestureDetector(
+                          onTap: () {},
+                          child: Container(
+                            alignment: Alignment.center,
+                            decoration: BoxDecoration(
+                                color: ColorPath.BackgroundWhite,
+                                borderRadius: const BorderRadius.only(
+                                  bottomLeft: Radius.circular(16),
+                                )),
+                            height: 48,
+                            child: Text(
+                              '취소',
+                              style: TextPath.TextF14W500.copyWith(
+                                color: ColorPath.TextGrey1H212121,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                      Expanded(
+                        flex: 1,
+                        child: GestureDetector(
+                          onTap: () {},
+                          child: Container(
+                            alignment: Alignment.center,
+                            decoration: BoxDecoration(
+                                color: ColorPath.PrimaryDarkColor,
+                                borderRadius: const BorderRadius.only(
+                                  bottomRight: Radius.circular(16),
+                                )),
+                            height: 48,
+                            child: Text(
+                              '등록하기',
+                              style: TextPath.TextF14W500.copyWith(
+                                color: ColorPath.BackgroundWhite,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                )
+              ],
+            ),
+            // ),
+            contentPadding: EdgeInsets.all(0),
+          ),
+        );
+      },
     );

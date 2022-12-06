@@ -35,7 +35,7 @@ class UserModel {
   final String? guardianName;
   final String? guardianPhoneNumber;
   final String? userGender;
-  final DateTime? userBirthDay;
+  final String? userBirthDay;
   final String? diagnosticStatus;
   final DateTime? diagnosticDay;
   final String role;
@@ -59,9 +59,7 @@ class UserModel {
         guardianName: json['guardian_name'],
         guardianPhoneNumber: json['guardian_phoneNumber'],
         userGender: json['user_gender'],
-        userBirthDay: json['user_birth_day'] != null
-            ? DateTime.parse(json['user_birth_day'])
-            : null,
+        userBirthDay: json['user_birth_day'],
         diagnosticStatus: json['diagnostic_status'],
         diagnosticDay: json['diagnostic_day'] != null
             ? DateTime.parse(json['diagnostic_day'])
@@ -88,7 +86,7 @@ class UserModel {
         'guardian_name': guardianName,
         'guardian_phoneNumber': guardianPhoneNumber,
         'user_gender': userGender,
-        'user_birth_day': userBirthDay?.toIso8601String(),
+        'user_birth_day': userBirthDay,
         'diagnostic_status': diagnosticStatus,
         'diagnostic_day': diagnosticDay?.toIso8601String(),
         'role': role,

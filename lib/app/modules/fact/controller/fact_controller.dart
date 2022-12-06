@@ -2,44 +2,50 @@
 
 import 'dart:async';
 
+import 'package:base/app/global/global_toast_widget.dart';
+import 'package:base/app/model/parkinson_post_model.dart';
 import 'package:get/get.dart';
-
-import '../../../model/fact_model.dart';
+import 'package:logger/logger.dart';
+import '../../../model/base_response_model.dart';
+import '../../../provider/main_provider.dart';
 
 class FactController extends GetxController {
   static FactController get to => Get.find();
 
   // Data ▼ ============================================
-
-  RxList<FactModel> factData = [
-    FactModel(
-      title: '하루 1시간만 걸어도 파킨슨병 억제 효과',
-      thumbnail: 'assets/images/samples/sample1.jpg',
-    ),
-    FactModel(
-      title: '파킨슨병, 새로운 치료 단서 발견...',
-      thumbnail: 'assets/images/samples/sample2.jpg',
-    ),
-    FactModel(
-      title: '세브란스 연구팀, 파킨슨병 진행 억제...',
-      thumbnail: 'assets/images/samples/sample3.jpg',
-    ),
-    FactModel(
-      title: '[파킨슨병] 새로운 치유법, 빛을 시험하다',
-      thumbnail: 'assets/images/samples/sample4.jpg',
-    ),
-    FactModel(
-      title: "'뇌 신경회로 반감'... 뇌전증, 파킨슨병...",
-      thumbnail: 'assets/images/samples/sample5.jpg',
-    ),
-  ].obs;
-
+  late RxList<ParkinsonPostModel> factDatas;
+  Rx<bool> process = true.obs;
   // Variable ▼ ========================================
 
   // Function ▼ ========================================
+  /// * 완전정복 리스트 API
+  Future<void> getFactList() async {
+    try {
+      AuthBaseResponseModel response = await AuthProvider.dio(
+        method: 'GET',
+        url: '/home/parkinson',
+      );
+
+      switch (response.statusCode) {
+        case 200:
+          factDatas = List.generate(response.data.length,
+              (index) => ParkinsonPostModel.fromJson(response.data[index])).obs;
+          process.value = false;
+          break;
+
+        default:
+          throw Exception(response.message);
+      }
+    } catch (e) {
+      Logger().d(e);
+      GlobalToastWidget(message: e.toString().substring(11));
+    }
+  }
 
   @override
   Future<void> onInit() async {
+    await getFactList();
+
     super.onInit();
   }
 

@@ -139,7 +139,7 @@ abstract class _Paths {
   static const SOCIALWELFARE = '/socialwelfare';
 
   ///사회복지제도 포스트
-  static const SOCIALWELFAREPOST = '/socialwelfare/socialwelfarepost';
+  static const SOCIALWELFAREPOST = '/socialwelfarepost';
 
   /// 보호자 알람 서비스
   static const PROTECTOR = '/protector';
