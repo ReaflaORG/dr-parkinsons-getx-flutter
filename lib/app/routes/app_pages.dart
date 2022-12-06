@@ -157,7 +157,7 @@ class AppPages {
       children: [
         GetPage(
           title: '오해와 진실 포스트',
-          name: '/factpost',
+          name: Routes.FACTPOST,
           page: () => const FactPostView(),
           binding: FactPostBinding(),
           transition: Transition.native,
@@ -175,7 +175,7 @@ class AppPages {
       children: [
         GetPage(
           title: '사회복지제도 포스트',
-          name: '/socialwelfarepost',
+          name: Routes.SOCIALWELFAREPOST,
           page: () => const SocialWelfarePostView(),
           binding: SocialWelfarePostBinding(),
           transition: Transition.native,

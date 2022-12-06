@@ -111,7 +111,7 @@ class ProfileSettingController extends GetxController {
         'guardian_name': guardianNameController.value.text,
         'guardian_phoneNumber': guardianPhoneController.value.text,
         'user_gender': userGender.value,
-        'user_birth_day': '2022-10-24',
+        'user_birth_day': '30대',
         'diagnostic_status': diagnosticStatus.value,
         'diagnostic_day': diagnosticDayString.value
       };
