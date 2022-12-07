@@ -8,6 +8,7 @@ class MissionModel {
   String created_at;
   String remove_at;
   bool clear;
+  String? status;
   MissionModel({
     required this.mission_id,
     required this.uid,
@@ -18,6 +19,7 @@ class MissionModel {
     required this.created_at,
     required this.remove_at,
     required this.clear,
+    this.status,
   });
 
   MissionModel.fromJson(json)
@@ -41,6 +43,7 @@ class MissionModel {
           remove_at:
               json['remove_at'] != null ? json['remove_at'] as String : '',
           clear: json['clear'] != null ? json['clear'] as bool : false,
+          status: '',
         );
 
   Map<String, Object> toJson() {
@@ -54,6 +57,7 @@ class MissionModel {
       'created_at': created_at,
       'remove_at': remove_at,
       'clear': clear,
+      'status': status!,
     };
   }
 }

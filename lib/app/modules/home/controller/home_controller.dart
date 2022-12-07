@@ -7,6 +7,7 @@ import 'package:base/app/model/base_response_model.dart';
 import 'package:base/app/model/home_model.dart';
 import 'package:base/app/provider/main_provider.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 import 'package:logger/logger.dart';
 
 class HomeController extends GetxController {
@@ -26,6 +27,7 @@ class HomeController extends GetxController {
       );
 
       Logger().d(response.data);
+
       switch (response.statusCode) {
         case 200:
           homeData = HomeModel.fromJson(response.data).obs;
