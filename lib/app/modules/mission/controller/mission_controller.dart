@@ -19,7 +19,10 @@ class MissionController extends GetxController {
   Rx<String> dateFormatString = '시간을 선택하세요'.obs;
   Rx<String> type = ''.obs;
   Rx<String> status = ''.obs;
-
+  Rx<int> move = 0.obs;
+  Rx<int> pill = 0.obs;
+  Rx<int> clearMove = 0.obs;
+  Rx<int> clearPill = 0.obs;
   List alarm = ['투약', '물마시기', '과일야채', '야외활동', '운동'];
   Rx<bool> boxStatus = false.obs;
   // Rx<Icon> box = const Icon(Icons.check_box_outline_blank_rounded).obs;
@@ -66,7 +69,15 @@ class MissionController extends GetxController {
     type.value = data;
   }
 
-  /// * 오늘 미션 리스트 API
+  /// 미션 카운트 리셋
+  void missionCountReset() {
+    move.value = 0;
+    clearMove.value = 0;
+    pill.value = 0;
+    clearPill.value = 0;
+  }
+
+  ///  오늘 미션 리스트 API
   Future<void> getMissionList() async {
     try {
       AuthBaseResponseModel response = await AuthProvider.dio(
@@ -75,13 +86,26 @@ class MissionController extends GetxController {
             '/mission/?select_date=${DateFormat('yyyy-MM-dd').format(DateTime.now())}',
       );
 
-      Logger().d(response.statusCode);
       switch (response.statusCode) {
         case 200:
         case 201:
           missionData.clear();
+          missionCountReset();
           for (int i = 0; i < response.data.length; i++) {
             missionData.add(MissionModel.fromJson(response.data[i]));
+            if (missionData[i].mission_type.contains('운동')) {
+              move.value++;
+              if (missionData[i].clear) {
+                clearMove.value++;
+              }
+            }
+            if (missionData[i].mission_type.contains('투약')) {
+              pill.value++;
+              if (missionData[i].clear) {
+                clearPill.value++;
+              }
+            }
+
             missionData[i].status = missionData[i].clear
                 ? '완료'
                 : missionData[i].mission_time <
@@ -104,7 +128,7 @@ class MissionController extends GetxController {
     }
   }
 
-  /// * 미션 추가 API
+  ///  미션 추가 API
   Future<void> addMission() async {
     try {
       Map<String, dynamic> request = {
@@ -135,7 +159,7 @@ class MissionController extends GetxController {
     }
   }
 
-  /// * 미션 수정 API
+  ///  미션 수정 API
   Future<void> updateMission({
     required int mission_id,
   }) async {
@@ -170,7 +194,7 @@ class MissionController extends GetxController {
     }
   }
 
-  /// * 미션 삭제 API
+  ///  미션 삭제 API
   Future<void> deleteMission({
     required int mission_id,
   }) async {
@@ -198,7 +222,7 @@ class MissionController extends GetxController {
     }
   }
 
-  /// * 미션 클리어 API
+  /// 미션 클리어 API
   Future<void> clearMission({
     required int mission_id,
     required int index,
@@ -225,12 +249,7 @@ class MissionController extends GetxController {
   }
 
   // Variable ▼ ========================================
-  Rx<int> allSportsCount = 10.obs;
-  Rx<int> finSportsCount = 8.obs;
-  Rx<int> allInjectCount = 10.obs;
-  Rx<int> finInjectCount = 9.obs;
 
-  final data = 2;
   @override
   Future<void> onInit() async {
     await getMissionList();

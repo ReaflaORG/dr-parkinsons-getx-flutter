@@ -81,13 +81,12 @@ class MissionView extends GetView<MissionController> {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
-                          ...List.generate(
-                            7,
-                            (index) => const MiniCalendar(
-                              dayName: '화',
+                          ...List.generate(7, (index) {
+                            return MiniCalendar(
+                              dayName: '월',
                               day: 31,
-                            ),
-                          ),
+                            );
+                          }),
                         ],
                       ),
                     ],
@@ -157,7 +156,7 @@ class MissionView extends GetView<MissionController> {
                                             ),
                                           ),
                                           Text(
-                                            '${(controller.finSportsCount.value * 100 / controller.allSportsCount.value).toInt()}%',
+                                            '${(controller.clearMove.value * 100 / controller.move.value).toStringAsFixed(0)}%',
                                             style:
                                                 TextPath.TextF16W500.copyWith(
                                               color: ColorPath.BlackColor,
@@ -171,9 +170,10 @@ class MissionView extends GetView<MissionController> {
                                         width: 100,
                                         animationDuration: 1000,
                                         lineHeight: 14.0,
-                                        percent:
-                                            controller.finSportsCount.value /
-                                                controller.allSportsCount.value,
+                                        percent: controller.move.value == 0
+                                            ? 0
+                                            : controller.clearMove.value /
+                                                controller.move.value,
                                         barRadius: const Radius.circular(10),
                                         progressColor: ColorPath.PrimaryColor,
                                         backgroundColor:
@@ -185,7 +185,7 @@ class MissionView extends GetView<MissionController> {
                                             MainAxisAlignment.end,
                                         children: [
                                           Text(
-                                            controller.finInjectCount.value
+                                            controller.clearMove.value
                                                 .toString(),
                                             style:
                                                 TextPath.TextF12W400.copyWith(
@@ -200,7 +200,7 @@ class MissionView extends GetView<MissionController> {
                                                         .TextGrey2H424242),
                                           ),
                                           Text(
-                                            '${controller.allInjectCount.value.toString()}회',
+                                            '${controller.move.value}회',
                                             style:
                                                 TextPath.TextF12W400.copyWith(
                                                     color: ColorPath
@@ -246,7 +246,7 @@ class MissionView extends GetView<MissionController> {
                                             ),
                                           ),
                                           Text(
-                                            '${(controller.finInjectCount.value * 100 / controller.allInjectCount.value).toInt()}%',
+                                            '${(controller.clearPill.value * 100 / controller.pill.value).toStringAsFixed(0)}%',
                                             style:
                                                 TextPath.TextF16W500.copyWith(
                                               color: ColorPath.BlackColor,
@@ -260,9 +260,10 @@ class MissionView extends GetView<MissionController> {
                                         width: 100,
                                         animationDuration: 1000,
                                         lineHeight: 14.0,
-                                        percent:
-                                            controller.finSportsCount.value /
-                                                controller.allSportsCount.value,
+                                        percent: controller.pill.value == 0
+                                            ? 0
+                                            : controller.clearPill.value /
+                                                controller.pill.value,
                                         barRadius: const Radius.circular(10),
                                         progressColor: ColorPath.PrimaryColor,
                                         backgroundColor:
@@ -274,7 +275,7 @@ class MissionView extends GetView<MissionController> {
                                             MainAxisAlignment.end,
                                         children: [
                                           Text(
-                                            controller.finInjectCount.value
+                                            controller.clearPill.value
                                                 .toString(),
                                             style:
                                                 TextPath.TextF12W400.copyWith(
@@ -289,7 +290,7 @@ class MissionView extends GetView<MissionController> {
                                                         .TextGrey2H424242),
                                           ),
                                           Text(
-                                            '${controller.allInjectCount.value.toString()}회',
+                                            '${controller.pill.value}회',
                                             style:
                                                 TextPath.TextF12W400.copyWith(
                                                     color: ColorPath
