@@ -6,7 +6,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:logger/logger.dart';
-
 import '../../../model/base_response_model.dart';
 import '../../../theme/colors.dart';
 
@@ -14,17 +13,52 @@ class MissionController extends GetxController {
   static MissionController get to => Get.find();
 
   // Data ▼ ============================================
-  late Rx<MissionModel> missionData;
-  Rx<DateTime> time = DateTime.now().obs;
+  RxList<MissionModel> missionData = <MissionModel>[].obs;
+  Rx<bool> process = true.obs;
+  Rx<int> dateFormatInt = 0.obs;
+  Rx<String> dateFormatString = '시간을 선택하세요'.obs;
   Rx<String> type = ''.obs;
+  Rx<String> status = ''.obs;
+
   List alarm = ['투약', '물마시기', '과일야채', '야외활동', '운동'];
+  Rx<bool> boxStatus = false.obs;
+  // Rx<Icon> box = const Icon(Icons.check_box_outline_blank_rounded).obs;
   // Function ▼ ========================================
-  changeCheckBox() {
-    boxStatus.value = !boxStatus.value;
-    if (boxStatus.value) {
-      box.value = const Icon(Icons.check_box_outline_blank_rounded);
+
+  Color handleColorBoxDecoration({
+    String? type = 'background_color',
+    required int index,
+  }) {
+    if (type == 'card_color') {
+      return missionData[index].status == '대기'
+          ? ColorPath.PrimaryLightColor
+          : missionData[index].status == '실패'
+              ? ColorPath.TertiaryLightColor
+              : ColorPath.Background2HD9D9D9;
+    }
+
+    return missionData[index].status == '대기'
+        ? ColorPath.BackgroundWhite
+        : missionData[index].status == '실패'
+            ? ColorPath.TertiaryLightColor.withOpacity(0.4)
+            : ColorPath.Background2HD9D9D9.withOpacity(0.7);
+  }
+
+  /// 시간 업데이트 함수
+  void updateTime(String data) {
+    Logger().d(data);
+    dateFormatInt.value = int.parse(data); //인트화
+    if (dateFormatInt >= 1200) {
+      dateFormatString.value =
+          '''오후 ${int.parse(data.substring(0, 2)) - 12}시 ${data.substring(2, 4)}분''';
+      // DateFormat('오후 hh시 mm분').format(selectedTime.value);
+    } else if (dateFormatInt.value >= 1000 && dateFormatInt.value < 1200) {
+      dateFormatString.value =
+          '''오전 ${data.substring(0, 2)}시 ${data.substring(2, 4)}분''';
     } else {
-      box.value = const Icon(Icons.check_box_outlined);
+      dateFormatString.value =
+          '''오전 0${data.substring(0, 1)}시 ${data.substring(1, 3)}분''';
+      // dateFormatString = DateFormat('오전 hh시 mm분').format(selectedTime.value);
     }
   }
 
@@ -37,15 +71,30 @@ class MissionController extends GetxController {
     try {
       AuthBaseResponseModel response = await AuthProvider.dio(
         method: 'GET',
-        url: '/mission',
+        url:
+            '/mission/?select_date=${DateFormat('yyyy-MM-dd').format(DateTime.now())}',
       );
 
+      Logger().d(response.statusCode);
       switch (response.statusCode) {
         case 200:
-          missionData = MissionModel.fromJson(response.data).obs;
+        case 201:
+          missionData.clear();
+          for (int i = 0; i < response.data.length; i++) {
+            missionData.add(MissionModel.fromJson(response.data[i]));
+            missionData[i].status = missionData[i].clear
+                ? '완료'
+                : missionData[i].mission_time <
+                        int.parse(DateFormat('HHmm')
+                            .format(DateTime.now())
+                            .toString())
+                    ? '실패'
+                    : '대기';
+          }
 
+          process.value = false;
+          missionData.refresh();
           break;
-
         default:
           throw Exception(response.message);
       }
@@ -58,29 +107,25 @@ class MissionController extends GetxController {
   /// * 미션 추가 API
   Future<void> addMission() async {
     try {
-      int dateFormatInt = int.parse(DateFormat('hhmm').format(time.value));
-      String dateFormatString = '';
-      if (dateFormatInt >= 1200) {
-        dateFormatString = DateFormat('오후 hh시 mm분').format(time.value);
-      } else {
-        dateFormatString = DateFormat('오전 hh시 mm분').format(time.value);
-      }
       Map<String, dynamic> request = {
-        'mission_type': '운동',
-        'mission_time': dateFormatInt, //오후11시 00분
-        'mission_time_string': dateFormatString,
+        'mission_type': type.value,
+        'mission_time': dateFormatInt.value, //오후11시 00분
+        'mission_time_string': dateFormatString.value,
       };
+
       AuthBaseResponseModel response = await AuthProvider.dio(
         method: 'POST',
         url: '/mission',
         requestModel: request,
       );
 
-      Logger().d(response.data);
       switch (response.statusCode) {
         case 200:
+        case 201:
+          getMissionList();
+          Get.back();
+          GlobalToastWidget(message: '추가 되었습니다.');
           break;
-
         default:
           throw Exception(response.message);
       }
@@ -91,22 +136,29 @@ class MissionController extends GetxController {
   }
 
   /// * 미션 수정 API
-  Future<void> updateMission() async {
+  Future<void> updateMission({
+    required int mission_id,
+  }) async {
     try {
       Map<String, dynamic> request = {
-        'mission_type': '2022-10-24',
-        'mission_time': 1,
-        'mission_time_string': '',
+        'mission_type': type.value,
+        'mission_time': dateFormatInt.value, //오후11시 00분
+        'mission_time_string': dateFormatString.value,
       };
+
       AuthBaseResponseModel response = await AuthProvider.dio(
         method: 'PUT',
-        url: '/mission/',
+        url: '/mission/$mission_id',
         requestModel: request,
       );
 
       Logger().d(response.data);
       switch (response.statusCode) {
         case 200:
+        case 201:
+          getMissionList();
+          Get.back();
+          GlobalToastWidget(message: '수정 되었습니다.');
           break;
 
         default:
@@ -119,16 +171,22 @@ class MissionController extends GetxController {
   }
 
   /// * 미션 삭제 API
-  Future<void> deleteMission() async {
+  Future<void> deleteMission({
+    required int mission_id,
+  }) async {
     try {
       AuthBaseResponseModel response = await AuthProvider.dio(
         method: 'DELETE',
-        url: '/mission',
+        url: '/mission/$mission_id',
       );
 
       Logger().d(response.data);
       switch (response.statusCode) {
         case 200:
+        case 201:
+          getMissionList();
+          Get.back();
+          GlobalToastWidget(message: '삭제 되었습니다.');
           break;
 
         default:
@@ -141,18 +199,22 @@ class MissionController extends GetxController {
   }
 
   /// * 미션 클리어 API
-  Future<void> clearMission() async {
+  Future<void> clearMission({
+    required int mission_id,
+    required int index,
+  }) async {
     try {
       AuthBaseResponseModel response = await AuthProvider.dio(
         method: 'PATCH',
-        url: '/mission',
+        url: '/mission/$mission_id',
       );
 
       Logger().d(response.data);
       switch (response.statusCode) {
         case 200:
+        case 201:
+          getMissionList();
           break;
-
         default:
           throw Exception(response.message);
       }
@@ -163,16 +225,15 @@ class MissionController extends GetxController {
   }
 
   // Variable ▼ ========================================
-  Rx<int> missionCount = 4.obs;
   Rx<int> allSportsCount = 10.obs;
   Rx<int> finSportsCount = 8.obs;
   Rx<int> allInjectCount = 10.obs;
   Rx<int> finInjectCount = 9.obs;
-  Rx<bool> boxStatus = true.obs;
-  Rx<Icon> box = const Icon(Icons.check_box_outline_blank_rounded).obs;
+
   final data = 2;
   @override
   Future<void> onInit() async {
+    await getMissionList();
     super.onInit();
   }
 

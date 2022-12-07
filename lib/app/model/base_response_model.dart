@@ -1,3 +1,5 @@
+import 'package:base/app/model/mission_model.dart';
+
 class AuthBaseResponseModel {
   int statusCode;
   String? message;
