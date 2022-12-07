@@ -27,10 +27,10 @@ class ProfileSettingController extends GetxController {
   Rx<TextEditingController> userPhoneController = TextEditingController(
           text: AuthService.to.userData.value.userPhoneNumber ?? '')
       .obs;
+
   Rx<TextEditingController> guardianNameController = TextEditingController(
           text: AuthService.to.userData.value.guardianName ?? '')
       .obs;
-
   Rx<TextEditingController> guardianPhoneController = TextEditingController(
           text: AuthService.to.userData.value.guardianPhoneNumber ?? '')
       .obs;
@@ -38,6 +38,7 @@ class ProfileSettingController extends GetxController {
   // FocusNode ▼ ========================================
   Rx<FocusNode> userNameFoucesNode = FocusNode().obs;
   Rx<FocusNode> userPhoneFoucesNode = FocusNode().obs;
+
   Rx<FocusNode> guardianNameFoucesNode = FocusNode().obs;
   Rx<FocusNode> guardianPhoneFoucesNode = FocusNode().obs;
 
@@ -111,7 +112,7 @@ class ProfileSettingController extends GetxController {
         'guardian_name': guardianNameController.value.text,
         'guardian_phoneNumber': guardianPhoneController.value.text,
         'user_gender': userGender.value,
-        'user_birth_day': '30대',
+        'user_birth_day': userBirthDay.value,
         'diagnostic_status': diagnosticStatus.value,
         'diagnostic_day': diagnosticDayString.value
       };
@@ -142,6 +143,9 @@ class ProfileSettingController extends GetxController {
   Rx<String> diagnosticStatus = '의심'.obs;
   RxList<String> diagnosticStatusList = ['의심', '초기', '중증', '해당없음'].obs;
 
+  Rx<String> userBirthDay = '30대'.obs;
+  RxList<String> userBirthDayList = ['30대', '40대', '50대', '60대'].obs;
+
   Rx<DateTime> diagnosticDay = DateTime.now().obs;
   Rx<String> diagnosticDayString = Formmater.dateTimeFormat(DateTime.now()).obs;
 
@@ -156,9 +160,15 @@ class ProfileSettingController extends GetxController {
     if (AuthService.to.userData.value.userGender != null) {
       userGender.value = AuthService.to.userData.value.userGender!;
     }
+
     if (AuthService.to.userData.value.diagnosticStatus != null) {
       diagnosticStatus.value = AuthService.to.userData.value.diagnosticStatus!;
     }
+
+    if (AuthService.to.userData.value.userBirthDay != null) {
+      userBirthDay.value = AuthService.to.userData.value.userBirthDay!;
+    }
+
     if (AuthService.to.userData.value.diagnosticDay != null) {
       diagnosticDay.value = AuthService.to.userData.value.diagnosticDay!;
       diagnosticDayString.value = Formmater.dateTimeFormat(diagnosticDay.value);

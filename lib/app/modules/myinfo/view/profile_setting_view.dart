@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:logger/logger.dart';
 
 import '../../../theme/colors.dart';
 import '../../../theme/texts.dart';
 
 import '../controller/profile_setting_controller.dart';
+import '../widgets/profile_setting_widget.dart';
 
 // profile setting view
 class ProfileSettingView extends GetView<ProfileSettingController> {
@@ -247,7 +247,7 @@ class ProfileSettingForm extends GetView<ProfileSettingController> {
                   ),
                 ),
               ),
-            SizedBox(height: 24),
+            SizedBox(height: 24.w),
             Container(
               alignment: Alignment.bottomLeft,
               child: Text(
@@ -274,113 +274,37 @@ class ProfileSettingForm extends GetView<ProfileSettingController> {
                 ),
               ),
             ),
-            // SizedBox(height: 24.w),
-            //TODO 연령대 DB가 망햇으니 다시 체크 해야 함
-            // Container(
-            //   alignment: Alignment.bottomLeft,
-            //   child: Text(
-            //     '연령대',
-            //     style: TextPath.TextF14W500.copyWith(
-            //       color: ColorPath.TextGrey1H212121,
-            //     ),
-            //   ),
-            // ),
-            // SizedBox(height: 10.w),
-            // Row(
-            //   children: [
-            //     Container(
-            //       width: 64,
-            //       child: TextButton(
-            //         onPressed: () {},
-            //         style: TextButton.styleFrom(
-            //           foregroundColor: ColorPath.TextGrey1H212121,
-            //           backgroundColor: ColorPath.PrimaryDarkColor,
-            //           shape: RoundedRectangleBorder(
-            //             borderRadius: BorderRadius.circular(8),
-            //             side: BorderSide(
-            //               color: ColorPath.Border3E7E7E7,
-            //             ),
-            //           ),
-            //         ),
-            //         child: Text(
-            //           '~30대',
-            //           style: TextPath.TextF14W400.copyWith(
-            //             color: Colors.white,
-            //           ),
-            //         ),
-            //       ),
-            //     ),
-            //     SizedBox(width: 8),
-            //     Container(
-            //       width: 64,
-            //       child: TextButton(
-            //         onPressed: () {},
-            //         style: TextButton.styleFrom(
-            //           foregroundColor: ColorPath.TextGrey1H212121,
-            //           backgroundColor: Colors.white,
-            //           shape: RoundedRectangleBorder(
-            //             borderRadius: BorderRadius.circular(8),
-            //             side: BorderSide(
-            //               color: ColorPath.Border3E7E7E7,
-            //             ),
-            //           ),
-            //         ),
-            //         child: Text(
-            //           '40대',
-            //           style: TextPath.TextF14W400.copyWith(
-            //             color: ColorPath.TextGrey3H616161,
-            //           ),
-            //         ),
-            //       ),
-            //     ),
-            //     SizedBox(width: 8),
-            //     Container(
-            //       width: 64,
-            //       child: TextButton(
-            //         onPressed: () {},
-            //         style: TextButton.styleFrom(
-            //           foregroundColor: ColorPath.TextGrey1H212121,
-            //           backgroundColor: Colors.white,
-            //           shape: RoundedRectangleBorder(
-            //             borderRadius: BorderRadius.circular(8),
-            //             side: BorderSide(
-            //               color: ColorPath.Border3E7E7E7,
-            //             ),
-            //           ),
-            //         ),
-            //         child: Text(
-            //           '50대',
-            //           style: TextPath.TextF14W400.copyWith(
-            //             color: ColorPath.TextGrey3H616161,
-            //           ),
-            //         ),
-            //       ),
-            //     ),
-            //     SizedBox(width: 8),
-            //     Container(
-            //       width: 64,
-            //       child: TextButton(
-            //         onPressed: () {},
-            //         style: TextButton.styleFrom(
-            //           foregroundColor: ColorPath.TextGrey1H212121,
-            //           backgroundColor: Colors.white,
-            //           shape: RoundedRectangleBorder(
-            //             borderRadius: BorderRadius.circular(8),
-            //             side: BorderSide(
-            //               color: ColorPath.Border3E7E7E7,
-            //             ),
-            //           ),
-            //         ),
-            //         child: Text(
-            //           '60대~',
-            //           style: TextPath.TextF14W400.copyWith(
-            //             color: ColorPath.TextGrey3H616161,
-            //           ),
-            //         ),
-            //       ),
-            //     ),
-            //   ],
-            // ),
+            SizedBox(height: 24.w),
+            Container(
+              alignment: Alignment.bottomLeft,
+              child: Text(
+                '연령대',
+                style: TextPath.TextF14W500.copyWith(
+                  color: ColorPath.TextGrey1H212121,
+                ),
+              ),
+            ),
+            SizedBox(height: 10.w),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: List.generate(
+                controller.userBirthDayList.length,
+                (index) => Container(
+                  margin: EdgeInsets.only(right: 10.w),
+                  child: RadioButton(
+                    title: index == 0
+                        ? '~${controller.userBirthDayList[index]}'
+                        : index == 3
+                            ? '${controller.userBirthDayList[index]}~'
+                            : controller.userBirthDayList[index],
+                    isCheck: controller.userBirthDayList[index] ==
+                        controller.userBirthDay.value,
+                    onClick: () => controller.userBirthDay.value =
+                        controller.userBirthDayList[index],
+                  ),
+                ),
+              ),
+            ),
             SizedBox(height: 24.w),
             Container(
               alignment: Alignment.bottomLeft,
@@ -449,45 +373,9 @@ class ProfileSettingForm extends GetView<ProfileSettingController> {
                 ),
               ),
             ),
-            SizedBox(height: 20.w), const ProfileSettingAction(),
+            SizedBox(height: 20.w),
+            const ProfileSettingAction(),
           ],
-        ),
-      ),
-    );
-  }
-}
-
-// * 라디오 버튼
-class RadioButton extends StatelessWidget {
-  final String title;
-  final bool isCheck;
-  final Function onClick;
-  const RadioButton({
-    Key? key,
-    required this.title,
-    required this.isCheck,
-    required this.onClick,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return TextButton(
-      onPressed: () => onClick(),
-      style: TextButton.styleFrom(
-        foregroundColor: ColorPath.TextGrey1H212121,
-        backgroundColor: isCheck ? ColorPath.PrimaryDarkColor : Colors.white,
-        padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 4.w),
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(8),
-          side: BorderSide(
-            color: ColorPath.Border3E7E7E7,
-          ),
-        ),
-      ),
-      child: Text(
-        title,
-        style: TextPath.TextF14W400.copyWith(
-          color: isCheck ? Colors.white : ColorPath.TextGrey3H616161,
         ),
       ),
     );
