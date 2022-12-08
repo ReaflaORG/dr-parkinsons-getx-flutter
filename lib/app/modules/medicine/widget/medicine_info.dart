@@ -10,6 +10,7 @@ class MedicineInfo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
+      mainAxisAlignment: MainAxisAlignment.start,
       children: [
         Container(
           alignment: Alignment.centerLeft,

@@ -75,11 +75,21 @@ class DrugMisuseView extends GetView<DrugMisuseController> {
                   child: Row(
                     children: [
                       SizedBox(width: 16.w),
-                      Center(
-                        child: Image.asset(
-                          width: 22.w,
-                          height: 22.w,
-                          'assets/images/icons/2d/24search.png',
+                      InkWell(
+                        onTap: () async {
+                          await controller.onHandleSearch(
+                              value: controller
+                                  .drugmisuseTextFormFieldController
+                                  .value
+                                  .text);
+                        },
+                        child: Container(
+                          alignment: Alignment.center,
+                          child: Image.asset(
+                            width: 22.w,
+                            height: 22.w,
+                            'assets/images/icons/2d/24search.png',
+                          ),
                         ),
                       ),
                       Expanded(
@@ -119,20 +129,23 @@ class DrugMisuseView extends GetView<DrugMisuseController> {
                                 borderSide: BorderSide.none,
                               ),
                             ),
-                            validator: (String? value) {
-                              // return controller.handleValidator(
-                              //   type: 'email',
-                              //   value: value!,
-                              // );
-                            },
-                            onChanged: (String text) {
-                              // Logger().d(text);
-                              // controller.handleSearchFieldOnChanged(
-                              //   value: text,
-                              // );
-                              controller.handleSearchFieldOnChanged(
-                                value: text,
-                              );
+                            // validator: (String? value) {
+                            //   // return controller.handleValidator(
+                            //   //   type: 'email',
+                            //   //   value: value!,
+                            //   // );
+                            // },
+                            // onChanged: (String text) {
+                            //   // Logger().d(text);
+                            //   // controller.handleSearchFieldOnChanged(
+                            //   //   value: text,
+                            //   // );
+                            //   controller.handleSearchFieldOnChanged(
+                            //     value: text,
+                            //   );
+                            // },
+                            onFieldSubmitted: (value) async {
+                              await controller.onHandleSearch(value: value);
                             },
                           ),
                         ),
@@ -203,7 +216,7 @@ class SearchAfterWigdet extends GetView<DrugMisuseController> {
               child: InkWell(
                 onTap: () => Get.dialog(
                   GlobalDrugmisuseModalWidget(
-                    title: controller.boxesSearchData[index].title,
+                    title: controller.boxesSearchData[index].medicineName,
                     okOnPressed: () => Get.back(),
                   ),
                 ),
@@ -248,14 +261,16 @@ class SearchAfterWigdet extends GetView<DrugMisuseController> {
                                   alignment: Alignment.centerLeft,
                                   height: 20.w,
                                   child: Text(
-                                    controller.boxesSearchData[index].title,
+                                    controller
+                                        .boxesSearchData[index].medicineName,
                                     style: TextPath.TextF14W500.copyWith(
                                         color: ColorPath.TextGrey1H212121),
                                   ),
                                 ),
                                 // const Spacer(),
                                 Text(
-                                  controller.boxesSearchData[index].company,
+                                  controller
+                                      .boxesSearchData[index].medicineMaker,
                                   style: TextPath.TextF12W400.copyWith(
                                       color: ColorPath.TextGrey4H9E9E9E),
                                 ),
@@ -265,7 +280,7 @@ class SearchAfterWigdet extends GetView<DrugMisuseController> {
                               alignment: Alignment.centerLeft,
                               height: 20.w,
                               child: Text(
-                                '#위장약 #클로르프로마진',
+                                '#${controller.boxesSearchData[index].symptomName} ${controller.boxesSearchData[index].medicineKoTag.map((e) => '#${e}').toList().join(' ')} ',
                                 style: TextPath.TextF13W400.copyWith(
                                     color: ColorPath.TextGrey3H616161),
                                 maxLines: 1,
