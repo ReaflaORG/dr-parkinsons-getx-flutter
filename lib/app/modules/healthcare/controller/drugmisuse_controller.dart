@@ -24,7 +24,6 @@ class DrugMisuseController extends GetxController {
   //* Step 4 View와 맞추기[]
   //**/
 
-// ! 데이터 바인딩 연습
   // RxList<DrugmisuseModel> drugMisuseList = <DrugmisuseModel>[].obs;
   RxList<DrugmisuseModel> boxesSearchData = <DrugmisuseModel>[].obs;
 
@@ -47,7 +46,7 @@ class DrugMisuseController extends GetxController {
           case 200:
             if (response.data.length == 0) {
               Get.dialog(GlobalDrugmisuseModalWidget(
-                title: '',
+                medicineName: '',
                 isFound: false,
                 okOnPressed: () => Get.back(),
               ));

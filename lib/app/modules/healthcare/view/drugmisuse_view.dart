@@ -214,10 +214,10 @@ class SearchAfterWigdet extends GetView<DrugMisuseController> {
             return Padding(
               padding: const EdgeInsets.symmetric(horizontal: 30),
               child: InkWell(
-                //TODO !! Dialog Example
                 onTap: () => Get.dialog(
                   GlobalDrugmisuseModalWidget(
-                    title: controller.boxesSearchData[index].medicineName,
+                    medicineName:
+                        controller.boxesSearchData[index].medicineName,
                     isFound: true,
                     okOnPressed: () => Get.back(),
                   ),

@@ -407,13 +407,13 @@ Future<dynamic> GlobalEmergencyModalWidget2({required BuildContext context}) =>
     );
 
 class GlobalDrugmisuseModalWidget extends StatelessWidget {
-  final String title;
+  final String medicineName;
   final void Function()? okOnPressed;
 
   final bool isFound;
   const GlobalDrugmisuseModalWidget({
     super.key,
-    required this.title,
+    required this.medicineName,
     required this.okOnPressed,
     required this.isFound,
   });
@@ -442,7 +442,7 @@ class GlobalDrugmisuseModalWidget extends StatelessWidget {
                 const SizedBox(height: 20),
                 isFound
                     ? Text(
-                        '$title(은/는)\r\n파킨슨 증상을 악화시킬 수 있는 약물이므로,\r\n전문의와 상의하시기 바랍니다.',
+                        '$medicineName(은/는)\r\n파킨슨 증상을 악화시킬 수 있는 약물이므로,\r\n전문의와 상의하시기 바랍니다.',
                         style: TextPath.TextF14W400.copyWith(
                           color: Color(0XFF475467),
                         ))
@@ -474,7 +474,7 @@ class GlobalDrugmisuseModalWidget extends StatelessWidget {
 }
 
 // Future<dynamic> GlobalDrugmisuseModalWidget({
-//   required String title,
+//   required String medicineName,
 //   void Function()? okOnPressed,
 // }) =>
 //     Get.dialog(

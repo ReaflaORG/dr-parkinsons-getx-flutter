@@ -108,26 +108,100 @@ class MedicineInfo extends StatelessWidget {
         ),
         Container(
           alignment: Alignment.centerLeft,
+          padding: EdgeInsets.only(bottom: 6.w),
           height: 30.w,
           child: Text(
             '퍼킨슨 일반정',
             style: TextPath.TextF14W500.copyWith(
-                color: ColorPath.TextGrey3H616161),
-          ),
-        ),
-        SizedBox(
-          width: double.infinity,
-          // height: 30.w,
-          child: Image.asset(
-            'assets/images/medicine/pill0101.jpg',
-            fit: BoxFit.cover,
+                color: ColorPath.PrimaryDarkColor),
           ),
         ),
         Container(
           alignment: Alignment.centerLeft,
+          padding: EdgeInsets.only(bottom: 6.w),
+          child: Image.asset(
+            'assets/images/medicine/pill0101.jpg',
+            fit: BoxFit.cover,
+            width: MediaQuery.of(context).size.width * .35,
+            // height: 70.w,
+          ),
+        ),
+        Container(
+          alignment: Alignment.centerLeft,
+          padding: EdgeInsets.only(bottom: 12.w),
           child: Text(
-            '''  레보도파 100mg, 카르비도파수화물 27mg''',
-            style: TextPath.TextF14W400.copyWith(
+            '''레보도파 100mg, 카르비도파수화물 27mg''',
+            style: TextPath.TextF13W400.copyWith(
+                color: ColorPath.TextGrey2H424242),
+          ),
+        ),
+        Container(
+          alignment: Alignment.centerLeft,
+          padding: EdgeInsets.only(bottom: 6.w),
+          child: Image.asset(
+            'assets/images/medicine/pill0102.jpg',
+            fit: BoxFit.cover,
+            width: MediaQuery.of(context).size.width * .35,
+            // height: 70.w,
+          ),
+        ),
+        Container(
+          alignment: Alignment.centerLeft,
+          padding: EdgeInsets.only(bottom: 12.w),
+          child: Text(
+            '''레보도파 250mg, 카르비도파수화물 27mg''',
+            style: TextPath.TextF13W400.copyWith(
+                color: ColorPath.TextGrey2H424242),
+          ),
+        ),
+        Container(
+          alignment: Alignment.centerLeft,
+          height: 30.w,
+          child: Text(
+            '명도파 일반정',
+            style: TextPath.TextF14W500.copyWith(
+                color: ColorPath.PrimaryDarkColor),
+          ),
+        ),
+
+        // * 약제 3번
+        Container(
+          alignment: Alignment.centerLeft,
+          padding: EdgeInsets.only(bottom: 6.w),
+          child: Image.asset(
+            'assets/images/medicine/pill0103.jpg',
+            fit: BoxFit.cover,
+            width: MediaQuery.of(context).size.width * .35,
+            // height: 70.w,
+          ),
+        ),
+        Container(
+          alignment: Alignment.centerLeft,
+          padding: EdgeInsets.only(bottom: 12.w),
+          child: Text(
+            '''레보도파 100mg, 벤세라지드염산염 28.5mg''',
+            style: TextPath.TextF13W400.copyWith(
+                color: ColorPath.TextGrey2H424242),
+          ),
+        ),
+
+        // * 약제 4번
+        Container(
+          alignment: Alignment.centerLeft,
+          padding: EdgeInsets.only(bottom: 6.w),
+          child: Image.asset(
+            'assets/images/medicine/pill0104.jpg',
+            fit: BoxFit.cover,
+            width: MediaQuery.of(context).size.width * .35,
+            // height: 70.w,
+          ),
+        ),
+        Container(
+          alignment: Alignment.centerLeft,
+          padding: EdgeInsets.only(bottom: 12.w),
+          child: Text(
+            '''레보도파 100mg, 벤세라지드염산염 28.5mg''',
+            style: TextPath.TextF13W400.copyWith(
                 color: ColorPath.TextGrey2H424242),
           ),
         ),
