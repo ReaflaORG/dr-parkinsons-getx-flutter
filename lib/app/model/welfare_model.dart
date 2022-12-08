@@ -3,8 +3,8 @@ class WelfareModel {
   String title;
   String image;
   String description;
-  String created_at;
-  String updated_at;
+  DateTime created_at;
+  DateTime updated_at;
 
   WelfareModel({
     required this.welfare_id,
@@ -23,10 +23,8 @@ class WelfareModel {
           image: json['image'] != null ? json['image'] as String : '',
           description:
               json['description'] != null ? json['description'] as String : '',
-          created_at:
-              json['created_at'] != null ? json['created_at'] as String : '',
-          updated_at:
-              json['updated_at'] != null ? json['updated_at'] as String : '',
+          created_at: DateTime.parse(json['created_at']),
+          updated_at: DateTime.parse(json['updated_at']),
         );
 
   Map<String, dynamic> toJson() {
@@ -35,8 +33,8 @@ class WelfareModel {
       'title': title,
       'image': image,
       'description': description,
-      'created_at': created_at,
-      'updated_at': updated_at,
+      'created_at': created_at.toIso8601String(),
+      'updated_at': updated_at.toIso8601String(),
     };
   }
 }

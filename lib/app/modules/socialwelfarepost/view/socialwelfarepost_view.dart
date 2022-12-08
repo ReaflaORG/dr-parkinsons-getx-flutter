@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 
 import '../../../theme/colors.dart';
 import '../../../theme/texts.dart';
@@ -70,8 +71,8 @@ class SocialWelfarePostView extends GetView<SocialWelfarePostController> {
                                 height: 4,
                               ),
                               Text(
-                                controller.postData.value.created_at
-                                    .substring(0, 10),
+                                DateFormat('yyyy-MM-dd').format(
+                                    controller.postData.value.created_at),
                                 style: TextPath.TextF12W500.copyWith(
                                     color: ColorPath.TextGrey4H9E9E9E),
                               ),

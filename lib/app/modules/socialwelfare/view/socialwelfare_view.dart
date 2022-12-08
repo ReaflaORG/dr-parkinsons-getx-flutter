@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
+
 import '../../../theme/colors.dart';
 import '../../../theme/texts.dart';
 import '../controller/socialwelfare_controller.dart';
@@ -120,8 +122,10 @@ class SocialWelfareView extends GetView<SocialWelfareController> {
                                                   const EdgeInsets.symmetric(
                                                       horizontal: 4),
                                               child: Text(
-                                                controller.welfareDatas[index]
-                                                    .created_at,
+                                                DateFormat('yyyy-MM-dd').format(
+                                                    controller
+                                                        .welfareDatas[index]
+                                                        .created_at),
                                                 style: TextPath.TextF13W500
                                                     .copyWith(
                                                         color: ColorPath

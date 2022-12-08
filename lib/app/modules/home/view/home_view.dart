@@ -2,6 +2,8 @@ import 'package:base/app/service/auth_service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
+
 import '../../../global/global_dialog_widget.dart';
 import '../../../theme/colors.dart';
 import '../../../theme/texts.dart';
@@ -488,9 +490,9 @@ class HomeView extends GetView<HomeController> {
                                             ),
                                           ),
                                           Text(
-                                            controller.homeData.value
-                                                .welfare[index].created_at
-                                                .substring(5, 10),
+                                            DateFormat('yyyy-MM-dd').format(
+                                                controller.homeData.value
+                                                    .welfare[index].created_at),
                                             style:
                                                 TextPath.TextF13W500.copyWith(
                                               color: ColorPath.TextGrey2H424242,

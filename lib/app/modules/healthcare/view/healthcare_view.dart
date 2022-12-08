@@ -1,6 +1,10 @@
+import 'package:base/app/model/welfare_model.dart';
+import 'package:base/app/routes/app_pages.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 
 import '../../../theme/colors.dart';
 import '../../../theme/texts.dart';
@@ -151,7 +155,9 @@ class HealthCareView extends GetView<HealthCareController> {
                               ),
                             ),
                             InkWell(
-                              onTap: () {},
+                              onTap: () {
+                                Get.toNamed(Routes.SOCIALWELFARE);
+                              },
                               child: Row(
                                 crossAxisAlignment: CrossAxisAlignment.center,
                                 children: [
@@ -170,107 +176,17 @@ class HealthCareView extends GetView<HealthCareController> {
                           ],
                         ),
                       ),
-                      Column(
-                        children: [
-                          InkWell(
-                            onTap: () {},
-                            child: Container(
-                              alignment: Alignment.bottomLeft,
-                              padding: const EdgeInsets.only(
-                                left: 16,
-                                bottom: 8,
-                              ),
-                              width: 320.w,
-                              height: 130.w,
-                              decoration: BoxDecoration(
-                                  image: const DecorationImage(
-                                    image: AssetImage(
-                                        'assets/images/samples/sample1.jpg'),
-                                    fit: BoxFit.cover,
-                                  ),
-                                  borderRadius: BorderRadius.circular(16)),
-                              child: Column(
-                                mainAxisAlignment: MainAxisAlignment.end,
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Container(
-                                    color: ColorPath.SecondaryLightColor,
-                                    padding:
-                                        const EdgeInsets.fromLTRB(4, 2, 4, 0),
-                                    child: Text(
-                                      '22.10.23',
-                                      style: TextPath.TextF13W500.copyWith(
-                                          color: ColorPath.TextGrey3H616161),
-                                    ),
-                                  ),
-                                  const SizedBox(height: 4),
-                                  Container(
-                                    padding:
-                                        const EdgeInsets.fromLTRB(6, 6, 6, 4),
-                                    color:
-                                        ColorPath.PrimaryColor.withOpacity(0.8),
-                                    child: Text(
-                                      '노인 장기요양보험 제도',
-                                      style: TextPath.Heading3F16W600.copyWith(
-                                        color: ColorPath.BackgroundWhite,
-                                      ),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ),
-                          SizedBox(height: 20.w),
-                          InkWell(
-                            onTap: () {},
-                            child: Container(
-                              alignment: Alignment.bottomLeft,
-                              padding: const EdgeInsets.only(
-                                left: 16,
-                                bottom: 8,
-                              ),
-                              width: 320.w,
-                              height: 130.w,
-                              decoration: BoxDecoration(
-                                  image: const DecorationImage(
-                                    image: AssetImage(
-                                        'assets/images/samples/sample6.jpg'),
-                                    fit: BoxFit.cover,
-                                  ),
-                                  borderRadius: BorderRadius.circular(16)),
-                              child: Column(
-                                mainAxisAlignment: MainAxisAlignment.end,
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Container(
-                                    color: ColorPath.SecondaryLightColor,
-                                    padding:
-                                        const EdgeInsets.fromLTRB(4, 2, 4, 0),
-                                    child: Text(
-                                      '22.09.08',
-                                      style: TextPath.TextF13W500.copyWith(
-                                          color: ColorPath.TextGrey3H616161),
-                                    ),
-                                  ),
-                                  const SizedBox(height: 4),
-                                  Container(
-                                    padding:
-                                        const EdgeInsets.fromLTRB(6, 6, 6, 4),
-                                    color:
-                                        ColorPath.PrimaryColor.withOpacity(0.8),
-                                    child: Text(
-                                      '본인부담금 산정특례제도',
-                                      style: TextPath.Heading3F16W600.copyWith(
-                                        color: ColorPath.BackgroundWhite,
-                                      ),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ),
-                          SizedBox(height: 20.w),
-                        ],
+                      Obx(
+                        () => Column(
+                            mainAxisSize: MainAxisSize.min,
+                            children: List.generate(
+                                controller.welfareLists.length, (index) {
+                              return Container(
+                                margin: EdgeInsets.only(bottom: 20.w),
+                                child: WelfareCardWidget(
+                                    item: controller.welfareLists[index]),
+                              );
+                            })),
                       ),
                     ],
                   ),
@@ -280,4 +196,66 @@ class HealthCareView extends GetView<HealthCareController> {
           ),
         ),
       );
+}
+
+/// 복지 혜택 카드 위젯
+class WelfareCardWidget extends StatelessWidget {
+  final WelfareModel item;
+  const WelfareCardWidget({
+    Key? key,
+    required this.item,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return InkWell(
+      onTap: () {
+        //Get toNamed id => 상세보기 날려주기
+        Get.toNamed(Routes.SOCIALWELFARE + Routes.SOCIALWELFAREPOST,
+            arguments: {'id': item.welfare_id});
+      },
+      child: Container(
+        alignment: Alignment.bottomLeft,
+        padding: const EdgeInsets.only(
+          left: 16,
+          bottom: 8,
+        ),
+        width: 320.w,
+        height: 130.w,
+        decoration: BoxDecoration(
+            image: DecorationImage(
+              // 이미지 api로 처음받아봄
+              image: CachedNetworkImageProvider(item.image),
+              fit: BoxFit.cover,
+            ),
+            borderRadius: BorderRadius.circular(16)),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.end,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Container(
+              color: ColorPath.SecondaryLightColor,
+              padding: const EdgeInsets.fromLTRB(4, 2, 4, 0),
+              child: Text(
+                DateFormat('yy.MM.dd').format(item.created_at),
+                style: TextPath.TextF13W500.copyWith(
+                    color: ColorPath.TextGrey3H616161),
+              ),
+            ),
+            const SizedBox(height: 4),
+            Container(
+              padding: const EdgeInsets.fromLTRB(6, 6, 6, 4),
+              color: ColorPath.PrimaryColor.withOpacity(0.8),
+              child: Text(
+                item.title,
+                style: TextPath.Heading3F16W600.copyWith(
+                  color: ColorPath.BackgroundWhite,
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
 }
