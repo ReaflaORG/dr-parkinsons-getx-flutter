@@ -21,10 +21,8 @@ class FaqItemWidget extends StatelessWidget {
         backgroundColor: Colors.transparent,
         title: Text(
           item.question,
-          style: TextStyle(
+          style: TextPath.TextF14W500.copyWith(
             color: ColorPath.TextGrey1H212121,
-            fontWeight: FontWeight.w500,
-            fontFamily: "SUIT",
           ),
         ),
         trailing: Image.asset(
