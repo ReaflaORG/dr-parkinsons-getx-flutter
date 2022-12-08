@@ -9,8 +9,6 @@ import 'package:logger/logger.dart';
 import '../../../global/global_toast_widget.dart';
 import '../../../model/base_response_model.dart';
 import '../../../provider/main_provider.dart';
-import '../../../service/auth_service.dart';
-import '../models/suggest_policy_item_model.dart';
 import '../widgets/show_dialog.dart';
 
 // suggest policy controller

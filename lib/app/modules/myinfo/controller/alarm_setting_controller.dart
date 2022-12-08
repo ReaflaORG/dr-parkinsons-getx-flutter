@@ -2,9 +2,14 @@
 
 import 'dart:async';
 
+import 'package:base/app/global/global_toast_widget.dart';
+import 'package:base/app/model/base_response_model.dart';
+import 'package:base/app/model/user_model.dart';
+import 'package:base/app/service/auth_service.dart';
 import 'package:get/get.dart';
+import 'package:logger/logger.dart';
 
-import '../models/alarm_setting_item_model.dart';
+import '../../../provider/main_provider.dart';
 
 // alarm setting controller
 class AlarmSettingController extends GetxController {
@@ -12,15 +17,34 @@ class AlarmSettingController extends GetxController {
 
   // Data ▼ ============================================
   // alarm setting item model
-  AlarmSettingItemModel listArray = AlarmSettingItemModel(
-      isBasicAlarm: false,
-      isMissionAlarm: false,
-      isNewArticleAlarm: false,
-      isSendTextMsgAlarm: false);
 
   // Function ▼ ========================================
 
   // Variable ▼ ========================================
+
+  Future<void> checkBasicAlarm({required String type}) async {
+    try {
+      AuthBaseResponseModel response = await AuthProvider.dio(
+        method: 'PUT',
+        url: '/myinfo/setting/${type}',
+      );
+
+      Logger().d(response.data);
+      switch (response.statusCode) {
+        case 200:
+          UserModel userData = UserModel.fromJson(response.data['user']);
+          AuthService.to.userData.value = userData;
+          AuthService.to.userData.refresh();
+          break;
+
+        default:
+          throw Exception(response.message);
+      }
+    } catch (e) {
+      Logger().d(e);
+      GlobalToastWidget(message: e.toString().substring(11));
+    }
+  }
 
   @override
   Future<void> onInit() async {
