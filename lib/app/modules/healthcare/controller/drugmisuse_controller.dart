@@ -8,6 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:logger/logger.dart';
 
+import '../../../global/global_dialog_widget.dart';
 import '../../../global/global_toast_widget.dart';
 import '../../../model/drugmisuse_infobox_model.dart';
 import '../../../model/drugmisuse_model.dart';
@@ -18,10 +19,10 @@ class DrugMisuseController extends GetxController {
 
   //**
   //* Step 1 주의해야할 약물 모델링하기  [x]
-  //* Step 2 주약 변수 변언하기 []
+  //* Step 2 주의해야할 약물 변수 변언하기 []
   //* Step 3 api 받아와서 주약 변수에 할당하기 []
   //* Step 4 View와 맞추기[]
-  // */
+  //**/
 
 // ! 데이터 바인딩 연습
   // RxList<DrugmisuseModel> drugMisuseList = <DrugmisuseModel>[].obs;
@@ -45,8 +46,11 @@ class DrugMisuseController extends GetxController {
         switch (response.statusCode) {
           case 200:
             if (response.data.length == 0) {
-              // 다이얼 박스 처리 [ 검색 결과 없음 ]\
-              Logger().d("검색결과 없음");
+              Get.dialog(GlobalDrugmisuseModalWidget(
+                title: '',
+                isFound: false,
+                okOnPressed: () => Get.back(),
+              ));
             } else {
               boxesSearchData.assignAll(List<DrugmisuseModel>.from(
                   response.data.map((e) => DrugmisuseModel.fromJson(e))));

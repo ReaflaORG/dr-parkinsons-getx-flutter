@@ -9,7 +9,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:logger/logger.dart';
+
 import '../service/permission_service.dart';
 import '../theme/colors.dart';
 import '../theme/texts.dart';
@@ -410,10 +410,12 @@ class GlobalDrugmisuseModalWidget extends StatelessWidget {
   final String title;
   final void Function()? okOnPressed;
 
+  final bool isFound;
   const GlobalDrugmisuseModalWidget({
     super.key,
     required this.title,
     required this.okOnPressed,
+    required this.isFound,
   });
 
   @override
@@ -438,12 +440,13 @@ class GlobalDrugmisuseModalWidget extends StatelessWidget {
                   style: TextPath.Heading2F18W600,
                 ),
                 const SizedBox(height: 20),
-                Text(
-                  '$title(은/는)\r\n파킨슨 증상을 악화시킬 수 있는 약물이므로,\r\n전문의와 상의하시기 바랍니다.',
-                  style: TextPath.TextF14W400.copyWith(
-                    color: Color(0XFF475467),
-                  ),
-                ),
+                isFound
+                    ? Text(
+                        '$title(은/는)\r\n파킨슨 증상을 악화시킬 수 있는 약물이므로,\r\n전문의와 상의하시기 바랍니다.',
+                        style: TextPath.TextF14W400.copyWith(
+                          color: Color(0XFF475467),
+                        ))
+                    : Text('검색 결과 없음'),
                 SizedBox(height: 30),
                 SizedBox(
                   width: double.infinity,

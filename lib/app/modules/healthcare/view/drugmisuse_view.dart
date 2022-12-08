@@ -214,9 +214,11 @@ class SearchAfterWigdet extends GetView<DrugMisuseController> {
             return Padding(
               padding: const EdgeInsets.symmetric(horizontal: 30),
               child: InkWell(
+                //TODO !! Dialog Example
                 onTap: () => Get.dialog(
                   GlobalDrugmisuseModalWidget(
                     title: controller.boxesSearchData[index].medicineName,
+                    isFound: true,
                     okOnPressed: () => Get.back(),
                   ),
                 ),
@@ -280,6 +282,7 @@ class SearchAfterWigdet extends GetView<DrugMisuseController> {
                               alignment: Alignment.centerLeft,
                               height: 20.w,
                               child: Text(
+                                // ignore: unnecessary_brace_in_string_interps
                                 '#${controller.boxesSearchData[index].symptomName} ${controller.boxesSearchData[index].medicineKoTag.map((e) => '#${e}').toList().join(' ')} ',
                                 style: TextPath.TextF13W400.copyWith(
                                     color: ColorPath.TextGrey3H616161),
