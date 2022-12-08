@@ -1,57 +1,61 @@
 // ignore_for_file: unnecessary_overrides
 
 import 'dart:async';
-import 'package:get/get.dart';
 
-import '../models/faq_listview_item_model.dart';
+import 'package:base/app/global/global_toast_widget.dart';
+import 'package:base/app/model/base_response_model.dart';
+import 'package:base/app/model/faq_model.dart';
+import 'package:base/app/provider/main_provider.dart';
+import 'package:get/get.dart';
+import 'package:logger/logger.dart';
 
 // faq controller
 class FaqController extends GetxController {
   static FaqController get to => Get.find();
 
+  //**
+  // 1. 모델 정의 = API 확인
+  // 2. 변수 할당
+  // 3. 초기화 API 로 데이터 받기
+  // 4. 뷰와 데이터 바인딩 [싱크 ]
+  // */
+
   // Data ▼ ============================================
-  // faq item model
-  RxList<FaqItemModel> listArray = [
-    FaqItemModel(
-        question: "Q. 파킨슨병의 진단은 어떻게 하나요?",
-        content:
-            "파킨슨병의 진단에는 전문의의 병력청취와 신경학적 검사가 가장 중요합니다. 그 밖의 뇌 질환의 진단에 많이 이용되고 있는 MRI나 CT등의 기타 검사들은 대부분 보조적인 수단으로 파킨슨병 자체를 진단하는 목적보다는 파킨슨병과 혼동될 수 있는 다른 질환을 감별하기 위한 목적으로 이용됩니다."),
-    FaqItemModel(
-        question: "Q. 회원가입은 어떻게 하나요?",
-        content:
-            "파킨슨병의 진단에는 전문의의 병력청취와 신경학적 검사가 가장 중요합니다. 그 밖의 뇌 질환의 진단에 많이 이용되고 있는 MRI나 CT등의 기타 검사들은 대부분 보조적인 수단으로 파킨슨병 자체를 진단하는 목적보다는 파킨슨병과 혼동될 수 있는 다른 질환을 감별하기 위한 목적으로 이용됩니다."),
-    FaqItemModel(
-        question: "Q. 내 주치의 변경은 어떻게 하나요?",
-        content:
-            "파킨슨병의 진단에는 전문의의 병력청취와 신경학적 검사가 가장 중요합니다. 그 밖의 뇌 질환의 진단에 많이 이용되고 있는 MRI나 CT등의 기타 검사들은 대부분 보조적인 수단으로 파킨슨병 자체를 진단하는 목적보다는 파킨슨병과 혼동될 수 있는 다른 질환을 감별하기 위한 목적으로 이용됩니다."),
-    FaqItemModel(
-        question: "Q. 긴급 연락 시스템은 무엇인가요?",
-        content:
-            "파킨슨병의 진단에는 전문의의 병력청취와 신경학적 검사가 가장 중요합니다. 그 밖의 뇌 질환의 진단에 많이 이용되고 있는 MRI나 CT등의 기타 검사들은 대부분 보조적인 수단으로 파킨슨병 자체를 진단하는 목적보다는 파킨슨병과 혼동될 수 있는 다른 질환을 감별하기 위한 목적으로 이용됩니다."),
-    FaqItemModel(
-        question: "Q. 보호자 연락은 어떻게 하나요?",
-        content:
-            "파킨슨병의 진단에는 전문의의 병력청취와 신경학적 검사가 가장 중요합니다. 그 밖의 뇌 질환의 진단에 많이 이용되고 있는 MRI나 CT등의 기타 검사들은 대부분 보조적인 수단으로 파킨슨병 자체를 진단하는 목적보다는 파킨슨병과 혼동될 수 있는 다른 질환을 감별하기 위한 목적으로 이용됩니다."),
-    FaqItemModel(
-        question: "Q. 주의해야 할 약품은 무엇인가요?",
-        content:
-            "파킨슨병의 진단에는 전문의의 병력청취와 신경학적 검사가 가장 중요합니다. 그 밖의 뇌 질환의 진단에 많이 이용되고 있는 MRI나 CT등의 기타 검사들은 대부분 보조적인 수단으로 파킨슨병 자체를 진단하는 목적보다는 파킨슨병과 혼동될 수 있는 다른 질환을 감별하기 위한 목적으로 이용됩니다."),
-    FaqItemModel(
-        question: "Q. 주의해야 할 약품을 섭취했을때는 어떻게 해야 하나요?",
-        content:
-            "파킨슨병의 진단에는 전문의의 병력청취와 신경학적 검사가 가장 중요합니다. 그 밖의 뇌 질환의 진단에 많이 이용되고 있는 MRI나 CT등의 기타 검사들은 대부분 보조적인 수단으로 파킨슨병 자체를 진단하는 목적보다는 파킨슨병과 혼동될 수 있는 다른 질환을 감별하기 위한 목적으로 이용됩니다."),
-    FaqItemModel(
-        question: "Q. 회원가입은 어떻게 하나요?",
-        content:
-            "파킨슨병의 진단에는 전문의의 병력청취와 신경학적 검사가 가장 중요합니다. 그 밖의 뇌 질환의 진단에 많이 이용되고 있는 MRI나 CT등의 기타 검사들은 대부분 보조적인 수단으로 파킨슨병 자체를 진단하는 목적보다는 파킨슨병과 혼동될 수 있는 다른 질환을 감별하기 위한 목적으로 이용됩니다.")
-  ].obs;
+  // FAQ Model
+  RxList<FaqModel> faqData = <FaqModel>[].obs;
+  Rx<bool> process = true.obs;
 
   // Function ▼ ========================================
 
+  /// * get FAQ Data from API
+  Future<void> getFaqData() async {
+    try {
+      AuthBaseResponseModel response = await AuthProvider.dio(
+        method: 'GET',
+        url: '/myinfo/question',
+      );
+
+      Logger().d(response.data);
+      switch (response.statusCode) {
+        case 200:
+          faqData.assignAll(List.generate(response.data.length,
+              (index) => FaqModel.fromJson(response.data[index])));
+          process.value = false;
+          break;
+
+        default:
+          throw Exception(response.message);
+      }
+    } catch (e) {
+      Logger().d(e);
+      GlobalToastWidget(message: e.toString().substring(11));
+    }
+  }
   // Variable ▼ ========================================
 
   @override
   Future<void> onInit() async {
+    await getFaqData();
     super.onInit();
   }
 

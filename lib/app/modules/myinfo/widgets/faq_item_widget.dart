@@ -1,9 +1,9 @@
+import 'package:base/app/model/faq_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../theme/colors.dart';
 import '../../../theme/texts.dart';
-import '../models/faq_listview_item_model.dart';
 
 // faq item widget
 class FaqItemWidget extends StatelessWidget {
@@ -11,7 +11,7 @@ class FaqItemWidget extends StatelessWidget {
     super.key,
     required this.item,
   });
-  final FaqItemModel item;
+  final FaqModel item;
 
   @override
   Widget build(BuildContext context) {
@@ -36,12 +36,14 @@ class FaqItemWidget extends StatelessWidget {
           Column(
             children: [
               Container(
-                padding: EdgeInsets.fromLTRB(18, 16, 18, 16),
+                width: double.infinity,
+                alignment: Alignment.centerLeft,
+                padding: EdgeInsets.fromLTRB(18.w, 16.w, 18.w, 16.w),
                 decoration: BoxDecoration(
                   color: ColorPath.Background1HECEFF1,
                 ),
                 child: Text(
-                  item.content,
+                  item.answer,
                 ),
               ),
             ],

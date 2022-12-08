@@ -1,3 +1,4 @@
+import 'package:base/app/model/faq_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -6,7 +7,6 @@ import '../../../theme/colors.dart';
 import '../../../theme/texts.dart';
 
 import '../controller/faq_controller.dart';
-import '../models/faq_listview_item_model.dart';
 import '../widgets/faq_item_widget.dart';
 
 // faq view
@@ -72,10 +72,19 @@ class FaqView extends GetView<FaqController> {
                     child: Column(
                       children: [
                         SizedBox(height: 14.w),
-                        FaqBodyView(),
-                        // Expanded(
-                        //   child: FaqBodyView(),
-                        // ),
+                        Obx(
+                          () => ListView.builder(
+                            shrinkWrap: true,
+                            physics: const NeverScrollableScrollPhysics(),
+                            itemCount: controller.faqData.value.length,
+                            itemBuilder: (BuildContext context, int index) {
+                              FaqModel item = controller.faqData[index];
+                              return FaqItemWidget(
+                                item: item,
+                              );
+                            },
+                          ),
+                        )
                       ],
                     ),
                   ),
@@ -85,24 +94,4 @@ class FaqView extends GetView<FaqController> {
           ),
         ),
       );
-}
-
-// faq body view - call item widget
-class FaqBodyView extends GetView<FaqController> {
-  @override
-  Widget build(BuildContext context) {
-    return Obx(
-      () => ListView.builder(
-        shrinkWrap: true,
-        physics: NeverScrollableScrollPhysics(),
-        itemCount: controller.listArray.length,
-        itemBuilder: (BuildContext context, int index) {
-          FaqItemModel item = controller.listArray[index];
-          return FaqItemWidget(
-            item: item,
-          );
-        },
-      ),
-    );
-  }
 }
