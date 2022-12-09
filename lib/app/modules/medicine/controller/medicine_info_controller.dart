@@ -12,9 +12,12 @@ class MedicineInfoController extends GetxController {
   // Function ▼ ========================================
 
   // Variable ▼ ========================================
+  /// 약제명
+  Rx<String> medicine_name = ''.obs;
 
   @override
   Future<void> onInit() async {
+    medicine_name.value = Get.arguments['name'];
     super.onInit();
   }
 

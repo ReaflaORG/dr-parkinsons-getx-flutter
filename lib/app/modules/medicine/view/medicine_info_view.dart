@@ -5,13 +5,13 @@ import 'package:get/get.dart';
 import '../../../theme/colors.dart';
 import '../../../theme/texts.dart';
 import '../controller/medicine_info_controller.dart';
-import '../widget/medicine_info.dart';
+import '../page/medicine_info_dopamine.dart';
 
 class MedicineInfoView extends GetView<MedicineInfoController> {
   const MedicineInfoView({super.key});
 
   @override
-  Widget build(BuildContext context) => Scaffold(
+  Widget build(BuildContext context) => Obx(() => Scaffold(
       appBar: PreferredSize(
         preferredSize: Size.fromHeight(74.w),
         child: AppBar(
@@ -38,7 +38,7 @@ class MedicineInfoView extends GetView<MedicineInfoController> {
           elevation: 0,
           shadowColor: Colors.white,
           title: Text(
-            '도파민제',
+            onTitle(),
             style: TextPath.Heading2F18W600.copyWith(
               color: ColorPath.TextGrey1H212121,
             ),
@@ -48,14 +48,27 @@ class MedicineInfoView extends GetView<MedicineInfoController> {
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 30),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              MedicineInfo(),
-            ],
-          ),
+          child: onPageView(),
         ),
-      ));
+      )));
+
+  String onTitle() {
+    switch (controller.medicine_name.value) {
+      case 'dopamine':
+        return '도파민제';
+
+      default:
+        return '페이지 없음';
+    }
+  }
+
+  Widget onPageView() {
+    switch (controller.medicine_name.value) {
+      case 'dopamine':
+        return const MedicineInfoDopaminePage();
+
+      default:
+        return Container();
+    }
+  }
 }

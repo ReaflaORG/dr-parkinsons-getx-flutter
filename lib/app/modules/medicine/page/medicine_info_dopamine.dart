@@ -4,8 +4,9 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../theme/colors.dart';
 import '../../../theme/texts.dart';
 
-class MedicineInfo extends StatelessWidget {
-  const MedicineInfo({super.key});
+/// 도파민제 약제 설명 페이지
+class MedicineInfoDopaminePage extends StatelessWidget {
+  const MedicineInfoDopaminePage({super.key});
 
   @override
   Widget build(BuildContext context) {
