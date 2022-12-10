@@ -38,7 +38,7 @@ class MedicineInfoView extends GetView<MedicineInfoController> {
           elevation: 0,
           shadowColor: Colors.white,
           title: Text(
-            onTitle(),
+            controller.medicine_name.value,
             style: TextPath.Heading2F18W600.copyWith(
               color: ColorPath.TextGrey1H212121,
             ),
@@ -52,19 +52,19 @@ class MedicineInfoView extends GetView<MedicineInfoController> {
         ),
       )));
 
-  String onTitle() {
-    switch (controller.medicine_name.value) {
-      case 'dopamine':
-        return '도파민제';
-
-      default:
-        return '페이지 없음';
-    }
-  }
-
   Widget onPageView() {
     switch (controller.medicine_name.value) {
-      case 'dopamine':
+      case '도파민제':
+        return const MedicineInfoDopaminePage();
+      case '복합제':
+        return const MedicineInfoDopaminePage();
+      case '도파민 작용제':
+        return const MedicineInfoDopaminePage();
+      case '콤트 억제제':
+        return const MedicineInfoDopaminePage();
+      case '마오비 억제제':
+        return const MedicineInfoDopaminePage();
+      case '기타약제':
         return const MedicineInfoDopaminePage();
 
       default:
