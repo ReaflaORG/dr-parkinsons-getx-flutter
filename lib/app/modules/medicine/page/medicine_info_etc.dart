@@ -5,8 +5,8 @@ import '../../../theme/colors.dart';
 import '../../../theme/texts.dart';
 
 /// 도파민제 약제 설명 페이지
-class MedicineInfoDopaminePage extends StatelessWidget {
-  const MedicineInfoDopaminePage({super.key});
+class MedicineInfoEtcPage extends StatelessWidget {
+  const MedicineInfoEtcPage({super.key});
 
   @override
   Widget build(BuildContext context) {
