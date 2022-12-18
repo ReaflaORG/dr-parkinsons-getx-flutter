@@ -19,8 +19,14 @@ import '../../../model/carousel_slide_model.dart';
 class SignInController extends GetxController {
   static SignInController get to => Get.find();
 
+  // Controller ▼ ======================================
+
+  /// 슬라이드 컨트롤러
+  Rx<CarouselController> carouselController = CarouselController().obs;
+
   // Data ▼ ===========================================
 
+  /// 슬라이드 데이터
   RxList<CarouselSlideModel> carouselSlideData = <CarouselSlideModel>[
     CarouselSlideModel(
       title: '파킨슨 관리는 닥터 파킨슨 앱에서 !',
@@ -47,13 +53,20 @@ class SignInController extends GetxController {
     )
   ].obs;
 
-  // Controller ▼ ======================================
+  // Variable ▼ ========================================
 
-  Rx<CarouselController> carouselController = CarouselController().obs;
+  /// 카카오 토큰
+  RxSet<OAuthToken> kakaoToken = <OAuthToken>{}.obs;
+
+  /// 유저 데이터
+  RxSet<AccessTokenInfo> userData = <AccessTokenInfo>{}.obs;
+
+  /// 슬라이드 인덱스
+  Rx<int> carouselSliderIndex = 0.obs;
 
   // Funcion ▼ =========================================
 
-  /// * 카카오 로그인 프로바이더
+  /// 카카오 로그인 프로바이더
   Future<void> handleKakaoProvider() async {
     if (await isKakaoTalkInstalled()) {
       try {
@@ -65,48 +78,59 @@ class SignInController extends GetxController {
 
         try {
           await UserApi.instance.loginWithKakaoAccount();
-          print('카카오계정으로 로그인 성공');
+          Logger().d('카카오계정으로 로그인 성공');
         } catch (error) {
-          print('카카오계정으로 로그인 실패 $error');
+          Logger().d('카카오계정으로 로그인 실패 $error');
           return;
         }
       }
     } else {
       try {
         await UserApi.instance.loginWithKakaoAccount();
-        print('카카오계정으로 로그인 성공');
+        Logger().d('카카오계정으로 로그인 성공');
       } catch (error) {
-        print('카카오계정으로 로그인 실패 $error');
+        Logger().d('카카오계정으로 로그인 실패 $error');
         return;
       }
     }
     try {
       User user = await UserApi.instance.me();
-
       Account? userInfo = user.kakaoAccount;
 
-      if (userInfo == null) return;
-      Map<String, dynamic> request = {
-        'provider': 'kakao',
-        'provider_id': user.id.toString(),
-        'user_email': userInfo.email,
-        'device_token': DateTime.now().millisecondsSinceEpoch.toString(),
-      };
+      if (userInfo == null) {
+        return;
+      }
 
       AuthBaseResponseModel response = await AuthProvider.dio(
-          method: 'POST', url: '/auth/register/kakao', requestModel: request);
+        method: 'POST',
+        url: '/auth/register/kakao',
+        requestModel: {
+          'provider': 'kakao',
+          'provider_id': user.id.toString(),
+          'user_email': userInfo.email,
+          'device_token': DateTime.now().millisecondsSinceEpoch.toString(),
+        },
+      );
 
       switch (response.statusCode) {
         case 201:
           UserModel response_user = UserModel.fromJson(response.data['user']);
           String token = response.data['access_token'];
           DoctorModel? doctor;
-          if (response_user.doctorId != null) {
-            doctor = DoctorModel.fromJson(response.data['doctor']);
-          }
-          await AuthService.to.handleLogin(
-              user: response_user, responseAccessToken: token, doctor: doctor);
-          Get.offAllNamed('/main');
+
+          Future.value([
+            if (response_user.doctorId != null)
+              {
+                doctor = DoctorModel.fromJson(response.data['doctor']),
+              },
+            AuthService.to.handleLogin(
+              user: response_user,
+              responseAccessToken: token,
+              doctor: doctor,
+            )
+          ]).then((value) {
+            Get.offAllNamed('/main');
+          });
           break;
         default:
           throw Exception(response.message);
@@ -117,12 +141,6 @@ class SignInController extends GetxController {
       return;
     }
   }
-
-  // Variable ▼ ========================================
-  RxSet<OAuthToken> kakaoToken = <OAuthToken>{}.obs;
-  RxSet<AccessTokenInfo> userData = <AccessTokenInfo>{}.obs;
-
-  Rx<int> carouselSliderIndex = 0.obs;
 
   @override
   Future<void> onInit() async {

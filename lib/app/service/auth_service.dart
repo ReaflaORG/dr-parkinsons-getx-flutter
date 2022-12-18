@@ -1,7 +1,6 @@
 import 'package:base/app/model/doctor_model.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
-import 'package:logger/logger.dart';
 
 import '../model/user_model.dart';
 
@@ -32,15 +31,14 @@ class AuthService extends GetxService {
     DoctorModel? doctor,
   }) async {
     // 데이터 초기화
-    accessToken(responseAccessToken);
-    userData = user.obs;
-    isLogin.value = true;
-    if (doctor != null) {
-      myDoctor = doctor.obs;
-    }
-
-    /// 스토리지 초기화
-    await Future.wait([
+    await Future.value([
+      accessToken.value = responseAccessToken,
+      userData = user.obs,
+      isLogin.value = true,
+      if (doctor != null)
+        {
+          myDoctor = doctor.obs,
+        },
       GetStorage().write('access_token', responseAccessToken),
     ]);
 
@@ -64,12 +62,10 @@ class AuthService extends GetxService {
 
   /// 로그아웃 처리 핸들러
   Future<void> handleLogout() async {
-    // 데이터 초기화
-    accessToken.value = '';
-    isLogin.value = false;
-
     /// 스토리지 초기화
-    await Future.wait([
+    await Future.value([
+      accessToken.value = '',
+      isLogin.value = false,
       GetStorage().remove('access_token'),
     ]);
   }
