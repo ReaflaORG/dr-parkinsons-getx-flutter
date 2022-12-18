@@ -1,3 +1,4 @@
+import 'package:base/app/modules/medicine/page/medicine_info_complex.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -5,7 +6,11 @@ import 'package:get/get.dart';
 import '../../../theme/colors.dart';
 import '../../../theme/texts.dart';
 import '../controller/medicine_info_controller.dart';
+import '../page/medicine_info_comt_inhibitor.dart';
 import '../page/medicine_info_dopamine.dart';
+import '../page/medicine_info_dopamine_agonist.dart';
+import '../page/medicine_info_etc.dart';
+import '../page/medicine_info_maob_inhibitor.dart';
 
 class MedicineInfoView extends GetView<MedicineInfoController> {
   const MedicineInfoView({super.key});
@@ -57,15 +62,15 @@ class MedicineInfoView extends GetView<MedicineInfoController> {
       case '도파민제':
         return const MedicineInfoDopaminePage();
       case '복합제':
-        return const MedicineInfoDopaminePage();
+        return const MedicineInfoComplexPage();
       case '도파민 작용제':
-        return const MedicineInfoDopaminePage();
+        return const MedicineInfoDopamineAgonistPage();
       case '콤트 억제제':
-        return const MedicineInfoDopaminePage();
+        return const MedicineInfoComptInhibitorPage();
       case '마오비 억제제':
-        return const MedicineInfoDopaminePage();
+        return const MedicineInfoMaobInhibitorPage();
       case '기타약제':
-        return const MedicineInfoDopaminePage();
+        return const MedicineInfoEtcPage();
 
       default:
         return Container();

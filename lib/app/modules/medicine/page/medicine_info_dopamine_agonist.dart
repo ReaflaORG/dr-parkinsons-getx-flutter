@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../theme/colors.dart';
 import '../../../theme/texts.dart';
+import '../widget/medicine_item.dart';
 
 /// 도파민작용제 약제 설명 페이지
 class MedicineInfoDopamineAgonistPage extends StatelessWidget {
@@ -12,200 +13,138 @@ class MedicineInfoDopamineAgonistPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       mainAxisAlignment: MainAxisAlignment.start,
-      children: [
-        Container(
-          alignment: Alignment.centerLeft,
-          height: 34.w,
-          child: Text(
-            '약제명',
-            textAlign: TextAlign.left,
-            style: TextPath.TextF14W400.copyWith(
-                color: ColorPath.TextGrey4H9E9E9E),
-          ),
+      children: const [
+        MedicineItemTitle(text: '약제명'),
+        MedicineItemDescription(
+          text: '''도파민 작용제(효능제, 효현제)''',
         ),
-        Container(
-          alignment: Alignment.centerLeft,
-          child: Text(
-            '도파민작용제',
-            style: TextPath.TextF14W400Expand.copyWith(
-                color: ColorPath.TextGrey1H212121),
-          ),
-        ),
-        const SizedBox(
+        SizedBox(
           height: 20,
         ),
-        Container(
-          alignment: Alignment.centerLeft,
-          height: 34.w,
-          child: Text(
-            '설명',
-            textAlign: TextAlign.left,
-            style: TextPath.TextF14W400.copyWith(
-                color: ColorPath.TextGrey4H9E9E9E),
-          ),
+        MedicineItemTitle(text: '설명'),
+        MedicineItemDescription(
+          text:
+              '''도파민 작용제는 시냅스 연접후 도파민수용체(post-synpatic striatal dopamine receptors)를 자극하여 도파민이 증가한것처럼 반응하게 한다. 단독 투여로도 어느 정도 증상 개선 효과가 있고, 도파민제에 비해 반감기가 길어서 장기간 투여해도 이상 운동, 약효 감퇴 같은 부작용이 적어서 특히 처음 치료를 시작하는 젊은 환자에서 투여하는 경우가 많다. ''',
         ),
-        Container(
-          alignment: Alignment.centerLeft,
-          child: Text(
-            '''
-  파킨슨병은 도파민의 부족 혹은 결핍으로 인해 발생하는 질환으로 파킨슨병에 대한 치료제는 이 부족한 도파민을 보충해주는 것으로 도파민제는 가장 근간이 되는 파킨슨 치료제이다. 약물이 뇌 속으로 들어가기위한 혈액뇌장벽을 통과해야 하는데 도파민은 통과가 되지 않으므로 도파민으로 만들어지기 전 단계의 물질인 전구체, 레보도파를 복용한다. 레보도파는 파킨슨 치료 약물중 가장 운동 개선 효과가 뛰어나며 부작용이 적다.
-
-  레보도파가 뇌에 도달하기전에 도파민으로 활성화 되는 것을 막기위해서 방향족 L-아미노산 탈카복실화효소 (Aromatic L-amino acid decarboxylase, DOPA decarboxylase)를 억제하는 카르비도파, 벤세라지드와 같은 DOPA decarboxylase inhibitor 를 결합해서 복용하도록 한다.''',
-            style: TextPath.TextF14W400Expand.copyWith(
-                color: ColorPath.TextGrey1H212121),
-          ),
-        ),
-        const SizedBox(
+        SizedBox(
           height: 20,
         ),
-        Container(
-          alignment: Alignment.centerLeft,
-          height: 34.w,
-          child: Text(
-            '부작용',
-            textAlign: TextAlign.left,
-            style: TextPath.TextF14W400.copyWith(
-                color: ColorPath.TextGrey4H9E9E9E),
-          ),
+        MedicineItemTitle(text: '부작용'),
+        MedicineItemDescription(
+          text: '''구역, 구토, 어지러움, 과도한 주간 졸음, 기립성 저혈압, 악몽, 환각, 충동조절장애 등''',
         ),
-        Container(
-          alignment: Alignment.centerLeft,
-          child: Text(
-            '''  오심, 구토, 어지러움, 식욕부진, 환각, 망상, 기립성 저혈압, 졸림, 이상운동증, 도파민 조절장애, 충동조절장애 등''',
-            style: TextPath.TextF14W400Expand.copyWith(
-                color: ColorPath.TextGrey1H212121),
-          ),
-        ),
-        const SizedBox(
+        SizedBox(
           height: 20,
         ),
-        Container(
-          alignment: Alignment.centerLeft,
-          height: 34.w,
-          child: Text(
-            '종류',
-            textAlign: TextAlign.left,
-            style: TextPath.TextF14W400.copyWith(
-                color: ColorPath.TextGrey4H9E9E9E),
-          ),
+        MedicineItemTitle(text: '종류'),
+        MedicineItemLabel1(text: '1. 로파티롤'),
+        MedicineItemLabel2(text: '일반형'),
+        MedicineImageItem(
+          assest: 'assets/images/medicine/pill0301.jpg',
+          text: '''리큅 0.25mg''',
         ),
-        Container(
-          alignment: Alignment.centerLeft,
-          height: 30.w,
-          child: Text(
-            '1.1. 레보도파 일반형',
-            style: TextPath.TextF14W500.copyWith(
-                color: ColorPath.TextGrey1H212121),
-          ),
+        MedicineImageItem(
+          assest: 'assets/images/medicine/pill0302.jpg',
+          text: '''리큅 1mg''',
         ),
-        Container(
-          alignment: Alignment.centerLeft,
-          child: Text(
-            ''' 소장상부에서 흡수되어 복용 1시간후 최고 혈중농도 도달한다. 신속한 작용을 위해서 가능하다면 식전 30분~ 1시간 또는 식후 1-2시간후 복용 권장한다. 
-''',
-            style: TextPath.TextF14W400Expand.copyWith(
-                color: ColorPath.TextGrey1H212121),
-          ),
+        MedicineImageItem(
+          assest: 'assets/images/medicine/pill0303.jpg',
+          text: '''리큅 2mg''',
         ),
-        Container(
-          alignment: Alignment.centerLeft,
-          padding: EdgeInsets.only(bottom: 6.w),
-          height: 30.w,
-          child: Text(
-            '퍼킨슨 일반정',
-            style: TextPath.TextF14W500.copyWith(
-                color: ColorPath.PrimaryDarkColor),
-          ),
+        MedicineImageItem(
+          assest: 'assets/images/medicine/pill0304.jpg',
+          text: '''리큅 4mg''',
         ),
-        Container(
-          alignment: Alignment.centerLeft,
-          padding: EdgeInsets.only(bottom: 6.w),
-          child: Image.asset(
-            'assets/images/medicine/pill0101.jpg',
-            fit: BoxFit.cover,
-            width: MediaQuery.of(context).size.width * .35,
-            // height: 70.w,
-          ),
+        MedicineImageItem(
+          text: '''리큅- 글락소스미스클라인''',
         ),
-        Container(
-          alignment: Alignment.centerLeft,
-          padding: EdgeInsets.only(bottom: 12.w),
-          child: Text(
-            '''레보도파 100mg, 카르비도파수화물 27mg''',
-            style: TextPath.TextF13W400.copyWith(
-                color: ColorPath.TextGrey2H424242),
-          ),
+        MedicineImageItem(
+          text: '''로피맥스정_고려제약 ''',
         ),
-        Container(
-          alignment: Alignment.centerLeft,
-          padding: EdgeInsets.only(bottom: 6.w),
-          child: Image.asset(
-            'assets/images/medicine/pill0102.jpg',
-            fit: BoxFit.cover,
-            width: MediaQuery.of(context).size.width * .35,
-            // height: 70.w,
-          ),
+        MedicineImageItem(
+          text: '''파키놀정-명인제약''',
         ),
-        Container(
-          alignment: Alignment.centerLeft,
-          padding: EdgeInsets.only(bottom: 12.w),
-          child: Text(
-            '''레보도파 250mg, 카르비도파수화물 27mg''',
-            style: TextPath.TextF13W400.copyWith(
-                color: ColorPath.TextGrey2H424242),
-          ),
+        MedicineImageItem(
+          text: '''파키놀정-명인제약''',
         ),
-        Container(
-          alignment: Alignment.centerLeft,
-          height: 30.w,
-          child: Text(
-            '명도파 일반정',
-            style: TextPath.TextF14W500.copyWith(
-                color: ColorPath.PrimaryDarkColor),
-          ),
+        MedicineImageItem(
+          text: '''오니롤정-한미약품''',
         ),
-
-        // * 약제 3번
-        Container(
-          alignment: Alignment.centerLeft,
-          padding: EdgeInsets.only(bottom: 6.w),
-          child: Image.asset(
-            'assets/images/medicine/pill0103.jpg',
-            fit: BoxFit.cover,
-            width: MediaQuery.of(context).size.width * .35,
-            // height: 70.w,
-          ),
+        MedicineImageItem(
+          text: '''뉴큅정-유한제약''',
         ),
-        Container(
-          alignment: Alignment.centerLeft,
-          padding: EdgeInsets.only(bottom: 12.w),
-          child: Text(
-            '''레보도파 100mg, 벤세라지드염산염 28.5mg''',
-            style: TextPath.TextF13W400.copyWith(
-                color: ColorPath.TextGrey2H424242),
-          ),
+        MedicineImageItem(
+          text: '''도파프로정-제일약품''',
         ),
-
-        // * 약제 4번
-        Container(
-          alignment: Alignment.centerLeft,
-          padding: EdgeInsets.only(bottom: 6.w),
-          child: Image.asset(
-            'assets/images/medicine/pill0104.jpg',
-            fit: BoxFit.cover,
-            width: MediaQuery.of(context).size.width * .35,
-            // height: 70.w,
-          ),
+        MedicineImageItem(
+          text: '''프라큅정- 한국프라임제약''',
         ),
-        Container(
-          alignment: Alignment.centerLeft,
-          padding: EdgeInsets.only(bottom: 12.w),
-          child: Text(
-            '''레보도파 100mg, 벤세라지드염산염 28.5mg''',
-            style: TextPath.TextF13W400.copyWith(
-                color: ColorPath.TextGrey2H424242),
-          ),
+        MedicineImageItem(
+          text: '''리키롤정-대웅바이오''',
         ),
+        MedicineItemLabel2(text: '서방형'),
+        MedicineImageItem(
+          assest: 'assets/images/medicine/pill0305.jpg',
+          text: '''리큅 피디 2mg''',
+        ),
+        MedicineImageItem(
+          assest: 'assets/images/medicine/pill0306.jpg',
+          text: '''리큅 피디 4mg ''',
+        ),
+        MedicineImageItem(
+          assest: 'assets/images/medicine/pill0307.jpg',
+          text: '''리큅 피디 8mg ''',
+        ),
+        MedicineImageItem(text: '리큅- 글락소스미스클라인'),
+        MedicineImageItem(text: '로피맥스정_고려제약 '),
+        MedicineImageItem(text: '파키놀정-명인제약'),
+        MedicineImageItem(text: '오니롤정-한미약품'),
+        MedicineImageItem(text: '뉴큅정-유한제약'),
+        MedicineImageItem(text: '도파프로정-제일약품'),
+        MedicineImageItem(text: '프라큅정- 한국프라임제약 '),
+        MedicineImageItem(text: '리키롤정-대웅바이오'),
+        MedicineImageItem(text: '리큅피디정-글락소스미스클라인'),
+        MedicineImageItem(text: '로피맥스피디정-고려제약'),
+        MedicineImageItem(text: '로피리노서방정-한국파마'),
+        MedicineImageItem(text: '리키롤피디정-대웅바이오'),
+        MedicineImageItem(text: '파키놀피디정-명인제약'),
+        MedicineImageItem(text: '현대로피니롤서방정-현대약품 '),
+        // 약재 2
+        MedicineItemLabel1(text: '2. 프라미펙솔'),
+        MedicineItemLabel2(text: '일반형'),
+        MedicineImageItem(
+          assest: 'assets/images/medicine/pill0308.jpg',
+          text: '''미라펙스 0.25mg ''',
+        ),
+        MedicineImageItem(
+          assest: 'assets/images/medicine/pill0309.jpg',
+          text: '''미라펙스 0.5mg''',
+        ),
+        MedicineImageItem(
+          assest: 'assets/images/medicine/pill0310.jpg',
+          text: '''미라펙스 1mg ''',
+        ),
+        MedicineImageItem(text: '미라펙스정-한국베링거인겔하임'),
+        MedicineImageItem(text: '피디펙솔정-명인제약'),
+        MedicineImageItem(text: '프라펙솔정-삼일제약'),
+        MedicineImageItem(text: '미라프정-현대약품'),
+        MedicineItemLabel2(text: '서방형'),
+        MedicineImageItem(
+          assest: 'assets/images/medicine/pill0311.jpg',
+          text: '''미라펙스 서방정 0.375mg ''',
+        ),
+        MedicineImageItem(
+          assest: 'assets/images/medicine/pill0312.jpg',
+          text: '''미라펙스 서방정 0.75mg''',
+        ),
+        MedicineImageItem(
+          assest: 'assets/images/medicine/pill0313.jpg',
+          text: '''미미라펙스 서방정 1.5mg''',
+        ),
+        MedicineImageItem(text: '미라펙스서방정-한국베링거인겔하임'),
+        MedicineImageItem(text: '피디펙솔서방정-명인제약'),
+        MedicineImageItem(text: '프라펙솔서방정-삼일제약'),
+        MedicineImageItem(text: '미라프서방정-현대약품'),
       ],
     );
   }
