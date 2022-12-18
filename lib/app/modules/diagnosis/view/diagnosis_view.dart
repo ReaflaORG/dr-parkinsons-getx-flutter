@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
+import '../../../service/auth_service.dart';
 import '../../../theme/colors.dart';
 import '../../../theme/texts.dart';
 import '../controller/diagnosis_controller.dart';
@@ -288,17 +289,14 @@ class SurveyResultView extends GetView<DiagnosisController> {
                                 const SizedBox(
                                   height: 34,
                                 ),
-                                Text('''김하나 님의 점수는 40점으로 
-파킨슨 질병 의심환자 입니다. 
-전문의 검진 및 상담이 필요합니다.''',
+                                Text(controller.handleResultValue(),
                                     style: TextPath.TextF16W500Expand.copyWith(
                                         color: ColorPath.TextGrey2H424242)),
                                 SizedBox(
                                   height: 34.w,
                                 ),
                                 Text(
-                                  '''전문의와의 상담을 원하시면, 
-하단의 링크를 눌러주세요.''',
+                                  '''전문의와의 상담을 원하시면,\n하단의 링크를 눌러주세요.''',
                                   style: TextPath.TextF14W400.copyWith(
                                       color: ColorPath.TextGrey2H424242),
                                 ),

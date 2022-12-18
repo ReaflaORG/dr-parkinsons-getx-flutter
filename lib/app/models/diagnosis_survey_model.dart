@@ -26,9 +26,9 @@ class Survey {
 
   Map<String, dynamic> toJson() {
     return {
-      "surveyId": surveyId,
-      "nameOfSurvey": nameOfSurvey,
-      "quizes": quizes.map((e) => e.toJson()),
+      'surveyId': surveyId,
+      'nameOfSurvey': nameOfSurvey,
+      'quizes': quizes.map((e) => e.toJson()),
     };
   }
 }
@@ -49,11 +49,11 @@ class SurveyQuiz {
 
   Map<String, dynamic> toJson() {
     return {
-      "surveyId": surveyId,
-      "surveyQuizId": surveyQuizId,
-      "questionText": questionText,
-      "userAnswer": userAnswer,
-      "answers": answers.map((e) => e.toJson()),
+      'surveyId': surveyId,
+      'surveyQuizId': surveyQuizId,
+      'questionText': questionText,
+      'userAnswer': userAnswer,
+      'answers': answers.map((e) => e.toJson()),
     };
   }
 }
@@ -70,9 +70,9 @@ class Answer {
 
   Map<String, dynamic> toJson() {
     return {
-      "surveyQuizId": surveyQuizId,
-      "answerText": answerText,
-      "answerScore": answerScore,
+      'surveyQuizId': surveyQuizId,
+      'answerText': answerText,
+      'answerScore': answerScore,
     };
   }
 }

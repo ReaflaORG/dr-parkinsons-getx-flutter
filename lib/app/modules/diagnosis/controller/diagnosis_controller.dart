@@ -4,9 +4,12 @@ import 'package:get/get.dart';
 import 'package:logger/logger.dart';
 
 import '../../../models/diagnosis_survey_model.dart';
+import '../../../service/auth_service.dart';
 
 class DiagnosisController extends GetxController {
   static DiagnosisController get to => Get.find();
+
+  Rx<int> survey_id = 0.obs;
   List<Survey> surveyList = [
     Survey(surveyId: 1, quizes: [], nameOfSurvey: '파킨슨 자가진단'),
     Survey(
@@ -197,8 +200,8 @@ class DiagnosisController extends GetxController {
             surveyQuizId: 21,
             questionText: '21. 생활의 활력이 넘치십니까?',
             answers: [
-              Answer(surveyQuizId: 21, answerScore: 1, answerText: '예'),
-              Answer(surveyQuizId: 21, answerScore: 0, answerText: '아니요'),
+              Answer(surveyQuizId: 21, answerScore: 0, answerText: '예'),
+              Answer(surveyQuizId: 21, answerScore: 1, answerText: '아니요'),
             ],
           ),
           SurveyQuiz(
@@ -428,6 +431,34 @@ class DiagnosisController extends GetxController {
   //사용자가 선택하는  문제답
   // 0 이면 True , 1이면 False
 
+  String handleResultValue() {
+    switch (survey_id.value) {
+      case 2:
+        if (score.value >= 18) {
+          //우울증
+          return "${AuthService.to.userData.value.userName ?? '사용자'} 님의 점수는 ${score.value}점으로\n유의미한 우울증상을 보이고 있습니다 \n주치의와 상의하십시오.";
+        } else if (score >= 11 && score <= 18) {
+          //경상 우을
+          return "${AuthService.to.userData.value.userName ?? '사용자'} 님의 점수는 ${score.value}점으로\n경증 우울증상을 보이고 있습니다. \n주치의와 상의하십시오.";
+        } else {
+          //정상
+          return "${AuthService.to.userData.value.userName ?? '사용자'} 님의 점수는 ${score.value}점으로\n의미있는 우울증상은 없습니다.\n경과관찰하세요.";
+        }
+        break;
+      case 3:
+        if (score.value >= 5) {
+          //우울증
+          return "${AuthService.to.userData.value.userName ?? '사용자'} 님의 점수는 ${score.value}점으로\n렘수면 행동 장애가 있습니다.\n전문의와 상의하십시오.";
+        } else {
+          //정상
+          return "${AuthService.to.userData.value.userName ?? '사용자'} 님의 점수는 ${score.value}점으로\n의미있는 렘수면 행동 장애는 없습니다.\n경과관찰하세요.";
+        }
+        break;
+      default:
+        return "Error";
+    }
+  }
+
   // Function ▼ ========================================
 
   // * 유저가 다음 문제로 이동하는 함수
@@ -440,11 +471,8 @@ class DiagnosisController extends GetxController {
     if (questionNumber.value >= survey.value.quizes.length - 1) {
       // 반목문으로 quzie에 저장된 유저 답을 기반으로 계산
       for (int i = 0; i < survey.value.quizes.length; i++) {
-        score.value += survey
-            .value
-            .quizes[i]
-            .answers[survey.value.quizes[questionNumber.value].userAnswer]
-            .answerScore;
+        score.value += survey.value.quizes[i]
+            .answers[survey.value.quizes[i].userAnswer].answerScore;
       }
       isFinish.value = true;
     } else {
@@ -479,7 +507,7 @@ class DiagnosisController extends GetxController {
   @override
   Future<void> onInit() async {
     super.onInit();
-    Logger().d(Get.parameters['id']);
+    survey_id.value = int.parse(Get.parameters['id']!);
     // get parameter로 들어오는 서베이 아이디 값을 기준으로 서베이를 초기화
     int findIndex = surveyList.indexWhere((element) =>
         element.surveyId ==

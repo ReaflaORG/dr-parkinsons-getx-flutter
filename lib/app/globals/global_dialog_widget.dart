@@ -998,3 +998,66 @@ Future<dynamic> GlobalUpdateAlarm(
         );
       },
     );
+
+///* 준비중입니다. 모달
+Future<dynamic> GlobalReadyModal({required BuildContext context}) => showDialog(
+      context: context,
+      barrierDismissible: true,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          backgroundColor: ColorPath.BackgroundWhite,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.all(Radius.circular(16.w)),
+          ),
+          content: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Container(
+                padding: EdgeInsets.only(
+                    top: 30.w, left: 20.w, right: 20.w, bottom: 20.w),
+                child: Column(
+                  children: <Widget>[
+                    Container(
+                      alignment: Alignment.center,
+                      child: Text(
+                        '준비 중 입니다.',
+                        style: TextPath.Heading3F16W600.copyWith(
+                          color: ColorPath.TextGrey1H212121,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              GestureDetector(
+                onTap: () {
+                  Get.back();
+                },
+                child: SizedBox(
+                  height: 48.w,
+                  child: Container(
+                    alignment: Alignment.center,
+                    decoration: BoxDecoration(
+                        color: ColorPath.PrimaryColor,
+                        borderRadius: BorderRadius.only(
+                          bottomLeft: Radius.circular(16.w),
+                          bottomRight: Radius.circular(16.w),
+                        )),
+                    height: 48.w,
+                    child: Text(
+                      '닫기',
+                      style: TextPath.TextF14W500.copyWith(
+                        color: ColorPath.TextWhite,
+                      ),
+                    ),
+                  ),
+                ),
+              )
+            ],
+          ),
+          // ),
+          contentPadding: const EdgeInsets.all(0),
+        );
+      },
+    );

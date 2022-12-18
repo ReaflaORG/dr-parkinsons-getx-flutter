@@ -5,9 +5,11 @@ import 'dart:async';
 import 'package:base/app/globals/global_toast_widget.dart';
 import 'package:base/app/models/welfare_model.dart';
 import 'package:base/app/provider/main_provider.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:logger/logger.dart';
 
+import '../../../globals/global_dialog_widget.dart';
 import '../../../models/base_response_model.dart';
 import '../../../models/healthcare_btn_model.dart';
 import '../../../routes/app_pages.dart';
@@ -45,7 +47,8 @@ class HealthCareController extends GetxController {
         color: ColorPath.SecondaryLightColor,
         icon: 'assets/images/icons/3d/48test1.png',
         onClick: () {
-          Get.toNamed('${Routes.DIAGNOSIS}/1');
+          // Get.toNamed('${Routes.DIAGNOSIS}/1');
+          GlobalReadyModal(context: Get.overlayContext as BuildContext);
         }),
     HealthCareBtnModel(
         name: '파킨슨 심리진단',
