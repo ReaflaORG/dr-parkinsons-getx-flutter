@@ -2,6 +2,7 @@
 
 import 'dart:async';
 
+import 'package:base/app/service/location_service.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -92,6 +93,10 @@ class MainController extends GetxController {
 
   @override
   Future<void> onInit() async {
+    Future.wait([
+      LocationService.to.getLocation(),
+    ]);
+
     super.onInit();
   }
 

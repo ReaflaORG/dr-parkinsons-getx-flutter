@@ -3,12 +3,12 @@ import 'dart:async';
 import 'package:base/app/models/sarch_doctors_model.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:location/location.dart';
 import 'package:logger/logger.dart';
 
 import '../../../globals/global_toast_widget.dart';
 import '../../../models/base_response_model.dart';
 import '../../../provider/main_provider.dart';
+import '../../../service/location_service.dart';
 
 /// 주치의 찾기 검색 컨트롤러
 class DoctorSearchController extends GetxController {
@@ -26,9 +26,6 @@ class DoctorSearchController extends GetxController {
   /// 검색 데이터
   RxList<SearchDoctorsModel> searchData = <SearchDoctorsModel>[].obs;
 
-  /// 위치 정보 가져오기 데이터
-  late final LocationData locationData;
-
   // Controller ▼ ========================================
 
   Rx<TextEditingController> searchTextFormFieldController =
@@ -39,21 +36,6 @@ class DoctorSearchController extends GetxController {
   Rx<FocusNode> searchTextFocusNode = FocusNode().obs;
 
   // Variable ▼ ========================================
-
-  /// 위치 정보
-  final Location location = Location();
-
-  /// 위치 정보 가져오기 성공 여부
-  RxBool serviceEnabled = false.obs;
-
-  /// 위치 정보 가져오기 권한 여부
-  late PermissionStatus permissionGranted;
-
-  /// Long
-  RxDouble long = 0.0.obs;
-
-  /// Lat
-  RxDouble lat = 0.0.obs;
 
   /// 검색
   Rx<dynamic> search = ''.obs;
@@ -68,32 +50,6 @@ class DoctorSearchController extends GetxController {
   RxList<String> distanceList = ['5', '10', '20'].obs;
 
   // Function ▼ ========================================
-
-  /// 위치 정보 가져오기
-  Future<void> getLocation() async {
-    List temp = [
-      await Future.value(await location.serviceEnabled()),
-      await Future.value(await location.requestService()),
-    ];
-
-    if (!temp[0] && !temp[1]) {
-      return;
-    }
-
-    // permissionGranted = await location.hasPermission();
-    // if (permissionGranted == PermissionStatus.denied) {
-    //   permissionGranted = await location.requestPermission();
-    //   if (permissionGranted != PermissionStatus.granted) {
-    //     return;
-    //   }
-    // }
-
-    locationData = await location.getLocation();
-    getDoctorList(
-      long: locationData.longitude!,
-      lat: locationData.latitude!,
-    );
-  }
 
   /// 검색
   Future<void> onHandleSearch({
@@ -135,14 +91,12 @@ class DoctorSearchController extends GetxController {
     }
   }
 
-  Future<void> getDoctorList({
-    required double long,
-    required double lat,
-  }) async {
+  Future<void> getDoctorList() async {
     try {
       AuthBaseResponseModel response = await AuthProvider.dio(
         method: 'GET',
-        url: '/doctor?long=$long&lat=$lat&distance=$distance&search=',
+        url:
+            '/doctor?long=${LocationService.to.locationData.longitude}&lat=${LocationService.to.locationData.latitude}&distance=$distance&search=',
       );
 
       switch (response.statusCode) {
@@ -169,9 +123,7 @@ class DoctorSearchController extends GetxController {
 
   @override
   Future<void> onInit() async {
-    Future.wait([
-      getLocation(),
-    ]);
+    await getDoctorList();
 
     super.onInit();
   }
