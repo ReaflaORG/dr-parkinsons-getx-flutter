@@ -40,25 +40,23 @@ class HomeView extends GetView<HomeController> {
                       ),
                     ),
                   ),
-                  const SizedBox(width: 20),
+                  SizedBox(width: 20.w),
                 ],
                 backgroundColor: Colors.white,
               ),
               body: controller.process.value == false
                   ? Container(
-                      padding: const EdgeInsets.symmetric(horizontal: 20),
+                      padding: EdgeInsets.symmetric(horizontal: 20.w),
                       child: SingleChildScrollView(
                         child: Column(
                           children: [
                             Container(
                               width: 320.w,
                               height: 36.w,
-                              padding: const EdgeInsets.symmetric(
-                                horizontal: 20,
-                              ),
+                              padding: EdgeInsets.symmetric(horizontal: 20.w),
                               decoration: BoxDecoration(
                                 color: ColorPath.Background1HECEFF1,
-                                borderRadius: BorderRadius.circular(36),
+                                borderRadius: BorderRadius.circular(36.r),
                               ),
                               child: Row(
                                 children: [
@@ -88,9 +86,7 @@ class HomeView extends GetView<HomeController> {
                                 ],
                               ),
                             ),
-                            const SizedBox(
-                              height: 20,
-                            ),
+                            SizedBox(height: 20.w),
                             Row(
                               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                               children: [
@@ -122,14 +118,14 @@ class HomeView extends GetView<HomeController> {
                                                 'assets/images/icons/page2/44 DNA.png'),
                                           ),
                                         ),
-                                        const SizedBox(height: 14),
+                                        SizedBox(height: 14.w),
                                         Text(
                                           '파킨슨 병이란?',
                                           style: TextPath.TextF13W500.copyWith(
                                             color: ColorPath.TextGrey3H616161,
                                           ),
                                         ),
-                                        const SizedBox(height: 2),
+                                        SizedBox(height: 2.w),
                                         Text(
                                           '파킨슨 병이란?',
                                           style: TextPath.TextF16W500.copyWith(
@@ -140,9 +136,7 @@ class HomeView extends GetView<HomeController> {
                                     ),
                                   ),
                                 ),
-                                const SizedBox(
-                                  width: 12,
-                                ),
+                                SizedBox(width: 12.w),
                                 Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
@@ -156,7 +150,7 @@ class HomeView extends GetView<HomeController> {
                                         decoration: BoxDecoration(
                                           color: ColorPath.SecondaryLightColor,
                                           borderRadius:
-                                              BorderRadius.circular(5),
+                                              BorderRadius.circular(5.r),
                                         ),
                                         child: Row(
                                           mainAxisAlignment:
@@ -175,7 +169,7 @@ class HomeView extends GetView<HomeController> {
                                                       height: 27.w,
                                                       'assets/images/icons/page2/36 Hospital.png')),
                                             ),
-                                            const SizedBox(width: 8),
+                                            SizedBox(width: 8.w),
                                             Column(
                                               mainAxisAlignment:
                                                   MainAxisAlignment.center,
@@ -188,9 +182,7 @@ class HomeView extends GetView<HomeController> {
                                                         .TextGrey3H616161,
                                                   ),
                                                 ),
-                                                const SizedBox(
-                                                  height: 4,
-                                                ),
+                                                SizedBox(height: 4.w),
                                                 Text('학회 및 앱 소개',
                                                     style: TextPath.TextF16W500
                                                         .copyWith(
@@ -203,9 +195,7 @@ class HomeView extends GetView<HomeController> {
                                         ),
                                       ),
                                     ),
-                                    const SizedBox(
-                                      height: 15,
-                                    ),
+                                    SizedBox(height: 15.w),
                                     InkWell(
                                       onTap: () {
                                         Get.toNamed('/fact');
@@ -293,18 +283,16 @@ class HomeView extends GetView<HomeController> {
                                         style: TextPath.TextF13W400.copyWith(
                                             color: ColorPath.TextGrey3H616161),
                                       ),
-                                      const Icon(
+                                      Icon(
                                         Icons.keyboard_arrow_right,
-                                        size: 24,
+                                        size: 24.w,
                                       ),
                                     ],
                                   ),
                                 ),
                               ],
                             ),
-                            const SizedBox(
-                              height: 12,
-                            ),
+                            SizedBox(height: 12.w),
                             Container(
                               width: 320.w,
                               height: 96.w,
@@ -338,12 +326,12 @@ class HomeView extends GetView<HomeController> {
                                           'assets/images/icons/page2/48 pill.png'),
                                     ),
                                   ),
-                                  const SizedBox(
-                                    width: 12,
+                                  SizedBox(
+                                    width: 12.w,
                                   ),
                                   Container(
                                     alignment: Alignment.centerLeft,
-                                    width: 150,
+                                    width: 150.w,
                                     child: Column(
                                       mainAxisAlignment:
                                           MainAxisAlignment.center,
@@ -386,9 +374,7 @@ class HomeView extends GetView<HomeController> {
                                                       .TextGrey1H212121,
                                                 ),
                                               ),
-                                              const SizedBox(
-                                                width: 4,
-                                              ),
+                                              SizedBox(width: 4.w),
                                               Text(
                                                 '분 전',
                                                 style: TextPath.TextF13W500
@@ -475,9 +461,7 @@ class HomeView extends GetView<HomeController> {
                                         mainAxisAlignment:
                                             MainAxisAlignment.spaceBetween,
                                         children: [
-                                          SizedBox(
-                                            width: 220.w,
-                                            height: 16.w,
+                                          Expanded(
                                             child: Text(
                                               controller.homeData.value
                                                   .welfare[index].description,
@@ -486,9 +470,11 @@ class HomeView extends GetView<HomeController> {
                                                 color:
                                                     ColorPath.TextGrey2H424242,
                                               ),
+                                              maxLines: 1,
                                               overflow: TextOverflow.ellipsis,
                                             ),
                                           ),
+                                          SizedBox(width: 10.w),
                                           Text(
                                             DateFormat('yyyy-MM-dd').format(
                                                 controller.homeData.value
@@ -663,8 +649,8 @@ class HomeView extends GetView<HomeController> {
                                           MainAxisAlignment.spaceAround,
                                       children: [
                                         Container(
-                                          margin: const EdgeInsets.symmetric(
-                                              horizontal: 8),
+                                          margin: EdgeInsets.symmetric(
+                                              horizontal: 8.w),
                                           width: 48.w,
                                           height: 48.w,
                                           child: CircleAvatar(
@@ -727,8 +713,8 @@ class HomeView extends GetView<HomeController> {
                                   ),
                                 ),
                                 Container(
-                                  margin: const EdgeInsets.symmetric(
-                                      horizontal: 10),
+                                  margin:
+                                      EdgeInsets.symmetric(horizontal: 10.w),
                                   child: Text(
                                     ' | ',
                                     style: TextPath.TextF12W400.copyWith(
@@ -745,7 +731,7 @@ class HomeView extends GetView<HomeController> {
                                 ),
                               ],
                             ),
-                            const SizedBox(height: 20),
+                            SizedBox(height: 20.w),
                             Row(children: [
                               Text(
                                 'Copyright © 2022 길 의료재단. All right reserved.',
@@ -753,7 +739,7 @@ class HomeView extends GetView<HomeController> {
                                     color: ColorPath.TextGrey3H616161),
                               ),
                             ]),
-                            const SizedBox(height: 99),
+                            SizedBox(height: 99.w),
                           ],
                         ),
                       ),

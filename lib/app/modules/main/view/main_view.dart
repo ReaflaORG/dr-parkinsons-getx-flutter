@@ -16,58 +16,56 @@ class MainView extends GetView<MainController> {
         () => Scaffold(
           body: controller.handleScreen(),
           bottomNavigationBar: Container(
+            // height: Platform.isIOS ? 62.h : 62.h,
             decoration: BoxDecoration(
               color: ColorPath.BackgroundWhite,
               border: Border.all(
                 width: 1,
                 color: ColorPath.Border2HECEFF1,
               ),
-              borderRadius: const BorderRadius.only(
-                topRight: Radius.circular(12),
-                topLeft: Radius.circular(12),
+              borderRadius: BorderRadius.only(
+                topRight: Radius.circular(12.r),
+                topLeft: Radius.circular(12.r),
               ),
             ),
             child: ClipRRect(
-              borderRadius: const BorderRadius.only(
-                topLeft: Radius.circular(12),
-                topRight: Radius.circular(12),
+              borderRadius: BorderRadius.only(
+                topLeft: Radius.circular(12.r),
+                topRight: Radius.circular(12.r),
               ),
-              child: SizedBox(
-                height: Platform.isIOS ? 62.h : 62.h,
-                child: BottomNavigationBar(
-                  type: BottomNavigationBarType.fixed,
-                  currentIndex: controller.navigationIndex.value,
-                  backgroundColor: ColorPath.BackgroundWhite,
-                  elevation: 10,
-                  selectedItemColor: ColorPath.BlackColor,
-                  unselectedItemColor: ColorPath.TextGrey4H9E9E9E,
-                  selectedLabelStyle: TextPath.TextF12W600,
-                  unselectedLabelStyle: TextPath.TextF12W400.copyWith(
-                    color: ColorPath.TextGrey4H9E9E9E,
-                  ),
-                  onTap: (index) {
-                    controller.navigationIndex.value = index;
+              child: BottomNavigationBar(
+                type: BottomNavigationBarType.fixed,
+                currentIndex: controller.navigationIndex.value,
+                backgroundColor: ColorPath.BackgroundWhite,
+                elevation: 10,
+                selectedItemColor: ColorPath.BlackColor,
+                unselectedItemColor: ColorPath.TextGrey4H9E9E9E,
+                selectedLabelStyle: TextPath.TextF12W600,
+                unselectedLabelStyle: TextPath.TextF12W400.copyWith(
+                  color: ColorPath.TextGrey4H9E9E9E,
+                ),
+                onTap: (index) {
+                  controller.navigationIndex.value = index;
+                },
+                items: List.generate(
+                  controller.navigationData.length,
+                  (index) {
+                    return BottomNavigationBarItem(
+                      activeIcon: IconWidget(
+                        index: index,
+                        image: controller.navigationData[index].imageActive!,
+                        width: controller.navigationData[index].width!,
+                        height: controller.navigationData[index].height!,
+                      ),
+                      icon: IconWidget(
+                        index: index,
+                        image: controller.navigationData[index].image!,
+                        width: controller.navigationData[index].width!,
+                        height: controller.navigationData[index].height!,
+                      ),
+                      label: controller.navigationData[index].title,
+                    );
                   },
-                  items: List.generate(
-                    controller.navigationData.length,
-                    (index) {
-                      return BottomNavigationBarItem(
-                        activeIcon: IconWidget(
-                          index: index,
-                          image: controller.navigationData[index].imageActive!,
-                          width: controller.navigationData[index].width!,
-                          height: controller.navigationData[index].height!,
-                        ),
-                        icon: IconWidget(
-                          index: index,
-                          image: controller.navigationData[index].image!,
-                          width: controller.navigationData[index].width!,
-                          height: controller.navigationData[index].height!,
-                        ),
-                        label: controller.navigationData[index].title,
-                      );
-                    },
-                  ),
                 ),
               ),
             ),
@@ -92,7 +90,7 @@ class IconWidget extends GetView<MainController> {
 
   @override
   Widget build(BuildContext context) => Container(
-        padding: const EdgeInsets.only(bottom: 5),
+        padding: EdgeInsets.only(bottom: 5.w),
         child: Image.asset(
           image,
           width: width.w,

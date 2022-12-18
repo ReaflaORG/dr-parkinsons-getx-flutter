@@ -38,6 +38,23 @@ class MissionView extends GetView<MissionController> {
           floatingActionButtonLocation:
               FloatingActionButtonLocation.centerFloat,
           appBar: AppBar(
+            leadingWidth: 60,
+            leading: Container(
+              margin: const EdgeInsets.only(
+                left: 20,
+              ),
+              child: CircleAvatar(
+                backgroundColor: ColorPath.BackgroundWhite,
+                radius: 24,
+                child: IconButton(
+                  onPressed: () => Get.back(),
+                  icon: Icon(
+                    Icons.arrow_back,
+                    color: ColorPath.TextGrey1H212121,
+                  ),
+                ),
+              ),
+            ),
             elevation: 0,
             shadowColor: Colors.white,
             title: Text(
@@ -63,11 +80,14 @@ class MissionView extends GetView<MissionController> {
             ],
             backgroundColor: Colors.white,
           ),
+          backgroundColor: ColorPath.Background1HECEFF1,
           body: SingleChildScrollView(
             child: Column(
               children: [
                 Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 20),
+                  padding:
+                      EdgeInsets.only(left: 20.w, right: 20.w, bottom: 20.w),
+                  color: ColorPath.BackgroundWhite,
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -82,7 +102,7 @@ class MissionView extends GetView<MissionController> {
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
                           ...List.generate(7, (index) {
-                            return MiniCalendar(
+                            return const MiniCalendar(
                               dayName: '월',
                               day: 31,
                             );
@@ -92,7 +112,6 @@ class MissionView extends GetView<MissionController> {
                     ],
                   ),
                 ),
-                const SizedBox(height: 20),
                 controller.process.value == false
                     ? Container(
                         padding:
@@ -156,7 +175,9 @@ class MissionView extends GetView<MissionController> {
                                             ),
                                           ),
                                           Text(
-                                            '${(controller.clearMove.value * 100 / controller.move.value).toStringAsFixed(0)}%',
+                                            controller.move.value != 0
+                                                ? '${(controller.clearMove.value * 100 / controller.move.value).toStringAsFixed(0)}%'
+                                                : '0%',
                                             style:
                                                 TextPath.TextF16W500.copyWith(
                                               color: ColorPath.BlackColor,
@@ -246,7 +267,9 @@ class MissionView extends GetView<MissionController> {
                                             ),
                                           ),
                                           Text(
-                                            '${(controller.clearPill.value * 100 / controller.pill.value).toStringAsFixed(0)}%',
+                                            controller.pill.value != 0
+                                                ? '${(controller.clearPill.value * 100 / controller.pill.value).toStringAsFixed(0)}%'
+                                                : '0%',
                                             style:
                                                 TextPath.TextF16W500.copyWith(
                                               color: ColorPath.BlackColor,

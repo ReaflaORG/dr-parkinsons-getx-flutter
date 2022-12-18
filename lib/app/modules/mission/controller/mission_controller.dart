@@ -209,7 +209,7 @@ class MissionController extends GetxController {
         case 200:
         case 201:
           getMissionList();
-          Get.back();
+          // Get.back();
           GlobalToastWidget(message: '삭제 되었습니다.');
           break;
 
