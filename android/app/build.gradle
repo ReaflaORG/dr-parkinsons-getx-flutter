@@ -103,11 +103,11 @@ android {
     }
 
     // https://android-developers.googleblog.com/2022/03/freeing-up-60-of-storage-for-apps.html
-    bundle {
-        storeArchive {
-            enable = false
-        }
-    }
+    // bundle {
+    //     storeArchive {
+    //         enable = false
+    //     }
+    // }
 
     splits {
         // TODO: 화면 밀도나 ABI(Application Binary Interface)에 따라 여러 개의 APK를 빌드하는 작업에는 시간이 걸립니다.
