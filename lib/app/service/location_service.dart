@@ -1,115 +1,81 @@
-import 'package:base/app/models/doctor_model.dart';
+import 'dart:io';
+
+import 'package:device_info_plus/device_info_plus.dart';
 import 'package:get/get.dart';
-import 'package:get_storage/get_storage.dart';
+import 'package:location/location.dart';
 
-import '../models/user_model.dart';
+import '../globals/global_toast_widget.dart';
 
-/// Auth 서비스
-class AuthService extends GetxService {
-  static AuthService get to => Get.find();
+/// 위치 조회 서비스
+class LocationService extends GetxService {
+  static LocationService get to => Get.find();
 
-  // Variable ▼ ========================================
+  /// 디바이스 정보
+  DeviceInfoPlugin deviceInfo = DeviceInfoPlugin();
 
-  /// 액세스 토큰
-  Rx<String?> accessToken = GetStorage().read<String>('access_token').obs;
+  /// 위치 정보 가져오기 데이터
+  late final LocationData locationData;
 
-  /// 로그인 체크
-  RxBool isLogin = false.obs;
+  /// 위치 정보
+  final Location location = Location();
 
-  /// 유저 데이터
-  late Rx<UserModel> userData;
+  /// 위치 정보 가져오기 성공 여부
+  RxBool serviceEnabled = false.obs;
 
-  // 전담의 의사 데이터
-  late Rx<DoctorModel> myDoctor;
+  /// 위치 정보 가져오기 권한 여부
+  late PermissionStatus permissionGranted;
 
-  // Functions ▼ ========================================
+  /// 위치 정보 가져오기
+  Future<void> getLocation() async {
+    List temp = [
+      await Future.value(await location.serviceEnabled()),
+      await Future.value(await location.requestService()),
+    ];
 
-  /// 로그인 처리 핸들러
-  Future<void> handleLogin({
-    required UserModel user,
-    required String responseAccessToken,
-    DoctorModel? doctor,
-  }) async {
-    // 데이터 초기화
-    await Future.value([
-      accessToken.value = responseAccessToken,
-      userData = user.obs,
-      isLogin.value = true,
-      if (doctor != null)
-        {
-          myDoctor = doctor.obs,
-        },
-      GetStorage().write('access_token', responseAccessToken),
-    ]);
+    if (!temp[0] && !temp[1]) {
+      return;
+    }
 
-    return;
-  }
+    permissionGranted = await location.hasPermission();
+    if (permissionGranted == PermissionStatus.denied) {
+      permissionGranted = await location.requestPermission();
+      if (permissionGranted != PermissionStatus.granted) {
+        return;
+      }
+    }
 
-  /// 토큰 로그인 처리 핸들러
-  // Future<void> handleTokenLogin({
-  //   required AuthBaseResponseModel resposne,
-  // }) async {
-  //   // 데이터 초기화
-  //   accessToken.value = resposne.data!.tokenInfo.accessToken;
-  //   userData = resposne.data!.userInfo.obs;
-  //   isLogin.value = true;
+    // Logger().d(await location.getLocation());
+    // Logger().d(await deviceInfo.toString());
 
-  //   /// 스토리지 초기화
-  //   await Future.wait([
-  //     GetStorage().write('access_token', resposne.data!.tokenInfo.accessToken),
-  //   ]);
-  // }
+    if (Platform.isIOS) {
+      IosDeviceInfo iosInfo = await deviceInfo.iosInfo;
 
-  /// 로그아웃 처리 핸들러
-  Future<void> handleLogout() async {
-    /// 스토리지 초기화
-    await Future.value([
-      accessToken.value = '',
-      isLogin.value = false,
-      GetStorage().remove('access_token'),
-    ]);
-  }
+      if (iosInfo.isPhysicalDevice) {
+        locationData = await location.getLocation();
+      } else {
+        GlobalToastWidget(message: '시뮬레이터에서는 위치 정보를 가져올 수 없습니다.');
+        locationData = LocationData.fromMap({
+          'latitude': 37.566535,
+          'longitude': 126.97796919999996,
+        });
+      }
+    } else if (Platform.isAndroid) {
+      AndroidDeviceInfo androidInfo = await deviceInfo.androidInfo;
 
-  /// 로그탈퇴 처리 핸들러
-  Future<void> handleWithOut() async {
-    /// 데이터 초기화
-    accessToken.value = '';
-    isLogin.value = false;
-
-    await Future.wait([
-      GetStorage().remove('access_token'),
-    ]);
-  }
-
-  /// 초기화
-  Future<void> handleInitialization() async {
-    // try {
-    //   if (refreshToken.value != null && email.value != null) {
-    //     AuthBaseResponseModel resposne = await AuthProvider.tokenLogin(
-    //       method: 'POST',
-    //       requestModel: {
-    //         'user_email': email,
-    //         'refresh_token': refreshToken,
-    //       },
-    //     );
-
-    //     switch (resposne.statusCode) {
-    //       case 200:
-    //         // await handleTokenLogin(resposne: resposne);
-    //         break;
-    //       default:
-    //         Logger().d(resposne.message);
-    //     }
-    //   }
-    // } catch (e) {
-    //   Logger().d(e);
-    // }
+      if (androidInfo.isPhysicalDevice) {
+        locationData = await location.getLocation();
+      } else {
+        GlobalToastWidget(message: '시뮬레이터에서는 위치 정보를 가져올 수 없습니다.');
+        locationData = LocationData.fromMap({
+          'latitude': 37.566535,
+          'longitude': 126.97796919999996,
+        });
+      }
+    }
   }
 
   @override
   void onInit() {
-    // await handleInitialization();
-
     super.onInit();
   }
 
@@ -122,6 +88,4 @@ class AuthService extends GetxService {
   void onClose() {
     super.onClose();
   }
-
-  bool get isMyDoctor => userData.value.doctorId != null ? true : false;
 }

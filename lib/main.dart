@@ -11,6 +11,7 @@ import 'package:timeago/timeago.dart' as timeago;
 
 import 'app/routes/app_pages.dart';
 import 'app/service/global_service.dart';
+import 'app/service/location_service.dart';
 import 'app/theme/theme.dart';
 
 void main() async {
@@ -56,6 +57,9 @@ Future<void> initialize() async {
 
     // 인증 서비스
     Get.put(AuthService(), permanent: true),
+
+    /// 위치 서비스
+    Get.lazyPut(() => LocationService(), fenix: true)
 
     // FCM 서비스
     // Get.put(FCMService(), permanent: true);

@@ -43,6 +43,7 @@ dependencies:
   syncfusion_flutter_datepicker: ^20.3.59
   flutter_time_picker_spinner: ^2.0.0
   location: ^4.4.0
+  device_info_plus: ^8.0.0
 
 dev_dependencies:
   flutter_test:
