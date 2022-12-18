@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../theme/colors.dart';
 import '../../../theme/texts.dart';
+import '../widget/medicine_item.dart';
 
 /// 도파민제 약제 설명 페이지
 class MedicineInfoEtcPage extends StatelessWidget {
@@ -12,199 +13,95 @@ class MedicineInfoEtcPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       mainAxisAlignment: MainAxisAlignment.start,
-      children: [
-        Container(
-          alignment: Alignment.centerLeft,
-          height: 34.w,
-          child: Text(
-            '약제명',
-            textAlign: TextAlign.left,
-            style: TextPath.TextF14W400.copyWith(
-                color: ColorPath.TextGrey4H9E9E9E),
-          ),
+      children: const [
+        // 약재 1
+        MedicineItemTitle(text: '약제명'),
+        MedicineItemDescription(
+          text: '''아만타딘''',
         ),
-        Container(
-          alignment: Alignment.centerLeft,
-          child: Text(
-            '도파민제',
-            style: TextPath.TextF14W400Expand.copyWith(
-                color: ColorPath.TextGrey1H212121),
-          ),
-        ),
-        const SizedBox(
+        SizedBox(
           height: 20,
         ),
-        Container(
-          alignment: Alignment.centerLeft,
-          height: 34.w,
-          child: Text(
-            '설명',
-            textAlign: TextAlign.left,
-            style: TextPath.TextF14W400.copyWith(
-                color: ColorPath.TextGrey4H9E9E9E),
-          ),
+        MedicineItemTitle(text: '설명'),
+        MedicineItemDescription(
+          text:
+              '''아만타딘은 항바이러스제제로 파킨슨병 환자의 증상을 개선시킨다는 것이 점차 알려저 항파킨슨제로 사용되고 있다. 아만타딘은 여러 수용체에 작용하는 약제로 항콜린 효과와 더불어 항글루타메이트 효과가 있어서 이상운동증을 조절하는데 유용하다.  ''',
         ),
-        Container(
-          alignment: Alignment.centerLeft,
-          child: Text(
-            '''
-  파킨슨병은 도파민의 부족 혹은 결핍으로 인해 발생하는 질환으로 파킨슨병에 대한 치료제는 이 부족한 도파민을 보충해주는 것으로 도파민제는 가장 근간이 되는 파킨슨 치료제이다. 약물이 뇌 속으로 들어가기위한 혈액뇌장벽을 통과해야 하는데 도파민은 통과가 되지 않으므로 도파민으로 만들어지기 전 단계의 물질인 전구체, 레보도파를 복용한다. 레보도파는 파킨슨 치료 약물중 가장 운동 개선 효과가 뛰어나며 부작용이 적다.
-
-  레보도파가 뇌에 도달하기전에 도파민으로 활성화 되는 것을 막기위해서 방향족 L-아미노산 탈카복실화효소 (Aromatic L-amino acid decarboxylase, DOPA decarboxylase)를 억제하는 카르비도파, 벤세라지드와 같은 DOPA decarboxylase inhibitor 를 결합해서 복용하도록 한다.''',
-            style: TextPath.TextF14W400Expand.copyWith(
-                color: ColorPath.TextGrey1H212121),
-          ),
-        ),
-        const SizedBox(
+        SizedBox(
           height: 20,
         ),
-        Container(
-          alignment: Alignment.centerLeft,
-          height: 34.w,
-          child: Text(
-            '부작용',
-            textAlign: TextAlign.left,
-            style: TextPath.TextF14W400.copyWith(
-                color: ColorPath.TextGrey4H9E9E9E),
-          ),
+        MedicineItemTitle(text: '부작용'),
+        MedicineItemDescription(
+          text: '''입마름, 변비, 시야흐림, 소변장애, 인지장애, 환시, 그물울혈반, 하지 부종 등  ''',
         ),
-        Container(
-          alignment: Alignment.centerLeft,
-          child: Text(
-            '''  오심, 구토, 어지러움, 식욕부진, 환각, 망상, 기립성 저혈압, 졸림, 이상운동증, 도파민 조절장애, 충동조절장애 등''',
-            style: TextPath.TextF14W400Expand.copyWith(
-                color: ColorPath.TextGrey1H212121),
-          ),
+        SizedBox(height: 20),
+        MedicineItemTitle(text: '종류'),
+        MedicineImageItem(
+          assest: 'assets/images/medicine/pill0601.jpg',
+          text: '''피케이멜즈정 100mg  - 한화제약''',
         ),
-        const SizedBox(
+        MedicineImageItem(
+          assest: 'assets/images/medicine/pill0602.jpg',
+          text: '''아만타정 100mg  - 고려제약''',
+        ),
+        SizedBox(
           height: 20,
         ),
-        Container(
-          alignment: Alignment.centerLeft,
-          height: 34.w,
-          child: Text(
-            '종류',
-            textAlign: TextAlign.left,
-            style: TextPath.TextF14W400.copyWith(
-                color: ColorPath.TextGrey4H9E9E9E),
-          ),
+        // 약재 2
+        MedicineItemTitle(text: '약제명'),
+        MedicineItemDescription(
+          text: '''항콜린제제''',
         ),
-        Container(
-          alignment: Alignment.centerLeft,
-          height: 30.w,
-          child: Text(
-            '1.1. 레보도파 일반형',
-            style: TextPath.TextF14W500.copyWith(
-                color: ColorPath.TextGrey1H212121),
-          ),
+        SizedBox(
+          height: 20,
         ),
-        Container(
-          alignment: Alignment.centerLeft,
-          child: Text(
-            ''' 소장상부에서 흡수되어 복용 1시간후 최고 혈중농도 도달한다. 신속한 작용을 위해서 가능하다면 식전 30분~ 1시간 또는 식후 1-2시간후 복용 권장한다. 
-''',
-            style: TextPath.TextF14W400Expand.copyWith(
-                color: ColorPath.TextGrey1H212121),
-          ),
+        MedicineItemTitle(text: '설명'),
+        MedicineItemDescription(
+          text:
+              '''항콜린제는 도파민의 감소에 인해 상태적으로 증가된 아세틸콜린의 작용을 억제하는 약물로 파킨슨 증상중에서 주로 떨림에 효과가 좋다. 부작용이 많아서 고령의 환자나 인지장애가 있는 환자는 주의가 요한다. ''',
         ),
-        Container(
-          alignment: Alignment.centerLeft,
-          padding: EdgeInsets.only(bottom: 6.w),
-          height: 30.w,
-          child: Text(
-            '퍼킨슨 일반정',
-            style: TextPath.TextF14W500.copyWith(
-                color: ColorPath.PrimaryDarkColor),
-          ),
+        SizedBox(
+          height: 20,
         ),
-        Container(
-          alignment: Alignment.centerLeft,
-          padding: EdgeInsets.only(bottom: 6.w),
-          child: Image.asset(
-            'assets/images/medicine/pill0101.jpg',
-            fit: BoxFit.cover,
-            width: MediaQuery.of(context).size.width * .35,
-            // height: 70.w,
-          ),
+        MedicineItemTitle(text: '부작용'),
+        MedicineItemDescription(
+          text: '''입마름, 변비, 시야흐림, 소변장애, 인지장애, 환시 등 ''',
         ),
-        Container(
-          alignment: Alignment.centerLeft,
-          padding: EdgeInsets.only(bottom: 12.w),
-          child: Text(
-            '''레보도파 100mg, 카르비도파수화물 27mg''',
-            style: TextPath.TextF13W400.copyWith(
-                color: ColorPath.TextGrey2H424242),
-          ),
+        SizedBox(height: 20),
+        MedicineItemTitle(text: '종류'),
+        MedicineItemLabel1(text: '1. 트리헥시페니딜 염산염 '),
+        MedicineImageItem(
+          assest: 'assets/images/medicine/pill0603.jpg',
+          text: '''트리헥신정 2mg - 태극제약''',
         ),
-        Container(
-          alignment: Alignment.centerLeft,
-          padding: EdgeInsets.only(bottom: 6.w),
-          child: Image.asset(
-            'assets/images/medicine/pill0102.jpg',
-            fit: BoxFit.cover,
-            width: MediaQuery.of(context).size.width * .35,
-            // height: 70.w,
-          ),
+        MedicineItemLabel1(text: '2. 벤즈트로핀메실레이트 '),
+        MedicineImageItem(
+          assest: 'assets/images/medicine/pill0604.jpg',
+          text: '''벤즈트로핀정 1mg''',
         ),
-        Container(
-          alignment: Alignment.centerLeft,
-          padding: EdgeInsets.only(bottom: 12.w),
-          child: Text(
-            '''레보도파 250mg, 카르비도파수화물 27mg''',
-            style: TextPath.TextF13W400.copyWith(
-                color: ColorPath.TextGrey2H424242),
-          ),
+        MedicineImageItem(
+          text: '''환인벤즈트로핀정 – 환인제약 ''',
         ),
-        Container(
-          alignment: Alignment.centerLeft,
-          height: 30.w,
-          child: Text(
-            '명도파 일반정',
-            style: TextPath.TextF14W500.copyWith(
-                color: ColorPath.PrimaryDarkColor),
-          ),
+        MedicineImageItem(
+          text: '''명인벤즈트로핀메실산염 – 명인제약''',
         ),
 
-        // * 약제 3번
-        Container(
-          alignment: Alignment.centerLeft,
-          padding: EdgeInsets.only(bottom: 6.w),
-          child: Image.asset(
-            'assets/images/medicine/pill0103.jpg',
-            fit: BoxFit.cover,
-            width: MediaQuery.of(context).size.width * .35,
-            // height: 70.w,
-          ),
+        MedicineItemLabel1(text: '3. 프로시클리딘 '),
+        MedicineImageItem(
+          assest: 'assets/images/medicine/pill0605.jpg',
+          text: '''프로이머 5mg ''',
         ),
-        Container(
-          alignment: Alignment.centerLeft,
-          padding: EdgeInsets.only(bottom: 12.w),
-          child: Text(
-            '''레보도파 100mg, 벤세라지드염산염 28.5mg''',
-            style: TextPath.TextF13W400.copyWith(
-                color: ColorPath.TextGrey2H424242),
-          ),
+        MedicineImageItem(
+          text: '''파로마정 – 크리스탈생맹과학 ''',
         ),
-
-        // * 약제 4번
-        Container(
-          alignment: Alignment.centerLeft,
-          padding: EdgeInsets.only(bottom: 6.w),
-          child: Image.asset(
-            'assets/images/medicine/pill0104.jpg',
-            fit: BoxFit.cover,
-            width: MediaQuery.of(context).size.width * .35,
-            // height: 70.w,
-          ),
+        MedicineImageItem(
+          text: '''명프로마정 -영진약품''',
         ),
-        Container(
-          alignment: Alignment.centerLeft,
-          padding: EdgeInsets.only(bottom: 12.w),
-          child: Text(
-            '''레보도파 100mg, 벤세라지드염산염 28.5mg''',
-            style: TextPath.TextF13W400.copyWith(
-                color: ColorPath.TextGrey2H424242),
-          ),
+        MedicineImageItem(
+          text: '''파카프로시클리딘정- 한국파마''',
+        ),
+        MedicineImageItem(
+          text: '''프로이머정 – 초당약룸 ''',
         ),
       ],
     );

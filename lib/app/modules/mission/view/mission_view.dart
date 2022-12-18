@@ -2,6 +2,7 @@ import 'package:base/app/globals/global_dialog_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 import 'package:percent_indicator/percent_indicator.dart';
 
 import '../../../theme/colors.dart';
@@ -92,9 +93,11 @@ class MissionView extends GetView<MissionController> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        '''${DateTime.now().year}.${DateTime.now().month.toString()}''',
-                        style: TextPath.Heading3F16W600.copyWith(
+                        DateFormat('MM월 dd일 EEEE', 'ko').format(controller
+                            .dateList[controller.current_index.value]),
+                        style: TextPath.TextF14W500.copyWith(
                           color: ColorPath.BlackColor,
+                          height: 1.2,
                         ),
                       ),
                       const SizedBox(height: 10),
@@ -102,9 +105,16 @@ class MissionView extends GetView<MissionController> {
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
                           ...List.generate(7, (index) {
-                            return const MiniCalendar(
-                              dayName: '월',
-                              day: 31,
+                            return InkWell(
+                              onTap: () async {
+                                controller.current_index.value = index;
+                                await controller.getMissionList();
+                              },
+                              child: MiniCalendar(
+                                isSelected:
+                                    index == controller.current_index.value,
+                                time: controller.dateList[index],
+                              ),
                             );
                           }),
                         ],

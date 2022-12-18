@@ -96,8 +96,9 @@ class MyApp extends StatelessWidget {
             GlobalCupertinoLocalizations.delegate,
           ],
           supportedLocales: const [
-            Locale('ko'),
+            Locale('ko', 'KR'),
           ],
+          locale: const Locale('ko'),
           debugShowCheckedModeBanner: false,
           theme: theme(),
           // darkTheme: darkTheme(context: context),

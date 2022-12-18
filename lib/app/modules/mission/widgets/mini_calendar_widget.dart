@@ -1,42 +1,46 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:intl/intl.dart';
 import '../../../theme/colors.dart';
 import '../../../theme/texts.dart';
 
 class MiniCalendar extends StatelessWidget {
-  final String dayName;
-  final int day;
+  final DateTime time;
+  final bool isSelected;
   const MiniCalendar({
     super.key,
-    required this.dayName,
-    required this.day,
+    required this.isSelected,
+    required this.time,
   });
   @override
   Widget build(BuildContext context) {
     late Color text_color;
-    if (dayName == '토') {
+    if (DateFormat('EEEE', 'ko').format(time) == '토요일') {
       text_color = ColorPath.SecondaryColor;
-    } else if (dayName == '일') {
+    } else if (DateFormat('EEEE', 'ko').format(time) == '일요일') {
       text_color = ColorPath.TertiaryColor;
     } else {
       text_color = ColorPath.TextGrey1H212121;
     }
     return Container(
       width: 40.w,
-      height: 42.h,
+      height: 50.w,
       decoration: BoxDecoration(
-        color: ColorPath.Background1HECEFF1,
+        color: isSelected
+            ? ColorPath.PrimaryLightColor
+            : ColorPath.Background1HECEFF1,
         borderRadius: BorderRadius.circular(16),
       ),
+      padding: EdgeInsets.symmetric(vertical: 5.w),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
           Text(
-            dayName,
+            DateFormat('EEEE', 'ko').format(time)[0],
             style: TextPath.TextF12W500.copyWith(color: text_color),
           ),
           Text(
-            day.toString(),
+            DateFormat('d').format(time).toString(),
             style: TextPath.TextF16W500.copyWith(
               color: ColorPath.TextGrey1H212121,
             ),

@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:logger/logger.dart';
+import 'package:timeago/timeago.dart';
 
 import '../../../models/base_response_model.dart';
 import '../../../theme/colors.dart';
@@ -26,7 +27,9 @@ class MissionController extends GetxController {
   Rx<int> clearMove = 0.obs;
   Rx<int> clearPill = 0.obs;
   List alarm = ['투약', '물마시기', '과일야채', '야외활동', '운동'];
+  RxList<DateTime> dateList = <DateTime>[].obs;
   Rx<bool> boxStatus = false.obs;
+  Rx<int> current_index = 0.obs;
   // Rx<Icon> box = const Icon(Icons.check_box_outline_blank_rounded).obs;
   // Function ▼ ========================================
 
@@ -51,7 +54,6 @@ class MissionController extends GetxController {
 
   /// 시간 업데이트 함수
   void updateTime(String data) {
-    Logger().d(data);
     dateFormatInt.value = int.parse(data); //인트화
     if (dateFormatInt >= 1200) {
       dateFormatString.value =
@@ -85,7 +87,7 @@ class MissionController extends GetxController {
       AuthBaseResponseModel response = await AuthProvider.dio(
         method: 'GET',
         url:
-            '/mission/?select_date=${DateFormat('yyyy-MM-dd').format(DateTime.now())}',
+            '/mission/?select_date=${DateFormat('yyyy-MM-dd').format(dateList[current_index.value])}',
       );
 
       switch (response.statusCode) {
@@ -133,6 +135,12 @@ class MissionController extends GetxController {
   ///  미션 추가 API
   Future<void> addMission() async {
     try {
+      if (type.value == '') {
+        throw Exception('미션 타입을 지정해주세요.');
+      }
+      if (dateFormatString.value == '시간을 선택하세요') {
+        throw Exception(dateFormatString.value);
+      }
       Map<String, dynamic> request = {
         'mission_type': type.value,
         'mission_time': dateFormatInt.value, //오후11시 00분
@@ -159,6 +167,19 @@ class MissionController extends GetxController {
       Logger().d(e);
       GlobalToastWidget(message: e.toString().substring(11));
     }
+  }
+
+  /// 날짜 리스트
+  void handleDateInit() {
+    String now_str = DateFormat('yyyy-MM-dd').format(DateTime.now());
+    DateTime now = DateTime.parse(now_str);
+    List<DateTime> date_list = [];
+    for (int i = 0; i < 7; i++) {
+      date_list.add(now.subtract(Duration(days: 6 - i)));
+    }
+    dateList.assignAll(date_list);
+    current_index.value = dateList.length - 1;
+    Logger().d(dateList);
   }
 
   ///  미션 수정 API
@@ -254,6 +275,7 @@ class MissionController extends GetxController {
 
   @override
   Future<void> onInit() async {
+    handleDateInit();
     await getMissionList();
     super.onInit();
   }
