@@ -11,30 +11,30 @@ class FactPostView extends GetView<FactPostController> {
 
   @override
   Widget build(BuildContext context) => Obx(
-        () => SafeArea(
-          child: Scaffold(
-            body: SingleChildScrollView(
+        () => Scaffold(
+          body: SafeArea(
+            child: SingleChildScrollView(
                 child: controller.process.value == false
                     ? Column(children: [
                         Stack(children: [
                           Container(
-                            padding: const EdgeInsets.symmetric(
-                              horizontal: 10,
-                              vertical: 8,
+                            padding: EdgeInsets.symmetric(
+                              horizontal: 10.w,
+                              vertical: 8.w,
                             ),
                             width: double.infinity,
-                            height: 242,
+                            height: 242.h,
                             decoration: BoxDecoration(
-                                image: DecorationImage(
-                                  image: NetworkImage(
-                                      controller.postData.value.image),
-                                  fit: BoxFit.cover,
-                                ),
-                                borderRadius: BorderRadius.circular(16)),
+                              image: DecorationImage(
+                                image: NetworkImage(
+                                    controller.postData.value.image),
+                                fit: BoxFit.cover,
+                              ),
+                            ),
                           ),
                           Positioned(
-                            left: 20,
-                            top: 12,
+                            left: 20.w,
+                            top: 12.w,
                             child: InkWell(
                               onTap: () => Get.back(),
                               child: SizedBox(
@@ -52,9 +52,7 @@ class FactPostView extends GetView<FactPostController> {
                             ),
                           )
                         ]),
-                        const SizedBox(
-                          height: 24,
-                        ),
+                        SizedBox(height: 24.w),
                         Container(
                           width: double.infinity,
                           margin: EdgeInsets.symmetric(horizontal: 20.w),
@@ -66,16 +64,14 @@ class FactPostView extends GetView<FactPostController> {
                                 style: TextPath.Heading2F18W600.copyWith(
                                     color: ColorPath.TextGrey1H212121),
                               ),
-                              const SizedBox(
-                                height: 4,
-                              ),
+                              SizedBox(height: 4.w),
                               Text(
                                 controller.postData.value.created_at
                                     .substring(0, 10),
                                 style: TextPath.TextF12W500.copyWith(
                                     color: ColorPath.TextGrey4H9E9E9E),
                               ),
-                              const SizedBox(height: 12),
+                              SizedBox(height: 12.w),
                               SizedBox(
                                 height: 504.w,
                                 child: Column(
