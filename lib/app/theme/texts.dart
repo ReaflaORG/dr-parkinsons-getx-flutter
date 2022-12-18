@@ -412,6 +412,22 @@ class TextPath {
   /// fontSize: 12
   ///
   /// fontWeight: Medium 500
+  static TextStyle TextF12W500White = TextStyle(
+    color: ColorPath.TextWhite,
+    fontFamily: 'SUIT',
+    fontSize: 12.0.sp,
+    fontWeight: FontWeight.w500,
+    fontStyle: FontStyle.normal,
+    decoration: TextDecoration.none,
+    height: 1.3,
+    letterSpacing: 0,
+  );
+
+  /// fontFamily: SUIT
+  ///
+  /// fontSize: 12
+  ///
+  /// fontWeight: Medium 500
   static TextStyle TextF12W500 = TextStyle(
     color: ColorPath.TextGrey1H212121,
     fontFamily: 'SUIT',

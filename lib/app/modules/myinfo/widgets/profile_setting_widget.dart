@@ -5,11 +5,11 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../theme/colors.dart';
 import '../../../theme/texts.dart';
 
-class RadioButton extends StatelessWidget {
+class RadioButtonForProfile extends StatelessWidget {
   final String title;
   final bool isCheck;
   final Function onClick;
-  const RadioButton({
+  const RadioButtonForProfile({
     Key? key,
     required this.title,
     required this.isCheck,

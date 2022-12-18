@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../model/main_model.dart';
-import '../../doctor/controller/doctor_search_controller.dart';
+import '../../doctor/controller/search_doctors_controller.dart';
 import '../../doctor/view/search_doctors_view.dart';
 import '../../healthcare/controller/healthcare_controller.dart';
 import '../../healthcare/view/healthcare_view.dart';

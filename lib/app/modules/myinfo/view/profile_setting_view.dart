@@ -264,7 +264,7 @@ class ProfileSettingForm extends GetView<ProfileSettingController> {
                 controller.userGenderList.length,
                 (index) => Container(
                   margin: EdgeInsets.only(right: index == 0 ? 10.w : 0),
-                  child: RadioButton(
+                  child: RadioButtonForProfile(
                     title: controller.userGenderList[index],
                     isCheck: controller.userGenderList[index] ==
                         controller.userGender.value,
@@ -291,7 +291,7 @@ class ProfileSettingForm extends GetView<ProfileSettingController> {
                 controller.userBirthDayList.length,
                 (index) => Container(
                   margin: EdgeInsets.only(right: 10.w),
-                  child: RadioButton(
+                  child: RadioButtonForProfile(
                     title: index == 0
                         ? '~${controller.userBirthDayList[index]}'
                         : index == 3
@@ -326,7 +326,7 @@ class ProfileSettingForm extends GetView<ProfileSettingController> {
                           ? 10.w
                           : 0,
                     ),
-                    child: RadioButton(
+                    child: RadioButtonForProfile(
                       title: controller.diagnosticStatusList[index],
                       isCheck: controller.diagnosticStatusList[index] ==
                           controller.diagnosticStatus.value,
