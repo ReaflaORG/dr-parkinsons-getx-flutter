@@ -2,7 +2,7 @@ import 'package:get/get.dart';
 
 import '../controller/search_doctors_controller.dart';
 
-// search doctors binding
+/// 주치의 찾기 검색 바인딩
 class SearchDoctorsBinding implements Bindings {
   @override
   void dependencies() {

@@ -38,6 +38,10 @@
 	<string>Main</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>Need to get location information</string>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>Need to get location information</string>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string>Need to get location information</string>
 	<key>UIBackgroundModes</key>
 	<string>location</string>	
 	<key>UISupportedInterfaceOrientations</key>

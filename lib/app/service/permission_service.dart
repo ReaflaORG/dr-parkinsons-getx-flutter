@@ -15,39 +15,39 @@ class PermissionService extends GetxService {
   // Data ▼ ============================================
 
   RxList<PermissionModel> permissionList = [
+    PermissionModel(
+      title: '위치기반',
+      icon: Icon(
+        Icons.location_on_outlined,
+        size: 38,
+        color: Colors.grey.shade700,
+      ),
+      description: '주변 업체 정보 제공',
+      isRequired: true,
+      isExpanded: false,
+    ),
     // PermissionModel(
-    //   title: '위치기반',
+    //   title: '카메라 및 앨범',
     //   icon: Icon(
-    //     Icons.location_on_outlined,
-    //     size: 38,
+    //     Icons.camera_alt_rounded,
+    //     size: 32,
     //     color: Colors.grey.shade700,
     //   ),
-    //   description: '주변 업체 정보 제공',
+    //   description: '프로필 이미지 업로드에 사용',
     //   isRequired: true,
     //   isExpanded: false,
     // ),
-    PermissionModel(
-      title: '카메라 및 앨범',
-      icon: Icon(
-        Icons.camera_alt_rounded,
-        size: 32,
-        color: Colors.grey.shade700,
-      ),
-      description: '프로필 이미지 업로드에 사용',
-      isRequired: true,
-      isExpanded: false,
-    ),
-    PermissionModel(
-      title: '마이크',
-      icon: Icon(
-        Icons.mic_rounded,
-        size: 32,
-        color: Colors.grey.shade700,
-      ),
-      description: '프로필 동영상 업로드시 녹화에 사용',
-      isRequired: true,
-      isExpanded: false,
-    ),
+    // PermissionModel(
+    //   title: '마이크',
+    //   icon: Icon(
+    //     Icons.mic_rounded,
+    //     size: 32,
+    //     color: Colors.grey.shade700,
+    //   ),
+    //   description: '프로필 동영상 업로드시 녹화에 사용',
+    //   isRequired: true,
+    //   isExpanded: false,
+    // ),
   ].obs;
 
   // Variable ▼ ========================================

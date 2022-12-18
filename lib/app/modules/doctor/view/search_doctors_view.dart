@@ -174,9 +174,9 @@ class SearchDoctorsBeforeListWidget extends GetView<DoctorSearchController> {
       () => ListView.separated(
         shrinkWrap: true,
         physics: const NeverScrollableScrollPhysics(),
-        itemCount: controller.listArray.length,
+        itemCount: controller.doctorListData.length,
         itemBuilder: (BuildContext context, int index) {
-          SearchDoctorsModel item = controller.listArray[index];
+          SearchDoctorsModel item = controller.doctorListData[index];
           return DoctorSearchItemWidget(
             onClick: () {
               // Navigator.push(

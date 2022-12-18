@@ -93,6 +93,7 @@ class SignInController extends GetxController {
         return;
       }
     }
+
     try {
       User user = await UserApi.instance.me();
       Account? userInfo = user.kakaoAccount;
@@ -142,8 +143,65 @@ class SignInController extends GetxController {
     }
   }
 
+  /// 임시 로그인
+  /// {"id":2585184509,"connected_at":"2022-12-18T12:15:52Z","kakao_account":{"has_email":true,"email_needs_agreement":false,"is_email_valid":true,"is_email_verified":true,"email":"dormitalk@naver.com"}}
+  Future<void> handleTempSignIn() async {
+    try {
+      User user = await UserApi.instance.me();
+      Account? userInfo = user.kakaoAccount;
+
+      if (userInfo == null) {
+        return;
+      }
+
+      AuthBaseResponseModel response = await AuthProvider.dio(
+        method: 'POST',
+        url: '/auth/register/kakao',
+        requestModel: {
+          'provider': 'kakao',
+          'provider_id': '2585184509',
+          'user_email': 'dormitalk@naver.com',
+          'device_token': DateTime.now().millisecondsSinceEpoch.toString(),
+        },
+      );
+
+      switch (response.statusCode) {
+        case 201:
+          UserModel response_user = UserModel.fromJson(response.data['user']);
+          String token = response.data['access_token'];
+          DoctorModel? doctor;
+
+          Future.value([
+            if (response_user.doctorId != null)
+              {
+                doctor = DoctorModel.fromJson(response.data['doctor']),
+              },
+            AuthService.to.handleLogin(
+              user: response_user,
+              responseAccessToken: token,
+              doctor: doctor,
+            )
+          ]).then((value) {
+            Get.offAllNamed('/main');
+          });
+          break;
+        default:
+          throw Exception(response.message);
+      }
+    } catch (e) {
+      Logger().d(e);
+      GlobalToastWidget(message: e.toString().substring(11));
+      return;
+    }
+  }
+
   @override
   Future<void> onInit() async {
+    await Future.value([
+      GlobalToastWidget(message: '자동 로그인 중이니 터치 금지'),
+      handleTempSignIn(),
+    ]);
+
     super.onInit();
   }
 

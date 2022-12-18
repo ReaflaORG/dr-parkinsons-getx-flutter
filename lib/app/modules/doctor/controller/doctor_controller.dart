@@ -6,7 +6,7 @@ import 'package:get/get.dart';
 
 import '../../../models/doctor_item_model.dart';
 
-// doctor controller
+/// 주치의 찾기 컨트롤러
 class DoctorController extends GetxController {
   static DoctorController get to => Get.find();
 
