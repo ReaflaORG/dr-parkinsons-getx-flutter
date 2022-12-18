@@ -37,7 +37,7 @@ showAlertTwoOptionsDialog(
               Spacer(),
               InkWell(
                 onTap: () {
-                  Navigator.pop(context);
+                  Get.back();
                 },
                 child: Container(
                   padding: EdgeInsets.only(right: 10),

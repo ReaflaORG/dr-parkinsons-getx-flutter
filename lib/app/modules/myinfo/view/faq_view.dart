@@ -5,7 +5,6 @@ import 'package:get/get.dart';
 
 import '../../../theme/colors.dart';
 import '../../../theme/texts.dart';
-
 import '../controller/faq_controller.dart';
 import '../widgets/faq_item_widget.dart';
 
@@ -23,7 +22,7 @@ class FaqView extends GetView<FaqController> {
             leadingWidth: 39.w,
             leading: InkWell(
               onTap: () {
-                Navigator.pop(context);
+                Get.back();
               },
               child: Container(
                 alignment: Alignment.centerLeft,

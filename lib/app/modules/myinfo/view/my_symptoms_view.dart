@@ -2,15 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
-import '../../../routes/app_pages.dart';
 import '../../../theme/colors.dart';
 import '../../../theme/texts.dart';
-
 import '../controller/my_symptoms_controller.dart';
 import '../models/my_symptoms_item_model.dart';
 import '../widgets/my_symptoms_item_widget.dart';
 import 'edit_my_symptoms_view.dart';
-import 'write_my_symptoms_view.dart';
 
 // my symptoms view
 class MySymptomsView extends GetView<MySymptomsController> {
@@ -26,7 +23,7 @@ class MySymptomsView extends GetView<MySymptomsController> {
             leadingWidth: 39.w,
             leading: InkWell(
               onTap: () {
-                Navigator.pop(context);
+                Get.back();
               },
               child: Container(
                 alignment: Alignment.centerLeft,

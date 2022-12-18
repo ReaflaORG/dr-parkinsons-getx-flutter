@@ -4,7 +4,6 @@ import 'package:get/get.dart';
 
 import '../../../theme/colors.dart';
 import '../../../theme/texts.dart';
-
 import '../controller/manage_member_controller.dart';
 import '../models/manage_member_item_model.dart';
 import '../widgets/manage_member_item_widget.dart';
@@ -23,7 +22,7 @@ class ManageMemberView extends GetView<ManageMemeberController> {
             leadingWidth: 39.w,
             leading: InkWell(
               onTap: () {
-                Navigator.pop(context);
+                Get.back();
               },
               child: Container(
                 alignment: Alignment.centerLeft,

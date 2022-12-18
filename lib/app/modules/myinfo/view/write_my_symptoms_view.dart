@@ -3,7 +3,6 @@ import 'package:get/get.dart';
 
 import '../../../theme/colors.dart';
 import '../../../theme/texts.dart';
-
 import '../controller/write_my_symtoms_controller.dart';
 import '../models/write_my_symptoms_item_model.dart';
 import '../widgets/write_my_symptoms_item_widget.dart';
@@ -86,7 +85,7 @@ class WriteMySymptomsHeader extends GetView<WriteMySymptomsController> {
               children: [
                 InkWell(
                   onTap: () {
-                    Navigator.pop(context);
+                    Get.back();
                   },
                   child: Ink.image(
                     image: AssetImage(

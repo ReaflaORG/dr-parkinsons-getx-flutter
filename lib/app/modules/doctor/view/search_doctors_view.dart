@@ -9,7 +9,7 @@ import '../../../theme/texts.dart';
 import '../controller/search_doctors_controller.dart';
 import '../widget/search_doctor_item_widget.dart';
 
-// 전문의 검색 view
+/// 전문의 검색 view
 class SearchDoctorsView extends GetView<DoctorSearchController> {
   const SearchDoctorsView({super.key});
 
@@ -67,44 +67,47 @@ class SearchDoctorsView extends GetView<DoctorSearchController> {
                         borderRadius: BorderRadius.circular(20.w),
                       ),
                       child: Form(
-                          key: controller.globalFormKey.value,
-                          child: TextFormField(
-                            controller:
-                                controller.searchTextFormFieldController.value,
-                            focusNode: controller.searchTextFocusNode.value,
-                            decoration: InputDecoration(
-                              focusedBorder: InputBorder.none,
-                              enabledBorder: InputBorder.none,
-                              errorBorder: InputBorder.none,
-                              disabledBorder: InputBorder.none,
-                              border: InputBorder.none,
-                              prefixIcon: Padding(
-                                padding: EdgeInsets.fromLTRB(
-                                  18.75.w,
-                                  12.5.w,
-                                  22.75.w,
-                                  12.5.w,
-                                ),
-                                child: Image.asset(
-                                  'assets/search_doctors/search_icon.png',
-                                  width: 16.5.w,
-                                  height: 16.5.w,
-                                ),
+                        key: controller.globalFormKey.value,
+                        child: TextFormField(
+                          controller:
+                              controller.searchTextFormFieldController.value,
+                          textInputAction: TextInputAction.search,
+                          focusNode: controller.searchTextFocusNode.value,
+                          decoration: InputDecoration(
+                            contentPadding: EdgeInsets.symmetric(
+                              vertical: 17.w,
+                              horizontal: 8.w,
+                            ),
+                            focusedBorder: InputBorder.none,
+                            enabledBorder: InputBorder.none,
+                            errorBorder: InputBorder.none,
+                            disabledBorder: InputBorder.none,
+                            border: InputBorder.none,
+                            prefixIcon: Padding(
+                              padding: EdgeInsets.fromLTRB(
+                                18.75.w,
+                                12.5.w,
+                                22.75.w,
+                                12.5.w,
                               ),
-                              hintText: '병원명 또는 의사명을 입력하세요.',
-                              hintStyle: TextPath.TextF14W500.copyWith(
-                                color: ColorPath.TextGrey4H9E9E9E,
-                              ),
-                              contentPadding: EdgeInsets.symmetric(
-                                vertical: 17.w,
-                                horizontal: 8.w,
+                              child: Image.asset(
+                                'assets/search_doctors/search_icon.png',
+                                width: 16.5.w,
+                                height: 16.5.w,
                               ),
                             ),
-                            onFieldSubmitted: (value) async {
-                              await controller.onHandleSearch(
-                                  searchKeyword: value);
-                            },
-                          )),
+                            hintText: '병원명 또는 의사명을 입력하세요.',
+                            hintStyle: TextPath.TextF14W500.copyWith(
+                              color: ColorPath.TextGrey4H9E9E9E,
+                            ),
+                          ),
+                          onFieldSubmitted: (value) async {
+                            await controller.onHandleSearch(
+                              searchKeyword: value,
+                            );
+                          },
+                        ),
+                      ),
                     ),
                   ),
                   SizedBox(height: 15.w),
