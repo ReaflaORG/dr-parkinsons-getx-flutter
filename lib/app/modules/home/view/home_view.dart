@@ -258,9 +258,7 @@ class HomeView extends GetView<HomeController> {
                                 ),
                               ],
                             ),
-                            SizedBox(
-                              height: 42.w,
-                            ),
+                            SizedBox(height: 42.w),
                             Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
@@ -293,111 +291,10 @@ class HomeView extends GetView<HomeController> {
                               ],
                             ),
                             SizedBox(height: 12.w),
-                            Container(
-                              width: 320.w,
-                              height: 96.w,
-                              decoration: BoxDecoration(
-                                color: ColorPath.BackgroundWhite,
-                                borderRadius: BorderRadius.circular(8),
-                                boxShadow: [
-                                  BoxShadow(
-                                    color:
-                                        ColorPath.PrimaryColor.withOpacity(0.1),
-                                    spreadRadius: 2,
-                                    blurRadius: 10,
-                                    offset: const Offset(
-                                        5, 5), // changes position of shadow
-                                  ),
-                                ],
-                              ),
-                              child: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceAround,
-                                crossAxisAlignment: CrossAxisAlignment.center,
-                                children: [
-                                  SizedBox(
-                                    width: 64.w,
-                                    height: 64.w,
-                                    child: CircleAvatar(
-                                      backgroundColor: Colors.grey[200],
-                                      child: Image.asset(
-                                          width: 48.w,
-                                          height: 48.w,
-                                          'assets/images/icons/page2/48 pill.png'),
-                                    ),
-                                  ),
-                                  SizedBox(
-                                    width: 12.w,
-                                  ),
-                                  Container(
-                                    alignment: Alignment.centerLeft,
-                                    width: 150.w,
-                                    child: Column(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        Text(
-                                          '투약',
-                                          style: TextPath.TextF16W500.copyWith(
-                                            color: ColorPath.TextGrey1H212121,
-                                          ),
-                                        ),
-                                        const SizedBox(
-                                          height: 7,
-                                        ),
-                                        Text(
-                                          '매일 07:00',
-                                          style: TextPath.TextF14W500.copyWith(
-                                            color: ColorPath.TextGrey3H616161,
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                  Container(
-                                    margin: const EdgeInsets.only(right: 24),
-                                    child: Column(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.center,
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.end,
-                                        children: [
-                                          Row(
-                                            children: [
-                                              Text(
-                                                '30',
-                                                style: TextPath.Heading1F24W600
-                                                    .copyWith(
-                                                  color: ColorPath
-                                                      .TextGrey1H212121,
-                                                ),
-                                              ),
-                                              SizedBox(width: 4.w),
-                                              Text(
-                                                '분 전',
-                                                style: TextPath.TextF13W500
-                                                    .copyWith(
-                                                  color: ColorPath
-                                                      .TextGrey1H212121,
-                                                ),
-                                              ),
-                                            ],
-                                          ),
-                                          const SizedBox(
-                                            height: 7,
-                                          ),
-                                          const Icon(
-                                              Icons.check_circle_outline),
-                                        ]),
-                                  ),
-                                ],
-                              ),
-                            ),
-                            const SizedBox(
-                              height: 40,
-                            ),
+                            controller.homeData.value.mission.isEmpty
+                                ? _missionItemNot()
+                                : _missionItem(),
+                            SizedBox(height: 40.w),
                             Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
@@ -747,4 +644,135 @@ class HomeView extends GetView<HomeController> {
                   : const SizedBox.shrink()),
         ),
       );
+
+  /// 미션 아이템 [다가오는 미션]
+  Container _missionItem() {
+    return Container(
+      width: 320.w,
+      height: 96.w,
+      decoration: BoxDecoration(
+        color: ColorPath.BackgroundWhite,
+        borderRadius: BorderRadius.circular(8),
+        boxShadow: [
+          BoxShadow(
+            color: ColorPath.PrimaryColor.withOpacity(0.1),
+            spreadRadius: 2,
+            blurRadius: 10,
+            offset: const Offset(5, 5), // changes position of shadow
+          ),
+        ],
+      ),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          SizedBox(
+            width: 64.w,
+            height: 64.w,
+            child: CircleAvatar(
+              backgroundColor: Colors.grey[200],
+              child: Image.asset(
+                  width: 48.w,
+                  height: 48.w,
+                  'assets/images/icons/page2/48 pill.png'),
+            ),
+          ),
+          SizedBox(
+            width: 12.w,
+          ),
+          Container(
+            alignment: Alignment.centerLeft,
+            width: 150.w,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  '투약',
+                  style: TextPath.TextF16W500.copyWith(
+                    color: ColorPath.TextGrey1H212121,
+                  ),
+                ),
+                const SizedBox(
+                  height: 7,
+                ),
+                Text(
+                  '매일 07:00',
+                  style: TextPath.TextF14W500.copyWith(
+                    color: ColorPath.TextGrey3H616161,
+                  ),
+                ),
+              ],
+            ),
+          ),
+          Container(
+            margin: const EdgeInsets.only(right: 24),
+            child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.end,
+                children: [
+                  Row(
+                    children: [
+                      Text(
+                        '30',
+                        style: TextPath.Heading1F24W600.copyWith(
+                          color: ColorPath.TextGrey1H212121,
+                        ),
+                      ),
+                      SizedBox(width: 4.w),
+                      Text(
+                        '분 전',
+                        style: TextPath.TextF13W500.copyWith(
+                          color: ColorPath.TextGrey1H212121,
+                        ),
+                      ),
+                    ],
+                  ),
+                  SizedBox(height: 7.w),
+                  const Icon(Icons.check_circle_outline),
+                ]),
+          ),
+        ],
+      ),
+    );
+  }
+
+  // 미션이 없을 경우
+  Container _missionItemNot() {
+    return Container(
+      width: 320.w,
+      height: 96.w,
+      decoration: BoxDecoration(
+        color: ColorPath.BackgroundWhite,
+        borderRadius: BorderRadius.circular(8),
+        boxShadow: [
+          BoxShadow(
+            color: ColorPath.PrimaryColor.withOpacity(0.1),
+            spreadRadius: 2,
+            blurRadius: 10,
+            offset: const Offset(5, 5), // changes position of shadow
+          ),
+        ],
+      ),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          Text(
+            '미션 추가',
+            style: TextPath.TextF16W500.copyWith(
+              color: ColorPath.TextGrey1H212121,
+            ),
+          ),
+          SizedBox(height: 7.w),
+          Text(
+            '다가오는 미션이 존재하지 않습니다.',
+            style: TextPath.TextF14W500.copyWith(
+              color: ColorPath.TextGrey3H616161,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
 }
