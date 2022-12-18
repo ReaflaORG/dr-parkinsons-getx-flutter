@@ -2,14 +2,14 @@
 
 import 'dart:async';
 
-import 'package:base/app/model/sarch_doctors_model.dart';
+import 'package:base/app/models/sarch_doctors_model.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:logger/logger.dart';
 import 'package:location/location.dart';
+import 'package:logger/logger.dart';
 
-import '../../../global/global_toast_widget.dart';
-import '../../../model/base_response_model.dart';
+import '../../../globals/global_toast_widget.dart';
+import '../../../models/base_response_model.dart';
 import '../../../provider/main_provider.dart';
 import '../../../service/auth_service.dart';
 

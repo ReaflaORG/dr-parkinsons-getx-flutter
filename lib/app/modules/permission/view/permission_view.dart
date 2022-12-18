@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
-import '../../../model/permission_model.dart';
+import '../../../models/permission_model.dart';
 import '../../../service/permission_service.dart';
 import '../../../theme/colors.dart';
 import '../../../theme/texts.dart';

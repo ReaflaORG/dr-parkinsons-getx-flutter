@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../../../model/diagnosis_survey_model.dart';
+import '../../../models/diagnosis_survey_model.dart';
 import '../../../theme/colors.dart';
 import '../../../theme/texts.dart';
 

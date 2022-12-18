@@ -2,14 +2,14 @@
 
 import 'dart:async';
 
-import 'package:base/app/global/global_toast_widget.dart';
-import 'package:base/app/model/welfare_model.dart';
+import 'package:base/app/globals/global_toast_widget.dart';
+import 'package:base/app/models/welfare_model.dart';
 import 'package:base/app/provider/main_provider.dart';
 import 'package:get/get.dart';
 import 'package:logger/logger.dart';
 
-import '../../../model/base_response_model.dart';
-import '../../../model/healthcare_btn_model.dart';
+import '../../../models/base_response_model.dart';
+import '../../../models/healthcare_btn_model.dart';
 import '../../../routes/app_pages.dart';
 import '../../../theme/colors.dart';
 

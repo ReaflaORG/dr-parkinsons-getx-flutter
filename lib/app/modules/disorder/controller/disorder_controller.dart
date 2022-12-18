@@ -5,7 +5,7 @@ import 'dart:async';
 import 'package:get/get.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
-import '../../../model/disorder_model.dart';
+import '../../../models/disorder_model.dart';
 
 class DisorderController extends GetxController {
   static DisorderController get to => Get.find();
