@@ -9,7 +9,7 @@ import '../../../theme/texts.dart';
 import '../controller/search_doctors_controller.dart';
 import '../widget/search_doctor_item_widget.dart';
 
-/// 전문의 검색 view
+/// 전문의 검색 화면
 class SearchDoctorsView extends GetView<DoctorSearchController> {
   const SearchDoctorsView({super.key});
 
@@ -185,7 +185,7 @@ class SearchDoctorsBeforeListWidget extends GetView<DoctorSearchController> {
               //     builder: (context) => DoctorView(),
               //   ),
               // );
-              Get.toNamed(Routes.DOCTOR);
+              Get.toNamed('/search/doctor/1');
             },
             item: item,
           );

@@ -62,10 +62,10 @@ abstract class Routes {
   /// 미션관리
   static const MISSION = _Paths.MISSION;
 
-  /// 주치의찾기
-  static const SEARCH_DOCTOR = _Paths.SEARCH_DOCTOR;
+  /// 주치의 찾기
+  static const SEARCH = _Paths.SEARCH;
 
-  /// 주치의상세
+  /// 주치의 찾기 - 주치의 상세
   static const DOCTOR = _Paths.DOCTOR;
 
   /// 내정보
@@ -162,11 +162,11 @@ abstract class _Paths {
   /// 미션관리
   static const MISSION = '/mission';
 
-  /// 주치의찾기
-  static const SEARCH_DOCTOR = '/search_doctors';
+  /// 주치의 찾기
+  static const SEARCH = '/search';
 
-  /// 주치의찾기
-  static const DOCTOR = '/doctor';
+  /// 주치의 찾기 - 주치의 상세보기
+  static const DOCTOR = '/doctor/:uid';
 
   /// 내정보
   static const MY_INFO = '/myinfo';

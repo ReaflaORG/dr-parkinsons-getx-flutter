@@ -7,83 +7,86 @@ import '../../../theme/texts.dart';
 import '../controller/doctor_controller.dart';
 import '../widget/doctor_item_widget.dart';
 
-// docotor view
+// 전문의 화면
 class DoctorView extends GetView<DoctorController> {
   const DoctorView({super.key});
 
   @override
-  Widget build(BuildContext context) => SafeArea(
-        child: Scaffold(
-          appBar: AppBar(
-            backgroundColor: ColorPath.BackgroundWhite,
-            elevation: 0,
-            centerTitle: false,
-            leadingWidth: 39.w,
-            leading: InkWell(
-              onTap: () {
-                Get.back();
-              },
-              child: Container(
-                alignment: Alignment.centerLeft,
-                padding: EdgeInsets.only(left: 18.w),
-                child: Image.asset(
-                  'assets/doctor/back_arrow.png',
-                  width: 21.w,
-                  height: 13.5.w,
+  Widget build(BuildContext context) {
+    return SafeArea(
+      child: Scaffold(
+        appBar: AppBar(
+          backgroundColor: ColorPath.BackgroundWhite,
+          elevation: 0,
+          centerTitle: false,
+          leadingWidth: 39.w,
+          leading: InkWell(
+            onTap: () {
+              Get.back();
+            },
+            child: Container(
+              alignment: Alignment.centerLeft,
+              padding: EdgeInsets.only(left: 18.w),
+              child: Image.asset(
+                'assets/doctor/back_arrow.png',
+                width: 21.w,
+                height: 13.5.w,
+              ),
+            ),
+          ),
+          title: Text(
+            'OOO의사',
+            style: TextPath.Heading2F18W600.copyWith(
+              color: ColorPath.TextGrey1H212121,
+            ),
+            textAlign: TextAlign.left,
+          ),
+          actions: [
+            Container(
+              padding: EdgeInsets.fromLTRB(0.w, 13.w, 18.w, 13.w),
+              child: InkWell(
+                onTap: () {},
+                child: Text(
+                  '주치의 추가/변경하기',
+                  style: TextPath.TextF12W400.copyWith(
+                    color: ColorPath.TextGrey1H212121,
+                  ),
+                  textAlign: TextAlign.right,
                 ),
               ),
             ),
-            title: Text(
-              'OOO의사',
-              style: TextPath.Heading2F18W600.copyWith(
-                color: ColorPath.TextGrey1H212121,
-              ),
-              textAlign: TextAlign.left,
-            ),
-            actions: [
+          ],
+        ),
+        body: SingleChildScrollView(
+          physics: const ClampingScrollPhysics(),
+          child: Column(
+            children: [
               Container(
-                padding: EdgeInsets.fromLTRB(0.w, 13.w, 18.w, 13.w),
-                child: InkWell(
-                  onTap: () {},
-                  child: Text(
-                    '주치의 추가/변경하기',
-                    style: TextPath.TextF12W400.copyWith(
-                      color: ColorPath.TextGrey1H212121,
-                    ),
-                    textAlign: TextAlign.right,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.vertical(
+                    bottom: Radius.circular(24.r),
                   ),
+                  color: Colors.white,
+                ),
+              ),
+              Container(
+                padding: EdgeInsets.symmetric(horizontal: 20.w),
+                child: Column(
+                  children: [
+                    SizedBox(height: 15.w),
+                    const DoctorHeaderWidget(),
+                    SizedBox(height: 15.w),
+                    const DoctorCardWidget(),
+                    SizedBox(height: 15.w),
+                  ],
                 ),
               ),
             ],
           ),
-          body: SingleChildScrollView(
-            physics: const ClampingScrollPhysics(),
-            child: Stack(
-              children: [
-                Container(
-                  decoration: BoxDecoration(
-                    borderRadius:
-                        BorderRadius.vertical(bottom: Radius.circular(24.w)),
-                    color: Colors.white,
-                  ),
-                ),
-                Container(
-                  padding: EdgeInsets.symmetric(horizontal: 20.w),
-                  child: Column(
-                    children: [
-                      SizedBox(height: 15.w),
-                      const DoctorHeaderWidget(),
-                      SizedBox(height: 15.w),
-                      const DoctorCardWidget(),
-                      SizedBox(height: 15.w),
-                    ],
-                  ),
-                )
-              ],
-            ),
-          ),
         ),
-      );
+      ),
+    );
+  }
 }
 
 /// 전문의 헤더
@@ -158,7 +161,7 @@ class DoctorCardWidget extends GetView<DoctorController> {
         itemBuilder: (BuildContext context, int index) {
           return DoctorItemWidget(
             onClick: () {
-              Get.toNamed('/doctor');
+              Get.toNamed('/search/doctor/1');
             },
             item: controller.listArray[index],
           );

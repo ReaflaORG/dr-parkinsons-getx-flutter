@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
-import '../../../routes/app_pages.dart';
 import '../../../theme/colors.dart';
 import '../../../theme/texts.dart';
 import '../controller/diagnosis_controller.dart';
@@ -307,8 +306,7 @@ class SurveyResultView extends GetView<DiagnosisController> {
                                   height: 34.w,
                                 ),
                                 InkWell(
-                                  onTap: () =>
-                                      Get.toNamed(Routes.SEARCH_DOCTOR),
+                                  onTap: () => Get.toNamed('/search'),
                                   child: Container(
                                     padding:
                                         EdgeInsets.symmetric(vertical: 6.w),
