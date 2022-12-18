@@ -50,10 +50,10 @@ class DoctorSearchController extends GetxController {
   late PermissionStatus permissionGranted;
 
   /// Long
-  double? long = 0.0;
+  RxDouble long = 0.0.obs;
 
   /// Lat
-  double? lat = 0.0;
+  RxDouble lat = 0.0.obs;
 
   /// 검색
   Rx<dynamic> search = ''.obs;
@@ -62,7 +62,7 @@ class DoctorSearchController extends GetxController {
   RxBool isSearch = false.obs;
 
   /// 거리
-  Rx<String> distance = '5'.obs;
+  Rx<String> distance = '20000'.obs;
 
   /// 거리 리스트
   RxList<String> distanceList = ['5', '10', '20'].obs;
@@ -70,7 +70,7 @@ class DoctorSearchController extends GetxController {
   // Function ▼ ========================================
 
   /// 위치 정보 가져오기
-  Future<dynamic> getLocation() async {
+  Future<void> getLocation() async {
     List temp = [
       await Future.value(await location.serviceEnabled()),
       await Future.value(await location.requestService()),
@@ -88,11 +88,17 @@ class DoctorSearchController extends GetxController {
     //   }
     // }
 
-    return await location.getLocation();
+    locationData = await location.getLocation();
+    getDoctorList(
+      long: locationData.longitude!,
+      lat: locationData.latitude!,
+    );
   }
 
   /// 검색
-  Future<void> onHandleSearch({required String searchKeyword}) async {
+  Future<void> onHandleSearch({
+    required String searchKeyword,
+  }) async {
     // 값 저장
     globalFormKey.value.currentState!.save();
 
@@ -129,7 +135,10 @@ class DoctorSearchController extends GetxController {
     }
   }
 
-  Future<void> getDoctorList(double? long, double? lat) async {
+  Future<void> getDoctorList({
+    required double long,
+    required double lat,
+  }) async {
     try {
       AuthBaseResponseModel response = await AuthProvider.dio(
         method: 'GET',
@@ -146,6 +155,7 @@ class DoctorSearchController extends GetxController {
                 ),
               ),
             ),
+            doctorListData.refresh(),
           ]);
           break;
         default:
@@ -159,13 +169,10 @@ class DoctorSearchController extends GetxController {
 
   @override
   Future<void> onInit() async {
-    Logger().d(await getLocation());
-    // locationData = await location.getLocation();
-    // Logger().d(locationData.latitude);
-    // Logger().d(locationData.longitude);
-    // await getDoctorList(locationData.longitude, locationData.latitude);
-    await getDoctorList(126.9347011, 37.5551399);
-    //long=126.9347011&lat=37.5551399&distance=0&search=대림&
+    Future.wait([
+      getLocation(),
+    ]);
+
     super.onInit();
   }
 
