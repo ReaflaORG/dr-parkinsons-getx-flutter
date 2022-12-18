@@ -17,6 +17,7 @@ class MainView extends GetView<MainController> {
           body: controller.handleScreen(),
           bottomNavigationBar: Container(
             // height: Platform.isIOS ? 62.h : 62.h,
+            padding: EdgeInsets.only(top: 4.w),
             decoration: BoxDecoration(
               color: ColorPath.BackgroundWhite,
               border: Border.all(

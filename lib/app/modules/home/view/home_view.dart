@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 
 import '../../../globals/global_dialog_widget.dart';
+import '../../../routes/app_pages.dart';
 import '../../../theme/colors.dart';
 import '../../../theme/texts.dart';
 import '../controller/home_controller.dart';
@@ -291,9 +292,11 @@ class HomeView extends GetView<HomeController> {
                               ],
                             ),
                             SizedBox(height: 12.w),
-                            controller.homeData.value.mission.isEmpty
-                                ? _missionItemNot()
-                                : _missionItem(),
+                            Obx(
+                              () => controller.homeData.value.mission.isEmpty
+                                  ? _missionItemNot()
+                                  : _missionItem(),
+                            ),
                             SizedBox(height: 40.w),
                             Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -645,133 +648,156 @@ class HomeView extends GetView<HomeController> {
         ),
       );
 
+  /// 미션 남은 시간 계산
+  int deffMinit(int time) {
+    print(time);
+    String now = DateFormat('HH:mm').format(DateTime.now());
+    return time - int.parse(now.replaceAll(":", ''));
+  }
+
   /// 미션 아이템 [다가오는 미션]
-  Container _missionItem() {
-    return Container(
-      width: 320.w,
-      height: 96.w,
-      decoration: BoxDecoration(
-        color: ColorPath.BackgroundWhite,
-        borderRadius: BorderRadius.circular(8),
-        boxShadow: [
-          BoxShadow(
-            color: ColorPath.PrimaryColor.withOpacity(0.1),
-            spreadRadius: 2,
-            blurRadius: 10,
-            offset: const Offset(5, 5), // changes position of shadow
-          ),
-        ],
-      ),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          SizedBox(
-            width: 64.w,
-            height: 64.w,
-            child: CircleAvatar(
-              backgroundColor: Colors.grey[200],
-              child: Image.asset(
-                  width: 48.w,
-                  height: 48.w,
-                  'assets/images/icons/page2/48 pill.png'),
+  Widget _missionItem() {
+    return InkWell(
+      onTap: () async {
+        Get.toNamed(Routes.MISSION);
+        await controller.getUpdateHomeData();
+      },
+      child: Container(
+        width: 310.w,
+        height: 96.w,
+        decoration: BoxDecoration(
+          color: ColorPath.BackgroundWhite,
+          borderRadius: BorderRadius.circular(8.r),
+          boxShadow: [
+            BoxShadow(
+              color: ColorPath.PrimaryColor.withOpacity(0.1),
+              spreadRadius: 2,
+              blurRadius: 10,
+              offset: const Offset(5, 5), // changes position of shadow
             ),
-          ),
-          SizedBox(
-            width: 12.w,
-          ),
-          Container(
-            alignment: Alignment.centerLeft,
-            width: 150.w,
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  '투약',
-                  style: TextPath.TextF16W500.copyWith(
-                    color: ColorPath.TextGrey1H212121,
-                  ),
-                ),
-                const SizedBox(
-                  height: 7,
-                ),
-                Text(
-                  '매일 07:00',
-                  style: TextPath.TextF14W500.copyWith(
-                    color: ColorPath.TextGrey3H616161,
-                  ),
-                ),
-              ],
+          ],
+        ),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            SizedBox(
+              width: 64.w,
+              height: 64.w,
+              child: CircleAvatar(
+                backgroundColor: Colors.grey[200],
+                child: Image.asset(
+                    width: 48.w,
+                    height: 48.w,
+                    'assets/images/icons/page2/48 pill.png'),
+              ),
             ),
-          ),
-          Container(
-            margin: const EdgeInsets.only(right: 24),
-            child: Column(
+            SizedBox(
+              width: 12.w,
+            ),
+            Container(
+              alignment: Alignment.centerLeft,
+              width: 110.w,
+              child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.end,
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Row(
-                    children: [
-                      Text(
-                        '30',
-                        style: TextPath.Heading1F24W600.copyWith(
-                          color: ColorPath.TextGrey1H212121,
-                        ),
-                      ),
-                      SizedBox(width: 4.w),
-                      Text(
-                        '분 전',
-                        style: TextPath.TextF13W500.copyWith(
-                          color: ColorPath.TextGrey1H212121,
-                        ),
-                      ),
-                    ],
+                  Text(
+                    controller.homeData.value.mission[0].mission_type,
+                    style: TextPath.TextF16W500.copyWith(
+                      color: ColorPath.TextGrey1H212121,
+                    ),
                   ),
                   SizedBox(height: 7.w),
-                  const Icon(Icons.check_circle_outline),
-                ]),
-          ),
-        ],
+                  Text(
+                    controller.homeData.value.mission[0].mission_time_string,
+                    style: TextPath.TextF14W500.copyWith(
+                      color: ColorPath.TextGrey3H616161,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            Container(
+              margin: EdgeInsets.only(right: 24.w),
+              child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  children: [
+                    Row(
+                      children: [
+                        Text(
+                          '${deffMinit(controller.homeData.value.mission[0].mission_time)}',
+                          style: TextPath.Heading1F24W600.copyWith(
+                            color: ColorPath.TextGrey1H212121,
+                          ),
+                        ),
+                        SizedBox(width: 4.w),
+                        Text(
+                          '분 전',
+                          style: TextPath.TextF13W500.copyWith(
+                            color: ColorPath.TextGrey1H212121,
+                          ),
+                        ),
+                      ],
+                    ),
+                    SizedBox(height: 7.w),
+                    InkWell(
+                        onTap: () async {
+                          await controller.clearMission(
+                              mission_id: controller
+                                  .homeData.value.mission[0].mission_id);
+                        },
+                        child: const Icon(Icons.check_circle_outline)),
+                  ]),
+            ),
+          ],
+        ),
       ),
     );
   }
 
   // 미션이 없을 경우
-  Container _missionItemNot() {
-    return Container(
-      width: 320.w,
-      height: 96.w,
-      decoration: BoxDecoration(
-        color: ColorPath.BackgroundWhite,
-        borderRadius: BorderRadius.circular(8),
-        boxShadow: [
-          BoxShadow(
-            color: ColorPath.PrimaryColor.withOpacity(0.1),
-            spreadRadius: 2,
-            blurRadius: 10,
-            offset: const Offset(5, 5), // changes position of shadow
-          ),
-        ],
-      ),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          Text(
-            '미션 추가',
-            style: TextPath.TextF16W500.copyWith(
-              color: ColorPath.TextGrey1H212121,
+  Widget _missionItemNot() {
+    return InkWell(
+      onTap: () async {
+        Get.toNamed(Routes.MISSION);
+        await controller.getUpdateHomeData();
+      },
+      child: Container(
+        width: 320.w,
+        height: 96.w,
+        decoration: BoxDecoration(
+          color: ColorPath.BackgroundWhite,
+          borderRadius: BorderRadius.circular(8),
+          boxShadow: [
+            BoxShadow(
+              color: ColorPath.PrimaryColor.withOpacity(0.1),
+              spreadRadius: 2,
+              blurRadius: 10,
+              offset: const Offset(5, 5), // changes position of shadow
             ),
-          ),
-          SizedBox(height: 7.w),
-          Text(
-            '다가오는 미션이 존재하지 않습니다.',
-            style: TextPath.TextF14W500.copyWith(
-              color: ColorPath.TextGrey3H616161,
+          ],
+        ),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Text(
+              '미션 추가',
+              style: TextPath.TextF16W500.copyWith(
+                color: ColorPath.TextGrey1H212121,
+              ),
             ),
-          ),
-        ],
+            SizedBox(height: 7.w),
+            Text(
+              '다가오는 미션이 존재하지 않습니다.',
+              style: TextPath.TextF14W500.copyWith(
+                color: ColorPath.TextGrey3H616161,
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

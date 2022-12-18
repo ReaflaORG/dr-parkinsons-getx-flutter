@@ -9,18 +9,10 @@ import '../controller/mission_controller.dart';
 
 class MissionCard extends GetView<MissionController> {
   final int index;
-  // final String cardName;
-  // final String cardStatus;
 
-  // final String fault;
-  // final int mission_id;
   const MissionCard({
     super.key,
     required this.index,
-    // required this.cardName,
-    // required this.cardStatus,
-    // required this.fault,
-    // required this.mission_id,
   });
   @override
   Widget build(BuildContext context) {
@@ -29,14 +21,17 @@ class MissionCard extends GetView<MissionController> {
         children: [
           InkWell(
             onTap: () async {
-              controller.updateTime(
-                  controller.missionData[index].mission_time.toString());
-              await controller
-                  .updateType(controller.missionData[index].mission_type);
-              GlobalUpdateAlarm(
-                context: context,
-                id: controller.missionData[index].mission_id,
-              );
+              if (controller.current_index.value ==
+                  controller.dateList.length - 1) {
+                controller.updateTime(
+                    controller.missionData[index].mission_time.toString());
+                await controller
+                    .updateType(controller.missionData[index].mission_type);
+                GlobalUpdateAlarm(
+                  context: context,
+                  id: controller.missionData[index].mission_id,
+                );
+              }
             },
             child: Container(
               width: 320.w,
@@ -148,11 +143,14 @@ class MissionCard extends GetView<MissionController> {
                   const SizedBox(width: 10),
                   Checkbox(
                     value: controller.missionData[index].clear,
-                    onChanged: (bool? value) {
-                      controller.clearMission(
-                        mission_id: controller.missionData[index].mission_id,
-                        index: index,
-                      );
+                    onChanged: (bool? value) async {
+                      if (controller.current_index.value ==
+                          controller.dateList.length - 1) {
+                        await controller.clearMission(
+                          mission_id: controller.missionData[index].mission_id,
+                          index: index,
+                        );
+                      }
                     },
                   ),
                   // GestureDetector(

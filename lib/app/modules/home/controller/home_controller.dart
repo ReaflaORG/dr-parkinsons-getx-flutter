@@ -42,6 +42,56 @@ class HomeController extends GetxController {
     }
   }
 
+  /// * 홈 정보 업데이트 API
+  Future<void> getUpdateHomeData() async {
+    try {
+      AuthBaseResponseModel response = await AuthProvider.dio(
+        method: 'GET',
+        url: '/home',
+      );
+
+      Logger().d(response.data);
+
+      switch (response.statusCode) {
+        case 200:
+          homeData.value = HomeModel.fromJson(response.data);
+          process.value = false;
+          break;
+
+        default:
+          throw Exception(response.message);
+      }
+    } catch (e) {
+      Logger().d(e);
+      GlobalToastWidget(message: e.toString().substring(11));
+    }
+  }
+
+  /// 미션 클리어 API
+  Future<void> clearMission({
+    required int mission_id,
+  }) async {
+    try {
+      AuthBaseResponseModel response = await AuthProvider.dio(
+        method: 'PATCH',
+        url: '/mission/$mission_id',
+      );
+
+      Logger().d(response.data);
+      switch (response.statusCode) {
+        case 200:
+        case 201:
+          await getUpdateHomeData();
+          break;
+        default:
+          throw Exception(response.message);
+      }
+    } catch (e) {
+      Logger().d(e);
+      GlobalToastWidget(message: e.toString().substring(11));
+    }
+  }
+
   /// * 보호자에게 응급 메세지 보내기 API
   Future<void> sendEmergency() async {
     try {
