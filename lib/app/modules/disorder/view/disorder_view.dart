@@ -11,29 +11,29 @@ class DisorderView extends GetView<DisorderController> {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        appBar: AppBar(
-          leading: IconButton(
-            onPressed: () async {
-              Get.back();
-            },
-            icon: const Icon(
-              Icons.arrow_back,
-              color: Colors.black,
-            ),
+    return Scaffold(
+      appBar: AppBar(
+        leading: IconButton(
+          onPressed: () async {
+            Get.back();
+          },
+          icon: const Icon(
+            Icons.arrow_back,
+            color: Colors.black,
           ),
-          elevation: 0,
-          shadowColor: Colors.white,
-          title: Text(
-            '파킨슨 병 소개',
-            style: TextPath.Heading2F18W600.copyWith(
-              color: ColorPath.TextGrey1H212121,
-            ),
-          ),
-          backgroundColor: Colors.white,
         ),
-        body: Container(
+        elevation: 0,
+        shadowColor: Colors.white,
+        title: Text(
+          '파킨슨 병 소개',
+          style: TextPath.Heading2F18W600.copyWith(
+            color: ColorPath.TextGrey1H212121,
+          ),
+        ),
+        backgroundColor: Colors.white,
+      ),
+      body: SafeArea(
+        child: Container(
           padding: const EdgeInsets.symmetric(horizontal: 20),
           child: SingleChildScrollView(
             child: Column(

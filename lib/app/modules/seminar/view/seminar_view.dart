@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -9,30 +11,29 @@ class SeminarView extends GetView<SeminarController> {
   const SeminarView({super.key});
 
   @override
-  Widget build(BuildContext context) => SafeArea(
-          child: Scaffold(
-        body: Container(
+  Widget build(BuildContext context) => Scaffold(
+        body: SafeArea(
           child: SingleChildScrollView(
             child: Column(children: [
               Stack(children: [
                 Container(
                   padding: EdgeInsets.symmetric(
-                    horizontal: 10,
-                    vertical: 8,
+                    horizontal: 10.w,
+                    vertical: 8.w,
                   ),
                   width: double.infinity,
-                  height: 242,
-                  decoration: BoxDecoration(
-                      image: const DecorationImage(
-                        image: AssetImage(
-                            'assets/images/mock/page2/semina 360x242.jpg'),
-                        fit: BoxFit.cover,
-                      ),
-                      borderRadius: BorderRadius.circular(16)),
+                  height: 242.h,
+                  decoration: const BoxDecoration(
+                    image: DecorationImage(
+                      image: AssetImage(
+                          'assets/images/mock/page2/semina 360x242.jpg'),
+                      fit: BoxFit.cover,
+                    ),
+                  ),
                 ),
                 Positioned(
-                  left: 20,
-                  top: 12,
+                  left: 20.w,
+                  top: 12.w,
                   child: InkWell(
                     onTap: () => Get.back(),
                     child: SizedBox(
@@ -42,7 +43,7 @@ class SeminarView extends GetView<SeminarController> {
                         backgroundColor: Colors.white,
                         child: Icon(
                           Icons.arrow_back,
-                          size: 24,
+                          size: 24.w,
                           color: ColorPath.TextGrey1H212121,
                         ),
                       ),
@@ -50,9 +51,7 @@ class SeminarView extends GetView<SeminarController> {
                   ),
                 )
               ]),
-              const SizedBox(
-                height: 24,
-              ),
+              SizedBox(height: 24.h),
               Container(
                 margin: EdgeInsets.symmetric(horizontal: 20.5.h),
                 child: Column(
@@ -62,7 +61,7 @@ class SeminarView extends GetView<SeminarController> {
                       style: TextPath.Heading2F18W600.copyWith(
                           color: ColorPath.TextGrey1H212121),
                     ),
-                    const SizedBox(height: 12),
+                    SizedBox(height: 12.w),
                     SizedBox(
                       height: 264.h,
                       child: Column(
@@ -90,5 +89,5 @@ class SeminarView extends GetView<SeminarController> {
             ]),
           ),
         ),
-      ));
+      );
 }
