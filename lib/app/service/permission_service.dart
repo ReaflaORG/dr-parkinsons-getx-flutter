@@ -6,8 +6,8 @@ import 'package:get_storage/get_storage.dart';
 import 'package:logger/logger.dart';
 import 'package:permission_handler/permission_handler.dart';
 
-import '../global/global_dialog_widget.dart';
-import '../model/permission_model.dart';
+import '../globals/global_dialog_widget.dart';
+import '../models/permission_model.dart';
 
 class PermissionService extends GetxService {
   static PermissionService get to => Get.find();

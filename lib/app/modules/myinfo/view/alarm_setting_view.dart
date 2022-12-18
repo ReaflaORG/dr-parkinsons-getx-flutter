@@ -5,7 +5,6 @@ import 'package:get/get.dart';
 
 import '../../../theme/colors.dart';
 import '../../../theme/texts.dart';
-
 import '../controller/alarm_setting_controller.dart';
 
 // alarm setting view
@@ -22,7 +21,7 @@ class AlarmSettingView extends GetView<AlarmSettingController> {
             leadingWidth: 39.w,
             leading: InkWell(
               onTap: () {
-                Navigator.pop(context);
+                Get.back();
               },
               child: Container(
                 alignment: Alignment.centerLeft,

@@ -9,8 +9,6 @@ import 'package:get_storage/get_storage.dart';
 import 'package:kakao_flutter_sdk/kakao_flutter_sdk.dart';
 import 'package:timeago/timeago.dart' as timeago;
 
-import 'app/modules/splash/binding/splash_binding.dart';
-import 'app/modules/splash/view/splash_view.dart';
 import 'app/routes/app_pages.dart';
 import 'app/service/global_service.dart';
 import 'app/theme/theme.dart';
@@ -21,38 +19,50 @@ void main() async {
 }
 
 Future<void> initialize() async {
-  /// Widget Binding 초기화
-  WidgetsFlutterBinding.ensureInitialized();
+  await Future.value([
+    // Widget Binding 초기화
+    WidgetsFlutterBinding.ensureInitialized(),
 
-  /// .env 초기화
-  await dotenv.load();
+    // .env 초기화
+    await dotenv.load(),
 
-  /// Get Storage 초기화
-  await GetStorage.init();
+    // Get Storage 초기화
+    await GetStorage.init(),
 
-  /// Timeago 언어 초기화
-  timeago.setLocaleMessages('ko', timeago.KoMessages());
+    // Timeago 언어 초기화
+    timeago.setLocaleMessages('ko', timeago.KoMessages()),
 
-  /// 가로모드 방지
-  SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
+    // 가로모드 방지
+    SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]),
 
-  /// Firebase 초기화
-  // await Firebase.initializeApp();
+    // Status 텍스트 색상
+    Future.delayed(const Duration(milliseconds: 1)).then((value) {
+      return SystemChrome.setSystemUIOverlayStyle(
+        SystemUiOverlayStyle.dark.copyWith(
+          statusBarColor: Colors.white,
+          statusBarBrightness: Brightness.light,
+        ),
+      );
+    }),
 
-  // Kakao 초기화
-  KakaoSdk.init(nativeAppKey: dotenv.env['APP_KAKAO_NATIVE_APP_KEY']);
+    /// Firebase 초기화
+    // await Firebase.initializeApp();
 
-  /// 글로벌 서비스
-  Get.put(GlobalService());
+    // Kakao 초기화
+    KakaoSdk.init(nativeAppKey: dotenv.env['APP_KAKAO_NATIVE_APP_KEY']),
 
-  /// 인증 서비스
-  Get.put(AuthService());
+    // 글로벌 서비스
+    Get.put(GlobalService(), permanent: true),
 
-  /// FCM 서비스
-  // Get.put(FCMService());
+    // 인증 서비스
+    Get.put(AuthService(), permanent: true),
 
-  /// 퍼미션 서비스
-  // Get.lazyPut(() => PermissionService());
+    // FCM 서비스
+    // Get.put(FCMService(), permanent: true);
+
+    // 퍼미션 서비스
+    // Get.lazyPut(() => PermissionService());
+  ]);
 }
 
 class MyApp extends StatelessWidget {
@@ -68,8 +78,6 @@ class MyApp extends StatelessWidget {
         return GetMaterialApp(
           title: dotenv.env['APP_EN_NAME']!,
           initialRoute: '/splash',
-          initialBinding: SplashBinding(),
-          home: const SplashView(),
           getPages: AppPages.routes,
           smartManagement: SmartManagement.full,
           builder: (BuildContext context, Widget? child) {

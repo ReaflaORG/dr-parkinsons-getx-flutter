@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
-import '../../../routes/app_pages.dart';
 import '../../../theme/colors.dart';
 import '../../../theme/texts.dart';
 import '../controller/diagnosis_controller.dart';
@@ -48,8 +47,8 @@ class DiagnosisView extends GetView<DiagnosisController> {
             ),
           ),
           body: controller.isFinish.value
-              ? SurveyResultView()
-              : SurveyTestingView(),
+              ? const SurveyResultView()
+              : const SurveyTestingView(),
         ),
       );
 }
@@ -148,7 +147,7 @@ class SurveyTestingView extends GetView<DiagnosisController> {
                                       ColorPath.PrimaryColor.withOpacity(0.1),
                                   spreadRadius: 2,
                                   blurRadius: 10,
-                                  offset: Offset(
+                                  offset: const Offset(
                                       5, 5), // changes position of shadow
                                 ),
                               ],
@@ -268,8 +267,8 @@ class SurveyResultView extends GetView<DiagnosisController> {
                                 color: ColorPath.PrimaryColor.withOpacity(0.1),
                                 spreadRadius: 2,
                                 blurRadius: 10,
-                                offset:
-                                    Offset(5, 5), // changes position of shadow
+                                offset: const Offset(
+                                    5, 5), // changes position of shadow
                               ),
                             ],
                             color: ColorPath.BackgroundWhite,
@@ -286,7 +285,7 @@ class SurveyResultView extends GetView<DiagnosisController> {
                                   '진단결과',
                                   style: TextPath.Heading1F24W600,
                                 ),
-                                SizedBox(
+                                const SizedBox(
                                   height: 34,
                                 ),
                                 Text('''김하나 님의 점수는 40점으로 
@@ -307,8 +306,7 @@ class SurveyResultView extends GetView<DiagnosisController> {
                                   height: 34.w,
                                 ),
                                 InkWell(
-                                  onTap: () =>
-                                      Get.toNamed(Routes.SEARCH_DOCTOR),
+                                  onTap: () => Get.toNamed('/search'),
                                   child: Container(
                                     padding:
                                         EdgeInsets.symmetric(vertical: 6.w),
@@ -323,7 +321,7 @@ class SurveyResultView extends GetView<DiagnosisController> {
                                               .withOpacity(0.1),
                                           spreadRadius: 2,
                                           blurRadius: 20,
-                                          offset: Offset(5,
+                                          offset: const Offset(5,
                                               5), // changes position of shadow
                                         ),
                                       ],

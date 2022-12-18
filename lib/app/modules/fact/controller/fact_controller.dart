@@ -2,11 +2,12 @@
 
 import 'dart:async';
 
-import 'package:base/app/global/global_toast_widget.dart';
-import 'package:base/app/model/parkinson_post_model.dart';
+import 'package:base/app/globals/global_toast_widget.dart';
+import 'package:base/app/models/parkinson_post_model.dart';
 import 'package:get/get.dart';
 import 'package:logger/logger.dart';
-import '../../../model/base_response_model.dart';
+
+import '../../../models/base_response_model.dart';
 import '../../../provider/main_provider.dart';
 
 class FactController extends GetxController {

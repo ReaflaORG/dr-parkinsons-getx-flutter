@@ -3,7 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
-import '../../../global/global_dialog_widget.dart';
+import '../../../globals/global_dialog_widget.dart';
 import '../../../theme/colors.dart';
 import '../../../theme/texts.dart';
 import '../controller/drugmisuse_controller.dart';

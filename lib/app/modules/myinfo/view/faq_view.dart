@@ -1,11 +1,10 @@
-import 'package:base/app/model/faq_model.dart';
+import 'package:base/app/models/faq_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
 import '../../../theme/colors.dart';
 import '../../../theme/texts.dart';
-
 import '../controller/faq_controller.dart';
 import '../widgets/faq_item_widget.dart';
 
@@ -23,7 +22,7 @@ class FaqView extends GetView<FaqController> {
             leadingWidth: 39.w,
             leading: InkWell(
               onTap: () {
-                Navigator.pop(context);
+                Get.back();
               },
               child: Container(
                 alignment: Alignment.centerLeft,

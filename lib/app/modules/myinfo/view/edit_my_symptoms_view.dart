@@ -3,7 +3,6 @@ import 'package:get/get.dart';
 
 import '../../../theme/colors.dart';
 import '../../../theme/texts.dart';
-
 import '../controller/edit_my_symptoms_controller.dart';
 import '../models/edit_my_symptoms_item_model.dart';
 import '../widgets/edit_my_symptoms_item_widget.dart';
@@ -86,7 +85,7 @@ class EditMySymptomsHeader extends GetView<EditMySymptomsController> {
               children: [
                 InkWell(
                   onTap: () {
-                    Navigator.pop(context);
+                    Get.back();
                   },
                   child: Container(
                     alignment: Alignment.centerLeft,

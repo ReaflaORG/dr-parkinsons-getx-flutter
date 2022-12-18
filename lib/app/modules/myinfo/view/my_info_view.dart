@@ -6,7 +6,6 @@ import 'package:get/get.dart';
 import '../../../routes/app_pages.dart';
 import '../../../theme/colors.dart';
 import '../../../theme/texts.dart';
-
 import '../controller/my_info_controller.dart';
 import '../models/my_info_item_model.dart';
 import '../widgets/my_info_item_widget.dart';
@@ -223,7 +222,7 @@ class MyInfoHeader extends GetView<MyInfoController> {
           const Spacer(),
           InkWell(
             onTap: () {
-              Get.toNamed(Routes.SEARCH_DOCTOR);
+              Get.toNamed('/search');
             },
             child: Container(
               width: 36,

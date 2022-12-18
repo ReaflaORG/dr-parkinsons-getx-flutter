@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:logger/logger.dart';
+import 'package:get/get.dart';
 
 import '../../../theme/colors.dart';
 import '../../../theme/texts.dart';
@@ -37,7 +37,7 @@ showAlertTwoOptionsDialog(
               Spacer(),
               InkWell(
                 onTap: () {
-                  Navigator.pop(context);
+                  Get.back();
                 },
                 child: Container(
                   padding: EdgeInsets.only(right: 10),

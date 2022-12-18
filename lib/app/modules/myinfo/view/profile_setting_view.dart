@@ -4,7 +4,6 @@ import 'package:get/get.dart';
 
 import '../../../theme/colors.dart';
 import '../../../theme/texts.dart';
-
 import '../controller/profile_setting_controller.dart';
 import '../widgets/profile_setting_widget.dart';
 
@@ -21,7 +20,7 @@ class ProfileSettingView extends GetView<ProfileSettingController> {
           leadingWidth: 39.w,
           leading: InkWell(
             onTap: () {
-              Navigator.pop(context);
+              Get.back();
             },
             child: Container(
               alignment: Alignment.centerLeft,

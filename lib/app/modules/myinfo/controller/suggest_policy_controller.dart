@@ -1,13 +1,14 @@
 // ignore_for_file: unnecessary_overrides
 
 import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:logger/logger.dart';
 
-import '../../../global/global_toast_widget.dart';
-import '../../../model/base_response_model.dart';
+import '../../../globals/global_toast_widget.dart';
+import '../../../models/base_response_model.dart';
 import '../../../provider/main_provider.dart';
 import '../widgets/show_dialog.dart';
 

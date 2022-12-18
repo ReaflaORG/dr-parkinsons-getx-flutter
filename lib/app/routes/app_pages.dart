@@ -232,20 +232,22 @@ class AppPages {
       popGesture: false,
     ),
     GetPage(
-      title: '주치의찾기',
-      name: Routes.SEARCH_DOCTOR,
+      title: '주치의 찾기',
+      name: Routes.SEARCH,
       page: () => const SearchDoctorsView(),
       binding: SearchDoctorsBinding(),
       transition: Transition.native,
       popGesture: false,
-    ),
-    GetPage(
-      title: '주치의상세보기',
-      name: Routes.DOCTOR,
-      page: () => const DoctorView(),
-      binding: DoctorBinding(),
-      transition: Transition.native,
-      popGesture: false,
+      children: [
+        GetPage(
+          title: '주치의 찾기 - 주치의 상세보기',
+          name: Routes.DOCTOR,
+          page: () => const DoctorView(),
+          binding: DoctorBinding(),
+          transition: Transition.native,
+          popGesture: false,
+        ),
+      ],
     ),
     GetPage(
       title: '내정보',

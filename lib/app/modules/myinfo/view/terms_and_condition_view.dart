@@ -4,7 +4,6 @@ import 'package:get/get.dart';
 
 import '../../../theme/colors.dart';
 import '../../../theme/texts.dart';
-
 import '../controller/terms_and_condition_controller.dart';
 import '../models/terms_and_condition_item_model.dart';
 import '../widgets/terms_and_condition_item_widget.dart';
@@ -23,7 +22,7 @@ class TermsAndConditionView extends GetView<TermsAndConditionController> {
             leadingWidth: 39.w,
             leading: InkWell(
               onTap: () {
-                Navigator.pop(context);
+                Get.back();
               },
               child: Container(
                 alignment: Alignment.centerLeft,

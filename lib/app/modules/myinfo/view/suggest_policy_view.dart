@@ -4,9 +4,7 @@ import 'package:get/get.dart';
 
 import '../../../theme/colors.dart';
 import '../../../theme/texts.dart';
-
 import '../controller/suggest_policy_controller.dart';
-import '../widgets/show_dialog.dart';
 
 // suggest policy view
 class SuggestPolicyView extends GetView<SuggestPolicyController> {
@@ -22,7 +20,7 @@ class SuggestPolicyView extends GetView<SuggestPolicyController> {
             leadingWidth: 39.w,
             leading: InkWell(
               onTap: () {
-                Navigator.pop(context);
+                Get.back();
               },
               child: Container(
                 alignment: Alignment.centerLeft,
