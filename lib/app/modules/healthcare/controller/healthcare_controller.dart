@@ -74,8 +74,11 @@ class HealthCareController extends GetxController {
   /// 데이터 초기화 함수
   Future<void> onInitData() async {
     try {
-      AuthBaseResponseModel response =
-          await AuthProvider.dio(method: 'GET', url: '/healthcare');
+      AuthBaseResponseModel response = await AuthProvider.dio(
+        method: 'GET',
+        url: '/healthcare',
+      );
+
       switch (response.statusCode) {
         case 200:
           welfareLists.assignAll(List<WelfareModel>.from(

@@ -2,7 +2,7 @@ import 'package:get/get.dart';
 
 import '../controller/doctor_controller.dart';
 
-// dortor binding
+/// 주치의 찾기 바인딩
 class DoctorBinding implements Bindings {
   @override
   void dependencies() {
