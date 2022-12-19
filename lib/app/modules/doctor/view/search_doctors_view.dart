@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
+import '../../../globals/global_dialog_widget.dart';
 import '../../../models/sarch_doctors_model.dart';
 import '../../../routes/app_pages.dart';
+import '../../../service/auth_service.dart';
 import '../../../theme/colors.dart';
 import '../../../theme/texts.dart';
 import '../controller/search_doctors_controller.dart';
@@ -34,7 +36,12 @@ class SearchDoctorsView extends GetView<DoctorSearchController> {
             ),
             actions: [
               InkWell(
-                onTap: () {},
+                onTap: () {
+                  // 보호자에게 연락 문자
+                  AuthService.to.userData.value.guardianPhoneNumber != null
+                      ? GlobalEmergencyModalWidget(context: context)
+                      : GlobalEmergencyModalWidget2(context: context);
+                },
                 child: Container(
                   alignment: Alignment.centerRight,
                   padding: EdgeInsets.only(right: 18.w),
@@ -56,10 +63,8 @@ class SearchDoctorsView extends GetView<DoctorSearchController> {
                   SizedBox(height: 15.w),
                   InkWell(
                     onTap: () async {
-                      await controller.onHandleSearch(
-                        searchKeyword:
-                            controller.searchTextFormFieldController.value.text,
-                      );
+                      controller.distance.value = '0';
+                      await controller.getDoctorList();
                     },
                     child: Container(
                       decoration: BoxDecoration(
@@ -90,10 +95,17 @@ class SearchDoctorsView extends GetView<DoctorSearchController> {
                                 22.75.w,
                                 12.5.w,
                               ),
-                              child: Image.asset(
-                                'assets/search_doctors/search_icon.png',
-                                width: 16.5.w,
-                                height: 16.5.w,
+                              child: InkWell(
+                                onTap: () async {
+                                  // 검색 기능
+                                  controller.distance.value = '0';
+                                  await controller.getDoctorList();
+                                },
+                                child: Image.asset(
+                                  'assets/search_doctors/search_icon.png',
+                                  width: 16.5.w,
+                                  height: 16.5.w,
+                                ),
                               ),
                             ),
                             hintText: '병원명 또는 의사명을 입력하세요.',
@@ -102,9 +114,8 @@ class SearchDoctorsView extends GetView<DoctorSearchController> {
                             ),
                           ),
                           onFieldSubmitted: (value) async {
-                            await controller.onHandleSearch(
-                              searchKeyword: value,
-                            );
+                            controller.distance.value = '0';
+                            await controller.getDoctorList();
                           },
                         ),
                       ),
@@ -139,9 +150,14 @@ class SearchDoctorsView extends GetView<DoctorSearchController> {
                                 title: '${controller.distanceList[index]} Km',
                                 isCheck: controller.distanceList[index] ==
                                     controller.distance.value,
-                                onClick: () {
+                                onClick: () async {
+                                  controller.searchTextFormFieldController.value
+                                      .text = '';
+                                  controller.searchTextFormFieldController
+                                      .refresh();
                                   controller.distance.value =
                                       controller.distanceList[index];
+                                  await controller.getDoctorList();
                                 },
                               ),
                             );
@@ -151,9 +167,7 @@ class SearchDoctorsView extends GetView<DoctorSearchController> {
                     ),
                   ),
                   SizedBox(height: 15.w),
-                  !controller.isSearch.value
-                      ? const SearchDoctorsBeforeListWidget()
-                      : const SearchDoctorsAfterListWidget(),
+                  const SearchDoctorsListWidget()
                 ],
               ),
             ),
@@ -164,9 +178,9 @@ class SearchDoctorsView extends GetView<DoctorSearchController> {
   }
 }
 
-/// 전문의 검색 전 리스트
-class SearchDoctorsBeforeListWidget extends GetView<DoctorSearchController> {
-  const SearchDoctorsBeforeListWidget({super.key});
+/// 전문의 리스트
+class SearchDoctorsListWidget extends GetView<DoctorSearchController> {
+  const SearchDoctorsListWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -179,46 +193,8 @@ class SearchDoctorsBeforeListWidget extends GetView<DoctorSearchController> {
           SearchDoctorsModel item = controller.doctorListData[index];
           return DoctorSearchItemWidget(
             onClick: () {
-              // Navigator.push(
-              //   context,
-              //   MaterialPageRoute(
-              //     builder: (context) => DoctorView(),
-              //   ),
-              // );
-              Get.toNamed('/search/doctor/1');
-            },
-            item: item,
-          );
-        },
-        separatorBuilder: (BuildContext context, int index) =>
-            const Divider(color: Colors.transparent),
-      ),
-    );
-  }
-}
-
-/// 전문의 검색 후 리스트
-class SearchDoctorsAfterListWidget extends GetView<DoctorSearchController> {
-  const SearchDoctorsAfterListWidget({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Obx(
-      () => ListView.separated(
-        shrinkWrap: true,
-        physics: const NeverScrollableScrollPhysics(),
-        itemCount: controller.searchData.length,
-        itemBuilder: (BuildContext context, int index) {
-          SearchDoctorsModel item = controller.searchData[index];
-          return DoctorSearchItemWidget(
-            onClick: () {
-              // Navigator.push(
-              //   context,
-              //   MaterialPageRoute(
-              //     builder: (context) => DoctorView(),
-              //   ),
-              // );
-              Get.toNamed(Routes.DOCTOR);
+              Get.toNamed(Routes.DOCTOR,
+                  arguments: {'doctor_id': item.doctorId});
             },
             item: item,
           );

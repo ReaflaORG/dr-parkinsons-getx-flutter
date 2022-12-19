@@ -44,6 +44,8 @@ dependencies:
   flutter_time_picker_spinner: ^2.0.0
   location: ^4.4.0
   device_info_plus: ^8.0.0
+  video_player: ^2.4.10
+  wakelock: ^0.6.2
 
 dev_dependencies:
   flutter_test:

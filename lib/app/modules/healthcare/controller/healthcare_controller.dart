@@ -48,7 +48,6 @@ class HealthCareController extends GetxController {
         color: ColorPath.SecondaryLightColor,
         icon: 'assets/images/icons/3d/48test1.png',
         onClick: () {
-          // Get.toNamed('${Routes.DIAGNOSIS}/1');
           GlobalReadyModal(context: Get.overlayContext as BuildContext);
         }),
     HealthCareBtnModel(
@@ -70,7 +69,6 @@ class HealthCareController extends GetxController {
         color: ColorPath.Background1HECEFF1,
         icon: 'assets/images/icons/3d/48timer.png',
         onClick: () {
-          // Get.toNamed(Routes.MISSION);
           MainController.to.navigationIndex.value = 2;
         }),
   ].obs;

@@ -2,65 +2,86 @@
 
 import 'dart:async';
 
+import 'package:base/app/models/doctor_model.dart';
+import 'package:base/app/service/auth_service.dart';
 import 'package:get/get.dart';
+import 'package:logger/logger.dart';
 
-import '../../../models/doctor_item_model.dart';
+import '../../../globals/global_toast_widget.dart';
+import '../../../models/base_response_model.dart';
+import '../../../provider/main_provider.dart';
 
 /// 주치의 찾기 컨트롤러
 class DoctorController extends GetxController {
   static DoctorController get to => Get.find();
 
   // Data ▼ ============================================
+  // 의사 이이디
+  Rx<int> doctor_id = 0.obs;
   // doctor item model
-  RxList<DoctorItemModel> listArray = [
-    DoctorItemModel(
-      hospitalName: '병원명',
-      department: '신경과 전문의',
-      doctorName: 'OOO 의사',
-      imagePath: 'assets/doctor/doctor_1.png',
-      dateWritten: '22.10.00',
-      title: '나를 잃어가는 병, 치매',
-    ),
-    DoctorItemModel(
-      hospitalName: '병원명',
-      department: '신경과 전문의',
-      doctorName: 'OOO 의사',
-      imagePath: 'assets/doctor/doctor_2.png',
-      dateWritten: '22.10.00',
-      title: '나를 잃어가는 병, 치매',
-    ),
-    DoctorItemModel(
-      hospitalName: '병원명',
-      department: '신경과 전문의',
-      doctorName: 'OOO 의사',
-      imagePath: 'assets/doctor/doctor_3.png',
-      dateWritten: '22.10.00',
-      title: '나를 잃어가는 병, 치매',
-    ),
-    DoctorItemModel(
-      hospitalName: '병원명',
-      department: '신경과 전문의',
-      doctorName: 'OOO 의사',
-      imagePath: 'assets/doctor/doctor_4.png',
-      dateWritten: '22.10.00',
-      title: '나를 잃어가는 병, 치매',
-    ),
-    DoctorItemModel(
-      hospitalName: '병원명',
-      department: '신경과 전문의',
-      doctorName: 'OOO 의사',
-      imagePath: 'assets/doctor/doctor_1.png',
-      dateWritten: '22.10.00',
-      title: '나를 잃어가는 병, 치매',
-    ),
-  ].obs;
+  late Rx<DoctorModel> doctor;
+  Rx<bool> process = true.obs;
 
   // Function ▼ ========================================
+
+  // 전문의 설정
+
+  // 전문의 데이터 불러오기
+  Future<void> getDoctorDetail() async {
+    try {
+      AuthBaseResponseModel response = await AuthProvider.dio(
+        method: 'GET',
+        url: '/doctor/${doctor_id}',
+      );
+
+      switch (response.statusCode) {
+        case 200:
+          DoctorModel item = DoctorModel.fromJson(response.data);
+          if (process.value) {
+            doctor = item.obs;
+          } else {
+            doctor.value = item;
+          }
+          process.value = false;
+          break;
+        default:
+          throw Exception(response.message);
+      }
+    } catch (e) {
+      Logger().d(e);
+      GlobalToastWidget(message: e.toString().substring(11));
+    }
+  }
+
+  // 전문의 데이터 불러오기
+  Future<void> putDoctorUser() async {
+    try {
+      AuthBaseResponseModel response = await AuthProvider.dio(
+        method: 'PATCH',
+        url: '/doctor/${doctor_id}',
+      );
+
+      Logger().d(response.statusCode);
+      switch (response.statusCode) {
+        case 200:
+          await getDoctorDetail();
+          await AuthService.to.handleMyInfo();
+          break;
+        default:
+          throw Exception(response.message);
+      }
+    } catch (e) {
+      Logger().d(e);
+      GlobalToastWidget(message: e.toString().substring(11));
+    }
+  }
 
   // Variable ▼ ========================================
 
   @override
   Future<void> onInit() async {
+    doctor_id.value = Get.arguments['doctor_id'] ?? 1;
+    await getDoctorDetail();
     super.onInit();
   }
 

@@ -51,6 +51,7 @@ class DoctorModel {
 }
 
 // * 의사 컨텐츠
+
 class DoctorContent {
   DoctorContent({
     required this.doctorContentId,
@@ -58,6 +59,8 @@ class DoctorContent {
     required this.contentType,
     required this.title,
     required this.content,
+    required this.contentProvider,
+    required this.contentThumbnail,
     required this.description,
     required this.createdAt,
     required this.updatedAt,
@@ -68,6 +71,8 @@ class DoctorContent {
   final String contentType;
   final String title;
   final String content;
+  final String contentProvider;
+  String? contentThumbnail;
   final String description;
   final DateTime createdAt;
   final DateTime updatedAt;
@@ -78,6 +83,8 @@ class DoctorContent {
         contentType: json['content_type'],
         title: json['title'],
         content: json['content'],
+        contentProvider: json['content_provider'],
+        contentThumbnail: json['content_thumbnail'],
         description: json['description'],
         createdAt: DateTime.parse(json['created_at']),
         updatedAt: DateTime.parse(json['updated_at']),
@@ -89,6 +96,8 @@ class DoctorContent {
         'content_type': contentType,
         'title': title,
         'content': content,
+        'content_provider': contentProvider,
+        'content_thumbnail': contentThumbnail,
         'description': description,
         'created_at': createdAt.toIso8601String(),
         'updated_at': updatedAt.toIso8601String(),

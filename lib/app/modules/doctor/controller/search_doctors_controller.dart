@@ -23,9 +23,6 @@ class DoctorSearchController extends GetxController {
   /// 전문의 데이터
   RxList<SearchDoctorsModel> doctorListData = <SearchDoctorsModel>[].obs;
 
-  /// 검색 데이터
-  RxList<SearchDoctorsModel> searchData = <SearchDoctorsModel>[].obs;
-
   // Controller ▼ ========================================
 
   Rx<TextEditingController> searchTextFormFieldController =
@@ -52,51 +49,12 @@ class DoctorSearchController extends GetxController {
   // Function ▼ ========================================
 
   /// 검색
-  Future<void> onHandleSearch({
-    required String searchKeyword,
-  }) async {
-    // 값 저장
-    globalFormKey.value.currentState!.save();
-
-    try {
-      if (searchKeyword.isNotEmpty) {
-        isSearch.value = true;
-
-        AuthBaseResponseModel response = await AuthProvider.dio(
-          method: 'GET',
-          // url:
-          //     '/doctor?long=126.9347011&lat=37.5551399&distance=${distance.value}&search=$searchKeyword');
-          url:
-              '/doctor?long=126.9347011&lat=37.5551399&distance=0&search=$searchKeyword',
-        );
-
-        switch (response.statusCode) {
-          case 200:
-            searchData.assignAll(
-              List<SearchDoctorsModel>.from(
-                response.data.map(
-                  (e) => SearchDoctorsModel.fromJson(e),
-                ),
-              ),
-            );
-            break;
-          default:
-            throw Exception(response.message);
-        }
-      }
-    } catch (e) {
-      GlobalToastWidget(message: e.toString().substring(11));
-    } finally {
-      isSearch.value = false;
-    }
-  }
-
   Future<void> getDoctorList() async {
     try {
       AuthBaseResponseModel response = await AuthProvider.dio(
         method: 'GET',
         url:
-            '/doctor?long=${LocationService.to.locationData.longitude}&lat=${LocationService.to.locationData.latitude}&distance=$distance&search=',
+            '/doctor?long=${LocationService.to.locationData.longitude}&lat=${LocationService.to.locationData.latitude}&distance=$distance&search=${searchTextFormFieldController.value.text}',
       );
 
       switch (response.statusCode) {
