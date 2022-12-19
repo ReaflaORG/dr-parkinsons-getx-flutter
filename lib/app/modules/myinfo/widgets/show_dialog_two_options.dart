@@ -1,5 +1,7 @@
+import 'package:base/app/modules/myinfo/controller/my_symptoms_controller.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:logger/logger.dart';
 
 import '../../../theme/colors.dart';
@@ -9,6 +11,7 @@ import '../../../theme/texts.dart';
 showAlertTwoOptionsDialog(
   BuildContext context,
   String type,
+  int deleteId,
   String alertTitleMsg,
   String alertContentMsg,
   String firstButtonTitle,
@@ -67,7 +70,12 @@ showAlertTwoOptionsDialog(
             width: double.infinity,
             height: 44,
             child: TextButton(
-              onPressed: () => Navigator.pop(context),
+              onPressed: () {
+                type == 'delete_symptom'
+                    ? MySymptomsController.to.deleteMySymptomsData(deleteId)
+                    : '';
+                Get.back();
+              },
               style: TextButton.styleFrom(
                   foregroundColor: Colors.white,
                   backgroundColor: ColorPath.Blue2F7ABAColor,

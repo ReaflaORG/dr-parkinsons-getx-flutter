@@ -30,8 +30,8 @@ class DoctorSearchController extends GetxController {
   late final LocationData locationData;
 
   Rx<bool> process = true.obs;
-  double? long = 0.0;
-  double? lat = 0.0;
+  double? longitude = 0.0;
+  double? latitude = 0.0;
   Rx<dynamic> search = ''.obs;
 
   RxBool isSearch = false.obs;
@@ -63,6 +63,13 @@ class DoctorSearchController extends GetxController {
         return;
       }
     }
+
+    locationData = await location.getLocation();
+
+    location.onLocationChanged.listen((LocationData loc) {
+      longitude = loc.longitude;
+      latitude = loc.latitude;
+    });
   }
 
   Future<void> onHandleSearch({required String searchKeyword}) async {
@@ -125,13 +132,15 @@ class DoctorSearchController extends GetxController {
 
   @override
   Future<void> onInit() async {
-    // await getLocation();
-    // locationData = await location.getLocation();
-    // Logger().d(locationData.latitude);
-    // Logger().d(locationData.longitude);
-    // await getDoctorList(locationData.longitude, locationData.latitude);
-    await getDoctorList(126.9347011, 37.5551399);
-    //long=126.9347011&lat=37.5551399&distance=0&search=대림&
+    //await getLocation();
+
+    // Logger().d(longitude);
+    // Logger().d(latitude);
+
+    //await getDoctorList(longitude, latitude);
+    await getDoctorList(126.9347011, 37.5551399); //test
+    //long=126.9347011&lat=37.5551399&distance=0&search=대림
+
     super.onInit();
   }
 

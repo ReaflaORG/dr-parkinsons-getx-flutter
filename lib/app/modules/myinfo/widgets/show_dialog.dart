@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import '../../../theme/colors.dart';
 import '../../../theme/texts.dart';
@@ -39,7 +40,7 @@ showAlertDialog(
             width: double.infinity,
             height: 44,
             child: TextButton(
-              onPressed: () => Navigator.pop(context),
+              onPressed: () => Get.back(),
               style: TextButton.styleFrom(
                   foregroundColor: Colors.white,
                   backgroundColor: ColorPath.PrimaryDarkColor,

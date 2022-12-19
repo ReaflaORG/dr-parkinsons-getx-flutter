@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:video_player/video_player.dart';
 
 import '../../../model/doctor_item_model.dart';
 import '../../../theme/colors.dart';
@@ -13,80 +14,78 @@ class DoctorView extends GetView<DoctorController> {
   const DoctorView({super.key});
 
   @override
-  Widget build(BuildContext context) => SafeArea(
-        child: Scaffold(
-          appBar: AppBar(
-            backgroundColor: ColorPath.BackgroundWhite,
-            elevation: 0,
-            centerTitle: false,
-            leadingWidth: 39.w,
-            leading: InkWell(
-              onTap: () {
-                Navigator.pop(context);
-              },
-              child: Container(
-                alignment: Alignment.centerLeft,
-                padding: EdgeInsets.only(left: 18.w),
-                child: Image.asset(
-                  'assets/doctor/back_arrow.png',
-                  width: 21.w,
-                  height: 13.5.w,
-                ),
-              ),
-            ),
-            title: Container(
-              child: Text(
-                'OOO의사',
-                style: TextPath.Heading2F18W600.copyWith(
-                  color: ColorPath.TextGrey1H212121,
-                ),
-                textAlign: TextAlign.left,
-              ),
-            ),
-            actions: [
-              Container(
-                padding: EdgeInsets.fromLTRB(0.w, 13.w, 18.w, 13.w),
-                child: InkWell(
-                  onTap: () {},
-                  child: Text(
-                    "주치의 추가/변경하기",
-                    style: TextPath.TextF12W400.copyWith(
-                      color: ColorPath.TextGrey1H212121,
-                    ),
-                    textAlign: TextAlign.right,
-                  ),
-                ),
-              ),
-            ],
-          ),
-          body: SingleChildScrollView(
-            physics: ClampingScrollPhysics(),
+  Widget build(BuildContext context) => Scaffold(
+        appBar: AppBar(
+          backgroundColor: ColorPath.BackgroundWhite,
+          elevation: 0,
+          centerTitle: false,
+          leadingWidth: 39.w,
+          leading: InkWell(
+            onTap: () {
+              Navigator.pop(context);
+            },
             child: Container(
-              child: Stack(
-                children: [
-                  Container(
-                    decoration: BoxDecoration(
-                      borderRadius:
-                          BorderRadius.vertical(bottom: Radius.circular(24.w)),
-                      color: Colors.white,
+              alignment: Alignment.centerLeft,
+              padding: EdgeInsets.only(left: 18.w),
+              child: Image.asset(
+                'assets/doctor/back_arrow.png',
+                width: 21.w,
+                height: 13.5.w,
+              ),
+            ),
+          ),
+          title: Container(
+            child: Text(
+              'OOO의사',
+              style: TextPath.Heading2F18W600.copyWith(
+                color: ColorPath.TextGrey1H212121,
+              ),
+              textAlign: TextAlign.left,
+            ),
+          ),
+          actions: [
+            Container(
+              padding: EdgeInsets.fromLTRB(0.w, 13.w, 18.w, 13.w),
+              child: InkWell(
+                onTap: () {},
+                child: Text(
+                  "주치의 추가/변경하기",
+                  style: TextPath.TextF12W400.copyWith(
+                    color: ColorPath.TextGrey1H212121,
+                  ),
+                  textAlign: TextAlign.right,
+                ),
+              ),
+            ),
+          ],
+        ),
+        body: SingleChildScrollView(
+          physics: ClampingScrollPhysics(),
+          child: Container(
+            child: Stack(
+              children: [
+                Container(
+                  decoration: BoxDecoration(
+                    borderRadius:
+                        BorderRadius.vertical(bottom: Radius.circular(24.w)),
+                    color: Colors.white,
+                  ),
+                ),
+                Container(
+                  child: Container(
+                    padding: EdgeInsets.symmetric(horizontal: 20.w),
+                    child: Column(
+                      children: [
+                        SizedBox(height: 15.w),
+                        DoctorHeader(),
+                        SizedBox(height: 15.w),
+                        DoctorBodyView(),
+                        SizedBox(height: 15.w),
+                      ],
                     ),
                   ),
-                  Container(
-                    child: Container(
-                      padding: EdgeInsets.symmetric(horizontal: 20.w),
-                      child: Column(
-                        children: [
-                          SizedBox(height: 15.w),
-                          DoctorHeader(),
-                          SizedBox(height: 15.w),
-                          DoctorBodyView(),
-                          SizedBox(height: 15.w),
-                        ],
-                      ),
-                    ),
-                  )
-                ],
-              ),
+                )
+              ],
             ),
           ),
         ),
@@ -156,7 +155,7 @@ class DoctorBodyView extends GetView<DoctorController> {
       () => ListView.separated(
         padding: EdgeInsets.only(top: 40.w),
         shrinkWrap: true,
-        physics: NeverScrollableScrollPhysics(),
+        physics: const NeverScrollableScrollPhysics(),
         itemCount: controller.listArray.length,
         itemBuilder: (BuildContext context, int index) {
           DoctorItemModel item = controller.listArray[index];

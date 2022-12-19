@@ -44,7 +44,7 @@ class SuggestPolicyController extends GetxController {
   }
 
   // Function ▼ ========================================
-// * 데이터 수정하기 API
+  // * 데이터 수정하기 API
   Future<void> handleSubmit(BuildContext context) async {
     if (policyTitleController.value.text.isEmpty) {
       polityTitleError.value = '제목은 필수입니다.';

@@ -16,51 +16,49 @@ class MyInfoView extends GetView<MyInfoController> {
   const MyInfoView({super.key});
 
   @override
-  Widget build(BuildContext context) => SafeArea(
-        child: Scaffold(
-          appBar: AppBar(
-            backgroundColor: ColorPath.PrimaryLightColor,
-            elevation: 0,
-            centerTitle: false,
-            title: Container(
-              padding: EdgeInsets.symmetric(horizontal: 4.w),
-              child: Text(
-                '내정보',
-                style: TextPath.Heading2F18W600.copyWith(
-                  color: ColorPath.TextGrey1H212121,
-                ),
-                textAlign: TextAlign.left,
+  Widget build(BuildContext context) => Scaffold(
+        appBar: AppBar(
+          backgroundColor: ColorPath.PrimaryLightColor,
+          elevation: 0,
+          centerTitle: false,
+          title: Container(
+            padding: EdgeInsets.symmetric(horizontal: 4.w),
+            child: Text(
+              '내정보',
+              style: TextPath.Heading2F18W600.copyWith(
+                color: ColorPath.TextGrey1H212121,
               ),
+              textAlign: TextAlign.left,
             ),
           ),
-          body: SingleChildScrollView(
-            physics: const ClampingScrollPhysics(),
-            child: Stack(
-              children: [
-                Container(
-                  decoration: BoxDecoration(
-                    borderRadius:
-                        BorderRadius.vertical(bottom: Radius.circular(24.w)),
-                    color: ColorPath.PrimaryLightColor,
-                  ),
-                  height: 230,
+        ),
+        body: SingleChildScrollView(
+          physics: const ClampingScrollPhysics(),
+          child: Stack(
+            children: [
+              Container(
+                decoration: BoxDecoration(
+                  borderRadius:
+                      BorderRadius.vertical(bottom: Radius.circular(24.w)),
+                  color: ColorPath.PrimaryLightColor,
                 ),
-                Container(
-                  padding: EdgeInsets.symmetric(horizontal: 20.w),
-                  child: Column(
-                    children: [
-                      SizedBox(height: MediaQuery.of(context).padding.top),
-                      MyInfoHeader(),
-                      MyInfoBodyView(),
-                      // Expanded(
-                      //   child: MyInfoBodyView(),
-                      // ),
-                      SizedBox(height: MediaQuery.of(context).padding.bottom),
-                    ],
-                  ),
-                )
-              ],
-            ),
+                height: 230,
+              ),
+              Container(
+                padding: EdgeInsets.symmetric(horizontal: 20.w),
+                child: Column(
+                  children: [
+                    SizedBox(height: MediaQuery.of(context).padding.top),
+                    MyInfoHeader(),
+                    MyInfoBodyView(),
+                    // Expanded(
+                    //   child: MyInfoBodyView(),
+                    // ),
+                    SizedBox(height: MediaQuery.of(context).padding.bottom),
+                  ],
+                ),
+              )
+            ],
           ),
         ),
       );

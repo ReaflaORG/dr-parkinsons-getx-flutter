@@ -41,6 +41,7 @@ class ManageMemberItemWidget extends StatelessWidget {
                     showAlertTwoOptionsDialog(
                       context,
                       typeLogout,
+                      0,
                       alertTitleMsgLogout,
                       alertContentMsgLogout,
                       firstButtonTitleLogout,
@@ -74,6 +75,7 @@ class ManageMemberItemWidget extends StatelessWidget {
                     showAlertTwoOptionsDialog(
                       context,
                       typeResignation,
+                      0,
                       alertTitleMsgResignation,
                       alertContentMsgResignation,
                       firstButtonTitleResignation,

@@ -13,56 +13,54 @@ class ViewMySymptomsView extends GetView<ViewMySymptomsController> {
   const ViewMySymptomsView({super.key});
 
   @override
-  Widget build(BuildContext context) => SafeArea(
-        child: Scaffold(
-          appBar: AppBar(
-            backgroundColor: ColorPath.BackgroundWhite,
-            elevation: 0,
-            centerTitle: false,
-            title: Container(
-              padding: EdgeInsets.symmetric(horizontal: 4),
-              child: Text(
-                '내 증상 기록',
-                style: TextPath.Heading2F18W600.copyWith(
-                  color: ColorPath.TextGrey1H212121,
-                ),
-                textAlign: TextAlign.left,
+  Widget build(BuildContext context) => Scaffold(
+        appBar: AppBar(
+          backgroundColor: ColorPath.BackgroundWhite,
+          elevation: 0,
+          centerTitle: false,
+          title: Container(
+            padding: EdgeInsets.symmetric(horizontal: 4),
+            child: Text(
+              '내 증상 기록',
+              style: TextPath.Heading2F18W600.copyWith(
+                color: ColorPath.TextGrey1H212121,
               ),
+              textAlign: TextAlign.left,
             ),
           ),
-          body: SingleChildScrollView(
-            physics: ClampingScrollPhysics(),
-            child: Stack(
-              children: [
-                Container(
-                  decoration: BoxDecoration(
-                    borderRadius:
-                        BorderRadius.vertical(bottom: Radius.circular(24)),
-                    color: ColorPath.PrimaryLightColor,
-                  ),
-                  //width: screenSize(context).width,
-                  height: 230,
+        ),
+        body: SingleChildScrollView(
+          physics: ClampingScrollPhysics(),
+          child: Stack(
+            children: [
+              Container(
+                decoration: BoxDecoration(
+                  borderRadius:
+                      BorderRadius.vertical(bottom: Radius.circular(24)),
+                  color: ColorPath.PrimaryLightColor,
                 ),
-                Container(
-                  child: Container(
-                    //width: screenSize(context).width,
-                    //height: screenSize(context).height,
-                    padding: EdgeInsets.fromLTRB(20, 0, 20, 0),
-                    child: Column(
-                      children: [
-                        SizedBox(height: MediaQuery.of(context).padding.top),
-                        ViewMySymptomsHeader(),
-                        ViewMySymptomsView(),
-                        // Expanded(
-                        //   child: ViewMySymptomsView(),
-                        // ),
-                        SizedBox(height: MediaQuery.of(context).padding.bottom),
-                      ],
-                    ),
+                //width: screenSize(context).width,
+                height: 230,
+              ),
+              Container(
+                child: Container(
+                  //width: screenSize(context).width,
+                  //height: screenSize(context).height,
+                  padding: EdgeInsets.fromLTRB(20, 0, 20, 0),
+                  child: Column(
+                    children: [
+                      SizedBox(height: MediaQuery.of(context).padding.top),
+                      ViewMySymptomsHeader(),
+                      ViewMySymptomsView(),
+                      // Expanded(
+                      //   child: ViewMySymptomsView(),
+                      // ),
+                      SizedBox(height: MediaQuery.of(context).padding.bottom),
+                    ],
                   ),
-                )
-              ],
-            ),
+                ),
+              )
+            ],
           ),
         ),
       );
