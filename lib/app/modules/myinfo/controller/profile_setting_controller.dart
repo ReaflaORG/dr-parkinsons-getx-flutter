@@ -1,8 +1,9 @@
 // ignore_for_file: unnecessary_overrides
 
 import 'dart:async';
-import 'package:base/app/global/global_toast_widget.dart';
-import 'package:base/app/model/base_response_model.dart';
+
+import 'package:base/app/globals/global_toast_widget.dart';
+import 'package:base/app/models/base_response_model.dart';
 import 'package:base/app/provider/main_provider.dart';
 import 'package:base/app/service/auth_service.dart';
 import 'package:base/app/utils/formatter.dart';
@@ -12,7 +13,7 @@ import 'package:get/get.dart';
 import 'package:logger/logger.dart';
 import 'package:syncfusion_flutter_datepicker/datepicker.dart';
 
-import '../../../model/user_model.dart';
+import '../../../models/user_model.dart';
 
 // profile setting controller
 class ProfileSettingController extends GetxController {

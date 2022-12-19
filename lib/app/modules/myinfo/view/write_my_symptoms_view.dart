@@ -1,11 +1,10 @@
+import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:dotted_border/dotted_border.dart';
 
 import '../../../theme/colors.dart';
 import '../../../theme/texts.dart';
-
 import '../controller/write_my_symtoms_controller.dart';
 
 const String alertTitleMsg = '내 증상 기록';
@@ -16,81 +15,87 @@ class WriteMySymptomsView extends GetView<WriteMySymptomsController> {
   const WriteMySymptomsView({super.key});
 
   @override
-  Widget build(BuildContext context) => Scaffold(
-        appBar: AppBar(
-          backgroundColor: ColorPath.BackgroundWhite,
-          elevation: 0,
-          centerTitle: false,
-          leadingWidth: 39.w,
-          leading: InkWell(
-            onTap: () {
-              Navigator.pop(context);
-            },
-            child: Container(
-              alignment: Alignment.centerLeft,
-              padding: EdgeInsets.only(left: 18.w),
-              child: Image.asset(
-                'assets/doctor/back_arrow.png',
-                width: 21.w,
-                height: 13.5.w,
-              ),
-            ),
-          ),
-          title: Container(
-            padding: EdgeInsets.symmetric(horizontal: 4.w),
-            child: Text(
-              '내 증상 기록',
-              style: TextPath.Heading2F18W600.copyWith(
-                color: ColorPath.TextGrey1H212121,
-              ),
-              textAlign: TextAlign.left,
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: ColorPath.BackgroundWhite,
+        elevation: 0,
+        centerTitle: false,
+        leadingWidth: 39.w,
+        leading: InkWell(
+          onTap: () {
+            Get.back();
+          },
+          child: Container(
+            alignment: Alignment.centerLeft,
+            padding: EdgeInsets.only(left: 18.w),
+            child: Image.asset(
+              'assets/doctor/back_arrow.png',
+              width: 21.w,
+              height: 13.5.w,
             ),
           ),
         ),
-        body: SingleChildScrollView(
-          physics: const ClampingScrollPhysics(),
-          child: Stack(
-            children: [
-              Container(
-                //width: screenSize(context).width,
-                //height: screenSize(context).height,
-                padding: EdgeInsets.fromLTRB(20.w, 0.w, 20.w, 0.w),
-                child: Column(
-                  children: [
-                    SizedBox(height: MediaQuery.of(context).padding.top),
-                    WriteMySymptomsBodyView(),
-                    // Expanded(
-                    //   child: WriteMySymptomsView(),
-                    // ),
-                    SizedBox(height: MediaQuery.of(context).padding.bottom),
-                  ],
-                ),
-              )
-            ],
+        title: Container(
+          padding: EdgeInsets.symmetric(horizontal: 4.w),
+          child: Text(
+            '내 증상 기록',
+            style: TextPath.Heading2F18W600.copyWith(
+              color: ColorPath.TextGrey1H212121,
+            ),
+            textAlign: TextAlign.left,
           ),
         ),
-      );
+      ),
+      body: SingleChildScrollView(
+        physics: const ClampingScrollPhysics(),
+        child: Stack(
+          children: [
+            Container(
+              padding: EdgeInsets.fromLTRB(20.w, 0.w, 20.w, 0.w),
+              child: Column(
+                children: [
+                  SizedBox(height: MediaQuery.of(context).padding.top),
+                  const WriteMySymptomsBodyView(),
+                  // Expanded(
+                  //   child: WriteMySymptomsView(),
+                  // ),
+                  SizedBox(height: MediaQuery.of(context).padding.bottom),
+                ],
+              ),
+            )
+          ],
+        ),
+      ),
+    );
+  }
 }
 
 class WriteMySymptomsBodyView extends GetView<WriteMySymptomsController> {
+  const WriteMySymptomsBodyView({super.key});
+
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       width: double.infinity,
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          _writeMySymptomsForm(),
+          const WriteMySymptomsForm(),
           SizedBox(height: 50.w),
-          _writeMySymptomsAction(context),
+          const WriteMySymptomsAction(),
           SizedBox(height: 30.w),
         ],
       ),
     );
   }
+}
 
-  // write  my symptoms form
-  Widget _writeMySymptomsForm() {
+class WriteMySymptomsForm extends GetView<WriteMySymptomsController> {
+  const WriteMySymptomsForm({super.key});
+
+  @override
+  Widget build(BuildContext context) {
     return Container(
       padding: EdgeInsets.fromLTRB(20.w, 0.w, 20.w, 0.w),
       child: Column(
@@ -227,7 +232,7 @@ class WriteMySymptomsBodyView extends GetView<WriteMySymptomsController> {
                 DottedBorder(
                   color: const Color.fromRGBO(4, 168, 180, 0.9),
                   strokeWidth: 1,
-                  dashPattern: [3, 1],
+                  dashPattern: const [3, 1],
                   borderType: BorderType.RRect,
                   radius: Radius.circular(6.w),
                   child: TextButton(
@@ -278,14 +283,18 @@ class WriteMySymptomsBodyView extends GetView<WriteMySymptomsController> {
       ),
     );
   }
+}
 
-  // write my symptoms button action
-  Widget _writeMySymptomsAction(BuildContext context) {
+class WriteMySymptomsAction extends GetView<WriteMySymptomsController> {
+  const WriteMySymptomsAction({super.key});
+
+  @override
+  Widget build(BuildContext context) {
     return Container(
       padding: EdgeInsets.fromLTRB(10.w, 0.w, 0.w, 0.w),
       child: Row(
         children: [
-          Container(
+          SizedBox(
             width: 128.w,
             height: 38.w,
             child: TextButton(
@@ -312,7 +321,7 @@ class WriteMySymptomsBodyView extends GetView<WriteMySymptomsController> {
           ),
           SizedBox(width: 8.w),
           Expanded(
-            child: Container(
+            child: SizedBox(
               height: 38.w,
               child: TextButton(
                 onPressed: () {},
@@ -339,7 +348,7 @@ class WriteMySymptomsBodyView extends GetView<WriteMySymptomsController> {
                 ),
               ),
             ),
-          )
+          ),
         ],
       ),
     );

@@ -2,114 +2,116 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
-import '../../../model/my_symptoms_model.dart';
+import '../../../models/my_symptoms_model.dart';
 import '../../../routes/app_pages.dart';
 import '../../../theme/colors.dart';
 import '../../../theme/texts.dart';
-
 import '../controller/my_symptoms_controller.dart';
 import '../widgets/show_dialog_two_options.dart';
-import 'edit_my_symptoms_view.dart';
 
-const String type = "delete_symptom";
-const String alertTitleMsg = "정말 삭제하시겠습니까?";
-const String alertContentMsg = "주치의 찾기 탭을 통해 다시 담당 주치의를 설정하실 수 있습니다.";
-const String firstButtonTitle = "삭제하기";
-const String secondButtonTitle = "취소하기";
+const String type = 'delete_symptom';
+const String alertTitleMsg = '정말 삭제하시겠습니까?';
+const String alertContentMsg = '주치의 찾기 탭을 통해 다시 담당 주치의를 설정하실 수 있습니다.';
+const String firstButtonTitle = '삭제하기';
+const String secondButtonTitle = '취소하기';
 
 // my symptoms view
 class MySymptomsView extends GetView<MySymptomsController> {
   const MySymptomsView({super.key});
 
   @override
-  Widget build(BuildContext context) => Scaffold(
-        appBar: AppBar(
-          backgroundColor: ColorPath.BackgroundWhite,
-          elevation: 0,
-          centerTitle: false,
-          leadingWidth: 39.w,
-          leading: InkWell(
-            onTap: () {
-              Navigator.pop(context);
-            },
-            child: Container(
-              alignment: Alignment.centerLeft,
-              padding: EdgeInsets.only(left: 18.w),
-              child: Image.asset(
-                'assets/doctor/back_arrow.png',
-                width: 21.w,
-                height: 13.5.w,
-              ),
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: ColorPath.BackgroundWhite,
+        elevation: 0,
+        centerTitle: false,
+        leadingWidth: 39.w,
+        leading: InkWell(
+          onTap: () {
+            Get.back();
+          },
+          child: Container(
+            alignment: Alignment.centerLeft,
+            padding: EdgeInsets.only(left: 18.w),
+            child: Image.asset(
+              'assets/doctor/back_arrow.png',
+              width: 21.w,
+              height: 13.5.w,
             ),
           ),
-          title: Container(
-            padding: EdgeInsets.symmetric(horizontal: 4.w),
-            child: Text(
-              '내 증상 기록',
-              style: TextPath.Heading2F18W600.copyWith(
-                color: ColorPath.TextGrey1H212121,
-              ),
-              textAlign: TextAlign.left,
+        ),
+        title: Container(
+          padding: EdgeInsets.symmetric(horizontal: 4.w),
+          child: Text(
+            '내 증상 기록',
+            style: TextPath.Heading2F18W600.copyWith(
+              color: ColorPath.TextGrey1H212121,
             ),
+            textAlign: TextAlign.left,
           ),
-          actions: [
-            Container(
-              padding: EdgeInsets.fromLTRB(0.w, 10.w, 18.w, 10.w),
-              child: InkWell(
-                onTap: () async {
-                  await Get.toNamed(Routes.WRITE_MY_SYMPTOMS);
-                  await controller.getMySymptomsData();
-                },
-                child: Text(
-                  "추가하기",
-                  style: TextPath.TextF16W600.copyWith(
-                    color: ColorPath.TextGrey1H212121,
-                  ),
-                  textAlign: TextAlign.right,
+        ),
+        actions: [
+          Container(
+            padding: EdgeInsets.fromLTRB(0.w, 10.w, 18.w, 10.w),
+            child: InkWell(
+              onTap: () async {
+                await Get.toNamed(Routes.WRITE_MY_SYMPTOMS);
+                await controller.getMySymptomsData();
+              },
+              child: Text(
+                '추가하기',
+                style: TextPath.TextF16W600.copyWith(
+                  color: ColorPath.TextGrey1H212121,
                 ),
+                textAlign: TextAlign.right,
               ),
             ),
+          ),
+        ],
+      ),
+      body: SingleChildScrollView(
+        physics: const ClampingScrollPhysics(),
+        child: Stack(
+          children: [
+            Container(
+              padding: EdgeInsets.symmetric(horizontal: 20.w),
+              child: Column(
+                children: [
+                  SizedBox(height: 20.w),
+                  Obx(
+                    () => ListView.builder(
+                      padding: const EdgeInsets.only(top: 10),
+                      shrinkWrap: true,
+                      physics: const NeverScrollableScrollPhysics(),
+                      itemCount: controller.listArray.length,
+                      itemBuilder: (BuildContext context, int index) {
+                        MySymptomsModel item = controller.listArray[index];
+                        return MySymptomsItemWidget(
+                          onClick: () async {
+                            await Get.toNamed(
+                              Routes.EDIT_MY_SYMPTOMS,
+                              arguments: {
+                                'id':
+                                    controller.listArray[index].symptomHistoryId
+                              },
+                            );
+                            await controller.getMySymptomsData();
+                          },
+                          item: item,
+                          controller: controller,
+                        );
+                      },
+                    ),
+                  ),
+                ],
+              ),
+            )
           ],
         ),
-        body: SingleChildScrollView(
-          physics: const ClampingScrollPhysics(),
-          child: Stack(
-            children: [
-              Container(
-                padding: EdgeInsets.symmetric(horizontal: 20.w),
-                child: Column(
-                  children: [
-                    SizedBox(height: 20.w),
-                    Obx(
-                      () => ListView.builder(
-                        padding: const EdgeInsets.only(top: 10),
-                        shrinkWrap: true,
-                        physics: const NeverScrollableScrollPhysics(),
-                        itemCount: controller.listArray.value.length,
-                        itemBuilder: (BuildContext context, int index) {
-                          MySymptomsModel item = controller.listArray[index];
-                          return MySymptomsItemWidget(
-                            onClick: () async {
-                              await Get.toNamed(Routes.EDIT_MY_SYMPTOMS,
-                                  arguments: {
-                                    'id': controller
-                                        .listArray[index].symptomHistoryId
-                                  });
-                              await controller.getMySymptomsData();
-                            },
-                            item: item,
-                            controller: controller,
-                          );
-                        },
-                      ),
-                    ),
-                  ],
-                ),
-              )
-            ],
-          ),
-        ),
-      );
+      ),
+    );
+  }
 }
 
 // my symptoms item widget
@@ -120,6 +122,7 @@ class MySymptomsItemWidget extends StatelessWidget {
     required this.item,
     required this.controller,
   });
+
   final MySymptomsModel item;
   final Function onClick;
   final MySymptomsController controller;
@@ -167,7 +170,7 @@ class MySymptomsItemWidget extends StatelessWidget {
                           arguments: {'id': item.symptomHistoryId});
                     },
                     child: Ink.image(
-                      image: AssetImage(
+                      image: const AssetImage(
                         'assets/my_symptoms/modify_pencil_icon.png',
                       ),
                       width: 12.w,
@@ -190,7 +193,7 @@ class MySymptomsItemWidget extends StatelessWidget {
                     child: Container(
                       padding: EdgeInsets.only(right: 10.w),
                       child: Ink.image(
-                        image: AssetImage(
+                        image: const AssetImage(
                           'assets/my_symptoms/trash_icon.png',
                         ),
                         width: 18.w,

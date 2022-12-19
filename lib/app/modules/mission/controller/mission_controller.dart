@@ -1,12 +1,14 @@
 import 'dart:async';
-import 'package:base/app/global/global_toast_widget.dart';
-import 'package:base/app/model/mission_model.dart';
+
+import 'package:base/app/globals/global_toast_widget.dart';
+import 'package:base/app/models/mission_model.dart';
 import 'package:base/app/provider/main_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:logger/logger.dart';
-import '../../../model/base_response_model.dart';
+
+import '../../../models/base_response_model.dart';
 import '../../../theme/colors.dart';
 
 class MissionController extends GetxController {

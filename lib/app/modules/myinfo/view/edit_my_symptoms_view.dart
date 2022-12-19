@@ -2,82 +2,68 @@ import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:logger/logger.dart';
 
 import '../../../theme/colors.dart';
 import '../../../theme/texts.dart';
-
 import '../controller/edit_my_symptoms_controller.dart';
-import '../widgets/show_dialog.dart';
 
 const String alertTitleMsg = '내 증상 기록 수정';
 const String alertContentMsg = '내 증상 기록이 수정되었습니다.';
 
 // edit my symptoms view
 class EditMySymptomsView extends GetView<EditMySymptomsController> {
-  const EditMySymptomsView({
-    super.key,
-  });
+  const EditMySymptomsView({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: ColorPath.BackgroundWhite,
-        elevation: 0,
-        centerTitle: false,
-        leadingWidth: 39.w,
-        leading: InkWell(
-          onTap: () {
-            Navigator.pop(context);
-          },
-          child: Container(
-            alignment: Alignment.centerLeft,
-            padding: EdgeInsets.only(left: 18.w),
-            child: Image.asset(
-              'assets/doctor/back_arrow.png',
-              width: 21.w,
-              height: 13.5.w,
+    return Obx(
+      () => Scaffold(
+        appBar: AppBar(
+          backgroundColor: ColorPath.BackgroundWhite,
+          elevation: 0,
+          centerTitle: false,
+          leadingWidth: 39.w,
+          leading: InkWell(
+            onTap: () {
+              Get.back();
+              ;
+            },
+            child: Container(
+              alignment: Alignment.centerLeft,
+              padding: EdgeInsets.only(left: 18.w),
+              child: Image.asset(
+                'assets/doctor/back_arrow.png',
+                width: 21.w,
+                height: 13.5.w,
+              ),
+            ),
+          ),
+          title: Container(
+            padding: EdgeInsets.symmetric(horizontal: 4.w),
+            child: Text(
+              '내 증상 편집',
+              style: TextPath.Heading2F18W600.copyWith(
+                color: ColorPath.TextGrey1H212121,
+              ),
+              textAlign: TextAlign.left,
             ),
           ),
         ),
-        title: Container(
-          padding: EdgeInsets.symmetric(horizontal: 4.w),
-          child: Text(
-            '내 증상 편집',
-            style: TextPath.Heading2F18W600.copyWith(
-              color: ColorPath.TextGrey1H212121,
-            ),
-            textAlign: TextAlign.left,
-          ),
-        ),
-      ),
-      body: Obx(
-        () => !controller.process.value
+        body: !controller.process.value
             ? SingleChildScrollView(
                 physics: const ClampingScrollPhysics(),
-                child: Stack(
-                  children: [
-                    Container(
-                      //width: screenSize(context).width,
-                      //height: screenSize(context).height,
-                      padding: EdgeInsets.fromLTRB(20.w, 0.w, 20.w, 0.w),
-                      child: Column(
-                        children: [
-                          SizedBox(height: MediaQuery.of(context).padding.top),
-                          EditMySymptomsBodyView(),
-                          // Expanded(
-                          //   child: EditMySymptomsView(),
-                          // ),
-                          SizedBox(
-                              height: MediaQuery.of(context).padding.bottom),
-                        ],
-                      ),
-                    ),
-                  ],
+                child: Container(
+                  padding: EdgeInsets.fromLTRB(20.w, 0.w, 20.w, 0.w),
+                  child: Column(
+                    children: [
+                      SizedBox(height: MediaQuery.of(context).padding.top),
+                      const EditMySymptomsBodyView(),
+                      SizedBox(height: MediaQuery.of(context).padding.bottom),
+                    ],
+                  ),
                 ),
               )
-            : SizedBox.shrink(),
+            : const SizedBox.shrink(),
       ),
     );
   }
@@ -85,23 +71,29 @@ class EditMySymptomsView extends GetView<EditMySymptomsController> {
 
 // edit my symptoms view - call item widget
 class EditMySymptomsBodyView extends GetView<EditMySymptomsController> {
+  const EditMySymptomsBodyView({super.key});
+
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       width: double.infinity,
       child: Column(
         children: [
-          _editMySymptomsForm(),
+          const EditMySymptomsForm(),
           SizedBox(height: 50.w),
-          _editMySymptomsAction(context),
+          const EditMySymptomsAction(),
           SizedBox(height: 30.w),
         ],
       ),
     );
   }
+}
 
-  // edity my symptoms form
-  Widget _editMySymptomsForm() {
+class EditMySymptomsForm extends GetView<EditMySymptomsController> {
+  const EditMySymptomsForm({super.key});
+
+  @override
+  Widget build(BuildContext context) {
     return Container(
       padding: EdgeInsets.fromLTRB(20.w, 0.w, 20.w, 0.w),
       child: Column(
@@ -216,7 +208,7 @@ class EditMySymptomsBodyView extends GetView<EditMySymptomsController> {
                 DottedBorder(
                   color: const Color.fromRGBO(4, 168, 180, 0.9),
                   strokeWidth: 1,
-                  dashPattern: [3, 1],
+                  dashPattern: const [3, 1],
                   borderType: BorderType.RRect,
                   radius: Radius.circular(6.w),
                   child: TextButton(
@@ -267,14 +259,18 @@ class EditMySymptomsBodyView extends GetView<EditMySymptomsController> {
       ),
     );
   }
+}
 
-  // edity my symptoms button action
-  Widget _editMySymptomsAction(BuildContext context) {
+class EditMySymptomsAction extends GetView<EditMySymptomsController> {
+  const EditMySymptomsAction({super.key});
+
+  @override
+  Widget build(BuildContext context) {
     return Container(
       padding: EdgeInsets.fromLTRB(10.w, 0.w, 0.w, 0.w),
       child: Row(
         children: [
-          Container(
+          SizedBox(
             width: 128,
             height: 38,
             child: TextButton(
@@ -301,7 +297,7 @@ class EditMySymptomsBodyView extends GetView<EditMySymptomsController> {
           ),
           SizedBox(width: 8.w),
           Expanded(
-            child: Container(
+            child: SizedBox(
               height: 38,
               child: TextButton(
                 onPressed: () {
@@ -325,7 +321,7 @@ class EditMySymptomsBodyView extends GetView<EditMySymptomsController> {
                 ),
               ),
             ),
-          )
+          ),
         ],
       ),
     );

@@ -1,12 +1,13 @@
 // ignore_for_file: unnecessary_overrides
 
 import 'dart:async';
-import 'package:base/app/model/my_symptoms_model.dart';
+
+import 'package:base/app/models/my_symptoms_model.dart';
 import 'package:get/get.dart';
 import 'package:logger/logger.dart';
 
-import '../../../global/global_toast_widget.dart';
-import '../../../model/base_response_model.dart';
+import '../../../globals/global_toast_widget.dart';
+import '../../../models/base_response_model.dart';
 import '../../../provider/main_provider.dart';
 
 // my symptoms controller

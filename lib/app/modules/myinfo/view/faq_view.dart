@@ -1,11 +1,9 @@
-import 'package:base/app/model/faq_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
 import '../../../theme/colors.dart';
 import '../../../theme/texts.dart';
-
 import '../controller/faq_controller.dart';
 import '../widgets/faq_item_widget.dart';
 
@@ -14,7 +12,9 @@ class FaqView extends GetView<FaqController> {
   const FaqView({super.key});
 
   @override
-  Widget build(BuildContext context) => Scaffold(
+  Widget build(BuildContext context) {
+    return Obx(
+      () => Scaffold(
         appBar: AppBar(
           backgroundColor: ColorPath.BackgroundWhite,
           elevation: 0,
@@ -22,7 +22,7 @@ class FaqView extends GetView<FaqController> {
           leadingWidth: 39.w,
           leading: InkWell(
             onTap: () {
-              Navigator.pop(context);
+              Get.back();
             },
             child: Container(
               alignment: Alignment.centerLeft,
@@ -62,34 +62,27 @@ class FaqView extends GetView<FaqController> {
           ],
         ),
         body: SingleChildScrollView(
-          physics: ClampingScrollPhysics(),
-          child: Stack(
-            children: [
-              Container(
-                child: Container(
-                  padding: EdgeInsets.symmetric(horizontal: 20.w),
-                  child: Column(
-                    children: [
-                      SizedBox(height: 14.w),
-                      Obx(
-                        () => ListView.builder(
-                          shrinkWrap: true,
-                          physics: const NeverScrollableScrollPhysics(),
-                          itemCount: controller.faqData.value.length,
-                          itemBuilder: (BuildContext context, int index) {
-                            FaqModel item = controller.faqData[index];
-                            return FaqItemWidget(
-                              item: item,
-                            );
-                          },
-                        ),
-                      )
-                    ],
-                  ),
+          physics: const ClampingScrollPhysics(),
+          child: Container(
+            padding: EdgeInsets.symmetric(horizontal: 20.w),
+            child: Column(
+              children: [
+                SizedBox(height: 14.w),
+                ListView.builder(
+                  shrinkWrap: true,
+                  physics: const NeverScrollableScrollPhysics(),
+                  itemCount: controller.faqData.length,
+                  itemBuilder: (BuildContext context, int index) {
+                    return FaqItemWidget(
+                      item: controller.faqData[index],
+                    );
+                  },
                 ),
-              )
-            ],
+              ],
+            ),
           ),
         ),
-      );
+      ),
+    );
+  }
 }

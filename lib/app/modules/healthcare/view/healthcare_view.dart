@@ -1,4 +1,4 @@
-import 'package:base/app/model/welfare_model.dart';
+import 'package:base/app/models/welfare_model.dart';
 import 'package:base/app/routes/app_pages.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';

@@ -2,10 +2,10 @@
 
 import 'dart:async';
 
-import 'package:base/app/global/global_toast_widget.dart';
-import 'package:base/app/model/base_response_model.dart';
-import 'package:base/app/model/doctor_model.dart';
-import 'package:base/app/model/user_model.dart';
+import 'package:base/app/globals/global_toast_widget.dart';
+import 'package:base/app/models/base_response_model.dart';
+import 'package:base/app/models/doctor_model.dart';
+import 'package:base/app/models/user_model.dart';
 import 'package:base/app/provider/main_provider.dart';
 import 'package:base/app/service/auth_service.dart';
 import 'package:carousel_slider/carousel_slider.dart';
@@ -14,7 +14,7 @@ import 'package:get/get.dart';
 import 'package:kakao_flutter_sdk/kakao_flutter_sdk.dart';
 import 'package:logger/logger.dart';
 
-import '../../../model/carousel_slide_model.dart';
+import '../../../models/carousel_slide_model.dart';
 
 class SignInController extends GetxController {
   static SignInController get to => Get.find();

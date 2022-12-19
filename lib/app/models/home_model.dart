@@ -1,5 +1,5 @@
-import 'package:base/app/model/mission_model.dart';
-import 'package:base/app/model/welfare_model.dart';
+import 'package:base/app/models/mission_model.dart';
+import 'package:base/app/models/welfare_model.dart';
 
 class HomeModel {
   List<WelfareModel> welfare;

@@ -2,12 +2,11 @@
 
 import 'dart:async';
 
-import 'package:base/app/global/global_toast_widget.dart';
-import 'package:base/app/model/base_response_model.dart';
-import 'package:base/app/model/home_model.dart';
+import 'package:base/app/globals/global_toast_widget.dart';
+import 'package:base/app/models/base_response_model.dart';
+import 'package:base/app/models/home_model.dart';
 import 'package:base/app/provider/main_provider.dart';
 import 'package:get/get.dart';
-import 'package:intl/intl.dart';
 import 'package:logger/logger.dart';
 
 class HomeController extends GetxController {

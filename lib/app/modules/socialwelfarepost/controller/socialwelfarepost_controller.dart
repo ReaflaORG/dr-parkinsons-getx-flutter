@@ -2,13 +2,13 @@
 
 import 'dart:async';
 
-import 'package:base/app/model/welfare_model.dart';
+import 'package:base/app/models/welfare_model.dart';
 import 'package:base/app/provider/main_provider.dart';
 import 'package:get/get.dart';
 import 'package:logger/logger.dart';
 
-import '../../../global/global_toast_widget.dart';
-import '../../../model/base_response_model.dart';
+import '../../../globals/global_toast_widget.dart';
+import '../../../models/base_response_model.dart';
 
 class SocialWelfarePostController extends GetxController {
   static SocialWelfarePostController get to => Get.find();

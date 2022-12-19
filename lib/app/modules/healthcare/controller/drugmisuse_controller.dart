@@ -2,16 +2,16 @@
 
 import 'dart:async';
 
-import 'package:base/app/model/base_response_model.dart';
+import 'package:base/app/models/base_response_model.dart';
 import 'package:base/app/service/auth_service.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:logger/logger.dart';
 
-import '../../../global/global_dialog_widget.dart';
-import '../../../global/global_toast_widget.dart';
-import '../../../model/drugmisuse_infobox_model.dart';
-import '../../../model/drugmisuse_model.dart';
+import '../../../globals/global_dialog_widget.dart';
+import '../../../globals/global_toast_widget.dart';
+import '../../../models/drugmisuse_infobox_model.dart';
+import '../../../models/drugmisuse_model.dart';
 import '../../../provider/main_provider.dart';
 
 class DrugMisuseController extends GetxController {

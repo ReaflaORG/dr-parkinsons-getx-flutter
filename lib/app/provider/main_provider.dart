@@ -3,7 +3,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:logger/logger.dart';
 
-import '../model/base_response_model.dart';
+import '../models/base_response_model.dart';
 import '../service/auth_service.dart';
 
 class AuthProvider with DioMixin implements Dio {

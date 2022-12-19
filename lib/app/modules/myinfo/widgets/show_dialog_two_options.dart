@@ -1,8 +1,8 @@
 import 'package:base/app/modules/myinfo/controller/my_symptoms_controller.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:logger/logger.dart';
 
 import '../../../theme/colors.dart';
 import '../../../theme/texts.dart';
@@ -20,10 +20,10 @@ showAlertTwoOptionsDialog(
   AlertDialog alert = AlertDialog(
     shape: RoundedRectangleBorder(
       borderRadius: BorderRadius.all(
-        Radius.circular(12),
+        Radius.circular(12.r),
       ),
     ),
-    content: Container(
+    content: SizedBox(
       width: double.infinity,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -31,44 +31,42 @@ showAlertTwoOptionsDialog(
         children: [
           Row(
             children: [
-              Container(
-                child: Text(
-                  alertTitleMsg,
-                  style: TextPath.TextF18W600.copyWith(),
-                ),
+              Text(
+                alertTitleMsg,
+                style: TextPath.TextF18W600.copyWith(),
               ),
-              Spacer(),
+              const Spacer(),
               InkWell(
                 onTap: () {
-                  Navigator.pop(context);
+                  Get.back();
                 },
                 child: Container(
-                  padding: EdgeInsets.only(right: 10),
+                  padding: const EdgeInsets.only(right: 10),
                   child: Ink.image(
-                    image: AssetImage(
+                    image: const AssetImage(
                       'assets/my_symptoms/close_gray_icon.png',
                     ),
-                    width: 18,
-                    height: 18,
+                    width: 18.w,
+                    height: 18.w,
                   ),
                 ),
               ),
             ],
           ),
           Visibility(
-            visible: !alertContentMsg.isEmpty ? true : false,
+            visible: alertContentMsg.isNotEmpty ? true : false,
             child: Container(
-              padding: EdgeInsets.only(top: 16),
+              padding: const EdgeInsets.only(top: 16),
               child: Text(
                 alertContentMsg,
                 style: TextPath.TextF16W400.copyWith(),
               ),
             ),
           ),
-          SizedBox(height: 24),
-          Container(
+          const SizedBox(height: 24),
+          SizedBox(
             width: double.infinity,
-            height: 44,
+            height: 44.w,
             child: TextButton(
               onPressed: () {
                 type == 'delete_symptom'
@@ -80,7 +78,7 @@ showAlertTwoOptionsDialog(
                   foregroundColor: Colors.white,
                   backgroundColor: ColorPath.Blue2F7ABAColor,
                   shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(8),
+                    borderRadius: BorderRadius.circular(8.r),
                   )),
               child: Text(
                 firstButtonTitle,
@@ -90,17 +88,19 @@ showAlertTwoOptionsDialog(
               ),
             ),
           ),
-          SizedBox(height: 12),
-          Container(
+          SizedBox(height: 12.w),
+          SizedBox(
             width: double.infinity,
-            height: 44,
+            height: 44.w,
             child: TextButton(
-              onPressed: () => Navigator.pop(context),
+              onPressed: () {
+                Get.back();
+              },
               style: TextButton.styleFrom(
                 foregroundColor: ColorPath.TextGrey2H424242,
                 backgroundColor: Colors.white,
                 shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(8),
+                  borderRadius: BorderRadius.circular(8.r),
                 ),
                 side: BorderSide(
                   color: ColorPath.Background1HECEFF1,
@@ -111,7 +111,7 @@ showAlertTwoOptionsDialog(
                 style: TextPath.TextF16W600.copyWith(),
               ),
             ),
-          )
+          ),
         ],
       ),
     ),

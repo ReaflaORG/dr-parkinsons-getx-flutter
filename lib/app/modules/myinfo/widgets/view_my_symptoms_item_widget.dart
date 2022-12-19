@@ -1,14 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../theme/colors.dart';
 import '../../../theme/texts.dart';
 import '../models/view_my_symptoms_item_model.dart';
 import 'image_dialog.dart';
-import 'show_dialog.dart';
 
-const String alertTitleMsg = "내 증상 기록 저장";
-const String alertContentMsg = "내 증상 기록이 저장되었습니다.";
+const String alertTitleMsg = '내 증상 기록 저장';
+const String alertContentMsg = '내 증상 기록이 저장되었습니다.';
 
 // view my symptoms item widget
 class ViewMySymptomsItemWidget extends StatelessWidget {
@@ -16,17 +14,18 @@ class ViewMySymptomsItemWidget extends StatelessWidget {
     super.key,
     required this.item,
   });
+
   final ViewMySymptomsItemModel item;
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       width: double.infinity,
       child: Column(
         children: [
-          SizedBox(height: 50),
+          const SizedBox(height: 50),
           Container(
-            padding: EdgeInsets.fromLTRB(20, 0, 20, 0),
+            padding: const EdgeInsets.fromLTRB(20, 0, 20, 0),
             child: Column(
               children: [
                 Container(
@@ -38,7 +37,7 @@ class ViewMySymptomsItemWidget extends StatelessWidget {
                     ),
                   ),
                 ),
-                SizedBox(height: 6),
+                const SizedBox(height: 6),
                 Container(
                   alignment: Alignment.centerLeft,
                   child: Text(
@@ -48,7 +47,7 @@ class ViewMySymptomsItemWidget extends StatelessWidget {
                     ),
                   ),
                 ),
-                SizedBox(height: 20),
+                const SizedBox(height: 20),
                 Container(
                   alignment: Alignment.centerLeft,
                   child: Text(
@@ -58,7 +57,7 @@ class ViewMySymptomsItemWidget extends StatelessWidget {
                     ),
                   ),
                 ),
-                SizedBox(height: 6),
+                const SizedBox(height: 6),
                 Container(
                   alignment: Alignment.centerLeft,
                   child: Text(
@@ -68,7 +67,7 @@ class ViewMySymptomsItemWidget extends StatelessWidget {
                     ),
                   ),
                 ),
-                SizedBox(height: 48),
+                const SizedBox(height: 48),
                 Container(
                   alignment: Alignment.centerLeft,
                   child: Text(
@@ -78,7 +77,7 @@ class ViewMySymptomsItemWidget extends StatelessWidget {
                     ),
                   ),
                 ),
-                SizedBox(height: 12),
+                const SizedBox(height: 12),
                 Container(
                   alignment: Alignment.centerLeft,
                   child: Row(

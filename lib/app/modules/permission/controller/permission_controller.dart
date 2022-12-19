@@ -4,7 +4,7 @@ import 'dart:async';
 
 import 'package:get/get.dart';
 
-import '../../../model/permission_model.dart';
+import '../../../models/permission_model.dart';
 
 class PermissionController extends GetxController {
   static PermissionController get to => Get.find();

@@ -4,7 +4,7 @@ import 'dart:async';
 
 import 'package:get/get.dart';
 
-import '../../../model/doctor_item_model.dart';
+import '../../../models/doctor_item_model.dart';
 
 // doctor controller
 class DoctorController extends GetxController {

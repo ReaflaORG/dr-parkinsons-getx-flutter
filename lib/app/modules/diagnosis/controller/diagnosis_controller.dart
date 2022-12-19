@@ -3,7 +3,7 @@ import 'dart:async';
 import 'package:get/get.dart';
 import 'package:logger/logger.dart';
 
-import '../../../model/diagnosis_survey_model.dart';
+import '../../../models/diagnosis_survey_model.dart';
 
 class DiagnosisController extends GetxController {
   static DiagnosisController get to => Get.find();

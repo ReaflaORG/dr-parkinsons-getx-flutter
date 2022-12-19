@@ -3,14 +3,14 @@
 import 'dart:async';
 
 import 'package:base/app/modules/myinfo/controller/my_symptoms_controller.dart';
+import 'package:dio/dio.dart' as Dio;
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:logger/logger.dart';
-import 'package:dio/dio.dart' as Dio;
 
-import '../../../global/global_toast_widget.dart';
-import '../../../model/base_response_model.dart';
-import '../../../model/my_symptoms_model.dart';
+import '../../../globals/global_toast_widget.dart';
+import '../../../models/base_response_model.dart';
+import '../../../models/my_symptoms_model.dart';
 import '../../../provider/main_provider.dart';
 
 // edity my symptoms controller
