@@ -5,7 +5,7 @@ import 'dart:io';
 import 'dart:math' as math;
 
 import 'package:http/http.dart' as http;
-import 'package:package_info_plus/package_info_plus.dart';
+import 'package:package_info/package_info.dart';
 
 enum AndroidStore { googlePlayStore, apkPure }
 

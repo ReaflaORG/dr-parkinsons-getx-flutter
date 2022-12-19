@@ -4,6 +4,7 @@ import 'dart:async';
 
 import 'package:base/app/globals/global_toast_widget.dart';
 import 'package:base/app/models/welfare_model.dart';
+import 'package:base/app/modules/main/controller/main_controller.dart';
 import 'package:base/app/provider/main_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -69,7 +70,8 @@ class HealthCareController extends GetxController {
         color: ColorPath.Background1HECEFF1,
         icon: 'assets/images/icons/3d/48timer.png',
         onClick: () {
-          Get.toNamed(Routes.MISSION);
+          // Get.toNamed(Routes.MISSION);
+          MainController.to.navigationIndex.value = 2;
         }),
   ].obs;
 

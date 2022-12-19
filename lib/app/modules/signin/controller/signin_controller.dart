@@ -147,12 +147,12 @@ class SignInController extends GetxController {
   /// {"id":2585184509,"connected_at":"2022-12-18T12:15:52Z","kakao_account":{"has_email":true,"email_needs_agreement":false,"is_email_valid":true,"is_email_verified":true,"email":"dormitalk@naver.com"}}
   Future<void> handleTempSignIn() async {
     try {
-      User user = await UserApi.instance.me();
-      Account? userInfo = user.kakaoAccount;
+      // User user = await UserApi.instance.me();
+      // Account? userInfo = user.kakaoAccount;
 
-      if (userInfo == null) {
-        return;
-      }
+      // if (userInfo == null) {
+      //   return;
+      // }
 
       AuthBaseResponseModel response = await AuthProvider.dio(
         method: 'POST',

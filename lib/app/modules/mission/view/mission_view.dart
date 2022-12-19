@@ -39,23 +39,22 @@ class MissionView extends GetView<MissionController> {
           floatingActionButtonLocation:
               FloatingActionButtonLocation.centerFloat,
           appBar: AppBar(
-            leadingWidth: 60,
-            leading: Container(
-              margin: const EdgeInsets.only(
-                left: 20,
-              ),
-              child: CircleAvatar(
-                backgroundColor: ColorPath.BackgroundWhite,
-                radius: 24,
-                child: IconButton(
-                  onPressed: () => Get.back(),
-                  icon: Icon(
-                    Icons.arrow_back,
-                    color: ColorPath.TextGrey1H212121,
-                  ),
-                ),
-              ),
-            ),
+            // leading: Container(
+            //   margin: const EdgeInsets.only(
+            //     left: 20,
+            //   ),
+            //   child: CircleAvatar(
+            //     backgroundColor: ColorPath.BackgroundWhite,
+            //     radius: 24,
+            //     child: IconButton(
+            //       onPressed: () => Get.back(),
+            //       icon: Icon(
+            //         Icons.arrow_back,
+            //         color: ColorPath.TextGrey1H212121,
+            //       ),
+            //     ),
+            //   ),
+            // ),
             elevation: 0,
             shadowColor: Colors.white,
             title: Text(
@@ -87,7 +86,7 @@ class MissionView extends GetView<MissionController> {
               children: [
                 Container(
                   padding:
-                      EdgeInsets.only(left: 20.w, right: 20.w, bottom: 20.w),
+                      const EdgeInsets.only(left: 20, right: 20, bottom: 20),
                   color: ColorPath.BackgroundWhite,
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,

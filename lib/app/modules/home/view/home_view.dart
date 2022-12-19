@@ -1,3 +1,4 @@
+import 'package:base/app/modules/main/controller/main_controller.dart';
 import 'package:base/app/service/auth_service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -271,7 +272,8 @@ class HomeView extends GetView<HomeController> {
                                 ),
                                 InkWell(
                                   onTap: () {
-                                    Get.toNamed('/mission');
+                                    // Get.toNamed('/mission');
+                                    MainController.to.navigationIndex.value = 2;
                                   },
                                   child: Row(
                                     crossAxisAlignment:
@@ -411,6 +413,7 @@ class HomeView extends GetView<HomeController> {
                                 child: InkWell(
                                   onTap: () {
                                     // Get.toNamed(page);
+                                    Get.toNamed(Routes.MY_SYMPTOMS);
                                   },
                                   child: Column(
                                       mainAxisAlignment:
@@ -443,7 +446,8 @@ class HomeView extends GetView<HomeController> {
                                 height: 71.w,
                                 child: InkWell(
                                   onTap: () {
-                                    // Get.toNamed(page);
+                                    // Get.toNamed(Routes.HEALTHCARE);
+                                    MainController.to.navigationIndex.value = 1;
                                   },
                                   child: Column(
                                       mainAxisAlignment:
@@ -477,6 +481,7 @@ class HomeView extends GetView<HomeController> {
                                 child: InkWell(
                                   onTap: () {
                                     // Get.toNamed(page);
+                                    Get.toNamed(Routes.PROFILE_SETTING);
                                   },
                                   child: Column(
                                       mainAxisAlignment:
@@ -510,6 +515,7 @@ class HomeView extends GetView<HomeController> {
                                 child: InkWell(
                                   onTap: () {
                                     // Get.toNamed(page);
+                                    Get.toNamed(Routes.MEDICINE);
                                   },
                                   child: Column(
                                       mainAxisAlignment:
@@ -543,6 +549,7 @@ class HomeView extends GetView<HomeController> {
                                 child: InkWell(
                                   onTap: () {
                                     // Get.toNamed(page);
+                                    Get.toNamed(Routes.FAQ);
                                   },
                                   child: Column(
                                       mainAxisAlignment:
@@ -650,7 +657,6 @@ class HomeView extends GetView<HomeController> {
 
   /// 미션 남은 시간 계산
   int deffMinit(int time) {
-    print(time);
     String now = DateFormat('HH:mm').format(DateTime.now());
     return time - int.parse(now.replaceAll(":", ''));
   }
@@ -659,8 +665,7 @@ class HomeView extends GetView<HomeController> {
   Widget _missionItem() {
     return InkWell(
       onTap: () async {
-        Get.toNamed(Routes.MISSION);
-        await controller.getUpdateHomeData();
+        MainController.to.navigationIndex.value = 2;
       },
       child: Container(
         width: 310.w,
@@ -761,8 +766,9 @@ class HomeView extends GetView<HomeController> {
   Widget _missionItemNot() {
     return InkWell(
       onTap: () async {
-        Get.toNamed(Routes.MISSION);
-        await controller.getUpdateHomeData();
+        // Get.toNamed(Routes.MISSION);
+        // await controller.getUpdateHomeData();
+        MainController.to.navigationIndex.value = 2;
       },
       child: Container(
         width: 320.w,

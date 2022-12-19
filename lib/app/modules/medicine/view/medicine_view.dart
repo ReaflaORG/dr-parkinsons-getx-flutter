@@ -38,7 +38,7 @@ class MedicineView extends GetView<MedicineController> {
             elevation: 0,
             shadowColor: Colors.white,
             title: Text(
-              '파킨슨 자가진단',
+              '파킨슨 약물검색',
               style: TextPath.Heading2F18W600.copyWith(
                 color: ColorPath.TextGrey1H212121,
               ),
