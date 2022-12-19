@@ -11,61 +11,61 @@ class SuggestPolicyView extends GetView<SuggestPolicyController> {
   const SuggestPolicyView({super.key});
 
   @override
-  Widget build(BuildContext context) => SafeArea(
-        child: Scaffold(
-          appBar: AppBar(
-            backgroundColor: ColorPath.BackgroundWhite,
-            elevation: 0,
-            centerTitle: false,
-            leadingWidth: 39.w,
-            leading: InkWell(
-              onTap: () {
-                Get.back();
-              },
-              child: Container(
-                alignment: Alignment.centerLeft,
-                padding: EdgeInsets.only(left: 18.w),
-                child: Image.asset(
-                  'assets/doctor/back_arrow.png',
-                  width: 21.w,
-                  height: 13.5.w,
-                ),
-              ),
-            ),
-            title: Container(
-              padding: EdgeInsets.symmetric(horizontal: 4),
-              child: Text(
-                '정책 제안하기',
-                style: TextPath.Heading2F18W600.copyWith(
-                  color: ColorPath.TextGrey1H212121,
-                ),
-                textAlign: TextAlign.left,
-              ),
-            ),
-          ),
-          body: SingleChildScrollView(
-            physics: const ClampingScrollPhysics(),
-            child: Stack(
-              children: [
-                Container(
-                  padding: EdgeInsets.fromLTRB(20.w, 0, 20.w, 0),
-                  child: Column(
-                    children: [
-                      SizedBox(height: 40.w),
-                      SuggestPolicyBodyView(),
-                      SizedBox(height: 40.w),
-                      SuggestPolicyActionView(),
-                    ],
-                  ),
-                )
-              ],
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: ColorPath.BackgroundWhite,
+        elevation: 0,
+        centerTitle: false,
+        leadingWidth: 39.w,
+        leading: InkWell(
+          onTap: () {
+            Get.back();
+          },
+          child: Container(
+            alignment: Alignment.centerLeft,
+            padding: EdgeInsets.only(left: 18.w),
+            child: Image.asset(
+              'assets/doctor/back_arrow.png',
+              width: 21.w,
+              height: 13.5.w,
             ),
           ),
         ),
-      );
+        title: Container(
+          padding: const EdgeInsets.symmetric(horizontal: 4),
+          child: Text(
+            '정책 제안하기',
+            style: TextPath.Heading2F18W600.copyWith(
+              color: ColorPath.TextGrey1H212121,
+            ),
+            textAlign: TextAlign.left,
+          ),
+        ),
+      ),
+      body: SingleChildScrollView(
+        physics: const ClampingScrollPhysics(),
+        child: Stack(
+          children: [
+            Container(
+              padding: EdgeInsets.fromLTRB(20.w, 0, 20.w, 0),
+              child: Column(
+                children: [
+                  SizedBox(height: 40.w),
+                  const SuggestPolicyBodyView(),
+                  SizedBox(height: 40.w),
+                  const SuggestPolicyActionView(),
+                ],
+              ),
+            )
+          ],
+        ),
+      ),
+    );
+  }
 }
 
-///* suggest policy body view
+/// suggest policy body view
 class SuggestPolicyBodyView extends GetView<SuggestPolicyController> {
   const SuggestPolicyBodyView({super.key});
 

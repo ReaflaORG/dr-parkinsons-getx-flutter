@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../theme/colors.dart';
 import '../../../theme/texts.dart';
@@ -41,6 +40,7 @@ class ManageMemberItemWidget extends StatelessWidget {
                     showAlertTwoOptionsDialog(
                       context,
                       typeLogout,
+                      0,
                       alertTitleMsgLogout,
                       alertContentMsgLogout,
                       firstButtonTitleLogout,
@@ -74,6 +74,7 @@ class ManageMemberItemWidget extends StatelessWidget {
                     showAlertTwoOptionsDialog(
                       context,
                       typeResignation,
+                      0,
                       alertTitleMsgResignation,
                       alertContentMsgResignation,
                       firstButtonTitleResignation,

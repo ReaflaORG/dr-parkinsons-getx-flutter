@@ -21,6 +21,7 @@ class ProfileSettingView extends GetView<ProfileSettingController> {
           leading: InkWell(
             onTap: () {
               Get.back();
+              ;
             },
             child: Container(
               alignment: Alignment.centerLeft,
