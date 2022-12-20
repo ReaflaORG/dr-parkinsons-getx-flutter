@@ -8,15 +8,14 @@ import '../../../theme/colors.dart';
 import '../../../theme/texts.dart';
 
 // show alert two options dialog
-showAlertTwoOptionsDialog(
-  BuildContext context,
-  String type,
-  int deleteId,
-  String alertTitleMsg,
-  String alertContentMsg,
-  String firstButtonTitle,
-  String secondButtonTitle,
-) {
+showAlertTwoOptionsDialog({
+  required BuildContext context,
+  required Function handleOk,
+  required String alertTitleMsg,
+  required String alertContentMsg,
+  required String firstButtonTitle,
+  required String secondButtonTitle,
+}) {
   AlertDialog alert = AlertDialog(
     shape: RoundedRectangleBorder(
       borderRadius: BorderRadius.all(
@@ -68,10 +67,8 @@ showAlertTwoOptionsDialog(
             width: double.infinity,
             height: 44.w,
             child: TextButton(
-              onPressed: () {
-                type == 'delete_symptom'
-                    ? MySymptomsController.to.deleteMySymptomsData(deleteId)
-                    : '';
+              onPressed: () async {
+                await handleOk();
                 Get.back();
               },
               style: TextButton.styleFrom(

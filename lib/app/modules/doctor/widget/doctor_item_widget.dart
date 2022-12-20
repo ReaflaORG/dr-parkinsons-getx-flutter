@@ -1,6 +1,6 @@
 import 'package:base/app/models/doctor_model.dart';
-import 'package:base/app/modules/doctor/view/doctor_content_viedo_player.dart';
 import 'package:base/app/utils/formatter.dart';
+import 'package:base/app/utils/video/video_view.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -22,7 +22,7 @@ class DoctorItemWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        Get.to(() => DoctorContentView(content_url: item.content));
+        Get.to(() => VideoView(content_url: item.content));
       },
       child: Container(
         decoration: BoxDecoration(

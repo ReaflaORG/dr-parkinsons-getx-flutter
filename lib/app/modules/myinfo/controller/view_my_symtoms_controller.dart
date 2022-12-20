@@ -16,14 +16,14 @@ class ViewMySymptomsController extends GetxController {
   // Data ▼ ============================================
   late Rx<MySymptomsModel> item;
   Rx<bool> process = true.obs;
-  Rx<dynamic> symptomId = 1.obs;
+  Rx<int> symptomId = 1.obs;
 
   // Function ▼ ========================================
   Future<void> getMySymptomsData() async {
     try {
       AuthBaseResponseModel response = await AuthProvider.dio(
         method: 'GET',
-        url: '/myinfo/sympthom/$symptomId',
+        url: '/myinfo/sympthom/${symptomId.value}',
       );
 
       switch (response.statusCode) {
@@ -46,6 +46,8 @@ class ViewMySymptomsController extends GetxController {
 
   @override
   Future<void> onInit() async {
+    symptomId.value = Get.arguments['id'];
+    await getMySymptomsData();
     super.onInit();
   }
 

@@ -32,7 +32,6 @@ class MySymptomsController extends GetxController {
           listArray.assignAll(List.generate(response.data.length,
               (index) => MySymptomsModel.fromJson(response.data[index])));
           process.value = false;
-          //listArray.map((element) => Logger().d(element.toJson()));
           break;
 
         default:
@@ -55,7 +54,6 @@ class MySymptomsController extends GetxController {
       switch (response.statusCode) {
         case 200:
           process.value = false;
-          //listArray.map((element) => Logger().d(element.toJson()));
           await getMySymptomsData();
           break;
 

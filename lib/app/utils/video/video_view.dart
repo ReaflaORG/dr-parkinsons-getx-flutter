@@ -3,18 +3,17 @@ import 'package:flutter/services.dart';
 import 'package:video_player/video_player.dart';
 import 'package:wakelock/wakelock.dart';
 
-import '../widget/advancedOverlayWidget.dart';
+import 'advancedOverlayWidget.dart';
 
-class DoctorContentView extends StatefulWidget {
+class VideoView extends StatefulWidget {
   final String content_url;
-  const DoctorContentView({Key? key, required this.content_url})
-      : super(key: key);
+  const VideoView({Key? key, required this.content_url}) : super(key: key);
 
   @override
-  State<DoctorContentView> createState() => _DoctorContentViewState();
+  State<VideoView> createState() => _VideoViewState();
 }
 
-class _DoctorContentViewState extends State<DoctorContentView> {
+class _VideoViewState extends State<VideoView> {
   VideoPlayerController? _controller;
 
   @override

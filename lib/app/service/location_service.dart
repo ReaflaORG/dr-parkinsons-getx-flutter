@@ -14,7 +14,7 @@ class LocationService extends GetxService {
   DeviceInfoPlugin deviceInfo = DeviceInfoPlugin();
 
   /// 위치 정보 가져오기 데이터
-  late final LocationData locationData;
+  late LocationData locationData;
 
   /// 위치 정보
   final Location location = Location();

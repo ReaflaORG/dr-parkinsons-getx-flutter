@@ -25,8 +25,6 @@ class HomeController extends GetxController {
         url: '/home',
       );
 
-      Logger().d(response.data);
-
       switch (response.statusCode) {
         case 200:
           homeData = HomeModel.fromJson(response.data).obs;

@@ -181,13 +181,15 @@ class MySymptomsItemWidget extends StatelessWidget {
                   InkWell(
                     onTap: () async {
                       await showAlertTwoOptionsDialog(
-                        context,
-                        type,
-                        item.symptomHistoryId,
-                        alertTitleMsg,
-                        alertContentMsg,
-                        firstButtonTitle,
-                        secondButtonTitle,
+                        handleOk: () async {
+                          await controller
+                              .deleteMySymptomsData(item.symptomHistoryId);
+                        },
+                        context: context,
+                        alertTitleMsg: alertTitleMsg,
+                        alertContentMsg: alertContentMsg,
+                        firstButtonTitle: firstButtonTitle,
+                        secondButtonTitle: secondButtonTitle,
                       );
                     },
                     child: Container(
