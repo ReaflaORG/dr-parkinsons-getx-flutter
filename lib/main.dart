@@ -1,4 +1,4 @@
-import 'package:base/app/service/auth_service.dart';
+import 'package:dr_parkinsons/app/service/auth_service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
@@ -12,6 +12,7 @@ import 'package:timeago/timeago.dart' as timeago;
 import 'app/routes/app_pages.dart';
 import 'app/service/global_service.dart';
 import 'app/service/location_service.dart';
+import 'app/service/permission_service.dart';
 import 'app/theme/theme.dart';
 
 void main() async {
@@ -40,7 +41,7 @@ Future<void> initialize() async {
     Future.delayed(const Duration(milliseconds: 1)).then((value) {
       return SystemChrome.setSystemUIOverlayStyle(
         SystemUiOverlayStyle.dark.copyWith(
-          statusBarColor: Colors.white,
+          statusBarColor: Colors.transparent,
           statusBarBrightness: Brightness.light,
         ),
       );
@@ -59,13 +60,13 @@ Future<void> initialize() async {
     Get.put(AuthService(), permanent: true),
 
     /// 위치 서비스
-    Get.lazyPut(() => LocationService(), fenix: true)
+    Get.put(LocationService(), permanent: true),
 
     // FCM 서비스
-    // Get.put(FCMService(), permanent: true);
+    // Get.put(FCMService(), permanent: true),
 
     // 퍼미션 서비스
-    // Get.lazyPut(() => PermissionService());
+    Get.lazyPut(() => PermissionService()),
   ]);
 }
 

@@ -1,23 +1,26 @@
 import 'dart:async';
 
-import 'package:base/app/globals/global_toast_widget.dart';
-import 'package:base/app/models/mission_model.dart';
-import 'package:base/app/provider/main_provider.dart';
+import 'package:dr_parkinsons/app/globals/global_toast_widget.dart';
+import 'package:dr_parkinsons/app/models/mission_model.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:logger/logger.dart';
-import 'package:timeago/timeago.dart';
 
 import '../../../models/base_response_model.dart';
+import '../../../provider/provider.dart';
 import '../../../theme/colors.dart';
 
 class MissionController extends GetxController {
   static MissionController get to => Get.find();
 
-  // Data ▼ ============================================
+  // Data ▼
+
   RxList<MissionModel> missionData = <MissionModel>[].obs;
-  Rx<bool> process = true.obs;
+
+  // Variable ▼
+
+  Rx<bool> isLoad = true.obs;
   Rx<int> dateFormatInt = 0.obs;
   Rx<String> dateFormatString = '시간을 선택하세요'.obs;
   Rx<String> type = ''.obs;
@@ -30,8 +33,11 @@ class MissionController extends GetxController {
   RxList<DateTime> dateList = <DateTime>[].obs;
   Rx<bool> boxStatus = false.obs;
   Rx<int> current_index = 0.obs;
-  // Rx<Icon> box = const Icon(Icons.check_box_outline_blank_rounded).obs;
-  // Function ▼ ========================================
+
+  /// 미션 상태 (실패, 대기, 완료)
+  RxBool isStatus = false.obs;
+
+  // Function ▼
 
   Color handleColorBoxDecoration({
     String? type = 'background_color',
@@ -54,7 +60,8 @@ class MissionController extends GetxController {
 
   /// 시간 업데이트 함수
   void updateTime(String data) {
-    dateFormatInt.value = int.parse(data); //인트화
+    //인트화
+    dateFormatInt.value = int.parse(data);
     if (dateFormatInt >= 1200) {
       dateFormatString.value =
           '''오후 ${int.parse(data.substring(0, 2)) - 12}시 ${data.substring(2, 4)}분''';
@@ -64,7 +71,7 @@ class MissionController extends GetxController {
           '''오전 ${data.substring(0, 2)}시 ${data.substring(2, 4)}분''';
     } else {
       dateFormatString.value =
-          '''오전 0${data.substring(0, 1)}시 ${data.substring(1, 3)}분''';
+          '''오전 0${data.substring(0, 1)}시 ${data.substring(1, data.length)}분''';
       // dateFormatString = DateFormat('오전 hh시 mm분').format(selectedTime.value);
     }
   }
@@ -84,7 +91,7 @@ class MissionController extends GetxController {
   ///  오늘 미션 리스트 API
   Future<void> getMissionList() async {
     try {
-      AuthBaseResponseModel response = await AuthProvider.dio(
+      AuthBaseResponseModel response = await Provider.dio(
         method: 'GET',
         url:
             '/mission/?select_date=${DateFormat('yyyy-MM-dd').format(dateList[current_index.value])}',
@@ -120,8 +127,8 @@ class MissionController extends GetxController {
                     : '대기';
           }
 
-          process.value = false;
           missionData.refresh();
+          isLoad.value = false;
           break;
         default:
           throw Exception(response.message);
@@ -136,21 +143,26 @@ class MissionController extends GetxController {
   Future<void> addMission() async {
     try {
       if (type.value == '') {
-        throw Exception('미션 타입을 지정해주세요.');
+        throw Exception('미션 타입을 지정해주세요');
       }
-      if (dateFormatString.value == '시간을 선택하세요') {
+
+      if (dateFormatString.value == '시간을 선택해주세요') {
         throw Exception(dateFormatString.value);
       }
-      Map<String, dynamic> request = {
-        'mission_type': type.value,
-        'mission_time': dateFormatInt.value, //오후11시 00분
-        'mission_time_string': dateFormatString.value,
-      };
 
-      AuthBaseResponseModel response = await AuthProvider.dio(
+      /// 5시 0분과 같이 0이 없는 경우 0을 추가해준다.
+      if (dateFormatInt.value.toString().length == 2) {
+        dateFormatInt.value = int.parse('${dateFormatInt.value}0');
+      }
+
+      AuthBaseResponseModel response = await Provider.dio(
         method: 'POST',
         url: '/mission',
-        requestModel: request,
+        requestModel: {
+          'mission_type': type.value,
+          'mission_time': dateFormatInt.value, // 오후11시 00분
+          'mission_time_string': dateFormatString.value,
+        },
       );
 
       switch (response.statusCode) {
@@ -158,7 +170,7 @@ class MissionController extends GetxController {
         case 201:
           getMissionList();
           Get.back();
-          GlobalToastWidget(message: '추가 되었습니다.');
+          GlobalToastWidget(message: '미션이 추가되었습니다');
           break;
         default:
           throw Exception(response.message);
@@ -187,16 +199,19 @@ class MissionController extends GetxController {
     required int mission_id,
   }) async {
     try {
-      Map<String, dynamic> request = {
-        'mission_type': type.value,
-        'mission_time': dateFormatInt.value, //오후11시 00분
-        'mission_time_string': dateFormatString.value,
-      };
+      /// 5시 0분과 같이 0이 없는 경우 0을 추가해준다.
+      if (dateFormatInt.value.toString().length == 2) {
+        dateFormatInt.value = int.parse('${dateFormatInt.value}0');
+      }
 
-      AuthBaseResponseModel response = await AuthProvider.dio(
+      AuthBaseResponseModel response = await Provider.dio(
         method: 'PUT',
         url: '/mission/$mission_id',
-        requestModel: request,
+        requestModel: {
+          'mission_type': type.value,
+          'mission_time': dateFormatInt.value, // 오후11시 00분
+          'mission_time_string': dateFormatString.value,
+        },
       );
 
       Logger().d(response.data);
@@ -217,12 +232,12 @@ class MissionController extends GetxController {
     }
   }
 
-  ///  미션 삭제 API
+  /// 미션 삭제 API
   Future<void> deleteMission({
     required int mission_id,
   }) async {
     try {
-      AuthBaseResponseModel response = await AuthProvider.dio(
+      AuthBaseResponseModel response = await Provider.dio(
         method: 'DELETE',
         url: '/mission/$mission_id',
       );
@@ -251,7 +266,7 @@ class MissionController extends GetxController {
     required int index,
   }) async {
     try {
-      AuthBaseResponseModel response = await AuthProvider.dio(
+      AuthBaseResponseModel response = await Provider.dio(
         method: 'PATCH',
         url: '/mission/$mission_id',
       );
@@ -271,12 +286,11 @@ class MissionController extends GetxController {
     }
   }
 
-  // Variable ▼ ========================================
-
   @override
   Future<void> onInit() async {
     handleDateInit();
     await getMissionList();
+
     super.onInit();
   }
 

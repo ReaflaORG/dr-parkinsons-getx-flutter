@@ -1,4 +1,4 @@
-import 'package:base/app/models/faq_model.dart';
+import 'package:dr_parkinsons/app/models/faq_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 

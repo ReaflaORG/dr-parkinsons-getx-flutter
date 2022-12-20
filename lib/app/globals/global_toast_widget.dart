@@ -14,15 +14,17 @@ Future<dynamic> GlobalToastWidget({
   /// 유지 시간
   int duration = 3,
 }) async {
-  Fluttertoast.cancel();
-  Fluttertoast.showToast(
-    msg: message,
-    toastLength: Toast.LENGTH_SHORT,
-    gravity: ToastGravity.BOTTOM,
-    timeInSecForIosWeb: duration,
-    backgroundColor: Colors.black.withOpacity(0.7),
-    textColor: Colors.white,
-  );
+  Future.value([
+    Fluttertoast.cancel(),
+    Fluttertoast.showToast(
+      msg: message,
+      toastLength: Toast.LENGTH_SHORT,
+      gravity: ToastGravity.BOTTOM,
+      timeInSecForIosWeb: duration,
+      backgroundColor: Colors.black.withOpacity(0.7),
+      textColor: Colors.white,
+    ),
+  ]);
   // ScaffoldMessenger.of(Get.overlayContext as BuildContext)
   //     .hideCurrentSnackBar();
   // Get.showSnackbar(GetSnackBar(

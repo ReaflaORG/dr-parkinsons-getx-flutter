@@ -1,11 +1,11 @@
-import 'package:base/app/models/doctor_model.dart';
+import 'package:dr_parkinsons/app/models/doctor_model.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 
 import '../globals/global_toast_widget.dart';
 import '../models/base_response_model.dart';
 import '../models/user_model.dart';
-import '../provider/main_provider.dart';
+import '../provider/provider.dart';
 import '../routes/app_pages.dart';
 
 /// Auth 서비스
@@ -78,8 +78,10 @@ class AuthService extends GetxService {
   /// 로그탈퇴 처리 핸들러
   Future<void> handleWithOut() async {
     try {
-      AuthBaseResponseModel response =
-          await AuthProvider.dio(method: 'DELETE', url: '/myinfo');
+      AuthBaseResponseModel response = await Provider.dio(
+        method: 'DELETE',
+        url: '/myinfo',
+      );
 
       switch (response.statusCode) {
         case 200:
@@ -98,15 +100,17 @@ class AuthService extends GetxService {
           throw Exception(response.message);
       }
     } catch (e) {
-      GlobalToastWidget(message: e.toString().substring(11));
+      GlobalToastWidget(message: e.toString());
     }
   }
 
   /// 내 정보 확인
   Future<void> handleMyInfo() async {
     try {
-      AuthBaseResponseModel response =
-          await AuthProvider.dio(method: 'GET', url: '/myinfo');
+      AuthBaseResponseModel response = await Provider.dio(
+        method: 'GET',
+        url: '/myinfo',
+      );
 
       switch (response.statusCode) {
         case 200:
@@ -125,7 +129,7 @@ class AuthService extends GetxService {
           throw Exception(response.message);
       }
     } catch (e) {
-      GlobalToastWidget(message: e.toString().substring(11));
+      GlobalToastWidget(message: e.toString());
     }
   }
 

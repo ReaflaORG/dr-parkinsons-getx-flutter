@@ -2,8 +2,8 @@
 
 import 'dart:async';
 
-import 'package:base/app/modules/myinfo/controller/my_symptoms_controller.dart';
 import 'package:dio/dio.dart' as Dio;
+import 'package:dr_parkinsons/app/modules/myinfo/controller/my_symptoms_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -14,7 +14,7 @@ import 'package:mime/mime.dart';
 
 import '../../../globals/global_toast_widget.dart';
 import '../../../models/base_response_model.dart';
-import '../../../provider/main_provider.dart';
+import '../../../provider/provider.dart';
 import '../../../theme/colors.dart';
 import '../../../theme/texts.dart';
 import '../models/my_symptoms_item_model.dart';
@@ -46,7 +46,7 @@ class EditMySymptomsController extends GetxController {
   // Function ▼ ========================================
   Future<void> getMySymptomsData() async {
     try {
-      AuthBaseResponseModel response = await AuthProvider.dio(
+      AuthBaseResponseModel response = await Provider.dio(
         method: 'GET',
         url: '/myinfo/sympthom/$symptomId',
       );
@@ -69,7 +69,7 @@ class EditMySymptomsController extends GetxController {
       }
     } catch (e) {
       Logger().d(e);
-      GlobalToastWidget(message: e.toString().substring(11));
+      GlobalToastWidget(message: e.toString());
     }
   }
 
@@ -105,7 +105,7 @@ class EditMySymptomsController extends GetxController {
         'remove_symptom_history_files': remove_items.join(','),
       });
 
-      AuthBaseResponseModel response = await AuthProvider.dio(
+      AuthBaseResponseModel response = await Provider.dio(
         method: 'PUT',
         url: '/myinfo/sympthom/$symptomId',
         requestModel: request,
@@ -127,7 +127,7 @@ class EditMySymptomsController extends GetxController {
       }
     } catch (e) {
       Logger().d(e);
-      GlobalToastWidget(message: e.toString().substring(11));
+      GlobalToastWidget(message: e.toString());
     }
   }
 

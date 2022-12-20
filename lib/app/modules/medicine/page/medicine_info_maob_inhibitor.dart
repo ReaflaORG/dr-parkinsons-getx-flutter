@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../../../theme/colors.dart';
-import '../../../theme/texts.dart';
 import '../widget/medicine_item.dart';
 
 /// 마오비 억제제 약제 설명 페이지
@@ -14,15 +11,15 @@ class MedicineInfoMaobInhibitorPage extends StatelessWidget {
     return Column(
       mainAxisAlignment: MainAxisAlignment.start,
       children: const [
-        MedicineItemTitle(text: '약제명'),
-        MedicineItemDescription(
+        MedicineItemTitleWidget(text: '약제명'),
+        MedicineItemDescriptionWidget(
           text: '''마오비 억제제 ''',
         ),
         SizedBox(
           height: 20,
         ),
-        MedicineItemTitle(text: '설명'),
-        MedicineItemDescription(
+        MedicineItemTitleWidget(text: '설명'),
+        MedicineItemDescriptionWidget(
           text:
               '''마오비 억제제는 레보도파가 뇌에서 마오비로 인해 대사되는 것을 막아서 레보도파의 효능을 증진시키고, 도파민이 신경계에 더 오래 남아있을 수 있도록 돕는 약제이다. 
 
@@ -31,19 +28,19 @@ class MedicineInfoMaobInhibitorPage extends StatelessWidget {
         SizedBox(
           height: 20,
         ),
-        MedicineItemTitle(text: '부작용'),
-        MedicineItemDescription(
+        MedicineItemTitleWidget(text: '부작용'),
+        MedicineItemDescriptionWidget(
           text: '''구역, 어지러움, 불면, 이상운동증, 환각, 기립성저혈압 등 ''',
         ),
         SizedBox(height: 20),
-        MedicineItemTitle(text: '종류'),
-        MedicineItemLabel1(text: '1. 셀레길린'),
+        MedicineItemTitleWidget(text: '종류'),
+        MedicineItemLabel1Widget(text: '1. 셀레길린'),
         MedicineImageItem(
           assest: 'assets/images/medicine/pill0501.jpg',
           text: '''콤마오비정 5mg''',
         ),
         MedicineImageItem(text: '''마오비정 – 초당약품공업'''),
-        MedicineItemLabel1(text: '2. 라자질린'),
+        MedicineItemLabel1Widget(text: '2. 라자질린'),
         MedicineImageItem(
           assest: 'assets/images/medicine/pill0502.jpg',
           text: '''아질렉트 0.5mg''',
@@ -85,8 +82,8 @@ class MedicineInfoMaobInhibitorPage extends StatelessWidget {
         MedicineImageItem(text: '이지렉트정-마더스제약'),
         MedicineImageItem(text: '라사원정-제일제약'),
         MedicineImageItem(text: '라시렉트정- 안국뉴팜'),
-        MedicineItemLabel1(text: '3. 사파나마이드'),
-        MedicineItemDescription(
+        MedicineItemLabel1Widget(text: '3. 사파나마이드'),
+        MedicineItemDescriptionWidget(
             text:
                 '''사파나마이드는 3세대 마오비 억제제로 dural 작용기전을 가지고 있어, 이전 세대의 MAO-B 억제제와는 차별적으로 Dopaminergic 경로 뿐만 아니라 glutamate 경로를 조절함으로서 진통제사용감소, 기분 개선, 삶의 질 개선 등의 비운동증상 개선에 도움이 된다.'''),
         SizedBox(height: 10),

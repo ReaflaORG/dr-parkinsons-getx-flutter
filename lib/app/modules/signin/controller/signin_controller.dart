@@ -2,19 +2,19 @@
 
 import 'dart:async';
 
-import 'package:base/app/globals/global_toast_widget.dart';
-import 'package:base/app/models/base_response_model.dart';
-import 'package:base/app/models/doctor_model.dart';
-import 'package:base/app/models/user_model.dart';
-import 'package:base/app/provider/main_provider.dart';
-import 'package:base/app/service/auth_service.dart';
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:dr_parkinsons/app/globals/global_toast_widget.dart';
+import 'package:dr_parkinsons/app/models/base_response_model.dart';
+import 'package:dr_parkinsons/app/models/doctor_model.dart';
+import 'package:dr_parkinsons/app/models/user_model.dart';
+import 'package:dr_parkinsons/app/service/auth_service.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:kakao_flutter_sdk/kakao_flutter_sdk.dart';
 import 'package:logger/logger.dart';
 
 import '../../../models/carousel_slide_model.dart';
+import '../../../provider/provider.dart';
 
 class SignInController extends GetxController {
   static SignInController get to => Get.find();
@@ -102,7 +102,7 @@ class SignInController extends GetxController {
         return;
       }
 
-      AuthBaseResponseModel response = await AuthProvider.dio(
+      AuthBaseResponseModel response = await Provider.dio(
         method: 'POST',
         url: '/auth/register/kakao',
         requestModel: {
@@ -138,7 +138,7 @@ class SignInController extends GetxController {
       }
     } catch (e) {
       Logger().d(e);
-      GlobalToastWidget(message: e.toString().substring(11));
+      GlobalToastWidget(message: e.toString());
       return;
     }
   }
@@ -154,7 +154,7 @@ class SignInController extends GetxController {
       //   return;
       // }
 
-      AuthBaseResponseModel response = await AuthProvider.dio(
+      AuthBaseResponseModel response = await Provider.dio(
         method: 'POST',
         url: '/auth/register/kakao',
         requestModel: {
@@ -190,7 +190,7 @@ class SignInController extends GetxController {
       }
     } catch (e) {
       Logger().d(e);
-      GlobalToastWidget(message: e.toString().substring(11));
+      GlobalToastWidget(message: e.toString());
       return;
     }
   }

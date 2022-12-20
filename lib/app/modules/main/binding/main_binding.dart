@@ -5,7 +5,7 @@ import '../controller/main_controller.dart';
 class MainBinding implements Bindings {
   @override
   void dependencies() {
-    // Get.put(MainController());
-    Get.lazyPut(() => MainController(), fenix: true);
+    Get.put(MainController(), permanent: true);
+    // Get.lazyPut(() => MainController(), fenix: true);
   }
 }

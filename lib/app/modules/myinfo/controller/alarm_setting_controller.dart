@@ -2,14 +2,14 @@
 
 import 'dart:async';
 
-import 'package:base/app/globals/global_toast_widget.dart';
-import 'package:base/app/models/base_response_model.dart';
-import 'package:base/app/models/user_model.dart';
-import 'package:base/app/service/auth_service.dart';
+import 'package:dr_parkinsons/app/globals/global_toast_widget.dart';
+import 'package:dr_parkinsons/app/models/base_response_model.dart';
+import 'package:dr_parkinsons/app/models/user_model.dart';
+import 'package:dr_parkinsons/app/service/auth_service.dart';
 import 'package:get/get.dart';
 import 'package:logger/logger.dart';
 
-import '../../../provider/main_provider.dart';
+import '../../../provider/provider.dart';
 
 // alarm setting controller
 class AlarmSettingController extends GetxController {
@@ -24,9 +24,9 @@ class AlarmSettingController extends GetxController {
 
   Future<void> checkBasicAlarm({required String type}) async {
     try {
-      AuthBaseResponseModel response = await AuthProvider.dio(
+      AuthBaseResponseModel response = await Provider.dio(
         method: 'PUT',
-        url: '/myinfo/setting/${type}',
+        url: '/myinfo/setting/$type',
       );
 
       Logger().d(response.data);
@@ -42,7 +42,7 @@ class AlarmSettingController extends GetxController {
       }
     } catch (e) {
       Logger().d(e);
-      GlobalToastWidget(message: e.toString().substring(11));
+      GlobalToastWidget(message: e.toString());
     }
   }
 

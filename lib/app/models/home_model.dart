@@ -1,5 +1,5 @@
-import 'package:base/app/models/mission_model.dart';
-import 'package:base/app/models/welfare_model.dart';
+import 'package:dr_parkinsons/app/models/mission_model.dart';
+import 'package:dr_parkinsons/app/models/welfare_model.dart';
 
 class HomeModel {
   List<WelfareModel> welfare;
@@ -12,10 +12,18 @@ class HomeModel {
 
   HomeModel.fromJson(json)
       : this(
-          welfare: List.generate(json['welfares'].length,
-              (index) => WelfareModel.fromJson(json['welfares'][index])),
-          mission: List.generate(json['missions'].length,
-              (index) => MissionModel.fromJson(json['missions'][index])),
+          welfare: List.generate(
+            json['welfares'].length,
+            (index) => WelfareModel.fromJson(
+              json['welfares'][index],
+            ),
+          ),
+          mission: List.generate(
+            json['missions'].length,
+            (index) => MissionModel.fromJson(
+              json['missions'][index],
+            ),
+          ),
         );
 
   Map<String, dynamic> toJson() {

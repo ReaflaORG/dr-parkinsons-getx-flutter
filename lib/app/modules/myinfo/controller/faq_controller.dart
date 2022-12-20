@@ -2,12 +2,13 @@
 
 import 'dart:async';
 
-import 'package:base/app/globals/global_toast_widget.dart';
-import 'package:base/app/models/base_response_model.dart';
-import 'package:base/app/models/faq_model.dart';
-import 'package:base/app/provider/main_provider.dart';
+import 'package:dr_parkinsons/app/globals/global_toast_widget.dart';
+import 'package:dr_parkinsons/app/models/base_response_model.dart';
+import 'package:dr_parkinsons/app/models/faq_model.dart';
 import 'package:get/get.dart';
 import 'package:logger/logger.dart';
+
+import '../../../provider/provider.dart';
 
 // faq controller
 class FaqController extends GetxController {
@@ -30,7 +31,7 @@ class FaqController extends GetxController {
   /// * get FAQ Data from API
   Future<void> getFaqData() async {
     try {
-      AuthBaseResponseModel response = await AuthProvider.dio(
+      AuthBaseResponseModel response = await Provider.dio(
         method: 'GET',
         url: '/myinfo/question',
       );
@@ -48,7 +49,7 @@ class FaqController extends GetxController {
       }
     } catch (e) {
       Logger().d(e);
-      GlobalToastWidget(message: e.toString().substring(11));
+      GlobalToastWidget(message: e.toString());
     }
   }
   // Variable ▼ ========================================

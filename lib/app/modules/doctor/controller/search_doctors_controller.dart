@@ -1,13 +1,13 @@
 import 'dart:async';
 
-import 'package:base/app/models/sarch_doctors_model.dart';
+import 'package:dr_parkinsons/app/models/sarch_doctors_model.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:logger/logger.dart';
 
 import '../../../globals/global_toast_widget.dart';
 import '../../../models/base_response_model.dart';
-import '../../../provider/main_provider.dart';
+import '../../../provider/provider.dart';
 import '../../../service/location_service.dart';
 
 /// 주치의 찾기 검색 컨트롤러
@@ -51,7 +51,7 @@ class DoctorSearchController extends GetxController {
   /// 검색
   Future<void> getDoctorList() async {
     try {
-      AuthBaseResponseModel response = await AuthProvider.dio(
+      AuthBaseResponseModel response = await Provider.dio(
         method: 'GET',
         url:
             '/doctor?long=${LocationService.to.locationData.longitude}&lat=${LocationService.to.locationData.latitude}&distance=$distance&search=${searchTextFormFieldController.value.text}',
@@ -75,7 +75,7 @@ class DoctorSearchController extends GetxController {
       }
     } catch (e) {
       Logger().d(e);
-      GlobalToastWidget(message: e.toString().substring(11));
+      GlobalToastWidget(message: e.toString());
     }
   }
 

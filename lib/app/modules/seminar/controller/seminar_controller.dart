@@ -7,11 +7,11 @@ import 'package:get/get.dart';
 class SeminarController extends GetxController {
   static SeminarController get to => Get.find();
 
-  // Data ▼ ============================================
+  // Data ▼
 
-  // Function ▼ ========================================
+  // Function ▼
 
-  // Variable ▼ ========================================
+  // Variable ▼
 
   @override
   Future<void> onInit() async {

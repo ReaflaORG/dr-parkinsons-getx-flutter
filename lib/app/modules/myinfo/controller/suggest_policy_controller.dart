@@ -9,7 +9,7 @@ import 'package:logger/logger.dart';
 
 import '../../../globals/global_toast_widget.dart';
 import '../../../models/base_response_model.dart';
-import '../../../provider/main_provider.dart';
+import '../../../provider/provider.dart';
 import '../widgets/show_dialog.dart';
 
 // suggest policy controller
@@ -79,8 +79,11 @@ class SuggestPolicyController extends GetxController {
         'title': policyTitleController.value.text,
         'description': policyContentController.value.text,
       };
-      AuthBaseResponseModel response = await AuthProvider.dio(
-          method: 'POST', url: '/myinfo/policy', requestModel: request);
+      AuthBaseResponseModel response = await Provider.dio(
+        method: 'POST',
+        url: '/myinfo/policy',
+        requestModel: request,
+      );
       switch (response.statusCode) {
         case 201:
           policyTitleController.value.text = '';
@@ -100,7 +103,7 @@ class SuggestPolicyController extends GetxController {
       }
     } catch (e) {
       Logger().d(e);
-      GlobalToastWidget(message: e.toString().substring(11));
+      GlobalToastWidget(message: e.toString());
     }
   }
 

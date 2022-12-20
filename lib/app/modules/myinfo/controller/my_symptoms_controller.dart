@@ -7,7 +7,7 @@ import 'package:logger/logger.dart';
 
 import '../../../globals/global_toast_widget.dart';
 import '../../../models/base_response_model.dart';
-import '../../../provider/main_provider.dart';
+import '../../../provider/provider.dart';
 import '../models/my_symptoms_item_model.dart';
 
 // my symptoms controller
@@ -21,7 +21,7 @@ class MySymptomsController extends GetxController {
   // Function ▼ ========================================
   Future<void> getMySymptomsData() async {
     try {
-      AuthBaseResponseModel response = await AuthProvider.dio(
+      AuthBaseResponseModel response = await Provider.dio(
         method: 'GET',
         url: '/myinfo/sympthom',
       );
@@ -39,13 +39,13 @@ class MySymptomsController extends GetxController {
       }
     } catch (e) {
       Logger().d(e);
-      GlobalToastWidget(message: e.toString().substring(11));
+      GlobalToastWidget(message: e.toString());
     }
   }
 
   Future<void> deleteMySymptomsData(int symptomId) async {
     try {
-      AuthBaseResponseModel response = await AuthProvider.dio(
+      AuthBaseResponseModel response = await Provider.dio(
         method: 'DELETE',
         url: '/myinfo/sympthom/$symptomId',
       );
@@ -62,7 +62,7 @@ class MySymptomsController extends GetxController {
       }
     } catch (e) {
       Logger().d(e);
-      GlobalToastWidget(message: e.toString().substring(11));
+      GlobalToastWidget(message: e.toString());
     }
   }
 

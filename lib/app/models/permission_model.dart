@@ -10,7 +10,7 @@ class PermissionModel {
 
   PermissionModel({
     this.title = '',
-    this.icon = const Icon(Icons.abc),
+    this.icon,
     this.image = '',
     this.description = '',
     this.isRequired = false,

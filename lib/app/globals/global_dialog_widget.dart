@@ -1,14 +1,16 @@
 // ignore_for_file: non_constant_identifier_names
 
-import 'package:base/app/modules/home/controller/home_controller.dart';
-import 'package:base/app/modules/mission/controller/mission_controller.dart';
-import 'package:base/app/modules/mission/widgets/alarm.dart';
-import 'package:base/app/routes/app_pages.dart';
+import 'package:dr_parkinsons/app/globals/global_toast_widget.dart';
+import 'package:dr_parkinsons/app/modules/home/controller/home_controller.dart';
+import 'package:dr_parkinsons/app/modules/mission/controller/mission_controller.dart';
+import 'package:dr_parkinsons/app/modules/mission/widgets/alarm.dart';
+import 'package:dr_parkinsons/app/routes/app_pages.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:logger/logger.dart';
 
 import '../service/permission_service.dart';
 import '../theme/colors.dart';
@@ -777,15 +779,18 @@ Future<dynamic> GlobalMakeAlarm({
               ],
             ),
             // ),
-            contentPadding: EdgeInsets.all(0),
+            contentPadding: const EdgeInsets.all(0),
           ),
         );
       },
     );
 
 ///*투약 수정 모달
-Future<dynamic> GlobalUpdateAlarm(
-        {required BuildContext context, required int id, required}) =>
+Future<dynamic> GlobalUpdateAlarm({
+  required BuildContext context,
+  required int id,
+  required bool isStatus,
+}) =>
     showDialog(
       context: context,
       barrierDismissible: true,
@@ -793,8 +798,10 @@ Future<dynamic> GlobalUpdateAlarm(
         return Obx(
           () => AlertDialog(
             backgroundColor: ColorPath.Background1HECEFF1,
-            shape: const RoundedRectangleBorder(
-              borderRadius: BorderRadius.all(Radius.circular(16)),
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.all(
+                Radius.circular(16.r),
+              ),
             ),
             content: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -802,9 +809,13 @@ Future<dynamic> GlobalUpdateAlarm(
               children: [
                 Container(
                   padding: const EdgeInsets.only(
-                      top: 30, left: 20, right: 20, bottom: 30),
+                    top: 30,
+                    left: 20,
+                    right: 20,
+                    bottom: 30,
+                  ),
                   child: Column(
-                    children: <Widget>[
+                    children: [
                       Container(
                         alignment: Alignment.centerLeft,
                         child: Text(
@@ -814,9 +825,7 @@ Future<dynamic> GlobalUpdateAlarm(
                           ),
                         ),
                       ),
-                      const SizedBox(
-                        height: 14,
-                      ),
+                      SizedBox(height: 14.w),
                       SizedBox(
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -831,46 +840,52 @@ Future<dynamic> GlobalUpdateAlarm(
                                 imageUrl: 'assets/images/icons/3d/48pill.png',
                                 text: MissionController.to.alarm[0]),
                             Alarm(
-                                isPick: MissionController.to.alarm[1] ==
-                                    MissionController.to.type.value,
-                                ontap: () async {
-                                  await MissionController.to.updateType(
-                                      MissionController.to.alarm[1]);
-                                },
-                                imageUrl: 'assets/images/icons/3d/36water.png',
-                                text: MissionController.to.alarm[1]),
+                              isPick: MissionController.to.alarm[1] ==
+                                  MissionController.to.type.value,
+                              ontap: () async {
+                                await MissionController.to
+                                    .updateType(MissionController.to.alarm[1]);
+                              },
+                              imageUrl: 'assets/images/icons/3d/36water.png',
+                              text: MissionController.to.alarm[1],
+                            ),
                             Alarm(
-                                isPick: MissionController.to.alarm[2] ==
-                                    MissionController.to.type.value,
-                                ontap: () async {
-                                  await MissionController.to.updateType(
-                                      MissionController.to.alarm[2]);
-                                },
-                                imageUrl: 'assets/images/icons/3d/36vegi.png',
-                                text: MissionController.to.alarm[2]),
+                              isPick: MissionController.to.alarm[2] ==
+                                  MissionController.to.type.value,
+                              ontap: () async {
+                                await MissionController.to.updateType(
+                                  MissionController.to.alarm[2],
+                                );
+                              },
+                              imageUrl: 'assets/images/icons/3d/36vegi.png',
+                              text: MissionController.to.alarm[2],
+                            ),
                             Alarm(
-                                isPick: MissionController.to.alarm[3] ==
-                                    MissionController.to.type.value,
-                                ontap: () async {
-                                  await MissionController.to.updateType(
-                                      MissionController.to.alarm[3]);
-                                },
-                                imageUrl:
-                                    'assets/images/icons/3d/36outdoor.png',
-                                text: MissionController.to.alarm[3]),
+                              isPick: MissionController.to.alarm[3] ==
+                                  MissionController.to.type.value,
+                              ontap: () async {
+                                await MissionController.to.updateType(
+                                  MissionController.to.alarm[3],
+                                );
+                              },
+                              imageUrl: 'assets/images/icons/3d/36outdoor.png',
+                              text: MissionController.to.alarm[3],
+                            ),
                             Alarm(
-                                isPick: MissionController.to.alarm[4] ==
-                                    MissionController.to.type.value,
-                                ontap: () async {
-                                  await MissionController.to.updateType(
-                                      MissionController.to.alarm[4]);
-                                },
-                                imageUrl: 'assets/images/icons/3d/36heart.png',
-                                text: MissionController.to.alarm[4]),
+                              isPick: MissionController.to.alarm[4] ==
+                                  MissionController.to.type.value,
+                              ontap: () async {
+                                await MissionController.to.updateType(
+                                  MissionController.to.alarm[4],
+                                );
+                              },
+                              imageUrl: 'assets/images/icons/3d/36heart.png',
+                              text: MissionController.to.alarm[4],
+                            ),
                           ],
                         ),
                       ),
-                      const SizedBox(height: 30),
+                      SizedBox(height: 30.w),
                       Container(
                         alignment: Alignment.centerLeft,
                         child: Text(
@@ -880,7 +895,7 @@ Future<dynamic> GlobalUpdateAlarm(
                           ),
                         ),
                       ),
-                      const SizedBox(height: 12),
+                      SizedBox(height: 12.w),
                       InkWell(
                         onTap: () {
                           Future<TimeOfDay?> selectedTime = showTimePicker(
@@ -888,10 +903,12 @@ Future<dynamic> GlobalUpdateAlarm(
                             context: context,
                             initialTime: TimeOfDay.now(),
                           );
-                          //여기서 사용자가 시간을 선택할 때까지 멈춤
+                          // 여기서 사용자가 시간을 선택할 때까지 멈춤
                           selectedTime.then((timeofDay) {
-                            MissionController.to.updateTime(
-                                '''${timeofDay!.hour}${timeofDay.minute}''');
+                            if (timeofDay != null) {
+                              MissionController.to.updateTime(
+                                  '''${timeofDay.hour}${timeofDay.minute}''');
+                            }
                           });
                         },
                         child: Container(
@@ -899,14 +916,16 @@ Future<dynamic> GlobalUpdateAlarm(
                           padding: const EdgeInsets.all(10),
                           width: double.infinity,
                           decoration: BoxDecoration(
-                              color: ColorPath.TertiaryLightColor,
-                              borderRadius:
-                                  const BorderRadius.all(Radius.circular(6))),
+                            color: ColorPath.TertiaryLightColor,
+                            borderRadius: BorderRadius.all(
+                              Radius.circular(6.r),
+                            ),
+                          ),
                           child: Row(
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
                               const Icon(Icons.access_time),
-                              const SizedBox(width: 10),
+                              SizedBox(width: 10.w),
                               Container(
                                 alignment: Alignment.center,
                                 width: 110.w,
@@ -914,7 +933,8 @@ Future<dynamic> GlobalUpdateAlarm(
                                 child: Text(
                                   MissionController.to.dateFormatString.value,
                                   style: TextPath.TextF14W500.copyWith(
-                                      color: ColorPath.TextGrey1H212121),
+                                    color: ColorPath.TextGrey1H212121,
+                                  ),
                                 ),
                               ),
                               Container(
@@ -936,7 +956,7 @@ Future<dynamic> GlobalUpdateAlarm(
                   ),
                 ),
                 SizedBox(
-                  height: 48,
+                  height: 48.w,
                   child: Row(
                     children: [
                       Expanded(
@@ -950,8 +970,8 @@ Future<dynamic> GlobalUpdateAlarm(
                             alignment: Alignment.center,
                             decoration: BoxDecoration(
                                 color: ColorPath.BackgroundWhite,
-                                borderRadius: const BorderRadius.only(
-                                  bottomLeft: Radius.circular(16),
+                                borderRadius: BorderRadius.only(
+                                  bottomLeft: Radius.circular(16.r),
                                 )),
                             height: 48,
                             child: Text(
@@ -967,6 +987,13 @@ Future<dynamic> GlobalUpdateAlarm(
                         flex: 1,
                         child: GestureDetector(
                           onTap: () {
+                            Logger().d(isStatus);
+                            if (isStatus) {
+                              GlobalToastWidget(message: '이미 완료(실패)한 미션입니다');
+
+                              return;
+                            }
+
                             MissionController.to.updateMission(mission_id: id);
                             Get.back();
                           },
@@ -974,8 +1001,8 @@ Future<dynamic> GlobalUpdateAlarm(
                             alignment: Alignment.center,
                             decoration: BoxDecoration(
                                 color: ColorPath.PrimaryDarkColor,
-                                borderRadius: const BorderRadius.only(
-                                  bottomRight: Radius.circular(16),
+                                borderRadius: BorderRadius.only(
+                                  bottomRight: Radius.circular(16.r),
                                 )),
                             height: 48,
                             child: Text(

@@ -1,14 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+
 import '../../../theme/colors.dart';
 import '../../../theme/texts.dart';
 
-class CheckList extends StatelessWidget {
+/// 보호자 알림 서비스 카드 위젯
+class ProtectorCardWidget extends StatelessWidget {
   final int num;
   final String title;
   final String sub;
 
-  const CheckList({
+  const ProtectorCardWidget({
     super.key,
     required this.num,
     required this.title,
@@ -20,30 +22,27 @@ class CheckList extends StatelessWidget {
     return Column(
       children: [
         Container(
+          padding: const EdgeInsets.all(20),
           width: 320.w,
-          height: 100.h,
+          height: 100.w,
           decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(10),
+            borderRadius: BorderRadius.circular(10.r),
             color: ColorPath.BackgroundWhite,
             boxShadow: [
               BoxShadow(
                 color: ColorPath.PrimaryColor.withOpacity(0.15),
                 spreadRadius: 2,
                 blurRadius: 10,
-                offset: const Offset(5, 5), // changes position of shadow
+                offset: const Offset(5, 5),
               ),
             ],
           ),
-          padding: const EdgeInsets.symmetric(
-            horizontal: 10,
-            vertical: 20,
-          ),
           child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            // mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               SizedBox(
                 width: 36.w,
-                height: 36.h,
+                height: 36.w,
                 child: CircleAvatar(
                   backgroundColor: ColorPath.Background1HECEFF1,
                   child: Text(
@@ -54,6 +53,7 @@ class CheckList extends StatelessWidget {
                   ),
                 ),
               ),
+              SizedBox(width: 10.w),
               Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -67,21 +67,21 @@ class CheckList extends StatelessWidget {
                   Text(
                     sub,
                     style: TextPath.TextF16W500.copyWith(
-                        color: ColorPath.TextGrey1H212121),
+                      color: ColorPath.TextGrey1H212121,
+                    ),
                   ),
                 ],
               ),
+              const Spacer(),
               IconButton(
                 onPressed: () {},
                 icon: const Icon(Icons.arrow_forward_ios_sharp),
                 color: ColorPath.SecondaryColor,
-              )
+              ),
             ],
           ),
         ),
-        const SizedBox(
-          height: 18,
-        ),
+        SizedBox(height: 18.w),
       ],
     );
   }

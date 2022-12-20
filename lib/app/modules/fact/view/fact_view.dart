@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
-import '../../../routes/app_pages.dart';
 import '../../../theme/colors.dart';
 import '../../../theme/texts.dart';
 import '../controller/fact_controller.dart';
@@ -52,11 +51,9 @@ class FactView extends GetView<FactController> {
                                   children: [
                                     InkWell(
                                       onTap: () {
-                                        Get.toNamed('/fact/factpost',
-                                            arguments: {
-                                              'id': controller.factDatas[index]
-                                                  .parkinson_post_id
-                                            });
+                                        Get.toNamed(
+                                          '/fact/factpost/${controller.factDatas[index].parkinson_post_id}',
+                                        );
                                       },
                                       child: Container(
                                         alignment: Alignment.bottomLeft,

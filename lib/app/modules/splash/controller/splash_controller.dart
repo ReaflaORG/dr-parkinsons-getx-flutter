@@ -10,17 +10,12 @@ import 'package:url_launcher/url_launcher.dart';
 
 import '../../../globals/global_dialog_widget.dart';
 import '../../../service/global_service.dart';
+import '../../../service/permission_service.dart';
 
 class SplashController extends GetxController {
   static SplashController get to => Get.find();
 
-  RxBool isChecked = false.obs;
-
-  // Data ▼ ============================================
-
-  // Variable ▼ ========================================
-
-  // Function ▼ ========================================
+  // Function ▼
 
   /// 스플래시 화면 처리
   Future<void> handleSplashDelayed({
@@ -28,16 +23,13 @@ class SplashController extends GetxController {
   }) async {
     Future.delayed(Duration(milliseconds: milliseconds), () async {
       if (GetStorage().read('initialize_permission') == null) {
-        // if (PermissionService.to.permissionList.isEmpty) {
-        //   await Get.offAllNamed('/permission');
-        //   // await Get.offAllNamed('/signin');
-        // } else {
-        //   await Get.offAllNamed('/permission');
-        // }
-        await Get.offAllNamed('/signin');
+        if (PermissionService.to.permissionList.isNotEmpty) {
+          await Get.offAllNamed('/permission');
+        } else {
+          await Get.offAllNamed('/signin');
+        }
       } else {
         await Get.offAllNamed('/signin');
-        // await Get.offAllNamed('/signin');
       }
     });
   }

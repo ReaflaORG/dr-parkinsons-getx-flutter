@@ -2,13 +2,13 @@
 
 import 'dart:async';
 
-import 'package:base/app/modules/myinfo/widgets/show_dialog.dart';
+import 'package:dr_parkinsons/app/modules/myinfo/widgets/show_dialog.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 
 import '../../../globals/global_toast_widget.dart';
 import '../../../models/base_response_model.dart';
-import '../../../provider/main_provider.dart';
+import '../../../provider/provider.dart';
 import '../../../routes/app_pages.dart';
 import '../../../service/auth_service.dart';
 import '../models/my_info_item_model.dart';
@@ -37,7 +37,7 @@ class MyInfoController extends GetxController {
         context, '정말 삭제하시겠습니까?', '주치의 찾기 탭을 통해 다시 담당 주치의를 설정하실 수 있습니다.',
         () async {
       try {
-        AuthBaseResponseModel response = await AuthProvider.dio(
+        AuthBaseResponseModel response = await Provider.dio(
           method: 'PATCH',
           url: '/doctor/${AuthService.to.myDoctor.value.doctorId}',
         );
@@ -50,7 +50,7 @@ class MyInfoController extends GetxController {
             throw Exception(response.message);
         }
       } catch (e) {
-        GlobalToastWidget(message: e.toString().substring(11));
+        GlobalToastWidget(message: e.toString());
       }
     });
   }

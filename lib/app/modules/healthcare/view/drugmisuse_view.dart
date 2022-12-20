@@ -9,160 +9,165 @@ import '../../../theme/texts.dart';
 import '../controller/drugmisuse_controller.dart';
 import '../widgets/drugmisuse_infobox.dart';
 
+/// 주의해야할 약 검색
 class DrugMisuseView extends GetView<DrugMisuseController> {
   const DrugMisuseView({super.key});
 
   @override
-  Widget build(BuildContext context) => Scaffold(
-        appBar: PreferredSize(
-          preferredSize: Size.fromHeight(74.w),
-          child: AppBar(
-            toolbarHeight: 84,
-            backgroundColor: ColorPath.TertiaryLightColor,
-            leadingWidth: 60,
-            leading: Container(
-              margin: const EdgeInsets.only(
-                left: 20,
-              ),
-              child: CircleAvatar(
-                backgroundColor: ColorPath.BackgroundWhite,
-                radius: 24,
-                child: IconButton(
-                  onPressed: () => Get.back(),
-                  icon: Icon(
-                    Icons.arrow_back,
-                    color: ColorPath.TextGrey1H212121,
-                  ),
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: PreferredSize(
+        preferredSize: Size.fromHeight(74.w),
+        child: AppBar(
+          toolbarHeight: 84,
+          backgroundColor: ColorPath.TertiaryLightColor,
+          leadingWidth: 60,
+          leading: Container(
+            margin: const EdgeInsets.only(
+              left: 20,
+            ),
+            child: CircleAvatar(
+              backgroundColor: ColorPath.BackgroundWhite,
+              radius: 24,
+              child: IconButton(
+                onPressed: () {
+                  Get.back();
+                },
+                icon: Icon(
+                  Icons.arrow_back,
+                  color: ColorPath.TextGrey1H212121,
                 ),
               ),
             ),
-            centerTitle: false,
-            elevation: 0,
-            shadowColor: Colors.white,
-            title: Text(
-              '주의해야할 약 검색',
-              style: TextPath.Heading2F18W600.copyWith(
-                color: ColorPath.TextGrey1H212121,
-              ),
+          ),
+          centerTitle: false,
+          elevation: 0,
+          shadowColor: Colors.white,
+          title: Text(
+            '주의해야할 약 검색',
+            style: TextPath.Heading2F18W600.copyWith(
+              color: ColorPath.TextGrey1H212121,
             ),
           ),
         ),
-        body: Obx(
-          () => Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Container(
-                alignment: Alignment.topCenter,
-                height: 58.h,
-                width: double.infinity,
+      ),
+      body: Obx(
+        () => Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Container(
+              alignment: Alignment.topCenter,
+              height: 58.h,
+              width: double.infinity,
+              decoration: BoxDecoration(
+                color: ColorPath.TertiaryLightColor,
+                borderRadius: BorderRadius.only(
+                  bottomLeft: Radius.circular(36.r),
+                  bottomRight: Radius.circular(36.r),
+                ),
+              ),
+              child: Container(
+                padding: EdgeInsets.symmetric(horizontal: 16.w),
+                width: 320.w,
+                height: 42.w,
                 decoration: BoxDecoration(
-                  color: ColorPath.TertiaryLightColor,
-                  borderRadius: BorderRadius.only(
-                    bottomLeft: Radius.circular(36.w),
-                    bottomRight: Radius.circular(36.w),
+                  borderRadius: BorderRadius.all(
+                    Radius.circular(30.r),
                   ),
+                  color: ColorPath.BackgroundWhite,
                 ),
-                child: Container(
-                  padding: EdgeInsets.symmetric(horizontal: 16.w),
-                  width: 320.w,
-                  height: 42.w,
-                  decoration: BoxDecoration(
-                    borderRadius: const BorderRadius.all(
-                      Radius.circular(30),
+                child: Row(
+                  children: [
+                    SizedBox(width: 16.w),
+                    InkWell(
+                      onTap: () async {
+                        await controller.onHandleSearch(
+                          value: controller
+                              .drugmisuseTextFormFieldController.value.text,
+                        );
+                      },
+                      child: Container(
+                        alignment: Alignment.center,
+                        child: Image.asset(
+                          width: 22.w,
+                          height: 22.w,
+                          'assets/images/icons/2d/24search.png',
+                        ),
+                      ),
                     ),
-                    color: ColorPath.BackgroundWhite,
-                  ),
-                  child: Row(
-                    children: [
-                      SizedBox(width: 16.w),
-                      InkWell(
-                        onTap: () async {
-                          await controller.onHandleSearch(
-                              value: controller
-                                  .drugmisuseTextFormFieldController
-                                  .value
-                                  .text);
-                        },
-                        child: Container(
-                          alignment: Alignment.center,
-                          child: Image.asset(
-                            width: 22.w,
-                            height: 22.w,
-                            'assets/images/icons/2d/24search.png',
-                          ),
-                        ),
-                      ),
-                      Expanded(
-                        flex: 1,
-                        child: Form(
-                          key: controller.globalFormKey.value,
-                          child: TextFormField(
-                            textInputAction: TextInputAction.done,
-                            keyboardType: TextInputType.text,
-                            controller: controller
-                                .drugmisuseTextFormFieldController.value,
-                            focusNode: controller
-                                .drugmisuseTextFormFieldFocusScopeNode.value,
-                            inputFormatters: [
-                              LengthLimitingTextInputFormatter(30),
-                            ],
-                            decoration: InputDecoration(
-                              contentPadding: EdgeInsets.symmetric(
-                                vertical: 5,
-                                horizontal: 10,
-                              ),
-                              hintText: '약품명 또는 약제명을 입력하세요',
-                              focusedBorder: OutlineInputBorder(
-                                borderRadius: BorderRadius.all(
-                                  Radius.circular(4.0.r),
-                                ),
-                                borderSide: BorderSide.none,
-                              ),
-                              focusedErrorBorder: OutlineInputBorder(
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(4.0.r)),
-                                borderSide: BorderSide.none,
-                              ),
-                              errorBorder: OutlineInputBorder(
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(4.0.r)),
-                                borderSide: BorderSide.none,
-                              ),
+                    Expanded(
+                      flex: 1,
+                      child: Form(
+                        key: controller.globalFormKey.value,
+                        child: TextFormField(
+                          textInputAction: TextInputAction.done,
+                          keyboardType: TextInputType.text,
+                          controller: controller
+                              .drugmisuseTextFormFieldController.value,
+                          focusNode: controller
+                              .drugmisuseTextFormFieldFocusScopeNode.value,
+                          inputFormatters: [
+                            LengthLimitingTextInputFormatter(30),
+                          ],
+                          decoration: InputDecoration(
+                            contentPadding: const EdgeInsets.symmetric(
+                              vertical: 5,
+                              horizontal: 10,
                             ),
-                            // validator: (String? value) {
-                            //   // return controller.handleValidator(
-                            //   //   type: 'email',
-                            //   //   value: value!,
-                            //   // );
-                            // },
-                            // onChanged: (String text) {
-                            //   // Logger().d(text);
-                            //   // controller.handleSearchFieldOnChanged(
-                            //   //   value: text,
-                            //   // );
-                            //   controller.handleSearchFieldOnChanged(
-                            //     value: text,
-                            //   );
-                            // },
-                            onFieldSubmitted: (value) async {
-                              await controller.onHandleSearch(value: value);
-                            },
+                            hintText: '약품명 또는 약제명을 입력하세요',
+                            focusedBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.all(
+                                Radius.circular(4.0.r),
+                              ),
+                              borderSide: BorderSide.none,
+                            ),
+                            focusedErrorBorder: OutlineInputBorder(
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(4.0.r)),
+                              borderSide: BorderSide.none,
+                            ),
+                            errorBorder: OutlineInputBorder(
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(4.0.r)),
+                              borderSide: BorderSide.none,
+                            ),
                           ),
+                          // validator: (String? value) {
+                          //   // return controller.handleValidator(
+                          //   //   type: 'email',
+                          //   //   value: value!,
+                          //   // );
+                          // },
+                          // onChanged: (String text) {
+                          //   // Logger().d(text);
+                          //   // controller.handleSearchFieldOnChanged(
+                          //   //   value: text,
+                          //   // );
+                          //   controller.handleSearchFieldOnChanged(
+                          //     value: text,
+                          //   );
+                          // },
+                          onFieldSubmitted: (value) async {
+                            await controller.onHandleSearch(value: value);
+                          },
                         ),
                       ),
-                    ],
-                  ),
+                    ),
+                  ],
                 ),
               ),
-              controller.isSearch.value
-                  ? SearchAfterWigdet()
-                  : SearchBeforeWidget(),
-            ],
-          ),
+            ),
+            controller.isSearch.value
+                ? const SearchAfterWigdet()
+                : const SearchBeforeWidget(),
+          ],
         ),
-      );
+      ),
+    );
+  }
 }
 
+/// 검색 후 위젯
 class SearchBeforeWidget extends GetView<DrugMisuseController> {
   const SearchBeforeWidget({super.key});
 
@@ -200,6 +205,7 @@ class SearchBeforeWidget extends GetView<DrugMisuseController> {
   }
 }
 
+/// 검색 전 위젯
 class SearchAfterWigdet extends GetView<DrugMisuseController> {
   const SearchAfterWigdet({super.key});
 
@@ -219,7 +225,9 @@ class SearchAfterWigdet extends GetView<DrugMisuseController> {
                     medicineName:
                         controller.boxesSearchData[index].medicineName,
                     isFound: true,
-                    okOnPressed: () => Get.back(),
+                    okOnPressed: () {
+                      Get.back();
+                    },
                   ),
                 ),
                 child: Container(
@@ -231,9 +239,11 @@ class SearchAfterWigdet extends GetView<DrugMisuseController> {
                     vertical: 8,
                   ),
                   decoration: BoxDecoration(
-                    border: Border.all(color: ColorPath.Background1HECEFF1),
-                    borderRadius: const BorderRadius.all(
-                      Radius.circular(6),
+                    border: Border.all(
+                      color: ColorPath.Background1HECEFF1,
+                    ),
+                    borderRadius: BorderRadius.all(
+                      Radius.circular(6.r),
                     ),
                   ),
                   child: Row(
@@ -242,7 +252,7 @@ class SearchAfterWigdet extends GetView<DrugMisuseController> {
                     children: [
                       Container(
                         alignment: Alignment.topLeft,
-                        width: 26,
+                        width: 26.w,
                         height: 20.w,
                         child: Image.asset(
                           width: 18.w,
@@ -266,7 +276,8 @@ class SearchAfterWigdet extends GetView<DrugMisuseController> {
                                     controller
                                         .boxesSearchData[index].medicineName,
                                     style: TextPath.TextF14W500.copyWith(
-                                        color: ColorPath.TextGrey1H212121),
+                                      color: ColorPath.TextGrey1H212121,
+                                    ),
                                   ),
                                 ),
                                 // const Spacer(),
@@ -274,7 +285,8 @@ class SearchAfterWigdet extends GetView<DrugMisuseController> {
                                   controller
                                       .boxesSearchData[index].medicineMaker,
                                   style: TextPath.TextF12W400.copyWith(
-                                      color: ColorPath.TextGrey4H9E9E9E),
+                                    color: ColorPath.TextGrey4H9E9E9E,
+                                  ),
                                 ),
                               ],
                             ),
@@ -282,10 +294,10 @@ class SearchAfterWigdet extends GetView<DrugMisuseController> {
                               alignment: Alignment.centerLeft,
                               height: 20.w,
                               child: Text(
-                                // ignore: unnecessary_brace_in_string_interps
-                                '#${controller.boxesSearchData[index].symptomName} ${controller.boxesSearchData[index].medicineKoTag.map((e) => '#${e}').toList().join(' ')} ',
+                                '#${controller.boxesSearchData[index].symptomName} ${controller.boxesSearchData[index].medicineKoTag.map((e) => '#$e').toList().join(' ')} ',
                                 style: TextPath.TextF13W400.copyWith(
-                                    color: ColorPath.TextGrey3H616161),
+                                  color: ColorPath.TextGrey3H616161,
+                                ),
                                 maxLines: 1,
                                 overflow: TextOverflow.ellipsis,
                               ),

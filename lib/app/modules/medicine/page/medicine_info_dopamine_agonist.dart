@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../../../theme/colors.dart';
-import '../../../theme/texts.dart';
 import '../widget/medicine_item.dart';
 
 /// 도파민작용제 약제 설명 페이지
@@ -14,31 +11,31 @@ class MedicineInfoDopamineAgonistPage extends StatelessWidget {
     return Column(
       mainAxisAlignment: MainAxisAlignment.start,
       children: const [
-        MedicineItemTitle(text: '약제명'),
-        MedicineItemDescription(
+        MedicineItemTitleWidget(text: '약제명'),
+        MedicineItemDescriptionWidget(
           text: '''도파민 작용제(효능제, 효현제)''',
         ),
         SizedBox(
           height: 20,
         ),
-        MedicineItemTitle(text: '설명'),
-        MedicineItemDescription(
+        MedicineItemTitleWidget(text: '설명'),
+        MedicineItemDescriptionWidget(
           text:
               '''도파민 작용제는 시냅스 연접후 도파민수용체(post-synpatic striatal dopamine receptors)를 자극하여 도파민이 증가한것처럼 반응하게 한다. 단독 투여로도 어느 정도 증상 개선 효과가 있고, 도파민제에 비해 반감기가 길어서 장기간 투여해도 이상 운동, 약효 감퇴 같은 부작용이 적어서 특히 처음 치료를 시작하는 젊은 환자에서 투여하는 경우가 많다. ''',
         ),
         SizedBox(
           height: 20,
         ),
-        MedicineItemTitle(text: '부작용'),
-        MedicineItemDescription(
+        MedicineItemTitleWidget(text: '부작용'),
+        MedicineItemDescriptionWidget(
           text: '''구역, 구토, 어지러움, 과도한 주간 졸음, 기립성 저혈압, 악몽, 환각, 충동조절장애 등''',
         ),
         SizedBox(
           height: 20,
         ),
-        MedicineItemTitle(text: '종류'),
-        MedicineItemLabel1(text: '1. 로파티롤'),
-        MedicineItemLabel2(text: '일반형'),
+        MedicineItemTitleWidget(text: '종류'),
+        MedicineItemLabel1Widget(text: '1. 로파티롤'),
+        MedicineItemLabel2Widget(text: '일반형'),
         MedicineImageItem(
           assest: 'assets/images/medicine/pill0301.jpg',
           text: '''리큅 0.25mg''',
@@ -82,7 +79,7 @@ class MedicineInfoDopamineAgonistPage extends StatelessWidget {
         MedicineImageItem(
           text: '''리키롤정-대웅바이오''',
         ),
-        MedicineItemLabel2(text: '서방형'),
+        MedicineItemLabel2Widget(text: '서방형'),
         MedicineImageItem(
           assest: 'assets/images/medicine/pill0305.jpg',
           text: '''리큅 피디 2mg''',
@@ -110,8 +107,8 @@ class MedicineInfoDopamineAgonistPage extends StatelessWidget {
         MedicineImageItem(text: '파키놀피디정-명인제약'),
         MedicineImageItem(text: '현대로피니롤서방정-현대약품 '),
         // 약재 2
-        MedicineItemLabel1(text: '2. 프라미펙솔'),
-        MedicineItemLabel2(text: '일반형'),
+        MedicineItemLabel1Widget(text: '2. 프라미펙솔'),
+        MedicineItemLabel2Widget(text: '일반형'),
         MedicineImageItem(
           assest: 'assets/images/medicine/pill0308.jpg',
           text: '''미라펙스 0.25mg ''',
@@ -128,7 +125,7 @@ class MedicineInfoDopamineAgonistPage extends StatelessWidget {
         MedicineImageItem(text: '피디펙솔정-명인제약'),
         MedicineImageItem(text: '프라펙솔정-삼일제약'),
         MedicineImageItem(text: '미라프정-현대약품'),
-        MedicineItemLabel2(text: '서방형'),
+        MedicineItemLabel2Widget(text: '서방형'),
         MedicineImageItem(
           assest: 'assets/images/medicine/pill0311.jpg',
           text: '''미라펙스 서방정 0.375mg ''',

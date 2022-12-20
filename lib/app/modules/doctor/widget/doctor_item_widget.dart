@@ -1,11 +1,10 @@
-import 'package:base/app/models/doctor_model.dart';
-import 'package:base/app/utils/formatter.dart';
-import 'package:base/app/utils/video/video_view.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:dr_parkinsons/app/models/doctor_model.dart';
+import 'package:dr_parkinsons/app/utils/formatter.dart';
+import 'package:dr_parkinsons/app/utils/video/video_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:video_player/video_player.dart';
 
 import '../../../theme/colors.dart';
 import '../../../theme/texts.dart';

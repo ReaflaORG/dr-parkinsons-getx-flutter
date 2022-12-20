@@ -1,13 +1,13 @@
 // ignore_for_file: unnecessary_overrides
 
 import 'dart:async';
+
 import 'package:get/get.dart';
 import 'package:logger/logger.dart';
 
 import '../../../models/base_response_model.dart';
-import '../../../provider/main_provider.dart';
+import '../../../provider/provider.dart';
 import '../models/my_symptoms_item_model.dart';
-import '../models/view_my_symptoms_item_model.dart';
 
 // view my symptoms controller
 class ViewMySymptomsController extends GetxController {
@@ -21,7 +21,7 @@ class ViewMySymptomsController extends GetxController {
   // Function ▼ ========================================
   Future<void> getMySymptomsData() async {
     try {
-      AuthBaseResponseModel response = await AuthProvider.dio(
+      AuthBaseResponseModel response = await Provider.dio(
         method: 'GET',
         url: '/myinfo/sympthom/${symptomId.value}',
       );

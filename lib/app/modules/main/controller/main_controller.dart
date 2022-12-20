@@ -2,7 +2,7 @@
 
 import 'dart:async';
 
-import 'package:base/app/service/location_service.dart';
+import 'package:dr_parkinsons/app/service/location_service.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

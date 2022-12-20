@@ -2,8 +2,8 @@
 
 import 'dart:async';
 
-import 'package:base/app/models/base_response_model.dart';
-import 'package:base/app/service/auth_service.dart';
+import 'package:dr_parkinsons/app/models/base_response_model.dart';
+import 'package:dr_parkinsons/app/service/auth_service.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:logger/logger.dart';
@@ -12,7 +12,7 @@ import '../../../globals/global_dialog_widget.dart';
 import '../../../globals/global_toast_widget.dart';
 import '../../../models/drugmisuse_infobox_model.dart';
 import '../../../models/drugmisuse_model.dart';
-import '../../../provider/main_provider.dart';
+import '../../../provider/provider.dart';
 
 class DrugMisuseController extends GetxController {
   static DrugMisuseController get to => Get.find();
@@ -38,7 +38,7 @@ class DrugMisuseController extends GetxController {
       try {
         Logger().d(AuthService.to.accessToken.value);
 
-        AuthBaseResponseModel response = await AuthProvider.dio(
+        AuthBaseResponseModel response = await Provider.dio(
             method: 'GET',
             url:
                 '/healthcare/drug_misuse_medicine?orderBy=title&search=${drugmisuseTextFormFieldController.value.text}');
@@ -60,7 +60,7 @@ class DrugMisuseController extends GetxController {
             throw Exception(response.message);
         }
       } catch (e) {
-        GlobalToastWidget(message: e.toString().substring(11));
+        GlobalToastWidget(message: e.toString());
       }
     } else {
       isSearch.value = false;

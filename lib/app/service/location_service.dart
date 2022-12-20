@@ -28,24 +28,13 @@ class LocationService extends GetxService {
   /// 위치 정보 가져오기
   Future<void> getLocation() async {
     List temp = [
-      await Future.value(await location.serviceEnabled()),
-      await Future.value(await location.requestService()),
+      await Future.value(location.serviceEnabled()),
+      await Future.value(location.requestService()),
     ];
 
     if (!temp[0] && !temp[1]) {
       return;
     }
-
-    permissionGranted = await location.hasPermission();
-    if (permissionGranted == PermissionStatus.denied) {
-      permissionGranted = await location.requestPermission();
-      if (permissionGranted != PermissionStatus.granted) {
-        return;
-      }
-    }
-
-    // Logger().d(await location.getLocation());
-    // Logger().d(await deviceInfo.toString());
 
     if (Platform.isIOS) {
       IosDeviceInfo iosInfo = await deviceInfo.iosInfo;

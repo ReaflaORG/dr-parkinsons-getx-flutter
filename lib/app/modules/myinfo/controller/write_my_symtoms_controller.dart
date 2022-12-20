@@ -2,8 +2,8 @@
 
 import 'dart:async';
 
-import 'package:base/app/theme/colors.dart';
 import 'package:dio/dio.dart' as Dio;
+import 'package:dr_parkinsons/app/theme/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -14,7 +14,7 @@ import 'package:mime/mime.dart';
 
 import '../../../globals/global_toast_widget.dart';
 import '../../../models/base_response_model.dart';
-import '../../../provider/main_provider.dart';
+import '../../../provider/provider.dart';
 import '../../../theme/texts.dart';
 
 // write my symptoms controller
@@ -71,8 +71,11 @@ class WriteMySymptomsController extends GetxController {
         'files': _files
       });
 
-      AuthBaseResponseModel response = await AuthProvider.dio(
-          method: 'POST', url: '/myinfo/sympthom', requestModel: request);
+      AuthBaseResponseModel response = await Provider.dio(
+        method: 'POST',
+        url: '/myinfo/sympthom',
+        requestModel: request,
+      );
 
       switch (response.statusCode) {
         case 201:
@@ -89,7 +92,7 @@ class WriteMySymptomsController extends GetxController {
       }
     } catch (e) {
       Logger().d(e);
-      GlobalToastWidget(message: e.toString().substring(11));
+      GlobalToastWidget(message: e.toString());
     }
   }
 

@@ -1,6 +1,5 @@
 // ignore_for_file: unnecessary_overrides, cast_nullable_to_non_nullable
 
-import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:logger/logger.dart';
@@ -16,14 +15,31 @@ class PermissionService extends GetxService {
 
   RxList<PermissionModel> permissionList = [
     PermissionModel(
-      title: '위치기반',
-      icon: Icon(
-        Icons.location_on_outlined,
-        size: 38,
-        color: Colors.grey.shade700,
-      ),
-      description: '주변 업체 정보 제공',
+      title: '위치 권한',
+      image: 'assets/images/permission/location.png',
+      description: '위치기반 검색을 허용합니다',
       isRequired: true,
+      isExpanded: false,
+    ),
+    PermissionModel(
+      title: '주소록',
+      image: 'assets/images/permission/address.png',
+      description: '가까운 의사, 병원 검색을 위한 용도입니다',
+      isRequired: false,
+      isExpanded: false,
+    ),
+    PermissionModel(
+      title: '알림',
+      image: 'assets/images/permission/notifications.png',
+      description: '새로운 이벤트나 혜택을 알려드립니다',
+      isRequired: false,
+      isExpanded: false,
+    ),
+    PermissionModel(
+      title: '연락처',
+      image: 'assets/images/permission/phone.png',
+      description: '휴대폰 사용자 본인인증 용도로 사용합니다',
+      isRequired: false,
       isExpanded: false,
     ),
     // PermissionModel(
@@ -64,9 +80,9 @@ class PermissionService extends GetxService {
   Future<dynamic> handlePermissionOnPressed() async {
     final Map<Permission, PermissionStatus> permissionStatus = await [
       Permission.location,
-      Permission.camera,
-      Permission.photos,
-      Permission.microphone,
+      // Permission.camera,
+      // Permission.photos,
+      // Permission.microphone,
     ].request();
 
     for (var index = 0; index < permissionStatus.length; index++) {
@@ -137,9 +153,10 @@ class PermissionService extends GetxService {
   /// 권한 허용
   Future<dynamic> handlePermissionGranted() async {
     if (isPermissionSuccess.value) {
-      await GetStorage().write('initialize_permission', true);
-      // Get.back();
-      await Get.offAllNamed('/main');
+      await Future.value([
+        GetStorage().write('initialize_permission', true),
+        Get.offAllNamed('/main'),
+      ]);
     }
   }
 

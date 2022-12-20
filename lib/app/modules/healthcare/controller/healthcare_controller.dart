@@ -2,17 +2,16 @@
 
 import 'dart:async';
 
-import 'package:base/app/globals/global_toast_widget.dart';
-import 'package:base/app/models/welfare_model.dart';
-import 'package:base/app/modules/main/controller/main_controller.dart';
-import 'package:base/app/provider/main_provider.dart';
+import 'package:dr_parkinsons/app/globals/global_toast_widget.dart';
+import 'package:dr_parkinsons/app/models/welfare_model.dart';
+import 'package:dr_parkinsons/app/modules/main/controller/main_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:logger/logger.dart';
 
 import '../../../globals/global_dialog_widget.dart';
 import '../../../models/base_response_model.dart';
 import '../../../models/healthcare_btn_model.dart';
+import '../../../provider/provider.dart';
 import '../../../routes/app_pages.dart';
 import '../../../theme/colors.dart';
 
@@ -77,7 +76,7 @@ class HealthCareController extends GetxController {
   /// 데이터 초기화 함수
   Future<void> onInitData() async {
     try {
-      AuthBaseResponseModel response = await AuthProvider.dio(
+      AuthBaseResponseModel response = await Provider.dio(
         method: 'GET',
         url: '/healthcare',
       );
@@ -86,13 +85,12 @@ class HealthCareController extends GetxController {
         case 200:
           welfareLists.assignAll(List<WelfareModel>.from(
               response.data.map((e) => WelfareModel.fromJson(e))));
-          Logger().d(welfareLists.length);
           break;
         default:
           throw Exception(response.message);
       }
     } catch (e) {
-      GlobalToastWidget(message: e.toString().substring(11));
+      GlobalToastWidget(message: e.toString());
     }
   }
 

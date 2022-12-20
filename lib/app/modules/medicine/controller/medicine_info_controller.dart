@@ -2,22 +2,54 @@
 
 import 'dart:async';
 
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:logger/logger.dart';
+
+import '../page/medicine_info_complex.dart';
+import '../page/medicine_info_comt_inhibitor.dart';
+import '../page/medicine_info_dopamine.dart';
+import '../page/medicine_info_dopamine_agonist.dart';
+import '../page/medicine_info_etc.dart';
+import '../page/medicine_info_maob_inhibitor.dart';
 
 class MedicineInfoController extends GetxController {
   static MedicineInfoController get to => Get.find();
 
-  // Data ▼ ============================================
+  // Data ▼
 
-  // Function ▼ ========================================
+  // Variable ▼
 
-  // Variable ▼ ========================================
   /// 약제명
-  Rx<String> medicine_name = ''.obs;
+  Rx<dynamic> medicineName = Get.parameters['params'].obs;
+
+  // Function ▼
+  Widget childWidget() {
+    Logger().d(medicineName);
+
+    switch (medicineName.value) {
+      case '도파민제':
+        return const MedicineInfoDopaminePage();
+      case '복합제':
+        return const MedicineInfoComplexPage();
+      case '도파민작용제':
+        return const MedicineInfoDopamineAgonistPage();
+      case '콤트억제제':
+        return const MedicineInfoComptInhibitorPage();
+      case '마오비억제제':
+        return const MedicineInfoMaobInhibitorPage();
+      case '기타약제':
+        return const MedicineInfoEtcPage();
+
+      default:
+        return Container();
+    }
+  }
 
   @override
   Future<void> onInit() async {
-    medicine_name.value = Get.arguments['name'];
+    Logger().d(medicineName);
+
     super.onInit();
   }
 

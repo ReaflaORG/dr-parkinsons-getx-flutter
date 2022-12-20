@@ -5,9 +5,15 @@ import '../../../models/drugmisuse_infobox_model.dart';
 import '../../../theme/colors.dart';
 import '../../../theme/texts.dart';
 
+/// 약물남용 정보 박스
+///
+/// [box] DrugMisuseInfoBoxModel : 박스 모델
 class DrugMisuseInfoBox extends StatelessWidget {
-  // ignore: use_key_in_widget_constructors
-  const DrugMisuseInfoBox({required this.box});
+  const DrugMisuseInfoBox({
+    super.key,
+    required this.box,
+  });
+
   final DrugMisuseInfoBoxModel box;
 
   @override
@@ -23,15 +29,16 @@ class DrugMisuseInfoBox extends StatelessWidget {
           height: 36.w,
           decoration: BoxDecoration(
             color: ColorPath.TertiaryLightColor,
-            borderRadius: const BorderRadius.only(
-              topLeft: Radius.circular(6),
-              topRight: Radius.circular(6),
+            borderRadius: BorderRadius.only(
+              topLeft: Radius.circular(6.r),
+              topRight: Radius.circular(6.r),
             ),
           ),
           child: Text(
             box.title,
             style: TextPath.TextF13W500.copyWith(
-                color: ColorPath.TextGrey1H212121),
+              color: ColorPath.TextGrey1H212121,
+            ),
           ),
         ),
         Container(
@@ -39,16 +46,19 @@ class DrugMisuseInfoBox extends StatelessWidget {
           padding: const EdgeInsets.all(12),
           decoration: BoxDecoration(
             color: ColorPath.BackgroundWhite,
-            border: Border.all(color: ColorPath.TertiaryLightColor),
-            borderRadius: const BorderRadius.only(
-              bottomLeft: Radius.circular(6),
-              bottomRight: Radius.circular(6),
+            border: Border.all(
+              color: ColorPath.TertiaryLightColor,
+            ),
+            borderRadius: BorderRadius.only(
+              bottomLeft: Radius.circular(6.r),
+              bottomRight: Radius.circular(6.r),
             ),
           ),
           child: Text(
             box.text,
             style: TextPath.TextF13W500Expand.copyWith(
-                color: ColorPath.TextGrey2H424242),
+              color: ColorPath.TextGrey2H424242,
+            ),
           ),
         )
       ],

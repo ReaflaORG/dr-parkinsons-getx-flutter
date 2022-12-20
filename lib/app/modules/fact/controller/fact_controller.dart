@@ -2,13 +2,13 @@
 
 import 'dart:async';
 
-import 'package:base/app/globals/global_toast_widget.dart';
-import 'package:base/app/models/parkinson_post_model.dart';
+import 'package:dr_parkinsons/app/globals/global_toast_widget.dart';
+import 'package:dr_parkinsons/app/models/parkinson_post_model.dart';
 import 'package:get/get.dart';
 import 'package:logger/logger.dart';
 
 import '../../../models/base_response_model.dart';
-import '../../../provider/main_provider.dart';
+import '../../../provider/provider.dart';
 
 class FactController extends GetxController {
   static FactController get to => Get.find();
@@ -22,7 +22,7 @@ class FactController extends GetxController {
   /// * 완전정복 리스트 API
   Future<void> getFactList() async {
     try {
-      AuthBaseResponseModel response = await AuthProvider.dio(
+      AuthBaseResponseModel response = await Provider.dio(
         method: 'GET',
         url: '/home/parkinson',
       );
@@ -39,7 +39,7 @@ class FactController extends GetxController {
       }
     } catch (e) {
       Logger().d(e);
-      GlobalToastWidget(message: e.toString().substring(11));
+      GlobalToastWidget(message: e.toString());
     }
   }
 

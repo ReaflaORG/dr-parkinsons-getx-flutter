@@ -2,11 +2,10 @@
 
 import 'dart:async';
 
-import 'package:base/app/globals/global_toast_widget.dart';
-import 'package:base/app/models/base_response_model.dart';
-import 'package:base/app/provider/main_provider.dart';
-import 'package:base/app/service/auth_service.dart';
-import 'package:base/app/utils/formatter.dart';
+import 'package:dr_parkinsons/app/globals/global_toast_widget.dart';
+import 'package:dr_parkinsons/app/models/base_response_model.dart';
+import 'package:dr_parkinsons/app/service/auth_service.dart';
+import 'package:dr_parkinsons/app/utils/formatter.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -14,6 +13,7 @@ import 'package:logger/logger.dart';
 import 'package:syncfusion_flutter_datepicker/datepicker.dart';
 
 import '../../../models/user_model.dart';
+import '../../../provider/provider.dart';
 
 // profile setting controller
 class ProfileSettingController extends GetxController {
@@ -117,8 +117,11 @@ class ProfileSettingController extends GetxController {
         'diagnostic_status': diagnosticStatus.value,
         'diagnostic_day': diagnosticDayString.value
       };
-      AuthBaseResponseModel response = await AuthProvider.dio(
-          method: 'PUT', url: '/myinfo', requestModel: request);
+      AuthBaseResponseModel response = await Provider.dio(
+        method: 'PUT',
+        url: '/myinfo',
+        requestModel: request,
+      );
       switch (response.statusCode) {
         case 200:
           UserModel user = UserModel.fromJson(response.data['user']);
@@ -133,7 +136,7 @@ class ProfileSettingController extends GetxController {
       }
     } catch (e) {
       Logger().d(e);
-      GlobalToastWidget(message: e.toString().substring(11));
+      GlobalToastWidget(message: e.toString());
     }
   }
 

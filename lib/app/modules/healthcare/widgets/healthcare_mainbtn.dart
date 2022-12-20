@@ -5,14 +5,23 @@ import '../../../models/healthcare_btn_model.dart';
 import '../../../theme/colors.dart';
 import '../../../theme/texts.dart';
 
+/// 건강관리 메인 버튼
+///
+/// [item] HealthCareBtnModel : 버튼 모델
 class HealthcareMainbtn extends StatelessWidget {
-  // ignore: use_key_in_widget_constructors
-  const HealthcareMainbtn({required this.item});
+  const HealthcareMainbtn({
+    super.key,
+    required this.item,
+  });
+
   final HealthCareBtnModel item;
+
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () => item.onClick(),
+      onTap: () {
+        item.onClick();
+      },
       child: Container(
         // width: 140.w,
         // height: 140.w,
@@ -24,8 +33,6 @@ class HealthcareMainbtn extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           crossAxisAlignment: CrossAxisAlignment.start,
-
-          // ignore: prefer_const_literals_to_create_immutables
           children: [
             Container(
               width: double.infinity,
@@ -33,7 +40,8 @@ class HealthcareMainbtn extends StatelessWidget {
               child: Text(
                 item.name,
                 style: TextPath.TextF16W500.copyWith(
-                    color: ColorPath.TextGrey1H212121),
+                  color: ColorPath.TextGrey1H212121,
+                ),
               ),
             ),
             Container(
@@ -43,7 +51,11 @@ class HealthcareMainbtn extends StatelessWidget {
                 height: 60.w,
                 child: CircleAvatar(
                   backgroundColor: ColorPath.BackgroundWhite,
-                  child: Image.asset(width: 44.w, height: 44.w, item.icon),
+                  child: Image.asset(
+                    width: 44.w,
+                    height: 44.w,
+                    item.icon,
+                  ),
                 ),
               ),
             ),

@@ -2,14 +2,14 @@
 
 import 'dart:async';
 
-import 'package:base/app/models/doctor_model.dart';
-import 'package:base/app/service/auth_service.dart';
+import 'package:dr_parkinsons/app/models/doctor_model.dart';
+import 'package:dr_parkinsons/app/service/auth_service.dart';
 import 'package:get/get.dart';
 import 'package:logger/logger.dart';
 
 import '../../../globals/global_toast_widget.dart';
 import '../../../models/base_response_model.dart';
-import '../../../provider/main_provider.dart';
+import '../../../provider/provider.dart';
 
 /// 주치의 찾기 컨트롤러
 class DoctorController extends GetxController {
@@ -29,9 +29,9 @@ class DoctorController extends GetxController {
   // 전문의 데이터 불러오기
   Future<void> getDoctorDetail() async {
     try {
-      AuthBaseResponseModel response = await AuthProvider.dio(
+      AuthBaseResponseModel response = await Provider.dio(
         method: 'GET',
-        url: '/doctor/${doctor_id}',
+        url: '/doctor/$doctor_id',
       );
 
       switch (response.statusCode) {
@@ -49,16 +49,16 @@ class DoctorController extends GetxController {
       }
     } catch (e) {
       Logger().d(e);
-      GlobalToastWidget(message: e.toString().substring(11));
+      GlobalToastWidget(message: e.toString());
     }
   }
 
   // 전문의 설정하기 불러오기
   Future<void> putDoctorUser() async {
     try {
-      AuthBaseResponseModel response = await AuthProvider.dio(
+      AuthBaseResponseModel response = await Provider.dio(
         method: 'PATCH',
-        url: '/doctor/${doctor_id}',
+        url: '/doctor/$doctor_id',
       );
 
       Logger().d(response.statusCode);
@@ -72,7 +72,7 @@ class DoctorController extends GetxController {
       }
     } catch (e) {
       Logger().d(e);
-      GlobalToastWidget(message: e.toString().substring(11));
+      GlobalToastWidget(message: e.toString());
     }
   }
 

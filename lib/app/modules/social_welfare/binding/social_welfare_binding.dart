@@ -1,6 +1,6 @@
 import 'package:get/get.dart';
 
-import '../controller/socialwelfare_controller.dart';
+import '../controller/social_welfare_controller.dart';
 
 class SocialWelfareBinding implements Bindings {
   @override

@@ -1,18 +1,27 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 
 import '../../../theme/colors.dart';
 import '../../../theme/texts.dart';
-import '../model/medicine_btn_model.dart';
+import '../controller/medicine_controller.dart';
 
-class MedicineBtn extends StatelessWidget {
-  const MedicineBtn({super.key, required this.item});
-  final MedicineBtnModel item;
+/// 약물검색 카드 위젯
+///
+/// [index] int 인덱스
+class MedicineCardWidget extends GetView<MedicineController> {
+  const MedicineCardWidget({
+    super.key,
+    required this.index,
+  });
+
+  final int index;
+
   @override
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        item.onClick();
+        controller.pillBtns[index].onClick();
       },
       child: Container(
         width: 140.w,
@@ -33,7 +42,11 @@ class MedicineBtn extends StatelessWidget {
                 height: 60.w,
                 child: CircleAvatar(
                   backgroundColor: ColorPath.BackgroundWhite,
-                  child: Image.asset(width: 44.w, height: 44.w, item.icon),
+                  child: Image.asset(
+                    controller.pillBtns[index].icon,
+                    width: 44.w,
+                    height: 44.w,
+                  ),
                 ),
               ),
             ),
@@ -41,9 +54,10 @@ class MedicineBtn extends StatelessWidget {
               width: double.infinity,
               alignment: Alignment.center,
               child: Text(
-                item.name,
+                controller.pillBtns[index].name,
                 style: TextPath.TextF16W500.copyWith(
-                    color: ColorPath.TextGrey1H212121),
+                  color: ColorPath.TextGrey1H212121,
+                ),
               ),
             ),
           ],

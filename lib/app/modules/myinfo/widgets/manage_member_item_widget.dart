@@ -1,6 +1,5 @@
-import 'package:base/app/service/auth_service.dart';
+import 'package:dr_parkinsons/app/service/auth_service.dart';
 import 'package:flutter/material.dart';
-import 'package:logger/logger.dart';
 
 import '../../../theme/colors.dart';
 import '../../../theme/texts.dart';

@@ -1,6 +1,5 @@
-import 'package:base/app/modules/mission/controller/mission_controller.dart';
-import 'package:base/app/theme/colors.dart';
-import 'package:base/app/theme/texts.dart';
+import 'package:dr_parkinsons/app/theme/colors.dart';
+import 'package:dr_parkinsons/app/theme/texts.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 

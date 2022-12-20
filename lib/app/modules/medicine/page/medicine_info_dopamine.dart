@@ -165,7 +165,7 @@ class MedicineInfoDopaminePage extends StatelessWidget {
           ),
         ),
 
-        // * 약제 3번
+        // 약제 3번
         Container(
           alignment: Alignment.centerLeft,
           padding: EdgeInsets.only(bottom: 6.w),
@@ -186,7 +186,7 @@ class MedicineInfoDopaminePage extends StatelessWidget {
           ),
         ),
 
-        // * 약제 4번
+        // 약제 4번
         Container(
           alignment: Alignment.centerLeft,
           padding: EdgeInsets.only(bottom: 6.w),

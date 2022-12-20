@@ -12,8 +12,8 @@ import '../modules/doctor/view/doctor_view.dart';
 import '../modules/doctor/view/search_doctors_view.dart';
 import '../modules/fact/binding/fact_binding.dart';
 import '../modules/fact/view/fact_view.dart';
-import '../modules/factpost/binding/factpost_binding.dart';
-import '../modules/factpost/view/factpost_view.dart';
+import '../modules/factpost/binding/fact_detail_binding.dart';
+import '../modules/factpost/view/fact_detail_view.dart';
 import '../modules/healthcare/binding/drugmisuse_binding.dart';
 import '../modules/healthcare/binding/healthcare_binding.dart';
 import '../modules/healthcare/view/drugmisuse_view.dart';
@@ -58,10 +58,10 @@ import '../modules/seminar/binding/seminar_binding.dart';
 import '../modules/seminar/view/seminar_view.dart';
 import '../modules/signin/binding/signin_binding.dart';
 import '../modules/signin/view/signin_view.dart';
-import '../modules/socialwelfare/binding/socialwelfare_binding.dart';
-import '../modules/socialwelfare/view/socialwelfare_view.dart';
-import '../modules/socialwelfarepost/binding/socialwelfarepost_binding.dart';
-import '../modules/socialwelfarepost/view/socialwelfarepost_view.dart';
+import '../modules/social_welfare/binding/social_welfare_binding.dart';
+import '../modules/social_welfare/view/social_welfare_view.dart';
+import '../modules/social_welfare_detail/binding/social_welfare_detail_binding.dart';
+import '../modules/social_welfare_detail/view/social_welfare_detail_view.dart';
 import '../modules/splash/binding/splash_binding.dart';
 import '../modules/splash/view/splash_view.dart';
 import '../modules/theme/binding/theme_binding.dart';
@@ -81,7 +81,7 @@ class AppPages {
       page: () => const ThemeView(),
       binding: ThemeBinding(),
       transition: Transition.native,
-      popGesture: false,
+      popGesture: true,
     ),
     GetPage(
       title: '스플래시 화면',
@@ -89,7 +89,7 @@ class AppPages {
       page: () => const SplashView(),
       binding: SplashBinding(),
       transition: Transition.native,
-      popGesture: false,
+      popGesture: true,
     ),
     GetPage(
       title: '권한 동의 안내 화면',
@@ -97,7 +97,7 @@ class AppPages {
       page: () => const PermissionView(),
       binding: PermissionBinding(),
       transition: Transition.native,
-      popGesture: false,
+      popGesture: true,
     ),
     GetPage(
       title: '로그인 및 온보딩 화면',
@@ -105,7 +105,7 @@ class AppPages {
       page: () => const SignInView(),
       binding: SignInBinding(),
       transition: Transition.native,
-      popGesture: false,
+      popGesture: true,
     ),
     GetPage(
       title: '메인',
@@ -113,7 +113,7 @@ class AppPages {
       page: () => const MainView(),
       binding: MainBinding(),
       transition: Transition.native,
-      popGesture: false,
+      popGesture: true,
     ),
     GetPage(
       title: '홈',
@@ -121,7 +121,7 @@ class AppPages {
       page: () => const HomeView(),
       binding: HomeBinding(),
       transition: Transition.native,
-      popGesture: false,
+      popGesture: true,
     ),
     GetPage(
       title: '파킨슨 병 소개',
@@ -129,7 +129,7 @@ class AppPages {
       page: () => const DisorderView(),
       binding: DisorderBinding(),
       transition: Transition.native,
-      popGesture: false,
+      popGesture: true,
     ),
     GetPage(
       title: '학회 및 앱 소개',
@@ -137,7 +137,7 @@ class AppPages {
       page: () => const SeminarView(),
       binding: SeminarBinding(),
       transition: Transition.native,
-      popGesture: false,
+      popGesture: true,
     ),
     GetPage(
       title: '보호자 알림 서비스',
@@ -145,7 +145,7 @@ class AppPages {
       page: () => const ProtectorView(),
       binding: ProtectorBinding(),
       transition: Transition.native,
-      popGesture: false,
+      popGesture: true,
     ),
     GetPage(
       title: '오해와 진실',
@@ -153,15 +153,15 @@ class AppPages {
       page: () => const FactView(),
       binding: FactBinding(),
       transition: Transition.native,
-      popGesture: false,
+      popGesture: true,
       children: [
         GetPage(
           title: '오해와 진실 포스트',
-          name: Routes.FACTPOST,
-          page: () => const FactPostView(),
-          binding: FactPostBinding(),
+          name: '${Routes.FACTPOST}/:id',
+          page: () => const FactDetailView(),
+          binding: FactDetailBinding(),
           transition: Transition.native,
-          popGesture: false,
+          popGesture: true,
         ),
       ],
     ),
@@ -171,15 +171,15 @@ class AppPages {
       page: () => const SocialWelfareView(),
       binding: SocialWelfareBinding(),
       transition: Transition.native,
-      popGesture: false,
+      popGesture: true,
       children: [
         GetPage(
           title: '사회복지제도 포스트',
           name: Routes.SOCIALWELFAREPOST,
-          page: () => const SocialWelfarePostView(),
-          binding: SocialWelfarePostBinding(),
-          transition: Transition.native,
-          popGesture: false,
+          page: () => const SocialWelfareDetailView(),
+          binding: SocialWelfareDetailBinding(),
+          transition: Transition.rightToLeft,
+          popGesture: true,
         ),
       ],
     ),
@@ -189,7 +189,7 @@ class AppPages {
       page: () => const HealthCareView(),
       binding: HealthCareBinding(),
       transition: Transition.native,
-      popGesture: false,
+      popGesture: true,
     ),
     GetPage(
       title: '건강관리 - 약물검색',
@@ -197,15 +197,15 @@ class AppPages {
       page: () => const MedicineView(),
       binding: MedicineBinding(),
       transition: Transition.native,
-      popGesture: false,
+      popGesture: true,
     ),
     GetPage(
       title: '건강관리 - 약물검색 - 약물정보',
-      name: Routes.MEDICINEINFO,
+      name: '${Routes.MEDICINEINFO}/:params',
       page: () => const MedicineInfoView(),
       binding: MedicineInfoBinding(),
       transition: Transition.native,
-      popGesture: false,
+      popGesture: true,
     ),
     GetPage(
       title: '건강관리 - 주의약품',
@@ -213,7 +213,7 @@ class AppPages {
       page: () => const DrugMisuseView(),
       binding: DrugMisuseBinding(),
       transition: Transition.native,
-      popGesture: false,
+      popGesture: true,
     ),
     GetPage(
       title: '건강관리 - 자가진단',
@@ -221,7 +221,7 @@ class AppPages {
       page: () => const DiagnosisView(),
       binding: DiagnosisBinding(),
       transition: Transition.native,
-      popGesture: false,
+      popGesture: true,
     ),
     GetPage(
       title: '미션관리',
@@ -229,7 +229,7 @@ class AppPages {
       page: () => const MissionView(),
       binding: MissionBinding(),
       transition: Transition.native,
-      popGesture: false,
+      popGesture: true,
     ),
     GetPage(
       title: '주치의 찾기',
@@ -237,7 +237,7 @@ class AppPages {
       page: () => const SearchDoctorsView(),
       binding: SearchDoctorsBinding(),
       transition: Transition.native,
-      popGesture: false,
+      popGesture: true,
       children: [
         GetPage(
           title: '주치의 찾기 - 주치의 상세보기',
@@ -245,7 +245,7 @@ class AppPages {
           page: () => const DoctorView(),
           binding: DoctorBinding(),
           transition: Transition.native,
-          popGesture: false,
+          popGesture: true,
         ),
       ],
     ),
@@ -255,7 +255,7 @@ class AppPages {
       page: () => const MyInfoView(),
       binding: MyInfoBinding(),
       transition: Transition.native,
-      popGesture: false,
+      popGesture: true,
     ),
     GetPage(
       title: '내 증상 기록',
@@ -263,7 +263,7 @@ class AppPages {
       page: () => const MySymptomsView(),
       binding: MySymptomsBinding(),
       transition: Transition.native,
-      popGesture: false,
+      popGesture: true,
     ),
     GetPage(
       title: '내 증상 작성하기',
@@ -271,7 +271,7 @@ class AppPages {
       page: () => const WriteMySymptomsView(),
       binding: WriteMySymptomsBinding(),
       transition: Transition.native,
-      popGesture: false,
+      popGesture: true,
     ),
     GetPage(
       title: '내 증상 수정하기',
@@ -279,7 +279,7 @@ class AppPages {
       page: () => const EditMySymptomsView(),
       binding: EditMySymptomsBinding(),
       transition: Transition.native,
-      popGesture: false,
+      popGesture: true,
     ),
     GetPage(
       title: '내 증상 리스트',
@@ -287,7 +287,7 @@ class AppPages {
       page: () => const ViewMySymptomsView(),
       binding: ViewMySymptomsBinding(),
       transition: Transition.native,
-      popGesture: false,
+      popGesture: true,
     ),
     GetPage(
       title: '정책제안',
@@ -295,7 +295,7 @@ class AppPages {
       page: () => const SuggestPolicyView(),
       binding: SuggestPolicyBinding(),
       transition: Transition.native,
-      popGesture: false,
+      popGesture: true,
     ),
     GetPage(
       title: '프로필 설정',
@@ -303,7 +303,7 @@ class AppPages {
       page: () => const ProfileSettingView(),
       binding: ProfileSettingBinding(),
       transition: Transition.native,
-      popGesture: false,
+      popGesture: true,
     ),
     GetPage(
       title: '자주 묻는 질문',
@@ -311,7 +311,7 @@ class AppPages {
       page: () => const FaqView(),
       binding: FaqBinding(),
       transition: Transition.native,
-      popGesture: false,
+      popGesture: true,
     ),
     GetPage(
       title: '알람 설정',
@@ -319,7 +319,7 @@ class AppPages {
       page: () => const AlarmSettingView(),
       binding: AlarmSettingBinding(),
       transition: Transition.native,
-      popGesture: false,
+      popGesture: true,
     ),
     GetPage(
       title: '약관 및 정책',
@@ -327,7 +327,7 @@ class AppPages {
       page: () => const TermsAndConditionView(),
       binding: TermsAndConditionBinding(),
       transition: Transition.native,
-      popGesture: false,
+      popGesture: true,
     ),
     GetPage(
       title: '회원 관리',
@@ -335,7 +335,7 @@ class AppPages {
       page: () => const ManageMemberView(),
       binding: ManageMemberBinding(),
       transition: Transition.native,
-      popGesture: false,
+      popGesture: true,
     ),
   ];
 }
