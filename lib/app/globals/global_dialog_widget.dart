@@ -678,8 +678,16 @@ Future<dynamic> GlobalMakeAlarm({
                           );
                           //여기서 사용자가 시간을 선택할 때까지 멈춤
                           selectedTime.then((timeofDay) {
-                            MissionController.to.updateTime(
-                                '''${timeofDay!.hour}${timeofDay.minute}''');
+                            if (timeofDay != null) {
+                              String temp_string =
+                                  '${timeofDay.hour.toString().padLeft(2, '0')}시${timeofDay.minute.toString().padLeft(2, '0')}분';
+                              int temp_value = int.parse(
+                                  '${timeofDay.hour.toString().padLeft(2, '0')}${timeofDay.minute.toString().padLeft(2, '0')}');
+                              Logger().d(
+                                  '${timeofDay.hour.toString().padLeft(2, '0')}시${timeofDay.minute.toString().padLeft(2, '0')}분');
+                              MissionController.to
+                                  .updateTime(temp_value, temp_string);
+                            }
                           });
                         },
                         child: Container(
@@ -906,8 +914,14 @@ Future<dynamic> GlobalUpdateAlarm({
                           // 여기서 사용자가 시간을 선택할 때까지 멈춤
                           selectedTime.then((timeofDay) {
                             if (timeofDay != null) {
-                              MissionController.to.updateTime(
-                                  '''${timeofDay.hour}${timeofDay.minute}''');
+                              String temp_string =
+                                  '${timeofDay.hour.toString().padLeft(2, '0')}시${timeofDay.minute.toString().padLeft(2, '0')}분';
+                              int temp_value = int.parse(
+                                  '${timeofDay.hour.toString().padLeft(2, '0')}${timeofDay.minute.toString().padLeft(2, '0')}');
+                              Logger().d(
+                                  '${timeofDay.hour.toString().padLeft(2, '0')}시${timeofDay.minute.toString().padLeft(2, '0')}분');
+                              MissionController.to
+                                  .updateTime(temp_value, temp_string);
                             }
                           });
                         },

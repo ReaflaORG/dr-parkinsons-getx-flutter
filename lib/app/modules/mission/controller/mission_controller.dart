@@ -59,19 +59,18 @@ class MissionController extends GetxController {
   }
 
   /// 시간 업데이트 함수
-  void updateTime(String data) {
+  void updateTime(int value, String data) {
     //인트화
-    dateFormatInt.value = int.parse(data);
+    dateFormatInt.value = value;
+
     if (dateFormatInt >= 1200) {
-      dateFormatString.value =
-          '''오후 ${int.parse(data.substring(0, 2)) - 12}시 ${data.substring(2, 4)}분''';
+      dateFormatString.value = '''오후 $data''';
       // DateFormat('오후 hh시 mm분').format(selectedTime.value);
-    } else if (dateFormatInt.value >= 1000 && dateFormatInt.value < 1200) {
-      dateFormatString.value =
-          '''오전 ${data.substring(0, 2)}시 ${data.substring(2, 4)}분''';
+      // } else if (dateFormatInt.value >= 1000 && dateFormatInt.value < 1200) {
+      //   dateFormatString.value =
+      //       '''오전 ${data}분''';
     } else {
-      dateFormatString.value =
-          '''오전 0${data.substring(0, 1)}시 ${data.substring(1, data.length)}분''';
+      dateFormatString.value = '''오전 $data''';
       // dateFormatString = DateFormat('오전 hh시 mm분').format(selectedTime.value);
     }
   }
@@ -151,9 +150,9 @@ class MissionController extends GetxController {
       }
 
       /// 5시 0분과 같이 0이 없는 경우 0을 추가해준다.
-      if (dateFormatInt.value.toString().length == 2) {
-        dateFormatInt.value = int.parse('${dateFormatInt.value}0');
-      }
+      // if (dateFormatInt.value.toString().length == 2) {
+      //   dateFormatInt.value = int.parse('${dateFormatInt.value}0');
+      // }
 
       AuthBaseResponseModel response = await Provider.dio(
         method: 'POST',

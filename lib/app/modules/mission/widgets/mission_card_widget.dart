@@ -24,7 +24,8 @@ class MissionCard extends GetView<MissionController> {
               if (controller.current_index.value ==
                   controller.dateList.length - 1) {
                 controller.updateTime(
-                    controller.missionData[index].mission_time.toString());
+                    controller.missionData[index].mission_time,
+                    controller.missionData[index].mission_time_string);
                 await controller
                     .updateType(controller.missionData[index].mission_type);
                 GlobalUpdateAlarm(
@@ -140,9 +141,7 @@ class MissionCard extends GetView<MissionController> {
                     ),
                   ),
                   const SizedBox(width: 10),
-                  Text(controller.missionData[index].mission_time > 1000
-                      ? '''${controller.missionData[index].mission_time.toString().substring(0, 2)}:${controller.missionData[index].mission_time.toString().substring(2, 4)}'''
-                      : '''${controller.missionData[index].mission_time.toString().substring(0, 1)}:${controller.missionData[index].mission_time.toString().substring(1, 3)}'''),
+                  Text(controller.missionData[index].mission_time_string),
                   const SizedBox(width: 10),
                   Checkbox(
                     value: controller.missionData[index].clear,
