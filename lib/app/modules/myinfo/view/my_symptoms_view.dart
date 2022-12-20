@@ -90,7 +90,7 @@ class MySymptomsView extends GetView<MySymptomsController> {
                         return MySymptomsItemWidget(
                           onClick: () async {
                             await Get.toNamed(
-                              Routes.EDIT_MY_SYMPTOMS,
+                              Routes.VIEW_MY_SYMPTOMS,
                               arguments: {
                                 'id':
                                     controller.listArray[index].symptomHistoryId

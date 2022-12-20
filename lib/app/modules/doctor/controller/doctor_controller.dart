@@ -53,7 +53,7 @@ class DoctorController extends GetxController {
     }
   }
 
-  // 전문의 데이터 불러오기
+  // 전문의 설정하기 불러오기
   Future<void> putDoctorUser() async {
     try {
       AuthBaseResponseModel response = await AuthProvider.dio(

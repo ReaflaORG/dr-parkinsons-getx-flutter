@@ -1,7 +1,10 @@
+import 'dart:io';
+
 import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:mime/mime.dart';
 
 import '../../../theme/colors.dart';
 import '../../../theme/texts.dart';
@@ -47,24 +50,29 @@ class WriteMySymptomsView extends GetView<WriteMySymptomsController> {
           ),
         ),
       ),
-      body: SingleChildScrollView(
-        physics: const ClampingScrollPhysics(),
-        child: Stack(
-          children: [
-            Container(
-              padding: EdgeInsets.fromLTRB(20.w, 0.w, 20.w, 0.w),
-              child: Column(
-                children: [
-                  SizedBox(height: MediaQuery.of(context).padding.top),
-                  const WriteMySymptomsBodyView(),
-                  // Expanded(
-                  //   child: WriteMySymptomsView(),
-                  // ),
-                  SizedBox(height: MediaQuery.of(context).padding.bottom),
-                ],
-              ),
-            )
-          ],
+      body: GestureDetector(
+        onTap: () {
+          FocusScope.of(context).unfocus();
+        },
+        child: SingleChildScrollView(
+          physics: const ClampingScrollPhysics(),
+          child: Stack(
+            children: [
+              Container(
+                padding: EdgeInsets.fromLTRB(20.w, 0.w, 20.w, 0.w),
+                child: Column(
+                  children: [
+                    SizedBox(height: MediaQuery.of(context).padding.top),
+                    const WriteMySymptomsBodyView(),
+                    // Expanded(
+                    //   child: WriteMySymptomsView(),
+                    // ),
+                    SizedBox(height: MediaQuery.of(context).padding.bottom),
+                  ],
+                ),
+              )
+            ],
+          ),
         ),
       ),
     );
@@ -96,192 +104,212 @@ class WriteMySymptomsForm extends GetView<WriteMySymptomsController> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: EdgeInsets.fromLTRB(20.w, 0.w, 20.w, 0.w),
-      child: Column(
-        children: [
-          Container(
-            alignment: Alignment.centerLeft,
-            child: Text(
-              '제목',
-              style: TextPath.TextF14W500.copyWith(
-                color: ColorPath.TextGrey1H212121,
-              ),
-            ),
-          ),
-          SizedBox(height: 6.w),
-          TextField(
-            controller: controller.mySymptomsTitleTextEditController.value,
-            focusNode: controller.titleFoucesNode.value,
-            decoration: InputDecoration(
-              border: UnderlineInputBorder(
-                borderSide: BorderSide(color: ColorPath.GrayCCCColor),
-              ),
-              focusedBorder: UnderlineInputBorder(
-                borderSide: BorderSide(color: ColorPath.Gray333Color),
-              ),
-              hintText: '파킨슨 일지 (10.17)',
-              hintStyle: TextPath.TextF14W500.copyWith(
-                color: ColorPath.TextGrey4H9E9E9E,
-              ),
-              contentPadding: EdgeInsets.symmetric(
-                vertical: 14.w,
-                horizontal: 8.w,
-              ),
-            ),
-          ),
-          if (controller.titleError.value.isNotEmpty)
-            Container(
-              margin: EdgeInsets.only(top: 4.w),
-              alignment: Alignment.bottomLeft,
-              child: Text(
-                controller.titleError.value,
-                style: TextPath.TextF10W400.copyWith(
-                  color: ColorPath.ErrorColor,
+    return Obx(() => Container(
+          padding: EdgeInsets.fromLTRB(20.w, 0.w, 20.w, 0.w),
+          child: Column(
+            children: [
+              Container(
+                alignment: Alignment.centerLeft,
+                child: Text(
+                  '제목',
+                  style: TextPath.TextF14W500.copyWith(
+                    color: ColorPath.TextGrey1H212121,
+                  ),
                 ),
               ),
-            ),
-          SizedBox(height: 24.w),
-          // Container(
-          //   alignment: Alignment.centerLeft,
-          //   child: Text(
-          //     '작성시간',
-          //     style: TextPath.TextF14W500.copyWith(
-          //       color: ColorPath.TextGrey1H212121,
-          //     ),
-          //   ),
-          // ),
-          // SizedBox(height: 6.w),
-          // TextField(
-          //   decoration: InputDecoration(
-          //     border: UnderlineInputBorder(
-          //       borderSide: BorderSide(color: ColorPath.GrayCCCColor),
-          //     ),
-          //     focusedBorder: UnderlineInputBorder(
-          //       borderSide: BorderSide(color: ColorPath.Gray333Color),
-          //     ),
-          //     hintText: '10월 17일 오후 3시 20분',
-          //     hintStyle: TextPath.TextF14W500.copyWith(
-          //       color: ColorPath.TextGrey4H9E9E9E,
-          //     ),
-          //     contentPadding: EdgeInsets.symmetric(
-          //       vertical: 14.w,
-          //       horizontal: 8.w,
-          //     ),
-          //   ),
-          // ),
-          SizedBox(height: 24.w),
-          Container(
-            alignment: Alignment.centerLeft,
-            child: Text(
-              '내 증상 기록',
-              style: TextPath.TextF14W500.copyWith(
-                color: ColorPath.TextGrey1H212121,
-              ),
-            ),
-          ),
-          SizedBox(height: 6.w),
-          TextField(
-            controller: controller.mySymptomsContentTextEditController.value,
-            focusNode: controller.contentFoucesNode.value,
-            maxLines: 10,
-            keyboardType: TextInputType.multiline,
-            decoration: InputDecoration(
-              border: OutlineInputBorder(
-                borderSide: BorderSide(color: ColorPath.GrayCCCColor),
-              ),
-              focusedBorder: OutlineInputBorder(
-                borderSide: BorderSide(color: ColorPath.Gray333Color),
-              ),
-              hintText: '내용입력',
-              hintStyle: TextPath.TextF14W500.copyWith(
-                color: ColorPath.TextGrey4H9E9E9E,
-              ),
-              contentPadding: EdgeInsets.symmetric(
-                vertical: 14.w,
-                horizontal: 8.w,
-              ),
-            ),
-          ),
-          if (controller.contentError.value.isNotEmpty)
-            Container(
-              margin: EdgeInsets.only(top: 4.w),
-              alignment: Alignment.bottomLeft,
-              child: Text(
-                controller.contentError.value,
-                style: TextPath.TextF10W400.copyWith(
-                  color: ColorPath.ErrorColor,
+              SizedBox(height: 6.w),
+              TextField(
+                controller: controller.mySymptomsTitleTextEditController.value,
+                focusNode: controller.titleFoucesNode.value,
+                decoration: InputDecoration(
+                  border: UnderlineInputBorder(
+                    borderSide: BorderSide(color: ColorPath.GrayCCCColor),
+                  ),
+                  focusedBorder: UnderlineInputBorder(
+                    borderSide: BorderSide(color: ColorPath.Gray333Color),
+                  ),
+                  hintText: '파킨슨 일지 (10.17)',
+                  hintStyle: TextPath.TextF14W500.copyWith(
+                    color: ColorPath.TextGrey4H9E9E9E,
+                  ),
+                  contentPadding: EdgeInsets.symmetric(
+                    vertical: 14.w,
+                    horizontal: 8.w,
+                  ),
                 ),
               ),
-            ),
-          SizedBox(height: 24.w),
-          Container(
-            alignment: Alignment.centerLeft,
-            child: Text(
-              '영상 및 사진 업로드',
-              style: TextPath.TextF14W500.copyWith(
-                color: ColorPath.TextGrey1H212121,
-              ),
-            ),
-          ),
-          SizedBox(height: 12.w),
-          Container(
-            alignment: Alignment.centerLeft,
-            child: Row(
-              children: [
-                DottedBorder(
-                  color: const Color.fromRGBO(4, 168, 180, 0.9),
-                  strokeWidth: 1,
-                  dashPattern: const [3, 1],
-                  borderType: BorderType.RRect,
-                  radius: Radius.circular(6.w),
-                  child: TextButton(
-                    onPressed: () {},
-                    style: TextButton.styleFrom(
-                      foregroundColor: ColorPath.TextGrey1H212121,
-                    ),
-                    child: Container(
-                      width: 64,
-                      height: 64,
-                      alignment: Alignment.center,
-                      child: Text(
-                        '+',
-                        style: TextPath.TextF20W400.copyWith(
-                          color: const Color.fromRGBO(4, 168, 180, 0.9),
-                        ),
-                        textAlign: TextAlign.center,
-                      ),
+              if (controller.titleError.value.isNotEmpty)
+                Container(
+                  margin: EdgeInsets.only(top: 4.w),
+                  alignment: Alignment.bottomLeft,
+                  child: Text(
+                    controller.titleError.value,
+                    style: TextPath.TextF10W400.copyWith(
+                      color: ColorPath.ErrorColor,
                     ),
                   ),
                 ),
-                SizedBox(width: 10.w),
-                InkWell(
-                  onTap: () {},
-                  child: Stack(
-                    children: [
-                      Image.asset(
-                        'assets/my_symptoms/sample_img.png',
-                        width: 90,
-                        height: 60,
-                      ),
-                      Positioned(
-                        top: 4.06,
-                        right: 4.06,
-                        child: Image.asset(
-                          'assets/my_symptoms/close_icon.png',
-                          width: 20,
-                          height: 20,
-                        ),
-                      ),
-                    ],
+              SizedBox(height: 24.w),
+
+              // ),
+              SizedBox(height: 24.w),
+              Container(
+                alignment: Alignment.centerLeft,
+                child: Text(
+                  '내 증상 기록',
+                  style: TextPath.TextF14W500.copyWith(
+                    color: ColorPath.TextGrey1H212121,
                   ),
                 ),
-              ],
-            ),
+              ),
+              SizedBox(height: 6.w),
+              TextField(
+                controller:
+                    controller.mySymptomsContentTextEditController.value,
+                focusNode: controller.contentFoucesNode.value,
+                maxLines: 10,
+                keyboardType: TextInputType.multiline,
+                decoration: InputDecoration(
+                  border: OutlineInputBorder(
+                    borderSide: BorderSide(color: ColorPath.GrayCCCColor),
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: ColorPath.Gray333Color),
+                  ),
+                  hintText: '내용입력',
+                  hintStyle: TextPath.TextF14W500.copyWith(
+                    color: ColorPath.TextGrey4H9E9E9E,
+                  ),
+                  contentPadding: EdgeInsets.symmetric(
+                    vertical: 14.w,
+                    horizontal: 8.w,
+                  ),
+                ),
+              ),
+              if (controller.contentError.value.isNotEmpty)
+                Container(
+                  margin: EdgeInsets.only(top: 4.w),
+                  alignment: Alignment.bottomLeft,
+                  child: Text(
+                    controller.contentError.value,
+                    style: TextPath.TextF10W400.copyWith(
+                      color: ColorPath.ErrorColor,
+                    ),
+                  ),
+                ),
+              SizedBox(height: 24.w),
+              Container(
+                alignment: Alignment.centerLeft,
+                child: Text(
+                  '영상 및 사진 업로드',
+                  style: TextPath.TextF14W500.copyWith(
+                    color: ColorPath.TextGrey1H212121,
+                  ),
+                ),
+              ),
+              SizedBox(height: 12.w),
+
+              GridView.count(
+                  crossAxisCount: 3,
+                  mainAxisSpacing: 10.w,
+                  childAspectRatio: 3 / 2,
+                  crossAxisSpacing: 10.w,
+                  physics: const NeverScrollableScrollPhysics(),
+                  padding: EdgeInsets.zero,
+                  shrinkWrap: true,
+                  children: [
+                    DottedBorder(
+                      color: const Color.fromRGBO(4, 168, 180, 0.9),
+                      strokeWidth: 1,
+                      dashPattern: const [3, 1],
+                      borderType: BorderType.RRect,
+                      radius: Radius.circular(6.w),
+                      child: TextButton(
+                        onPressed: () async {
+                          await controller.handleFileSelected();
+                        },
+                        style: TextButton.styleFrom(
+                          foregroundColor: ColorPath.TextGrey1H212121,
+                        ),
+                        child: Container(
+                          alignment: Alignment.center,
+                          child: Text(
+                            '+',
+                            style: TextPath.TextF20W400.copyWith(
+                              color: const Color.fromRGBO(4, 168, 180, 0.9),
+                            ),
+                            textAlign: TextAlign.center,
+                          ),
+                        ),
+                      ),
+                    ),
+                    ...List.generate(controller.files.length, (index) {
+                      String mimeStr =
+                          lookupMimeType(controller.files[index].path)!
+                              .split('/')[0];
+
+                      return mimeStr == 'image'
+                          ? Container(
+                              width: double.infinity,
+                              decoration: BoxDecoration(
+                                  image: DecorationImage(
+                                image: FileImage(
+                                  File(controller.files[index].path),
+                                ),
+                                fit: BoxFit.cover,
+                              )),
+                              padding: EdgeInsets.all(5.w),
+                              alignment: Alignment.topRight,
+                              child: GestureDetector(
+                                onTap: () {
+                                  controller.handleFileRemove(index: index);
+                                },
+                                child: Container(
+                                  margin: EdgeInsets.only(right: 5.w),
+                                  decoration: const BoxDecoration(
+                                      color: Colors.white,
+                                      shape: BoxShape.circle),
+                                  child: const Icon(
+                                    Icons.cancel_rounded,
+                                  ),
+                                ),
+                              ),
+                            )
+                          : Stack(
+                              children: [
+                                Container(
+                                  width: double.infinity,
+                                  color: Colors.black,
+                                  alignment: Alignment.center,
+                                  padding: EdgeInsets.all(7.w),
+                                  child: Image.asset(
+                                      'assets/doctor/video_play_button.png'),
+                                ),
+                                Positioned(
+                                  top: 5.w,
+                                  right: 3.w,
+                                  child: GestureDetector(
+                                    onTap: () {
+                                      controller.handleFileRemove(index: index);
+                                    },
+                                    child: Container(
+                                      margin: EdgeInsets.only(right: 5.w),
+                                      decoration: const BoxDecoration(
+                                          color: Colors.white,
+                                          shape: BoxShape.circle),
+                                      child: const Icon(
+                                        Icons.cancel_rounded,
+                                      ),
+                                    ),
+                                  ),
+                                )
+                              ],
+                            );
+                    }).toList(),
+                  ]),
+            ],
           ),
-        ],
-      ),
-    );
+        ));
   }
 }
 

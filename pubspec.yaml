@@ -46,7 +46,10 @@ dependencies:
   device_info_plus: ^8.0.0
   video_player: ^2.4.10
   wakelock: ^0.6.2
-
+  image_picker: ^0.8.6
+  mime: ^1.0.3
+  http_parser: ^4.0.2
+  
 dev_dependencies:
   flutter_test:
     sdk: flutter

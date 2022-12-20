@@ -2,9 +2,15 @@
 
 import 'dart:async';
 
+import 'package:base/app/modules/myinfo/widgets/show_dialog.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 
+import '../../../globals/global_toast_widget.dart';
+import '../../../models/base_response_model.dart';
+import '../../../provider/main_provider.dart';
 import '../../../routes/app_pages.dart';
+import '../../../service/auth_service.dart';
 import '../models/my_info_item_model.dart';
 
 // my info controller
@@ -25,7 +31,29 @@ class MyInfoController extends GetxController {
   ].obs;
 
   // Function ▼ ========================================
+  // 전문의 설정하기 불러오기
+  Future<void> putDoctorUser(BuildContext context) async {
+    await showConfimDialog(
+        context, '정말 삭제하시겠습니까?', '주치의 찾기 탭을 통해 다시 담당 주치의를 설정하실 수 있습니다.',
+        () async {
+      try {
+        AuthBaseResponseModel response = await AuthProvider.dio(
+          method: 'PATCH',
+          url: '/doctor/${AuthService.to.myDoctor.value.doctorId}',
+        );
 
+        switch (response.statusCode) {
+          case 200:
+            await AuthService.to.handleMyInfo();
+            break;
+          default:
+            throw Exception(response.message);
+        }
+      } catch (e) {
+        GlobalToastWidget(message: e.toString().substring(11));
+      }
+    });
+  }
   // Variable ▼ ========================================
 
   @override

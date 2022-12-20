@@ -1,139 +1,76 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
+import '../../../routes/app_pages.dart';
 import '../../../theme/colors.dart';
 import '../../../theme/texts.dart';
 import '../controller/view_my_symtoms_controller.dart';
-import '../models/view_my_symptoms_item_model.dart';
-import '../widgets/view_my_symptoms_item_widget.dart';
 
 // view my symptoms view
 class ViewMySymptomsView extends GetView<ViewMySymptomsController> {
   const ViewMySymptomsView({super.key});
 
   @override
-  Widget build(BuildContext context) => SafeArea(
-        child: Scaffold(
-          appBar: AppBar(
-            backgroundColor: ColorPath.BackgroundWhite,
-            elevation: 0,
-            centerTitle: false,
-            title: Container(
-              padding: EdgeInsets.symmetric(horizontal: 4),
-              child: Text(
-                '내 증상 기록',
-                style: TextPath.Heading2F18W600.copyWith(
-                  color: ColorPath.TextGrey1H212121,
-                ),
-                textAlign: TextAlign.left,
+  Widget build(BuildContext context) => Scaffold(
+        appBar: AppBar(
+          backgroundColor: ColorPath.BackgroundWhite,
+          elevation: 0,
+          centerTitle: false,
+          leadingWidth: 39.w,
+          leading: InkWell(
+            onTap: () {
+              Get.back();
+            },
+            child: Container(
+              alignment: Alignment.centerLeft,
+              padding: EdgeInsets.only(left: 18.w),
+              child: Image.asset(
+                'assets/doctor/back_arrow.png',
+                width: 21.w,
+                height: 13.5.w,
               ),
             ),
           ),
-          body: SingleChildScrollView(
-            physics: ClampingScrollPhysics(),
-            child: Stack(
-              children: [
-                Container(
-                  decoration: BoxDecoration(
-                    borderRadius:
-                        BorderRadius.vertical(bottom: Radius.circular(24)),
-                    color: ColorPath.PrimaryLightColor,
+          title: Container(
+            padding: EdgeInsets.symmetric(horizontal: 4.w),
+            child: Text(
+              '내 증상 기록',
+              style: TextPath.Heading2F18W600.copyWith(
+                color: ColorPath.TextGrey1H212121,
+              ),
+              textAlign: TextAlign.left,
+            ),
+          ),
+          actions: [
+            Container(
+              padding: EdgeInsets.fromLTRB(0.w, 10.w, 18.w, 10.w),
+              child: InkWell(
+                onTap: () async {
+                  await Get.toNamed(
+                    Routes.EDIT_MY_SYMPTOMS,
+                    arguments: {'id': controller.item.value.symptomHistoryId},
+                  );
+                  await controller.getMySymptomsData();
+                },
+                child: Text(
+                  '편집하기',
+                  style: TextPath.TextF16W600.copyWith(
+                    color: ColorPath.TextGrey1H212121,
                   ),
-                  //width: screenSize(context).width,
-                  height: 230,
+                  textAlign: TextAlign.right,
                 ),
-                Container(
-                  child: Container(
-                    //width: screenSize(context).width,
-                    //height: screenSize(context).height,
-                    padding: EdgeInsets.fromLTRB(20, 0, 20, 0),
-                    child: Column(
-                      children: [
-                        SizedBox(height: MediaQuery.of(context).padding.top),
-                        ViewMySymptomsHeader(),
-                        ViewMySymptomsView(),
-                        // Expanded(
-                        //   child: ViewMySymptomsView(),
-                        // ),
-                        SizedBox(height: MediaQuery.of(context).padding.bottom),
-                      ],
-                    ),
-                  ),
-                )
-              ],
+              ),
+            ),
+          ],
+        ),
+        body: SafeArea(
+          child: SingleChildScrollView(
+            physics: const ClampingScrollPhysics(),
+            child: Stack(
+              children: [],
             ),
           ),
         ),
       );
-}
-
-// view my symptoms header
-class ViewMySymptomsHeader extends GetView<ViewMySymptomsController> {
-  bool isSetting = false;
-  bool isGuardian = false;
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      width: double.infinity,
-      padding: EdgeInsets.fromLTRB(10, 0, 10, 0),
-      child: Column(
-        children: [
-          Container(
-            padding: EdgeInsets.symmetric(vertical: 9.5),
-            child: Row(
-              children: [
-                InkWell(
-                  onTap: () {
-                    Get.back();
-                  },
-                  child: Container(
-                    alignment: Alignment.centerLeft,
-                    padding: EdgeInsets.only(right: 11.5),
-                    child: Image.asset(
-                      'assets/doctor/back_arrow.png',
-                      width: 21,
-                      height: 13.5,
-                    ),
-                  ),
-                ),
-                Container(
-                  alignment: Alignment.centerLeft,
-                  child: Text(
-                    '내 증상 기록',
-                    style: TextPath.TextF20W600.copyWith(),
-                  ),
-                ),
-                Spacer(),
-                Container(
-                  alignment: Alignment.centerRight,
-                  child: TextButton(
-                    onPressed: () {},
-                    child: Text(
-                      '편집하기',
-                      style: TextPath.TextF16W600.copyWith(
-                        color: ColorPath.TextGrey1H212121,
-                      ),
-                    ),
-                  ),
-                ),
-              ],
-            ),
-          ),
-          SizedBox(height: 15),
-        ],
-      ),
-    );
-  }
-}
-
-// view my symptoms body view
-class ViewMySymptomsBodyView extends GetView<ViewMySymptomsController> {
-  @override
-  Widget build(BuildContext context) {
-    ViewMySymptomsItemModel item = controller.listArray;
-    return ViewMySymptomsItemWidget(
-      item: item,
-    );
-  }
 }

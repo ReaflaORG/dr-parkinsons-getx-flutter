@@ -21,7 +21,6 @@ class ProfileSettingView extends GetView<ProfileSettingController> {
           leading: InkWell(
             onTap: () {
               Get.back();
-              ;
             },
             child: Container(
               alignment: Alignment.centerLeft,
@@ -44,29 +43,35 @@ class ProfileSettingView extends GetView<ProfileSettingController> {
             ),
           ),
         ),
-        body: SafeArea(
-          child: SingleChildScrollView(
-            physics: ClampingScrollPhysics(),
-            child: Stack(
-              children: [
-                Container(
-                  child: Container(
-                    //width: screenSize(context).width,
-                    //height: screenSize(context).height,
-                    padding: EdgeInsets.fromLTRB(20.w, 20.w, 20.w, 0),
-                    child: Column(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        //유저 데이터
-                        ProfileSettingForm(),
-                        SizedBox(height: 40.w),
-                        // 액션리스트
-                        SizedBox(height: MediaQuery.of(context).padding.bottom),
-                      ],
+        body: GestureDetector(
+          onTap: () {
+            FocusScope.of(context).unfocus();
+          },
+          child: SafeArea(
+            child: SingleChildScrollView(
+              physics: ClampingScrollPhysics(),
+              child: Stack(
+                children: [
+                  Container(
+                    child: Container(
+                      //width: screenSize(context).width,
+                      //height: screenSize(context).height,
+                      padding: EdgeInsets.fromLTRB(20.w, 20.w, 20.w, 0),
+                      child: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          //유저 데이터
+                          ProfileSettingForm(),
+                          SizedBox(height: 40.w),
+                          // 액션리스트
+                          SizedBox(
+                              height: MediaQuery.of(context).padding.bottom),
+                        ],
+                      ),
                     ),
-                  ),
-                )
-              ],
+                  )
+                ],
+              ),
             ),
           ),
         ),
