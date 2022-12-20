@@ -1,3 +1,4 @@
+import 'package:base/app/modules/main/controller/main_controller.dart';
 import 'package:base/app/service/auth_service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -135,7 +136,7 @@ class MyInfoHeader extends GetView<MyInfoController> {
                     children: [
                       !AuthService.to.isMyDoctor
                           ? myinfoSearchDoctor(context)
-                          : myinfoMyDoctor(),
+                          : myinfoMyDoctor(context),
                       Container(
                         padding: EdgeInsets.only(top: 20.w, bottom: 20.w),
                         child: Divider(
@@ -159,52 +160,60 @@ class MyInfoHeader extends GetView<MyInfoController> {
   }
 
   // my info my doctor
-  Widget myinfoMyDoctor() {
-    return Row(
-      children: [
-        Container(
-          alignment: Alignment.centerLeft,
-          width: 60.w,
-          child: Text(
-            '내 주치의',
-            style: TextPath.TextF12W200.copyWith(
-              color: ColorPath.TextGrey3H616161,
+  Widget myinfoMyDoctor(BuildContext context) {
+    return InkWell(
+      onTap: () {
+        Get.toNamed(Routes.DOCTOR,
+            arguments: {'doctor_id': AuthService.to.myDoctor.value.doctorId});
+      },
+      child: Row(
+        children: [
+          Container(
+            alignment: Alignment.centerLeft,
+            width: 60.w,
+            child: Text(
+              '내 주치의',
+              style: TextPath.TextF12W200.copyWith(
+                color: ColorPath.TextGrey3H616161,
+              ),
             ),
           ),
-        ),
-        Container(
-          alignment: Alignment.centerLeft,
-          padding: EdgeInsets.only(left: 4.5.w),
-          child: Text(
-            AuthService.to.myDoctor.value.doctorName,
-            style: TextPath.TextF14W400.copyWith(
-              color: ColorPath.TextGrey1H212121,
+          Container(
+            alignment: Alignment.centerLeft,
+            padding: EdgeInsets.only(left: 4.5.w),
+            child: Text(
+              AuthService.to.myDoctor.value.doctorName,
+              style: TextPath.TextF14W400.copyWith(
+                color: ColorPath.TextGrey1H212121,
+              ),
             ),
           ),
-        ),
-        Container(
-          alignment: Alignment.centerLeft,
-          padding: EdgeInsets.only(left: 4.5.w),
-          child: Text(
-            '(${AuthService.to.myDoctor.value.hospitalName})',
-            style: TextPath.TextF12W400.copyWith(
-              color: ColorPath.TextGrey1H212121,
+          Container(
+            alignment: Alignment.centerLeft,
+            padding: EdgeInsets.only(left: 4.5.w),
+            child: Text(
+              '(${AuthService.to.myDoctor.value.hospitalName})',
+              style: TextPath.TextF12W400.copyWith(
+                color: ColorPath.TextGrey1H212121,
+              ),
             ),
           ),
-        ),
-        const Spacer(),
-        InkWell(
-          onTap: () {},
-          child: Container(
-            alignment: Alignment.centerRight,
-            child: Image.asset(
-              'assets/myinfo/trash_icon.png',
-              width: 18.w,
-              height: 18.w,
+          const Spacer(),
+          InkWell(
+            onTap: () async {
+              await controller.putDoctorUser(context);
+            },
+            child: Container(
+              alignment: Alignment.centerRight,
+              child: Image.asset(
+                'assets/myinfo/trash_icon.png',
+                width: 18.w,
+                height: 18.w,
+              ),
             ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 
@@ -222,7 +231,7 @@ class MyInfoHeader extends GetView<MyInfoController> {
           const Spacer(),
           InkWell(
             onTap: () {
-              Get.toNamed('/search');
+              MainController.to.navigationIndex.value = 3;
             },
             child: Container(
               width: 36,

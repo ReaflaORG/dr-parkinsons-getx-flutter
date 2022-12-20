@@ -1,4 +1,6 @@
+import 'package:base/app/service/auth_service.dart';
 import 'package:flutter/material.dart';
+import 'package:logger/logger.dart';
 
 import '../../../theme/colors.dart';
 import '../../../theme/texts.dart';
@@ -36,15 +38,17 @@ class ManageMemberItemWidget extends StatelessWidget {
             child: Column(
               children: [
                 InkWell(
-                  onTap: () {
-                    showAlertTwoOptionsDialog(
-                      context,
-                      typeLogout,
-                      0,
-                      alertTitleMsgLogout,
-                      alertContentMsgLogout,
-                      firstButtonTitleLogout,
-                      secondButtonTitleLogout,
+                  onTap: () async {
+                    await showAlertTwoOptionsDialog(
+                      handleOk: () async {
+                        // 로그아웃
+                        await AuthService.to.handleLogout();
+                      },
+                      context: context,
+                      alertTitleMsg: alertTitleMsgLogout,
+                      alertContentMsg: alertContentMsgLogout,
+                      firstButtonTitle: firstButtonTitleLogout,
+                      secondButtonTitle: secondButtonTitleLogout,
                     );
                   },
                   child: Container(
@@ -70,15 +74,17 @@ class ManageMemberItemWidget extends StatelessWidget {
                 ),
                 SizedBox(height: 7),
                 InkWell(
-                  onTap: () {
-                    showAlertTwoOptionsDialog(
-                      context,
-                      typeResignation,
-                      0,
-                      alertTitleMsgResignation,
-                      alertContentMsgResignation,
-                      firstButtonTitleResignation,
-                      secondButtonTitleResignation,
+                  onTap: () async {
+                    await showAlertTwoOptionsDialog(
+                      handleOk: () async {
+                        // 회원탈퇴
+                        await AuthService.to.handleWithOut();
+                      },
+                      context: context,
+                      alertTitleMsg: alertTitleMsgResignation,
+                      alertContentMsg: alertContentMsgResignation,
+                      firstButtonTitle: firstButtonTitleResignation,
+                      secondButtonTitle: secondButtonTitleResignation,
                     );
                   },
                   child: Container(

@@ -2,7 +2,11 @@ import 'package:base/app/models/doctor_model.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 
+import '../globals/global_toast_widget.dart';
+import '../models/base_response_model.dart';
 import '../models/user_model.dart';
+import '../provider/main_provider.dart';
+import '../routes/app_pages.dart';
 
 /// Auth 서비스
 class AuthService extends GetxService {
@@ -68,17 +72,61 @@ class AuthService extends GetxService {
       isLogin.value = false,
       GetStorage().remove('access_token'),
     ]);
+    Get.offAllNamed(Routes.SIGNIN);
   }
 
   /// 로그탈퇴 처리 핸들러
   Future<void> handleWithOut() async {
-    /// 데이터 초기화
-    accessToken.value = '';
-    isLogin.value = false;
+    try {
+      AuthBaseResponseModel response =
+          await AuthProvider.dio(method: 'DELETE', url: '/myinfo');
 
-    await Future.wait([
-      GetStorage().remove('access_token'),
-    ]);
+      switch (response.statusCode) {
+        case 200:
+
+          /// 데이터 초기화
+          accessToken.value = '';
+          isLogin.value = false;
+
+          await Future.wait([
+            GetStorage().remove('access_token'),
+          ]);
+          Get.offAllNamed(Routes.SIGNIN);
+          break;
+
+        default:
+          throw Exception(response.message);
+      }
+    } catch (e) {
+      GlobalToastWidget(message: e.toString().substring(11));
+    }
+  }
+
+  /// 내 정보 확인
+  Future<void> handleMyInfo() async {
+    try {
+      AuthBaseResponseModel response =
+          await AuthProvider.dio(method: 'GET', url: '/myinfo');
+
+      switch (response.statusCode) {
+        case 200:
+          bool isDoctor = isMyDoctor;
+          UserModel user = UserModel.fromJson(response.data['user']);
+          AuthService.to.userData.value = user;
+          AuthService.to.userData.refresh();
+          if (isDoctor && userData.value.doctorId != null) {
+            myDoctor.value = DoctorModel.fromJson(response.data['doctor']);
+          } else if (!isDoctor && userData.value.doctorId != null) {
+            myDoctor = DoctorModel.fromJson(response.data['doctor']).obs;
+          }
+          break;
+
+        default:
+          throw Exception(response.message);
+      }
+    } catch (e) {
+      GlobalToastWidget(message: e.toString().substring(11));
+    }
   }
 
   /// 초기화

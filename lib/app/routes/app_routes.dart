@@ -66,7 +66,7 @@ abstract class Routes {
   static const SEARCH = _Paths.SEARCH;
 
   /// 주치의 찾기 - 주치의 상세
-  static const DOCTOR = _Paths.DOCTOR;
+  static const DOCTOR = _Paths.SEARCH + _Paths.DOCTOR;
 
   /// 내정보
   static const MY_INFO = _Paths.MY_INFO;
@@ -166,7 +166,7 @@ abstract class _Paths {
   static const SEARCH = '/search';
 
   /// 주치의 찾기 - 주치의 상세보기
-  static const DOCTOR = '/doctor/:uid';
+  static const DOCTOR = '/doctor';
 
   /// 내정보
   static const MY_INFO = '/myinfo';

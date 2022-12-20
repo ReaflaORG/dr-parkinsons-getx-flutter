@@ -90,7 +90,7 @@ class MySymptomsView extends GetView<MySymptomsController> {
                         return MySymptomsItemWidget(
                           onClick: () async {
                             await Get.toNamed(
-                              Routes.EDIT_MY_SYMPTOMS,
+                              Routes.VIEW_MY_SYMPTOMS,
                               arguments: {
                                 'id':
                                     controller.listArray[index].symptomHistoryId
@@ -181,13 +181,15 @@ class MySymptomsItemWidget extends StatelessWidget {
                   InkWell(
                     onTap: () async {
                       await showAlertTwoOptionsDialog(
-                        context,
-                        type,
-                        item.symptomHistoryId,
-                        alertTitleMsg,
-                        alertContentMsg,
-                        firstButtonTitle,
-                        secondButtonTitle,
+                        handleOk: () async {
+                          await controller
+                              .deleteMySymptomsData(item.symptomHistoryId);
+                        },
+                        context: context,
+                        alertTitleMsg: alertTitleMsg,
+                        alertContentMsg: alertContentMsg,
+                        firstButtonTitle: firstButtonTitle,
+                        secondButtonTitle: secondButtonTitle,
                       );
                     },
                     child: Container(

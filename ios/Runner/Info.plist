@@ -42,6 +42,13 @@
 	<string>Need to get location information</string>
 	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
 	<string>Need to get location information</string>
+	<!-- 사진 -->
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>증상 기록을 작성하기 위해서는 string관련 권한이 필요로 합니다.</string>
+	<key>NSCameraUsageDescription</key>
+	<string>증상 기록을 작성하기 위string 파일 관련 권한이 필요로 합니다.</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>증상 기록을 작성하기 위해서string일 관련 권한이 필요로 합니다.</string>
 	<!-- <key>UIBackgroundModes</key>
 	<string>location</string> -->
 	<key>UISupportedInterfaceOrientations</key>
