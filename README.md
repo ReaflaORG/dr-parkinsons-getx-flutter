@@ -139,7 +139,7 @@ dexOptions {
 VSCODE 기준  
 CTRL + SHIFT + F5 단축키로  
 아래 값을 지정하여 전체 변경  
-"com.reafla.base"
+"com.gilhospital.parkinsons"
 
 ---
 

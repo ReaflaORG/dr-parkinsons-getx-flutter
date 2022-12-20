@@ -1,4 +1,4 @@
-package com.reafla.base
+package com.gilhospital.parkinsons
 
 import io.flutter.embedding.android.FlutterActivity
 
