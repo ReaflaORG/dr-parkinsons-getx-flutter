@@ -22,7 +22,7 @@ class Provider with DioMixin implements Dio {
 
       final Dio dio = Dio(
         BaseOptions(
-            baseUrl: "${dotenv.env["DEV_APP_SERVER_API"]}/$url",
+            baseUrl: "${dotenv.env["APP_SERVER_API"]}/$url",
             // contentType: Headers.jsonContentType,
             // responseType: ResponseType.json,
             maxRedirects: 5,

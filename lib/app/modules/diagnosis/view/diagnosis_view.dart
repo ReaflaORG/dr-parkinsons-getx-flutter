@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
-import '../../../service/auth_service.dart';
 import '../../../theme/colors.dart';
 import '../../../theme/texts.dart';
 import '../controller/diagnosis_controller.dart';
@@ -141,6 +140,7 @@ class SurveyTestingView extends GetView<DiagnosisController> {
                             padding: EdgeInsets.symmetric(
                                 horizontal: 28.w, vertical: 26.w),
                             width: 320.w,
+                            height: 160.w,
                             decoration: BoxDecoration(
                               boxShadow: [
                                 BoxShadow(

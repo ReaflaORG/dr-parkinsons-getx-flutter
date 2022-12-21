@@ -36,12 +36,13 @@
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>
 	<string>Main</string>
+	<!-- 위치 -->
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>Need to get location information</string>
 	<key>NSLocationAlwaysUsageDescription</key>
 	<string>Need to get location information</string>
-	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
-	<string>Need to get location information</string>
+	<!-- <key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string>Need to get location information</string> -->
 	<!-- 사진 -->
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>증상 기록을 작성하기 위해서는 string관련 권한이 필요로 합니다.</string>

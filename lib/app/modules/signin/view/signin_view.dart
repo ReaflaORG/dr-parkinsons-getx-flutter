@@ -183,42 +183,42 @@ class SocialLoginButtonWidget extends GetView<SignInController> {
             ),
           ),
           SizedBox(height: 12.w),
-          SizedBox(
-            width: double.infinity,
-            height: 50.w,
-            child: ElevatedButton(
-              onPressed: () async => await controller.handleTempSignIn(),
-              style: ElevatedButton.styleFrom(
-                backgroundColor: ColorPath.Background3HFEE500,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.all(
-                    Radius.circular(15.r),
-                  ),
-                ),
-              ),
-              child: Container(
-                padding: EdgeInsets.all(15.w),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Image.asset(
-                      'assets/images/signin/kakao_logo.png',
-                      fit: BoxFit.cover,
-                    ),
-                    SizedBox(width: 15.w),
-                    Text(
-                      '임시 카카오 로그인',
-                      style: TextPath.Heading3F16W600.copyWith(
-                        color: ColorPath.TextGrey2H424242,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ),
-          ),
-          SizedBox(height: 12.w),
+          // SizedBox(
+          //   width: double.infinity,
+          //   height: 50.w,
+          //   child: ElevatedButton(
+          //     onPressed: () async => await controller.handleTempSignIn(),
+          //     style: ElevatedButton.styleFrom(
+          //       backgroundColor: ColorPath.Background3HFEE500,
+          //       shape: RoundedRectangleBorder(
+          //         borderRadius: BorderRadius.all(
+          //           Radius.circular(15.r),
+          //         ),
+          //       ),
+          //     ),
+          //     child: Container(
+          //       padding: EdgeInsets.all(15.w),
+          //       child: Row(
+          //         mainAxisAlignment: MainAxisAlignment.center,
+          //         crossAxisAlignment: CrossAxisAlignment.center,
+          //         children: [
+          //           Image.asset(
+          //             'assets/images/signin/kakao_logo.png',
+          //             fit: BoxFit.cover,
+          //           ),
+          //           SizedBox(width: 15.w),
+          //           Text(
+          //             '임시 카카오 로그인',
+          //             style: TextPath.Heading3F16W600.copyWith(
+          //               color: ColorPath.TextGrey2H424242,
+          //             ),
+          //           ),
+          //         ],
+          //       ),
+          //     ),
+          //   ),
+          // ),
+          // SizedBox(height: 12.w),
           SizedBox(
             width: double.infinity,
             height: 50.w,

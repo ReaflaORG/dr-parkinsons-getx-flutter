@@ -99,6 +99,16 @@ class SignInController extends GetxController {
       Account? userInfo = user.kakaoAccount;
 
       if (userInfo == null) {
+        await UserApi.instance.unlink();
+        GlobalToastWidget(message: '카카오 계정 정보를 가져오지 못했습니다');
+
+        return;
+      }
+
+      if (userInfo.email == null) {
+        await UserApi.instance.unlink();
+        GlobalToastWidget(message: '카카오 계정에 이메일을 허용해주세요');
+
         return;
       }
 
@@ -197,10 +207,10 @@ class SignInController extends GetxController {
 
   @override
   Future<void> onInit() async {
-    await Future.value([
-      GlobalToastWidget(message: '자동 로그인 중이니 터치 금지'),
-      handleTempSignIn(),
-    ]);
+    // await Future.value([
+    //   GlobalToastWidget(message: '자동 로그인 중이니 터치 금지'),
+    //   handleTempSignIn(),
+    // ]);
 
     super.onInit();
   }

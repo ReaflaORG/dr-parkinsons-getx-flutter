@@ -93,9 +93,7 @@ class MainController extends GetxController {
 
   @override
   Future<void> onInit() async {
-    Future.wait([
-      LocationService.to.getLocation(),
-    ]);
+    await LocationService.to.getLocation();
 
     super.onInit();
   }

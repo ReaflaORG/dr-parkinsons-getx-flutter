@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:device_info_plus/device_info_plus.dart';
 import 'package:get/get.dart';
 import 'package:location/location.dart';
+import 'package:logger/logger.dart';
 
 import '../globals/global_toast_widget.dart';
 
@@ -14,10 +15,13 @@ class LocationService extends GetxService {
   DeviceInfoPlugin deviceInfo = DeviceInfoPlugin();
 
   /// 위치 정보 가져오기 데이터
-  late LocationData locationData;
+  LocationData locationData = LocationData.fromMap({
+    'latitude': 37.5,
+    'longitude': 127.0,
+  });
 
   /// 위치 정보
-  final Location location = Location();
+  Location location = Location();
 
   /// 위치 정보 가져오기 성공 여부
   RxBool serviceEnabled = false.obs;
@@ -27,13 +31,11 @@ class LocationService extends GetxService {
 
   /// 위치 정보 가져오기
   Future<void> getLocation() async {
-    List temp = [
-      await Future.value(location.serviceEnabled()),
-      await Future.value(location.requestService()),
-    ];
-
-    if (!temp[0] && !temp[1]) {
-      return;
+    if (!await location.serviceEnabled()) {
+      if (!await location.requestService()) {
+        GlobalToastWidget(message: '위치 정보를 가져올 수 없습니다');
+        return;
+      }
     }
 
     if (Platform.isIOS) {
@@ -42,23 +44,17 @@ class LocationService extends GetxService {
       if (iosInfo.isPhysicalDevice) {
         locationData = await location.getLocation();
       } else {
-        GlobalToastWidget(message: '시뮬레이터에서는 위치 정보를 가져올 수 없습니다.');
-        locationData = LocationData.fromMap({
-          'latitude': 37.566535,
-          'longitude': 126.97796919999996,
-        });
+        GlobalToastWidget(message: '시뮬레이터는 위치 정보를 가져올 수 없습니다');
       }
     } else if (Platform.isAndroid) {
       AndroidDeviceInfo androidInfo = await deviceInfo.androidInfo;
 
       if (androidInfo.isPhysicalDevice) {
+        Logger().d(locationData);
         locationData = await location.getLocation();
+        Logger().d(locationData);
       } else {
-        GlobalToastWidget(message: '시뮬레이터에서는 위치 정보를 가져올 수 없습니다.');
-        locationData = LocationData.fromMap({
-          'latitude': 37.566535,
-          'longitude': 126.97796919999996,
-        });
+        GlobalToastWidget(message: '시뮬레이터는 위치 정보를 가져올 수 없습니다');
       }
     }
   }

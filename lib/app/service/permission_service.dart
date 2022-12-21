@@ -155,7 +155,7 @@ class PermissionService extends GetxService {
     if (isPermissionSuccess.value) {
       await Future.value([
         GetStorage().write('initialize_permission', true),
-        Get.offAllNamed('/main'),
+        Get.offAllNamed('/signin'),
       ]);
     }
   }
