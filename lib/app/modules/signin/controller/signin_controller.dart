@@ -207,10 +207,10 @@ class SignInController extends GetxController {
 
   @override
   Future<void> onInit() async {
-    await Future.value([
-      GlobalToastWidget('자동 로그인 중이니 터치 금지'),
-      handleTempSignIn(),
-    ]);
+    // await Future.value([
+    //   GlobalToastWidget('자동 로그인 중이니 터치 금지'),
+    //   handleTempSignIn(),
+    // ]);
 
     super.onInit();
   }

@@ -1,9 +1,9 @@
 import 'package:carousel_slider/carousel_slider.dart';
-import 'package:dr_parkinsons/app/globals/global_toast_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
+import '../../../globals/global_toast_widget.dart';
 import '../../../theme/color_path.dart';
 import '../../../theme/texts.dart';
 import '../controller/signin_controller.dart';
@@ -231,14 +231,14 @@ class SocialLoginButtonWidget extends GetView<SignInController> {
               },
               style: ElevatedButton.styleFrom(
                 backgroundColor: ColorPath.TextGrey2H424242,
-                shape: const RoundedRectangleBorder(
-                  borderRadius: BorderRadius.all(
+                shape: RoundedRectangleBorder(
+                  borderRadius: const BorderRadius.all(
                     Radius.circular(15),
-                  ),
+                  ).r,
                 ),
               ),
               child: Container(
-                padding: const EdgeInsets.all(15),
+                padding: const EdgeInsets.all(15).r,
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.center,
@@ -249,7 +249,7 @@ class SocialLoginButtonWidget extends GetView<SignInController> {
                     ),
                     SizedBox(width: 15.w),
                     Padding(
-                      padding: const EdgeInsets.only(top: 4.3),
+                      padding: const EdgeInsets.only(top: 4.3).w,
                       child: Text(
                         '애플로 계속하기',
                         style: TextPath.Heading3F16W600.copyWith(
