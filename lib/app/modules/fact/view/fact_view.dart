@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
-import '../../../theme/colors.dart';
+import '../../../theme/color_path.dart';
 import '../../../theme/texts.dart';
 import '../controller/fact_controller.dart';
 
@@ -33,15 +33,13 @@ class FactView extends GetView<FactController> {
             body: controller.process.value == false
                 ? SafeArea(
                     child: Container(
-                      padding: const EdgeInsets.symmetric(horizontal: 20),
+                      padding: const EdgeInsets.symmetric(horizontal: 20).w,
                       child: SingleChildScrollView(
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
-                            const SizedBox(
-                              height: 20,
-                            ),
+                            SizedBox(height: 20.w),
                             ListView.builder(
                               physics: const NeverScrollableScrollPhysics(),
                               shrinkWrap: true,
@@ -60,7 +58,7 @@ class FactView extends GetView<FactController> {
                                         padding: const EdgeInsets.only(
                                           left: 16,
                                           bottom: 8,
-                                        ),
+                                        ).w,
                                         width: 320.w,
                                         height: 130.w,
                                         decoration: BoxDecoration(
@@ -71,13 +69,13 @@ class FactView extends GetView<FactController> {
                                             fit: BoxFit.cover,
                                           ),
                                           borderRadius:
-                                              BorderRadius.circular(16),
+                                              BorderRadius.circular(16).r,
                                         ),
                                         child: Container(
                                           padding: const EdgeInsets.symmetric(
                                             horizontal: 6,
                                             vertical: 2,
-                                          ),
+                                          ).w,
                                           color: ColorPath.PrimaryDarkColor
                                               .withOpacity(0.8),
                                           child: Text(
@@ -90,7 +88,7 @@ class FactView extends GetView<FactController> {
                                         ),
                                       ),
                                     ),
-                                    const SizedBox(height: 8),
+                                    SizedBox(height: 8.w),
                                   ],
                                 );
                               },

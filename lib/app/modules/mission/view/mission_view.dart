@@ -1,12 +1,15 @@
-import 'package:dr_parkinsons/app/globals/global_dialog_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:percent_indicator/percent_indicator.dart';
 
+import '../../../globals/global_appbar_widget.dart';
+import '../../../globals/global_dialog_widget.dart';
+import '../../../globals/global_layout_widget.dart';
 import '../../../globals/global_loader_indicator_widget.dart';
-import '../../../theme/colors.dart';
+import '../../../service/auth_service.dart';
+import '../../../theme/color_path.dart';
 import '../../../theme/texts.dart';
 import '../controller/mission_controller.dart';
 import '../widgets/mini_calendar_widget.dart';
@@ -21,43 +24,18 @@ class MissionView extends GetView<MissionController> {
     return Obx(
       () => controller.isLoad.value
           ? const GlobalLoaderIndicatorWidget()
-          : Scaffold(
-              floatingActionButton: SizedBox(
-                width: 110.w,
-                height: 34.w,
-                child: FloatingActionButton.extended(
-                  extendedPadding: const EdgeInsets.symmetric(
-                    horizontal: 23.5,
-                    vertical: 8,
-                  ),
-                  elevation: 4,
-                  onPressed: () {
-                    GlobalMakeAlarm(context: context);
-                  },
-                  label: Text(
-                    '+ 미션추가',
-                    style: TextPath.TextF14W500.copyWith(
-                      color: ColorPath.BackgroundWhite,
-                    ),
-                  ),
-                  backgroundColor: ColorPath.PrimaryColor,
-                ),
-              ),
-              floatingActionButtonLocation:
-                  FloatingActionButtonLocation.centerFloat,
-              appBar: AppBar(
-                elevation: 0,
-                shadowColor: Colors.white,
-                title: Text(
-                  '미션관리',
-                  style: TextPath.Heading2F18W600.copyWith(
-                    color: ColorPath.TextGrey1H212121,
-                  ),
-                ),
+          : GlobalLayoutWidget(
+              context: context,
+              appBar: GlobalAppBarWidget(
+                title: '미션관리',
+                appBar: AppBar(),
+                isLeadingVisible: true,
                 actions: [
                   InkWell(
                     onTap: () {
-                      GlobalEmergencyModalWidget(context: context);
+                      AuthService.to.userData.value.guardianPhoneNumber != null
+                          ? GlobalEmergencyModalWidget(context: context)
+                          : GlobalEmergencyModalWidget2(context: context);
                     },
                     child: SizedBox(
                       width: 24.w,
@@ -69,11 +47,9 @@ class MissionView extends GetView<MissionController> {
                   ),
                   SizedBox(width: 20.w),
                 ],
-                backgroundColor: Colors.white,
               ),
-              backgroundColor: ColorPath.Background1HECEFF1,
               body: SingleChildScrollView(
-                physics: const AlwaysScrollableScrollPhysics(),
+                physics: const BouncingScrollPhysics(),
                 child: Column(
                   children: [
                     Container(
@@ -81,7 +57,7 @@ class MissionView extends GetView<MissionController> {
                         left: 20,
                         right: 20,
                         bottom: 20,
-                      ),
+                      ).w,
                       color: ColorPath.BackgroundWhite,
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -93,23 +69,18 @@ class MissionView extends GetView<MissionController> {
                             ),
                             style: TextPath.TextF14W500.copyWith(
                               color: ColorPath.BlackColor,
-                              height: 1.2,
+                              height: 1.2.w,
                             ),
                           ),
                           SizedBox(height: 10.w),
                           Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: List.generate(7, (index) {
-                              return InkWell(
-                                onTap: () async {
-                                  controller.current_index.value = index;
-                                  await controller.getMissionList();
-                                },
-                                child: MiniCalendar(
-                                  isSelected:
-                                      index == controller.current_index.value,
-                                  time: controller.dateList[index],
-                                ),
+                              return MiniCalendar(
+                                index: index,
+                                isSelected:
+                                    index == controller.current_index.value,
+                                time: controller.dateList[index],
                               );
                             }),
                           ),
@@ -117,13 +88,16 @@ class MissionView extends GetView<MissionController> {
                       ),
                     ),
                     Container(
-                      padding:
-                          const EdgeInsets.only(left: 20, right: 20, top: 34),
+                      padding: const EdgeInsets.only(
+                        left: 20,
+                        right: 20,
+                        top: 34,
+                      ).w,
                       decoration: BoxDecoration(
                         color: ColorPath.Background1HECEFF1,
                         borderRadius: BorderRadius.only(
-                          topLeft: Radius.circular(16.r),
-                          topRight: Radius.circular(16.r),
+                          topLeft: const Radius.circular(16).r,
+                          topRight: const Radius.circular(16).r,
                         ),
                       ),
                       child: Column(
@@ -137,27 +111,27 @@ class MissionView extends GetView<MissionController> {
                               ),
                             ),
                           ),
-                          const SizedBox(
-                            height: 12,
-                          ),
+                          SizedBox(height: 12.w),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Container(
-                                padding: const EdgeInsets.symmetric(
-                                    horizontal: 20, vertical: 22),
+                                padding: EdgeInsets.symmetric(
+                                  horizontal: 20.w,
+                                  vertical: 22.w,
+                                ),
                                 width: 150.w,
                                 height: 105.w,
                                 decoration: BoxDecoration(
                                   color: ColorPath.BackgroundWhite,
-                                  borderRadius: BorderRadius.circular(12),
+                                  borderRadius: BorderRadius.circular(12).r,
                                   boxShadow: [
                                     BoxShadow(
                                       color: ColorPath.PrimaryColor.withOpacity(
-                                          0.15),
+                                        0.15,
+                                      ),
                                       blurRadius: 10,
-                                      offset: const Offset(
-                                          5, 5), // changes position of shadow
+                                      offset: const Offset(5, 5),
                                     ),
                                   ],
                                 ),
@@ -184,7 +158,7 @@ class MissionView extends GetView<MissionController> {
                                         ),
                                       ],
                                     ),
-                                    const SizedBox(height: 6),
+                                    SizedBox(height: 6.w),
                                     LinearPercentIndicator(
                                       animation: true,
                                       width: 100.w,
@@ -194,7 +168,7 @@ class MissionView extends GetView<MissionController> {
                                           ? 0
                                           : controller.clearMove.value /
                                               controller.move.value,
-                                      barRadius: Radius.circular(10.r),
+                                      barRadius: const Radius.circular(10).r,
                                       progressColor: ColorPath.PrimaryColor,
                                       backgroundColor:
                                           ColorPath.PrimaryLightColor,
@@ -227,15 +201,15 @@ class MissionView extends GetView<MissionController> {
                                 ),
                               ),
                               Container(
-                                padding: const EdgeInsets.symmetric(
-                                  horizontal: 20,
-                                  vertical: 22,
+                                padding: EdgeInsets.symmetric(
+                                  horizontal: 20.w,
+                                  vertical: 22.w,
                                 ),
                                 width: 150.w,
                                 height: 105.w,
                                 decoration: BoxDecoration(
                                   color: ColorPath.BackgroundWhite,
-                                  borderRadius: BorderRadius.circular(12.r),
+                                  borderRadius: BorderRadius.circular(12).r,
                                   boxShadow: [
                                     BoxShadow(
                                       color: ColorPath.PrimaryColor.withOpacity(
@@ -252,7 +226,6 @@ class MissionView extends GetView<MissionController> {
                                     Row(
                                       mainAxisAlignment:
                                           MainAxisAlignment.spaceBetween,
-                                      // ignore: prefer_const_literals_to_create_immutables
                                       children: [
                                         Text(
                                           '투약',
@@ -273,19 +246,19 @@ class MissionView extends GetView<MissionController> {
                                     const SizedBox(height: 6),
                                     LinearPercentIndicator(
                                       animation: true,
-                                      width: 100,
+                                      width: 100.w,
                                       animationDuration: 1000,
                                       lineHeight: 14.0,
                                       percent: controller.pill.value == 0
                                           ? 0
                                           : controller.clearPill.value /
                                               controller.pill.value,
-                                      barRadius: Radius.circular(10.r),
+                                      barRadius: const Radius.circular(10).r,
                                       progressColor: ColorPath.PrimaryColor,
                                       backgroundColor:
                                           ColorPath.PrimaryLightColor,
                                     ),
-                                    const SizedBox(height: 6),
+                                    SizedBox(height: 6.w),
                                     Row(
                                       mainAxisAlignment: MainAxisAlignment.end,
                                       children: [
@@ -333,7 +306,7 @@ class MissionView extends GetView<MissionController> {
                               );
                             },
                           ),
-                          SizedBox(height: 73.w),
+                          SizedBox(height: 100.w),
                         ],
                       ),
                     ),

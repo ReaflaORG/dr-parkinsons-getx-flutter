@@ -39,7 +39,7 @@ class MySymptomsController extends GetxController {
       }
     } catch (e) {
       Logger().d(e);
-      GlobalToastWidget(message: e.toString());
+      GlobalToastWidget(e.toString());
     }
   }
 
@@ -62,7 +62,7 @@ class MySymptomsController extends GetxController {
       }
     } catch (e) {
       Logger().d(e);
-      GlobalToastWidget(message: e.toString());
+      GlobalToastWidget(e.toString());
     }
   }
 

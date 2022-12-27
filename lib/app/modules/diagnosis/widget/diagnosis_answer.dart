@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../models/diagnosis_survey_model.dart';
-import '../../../theme/colors.dart';
+import '../../../theme/color_path.dart';
 import '../../../theme/texts.dart';
 
 class DiagnosisAnswer extends StatelessWidget {
@@ -18,17 +18,17 @@ class DiagnosisAnswer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: 20.w),
-      margin: EdgeInsets.only(bottom: 10.w),
+      padding: const EdgeInsets.symmetric(horizontal: 20).w,
+      margin: const EdgeInsets.only(bottom: 10).w,
       child: InkWell(
         onTap: () => handleSelectItem(),
         child: Container(
-          padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 10.w),
+          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10).w,
           width: 300.w,
           decoration: BoxDecoration(
               border: Border.all(color: ColorPath.PrimaryLightColor),
-              borderRadius: const BorderRadius.all(
-                Radius.circular(8),
+              borderRadius: BorderRadius.all(
+                const Radius.circular(8).r,
               ),
               color: isPicked ? ColorPath.PrimaryLightColor : Colors.white),
           child: Row(

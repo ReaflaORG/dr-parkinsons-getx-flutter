@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
-import '../../../theme/colors.dart';
+import '../../../theme/color_path.dart';
 import '../../../theme/texts.dart';
 import '../controller/diagnosis_controller.dart';
 import '../widget/diagnosis_answer.dart';
@@ -16,16 +16,16 @@ class DiagnosisView extends GetView<DiagnosisController> {
           appBar: PreferredSize(
             preferredSize: Size.fromHeight(74.w),
             child: AppBar(
-              toolbarHeight: 84,
+              toolbarHeight: 84.w,
               backgroundColor: ColorPath.SecondaryLightColor,
-              leadingWidth: 60,
+              leadingWidth: 60.w,
               leading: Container(
                 margin: const EdgeInsets.only(
                   left: 20,
-                ),
+                ).w,
                 child: CircleAvatar(
                   backgroundColor: ColorPath.BackgroundWhite,
-                  radius: 24,
+                  radius: 24.r,
                   child: IconButton(
                     onPressed: () => Get.back(),
                     icon: Icon(
@@ -137,8 +137,9 @@ class SurveyTestingView extends GetView<DiagnosisController> {
                       ),
                       Positioned(
                         child: Container(
-                            padding: EdgeInsets.symmetric(
-                                horizontal: 28.w, vertical: 26.w),
+                            padding: const EdgeInsets.symmetric(
+                                    horizontal: 28, vertical: 26)
+                                .w,
                             width: 320.w,
                             height: 160.w,
                             decoration: BoxDecoration(
@@ -191,7 +192,7 @@ class SurveyTestingView extends GetView<DiagnosisController> {
             ),
           ),
           Container(
-            padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 30.w),
+            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 30).w,
             child: Row(
               children: [
                 OutlinedButton(
@@ -258,8 +259,10 @@ class SurveyResultView extends GetView<DiagnosisController> {
                     ),
                     Positioned(
                       child: Container(
-                          padding: EdgeInsets.symmetric(
-                              horizontal: 60.w, vertical: 26.w),
+                          padding: const EdgeInsets.symmetric(
+                            horizontal: 60,
+                            vertical: 26,
+                          ).w,
                           width: 320.w,
                           height: 437.w,
                           decoration: BoxDecoration(
@@ -307,20 +310,23 @@ class SurveyResultView extends GetView<DiagnosisController> {
                                   onTap: () => Get.toNamed('/search'),
                                   child: Container(
                                     padding:
-                                        EdgeInsets.symmetric(vertical: 6.w),
+                                        const EdgeInsets.symmetric(vertical: 6)
+                                            .w,
                                     height: 60.w,
                                     width: 210.w,
                                     decoration: BoxDecoration(
                                       color: ColorPath.PrimaryLightColor,
-                                      borderRadius: BorderRadius.circular(16.w),
+                                      borderRadius: BorderRadius.circular(16).r,
                                       boxShadow: [
                                         BoxShadow(
                                           color: ColorPath.PrimaryColor
                                               .withOpacity(0.1),
                                           spreadRadius: 2,
                                           blurRadius: 20,
-                                          offset: const Offset(5,
-                                              5), // changes position of shadow
+                                          offset: const Offset(
+                                            5,
+                                            5,
+                                          ), // changes position of shadow
                                         ),
                                       ],
                                     ),
@@ -366,7 +372,7 @@ class SurveyResultView extends GetView<DiagnosisController> {
           ),
         ),
         Container(
-            padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 30.w),
+            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 30).w,
             child: ElevatedButton(
               style: ElevatedButton.styleFrom(
                 //change width and height on your need width = 200 and height = 50

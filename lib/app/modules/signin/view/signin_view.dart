@@ -1,9 +1,10 @@
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:dr_parkinsons/app/globals/global_toast_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
-import '../../../theme/colors.dart';
+import '../../../theme/color_path.dart';
 import '../../../theme/texts.dart';
 import '../controller/signin_controller.dart';
 
@@ -156,7 +157,7 @@ class SocialLoginButtonWidget extends GetView<SignInController> {
                 backgroundColor: ColorPath.Background3HFEE500,
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.all(
-                    Radius.circular(15.r),
+                    const Radius.circular(15).r,
                   ),
                 ),
               ),
@@ -224,7 +225,9 @@ class SocialLoginButtonWidget extends GetView<SignInController> {
             height: 50.w,
             child: ElevatedButton(
               onPressed: () {
-                Get.offAllNamed('/main');
+                // Get.offAllNamed('/main');
+                GlobalToastWidget('임시로 로그인합니다');
+                controller.handleTempSignIn();
               },
               style: ElevatedButton.styleFrom(
                 backgroundColor: ColorPath.TextGrey2H424242,

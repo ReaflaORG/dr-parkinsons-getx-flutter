@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
-import '../../../theme/colors.dart';
+import '../../../theme/color_path.dart';
 import '../../../theme/texts.dart';
 
 // show alert dialog
@@ -17,7 +17,7 @@ showAlertDialog(
         Radius.circular(12),
       ),
     ),
-    content: Container(
+    content: SizedBox(
       width: double.infinity,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -29,7 +29,7 @@ showAlertDialog(
               style: TextPath.TextF18W600.copyWith(),
             ),
           ),
-          SizedBox(height: 16),
+          SizedBox(height: 16.w),
           Container(
             child: Text(
               alertContentMsg,
@@ -37,7 +37,7 @@ showAlertDialog(
             ),
           ),
           SizedBox(height: 24),
-          Container(
+          SizedBox(
             width: double.infinity,
             height: 44,
             child: TextButton(
@@ -77,32 +77,28 @@ showConfimDialog(
   AlertDialog alert = AlertDialog(
     shape: RoundedRectangleBorder(
       borderRadius: BorderRadius.all(
-        Radius.circular(12.r),
+        const Radius.circular(12).r,
       ),
     ),
-    content: Container(
+    content: SizedBox(
       width: double.infinity,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisSize: MainAxisSize.min,
         children: [
-          Container(
-            child: Text(
-              alertTitleMsg,
-              style: TextPath.TextF18W600.copyWith(),
-            ),
+          Text(
+            alertTitleMsg,
+            style: TextPath.TextF18W600.copyWith(),
           ),
-          SizedBox(height: 16),
-          Container(
-            child: Text(
-              alertContentMsg,
-              style: TextPath.TextF16W400.copyWith(),
-            ),
+          SizedBox(height: 16.w),
+          Text(
+            alertContentMsg,
+            style: TextPath.TextF16W400.copyWith(),
           ),
-          SizedBox(height: 24),
-          Container(
+          SizedBox(height: 24.w),
+          SizedBox(
             width: double.infinity,
-            height: 44,
+            height: 44.w,
             child: TextButton(
               onPressed: () async {
                 await handleOk();
@@ -132,7 +128,7 @@ showConfimDialog(
                 foregroundColor: ColorPath.TextGrey2H424242,
                 backgroundColor: Colors.white,
                 shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(8.r),
+                  borderRadius: BorderRadius.circular(8).r,
                 ),
                 side: BorderSide(
                   color: ColorPath.Background1HECEFF1,

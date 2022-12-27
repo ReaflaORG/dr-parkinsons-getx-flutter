@@ -1,9 +1,9 @@
-import 'package:dr_parkinsons/app/models/doctor_model.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 
 import '../globals/global_toast_widget.dart';
 import '../models/base_response_model.dart';
+import '../models/doctor_model.dart';
 import '../models/user_model.dart';
 import '../provider/provider.dart';
 import '../routes/app_pages.dart';
@@ -24,7 +24,7 @@ class AuthService extends GetxService {
   late Rx<UserModel> userData;
 
   // 전담의 의사 데이터
-  late Rx<DoctorModel> myDoctor;
+  Rx<DoctorModel> myDoctor = DoctorModel().obs;
 
   // Functions ▼ ========================================
 
@@ -92,71 +92,49 @@ class AuthService extends GetxService {
 
           await Future.wait([
             GetStorage().remove('access_token'),
-          ]);
-          Get.offAllNamed(Routes.SIGNIN);
+          ]).then((value) {
+            Get.offAllNamed(Routes.SIGNIN);
+          });
           break;
-
         default:
           throw Exception(response.message);
       }
     } catch (e) {
-      GlobalToastWidget(message: e.toString());
+      GlobalToastWidget(e.toString());
     }
   }
 
   /// 내 정보 확인
   Future<void> handleMyInfo() async {
     try {
-      AuthBaseResponseModel response = await Provider.dio(
+      await Provider.dio(
         method: 'GET',
         url: '/myinfo',
-      );
+      ).then((response) {
+        switch (response.statusCode) {
+          case 200:
+            userData.value = UserModel.fromJson(response.data['user']);
 
-      switch (response.statusCode) {
-        case 200:
-          bool isDoctor = isMyDoctor;
-          UserModel user = UserModel.fromJson(response.data['user']);
-          AuthService.to.userData.value = user;
-          AuthService.to.userData.refresh();
-          if (isDoctor && userData.value.doctorId != null) {
-            myDoctor.value = DoctorModel.fromJson(response.data['doctor']);
-          } else if (!isDoctor && userData.value.doctorId != null) {
-            myDoctor = DoctorModel.fromJson(response.data['doctor']).obs;
-          }
-          break;
+            if (isMyDoctor && userData.value.doctorId != null) {
+              myDoctor.value = DoctorModel.fromJson(response.data['doctor']);
+            } else if (!isMyDoctor && userData.value.doctorId != null) {
+              myDoctor = DoctorModel.fromJson(response.data['doctor']).obs;
+            }
 
-        default:
-          throw Exception(response.message);
-      }
+            userData.refresh();
+            myDoctor.refresh();
+            break;
+          default:
+            throw Exception(response.message);
+        }
+      });
     } catch (e) {
-      GlobalToastWidget(message: e.toString());
+      GlobalToastWidget(e.toString());
     }
   }
 
   /// 초기화
-  Future<void> handleInitialization() async {
-    // try {
-    //   if (refreshToken.value != null && email.value != null) {
-    //     AuthBaseResponseModel resposne = await AuthProvider.tokenLogin(
-    //       method: 'POST',
-    //       requestModel: {
-    //         'user_email': email,
-    //         'refresh_token': refreshToken,
-    //       },
-    //     );
-
-    //     switch (resposne.statusCode) {
-    //       case 200:
-    //         // await handleTokenLogin(resposne: resposne);
-    //         break;
-    //       default:
-    //         Logger().d(resposne.message);
-    //     }
-    //   }
-    // } catch (e) {
-    //   Logger().d(e);
-    // }
-  }
+  Future<void> handleInitialization() async {}
 
   @override
   void onInit() {

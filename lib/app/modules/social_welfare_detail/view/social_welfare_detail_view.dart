@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 
 import '../../../globals/global_loader_indicator_widget.dart';
-import '../../../theme/colors.dart';
+import '../../../theme/color_path.dart';
 import '../../../theme/texts.dart';
 import '../controller/social_welfare_detail_controller.dart';
 
@@ -83,17 +83,14 @@ class SocialWelfareDetailView extends GetView<SocialWelfareDetailController> {
                               ),
                             ),
                             SizedBox(height: 12.w),
-                            SizedBox(
-                              height: 504.w,
-                              child: Column(
-                                children: [
-                                  Text(
-                                    controller.postData.value!.description,
-                                    style: TextPath.TextF16W400.copyWith(
-                                        color: ColorPath.TextGrey2H424242),
-                                  ),
-                                ],
-                              ),
+                            Column(
+                              children: [
+                                Text(
+                                  controller.postData.value!.description,
+                                  style: TextPath.TextF16W400.copyWith(
+                                      color: ColorPath.TextGrey2H424242),
+                                ),
+                              ],
                             ),
                             SizedBox(height: 91.w)
                           ],

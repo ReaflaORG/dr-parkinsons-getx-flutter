@@ -7,11 +7,8 @@ import 'package:fluttertoast/fluttertoast.dart';
 /// [message] 메세지
 /// [bottom]: 바닥 마진
 /// [duration]: 유지 시간 (초)
-Future<dynamic> GlobalToastWidget({
-  /// 메세지
-  required String message,
-
-  /// 유지 시간
+Future<dynamic> GlobalToastWidget(
+  String message, {
   int duration = 3,
 }) async {
   Future.value([

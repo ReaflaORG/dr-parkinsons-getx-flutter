@@ -33,7 +33,7 @@ class LocationService extends GetxService {
   Future<void> getLocation() async {
     if (!await location.serviceEnabled()) {
       if (!await location.requestService()) {
-        GlobalToastWidget(message: '위치 정보를 가져올 수 없습니다');
+        GlobalToastWidget('위치 정보를 가져올 수 없습니다');
         return;
       }
     }
@@ -44,7 +44,7 @@ class LocationService extends GetxService {
       if (iosInfo.isPhysicalDevice) {
         locationData = await location.getLocation();
       } else {
-        GlobalToastWidget(message: '시뮬레이터는 위치 정보를 가져올 수 없습니다');
+        GlobalToastWidget('시뮬레이터는 위치 정보를 가져올 수 없습니다');
       }
     } else if (Platform.isAndroid) {
       AndroidDeviceInfo androidInfo = await deviceInfo.androidInfo;
@@ -54,7 +54,7 @@ class LocationService extends GetxService {
         locationData = await location.getLocation();
         Logger().d(locationData);
       } else {
-        GlobalToastWidget(message: '시뮬레이터는 위치 정보를 가져올 수 없습니다');
+        GlobalToastWidget('시뮬레이터는 위치 정보를 가져올 수 없습니다');
       }
     }
   }

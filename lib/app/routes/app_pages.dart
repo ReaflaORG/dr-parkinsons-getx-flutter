@@ -8,8 +8,8 @@ import '../modules/disorder/binding/disorder_binding.dart';
 import '../modules/disorder/view/disorder_view.dart';
 import '../modules/doctor/binding/doctor_binding.dart';
 import '../modules/doctor/binding/search_doctors_binding.dart';
+import '../modules/doctor/view/doctor_search_view.dart';
 import '../modules/doctor/view/doctor_view.dart';
-import '../modules/doctor/view/search_doctors_view.dart';
 import '../modules/fact/binding/fact_binding.dart';
 import '../modules/fact/view/fact_view.dart';
 import '../modules/factpost/binding/fact_detail_binding.dart';
@@ -170,7 +170,7 @@ class AppPages {
       name: Routes.SOCIALWELFARE,
       page: () => const SocialWelfareView(),
       binding: SocialWelfareBinding(),
-      transition: Transition.native,
+      transition: Transition.noTransition,
       popGesture: true,
       children: [
         GetPage(
@@ -234,7 +234,7 @@ class AppPages {
     GetPage(
       title: '주치의 찾기',
       name: Routes.SEARCH,
-      page: () => const SearchDoctorsView(),
+      page: () => const DoctorSearchView(),
       binding: SearchDoctorsBinding(),
       transition: Transition.native,
       popGesture: true,

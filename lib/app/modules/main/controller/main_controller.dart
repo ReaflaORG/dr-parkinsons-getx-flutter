@@ -8,7 +8,7 @@ import 'package:get/get.dart';
 
 import '../../../models/main_model.dart';
 import '../../doctor/controller/search_doctors_controller.dart';
-import '../../doctor/view/search_doctors_view.dart';
+import '../../doctor/view/doctor_search_view.dart';
 import '../../healthcare/controller/healthcare_controller.dart';
 import '../../healthcare/view/healthcare_view.dart';
 import '../../home/controller/home_controller.dart';
@@ -79,7 +79,7 @@ class MainController extends GetxController {
         init: MissionController(),
       ),
       GetBuilder<DoctorSearchController>(
-        builder: (_) => const SearchDoctorsView(),
+        builder: (_) => const DoctorSearchView(),
         init: DoctorSearchController(),
       ),
       GetBuilder<MyInfoController>(

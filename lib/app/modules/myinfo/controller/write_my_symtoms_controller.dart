@@ -3,7 +3,7 @@
 import 'dart:async';
 
 import 'package:dio/dio.dart' as Dio;
-import 'package:dr_parkinsons/app/theme/colors.dart';
+import 'package:dr_parkinsons/app/theme/color_path.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -83,7 +83,7 @@ class WriteMySymptomsController extends GetxController {
           mySymptomsContentTextEditController.value.text = '';
 
           Get.back();
-          GlobalToastWidget(message: '저장이 완료되었습니다.');
+          GlobalToastWidget('저장이 완료되었습니다.');
 
           break;
 
@@ -92,7 +92,7 @@ class WriteMySymptomsController extends GetxController {
       }
     } catch (e) {
       Logger().d(e);
-      GlobalToastWidget(message: e.toString());
+      GlobalToastWidget(e.toString());
     }
   }
 

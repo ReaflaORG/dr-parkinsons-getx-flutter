@@ -1,31 +1,32 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 
-import '../../../theme/colors.dart';
+import '../../../globals/global_inkwell_widget.dart';
+import '../../../theme/color_path.dart';
 import '../../../theme/texts.dart';
+import '../controller/mission_controller.dart';
 
-class MiniCalendar extends StatelessWidget {
-  final DateTime time;
-  final bool isSelected;
-
+/// 미션 작성 페이지의 날짜 선택 위젯
+///
+/// [time] : 날짜
+///
+/// [isSelected] : 선택 여부
+class MiniCalendar extends GetView<MissionController> {
   const MiniCalendar({
     super.key,
+    required this.index,
     required this.isSelected,
     required this.time,
   });
 
+  final int index;
+  final DateTime time;
+  final bool isSelected;
+
   @override
   Widget build(BuildContext context) {
-    late Color text_color;
-    if (DateFormat('EEEE', 'ko').format(time) == '토요일') {
-      text_color = ColorPath.SecondaryColor;
-    } else if (DateFormat('EEEE', 'ko').format(time) == '일요일') {
-      text_color = ColorPath.TertiaryColor;
-    } else {
-      text_color = ColorPath.TextGrey1H212121;
-    }
-
     return Container(
       width: 40.w,
       height: 50.w,
@@ -33,25 +34,32 @@ class MiniCalendar extends StatelessWidget {
         color: isSelected
             ? ColorPath.PrimaryLightColor
             : ColorPath.Background1HECEFF1,
-        borderRadius: BorderRadius.circular(16.r),
+        borderRadius: BorderRadius.circular(8).r,
       ),
-      padding: EdgeInsets.symmetric(vertical: 5.w),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
-        children: [
-          Text(
-            DateFormat('EEEE', 'ko').format(time)[0],
-            style: TextPath.TextF12W500.copyWith(
-              color: text_color,
+      child: GlobalInkWellWidget(
+        padding: EdgeInsets.symmetric(vertical: 5.w),
+        borderRadius: 8.r,
+        onTap: () {
+          controller.current_index.value = index;
+          controller.getMissionList();
+        },
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: [
+            Text(
+              DateFormat('EEEE', 'ko').format(time)[0],
+              style: TextPath.TextF12W500.copyWith(
+                color: controller.getMiniCalendarColor(time),
+              ),
             ),
-          ),
-          Text(
-            DateFormat('d').format(time).toString(),
-            style: TextPath.TextF16W500.copyWith(
-              color: ColorPath.TextGrey1H212121,
+            Text(
+              DateFormat('d').format(time).toString(),
+              style: TextPath.TextF16W500.copyWith(
+                color: ColorPath.TextGrey1H212121,
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

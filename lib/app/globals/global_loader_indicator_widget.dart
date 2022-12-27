@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 
-import '../theme/colors.dart';
+import '../theme/color_path.dart';
 
 /// 글로벌 로더 인디케이터 위젯
 ///

@@ -60,12 +60,12 @@ class SuggestPolicyController extends GetxController {
     }
 
     if (boxStatusWithPersonalAgree.isFalse) {
-      GlobalToastWidget(message: '개인정보 처리방침에 체크해 주세요.');
+      GlobalToastWidget('개인정보 처리방침에 체크해 주세요.');
       return;
     }
 
     if (boxStatusWithAnonymous.isFalse) {
-      GlobalToastWidget(message: '익명 전송에 체크해 주세요.');
+      GlobalToastWidget('익명 전송에 체크해 주세요.');
       return;
     }
 
@@ -92,7 +92,7 @@ class SuggestPolicyController extends GetxController {
           boxStatusWithPersonalAgree.value = false;
           boxStatusWithAnonymous.value = false;
 
-          //await GlobalToastWidget(message: '정책 제안이 완료되었습니다.');
+          //await GlobalToastWidget( '정책 제안이 완료되었습니다.');
           await showAlertDialog(context, '정책 제안 발신 완료',
               '작성된 제안은 닥터 파킨슨 관리자에게 전송되어 향후 정책 결정의 자료로 사용됩니다.\n소중한 의견에 감사합니다.');
           //Get.back();
@@ -103,7 +103,7 @@ class SuggestPolicyController extends GetxController {
       }
     } catch (e) {
       Logger().d(e);
-      GlobalToastWidget(message: e.toString());
+      GlobalToastWidget(e.toString());
     }
   }
 

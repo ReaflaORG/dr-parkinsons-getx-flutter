@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../../../theme/colors.dart';
+import '../../../theme/color_path.dart';
 import '../../../theme/texts.dart';
 
 /// 보호자 알림 서비스 카드 위젯
@@ -26,7 +26,7 @@ class ProtectorCardWidget extends StatelessWidget {
           width: 320.w,
           height: 100.w,
           decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(10.r),
+            borderRadius: BorderRadius.circular(10).r,
             color: ColorPath.BackgroundWhite,
             boxShadow: [
               BoxShadow(

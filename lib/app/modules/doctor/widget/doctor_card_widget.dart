@@ -1,20 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../../../theme/colors.dart';
+import '../../../theme/color_path.dart';
 import '../../../theme/texts.dart';
 
 // search doctors item widget
-class RadioButtonForSearchDoctors extends StatelessWidget {
-  final String title;
-  final bool isCheck;
-  final Function onClick;
-  const RadioButtonForSearchDoctors({
-    Key? key,
+class DoctorCardWidget extends StatelessWidget {
+  const DoctorCardWidget({
+    super.key,
     required this.title,
     required this.isCheck,
     required this.onClick,
-  }) : super(key: key);
+  });
+
+  final String title;
+  final bool isCheck;
+  final Function onClick;
 
   @override
   Widget build(BuildContext context) {

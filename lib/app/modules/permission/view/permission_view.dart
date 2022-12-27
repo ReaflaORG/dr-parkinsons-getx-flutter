@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 
 import '../../../models/permission_model.dart';
 import '../../../service/permission_service.dart';
-import '../../../theme/colors.dart';
+import '../../../theme/color_path.dart';
 import '../../../theme/texts.dart';
 import '../controller/permission_controller.dart';
 

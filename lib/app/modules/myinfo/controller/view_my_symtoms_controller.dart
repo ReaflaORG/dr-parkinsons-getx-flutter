@@ -15,7 +15,7 @@ class ViewMySymptomsController extends GetxController {
 
   // Data ▼ ============================================
   late Rx<MySymptomsModel> item;
-  Rx<bool> process = true.obs;
+  Rx<bool> isLoad = true.obs;
   Rx<int> symptomId = 1.obs;
 
   // Function ▼ ========================================
@@ -28,12 +28,12 @@ class ViewMySymptomsController extends GetxController {
 
       switch (response.statusCode) {
         case 200:
-          if (process.value) {
+          if (isLoad.value) {
             item = MySymptomsModel.fromJson(response.data).obs;
           } else {
             item.value = MySymptomsModel.fromJson(response.data);
           }
-          process.value = false;
+          isLoad.value = false;
           break;
         default:
           throw Exception(response.message);

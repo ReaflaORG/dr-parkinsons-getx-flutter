@@ -3,7 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
 import '../../../globals/global_loader_indicator_widget.dart';
-import '../../../theme/colors.dart';
+import '../../../theme/color_path.dart';
 import '../../../theme/texts.dart';
 import '../controller/fact_detail_controller.dart';
 
@@ -23,10 +23,10 @@ class FactDetailView extends GetView<FactDetailController> {
                     children: [
                       Stack(children: [
                         Container(
-                          padding: EdgeInsets.symmetric(
-                            horizontal: 10.w,
-                            vertical: 8.w,
-                          ),
+                          padding: const EdgeInsets.symmetric(
+                            horizontal: 10,
+                            vertical: 8,
+                          ).w,
                           width: double.infinity,
                           height: 242.w,
                           decoration: BoxDecoration(
@@ -63,7 +63,7 @@ class FactDetailView extends GetView<FactDetailController> {
                       SizedBox(height: 24.w),
                       Container(
                         width: double.infinity,
-                        margin: EdgeInsets.symmetric(horizontal: 20.w),
+                        margin: const EdgeInsets.symmetric(horizontal: 20).w,
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [

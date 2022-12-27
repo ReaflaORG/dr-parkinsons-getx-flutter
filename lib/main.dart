@@ -84,7 +84,6 @@ class MyApp extends StatelessWidget {
           title: dotenv.env['APP_EN_NAME']!,
           initialRoute: '/splash',
           getPages: AppPages.routes,
-          smartManagement: SmartManagement.full,
           builder: (BuildContext context, Widget? child) {
             return MediaQuery(
               data: MediaQuery.of(context).copyWith(textScaleFactor: 1.0),

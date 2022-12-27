@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
-import '../../../theme/colors.dart';
+import '../../../theme/color_path.dart';
 import '../../../theme/texts.dart';
 import '../controller/protector_controller.dart';
 import '../widget/protector_card_widget.dart';
@@ -72,7 +72,7 @@ class ProtectorView extends GetView<ProtectorController> {
                   width: 320.w,
                   // height: 150.w,
                   decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(10.r),
+                    borderRadius: BorderRadius.circular(10).r,
                     color: ColorPath.Background1HECEFF1,
                   ),
                   child: Row(

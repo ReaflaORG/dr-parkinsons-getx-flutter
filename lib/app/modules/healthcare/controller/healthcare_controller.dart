@@ -13,7 +13,7 @@ import '../../../models/base_response_model.dart';
 import '../../../models/healthcare_btn_model.dart';
 import '../../../provider/provider.dart';
 import '../../../routes/app_pages.dart';
-import '../../../theme/colors.dart';
+import '../../../theme/color_path.dart';
 
 class HealthCareController extends GetxController {
   static HealthCareController get to => Get.find();
@@ -90,7 +90,7 @@ class HealthCareController extends GetxController {
           throw Exception(response.message);
       }
     } catch (e) {
-      GlobalToastWidget(message: e.toString());
+      GlobalToastWidget(e.toString());
     }
   }
 

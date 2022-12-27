@@ -45,7 +45,7 @@ class SocialWelfareDetailController extends GetxController {
       });
     } catch (e) {
       Logger().d(e);
-      GlobalToastWidget(message: e.toString());
+      GlobalToastWidget(e.toString());
     } finally {
       isLoad.value = false;
     }

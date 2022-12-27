@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
-import '../../../theme/colors.dart';
+import '../../../theme/color_path.dart';
 import '../../../theme/texts.dart';
 import '../controller/medicine_info_controller.dart';
 
@@ -17,16 +17,16 @@ class MedicineInfoView extends GetView<MedicineInfoController> {
         appBar: PreferredSize(
           preferredSize: Size.fromHeight(74.w),
           child: AppBar(
-            toolbarHeight: 84,
+            toolbarHeight: 84.w,
             backgroundColor: ColorPath.PrimaryLightColor,
-            leadingWidth: 60,
+            leadingWidth: 60.w,
             leading: Container(
               margin: const EdgeInsets.only(
                 left: 20,
-              ),
+              ).w,
               child: CircleAvatar(
                 backgroundColor: ColorPath.BackgroundWhite,
-                radius: 24,
+                radius: 24.r,
                 child: IconButton(
                   onPressed: () {
                     Get.back();
@@ -51,7 +51,7 @@ class MedicineInfoView extends GetView<MedicineInfoController> {
         ),
         body: SingleChildScrollView(
           child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 30),
+            padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 30).w,
             child: controller.childWidget(),
           ),
         ),

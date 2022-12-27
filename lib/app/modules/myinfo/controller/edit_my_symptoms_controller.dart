@@ -15,7 +15,7 @@ import 'package:mime/mime.dart';
 import '../../../globals/global_toast_widget.dart';
 import '../../../models/base_response_model.dart';
 import '../../../provider/provider.dart';
-import '../../../theme/colors.dart';
+import '../../../theme/color_path.dart';
 import '../../../theme/texts.dart';
 import '../models/my_symptoms_item_model.dart';
 
@@ -69,7 +69,7 @@ class EditMySymptomsController extends GetxController {
       }
     } catch (e) {
       Logger().d(e);
-      GlobalToastWidget(message: e.toString());
+      GlobalToastWidget(e.toString());
     }
   }
 
@@ -118,7 +118,7 @@ class EditMySymptomsController extends GetxController {
           MySymptomsController.to.getMySymptomsData();
 
           Get.back();
-          await GlobalToastWidget(message: '수정되었습니다.');
+          await GlobalToastWidget('수정되었습니다.');
 
           break;
 
@@ -127,7 +127,7 @@ class EditMySymptomsController extends GetxController {
       }
     } catch (e) {
       Logger().d(e);
-      GlobalToastWidget(message: e.toString());
+      GlobalToastWidget(e.toString());
     }
   }
 

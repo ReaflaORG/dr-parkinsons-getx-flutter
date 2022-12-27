@@ -6,7 +6,7 @@ import '../controller/my_info_controller.dart';
 class MyInfoBinding implements Bindings {
   @override
   void dependencies() {
-    // Get.put(MyInfoController());
-    Get.lazyPut(() => MyInfoController(), fenix: true);
+    Get.put(MyInfoController(), permanent: true);
+    // Get.lazyPut(() => MyInfoController(), fenix: true);
   }
 }

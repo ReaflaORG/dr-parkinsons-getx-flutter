@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
-import '../../../theme/colors.dart';
+import '../../../theme/color_path.dart';
 import '../../../theme/texts.dart';
 import '../controller/medicine_controller.dart';
 
@@ -28,9 +28,9 @@ class MedicineCardWidget extends GetView<MedicineController> {
         height: 140.w,
         decoration: BoxDecoration(
           color: ColorPath.Background1HECEFF1,
-          borderRadius: BorderRadius.circular(8.r),
+          borderRadius: BorderRadius.circular(8).r,
         ),
-        padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 24.w),
+        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 24).w,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           crossAxisAlignment: CrossAxisAlignment.center,

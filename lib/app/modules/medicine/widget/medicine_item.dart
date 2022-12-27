@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../../../theme/colors.dart';
+import '../../../theme/color_path.dart';
 import '../../../theme/texts.dart';
 
 /// 약재 설명 : 이미지 + 설명글
@@ -28,7 +28,7 @@ class MedicineImageItem extends StatelessWidget {
         if (assest != null)
           Container(
             alignment: Alignment.centerLeft,
-            padding: EdgeInsets.only(bottom: 6.w),
+            padding: const EdgeInsets.only(bottom: 6).w,
             child: Image.asset(
               assest!,
               fit: BoxFit.cover,
@@ -38,7 +38,7 @@ class MedicineImageItem extends StatelessWidget {
           ),
         Container(
           alignment: Alignment.centerLeft,
-          padding: EdgeInsets.only(bottom: 12.w),
+          padding: const EdgeInsets.only(bottom: 12).w,
           child: Text(
             text,
             style: TextPath.TextF13W400.copyWith(
@@ -147,7 +147,7 @@ class MedicineItemLabel2Widget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       alignment: Alignment.centerLeft,
-      padding: EdgeInsets.only(bottom: 6.w),
+      padding: const EdgeInsets.only(bottom: 6).w,
       height: 30.w,
       child: Text(
         text,

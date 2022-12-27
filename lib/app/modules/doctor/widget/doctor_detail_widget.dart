@@ -1,17 +1,18 @@
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:dr_parkinsons/app/models/doctor_model.dart';
-import 'package:dr_parkinsons/app/utils/formatter.dart';
-import 'package:dr_parkinsons/app/utils/video/video_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
-import '../../../theme/colors.dart';
+import '../../../globals/global_inkwell_widget.dart';
+import '../../../models/doctor_model.dart';
+import '../../../theme/color_path.dart';
 import '../../../theme/texts.dart';
+import '../../../utils/formatter.dart';
+import '../../../utils/video/video_view.dart';
 
-// doctor item widget
-class DoctorItemWidget extends StatelessWidget {
-  const DoctorItemWidget({
+/// 의사 상세 페이지
+class DoctorDetailWidget extends StatelessWidget {
+  const DoctorDetailWidget({
     super.key,
     required this.item,
   });
@@ -19,27 +20,28 @@ class DoctorItemWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
-      onTap: () {
-        Get.to(() => VideoView(content_url: item.content));
-      },
-      child: Container(
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(16.w),
-        ),
+    return Container(
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(16).r,
+      ),
+      child: GlobalInkWellWidget(
+        borderRadius: 16.r,
+        onTap: () {
+          Get.to(() => VideoView(content_url: item.content));
+        },
         child: Column(
           children: [
             Container(
+              alignment: Alignment.center,
               width: double.infinity,
               height: 120.w,
               decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(16.w),
+                borderRadius: BorderRadius.circular(8).r,
                 image: DecorationImage(
                   image: CachedNetworkImageProvider(item.contentThumbnail!),
                   fit: BoxFit.cover,
                 ),
               ),
-              alignment: Alignment.center,
               child: Image.asset('assets/doctor/video_play_button.png'),
             ),
             SizedBox(height: 6.w),
@@ -48,7 +50,7 @@ class DoctorItemWidget extends StatelessWidget {
               child: Column(
                 children: [
                   Container(
-                    padding: EdgeInsets.only(left: 10.w),
+                    padding: const EdgeInsets.only(left: 10).w,
                     alignment: Alignment.centerLeft,
                     child: Text(
                       Formmater.dateTimeFormatYYMMDD(item.createdAt),
@@ -59,7 +61,7 @@ class DoctorItemWidget extends StatelessWidget {
                   ),
                   SizedBox(height: 2.w),
                   Container(
-                    padding: EdgeInsets.only(left: 10.w),
+                    padding: const EdgeInsets.only(left: 10).w,
                     alignment: Alignment.centerLeft,
                     child: Text(
                       item.title,
@@ -77,23 +79,3 @@ class DoctorItemWidget extends StatelessWidget {
     );
   }
 }
-
-
-// class ImageDialog extends StatelessWidget {
-//   @override
-//   Widget build(BuildContext context) {
-//     return Dialog(
-//       child: Container(
-//         height: 222,
-//         width: double.infinity,
-//         padding: EdgeInsets.only(left: 10.w, right: 10.w),
-//         decoration: BoxDecoration(
-//             borderRadius: BorderRadius.circular(16),
-//             color: Colors.transparent,
-//             image: DecorationImage(
-//                 image: ExactAssetImage('assets/doctor/doctor_1.png'),
-//                 fit: BoxFit.cover)),
-//       ),
-//     );
-//   }
-// }

@@ -60,7 +60,7 @@ class DrugMisuseController extends GetxController {
             throw Exception(response.message);
         }
       } catch (e) {
-        GlobalToastWidget(message: e.toString());
+        GlobalToastWidget(e.toString());
       }
     } else {
       isSearch.value = false;

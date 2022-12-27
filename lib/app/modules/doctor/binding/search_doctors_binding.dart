@@ -6,7 +6,7 @@ import '../controller/search_doctors_controller.dart';
 class SearchDoctorsBinding implements Bindings {
   @override
   void dependencies() {
-    // Get.put(SearchDoctorsController());
-    Get.lazyPut(() => DoctorSearchController(), fenix: true);
+    Get.put(DoctorSearchController(), permanent: true);
+    // Get.lazyPut(() => DoctorSearchController(), fenix: true);
   }
 }

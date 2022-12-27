@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
-import '../../../theme/colors.dart';
+import '../../../theme/color_path.dart';
 import '../../../theme/texts.dart';
 import '../controller/profile_setting_controller.dart';
 import '../widgets/profile_setting_widget.dart';
@@ -24,7 +24,7 @@ class ProfileSettingView extends GetView<ProfileSettingController> {
             },
             child: Container(
               alignment: Alignment.centerLeft,
-              padding: EdgeInsets.only(left: 18.w),
+              padding: const EdgeInsets.only(left: 18).w,
               child: Image.asset(
                 'assets/doctor/back_arrow.png',
                 width: 21.w,
@@ -33,7 +33,7 @@ class ProfileSettingView extends GetView<ProfileSettingController> {
             ),
           ),
           title: Container(
-            padding: EdgeInsets.symmetric(horizontal: 4),
+            padding: const EdgeInsets.symmetric(horizontal: 4).w,
             child: Text(
               '프로필 설정',
               style: TextPath.Heading2F18W600.copyWith(
@@ -49,25 +49,20 @@ class ProfileSettingView extends GetView<ProfileSettingController> {
           },
           child: SafeArea(
             child: SingleChildScrollView(
-              physics: ClampingScrollPhysics(),
+              physics: const ClampingScrollPhysics(),
               child: Stack(
                 children: [
                   Container(
-                    child: Container(
-                      //width: screenSize(context).width,
-                      //height: screenSize(context).height,
-                      padding: EdgeInsets.fromLTRB(20.w, 20.w, 20.w, 0),
-                      child: Column(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          //유저 데이터
-                          ProfileSettingForm(),
-                          SizedBox(height: 40.w),
-                          // 액션리스트
-                          SizedBox(
-                              height: MediaQuery.of(context).padding.bottom),
-                        ],
-                      ),
+                    padding: EdgeInsets.fromLTRB(20.w, 20.w, 20.w, 0),
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        //유저 데이터
+                        const ProfileSettingForm(),
+                        SizedBox(height: 40.w),
+                        // 액션리스트
+                        SizedBox(height: MediaQuery.of(context).padding.bottom),
+                      ],
                     ),
                   )
                 ],
@@ -80,6 +75,8 @@ class ProfileSettingView extends GetView<ProfileSettingController> {
 
 // profile setting form
 class ProfileSettingForm extends GetView<ProfileSettingController> {
+  const ProfileSettingForm({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Obx(
@@ -151,7 +148,7 @@ class ProfileSettingForm extends GetView<ProfileSettingController> {
                 hintStyle: TextPath.TextF14W500.copyWith(
                   color: ColorPath.TextGrey4H9E9E9E,
                 ),
-                contentPadding: EdgeInsets.symmetric(
+                contentPadding: const EdgeInsets.symmetric(
                   vertical: 14,
                   horizontal: 8,
                 ),
@@ -193,7 +190,7 @@ class ProfileSettingForm extends GetView<ProfileSettingController> {
                 hintStyle: TextPath.TextF14W500.copyWith(
                   color: ColorPath.TextGrey4H9E9E9E,
                 ),
-                contentPadding: EdgeInsets.symmetric(
+                contentPadding: const EdgeInsets.symmetric(
                   vertical: 14,
                   horizontal: 8,
                 ),
@@ -235,7 +232,7 @@ class ProfileSettingForm extends GetView<ProfileSettingController> {
                 hintStyle: TextPath.TextF14W500.copyWith(
                   color: ColorPath.TextGrey4H9E9E9E,
                 ),
-                contentPadding: EdgeInsets.symmetric(
+                contentPadding: const EdgeInsets.symmetric(
                   vertical: 14,
                   horizontal: 8,
                 ),
@@ -363,12 +360,13 @@ class ProfileSettingForm extends GetView<ProfileSettingController> {
                   hintStyle: TextPath.TextF14W500.copyWith(
                     color: ColorPath.TextGrey4H9E9E9E,
                   ),
-                  contentPadding: EdgeInsets.symmetric(
+                  contentPadding: const EdgeInsets.symmetric(
                     vertical: 14,
                     horizontal: 8,
                   ),
                   suffixIcon: Padding(
-                    padding: EdgeInsets.fromLTRB(18.75, 12.5, 22.75, 12.5),
+                    padding:
+                        const EdgeInsets.fromLTRB(18.75, 12.5, 22.75, 12.5),
                     child: Image.asset(
                       'assets/myinfo/fa_calendar.png',
                       width: 14.86,
@@ -394,7 +392,7 @@ class ProfileSettingAction extends GetView<ProfileSettingController> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
+      padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
       child: Row(
         children: [
           SizedBox(

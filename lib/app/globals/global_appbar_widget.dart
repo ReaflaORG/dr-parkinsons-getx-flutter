@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 
-import '../theme/colors.dart';
+import '../theme/color_path.dart';
 import '../theme/texts.dart';
 
 /// 글로벌 앱바 위젯
@@ -26,14 +28,18 @@ class GlobalAppBarWidget extends StatelessWidget
     super.key,
     required this.title,
     required this.appBar,
-    this.elevation = 1,
-    this.center = true,
+    this.elevation = 0,
+    this.backgroundColor = Colors.white,
     this.leadingIcon = const Icon(
-      Icons.arrow_back_ios_new_rounded,
+      Icons.keyboard_backspace_rounded,
       color: Colors.black,
       size: 24,
     ),
-    this.isLeadingVisible = true,
+    this.toolbarHeight = 62,
+    this.titleSpacing = 20,
+    this.isLeadingVisible = false,
+    this.centerTitle = false,
+    this.automaticallyImplyLeading = false,
     this.onBack,
     this.actions,
   });
@@ -41,44 +47,37 @@ class GlobalAppBarWidget extends StatelessWidget
   final AppBar appBar;
   final String title;
   final double elevation;
-  final bool center;
+  final Color backgroundColor;
   final Icon leadingIcon;
+  final double toolbarHeight;
+  final double titleSpacing;
+  final bool centerTitle;
+  final bool automaticallyImplyLeading;
   final bool isLeadingVisible;
   final Function? onBack;
   final List<Widget>? actions;
 
   @override
-  Size get preferredSize => const Size.fromHeight(38);
+  Size get preferredSize => Size.fromHeight(62.w);
 
   @override
   Widget build(BuildContext context) {
     return PreferredSize(
-      preferredSize: const Size.fromHeight(40),
+      preferredSize: Size.fromHeight(62.w),
       child: AppBar(
-        backgroundColor: Colors.white,
+        backgroundColor: backgroundColor,
         elevation: elevation,
-        leading: isLeadingVisible
+        centerTitle: centerTitle,
+        toolbarHeight: toolbarHeight.w,
+        automaticallyImplyLeading: automaticallyImplyLeading,
+        titleSpacing: titleSpacing.w,
+        leading: !isLeadingVisible
             ? IconButton(
                 padding: EdgeInsets.zero,
                 icon: leadingIcon,
-                onPressed: () =>
-                    onBack != null ? onBack!() : Navigator.pop(context),
+                onPressed: () => onBack != null ? onBack!() : Get.back(),
               )
-            : const SizedBox.shrink(),
-        // leading: Transform.scale(
-        //   scale: 0.5,
-        //   child: IconButton(
-        //     padding: EdgeInsets.zero,
-        //     icon: const Icon(
-        //       Icons.arrow_back_ios_new_rounded,
-        //       color: Colors.black,
-        //       size: 44,
-        //     ),
-        //     // icon: Image.asset('assets/icons/btn_arrow_back.webp'),
-        //     onPressed: () => Get.back(),
-        //   ),
-        // ),
-        centerTitle: center,
+            : null,
         title: Text(
           title,
           style: TextPath.Heading2F18W600.copyWith(

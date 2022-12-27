@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
+import '../../../globals/global_dialog_widget.dart';
 import '../../../routes/app_pages.dart';
-import '../../../theme/colors.dart';
+import '../../../theme/color_path.dart';
 import '../../../theme/texts.dart';
 import '../controller/my_symptoms_controller.dart';
 import '../models/my_symptoms_item_model.dart';
-import '../widgets/show_dialog_two_options.dart';
 
 const String type = 'delete_symptom';
 const String alertTitleMsg = '정말 삭제하시겠습니까?';
@@ -33,7 +33,7 @@ class MySymptomsView extends GetView<MySymptomsController> {
           },
           child: Container(
             alignment: Alignment.centerLeft,
-            padding: EdgeInsets.only(left: 18.w),
+            padding: const EdgeInsets.only(left: 18).w,
             child: Image.asset(
               'assets/doctor/back_arrow.png',
               width: 21.w,
@@ -42,7 +42,7 @@ class MySymptomsView extends GetView<MySymptomsController> {
           ),
         ),
         title: Container(
-          padding: EdgeInsets.symmetric(horizontal: 4.w),
+          padding: const EdgeInsets.symmetric(horizontal: 4).w,
           child: Text(
             '내 증상 기록',
             style: TextPath.Heading2F18W600.copyWith(
@@ -53,7 +53,7 @@ class MySymptomsView extends GetView<MySymptomsController> {
         ),
         actions: [
           Container(
-            padding: EdgeInsets.fromLTRB(0.w, 10.w, 18.w, 10.w),
+            padding: const EdgeInsets.fromLTRB(0, 10, 18, 10).w,
             child: InkWell(
               onTap: () async {
                 await Get.toNamed(Routes.WRITE_MY_SYMPTOMS);
@@ -70,46 +70,58 @@ class MySymptomsView extends GetView<MySymptomsController> {
           ),
         ],
       ),
-      body: SingleChildScrollView(
-        physics: const ClampingScrollPhysics(),
-        child: Stack(
-          children: [
-            Container(
-              padding: EdgeInsets.symmetric(horizontal: 20.w),
-              child: Column(
-                children: [
-                  SizedBox(height: 20.w),
-                  Obx(
-                    () => ListView.builder(
-                      padding: const EdgeInsets.only(top: 10),
-                      shrinkWrap: true,
-                      physics: const NeverScrollableScrollPhysics(),
-                      itemCount: controller.listArray.length,
-                      itemBuilder: (BuildContext context, int index) {
-                        MySymptomsModel item = controller.listArray[index];
-                        return MySymptomsItemWidget(
-                          onClick: () async {
-                            await Get.toNamed(
-                              Routes.VIEW_MY_SYMPTOMS,
-                              arguments: {
-                                'id':
-                                    controller.listArray[index].symptomHistoryId
-                              },
-                            );
-                            await controller.getMySymptomsData();
-                          },
-                          item: item,
-                          controller: controller,
-                        );
-                      },
-                    ),
+      body: controller.listArray.isEmpty
+          ? SizedBox(
+              width: double.infinity,
+              height: Get.height - 150.w,
+              child: Center(
+                child: Text(
+                  '증상 기록이 없습니다\r\n오른쪽 상단에 추가하기 버튼을 눌러주세요!',
+                  textAlign: TextAlign.center,
+                  style: TextPath.TextF16W400.copyWith(
+                    color: ColorPath.TextGrey1H212121,
                   ),
-                ],
+                ),
               ),
             )
-          ],
-        ),
-      ),
+          : SingleChildScrollView(
+              physics: const ClampingScrollPhysics(),
+              child: Stack(
+                children: [
+                  Container(
+                    padding: const EdgeInsets.symmetric(horizontal: 20).w,
+                    child: Column(
+                      children: [
+                        SizedBox(height: 20.w),
+                        ListView.builder(
+                          padding: const EdgeInsets.only(top: 10).w,
+                          shrinkWrap: true,
+                          physics: const NeverScrollableScrollPhysics(),
+                          itemCount: controller.listArray.length,
+                          itemBuilder: (BuildContext context, int index) {
+                            MySymptomsModel item = controller.listArray[index];
+                            return MySymptomsItemWidget(
+                              onClick: () async {
+                                await Get.toNamed(
+                                  Routes.VIEW_MY_SYMPTOMS,
+                                  arguments: {
+                                    'id': controller
+                                        .listArray[index].symptomHistoryId
+                                  },
+                                );
+                                await controller.getMySymptomsData();
+                              },
+                              item: item,
+                              controller: controller,
+                            );
+                          },
+                        ),
+                      ],
+                    ),
+                  )
+                ],
+              ),
+            ),
     );
   }
 }
@@ -143,7 +155,7 @@ class MySymptomsItemWidget extends StatelessWidget {
                 children: [
                   Container(
                     height: 50.w,
-                    padding: EdgeInsets.only(left: 10.w),
+                    padding: const EdgeInsets.only(left: 10).w,
                     alignment: Alignment.centerLeft,
                     child: Text(
                       item.title,
@@ -155,7 +167,7 @@ class MySymptomsItemWidget extends StatelessWidget {
                   const Spacer(),
                   Container(
                     height: 50,
-                    padding: EdgeInsets.only(right: 20.w),
+                    padding: const EdgeInsets.only(right: 20).w,
                     alignment: Alignment.centerRight,
                     child: Text(
                       item.createdAt.toString().substring(0, 10),
@@ -166,8 +178,12 @@ class MySymptomsItemWidget extends StatelessWidget {
                   ),
                   InkWell(
                     onTap: () {
-                      Get.toNamed(Routes.EDIT_MY_SYMPTOMS,
-                          arguments: {'id': item.symptomHistoryId});
+                      Get.toNamed(
+                        Routes.EDIT_MY_SYMPTOMS,
+                        arguments: {
+                          'id': item.symptomHistoryId,
+                        },
+                      );
                     },
                     child: Ink.image(
                       image: const AssetImage(
@@ -179,21 +195,23 @@ class MySymptomsItemWidget extends StatelessWidget {
                   ),
                   SizedBox(width: 10.w),
                   InkWell(
-                    onTap: () async {
-                      await showAlertTwoOptionsDialog(
-                        handleOk: () async {
-                          await controller
-                              .deleteMySymptomsData(item.symptomHistoryId);
-                        },
-                        context: context,
+                    onTap: () {
+                      GlobalSymptomRecordWidget(
                         alertTitleMsg: alertTitleMsg,
                         alertContentMsg: alertContentMsg,
-                        firstButtonTitle: firstButtonTitle,
-                        secondButtonTitle: secondButtonTitle,
+                        onCancelPressed: () {
+                          Get.back();
+                        },
+                        onOkPressed: () {
+                          controller.deleteMySymptomsData(
+                            item.symptomHistoryId,
+                          );
+                          Get.back();
+                        },
                       );
                     },
                     child: Container(
-                      padding: EdgeInsets.only(right: 10.w),
+                      padding: const EdgeInsets.only(right: 10).w,
                       child: Ink.image(
                         image: const AssetImage(
                           'assets/my_symptoms/trash_icon.png',

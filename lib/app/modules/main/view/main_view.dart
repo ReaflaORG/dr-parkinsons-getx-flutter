@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
-import '../../../theme/colors.dart';
+import '../../../theme/color_path.dart';
 import '../../../theme/texts.dart';
 import '../controller/main_controller.dart';
 
@@ -16,7 +16,7 @@ class MainView extends GetView<MainController> {
         body: controller.handleScreen(),
         bottomNavigationBar: Container(
           // height: Platform.isIOS ? 62.h : 62.h,
-          padding: EdgeInsets.only(top: 4.w),
+          padding: const EdgeInsets.only(top: 4).w,
           decoration: BoxDecoration(
             color: ColorPath.BackgroundWhite,
             border: Border.all(
@@ -24,14 +24,14 @@ class MainView extends GetView<MainController> {
               color: ColorPath.Border2HECEFF1,
             ),
             borderRadius: BorderRadius.only(
-              topRight: Radius.circular(12.r),
-              topLeft: Radius.circular(12.r),
+              topRight: const Radius.circular(12).r,
+              topLeft: const Radius.circular(12).r,
             ),
           ),
           child: ClipRRect(
             borderRadius: BorderRadius.only(
-              topLeft: Radius.circular(12.r),
-              topRight: Radius.circular(12.r),
+              topLeft: const Radius.circular(12).r,
+              topRight: const Radius.circular(12).r,
             ),
             child: BottomNavigationBar(
               type: BottomNavigationBarType.fixed,
@@ -93,7 +93,7 @@ class IconWidget extends GetView<MainController> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.only(bottom: 5.w),
+      padding: const EdgeInsets.only(bottom: 5).w,
       child: Image.asset(
         image,
         width: width.w,

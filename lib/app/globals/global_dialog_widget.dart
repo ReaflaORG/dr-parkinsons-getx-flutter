@@ -13,14 +13,14 @@ import 'package:get/get.dart';
 import 'package:logger/logger.dart';
 
 import '../service/permission_service.dart';
-import '../theme/colors.dart';
+import '../theme/color_path.dart';
 import '../theme/texts.dart';
 
 Future<dynamic> GlobalWillPopScopeDialogWidget({String? type}) =>
     Get.bottomSheet(
       Container(
-        padding: const EdgeInsets.all(10),
-        height: 160.h,
+        padding: const EdgeInsets.all(10).w,
+        height: 160.w,
         decoration: const BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.only(
@@ -31,7 +31,7 @@ Future<dynamic> GlobalWillPopScopeDialogWidget({String? type}) =>
         child: Column(
           children: [
             Padding(
-              padding: const EdgeInsets.all(20),
+              padding: const EdgeInsets.all(20).w,
               child: Wrap(
                 children: [
                   Text(
@@ -45,13 +45,13 @@ Future<dynamic> GlobalWillPopScopeDialogWidget({String? type}) =>
                 ],
               ),
             ),
-            SizedBox(height: 20.h),
+            SizedBox(height: 20.w),
             Row(
               children: [
                 Expanded(
                   flex: 1,
                   child: SizedBox(
-                    height: 50.h,
+                    height: 50.w,
                     child: ElevatedButton(
                       onPressed: () {
                         Get.back();
@@ -82,7 +82,7 @@ Future<dynamic> GlobalWillPopScopeDialogWidget({String? type}) =>
                 Expanded(
                   flex: 1,
                   child: SizedBox(
-                    height: 50.h,
+                    height: 50.w,
                     child: ElevatedButton(
                       child: const Text(
                         '계속진행',
@@ -121,7 +121,7 @@ Future<dynamic> GlobalPermissionModalOpenAppSettingsWidget({
           title: const Text('권한을 허용해주세요'),
           content: Column(
             children: [
-              SizedBox(height: 10.h),
+              SizedBox(height: 10.w),
               SizedBox(
                 width: Get.width,
                 child: Text(
@@ -129,14 +129,14 @@ Future<dynamic> GlobalPermissionModalOpenAppSettingsWidget({
                   textAlign: TextAlign.left,
                 ),
               ),
-              SizedBox(height: 10.h),
+              SizedBox(height: 10.w),
               Container(
-                padding: const EdgeInsets.fromLTRB(10, 5, 10, 5),
+                padding: const EdgeInsets.fromLTRB(10, 5, 10, 5).w,
                 width: Get.width,
                 decoration: BoxDecoration(
                   color: Colors.grey.shade200,
-                  borderRadius: const BorderRadius.all(
-                    Radius.circular(5),
+                  borderRadius: BorderRadius.all(
+                    const Radius.circular(5).r,
                   ),
                 ),
                 child: Column(
@@ -218,7 +218,7 @@ Future<dynamic> GlobalEmergencyModalWidget({required BuildContext context}) =>
               const SizedBox(height: 30),
               SizedBox(
                 width: 80.w,
-                height: 80.h,
+                height: 80.w,
                 child: Image.asset('assets/images/icons/page2/80 alert.png'),
               ),
               const SizedBox(height: 12),
@@ -266,7 +266,7 @@ Future<dynamic> GlobalEmergencyModalWidget({required BuildContext context}) =>
                             bottomLeft: Radius.circular(16),
                           ),
                         ),
-                        height: 48.h,
+                        height: 48.w,
                         child: Text(
                           '취소',
                           style: TextPath.TextF14W500.copyWith(
@@ -290,7 +290,7 @@ Future<dynamic> GlobalEmergencyModalWidget({required BuildContext context}) =>
                             borderRadius: const BorderRadius.only(
                               bottomRight: Radius.circular(16),
                             )),
-                        height: 48.h,
+                        height: 48.w,
                         child: Text(
                           '전송',
                           style: TextPath.TextF14W500.copyWith(
@@ -316,28 +316,30 @@ Future<dynamic> GlobalEmergencyModalWidget2({required BuildContext context}) =>
       barrierDismissible: true,
       builder: (BuildContext context) {
         return AlertDialog(
-          shape: const RoundedRectangleBorder(
-            borderRadius: BorderRadius.all(Radius.circular(16)),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.all(
+              const Radius.circular(16).r,
+            ),
           ),
           content: Column(
             mainAxisSize: MainAxisSize.min,
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              const SizedBox(height: 30),
+              SizedBox(height: 30.w),
               SizedBox(
                 width: 80.w,
-                height: 80.h,
+                height: 80.w,
                 child: Image.asset('assets/images/icons/page2/80 alert.png'),
               ),
-              const SizedBox(height: 12),
+              SizedBox(height: 12.w),
               Text(
                 '응급 문자 보내기',
                 style: TextPath.Heading2F18W600.copyWith(
                   color: ColorPath.TextGrey1H212121,
                 ),
               ),
-              const SizedBox(height: 4),
+              SizedBox(height: 4.w),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -349,7 +351,7 @@ Future<dynamic> GlobalEmergencyModalWidget2({required BuildContext context}) =>
                   ),
                 ],
               ),
-              const SizedBox(height: 40),
+              SizedBox(height: 40.w),
               Row(
                 children: [
                   Expanded(
@@ -366,7 +368,7 @@ Future<dynamic> GlobalEmergencyModalWidget2({required BuildContext context}) =>
                             bottomLeft: Radius.circular(16),
                           ),
                         ),
-                        height: 48.h,
+                        height: 48.w,
                         child: Text(
                           '뒤로가기',
                           style: TextPath.TextF14W500.copyWith(
@@ -389,7 +391,7 @@ Future<dynamic> GlobalEmergencyModalWidget2({required BuildContext context}) =>
                             borderRadius: const BorderRadius.only(
                               bottomRight: Radius.circular(16),
                             )),
-                        height: 48.h,
+                        height: 48.w,
                         child: Text(
                           '프로필 설정',
                           style: TextPath.TextF14W500.copyWith(
@@ -430,7 +432,7 @@ class GlobalDrugmisuseModalWidget extends StatelessWidget {
           child: Container(
             padding: const EdgeInsets.all(20),
             width: MediaQuery.of(context).size.width - 20,
-            height: 200.h,
+            height: 200.w,
             color: Colors.white,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -446,23 +448,24 @@ class GlobalDrugmisuseModalWidget extends StatelessWidget {
                     ? Text(
                         '$medicineName(은/는)\r\n파킨슨 증상을 악화시킬 수 있는 약물이므로,\r\n전문의와 상의하시기 바랍니다.',
                         style: TextPath.TextF14W400.copyWith(
-                          color: Color(0XFF475467),
-                        ))
-                    : Text('검색 결과 없음'),
-                SizedBox(height: 30),
+                          color: const Color(0XFF475467),
+                        ),
+                      )
+                    : const Text('검색 결과 없음'),
+                SizedBox(height: 30.w),
                 SizedBox(
                   width: double.infinity,
-                  height: 44.h,
+                  height: 44.w,
                   child: ElevatedButton(
                     onPressed: okOnPressed,
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: ColorPath.PrimaryDarkColor,
+                    ),
                     child: Text(
                       '확인',
                       style: TextPath.Heading3F16W600.copyWith(
                         color: Colors.white,
                       ),
-                    ),
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: ColorPath.PrimaryDarkColor,
                     ),
                   ),
                 ),
@@ -475,51 +478,6 @@ class GlobalDrugmisuseModalWidget extends StatelessWidget {
   }
 }
 
-// Future<dynamic> GlobalDrugmisuseModalWidget({
-//   required String medicineName,
-//   void Function()? okOnPressed,
-// }) =>
-//     Get.dialog(
-//       Dialog(
-//         child: ClipRRect(
-//           borderRadius: BorderRadius.circular(15),
-//           child: Container(
-//             padding: const EdgeInsets.all(20),
-//             width:
-//                 MediaQuery.of(Get.overlayContext as BuildContext).size.width -
-//                     10.w,
-//             height: 195.h,
-//             child: Column(
-//               mainAxisAlignment: MainAxisAlignment.spaceBetween,
-//               crossAxisAlignment: CrossAxisAlignment.start,
-//               children: [
-//                 SizedBox(height: 20),
-//                 Text(
-//                   title,
-//                   style: TextPath.Heading2F18W600,
-//                 ),
-//                 SizedBox(height: 20),
-//                 Text(
-//                     '$title(은/는)\r\n파킨슨 증상을 악화시킬 수 있는 약물이므로,\r\n전문의와 상의하시기 바랍니다.'),
-//                 SizedBox(height: 20),
-//                 SizedBox(
-//                   width: double.infinity,
-//                   height: 44.h,
-//                   child: ElevatedButton(
-//                     onPressed: okOnPressed,
-//                     child: Text('확인'),
-//                   ),
-//                 ),
-//               ],
-//             ),
-//           ),
-//         ),
-//       ),
-//       name: 'GlobalDrugmisuseModalWidget',
-//       barrierDismissible: false,
-//       routeSettings: const RouteSettings(name: 'GlobalDrugmisuseModalWidget'),
-//     );
-
 Future<dynamic> GlobalAppVersionUpgradeModalWidget({
   Future<void> Function()? cancelOnPressed,
   Future<void> Function()? okOnPressed,
@@ -531,7 +489,7 @@ Future<dynamic> GlobalAppVersionUpgradeModalWidget({
           title: const Text('앱 업데이트'),
           content: Column(
             children: [
-              SizedBox(height: 10.h),
+              SizedBox(height: 10.w),
               SizedBox(
                 width: Get.width,
                 child: Text(
@@ -539,7 +497,7 @@ Future<dynamic> GlobalAppVersionUpgradeModalWidget({
                   textAlign: TextAlign.left,
                 ),
               ),
-              SizedBox(height: 10.h),
+              SizedBox(height: 10.w),
             ],
           ),
           actions: [
@@ -581,8 +539,10 @@ Future<dynamic> GlobalMakeAlarm({
         return Obx(
           () => AlertDialog(
             backgroundColor: ColorPath.Background1HECEFF1,
-            shape: const RoundedRectangleBorder(
-              borderRadius: BorderRadius.all(Radius.circular(16)),
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.all(
+                const Radius.circular(16).r,
+              ),
             ),
             content: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -590,7 +550,11 @@ Future<dynamic> GlobalMakeAlarm({
               children: [
                 Container(
                   padding: const EdgeInsets.only(
-                      top: 30, left: 20, right: 20, bottom: 30),
+                    top: 30,
+                    left: 20,
+                    right: 20,
+                    bottom: 30,
+                  ).w,
                   child: Column(
                     children: <Widget>[
                       Container(
@@ -647,18 +611,19 @@ Future<dynamic> GlobalMakeAlarm({
                                     'assets/images/icons/3d/36outdoor.png',
                                 text: MissionController.to.alarm[3]),
                             Alarm(
-                                isPick: MissionController.to.alarm[4] ==
-                                    MissionController.to.type.value,
-                                ontap: () async {
-                                  await MissionController.to.updateType(
-                                      MissionController.to.alarm[4]);
-                                },
-                                imageUrl: 'assets/images/icons/3d/36heart.png',
-                                text: MissionController.to.alarm[4]),
+                              isPick: MissionController.to.alarm[4] ==
+                                  MissionController.to.type.value,
+                              ontap: () async {
+                                await MissionController.to
+                                    .updateType(MissionController.to.alarm[4]);
+                              },
+                              imageUrl: 'assets/images/icons/3d/36heart.png',
+                              text: MissionController.to.alarm[4],
+                            ),
                           ],
                         ),
                       ),
-                      const SizedBox(height: 30),
+                      SizedBox(height: 30.w),
                       Container(
                         alignment: Alignment.centerLeft,
                         child: Text(
@@ -668,7 +633,7 @@ Future<dynamic> GlobalMakeAlarm({
                           ),
                         ),
                       ),
-                      const SizedBox(height: 12),
+                      SizedBox(height: 12.w),
                       InkWell(
                         onTap: () {
                           Future<TimeOfDay?> selectedTime = showTimePicker(
@@ -706,7 +671,7 @@ Future<dynamic> GlobalMakeAlarm({
                               Container(
                                 alignment: Alignment.center,
                                 width: 110.w,
-                                height: 17.h,
+                                height: 17.w,
                                 child: Text(
                                   MissionController.to.dateFormatString.value,
                                   style: TextPath.TextF14W500.copyWith(
@@ -716,7 +681,7 @@ Future<dynamic> GlobalMakeAlarm({
                               Container(
                                 alignment: Alignment.centerRight,
                                 width: 70.w,
-                                height: 18.h,
+                                height: 18.w,
                                 child: Text(
                                   '변경',
                                   style: TextPath.TextF12W400.copyWith(
@@ -793,252 +758,278 @@ Future<dynamic> GlobalMakeAlarm({
       },
     );
 
-///*투약 수정 모달
-Future<dynamic> GlobalUpdateAlarm({
-  required BuildContext context,
+/// 미션 수정 다이얼로그
+///
+/// [context] BuildContext : BuildContext
+///
+/// [id] int : 미션 아이디
+///
+/// [isStatus] bool : 미션 상태
+Future<dynamic> GlobalMissionUpdateAlarm({
   required int id,
   required bool isStatus,
-}) =>
-    showDialog(
-      context: context,
-      barrierDismissible: true,
-      builder: (BuildContext context) {
-        return Obx(
-          () => AlertDialog(
-            backgroundColor: ColorPath.Background1HECEFF1,
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.all(
-                Radius.circular(16.r),
-              ),
-            ),
-            content: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Container(
-                  padding: const EdgeInsets.only(
-                    top: 30,
-                    left: 20,
-                    right: 20,
-                    bottom: 30,
+}) {
+  return Get.dialog(
+    Obx(
+      () => AlertDialog(
+        backgroundColor: ColorPath.Background1HECEFF1,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.all(
+            const Radius.circular(16).r,
+          ),
+        ),
+        content: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Container(
+              padding: const EdgeInsets.only(
+                top: 30,
+                left: 20,
+                right: 20,
+                bottom: 30,
+              ).w,
+              child: Column(
+                children: [
+                  Container(
+                    alignment: Alignment.centerLeft,
+                    child: Text(
+                      '알람 종류 선택',
+                      style: TextPath.Heading3F16W600.copyWith(
+                        color: ColorPath.TextGrey1H212121,
+                      ),
+                    ),
                   ),
-                  child: Column(
-                    children: [
-                      Container(
-                        alignment: Alignment.centerLeft,
-                        child: Text(
-                          '알람 종류 선택',
-                          style: TextPath.Heading3F16W600.copyWith(
-                            color: ColorPath.TextGrey1H212121,
-                          ),
-                        ),
-                      ),
-                      SizedBox(height: 14.w),
-                      SizedBox(
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceAround,
-                          children: [
-                            Alarm(
-                                isPick: MissionController.to.alarm[0] ==
-                                    MissionController.to.type.value,
-                                ontap: () async {
-                                  await MissionController.to.updateType(
-                                      MissionController.to.alarm[0]);
-                                },
-                                imageUrl: 'assets/images/icons/3d/48pill.png',
-                                text: MissionController.to.alarm[0]),
-                            Alarm(
-                              isPick: MissionController.to.alarm[1] ==
-                                  MissionController.to.type.value,
-                              ontap: () async {
-                                await MissionController.to
-                                    .updateType(MissionController.to.alarm[1]);
-                              },
-                              imageUrl: 'assets/images/icons/3d/36water.png',
-                              text: MissionController.to.alarm[1],
-                            ),
-                            Alarm(
-                              isPick: MissionController.to.alarm[2] ==
-                                  MissionController.to.type.value,
-                              ontap: () async {
-                                await MissionController.to.updateType(
-                                  MissionController.to.alarm[2],
-                                );
-                              },
-                              imageUrl: 'assets/images/icons/3d/36vegi.png',
-                              text: MissionController.to.alarm[2],
-                            ),
-                            Alarm(
-                              isPick: MissionController.to.alarm[3] ==
-                                  MissionController.to.type.value,
-                              ontap: () async {
-                                await MissionController.to.updateType(
-                                  MissionController.to.alarm[3],
-                                );
-                              },
-                              imageUrl: 'assets/images/icons/3d/36outdoor.png',
-                              text: MissionController.to.alarm[3],
-                            ),
-                            Alarm(
-                              isPick: MissionController.to.alarm[4] ==
-                                  MissionController.to.type.value,
-                              ontap: () async {
-                                await MissionController.to.updateType(
-                                  MissionController.to.alarm[4],
-                                );
-                              },
-                              imageUrl: 'assets/images/icons/3d/36heart.png',
-                              text: MissionController.to.alarm[4],
-                            ),
-                          ],
-                        ),
-                      ),
-                      SizedBox(height: 30.w),
-                      Container(
-                        alignment: Alignment.centerLeft,
-                        child: Text(
-                          '시간 설정하기',
-                          style: TextPath.Heading3F16W600.copyWith(
-                            color: ColorPath.TextGrey1H212121,
-                          ),
-                        ),
-                      ),
-                      SizedBox(height: 12.w),
-                      InkWell(
-                        onTap: () {
-                          Future<TimeOfDay?> selectedTime = showTimePicker(
-                            initialEntryMode: TimePickerEntryMode.input,
-                            context: context,
-                            initialTime: TimeOfDay.now(),
-                          );
-                          // 여기서 사용자가 시간을 선택할 때까지 멈춤
-                          selectedTime.then((timeofDay) {
-                            if (timeofDay != null) {
-                              String temp_string =
-                                  '${timeofDay.hour.toString().padLeft(2, '0')}시${timeofDay.minute.toString().padLeft(2, '0')}분';
-                              int temp_value = int.parse(
-                                  '${timeofDay.hour.toString().padLeft(2, '0')}${timeofDay.minute.toString().padLeft(2, '0')}');
-                              Logger().d(
-                                  '${timeofDay.hour.toString().padLeft(2, '0')}시${timeofDay.minute.toString().padLeft(2, '0')}분');
-                              MissionController.to
-                                  .updateTime(temp_value, temp_string);
-                            }
-                          });
-                        },
-                        child: Container(
-                          alignment: Alignment.center,
-                          padding: const EdgeInsets.all(10),
-                          width: double.infinity,
-                          decoration: BoxDecoration(
-                            color: ColorPath.TertiaryLightColor,
-                            borderRadius: BorderRadius.all(
-                              Radius.circular(6.r),
-                            ),
-                          ),
-                          child: Row(
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              const Icon(Icons.access_time),
-                              SizedBox(width: 10.w),
-                              Container(
-                                alignment: Alignment.center,
-                                width: 110.w,
-                                height: 17.h,
-                                child: Text(
-                                  MissionController.to.dateFormatString.value,
-                                  style: TextPath.TextF14W500.copyWith(
-                                    color: ColorPath.TextGrey1H212121,
-                                  ),
-                                ),
-                              ),
-                              Container(
-                                alignment: Alignment.centerRight,
-                                width: 70.w,
-                                height: 18.h,
-                                child: Text(
-                                  '변경',
-                                  style: TextPath.TextF12W400.copyWith(
-                                    color: ColorPath.TextGrey2H424242,
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                SizedBox(
-                  height: 48.w,
-                  child: Row(
-                    children: [
-                      Expanded(
-                        flex: 1,
-                        child: GestureDetector(
-                          onTap: () {
-                            MissionController.to.deleteMission(mission_id: id);
-                            Get.back();
+                  SizedBox(height: 14.w),
+                  SizedBox(
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: [
+                        Alarm(
+                          isPick: MissionController.to.alarm[0] ==
+                              MissionController.to.type.value,
+                          ontap: () {
+                            MissionController.to.updateType(
+                              MissionController.to.alarm[0],
+                            );
                           },
-                          child: Container(
+                          imageUrl: 'assets/images/icons/3d/48pill.png',
+                          text: MissionController.to.alarm[0],
+                        ),
+                        Alarm(
+                          isPick: MissionController.to.alarm[1] ==
+                              MissionController.to.type.value,
+                          ontap: () {
+                            MissionController.to.updateType(
+                              MissionController.to.alarm[1],
+                            );
+                          },
+                          imageUrl: 'assets/images/icons/3d/36water.png',
+                          text: MissionController.to.alarm[1],
+                        ),
+                        Alarm(
+                          isPick: MissionController.to.alarm[2] ==
+                              MissionController.to.type.value,
+                          ontap: () {
+                            MissionController.to.updateType(
+                              MissionController.to.alarm[2],
+                            );
+                          },
+                          imageUrl: 'assets/images/icons/3d/36vegi.png',
+                          text: MissionController.to.alarm[2],
+                        ),
+                        Alarm(
+                          isPick: MissionController.to.alarm[3] ==
+                              MissionController.to.type.value,
+                          ontap: () {
+                            MissionController.to.updateType(
+                              MissionController.to.alarm[3],
+                            );
+                          },
+                          imageUrl: 'assets/images/icons/3d/36outdoor.png',
+                          text: MissionController.to.alarm[3],
+                        ),
+                        Alarm(
+                          isPick: MissionController.to.alarm[4] ==
+                              MissionController.to.type.value,
+                          ontap: () {
+                            MissionController.to.updateType(
+                              MissionController.to.alarm[4],
+                            );
+                          },
+                          imageUrl: 'assets/images/icons/3d/36heart.png',
+                          text: MissionController.to.alarm[4],
+                        ),
+                      ],
+                    ),
+                  ),
+                  SizedBox(height: 30.w),
+                  Container(
+                    alignment: Alignment.centerLeft,
+                    child: Text(
+                      '시간 설정하기',
+                      style: TextPath.Heading3F16W600.copyWith(
+                        color: ColorPath.TextGrey1H212121,
+                      ),
+                    ),
+                  ),
+                  SizedBox(height: 12.w),
+                  InkWell(
+                    onTap: () {
+                      Future<TimeOfDay?> selectedTime = showTimePicker(
+                        initialEntryMode: TimePickerEntryMode.input,
+                        context: Get.overlayContext as BuildContext,
+                        initialTime: TimeOfDay.now(),
+                      );
+                      // 여기서 사용자가 시간을 선택할 때까지 멈춤
+                      selectedTime.then((timeofDay) {
+                        if (timeofDay != null) {
+                          String temp_string =
+                              '${timeofDay.hour.toString().padLeft(2, '0')}시${timeofDay.minute.toString().padLeft(2, '0')}분';
+                          int temp_value = int.parse(
+                              '${timeofDay.hour.toString().padLeft(2, '0')}${timeofDay.minute.toString().padLeft(2, '0')}');
+                          Logger().d(
+                              '${timeofDay.hour.toString().padLeft(2, '0')}시${timeofDay.minute.toString().padLeft(2, '0')}분');
+                          MissionController.to
+                              .updateTime(temp_value, temp_string);
+                        }
+                      });
+                    },
+                    child: Container(
+                      alignment: Alignment.center,
+                      padding: const EdgeInsets.all(10).w,
+                      width: double.infinity,
+                      decoration: BoxDecoration(
+                        color: ColorPath.TertiaryLightColor,
+                        borderRadius: BorderRadius.all(
+                          const Radius.circular(6).r,
+                        ),
+                      ),
+                      child: Row(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          const Icon(Icons.access_time),
+                          SizedBox(width: 10.w),
+                          Container(
                             alignment: Alignment.center,
-                            decoration: BoxDecoration(
-                                color: ColorPath.BackgroundWhite,
-                                borderRadius: BorderRadius.only(
-                                  bottomLeft: Radius.circular(16.r),
-                                )),
-                            height: 48,
+                            width: 110.w,
+                            height: 17.w,
                             child: Text(
-                              '삭제하기',
+                              MissionController.to.dateFormatString.value,
                               style: TextPath.TextF14W500.copyWith(
                                 color: ColorPath.TextGrey1H212121,
                               ),
                             ),
                           ),
-                        ),
-                      ),
-                      Expanded(
-                        flex: 1,
-                        child: GestureDetector(
-                          onTap: () {
-                            Logger().d(isStatus);
-                            if (isStatus) {
-                              GlobalToastWidget(message: '이미 완료(실패)한 미션입니다');
-
-                              return;
-                            }
-
-                            MissionController.to.updateMission(mission_id: id);
-                            Get.back();
-                          },
-                          child: Container(
-                            alignment: Alignment.center,
-                            decoration: BoxDecoration(
-                                color: ColorPath.PrimaryDarkColor,
-                                borderRadius: BorderRadius.only(
-                                  bottomRight: Radius.circular(16.r),
-                                )),
-                            height: 48,
+                          Container(
+                            alignment: Alignment.centerRight,
+                            width: 70.w,
+                            height: 18.w,
                             child: Text(
-                              '수정하기',
-                              style: TextPath.TextF14W500.copyWith(
-                                color: ColorPath.BackgroundWhite,
+                              '변경',
+                              style: TextPath.TextF12W400.copyWith(
+                                color: ColorPath.TextGrey2H424242,
                               ),
                             ),
                           ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            SizedBox(
+              height: 48.w,
+              child: Row(
+                children: [
+                  Expanded(
+                    flex: 1,
+                    child: GestureDetector(
+                      onTap: () async {
+                        await Future.wait([
+                          () async {
+                            MissionController.to.deleteMission(mission_id: id);
+                          }(),
+                          () async {
+                            Get.back();
+                          }(),
+                        ]);
+                      },
+                      child: Container(
+                        alignment: Alignment.center,
+                        decoration: BoxDecoration(
+                          color: ColorPath.BackgroundWhite,
+                          borderRadius: BorderRadius.only(
+                            bottomLeft: const Radius.circular(16).r,
+                          ),
+                        ),
+                        height: 48.w,
+                        child: Text(
+                          '삭제하기',
+                          style: TextPath.TextF14W500.copyWith(
+                            color: ColorPath.TextGrey1H212121,
+                          ),
                         ),
                       ),
-                    ],
+                    ),
                   ),
-                )
-              ],
-            ),
-            // ),
-            contentPadding: const EdgeInsets.all(0),
-          ),
-        );
-      },
-    );
+                  Expanded(
+                    flex: 1,
+                    child: GestureDetector(
+                      onTap: () async {
+                        if (isStatus) {
+                          GlobalToastWidget('이미 완료(실패)한 미션입니다');
+
+                          return;
+                        }
+
+                        await Future.wait([
+                          () async {
+                            MissionController.to.updateMission(mission_id: id);
+                          }(),
+                          () async {
+                            Get.back();
+                          }(),
+                        ]);
+                      },
+                      child: Container(
+                        alignment: Alignment.center,
+                        decoration: BoxDecoration(
+                          color: ColorPath.PrimaryDarkColor,
+                          borderRadius: BorderRadius.only(
+                            bottomRight: const Radius.circular(16).r,
+                          ),
+                        ),
+                        height: 48,
+                        child: Text(
+                          '수정하기',
+                          style: TextPath.TextF14W500.copyWith(
+                            color: ColorPath.BackgroundWhite,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            )
+          ],
+        ),
+        // ),
+        contentPadding: EdgeInsets.zero,
+      ),
+    ),
+  );
+}
+
+// showDialog(
+//   context: context,
+//   barrierDismissible: true,
+//   builder: (BuildContext context) {
+//     return
+//   },
+// );
 
 ///* 준비중입니다. 모달
 Future<dynamic> GlobalReadyModal({required BuildContext context}) => showDialog(
@@ -1056,7 +1047,11 @@ Future<dynamic> GlobalReadyModal({required BuildContext context}) => showDialog(
             children: [
               Container(
                 padding: EdgeInsets.only(
-                    top: 30.w, left: 20.w, right: 20.w, bottom: 20.w),
+                  top: 30,
+                  left: 20,
+                  right: 20.w,
+                  bottom: 20,
+                ).w,
                 child: Column(
                   children: <Widget>[
                     Container(
@@ -1102,3 +1097,127 @@ Future<dynamic> GlobalReadyModal({required BuildContext context}) => showDialog(
         );
       },
     );
+
+/// 내 증상 기록 모달
+Future<dynamic> GlobalSymptomRecordWidget({
+  required String alertTitleMsg,
+  required String alertContentMsg,
+  required void Function()? onCancelPressed,
+  required void Function()? onOkPressed,
+}) {
+  // return Get.dialog(
+  //   CupertinoAlertDialog(
+  //     title: Text(
+  //       alertTitleMsg,
+  //       style: TextPath.TextF18W600.copyWith(),
+  //     ),
+  //     content: Text(
+  //       alertContentMsg,
+  //       style: TextPath.TextF16W400.copyWith(),
+  //     ),
+  //     actions: [
+  //       CupertinoDialogAction(
+  //         isDefaultAction: true,
+  //         child: Text("Close"),
+  //       ),
+  //       CupertinoDialogAction(
+  //         isDefaultAction: true,
+  //         child: Text("Close"),
+  //       ),
+  //     ],
+  //   ),
+  // );
+  return Get.dialog(
+    AlertDialog(
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.all(
+          Radius.circular(16),
+        ),
+      ),
+      title: Text(
+        alertTitleMsg,
+        style: TextPath.TextF18W600.copyWith(),
+      ),
+      titlePadding: const EdgeInsets.fromLTRB(20, 20, 20, 0).w,
+      contentPadding: EdgeInsets.zero,
+      content: SizedBox(
+        width: double.infinity,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Padding(
+              padding: const EdgeInsets.fromLTRB(20, 20, 20, 0).w,
+              child: Text(
+                alertContentMsg,
+                style: TextPath.TextF16W400.copyWith(),
+              ),
+            ),
+            SizedBox(height: 24.w),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Expanded(
+                  child: SizedBox(
+                    height: 48.w,
+                    child: TextButton(
+                      onPressed: onCancelPressed,
+                      style: TextButton.styleFrom(
+                        foregroundColor: ColorPath.TextGrey2H424242,
+                        backgroundColor: Colors.white,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: const BorderRadius.only(
+                            bottomLeft: Radius.circular(8),
+                          ).r,
+                        ),
+                        side: BorderSide(
+                          color: ColorPath.Background1HECEFF1,
+                        ),
+                      ),
+                      child: Text(
+                        '취소하기',
+                        style: TextPath.TextF16W600.copyWith(),
+                      ),
+                    ),
+                  ),
+                ),
+                Expanded(
+                  child: SizedBox(
+                    height: 48.w,
+                    child: TextButton(
+                      onPressed: onOkPressed,
+                      style: TextButton.styleFrom(
+                        foregroundColor: Colors.white,
+                        backgroundColor: ColorPath.PrimaryDarkColor,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: const BorderRadius.only(
+                            bottomRight: Radius.circular(8),
+                          ).r,
+                        ),
+                      ),
+                      child: Text(
+                        '삭제하기',
+                        style: TextPath.TextF16W600White.copyWith(),
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+            // SizedBox(
+            //   width: double.infinity,
+            //   height: 44.w,
+            //   child:
+            // ),
+            // SizedBox(height: 10.w),
+            // SizedBox(
+            //   width: double.infinity,
+            //   height: 44.w,
+            //   child:
+            // ),
+          ],
+        ),
+      ),
+    ),
+  );
+}

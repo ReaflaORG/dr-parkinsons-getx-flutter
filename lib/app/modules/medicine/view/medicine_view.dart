@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
-import '../../../theme/colors.dart';
+import '../../../theme/color_path.dart';
 import '../../../theme/texts.dart';
 import '../controller/medicine_controller.dart';
 import '../widget/medicine_card_widget.dart';
@@ -23,10 +23,10 @@ class MedicineView extends GetView<MedicineController> {
           leading: Container(
             margin: const EdgeInsets.only(
               left: 20,
-            ),
+            ).w,
             child: CircleAvatar(
               backgroundColor: ColorPath.BackgroundWhite,
-              radius: 24,
+              radius: 24.r,
               child: IconButton(
                 onPressed: () => Get.back(),
                 icon: Icon(
@@ -48,7 +48,7 @@ class MedicineView extends GetView<MedicineController> {
         ),
       ),
       body: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 30),
+        padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 30).w,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,

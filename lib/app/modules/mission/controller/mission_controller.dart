@@ -1,15 +1,14 @@
 import 'dart:async';
 
-import 'package:dr_parkinsons/app/globals/global_toast_widget.dart';
-import 'package:dr_parkinsons/app/models/mission_model.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:logger/logger.dart';
 
-import '../../../models/base_response_model.dart';
+import '../../../globals/global_toast_widget.dart';
+import '../../../models/mission_model.dart';
 import '../../../provider/provider.dart';
-import '../../../theme/colors.dart';
+import '../../../theme/color_path.dart';
 
 class MissionController extends GetxController {
   static MissionController get to => Get.find();
@@ -39,6 +38,24 @@ class MissionController extends GetxController {
 
   // Function ▼
 
+  /// 미션 리스트 가져오기
+  ///
+  /// [time] DateTime : 날짜
+  Color getMiniCalendarColor(DateTime time) {
+    if (DateFormat('EEEE', 'ko').format(time) == '토요일') {
+      return ColorPath.SecondaryColor;
+    } else if (DateFormat('EEEE', 'ko').format(time) == '일요일') {
+      return ColorPath.TertiaryColor;
+    } else {
+      return ColorPath.TextGrey1H212121;
+    }
+  }
+
+  /// 미션 상태에 따른 카드 색상
+  ///
+  /// [type] String? : 카드 색상 타입
+  ///
+  /// [index] int : 미션 인덱스
   Color handleColorBoxDecoration({
     String? type = 'background_color',
     required int index,
@@ -59,7 +76,7 @@ class MissionController extends GetxController {
   }
 
   /// 시간 업데이트 함수
-  void updateTime(int value, String data) {
+  Future<void> updateTime(int value, String data) async {
     //인트화
     dateFormatInt.value = value;
 
@@ -81,60 +98,63 @@ class MissionController extends GetxController {
 
   /// 미션 카운트 리셋
   void missionCountReset() {
-    move.value = 0;
-    clearMove.value = 0;
-    pill.value = 0;
-    clearPill.value = 0;
+    Future.value([
+      move.value = 0,
+      clearMove.value = 0,
+      pill.value = 0,
+      clearPill.value = 0,
+    ]);
   }
 
   ///  오늘 미션 리스트 API
   Future<void> getMissionList() async {
     try {
-      AuthBaseResponseModel response = await Provider.dio(
+      await Provider.dio(
         method: 'GET',
         url:
             '/mission/?select_date=${DateFormat('yyyy-MM-dd').format(dateList[current_index.value])}',
-      );
-
-      switch (response.statusCode) {
-        case 200:
-        case 201:
-          missionData.clear();
-          missionCountReset();
-          for (int i = 0; i < response.data.length; i++) {
-            missionData.add(MissionModel.fromJson(response.data[i]));
-            if (missionData[i].mission_type.contains('운동')) {
-              move.value++;
-              if (missionData[i].clear) {
-                clearMove.value++;
+      ).then((response) {
+        switch (response.statusCode) {
+          case 200:
+          case 201:
+            missionData.clear();
+            missionCountReset();
+            for (int i = 0; i < response.data.length; i++) {
+              missionData.add(MissionModel.fromJson(response.data[i]));
+              if (missionData[i].mission_type.contains('운동')) {
+                move.value++;
+                if (missionData[i].clear) {
+                  clearMove.value++;
+                }
               }
-            }
-            if (missionData[i].mission_type.contains('투약')) {
-              pill.value++;
-              if (missionData[i].clear) {
-                clearPill.value++;
+              if (missionData[i].mission_type.contains('투약')) {
+                pill.value++;
+                if (missionData[i].clear) {
+                  clearPill.value++;
+                }
               }
+
+              missionData[i].status = missionData[i].clear
+                  ? '완료'
+                  : missionData[i].mission_time <
+                          int.parse(DateFormat('HHmm')
+                              .format(DateTime.now())
+                              .toString())
+                      ? '실패'
+                      : '대기';
             }
 
-            missionData[i].status = missionData[i].clear
-                ? '완료'
-                : missionData[i].mission_time <
-                        int.parse(DateFormat('HHmm')
-                            .format(DateTime.now())
-                            .toString())
-                    ? '실패'
-                    : '대기';
-          }
-
-          missionData.refresh();
-          isLoad.value = false;
-          break;
-        default:
-          throw Exception(response.message);
-      }
+            missionData.refresh();
+            isLoad.value = false;
+            break;
+          default:
+            throw Exception(response.message);
+        }
+      });
     } catch (e) {
+      isLoad.value = false;
       Logger().d(e);
-      GlobalToastWidget(message: e.toString().substring(11));
+      GlobalToastWidget(e.toString());
     }
   }
 
@@ -154,7 +174,7 @@ class MissionController extends GetxController {
       //   dateFormatInt.value = int.parse('${dateFormatInt.value}0');
       // }
 
-      AuthBaseResponseModel response = await Provider.dio(
+      await Provider.dio(
         method: 'POST',
         url: '/mission',
         requestModel: {
@@ -162,21 +182,21 @@ class MissionController extends GetxController {
           'mission_time': dateFormatInt.value, // 오후11시 00분
           'mission_time_string': dateFormatString.value,
         },
-      );
-
-      switch (response.statusCode) {
-        case 200:
-        case 201:
-          getMissionList();
-          Get.back();
-          GlobalToastWidget(message: '미션이 추가되었습니다');
-          break;
-        default:
-          throw Exception(response.message);
-      }
+      ).then((response) {
+        switch (response.statusCode) {
+          case 200:
+          case 201:
+            getMissionList();
+            Get.back();
+            GlobalToastWidget('미션이 추가되었습니다');
+            break;
+          default:
+            throw Exception(response.message);
+        }
+      });
     } catch (e) {
       Logger().d(e);
-      GlobalToastWidget(message: e.toString().substring(11));
+      GlobalToastWidget(e.toString());
     }
   }
 
@@ -185,25 +205,28 @@ class MissionController extends GetxController {
     String now_str = DateFormat('yyyy-MM-dd').format(DateTime.now());
     DateTime now = DateTime.parse(now_str);
     List<DateTime> date_list = [];
+
     for (int i = 0; i < 7; i++) {
       date_list.add(now.subtract(Duration(days: 6 - i)));
     }
+
     dateList.assignAll(date_list);
     current_index.value = dateList.length - 1;
-    Logger().d(dateList);
   }
 
-  ///  미션 수정 API
+  /// 미션 수정 API
+  ///
+  /// [mission_id] 미션 아이디
   Future<void> updateMission({
     required int mission_id,
   }) async {
     try {
-      /// 5시 0분과 같이 0이 없는 경우 0을 추가해준다.
+      // 5시 0분과 같이 0이 없는 경우 0을 추가해준다.
       if (dateFormatInt.value.toString().length == 2) {
         dateFormatInt.value = int.parse('${dateFormatInt.value}0');
       }
 
-      AuthBaseResponseModel response = await Provider.dio(
+      await Provider.dio(
         method: 'PUT',
         url: '/mission/$mission_id',
         requestModel: {
@@ -211,84 +234,93 @@ class MissionController extends GetxController {
           'mission_time': dateFormatInt.value, // 오후11시 00분
           'mission_time_string': dateFormatString.value,
         },
-      );
+      ).then((response) {
+        switch (response.statusCode) {
+          case 200:
+          case 201:
+            getMissionList();
+            Get.back();
+            GlobalToastWidget('수정 되었습니다.');
+            break;
 
-      Logger().d(response.data);
-      switch (response.statusCode) {
-        case 200:
-        case 201:
-          getMissionList();
-          Get.back();
-          GlobalToastWidget(message: '수정 되었습니다.');
-          break;
-
-        default:
-          throw Exception(response.message);
-      }
+          default:
+            throw Exception(response.message);
+        }
+      });
     } catch (e) {
       Logger().d(e);
-      GlobalToastWidget(message: e.toString().substring(11));
+      GlobalToastWidget(e.toString());
     }
   }
 
   /// 미션 삭제 API
+  ///
+  ///  [mission_id] : 미션 아이디
   Future<void> deleteMission({
     required int mission_id,
   }) async {
     try {
-      AuthBaseResponseModel response = await Provider.dio(
+      await Provider.dio(
         method: 'DELETE',
         url: '/mission/$mission_id',
-      );
+      ).then((response) {
+        switch (response.statusCode) {
+          case 200:
+          case 201:
+            getMissionList();
+            GlobalToastWidget('삭제 되었습니다.');
+            break;
 
-      Logger().d(response.data);
-      switch (response.statusCode) {
-        case 200:
-        case 201:
-          getMissionList();
-          // Get.back();
-          GlobalToastWidget(message: '삭제 되었습니다.');
-          break;
-
-        default:
-          throw Exception(response.message);
-      }
+          default:
+            throw Exception(response.message);
+        }
+      });
     } catch (e) {
       Logger().d(e);
-      GlobalToastWidget(message: e.toString().substring(11));
+      GlobalToastWidget(e.toString());
     }
   }
 
   /// 미션 클리어 API
+  ///
+  /// [mission_id] : 미션 아이디
+  ///
+  /// [index] : 미션 리스트 인덱스
   Future<void> clearMission({
     required int mission_id,
     required int index,
   }) async {
     try {
-      AuthBaseResponseModel response = await Provider.dio(
+      await Provider.dio(
         method: 'PATCH',
         url: '/mission/$mission_id',
-      );
-
-      Logger().d(response.data);
-      switch (response.statusCode) {
-        case 200:
-        case 201:
-          getMissionList();
-          break;
-        default:
-          throw Exception(response.message);
-      }
+      ).then((response) {
+        switch (response.statusCode) {
+          case 200:
+          case 201:
+            getMissionList();
+            break;
+          default:
+            throw Exception(response.message);
+        }
+      });
     } catch (e) {
       Logger().d(e);
-      GlobalToastWidget(message: e.toString().substring(11));
+      GlobalToastWidget(e.toString());
     }
+  }
+
+  /// 초기화
+  Future<void> handleInit() async {
+    await Future.value([
+      handleDateInit(),
+      getMissionList(),
+    ]);
   }
 
   @override
   Future<void> onInit() async {
-    handleDateInit();
-    await getMissionList();
+    await handleInit();
 
     super.onInit();
   }

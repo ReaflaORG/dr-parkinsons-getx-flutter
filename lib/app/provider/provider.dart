@@ -1,7 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
-import 'package:logger/logger.dart';
 
 import '../models/base_response_model.dart';
 import '../service/auth_service.dart';
@@ -50,7 +49,7 @@ class Provider with DioMixin implements Dio {
       ));
 
       if (kDebugMode) {
-        Logger().d(requestModel);
+        // Logger().d(requestModel);
       }
 
       switch (method.toUpperCase()) {

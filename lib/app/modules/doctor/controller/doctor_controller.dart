@@ -1,87 +1,178 @@
-// ignore_for_file: unnecessary_overrides
-
 import 'dart:async';
 
-import 'package:dr_parkinsons/app/models/doctor_model.dart';
-import 'package:dr_parkinsons/app/service/auth_service.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 import 'package:logger/logger.dart';
+import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
 import '../../../globals/global_toast_widget.dart';
-import '../../../models/base_response_model.dart';
+import '../../../models/disorder_model.dart';
+import '../../../models/doctor_model.dart';
 import '../../../provider/provider.dart';
+import '../../../service/auth_service.dart';
 
 /// 주치의 찾기 컨트롤러
 class DoctorController extends GetxController {
   static DoctorController get to => Get.find();
 
-  // Data ▼ ============================================
+  // Data ▼
+
+  /// 의사 데이터
+  Rx<DoctorModel> doctor = DoctorModel().obs;
+
+  RxList<YoutubeVideoModel> videoData = [
+    YoutubeVideoModel(
+      title: '파킨슨TV+? 플러스가 뭐죠? 이상운동질환의 개념과 종류 완벽정리!',
+      thumbnail: 'https://img.youtube.com/vi/B3XHI4vua1E/maxresdefault.jpg',
+      createdAt: DateFormat('yyyy-MM-dd').parse('2022-10-7'),
+      youtubePlayer: YoutubePlayerController(
+        initialVideoId: YoutubePlayer.convertUrlToId(
+          'https://www.youtube.com/watch?v=B3XHI4vua1E',
+        ) as String,
+        flags: const YoutubePlayerFlags(
+          mute: false,
+          autoPlay: false,
+          disableDragSeek: false,
+          loop: false,
+          isLive: false,
+          forceHD: false,
+          enableCaption: true,
+          captionLanguage: 'ko',
+        ),
+      ),
+    ),
+    YoutubeVideoModel(
+      title: '위치 불문! 근육이 부르르~ 근긴장이상증의 원인부터 치료까지 한방에 정리',
+      thumbnail: 'https://img.youtube.com/vi/b0bg1TWHZCY/maxresdefault.jpg',
+      createdAt: DateFormat('yyyy-MM-dd').parse('2022-10-21'),
+      youtubePlayer: YoutubePlayerController(
+        initialVideoId: YoutubePlayer.convertUrlToId(
+          'https://www.youtube.com/watch?v=b0bg1TWHZCY',
+        ) as String,
+        flags: const YoutubePlayerFlags(
+          mute: false,
+          autoPlay: false,
+          disableDragSeek: false,
+          loop: false,
+          isLive: false,
+          forceHD: false,
+          enableCaption: true,
+          captionLanguage: 'ko',
+        ),
+      ),
+    ),
+    YoutubeVideoModel(
+      title: 'EP4 임상시험 왜 이렇게 오래 걸리나 했더니... 이것 때문이었어?',
+      thumbnail: 'https://img.youtube.com/vi/cu9DxNP06KM/maxresdefault.jpg',
+      createdAt: DateFormat('yyyy-MM-dd').parse('2022-10-27'),
+      youtubePlayer: YoutubePlayerController(
+        initialVideoId: YoutubePlayer.convertUrlToId(
+          'https://www.youtube.com/watch?v=cu9DxNP06KM',
+        ) as String,
+        flags: const YoutubePlayerFlags(
+          mute: false,
+          autoPlay: false,
+          disableDragSeek: false,
+          loop: false,
+          isLive: false,
+          forceHD: false,
+          enableCaption: true,
+          captionLanguage: 'ko',
+        ),
+      ),
+    ),
+  ].obs;
+
+  // Data ▼
+
+  /// 로딩 상태
+  Rx<bool> isLoad = true.obs;
+
   // 의사 이이디
-  Rx<int> doctor_id = 0.obs;
-  // doctor item model
-  late Rx<DoctorModel> doctor;
-  Rx<bool> process = true.obs;
+  dynamic doctor_id = Get.arguments['doctor_id'] ?? 1;
 
-  // Function ▼ ========================================
+  /// 전문의 설정 여부
+  Rx<bool> isDoctorSubscribe = false.obs;
 
-  // 전문의 설정
+  // Function ▼
 
-  // 전문의 데이터 불러오기
-  Future<void> getDoctorDetail() async {
+  /// 전문의 데이터 불러오기
+  Future<void> handleDoctorDetailProvider() async {
     try {
-      AuthBaseResponseModel response = await Provider.dio(
+      isLoad.value = true;
+
+      await Provider.dio(
         method: 'GET',
         url: '/doctor/$doctor_id',
-      );
+      ).then((response) {
+        switch (response.statusCode) {
+          case 200:
+            Future.value([
+              AuthService.to.handleMyInfo(),
+              doctor.value = DoctorModel.fromJson(response.data),
+            ]).then((value) {
+              handleDoctorSubscribe();
+              isLoad.value = false;
+            });
 
-      switch (response.statusCode) {
-        case 200:
-          DoctorModel item = DoctorModel.fromJson(response.data);
-          if (process.value) {
-            doctor = item.obs;
-          } else {
-            doctor.value = item;
-          }
-          process.value = false;
-          break;
-        default:
-          throw Exception(response.message);
-      }
+            break;
+          default:
+            throw Exception(response.message);
+        }
+      });
     } catch (e) {
+      isLoad.value = false;
       Logger().d(e);
-      GlobalToastWidget(message: e.toString());
+      GlobalToastWidget(e.toString());
     }
   }
 
-  // 전문의 설정하기 불러오기
-  Future<void> putDoctorUser() async {
+  /// 전문의 설정하기 불러오기
+  Future<void> handleDoctorPatchProvider() async {
     try {
-      AuthBaseResponseModel response = await Provider.dio(
+      await Provider.dio(
         method: 'PATCH',
         url: '/doctor/$doctor_id',
-      );
-
-      Logger().d(response.statusCode);
-      switch (response.statusCode) {
-        case 200:
-          await getDoctorDetail();
-          await AuthService.to.handleMyInfo();
-          break;
-        default:
-          throw Exception(response.message);
-      }
+      ).then((response) async {
+        switch (response.statusCode) {
+          case 200:
+            Future.value([
+              AuthService.to.handleMyInfo(),
+              doctor.value = DoctorModel.fromJson(response.data),
+            ]).then((value) {
+              handleDoctorSubscribe();
+              if (isDoctorSubscribe.value) {
+                GlobalToastWidget('내 주치의 설정이 완료되었습니다');
+              }
+            });
+            break;
+          default:
+            throw Exception(response.message);
+        }
+      });
     } catch (e) {
       Logger().d(e);
-      GlobalToastWidget(message: e.toString());
+      GlobalToastWidget(e.toString());
     }
+  }
+
+  /// 전문의 설정
+  void handleDoctorSubscribe() {
+    doctor.value.users!
+                .indexWhere((e) => e == AuthService.to.userData.value.uid) !=
+            -1
+        ? isDoctorSubscribe.value = false
+        : isDoctorSubscribe.value = true;
   }
 
   // Variable ▼ ========================================
 
   @override
   Future<void> onInit() async {
-    doctor_id.value = Get.arguments['doctor_id'] ?? 1;
-    await getDoctorDetail();
+    await handleDoctorDetailProvider().then((value) {
+      isLoad.value = false;
+    });
+
     super.onInit();
   }
 

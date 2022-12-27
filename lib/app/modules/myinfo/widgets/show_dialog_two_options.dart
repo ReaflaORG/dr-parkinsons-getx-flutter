@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
-import '../../../theme/colors.dart';
+import '../../../theme/color_path.dart';
 import '../../../theme/texts.dart';
 
 // show alert two options dialog
@@ -18,7 +18,7 @@ showAlertTwoOptionsDialog({
   AlertDialog alert = AlertDialog(
     shape: RoundedRectangleBorder(
       borderRadius: BorderRadius.all(
-        Radius.circular(12.r),
+        const Radius.circular(12).r,
       ),
     ),
     content: SizedBox(
@@ -74,7 +74,7 @@ showAlertTwoOptionsDialog({
                   foregroundColor: Colors.white,
                   backgroundColor: ColorPath.Blue2F7ABAColor,
                   shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(8.r),
+                    borderRadius: BorderRadius.circular(8).r,
                   )),
               child: Text(
                 firstButtonTitle,
@@ -96,7 +96,7 @@ showAlertTwoOptionsDialog({
                 foregroundColor: ColorPath.TextGrey2H424242,
                 backgroundColor: Colors.white,
                 shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(8.r),
+                  borderRadius: BorderRadius.circular(8).r,
                 ),
                 side: BorderSide(
                   color: ColorPath.Background1HECEFF1,

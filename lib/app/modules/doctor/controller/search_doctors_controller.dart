@@ -1,12 +1,11 @@
 import 'dart:async';
 
-import 'package:dr_parkinsons/app/models/sarch_doctors_model.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:logger/logger.dart';
 
 import '../../../globals/global_toast_widget.dart';
-import '../../../models/base_response_model.dart';
+import '../../../models/sarch_doctors_model.dart';
 import '../../../provider/provider.dart';
 import '../../../service/location_service.dart';
 
@@ -14,25 +13,25 @@ import '../../../service/location_service.dart';
 class DoctorSearchController extends GetxController {
   static DoctorSearchController get to => Get.find();
 
-  // GlobalKey ▼ =========================================
+  // GlobalKey ▼
 
   Rx<GlobalKey<FormState>> globalFormKey = GlobalKey<FormState>().obs;
 
-  // Data ▼ ==============================================
+  // Data ▼
 
   /// 전문의 데이터
   RxList<SearchDoctorsModel> doctorListData = <SearchDoctorsModel>[].obs;
 
-  // Controller ▼ ========================================
+  // Controller ▼
 
   Rx<TextEditingController> searchTextFormFieldController =
       TextEditingController().obs;
 
-  // FocusNode ▼ ========================================
+  // FocusNode ▼
 
   Rx<FocusNode> searchTextFocusNode = FocusNode().obs;
 
-  // Variable ▼ ========================================
+  // Variable ▼
 
   /// 검색
   Rx<dynamic> search = ''.obs;
@@ -46,42 +45,42 @@ class DoctorSearchController extends GetxController {
   /// 거리 리스트
   RxList<String> distanceList = ['5', '10', '20'].obs;
 
-  // Function ▼ ========================================
+  // Function ▼
 
   /// 검색
-  Future<void> getDoctorList() async {
+  Future<void> handleDoctorProvider() async {
     try {
-      AuthBaseResponseModel response = await Provider.dio(
+      await Provider.dio(
         method: 'GET',
         url:
             '/doctor?long=${LocationService.to.locationData.longitude}&lat=${LocationService.to.locationData.latitude}&distance=$distance&search=${searchTextFormFieldController.value.text}',
-      );
-
-      switch (response.statusCode) {
-        case 200:
-          Future.value([
-            doctorListData.assignAll(
-              List<SearchDoctorsModel>.from(
-                response.data.map(
-                  (e) => SearchDoctorsModel.fromJson(e),
+      ).then((response) {
+        switch (response.statusCode) {
+          case 200:
+            Future.value([
+              doctorListData.assignAll(
+                List<SearchDoctorsModel>.from(
+                  response.data.map(
+                    (e) => SearchDoctorsModel.fromJson(e),
+                  ),
                 ),
               ),
-            ),
-            doctorListData.refresh(),
-          ]);
-          break;
-        default:
-          throw Exception(response.message);
-      }
+              doctorListData.refresh(),
+            ]);
+            break;
+          default:
+            throw Exception(response.message);
+        }
+      });
     } catch (e) {
       Logger().d(e);
-      GlobalToastWidget(message: e.toString());
+      GlobalToastWidget(e.toString());
     }
   }
 
   @override
   Future<void> onInit() async {
-    await getDoctorList();
+    handleDoctorProvider();
 
     super.onInit();
   }

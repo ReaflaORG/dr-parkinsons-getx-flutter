@@ -1,26 +1,26 @@
 // * 의사 모델
 class DoctorModel {
   DoctorModel({
-    required this.doctorId,
-    required this.hospitalName,
-    required this.hospitalLocationAddress,
-    required this.hospitalLocationLatitude,
-    required this.hospitalLocationLongitude,
-    required this.doctorName,
-    required this.doctorPosition,
-    required this.doctorContents,
-    required this.users,
+    this.doctorId,
+    this.hospitalName,
+    this.hospitalLocationAddress,
+    this.hospitalLocationLatitude,
+    this.hospitalLocationLongitude,
+    this.doctorName,
+    this.doctorPosition,
+    this.doctorContents,
+    this.users,
   });
 
-  final int doctorId;
-  final String hospitalName;
-  final String hospitalLocationAddress;
-  final double hospitalLocationLatitude;
-  final double hospitalLocationLongitude;
-  final String doctorName;
-  final String doctorPosition;
-  final List<DoctorContent> doctorContents;
-  final List<int> users;
+  final int? doctorId;
+  final String? hospitalName;
+  final String? hospitalLocationAddress;
+  final double? hospitalLocationLatitude;
+  final double? hospitalLocationLongitude;
+  final String? doctorName;
+  final String? doctorPosition;
+  final List<DoctorContent>? doctorContents;
+  final List<int>? users;
 
   factory DoctorModel.fromJson(Map<String, dynamic> json) => DoctorModel(
         doctorId: json['doctor_id'],
@@ -45,8 +45,8 @@ class DoctorModel {
         'doctor_name': doctorName,
         'doctor_position': doctorPosition,
         'doctor_contents':
-            List<dynamic>.from(doctorContents.map((x) => x.toJson())),
-        'users': List<dynamic>.from(users.map((x) => x)),
+            List<dynamic>.from(doctorContents!.map((x) => x.toJson())),
+        'users': List<dynamic>.from(users!.map((x) => x)),
       };
 }
 

@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:intl/intl.dart';
 
 import '../../../globals/global_loader_indicator_widget.dart';
-import '../../../theme/colors.dart';
+import '../../../theme/color_path.dart';
 import '../../../theme/texts.dart';
 import '../controller/social_welfare_controller.dart';
 
@@ -49,7 +48,7 @@ class SocialWelfareView extends GetView<SocialWelfareController> {
                     decoration: BoxDecoration(
                       color: ColorPath.PrimaryDarkColor,
                       borderRadius: BorderRadius.all(
-                        Radius.circular(30.r),
+                        const Radius.circular(30).r,
                       ),
                       boxShadow: [
                         BoxShadow(
@@ -71,7 +70,7 @@ class SocialWelfareView extends GetView<SocialWelfareController> {
                 ),
               ),
               floatingActionButtonLocation:
-                  FloatingActionButtonLocation.miniCenterFloat,
+                  FloatingActionButtonLocation.centerFloat,
               body: Container(
                 padding: const EdgeInsets.symmetric(horizontal: 20),
                 child: SingleChildScrollView(
@@ -134,42 +133,51 @@ class SocialWelfareCardWidget extends GetView<SocialWelfareController> {
                 ),
                 fit: BoxFit.cover,
               ),
-              borderRadius: BorderRadius.circular(16.r),
+              borderRadius: BorderRadius.circular(16).r,
             ),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.end,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Container(
-                  color: ColorPath.SecondaryLightColor,
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 4,
-                  ),
-                  child: Text(
-                    DateFormat('yyyy-MM-dd').format(
-                      controller.welfareDatas[index].created_at,
-                    ),
-                    style: TextPath.TextF13W500.copyWith(
-                      color: ColorPath.TextGrey3H616161,
-                    ),
-                  ),
-                ),
-                const SizedBox(height: 4),
+                // Container(
+                //   padding: const EdgeInsets.symmetric(
+                //     horizontal: 4,
+                //   ),
+                //   decoration: BoxDecoration(
+                //     color: ColorPath.SecondaryColor.withOpacity(
+                //       0.7,
+                //     ),
+                //     borderRadius: BorderRadius.circular(4).r,
+                //   ),
+                //   child: Text(
+                //     DateFormat('yyyy-MM-dd').format(
+                //       controller.welfareDatas[index].created_at,
+                //     ),
+                //     style: TextPath.TextF13W500.copyWith(
+                //       color: ColorPath.TextWhite,
+                //     ),
+                //   ),
+                // ),
+                // const SizedBox(height: 4),
                 Container(
                   padding: const EdgeInsets.symmetric(
                     horizontal: 6,
                     vertical: 2,
                   ),
-                  color: ColorPath.SecondaryColor.withOpacity(
-                    0.8,
+                  decoration: BoxDecoration(
+                    color: ColorPath.PrimaryColor.withOpacity(
+                      0.8,
+                    ),
+                    borderRadius: BorderRadius.circular(4).r,
                   ),
                   child: Text(
                     controller.welfareDatas[index].title,
                     style: TextPath.Heading3F16W600.copyWith(
-                      color: ColorPath.BackgroundWhite,
+                      color: ColorPath.TextWhite,
                     ),
                   ),
                 ),
+                SizedBox(height: 5.w),
               ],
             ),
           ),

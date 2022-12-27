@@ -1,12 +1,14 @@
-import 'package:dr_parkinsons/app/modules/main/controller/main_controller.dart';
-import 'package:dr_parkinsons/app/service/auth_service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
+import '../../../globals/global_appbar_widget.dart';
+import '../../../globals/global_layout_widget.dart';
 import '../../../routes/app_pages.dart';
-import '../../../theme/colors.dart';
+import '../../../service/auth_service.dart';
+import '../../../theme/color_path.dart';
 import '../../../theme/texts.dart';
+import '../../main/controller/main_controller.dart';
 import '../controller/my_info_controller.dart';
 import '../models/my_info_item_model.dart';
 import '../widgets/my_info_item_widget.dart';
@@ -16,51 +18,42 @@ class MyInfoView extends GetView<MyInfoController> {
   const MyInfoView({super.key});
 
   @override
-  Widget build(BuildContext context) => SafeArea(
-        child: Scaffold(
-          appBar: AppBar(
-            backgroundColor: ColorPath.PrimaryLightColor,
-            elevation: 0,
-            centerTitle: false,
-            title: Container(
-              padding: EdgeInsets.symmetric(horizontal: 4.w),
-              child: Text(
-                '내정보',
-                style: TextPath.Heading2F18W600.copyWith(
-                  color: ColorPath.TextGrey1H212121,
+  Widget build(BuildContext context) => GlobalLayoutWidget(
+        context: context,
+        appBar: GlobalAppBarWidget(
+          title: '내정보',
+          appBar: AppBar(),
+          isLeadingVisible: true,
+          backgroundColor: ColorPath.PrimaryLightColor,
+        ),
+        body: SingleChildScrollView(
+          padding: EdgeInsets.only(bottom: 50.w),
+          physics: const ClampingScrollPhysics(),
+          child: Stack(
+            children: [
+              Container(
+                decoration: BoxDecoration(
+                  borderRadius:
+                      BorderRadius.vertical(bottom: Radius.circular(24.w)),
+                  color: ColorPath.PrimaryLightColor,
                 ),
-                textAlign: TextAlign.left,
+                height: 230,
               ),
-            ),
-          ),
-          body: SingleChildScrollView(
-            physics: const ClampingScrollPhysics(),
-            child: Stack(
-              children: [
-                Container(
-                  decoration: BoxDecoration(
-                    borderRadius:
-                        BorderRadius.vertical(bottom: Radius.circular(24.w)),
-                    color: ColorPath.PrimaryLightColor,
-                  ),
-                  height: 230,
+              Container(
+                padding: EdgeInsets.symmetric(horizontal: 20.w),
+                child: Column(
+                  children: [
+                    SizedBox(height: MediaQuery.of(context).padding.top),
+                    MyInfoHeader(),
+                    MyInfoBodyView(),
+                    // Expanded(
+                    //   child: MyInfoBodyView(),
+                    // ),
+                    SizedBox(height: MediaQuery.of(context).padding.bottom),
+                  ],
                 ),
-                Container(
-                  padding: EdgeInsets.symmetric(horizontal: 20.w),
-                  child: Column(
-                    children: [
-                      SizedBox(height: MediaQuery.of(context).padding.top),
-                      MyInfoHeader(),
-                      MyInfoBodyView(),
-                      // Expanded(
-                      //   child: MyInfoBodyView(),
-                      // ),
-                      SizedBox(height: MediaQuery.of(context).padding.bottom),
-                    ],
-                  ),
-                )
-              ],
-            ),
+              )
+            ],
           ),
         ),
       );
@@ -168,36 +161,44 @@ class MyInfoHeader extends GetView<MyInfoController> {
       },
       child: Row(
         children: [
-          Container(
-            alignment: Alignment.centerLeft,
-            width: 60.w,
-            child: Text(
-              '내 주치의',
-              style: TextPath.TextF12W200.copyWith(
-                color: ColorPath.TextGrey3H616161,
-              ),
+          Text(
+            '내 주치의',
+            style: TextPath.TextF12W200.copyWith(
+              color: ColorPath.TextGrey3H616161,
             ),
           ),
-          Container(
-            alignment: Alignment.centerLeft,
-            padding: EdgeInsets.only(left: 4.5.w),
-            child: Text(
-              AuthService.to.myDoctor.value.doctorName,
-              style: TextPath.TextF14W400.copyWith(
-                color: ColorPath.TextGrey1H212121,
+          SizedBox(width: 10.w),
+          Row(
+            children: [
+              Text(
+                AuthService.to.myDoctor.value.doctorName!,
+                style: TextPath.TextF14W400.copyWith(
+                  color: ColorPath.TextGrey1H212121,
+                ),
               ),
-            ),
-          ),
-          Container(
-            alignment: Alignment.centerLeft,
-            padding: EdgeInsets.only(left: 4.5.w),
-            child: Text(
-              '(${AuthService.to.myDoctor.value.hospitalName})',
-              style: TextPath.TextF12W400.copyWith(
-                color: ColorPath.TextGrey1H212121,
+              Text(
+                '(${AuthService.to.myDoctor.value.hospitalName})',
+                style: TextPath.TextF12W400.copyWith(
+                  color: ColorPath.TextGrey1H212121,
+                ),
               ),
-            ),
+            ],
           ),
+          // Container(
+          //   alignment: Alignment.centerLeft,
+          //   padding: EdgeInsets.only(left: 4.5.w),
+          //   child:
+          // ),
+          // Container(
+          //   alignment: Alignment.centerLeft,
+          //   padding: EdgeInsets.only(left: 4.5.w),
+          //   child: Text(
+          //     '(${AuthService.to.myDoctor.value.hospitalName})',
+          //     style: TextPath.TextF12W400.copyWith(
+          //       color: ColorPath.TextGrey1H212121,
+          //     ),
+          //   ),
+          // ),
           const Spacer(),
           InkWell(
             onTap: () async {
@@ -219,36 +220,32 @@ class MyInfoHeader extends GetView<MyInfoController> {
 
 // my info search doctor
   Widget myinfoSearchDoctor(BuildContext context) {
-    return Container(
-      child: Row(
-        children: [
-          Container(
-            child: Text(
-              '내 주치의가 설정되어 있지 않습니다.\n버튼을 선택하면 주치의 검색으로 이동합니다.',
-              style: TextPath.TextF12W400.copyWith(),
+    return Row(
+      children: [
+        Text(
+          '내 주치의가 설정되어 있지 않습니다.\n버튼을 선택하면 주치의 검색으로 이동합니다.',
+          style: TextPath.TextF12W400.copyWith(),
+        ),
+        const Spacer(),
+        InkWell(
+          onTap: () {
+            MainController.to.navigationIndex.value = 3;
+          },
+          child: Container(
+            width: 36,
+            height: 36,
+            padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 6.w),
+            decoration: BoxDecoration(
+                color: ColorPath.PrimaryLightColor,
+                borderRadius: BorderRadius.circular(18.w)),
+            child: Image.asset(
+              'assets/myinfo/arrow_right_icon.png',
+              width: 18,
+              height: 14,
             ),
           ),
-          const Spacer(),
-          InkWell(
-            onTap: () {
-              MainController.to.navigationIndex.value = 3;
-            },
-            child: Container(
-              width: 36,
-              height: 36,
-              padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 6.w),
-              decoration: BoxDecoration(
-                  color: ColorPath.PrimaryLightColor,
-                  borderRadius: BorderRadius.circular(18.w)),
-              child: Image.asset(
-                'assets/myinfo/arrow_right_icon.png',
-                width: 18,
-                height: 14,
-              ),
-            ),
-          ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 
@@ -307,7 +304,7 @@ class MyInfoHeader extends GetView<MyInfoController> {
               ),
             ),
             const TextSpan(
-              text: '프로필 설정 ',
+              text: '프로필 설정',
               style: TextStyle(
                 color: Colors.red,
               ),

@@ -128,7 +128,7 @@ class ProfileSettingController extends GetxController {
           AuthService.to.userData.value = user;
           AuthService.to.userData.refresh();
           Get.back();
-          GlobalToastWidget(message: '프로필 수정이 완료되었습니다.');
+          GlobalToastWidget('프로필 수정이 완료되었습니다.');
           break;
 
         default:
@@ -136,7 +136,7 @@ class ProfileSettingController extends GetxController {
       }
     } catch (e) {
       Logger().d(e);
-      GlobalToastWidget(message: e.toString());
+      GlobalToastWidget(e.toString());
     }
   }
 

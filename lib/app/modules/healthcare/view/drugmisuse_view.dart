@@ -4,7 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
 import '../../../globals/global_dialog_widget.dart';
-import '../../../theme/colors.dart';
+import '../../../theme/color_path.dart';
 import '../../../theme/texts.dart';
 import '../controller/drugmisuse_controller.dart';
 import '../widgets/drugmisuse_infobox.dart';
@@ -25,7 +25,7 @@ class DrugMisuseView extends GetView<DrugMisuseController> {
           leading: Container(
             margin: const EdgeInsets.only(
               left: 20,
-            ),
+            ).w,
             child: CircleAvatar(
               backgroundColor: ColorPath.BackgroundWhite,
               radius: 24,
@@ -62,17 +62,17 @@ class DrugMisuseView extends GetView<DrugMisuseController> {
               decoration: BoxDecoration(
                 color: ColorPath.TertiaryLightColor,
                 borderRadius: BorderRadius.only(
-                  bottomLeft: Radius.circular(36.r),
-                  bottomRight: Radius.circular(36.r),
+                  bottomLeft: const Radius.circular(36).r,
+                  bottomRight: const Radius.circular(36).r,
                 ),
               ),
               child: Container(
-                padding: EdgeInsets.symmetric(horizontal: 16.w),
+                padding: const EdgeInsets.symmetric(horizontal: 16).w,
                 width: 320.w,
                 height: 42.w,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.all(
-                    Radius.circular(30.r),
+                    const Radius.circular(30).r,
                   ),
                   color: ColorPath.BackgroundWhite,
                 ),
@@ -113,22 +113,24 @@ class DrugMisuseView extends GetView<DrugMisuseController> {
                             contentPadding: const EdgeInsets.symmetric(
                               vertical: 5,
                               horizontal: 10,
-                            ),
+                            ).w,
                             hintText: '약품명 또는 약제명을 입력하세요',
                             focusedBorder: OutlineInputBorder(
                               borderRadius: BorderRadius.all(
-                                Radius.circular(4.0.r),
+                                const Radius.circular(4.0).r,
                               ),
                               borderSide: BorderSide.none,
                             ),
                             focusedErrorBorder: OutlineInputBorder(
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(4.0.r)),
+                              borderRadius: BorderRadius.all(
+                                const Radius.circular(4.0).r,
+                              ),
                               borderSide: BorderSide.none,
                             ),
                             errorBorder: OutlineInputBorder(
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(4.0.r)),
+                              borderRadius: BorderRadius.all(
+                                const Radius.circular(4.0).r,
+                              ),
                               borderSide: BorderSide.none,
                             ),
                           ),
@@ -181,7 +183,7 @@ class SearchBeforeWidget extends GetView<DrugMisuseController> {
           return Column(
             children: [
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 30),
+                padding: const EdgeInsets.symmetric(horizontal: 30).w,
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.center,
@@ -193,7 +195,7 @@ class SearchBeforeWidget extends GetView<DrugMisuseController> {
                     DrugMisuseInfoBox(
                       box: controller.boxesData[index],
                     ),
-                    const SizedBox(height: 20),
+                    SizedBox(height: 20.w),
                   ],
                 ),
               ),
@@ -218,7 +220,7 @@ class SearchAfterWigdet extends GetView<DrugMisuseController> {
           itemCount: controller.boxesSearchData.length,
           itemBuilder: (BuildContext context, int index) {
             return Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 30),
+              padding: const EdgeInsets.symmetric(horizontal: 30).w,
               child: InkWell(
                 onTap: () => Get.dialog(
                   GlobalDrugmisuseModalWidget(
@@ -232,18 +234,18 @@ class SearchAfterWigdet extends GetView<DrugMisuseController> {
                 ),
                 child: Container(
                   margin: index == 0
-                      ? const EdgeInsets.only(top: 20, bottom: 14)
-                      : const EdgeInsets.only(bottom: 14),
+                      ? const EdgeInsets.only(top: 20, bottom: 14).w
+                      : const EdgeInsets.only(bottom: 14).w,
                   padding: const EdgeInsets.symmetric(
                     horizontal: 12,
                     vertical: 8,
-                  ),
+                  ).w,
                   decoration: BoxDecoration(
                     border: Border.all(
                       color: ColorPath.Background1HECEFF1,
                     ),
                     borderRadius: BorderRadius.all(
-                      Radius.circular(6.r),
+                      const Radius.circular(6).r,
                     ),
                   ),
                   child: Row(

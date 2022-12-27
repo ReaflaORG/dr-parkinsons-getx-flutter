@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../../../theme/colors.dart';
+import '../../../theme/color_path.dart';
 import '../../../theme/texts.dart';
 
 /// 도파민제 약제 설명 페이지
@@ -109,7 +109,7 @@ class MedicineInfoDopaminePage extends StatelessWidget {
         ),
         Container(
           alignment: Alignment.centerLeft,
-          padding: EdgeInsets.only(bottom: 6.w),
+          padding: const EdgeInsets.only(bottom: 6).w,
           height: 30.w,
           child: Text(
             '퍼킨슨 일반정',
@@ -119,7 +119,7 @@ class MedicineInfoDopaminePage extends StatelessWidget {
         ),
         Container(
           alignment: Alignment.centerLeft,
-          padding: EdgeInsets.only(bottom: 6.w),
+          padding: const EdgeInsets.only(bottom: 6).w,
           child: Image.asset(
             'assets/images/medicine/pill0101.jpg',
             fit: BoxFit.cover,
@@ -129,7 +129,7 @@ class MedicineInfoDopaminePage extends StatelessWidget {
         ),
         Container(
           alignment: Alignment.centerLeft,
-          padding: EdgeInsets.only(bottom: 12.w),
+          padding: const EdgeInsets.only(bottom: 12).w,
           child: Text(
             '''레보도파 100mg, 카르비도파수화물 27mg''',
             style: TextPath.TextF13W400.copyWith(
@@ -138,7 +138,7 @@ class MedicineInfoDopaminePage extends StatelessWidget {
         ),
         Container(
           alignment: Alignment.centerLeft,
-          padding: EdgeInsets.only(bottom: 6.w),
+          padding: const EdgeInsets.only(bottom: 6).w,
           child: Image.asset(
             'assets/images/medicine/pill0102.jpg',
             fit: BoxFit.cover,
@@ -148,7 +148,7 @@ class MedicineInfoDopaminePage extends StatelessWidget {
         ),
         Container(
           alignment: Alignment.centerLeft,
-          padding: EdgeInsets.only(bottom: 12.w),
+          padding: const EdgeInsets.only(bottom: 12).w,
           child: Text(
             '''레보도파 250mg, 카르비도파수화물 27mg''',
             style: TextPath.TextF13W400.copyWith(
@@ -168,7 +168,7 @@ class MedicineInfoDopaminePage extends StatelessWidget {
         // 약제 3번
         Container(
           alignment: Alignment.centerLeft,
-          padding: EdgeInsets.only(bottom: 6.w),
+          padding: const EdgeInsets.only(bottom: 6).w,
           child: Image.asset(
             'assets/images/medicine/pill0103.jpg',
             fit: BoxFit.cover,
@@ -178,7 +178,7 @@ class MedicineInfoDopaminePage extends StatelessWidget {
         ),
         Container(
           alignment: Alignment.centerLeft,
-          padding: EdgeInsets.only(bottom: 12.w),
+          padding: const EdgeInsets.only(bottom: 12).w,
           child: Text(
             '''레보도파 100mg, 벤세라지드염산염 28.5mg''',
             style: TextPath.TextF13W400.copyWith(
@@ -189,7 +189,7 @@ class MedicineInfoDopaminePage extends StatelessWidget {
         // 약제 4번
         Container(
           alignment: Alignment.centerLeft,
-          padding: EdgeInsets.only(bottom: 6.w),
+          padding: const EdgeInsets.only(bottom: 6).w,
           child: Image.asset(
             'assets/images/medicine/pill0104.jpg',
             fit: BoxFit.cover,
@@ -199,7 +199,7 @@ class MedicineInfoDopaminePage extends StatelessWidget {
         ),
         Container(
           alignment: Alignment.centerLeft,
-          padding: EdgeInsets.only(bottom: 12.w),
+          padding: const EdgeInsets.only(bottom: 12).w,
           child: Text(
             '''레보도파 100mg, 벤세라지드염산염 28.5mg''',
             style: TextPath.TextF13W400.copyWith(
