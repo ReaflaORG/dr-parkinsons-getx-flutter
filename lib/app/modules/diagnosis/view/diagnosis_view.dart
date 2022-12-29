@@ -91,7 +91,7 @@ class TestInProgressWidget extends GetView<DiagnosisController> {
             height: 16.w,
           ),
           SizedBox(
-            width: 260,
+            width: 260.w,
             child: Text(
               controller.survey.value.quizes[controller.questionNumber.value]
                   .questionText,
@@ -137,28 +137,31 @@ class SurveyTestingView extends GetView<DiagnosisController> {
                       ),
                       Positioned(
                         child: Container(
-                            padding: const EdgeInsets.symmetric(
-                                    horizontal: 28, vertical: 26)
-                                .w,
-                            width: 320.w,
-                            height: 160.w,
-                            decoration: BoxDecoration(
-                              boxShadow: [
-                                BoxShadow(
-                                  color:
-                                      ColorPath.PrimaryColor.withOpacity(0.1),
-                                  spreadRadius: 2,
-                                  blurRadius: 10,
-                                  offset: const Offset(
-                                      5, 5), // changes position of shadow
-                                ),
-                              ],
-                              color: ColorPath.BackgroundWhite,
-                              borderRadius: const BorderRadius.all(
-                                Radius.circular(16),
+                          padding: const EdgeInsets.symmetric(
+                            horizontal: 28,
+                            vertical: 26,
+                          ).w.w,
+                          width: 320.w,
+                          height: 180.w,
+                          decoration: BoxDecoration(
+                            boxShadow: [
+                              BoxShadow(
+                                color: ColorPath.PrimaryColor.withOpacity(0.1),
+                                spreadRadius: 2,
+                                blurRadius: 10,
+                                offset: const Offset(
+                                  5,
+                                  5,
+                                ), // changes position of shadow
                               ),
-                            ),
-                            child: TestInProgressWidget()),
+                            ],
+                            color: ColorPath.BackgroundWhite,
+                            borderRadius: const BorderRadius.all(
+                              Radius.circular(16),
+                            ).r,
+                          ),
+                          child: TestInProgressWidget(),
+                        ),
                       ),
                     ],
                   ),

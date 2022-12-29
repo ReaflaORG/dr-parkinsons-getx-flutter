@@ -80,7 +80,7 @@ class AppPages {
       name: Routes.THEME,
       page: () => const ThemeView(),
       binding: ThemeBinding(),
-      transition: Transition.native,
+      transition: Transition.noTransition,
       popGesture: true,
     ),
     GetPage(
@@ -88,7 +88,7 @@ class AppPages {
       name: INITIAL,
       page: () => const SplashView(),
       binding: SplashBinding(),
-      transition: Transition.native,
+      transition: Transition.noTransition,
       popGesture: true,
     ),
     GetPage(
@@ -96,7 +96,7 @@ class AppPages {
       name: Routes.PERMISSION,
       page: () => const PermissionView(),
       binding: PermissionBinding(),
-      transition: Transition.native,
+      transition: Transition.noTransition,
       popGesture: true,
     ),
     GetPage(
@@ -104,7 +104,7 @@ class AppPages {
       name: Routes.SIGNIN,
       page: () => const SignInView(),
       binding: SignInBinding(),
-      transition: Transition.native,
+      transition: Transition.noTransition,
       popGesture: true,
     ),
     GetPage(
@@ -112,7 +112,7 @@ class AppPages {
       name: Routes.MAIN,
       page: () => const MainView(),
       binding: MainBinding(),
-      transition: Transition.native,
+      transition: Transition.noTransition,
       popGesture: true,
     ),
     GetPage(
@@ -120,7 +120,7 @@ class AppPages {
       name: Routes.HOME,
       page: () => const HomeView(),
       binding: HomeBinding(),
-      transition: Transition.native,
+      transition: Transition.noTransition,
       popGesture: true,
     ),
     GetPage(
@@ -170,7 +170,8 @@ class AppPages {
       name: Routes.SOCIALWELFARE,
       page: () => const SocialWelfareView(),
       binding: SocialWelfareBinding(),
-      transition: Transition.noTransition,
+      transition: Transition.native,
+      // transitionDuration: const Duration(milliseconds: 1000),
       popGesture: true,
       children: [
         GetPage(
@@ -178,7 +179,8 @@ class AppPages {
           name: Routes.SOCIALWELFAREPOST,
           page: () => const SocialWelfareDetailView(),
           binding: SocialWelfareDetailBinding(),
-          transition: Transition.rightToLeft,
+          transition: Transition.native,
+          // transitionDuration: const Duration(milliseconds: 1000),
           popGesture: true,
         ),
       ],
@@ -204,7 +206,7 @@ class AppPages {
       name: '${Routes.MEDICINEINFO}/:params',
       page: () => const MedicineInfoView(),
       binding: MedicineInfoBinding(),
-      transition: Transition.native,
+      transition: Transition.rightToLeft,
       popGesture: true,
     ),
     GetPage(
@@ -302,7 +304,7 @@ class AppPages {
       name: Routes.PROFILE_SETTING,
       page: () => const ProfileSettingView(),
       binding: ProfileSettingBinding(),
-      transition: Transition.native,
+      transition: Transition.rightToLeft,
       popGesture: true,
     ),
     GetPage(
@@ -310,7 +312,7 @@ class AppPages {
       name: Routes.FAQ,
       page: () => const FaqView(),
       binding: FaqBinding(),
-      transition: Transition.native,
+      transition: Transition.rightToLeft,
       popGesture: true,
     ),
     GetPage(
@@ -318,7 +320,7 @@ class AppPages {
       name: Routes.ALARM_SETTING,
       page: () => const AlarmSettingView(),
       binding: AlarmSettingBinding(),
-      transition: Transition.native,
+      transition: Transition.rightToLeft,
       popGesture: true,
     ),
     GetPage(
@@ -326,7 +328,7 @@ class AppPages {
       name: Routes.TERMS_AND_CONDITION,
       page: () => const TermsAndConditionView(),
       binding: TermsAndConditionBinding(),
-      transition: Transition.native,
+      transition: Transition.rightToLeft,
       popGesture: true,
     ),
     GetPage(
@@ -334,7 +336,7 @@ class AppPages {
       name: Routes.MANAGE_MEMBER,
       page: () => const ManageMemberView(),
       binding: ManageMemberBinding(),
-      transition: Transition.native,
+      transition: Transition.rightToLeft,
       popGesture: true,
     ),
   ];

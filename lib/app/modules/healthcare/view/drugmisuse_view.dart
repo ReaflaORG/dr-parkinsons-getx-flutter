@@ -1,3 +1,4 @@
+import 'package:dropdown_plus/dropdown_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -82,7 +83,7 @@ class DrugMisuseView extends GetView<DrugMisuseController> {
                     InkWell(
                       onTap: () async {
                         await controller.onHandleSearch(
-                          value: controller
+                          controller
                               .drugmisuseTextFormFieldController.value.text,
                         );
                       },
@@ -150,13 +151,27 @@ class DrugMisuseView extends GetView<DrugMisuseController> {
                           //   );
                           // },
                           onFieldSubmitted: (value) async {
-                            await controller.onHandleSearch(value: value);
+                            await controller.onHandleSearch(value);
                           },
                         ),
                       ),
                     ),
                   ],
                 ),
+              ),
+            ),
+            SizedBox(
+              width: 320.w,
+              child: TextDropdownFormField(
+                options: controller.drugMisuseList,
+                onChanged: (String value) {
+                  controller.onHandleSearch(value);
+                },
+                // decoration: const InputDecoration(
+                //     border: OutlineInputBorder(),
+                //     suffixIcon: Icon(Icons.arrow_drop_down),
+                //     labelText: "Gender",),
+                dropdownHeight: 120,
               ),
             ),
             controller.isSearch.value

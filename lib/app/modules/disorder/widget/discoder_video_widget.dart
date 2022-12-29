@@ -8,6 +8,29 @@ import '../../../theme/texts.dart';
 import '../../../utils/formatter.dart';
 import '../controller/disorder_controller.dart';
 
+/// 임시 이미지 위젯
+class DiscoderImageWidget extends GetView<DisorderController> {
+  const DiscoderImageWidget({
+    super.key,
+    required this.index,
+  });
+
+  final int index;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      margin: const EdgeInsets.only(bottom: 20).w,
+      width: double.infinity,
+      height: 180.w,
+      child: Image.asset(
+        controller.imageData[index],
+        fit: BoxFit.contain,
+      ),
+    );
+  }
+}
+
 /// 비디오 플레이어 위젯
 ///
 /// [index] int: 비디오 인덱스

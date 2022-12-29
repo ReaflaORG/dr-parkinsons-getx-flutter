@@ -39,7 +39,7 @@ class FactController extends GetxController {
       }
     } catch (e) {
       Logger().d(e);
-      GlobalToastWidget(e.toString());
+      GlobalToastWidget(e.toString().substring(11));
     }
   }
 

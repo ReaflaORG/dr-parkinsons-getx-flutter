@@ -16,6 +16,9 @@ class DisorderView extends GetView<DisorderController> {
     return GlobalLayoutWidget(
       context: context,
       appBar: AppBar(
+        elevation: 0,
+        shadowColor: Colors.white,
+        backgroundColor: Colors.white,
         leading: IconButton(
           onPressed: () async {
             Get.back();
@@ -25,15 +28,12 @@ class DisorderView extends GetView<DisorderController> {
             color: Colors.black,
           ),
         ),
-        elevation: 0,
-        shadowColor: Colors.white,
         title: Text(
           '파킨슨 병 소개',
           style: TextPath.Heading2F18W600.copyWith(
             color: ColorPath.TextGrey1H212121,
           ),
         ),
-        backgroundColor: Colors.white,
       ),
       body: RefreshIndicator(
         onRefresh: () async {},
@@ -41,32 +41,27 @@ class DisorderView extends GetView<DisorderController> {
           padding: const EdgeInsets.symmetric(horizontal: 20).w,
           physics: const ClampingScrollPhysics(),
           child: Column(
-            children: List.generate(
-              controller.videoData.length,
-              (index) {
-                return VideoCardWiget(index: index);
-              },
-            ),
+            children: [
+              SizedBox(height: 30.w),
+              Text(
+                '파킨슨 병과 안내과정 소개',
+                style: TextPath.Heading2F18W600,
+              ),
+              SizedBox(height: 30.w),
+              ListView.builder(
+                physics: const NeverScrollableScrollPhysics(),
+                shrinkWrap: true,
+                itemCount: controller.imageData.length,
+                itemBuilder: (context, index) {
+                  return DiscoderImageWidget(
+                    index: index,
+                  );
+                },
+              ),
+            ],
           ),
         ),
       ),
-    );
-  }
-}
-
-/// 영상 카드 위젯
-class VideoCardWiget extends StatelessWidget {
-  const VideoCardWiget({
-    super.key,
-    required this.index,
-  });
-
-  final int index;
-
-  @override
-  Widget build(BuildContext context) {
-    return DiscoderVideoWidget(
-      index: index,
     );
   }
 }

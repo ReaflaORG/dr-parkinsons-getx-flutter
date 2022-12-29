@@ -50,7 +50,7 @@ class MyInfoController extends GetxController {
             throw Exception(response.message);
         }
       } catch (e) {
-        GlobalToastWidget(e.toString());
+        GlobalToastWidget(e.toString().substring(11));
       }
     });
   }

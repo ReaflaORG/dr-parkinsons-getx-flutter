@@ -76,6 +76,12 @@ class DisorderController extends GetxController {
     ),
   ].obs;
 
+  RxList<String> imageData = [
+    'assets/images/disorder/1.webp',
+    'assets/images/disorder/2.webp',
+    'assets/images/disorder/3.webp'
+  ].obs;
+
   @override
   Future<void> onInit() async {
     super.onInit();

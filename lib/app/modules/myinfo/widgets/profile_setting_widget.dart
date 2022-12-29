@@ -1,40 +1,48 @@
 // * 라디오 버튼
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 
 import '../../../theme/color_path.dart';
 import '../../../theme/texts.dart';
+import '../controller/profile_setting_controller.dart';
 
-class RadioButtonForProfile extends StatelessWidget {
-  final String title;
-  final bool isCheck;
-  final Function onClick;
+class RadioButtonForProfile extends GetView<ProfileSettingController> {
   const RadioButtonForProfile({
-    Key? key,
+    super.key,
     required this.title,
     required this.isCheck,
     required this.onClick,
-  }) : super(key: key);
+  });
+
+  final String title;
+  final bool isCheck;
+  final Function onClick;
 
   @override
   Widget build(BuildContext context) {
-    return TextButton(
-      onPressed: () => onClick(),
-      style: TextButton.styleFrom(
-        foregroundColor: ColorPath.TextGrey1H212121,
-        backgroundColor: isCheck ? ColorPath.PrimaryDarkColor : Colors.white,
-        padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 4.w),
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(8),
-          side: BorderSide(
-            color: ColorPath.Border3E7E7E7,
+    return Padding(
+      padding: const EdgeInsets.only(right: 8).w,
+      child: TextButton(
+        onPressed: () {
+          onClick();
+        },
+        style: TextButton.styleFrom(
+          padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4).w,
+          foregroundColor: ColorPath.TextGrey1H212121,
+          backgroundColor: isCheck ? ColorPath.PrimaryDarkColor : Colors.white,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(8).r,
+            side: BorderSide(
+              color: ColorPath.Border3E7E7E7,
+            ),
           ),
         ),
-      ),
-      child: Text(
-        title,
-        style: TextPath.TextF14W400.copyWith(
-          color: isCheck ? Colors.white : ColorPath.TextGrey3H616161,
+        child: Text(
+          title,
+          style: TextPath.TextF14W400.copyWith(
+            color: isCheck ? Colors.white : ColorPath.TextGrey3H616161,
+          ),
         ),
       ),
     );

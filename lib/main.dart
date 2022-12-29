@@ -1,5 +1,5 @@
-import 'package:dr_parkinsons/app/service/auth_service.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -10,6 +10,7 @@ import 'package:kakao_flutter_sdk/kakao_flutter_sdk.dart';
 import 'package:timeago/timeago.dart' as timeago;
 
 import 'app/routes/app_pages.dart';
+import 'app/service/auth_service.dart';
 import 'app/service/global_service.dart';
 import 'app/service/location_service.dart';
 import 'app/service/permission_service.dart';
@@ -24,6 +25,9 @@ Future<void> initialize() async {
   await Future.value([
     // Widget Binding 초기화
     WidgetsFlutterBinding.ensureInitialized(),
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      SchedulerBinding.instance.scheduleWarmUpFrame();
+    }),
 
     // .env 초기화
     await dotenv.load(),
@@ -75,6 +79,8 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final heroController = HeroController();
+
     return ScreenUtilInit(
       designSize: const Size(360, 640),
       minTextAdapt: true,
@@ -100,6 +106,10 @@ class MyApp extends StatelessWidget {
           ],
           locale: const Locale('ko'),
           debugShowCheckedModeBanner: false,
+          // transitionDuration: const Duration(milliseconds: 500),
+          navigatorObservers: [
+            heroController,
+          ],
           theme: theme(),
           // darkTheme: darkTheme(context: context),
         );

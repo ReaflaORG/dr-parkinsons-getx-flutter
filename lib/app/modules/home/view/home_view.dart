@@ -235,15 +235,15 @@ class HomeView extends GetView<HomeController> {
                                           MainAxisAlignment.center,
                                       children: [
                                         Text(
-                                          '오해와 진실',
+                                          '팩트체크',
                                           style: TextPath.TextF13W500.copyWith(
                                             color: ColorPath.TextGrey3H616161,
                                           ),
                                         ),
                                         SizedBox(height: 4.w),
                                         Text(
-                                          '파킨슨 완전정복',
-                                          style: TextPath.TextF16W500.copyWith(
+                                          '파킨슨병 완전정복',
+                                          style: TextPath.TextF14W500.copyWith(
                                             color: ColorPath.TextGrey1H212121,
                                           ),
                                         ),

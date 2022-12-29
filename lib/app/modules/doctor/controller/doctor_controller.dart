@@ -123,7 +123,7 @@ class DoctorController extends GetxController {
     } catch (e) {
       isLoad.value = false;
       Logger().d(e);
-      GlobalToastWidget(e.toString());
+      GlobalToastWidget(e.toString().substring(11));
     }
   }
 
@@ -152,7 +152,7 @@ class DoctorController extends GetxController {
       });
     } catch (e) {
       Logger().d(e);
-      GlobalToastWidget(e.toString());
+      GlobalToastWidget(e.toString().substring(11));
     }
   }
 

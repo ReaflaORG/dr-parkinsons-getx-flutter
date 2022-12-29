@@ -76,7 +76,7 @@ class MySymptomsView extends GetView<MySymptomsController> {
               height: Get.height - 150.w,
               child: Center(
                 child: Text(
-                  '증상 기록이 없습니다\r\n오른쪽 상단에 추가하기 버튼을 눌러주세요!',
+                  '내 증상 기록이 없습니다\r\n오른쪽 상단에 추가하기 버튼을 눌러주세요!',
                   textAlign: TextAlign.center,
                   style: TextPath.TextF16W400.copyWith(
                     color: ColorPath.TextGrey1H212121,

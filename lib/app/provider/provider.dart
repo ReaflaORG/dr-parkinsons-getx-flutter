@@ -74,8 +74,9 @@ class Provider with DioMixin implements Dio {
 
       if (kDebugMode) {
         // Logger().d(response.statusCode);
-        // // Logger().d(response.data);
+        // Logger().d(response.data);
       }
+
       return AuthBaseResponseModel.fromJson(
         statusCode: response.statusCode!,
         data: response.data!,

@@ -19,7 +19,7 @@ class SplashController extends GetxController {
 
   /// 스플래시 화면 처리
   Future<void> handleSplashDelayed({
-    int milliseconds = 0,
+    int milliseconds = 3000,
   }) async {
     Future.delayed(Duration(milliseconds: milliseconds), () async {
       if (GetStorage().read('initialize_permission') == null) {

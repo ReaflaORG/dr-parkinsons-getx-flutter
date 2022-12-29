@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
+import '../../../globals/global_layout_widget.dart';
 import '../../../globals/global_toast_widget.dart';
 import '../../../theme/color_path.dart';
 import '../../../theme/texts.dart';
@@ -13,27 +14,18 @@ class SignInView extends GetView<SignInController> {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        body: SingleChildScrollView(
-          physics: const AlwaysScrollableScrollPhysics(),
-          child: Container(
-            width: double.infinity,
-            color: Colors.white,
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              mainAxisAlignment: MainAxisAlignment.start,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                const CarouselSliderWidget(),
-                SizedBox(height: 24.w),
-                const SocialLoginButtonWidget(),
-                SizedBox(height: 20.w),
-                const TermsGuideTextWidget(),
-              ],
-            ),
-          ),
-        ),
+    return GlobalLayoutWidget(
+      context: context,
+      isSafeArea: false,
+      body: ListView(
+        physics: const AlwaysScrollableScrollPhysics(),
+        children: [
+          const CarouselSliderWidget(),
+          SizedBox(height: 24.w),
+          const SocialLoginButtonWidget(),
+          SizedBox(height: 20.w),
+          const TermsGuideTextWidget(),
+        ],
       ),
     );
   }
@@ -112,25 +104,27 @@ class CarouselSliderWidget extends GetView<SignInController> {
           SizedBox(height: 32.w),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
-            children:
-                List.generate(controller.carouselSlideData.length, (index) {
-              return Container(
-                width: 10.w,
-                height: 10.w,
-                margin: const EdgeInsets.symmetric(
-                  vertical: 10,
-                  horizontal: 10,
-                ),
-                decoration: BoxDecoration(
-                  shape: BoxShape.circle,
-                  color: controller.carouselSliderIndex.value ==
-                          controller.carouselSlideData
-                              .indexOf(controller.carouselSlideData[index])
-                      ? ColorPath.TextGrey1H212121
-                      : ColorPath.GreyColor,
-                ),
-              );
-            }),
+            children: List.generate(
+              controller.carouselSlideData.length,
+              (index) {
+                return Container(
+                  width: 10.w,
+                  height: 10.w,
+                  margin: const EdgeInsets.symmetric(
+                    vertical: 10,
+                    horizontal: 10,
+                  ),
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    color: controller.carouselSliderIndex.value ==
+                            controller.carouselSlideData
+                                .indexOf(controller.carouselSlideData[index])
+                        ? ColorPath.TextGrey1H212121
+                        : ColorPath.GreyColor,
+                  ),
+                );
+              },
+            ),
           ),
         ],
       ),
@@ -156,13 +150,13 @@ class SocialLoginButtonWidget extends GetView<SignInController> {
               style: ElevatedButton.styleFrom(
                 backgroundColor: ColorPath.Background3HFEE500,
                 shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.all(
-                    const Radius.circular(15).r,
-                  ),
+                  borderRadius: const BorderRadius.all(
+                    Radius.circular(15),
+                  ).r,
                 ),
               ),
               child: Container(
-                padding: EdgeInsets.all(15.w),
+                padding: const EdgeInsets.all(15).w,
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.center,
@@ -238,7 +232,7 @@ class SocialLoginButtonWidget extends GetView<SignInController> {
                 ),
               ),
               child: Container(
-                padding: const EdgeInsets.all(15).r,
+                padding: const EdgeInsets.all(15).w,
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.center,
@@ -249,7 +243,7 @@ class SocialLoginButtonWidget extends GetView<SignInController> {
                     ),
                     SizedBox(width: 15.w),
                     Padding(
-                      padding: const EdgeInsets.only(top: 4.3).w,
+                      padding: const EdgeInsets.only(top: 1).w,
                       child: Text(
                         '애플로 계속하기',
                         style: TextPath.Heading3F16W600.copyWith(
@@ -301,6 +295,7 @@ class TermsGuideTextWidget extends StatelessWidget {
           color: ColorPath.TextGrey4H9E9E9E,
         ),
       ),
+      textAlign: TextAlign.center,
     );
   }
 }

@@ -3,10 +3,8 @@
 import 'dart:async';
 
 import 'package:dr_parkinsons/app/models/base_response_model.dart';
-import 'package:dr_parkinsons/app/service/auth_service.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:logger/logger.dart';
 
 import '../../../globals/global_dialog_widget.dart';
 import '../../../globals/global_toast_widget.dart';
@@ -26,9 +24,10 @@ class DrugMisuseController extends GetxController {
 
   // RxList<DrugmisuseModel> drugMisuseList = <DrugmisuseModel>[].obs;
   RxList<DrugmisuseModel> boxesSearchData = <DrugmisuseModel>[].obs;
+  RxList<String> drugMisuseList = <String>[].obs;
 
   // Function ▼ =======================================
-  Future<void> onHandleSearch({required String value}) async {
+  Future<void> onHandleSearch(String value) async {
     // 값 저장
     globalFormKey.value.currentState!.save();
 
@@ -36,8 +35,6 @@ class DrugMisuseController extends GetxController {
     if (value.isNotEmpty) {
       isSearch.value = true;
       try {
-        Logger().d(AuthService.to.accessToken.value);
-
         AuthBaseResponseModel response = await Provider.dio(
             method: 'GET',
             url:
@@ -53,6 +50,9 @@ class DrugMisuseController extends GetxController {
             } else {
               boxesSearchData.assignAll(List<DrugmisuseModel>.from(
                   response.data.map((e) => DrugmisuseModel.fromJson(e))));
+              for (var i = 0; i < boxesSearchData.length; i++) {
+                drugMisuseList.add(boxesSearchData[i].medicineName);
+              }
             }
 
             break;
@@ -60,7 +60,7 @@ class DrugMisuseController extends GetxController {
             throw Exception(response.message);
         }
       } catch (e) {
-        GlobalToastWidget(e.toString());
+        GlobalToastWidget(e.toString().substring(11));
       }
     } else {
       isSearch.value = false;

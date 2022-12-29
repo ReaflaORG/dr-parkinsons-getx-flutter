@@ -20,6 +20,7 @@ class GlobalLayoutWidget extends StatelessWidget {
     super.key,
     required this.context,
     this.resizeToAvoidBottomInset = false,
+    this.extendBodyBehindAppBar = false,
     this.appBar,
     this.onWillPop,
     required this.body,
@@ -32,7 +33,10 @@ class GlobalLayoutWidget extends StatelessWidget {
   final BuildContext context;
 
   /// 온스크린 키보드 여부
-  final bool? resizeToAvoidBottomInset;
+  final bool resizeToAvoidBottomInset;
+
+  /// 앱 바의 높이를 포함하도록 [body]의 높이가 확장되고 본문의 상단이 앱 바의 상단과 정렬됩니다.
+  final bool extendBodyBehindAppBar;
 
   /// 앱바
   final PreferredSizeWidget? appBar;
@@ -60,21 +64,23 @@ class GlobalLayoutWidget extends StatelessWidget {
       child: WillPopScope(
         onWillPop: onWillPop,
         child: isSafeArea!
-            ? Scaffold(
-                resizeToAvoidBottomInset: resizeToAvoidBottomInset,
-                appBar: appBar,
-                backgroundColor: backgroundColor,
-                body: SafeArea(
-                  child: body,
+            ? SafeArea(
+                child: Scaffold(
+                  resizeToAvoidBottomInset: resizeToAvoidBottomInset,
+                  extendBodyBehindAppBar: extendBodyBehindAppBar,
+                  appBar: appBar,
+                  backgroundColor: backgroundColor,
+                  bottomNavigationBar: bottomNavigationBar,
+                  body: body,
                 ),
-                bottomNavigationBar: bottomNavigationBar,
               )
             : Scaffold(
                 resizeToAvoidBottomInset: resizeToAvoidBottomInset,
+                extendBodyBehindAppBar: extendBodyBehindAppBar,
                 appBar: appBar,
                 backgroundColor: backgroundColor,
-                body: body,
                 bottomNavigationBar: bottomNavigationBar,
+                body: body,
               ),
       ),
     );

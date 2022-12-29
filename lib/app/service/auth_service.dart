@@ -100,7 +100,7 @@ class AuthService extends GetxService {
           throw Exception(response.message);
       }
     } catch (e) {
-      GlobalToastWidget(e.toString());
+      GlobalToastWidget(e.toString().substring(11));
     }
   }
 
@@ -129,7 +129,7 @@ class AuthService extends GetxService {
         }
       });
     } catch (e) {
-      GlobalToastWidget(e.toString());
+      GlobalToastWidget(e.toString().substring(11));
     }
   }
 

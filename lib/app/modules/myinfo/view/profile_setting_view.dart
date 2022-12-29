@@ -12,65 +12,67 @@ class ProfileSettingView extends GetView<ProfileSettingController> {
   const ProfileSettingView({super.key});
 
   @override
-  Widget build(BuildContext context) => Scaffold(
-        appBar: AppBar(
-          backgroundColor: ColorPath.BackgroundWhite,
-          elevation: 0,
-          centerTitle: false,
-          leadingWidth: 39.w,
-          leading: InkWell(
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        elevation: 0,
+        shadowColor: Colors.white,
+        backgroundColor: Colors.white,
+        leading: IconButton(
+          onPressed: () async {
+            Get.back();
+          },
+          icon: const Icon(
+            Icons.arrow_back,
+            color: Colors.black,
+          ),
+        ),
+        title: Text(
+          '프로필 설정',
+          style: TextPath.Heading2F18W600.copyWith(
+            color: ColorPath.TextGrey1H212121,
+          ),
+        ),
+        actions: [
+          InkWell(
             onTap: () {
-              Get.back();
+              controller.handlePutMyInfoProvider();
             },
             child: Container(
-              alignment: Alignment.centerLeft,
-              padding: const EdgeInsets.only(left: 18).w,
-              child: Image.asset(
-                'assets/doctor/back_arrow.png',
-                width: 21.w,
-                height: 13.5.w,
+              alignment: Alignment.center,
+              padding: const EdgeInsets.symmetric(horizontal: 18).w,
+              child: Text(
+                '저장',
+                style: TextPath.TextF14W500.copyWith(
+                  color: ColorPath.PrimaryDarkColor,
+                ),
               ),
             ),
           ),
-          title: Container(
-            padding: const EdgeInsets.symmetric(horizontal: 4).w,
-            child: Text(
-              '프로필 설정',
-              style: TextPath.Heading2F18W600.copyWith(
-                color: ColorPath.TextGrey1H212121,
-              ),
-              textAlign: TextAlign.left,
-            ),
-          ),
-        ),
-        body: GestureDetector(
-          onTap: () {
-            FocusScope.of(context).unfocus();
-          },
-          child: SafeArea(
-            child: SingleChildScrollView(
-              physics: const ClampingScrollPhysics(),
-              child: Stack(
-                children: [
-                  Container(
-                    padding: EdgeInsets.fromLTRB(20.w, 20.w, 20.w, 0),
-                    child: Column(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        //유저 데이터
-                        const ProfileSettingForm(),
-                        SizedBox(height: 40.w),
-                        // 액션리스트
-                        SizedBox(height: MediaQuery.of(context).padding.bottom),
-                      ],
-                    ),
-                  )
-                ],
-              ),
+        ],
+      ),
+      body: GestureDetector(
+        onTap: () {
+          FocusScope.of(context).unfocus();
+        },
+        child: SafeArea(
+          child: SingleChildScrollView(
+            physics: const ClampingScrollPhysics(),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                //유저 데이터
+                const ProfileSettingForm(),
+                SizedBox(height: 40.w),
+                // 액션리스트
+                SizedBox(height: MediaQuery.of(context).padding.bottom),
+              ],
             ),
           ),
         ),
-      );
+      ),
+    );
+  }
 }
 
 // profile setting form
@@ -81,7 +83,7 @@ class ProfileSettingForm extends GetView<ProfileSettingController> {
   Widget build(BuildContext context) {
     return Obx(
       () => Container(
-        padding: EdgeInsets.fromLTRB(20.w, 0, 20.w, 0),
+        padding: const EdgeInsets.fromLTRB(20, 20, 20, 0).w,
         child: Column(
           children: [
             Container(
@@ -109,12 +111,12 @@ class ProfileSettingForm extends GetView<ProfileSettingController> {
                   color: ColorPath.TextGrey4H9E9E9E,
                 ),
                 contentPadding:
-                    const EdgeInsets.symmetric(vertical: 14, horizontal: 8),
+                    const EdgeInsets.symmetric(vertical: 14, horizontal: 8).w,
               ),
             ),
             if (controller.userNameError.value.isNotEmpty)
               Container(
-                margin: EdgeInsets.only(top: 4.w),
+                margin: const EdgeInsets.only(top: 4).w,
                 alignment: Alignment.bottomLeft,
                 child: Text(
                   controller.userNameError.value,
@@ -151,12 +153,12 @@ class ProfileSettingForm extends GetView<ProfileSettingController> {
                 contentPadding: const EdgeInsets.symmetric(
                   vertical: 14,
                   horizontal: 8,
-                ),
+                ).w,
               ),
             ),
             if (controller.userPhoneError.value.isNotEmpty)
               Container(
-                margin: EdgeInsets.only(top: 4.w),
+                margin: const EdgeInsets.only(top: 4).w,
                 alignment: Alignment.bottomLeft,
                 child: Text(
                   controller.userPhoneError.value,
@@ -193,12 +195,12 @@ class ProfileSettingForm extends GetView<ProfileSettingController> {
                 contentPadding: const EdgeInsets.symmetric(
                   vertical: 14,
                   horizontal: 8,
-                ),
+                ).w,
               ),
             ),
             if (controller.guardianNameError.value.isNotEmpty)
               Container(
-                margin: EdgeInsets.only(top: 4.w),
+                margin: const EdgeInsets.only(top: 4).w,
                 alignment: Alignment.bottomLeft,
                 child: Text(
                   controller.guardianNameError.value,
@@ -235,7 +237,7 @@ class ProfileSettingForm extends GetView<ProfileSettingController> {
                 contentPadding: const EdgeInsets.symmetric(
                   vertical: 14,
                   horizontal: 8,
-                ),
+                ).w,
               ),
             ),
             if (controller.guardianPhoneError.value.isNotEmpty)
@@ -264,16 +266,16 @@ class ProfileSettingForm extends GetView<ProfileSettingController> {
               mainAxisAlignment: MainAxisAlignment.start,
               children: List.generate(
                 controller.userGenderList.length,
-                (index) => Container(
-                  margin: EdgeInsets.only(right: index == 0 ? 10.w : 0),
-                  child: RadioButtonForProfile(
+                (index) {
+                  return RadioButtonForProfile(
                     title: controller.userGenderList[index],
                     isCheck: controller.userGenderList[index] ==
                         controller.userGender.value,
-                    onClick: () => controller.userGender.value =
-                        controller.userGenderList[index],
-                  ),
-                ),
+                    onClick: () {
+                      controller.handleRadioSelect(index, type: '성별');
+                    },
+                  );
+                },
               ),
             ),
             SizedBox(height: 24.w),
@@ -287,26 +289,38 @@ class ProfileSettingForm extends GetView<ProfileSettingController> {
               ),
             ),
             SizedBox(height: 10.w),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: List.generate(
-                controller.userBirthDayList.length,
-                (index) => Container(
-                  margin: EdgeInsets.only(right: 10.w),
-                  child: RadioButtonForProfile(
-                    title: index == 0
-                        ? '~${controller.userBirthDayList[index]}'
-                        : index == 3
-                            ? '${controller.userBirthDayList[index]}~'
-                            : controller.userBirthDayList[index],
-                    isCheck: controller.userBirthDayList[index] ==
-                        controller.userBirthDay.value,
-                    onClick: () => controller.userBirthDay.value =
-                        controller.userBirthDayList[index],
-                  ),
-                ),
+            SizedBox(
+              height: 40.w,
+              child: ListView.builder(
+                scrollDirection: Axis.horizontal,
+                shrinkWrap: true,
+                itemCount: controller.userBirthDayList.length,
+                itemBuilder: (context, index) {
+                  return RadioButtonForProfile(
+                    title: controller.userBirthDayList[index].label,
+                    isCheck: controller.userBirthDayList[index].isSelected,
+                    onClick: () {
+                      controller.handleRadioSelect(index, type: '연령대');
+                    },
+                  );
+                },
               ),
             ),
+            // Row(
+            //   mainAxisAlignment: MainAxisAlignment.start,
+            //   children: List.generate(
+            //     controller.userBirthDayList.length,
+            //     (index) {
+            //       return RadioButtonForProfile(
+            //         title: controller.userBirthDayList[index].label,
+            //         isCheck: controller.userBirthDayList[index].isSelected,
+            //         onClick: () {
+            //           controller.handleRadioSelect(index, type: '연령대');
+            //         },
+            //       );
+            //     },
+            //   ),
+            // ),
             SizedBox(height: 24.w),
             Container(
               alignment: Alignment.bottomLeft,
@@ -322,26 +336,23 @@ class ProfileSettingForm extends GetView<ProfileSettingController> {
               mainAxisAlignment: MainAxisAlignment.start,
               children: List.generate(
                 controller.diagnosticStatusList.length,
-                (index) => Container(
-                    margin: EdgeInsets.only(
-                      right: index != controller.diagnosticStatusList.length - 1
-                          ? 10.w
-                          : 0,
-                    ),
-                    child: RadioButtonForProfile(
-                      title: controller.diagnosticStatusList[index],
-                      isCheck: controller.diagnosticStatusList[index] ==
-                          controller.diagnosticStatus.value,
-                      onClick: () => controller.diagnosticStatus.value =
-                          controller.diagnosticStatusList[index],
-                    )),
+                (index) {
+                  return RadioButtonForProfile(
+                    title: controller.diagnosticStatusList[index],
+                    isCheck: controller.diagnosticStatusList[index] ==
+                        controller.diagnosticStatus.value,
+                    onClick: () {
+                      controller.handleRadioSelect(index, type: '파킨슨 진단 결과');
+                    },
+                  );
+                },
               ),
             ),
             SizedBox(height: 24.w),
             Container(
               alignment: Alignment.bottomLeft,
               child: Text(
-                '파킨슨 의심시기',
+                '파킨슨 진단일',
                 style: TextPath.TextF14W500.copyWith(
                   color: ColorPath.TextGrey1H212121,
                 ),
@@ -363,87 +374,22 @@ class ProfileSettingForm extends GetView<ProfileSettingController> {
                   contentPadding: const EdgeInsets.symmetric(
                     vertical: 14,
                     horizontal: 8,
-                  ),
+                  ).w,
                   suffixIcon: Padding(
                     padding:
-                        const EdgeInsets.fromLTRB(18.75, 12.5, 22.75, 12.5),
+                        const EdgeInsets.fromLTRB(18.75, 12.5, 22.75, 12.5).w,
                     child: Image.asset(
                       'assets/myinfo/fa_calendar.png',
-                      width: 14.86,
-                      height: 16,
+                      width: 14.86.w,
+                      height: 16.w,
                     ),
                   ),
                 ),
               ),
             ),
-            SizedBox(height: 20.w),
-            const ProfileSettingAction(),
+            SizedBox(height: 100.w),
           ],
         ),
-      ),
-    );
-  }
-}
-
-// profile setting action
-class ProfileSettingAction extends GetView<ProfileSettingController> {
-  const ProfileSettingAction({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
-      child: Row(
-        children: [
-          SizedBox(
-            width: 128.w,
-            height: 38.w,
-            child: TextButton(
-              onPressed: () => Get.back(),
-              style: TextButton.styleFrom(
-                foregroundColor: ColorPath.TextGrey1H212121,
-                backgroundColor: Colors.white,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(4),
-                  side: BorderSide(
-                    color: ColorPath.Border3E7E7E7,
-                  ),
-                ),
-              ),
-              child: Text(
-                '취소',
-                style: TextPath.TextF14W400.copyWith(
-                  color: ColorPath.TextGrey3H616161,
-                ),
-              ),
-            ),
-          ),
-          SizedBox(width: 8.w),
-          Expanded(
-            child: SizedBox(
-              height: 38.w,
-              child: TextButton(
-                onPressed: () async => await controller.handleSubmit(),
-                style: TextButton.styleFrom(
-                  foregroundColor: ColorPath.TextGrey1H212121,
-                  backgroundColor: ColorPath.Blue2F7ABAColor,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(4),
-                    side: BorderSide(
-                      color: ColorPath.Border3E7E7E7,
-                    ),
-                  ),
-                ),
-                child: Text(
-                  '완료',
-                  style: TextPath.TextF14W400.copyWith(
-                    color: Colors.white,
-                  ),
-                ),
-              ),
-            ),
-          )
-        ],
       ),
     );
   }

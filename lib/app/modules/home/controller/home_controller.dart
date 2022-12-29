@@ -47,7 +47,7 @@ class HomeController extends GetxController {
       }
     } catch (e) {
       Logger().d(e);
-      GlobalToastWidget(e.toString());
+      GlobalToastWidget(e.toString().substring(11));
     }
   }
 
@@ -72,7 +72,7 @@ class HomeController extends GetxController {
       }
     } catch (e) {
       Logger().d(e);
-      GlobalToastWidget(e.toString());
+      GlobalToastWidget(e.toString().substring(11));
     }
   }
 
@@ -97,7 +97,7 @@ class HomeController extends GetxController {
       }
     } catch (e) {
       Logger().d(e);
-      GlobalToastWidget(e.toString());
+      GlobalToastWidget(e.toString().substring(11));
     }
   }
 
@@ -121,7 +121,7 @@ class HomeController extends GetxController {
     } catch (e) {
       Logger().d(e);
       alert.value = false;
-      GlobalToastWidget(e.toString());
+      GlobalToastWidget(e.toString().substring(11));
     }
   }
 

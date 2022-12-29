@@ -6,6 +6,9 @@ class SocialWelfareDetailBinding implements Bindings {
   @override
   void dependencies() {
     // Get.put(SocialWelFarePostViewController());
-    Get.lazyPut(() => SocialWelfareDetailController(), fenix: true);
+    Get.lazyPut(
+      () => SocialWelfareDetailController(),
+      fenix: true,
+    );
   }
 }

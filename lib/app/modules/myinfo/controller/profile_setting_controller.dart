@@ -3,7 +3,6 @@
 import 'dart:async';
 
 import 'package:dr_parkinsons/app/globals/global_toast_widget.dart';
-import 'package:dr_parkinsons/app/models/base_response_model.dart';
 import 'package:dr_parkinsons/app/service/auth_service.dart';
 import 'package:dr_parkinsons/app/utils/formatter.dart';
 import 'package:flutter/material.dart';
@@ -12,6 +11,7 @@ import 'package:get/get.dart';
 import 'package:logger/logger.dart';
 import 'package:syncfusion_flutter_datepicker/datepicker.dart';
 
+import '../../../models/birth_day_model.dart';
 import '../../../models/user_model.dart';
 import '../../../provider/provider.dart';
 
@@ -19,32 +19,108 @@ import '../../../provider/provider.dart';
 class ProfileSettingController extends GetxController {
   static ProfileSettingController get to => Get.find();
 
-  // Data ▼ ============================================
+  // Data ▼
 
-  // EditController ▼ ========================================
+  // FocusNode ▼
+
+  /// 사용자 이름 포커스 노드
+  Rx<FocusNode> userNameFoucesNode = FocusNode().obs;
+
+  /// 사용자 핸드폰 번호 포커스 노드
+  Rx<FocusNode> userPhoneFoucesNode = FocusNode().obs;
+
+  /// 보호자 이름 포커스 노드
+  Rx<FocusNode> guardianNameFoucesNode = FocusNode().obs;
+
+  /// 보호자 핸드폰 번호 포커스 노드
+  Rx<FocusNode> guardianPhoneFoucesNode = FocusNode().obs;
+
+  // Controller ▼
+
+  /// 사용자 이름
   Rx<TextEditingController> userNameController =
       TextEditingController(text: AuthService.to.userData.value.userName ?? '')
           .obs;
+
+  /// 사용자 이름
   Rx<TextEditingController> userPhoneController = TextEditingController(
           text: AuthService.to.userData.value.userPhoneNumber ?? '')
       .obs;
 
+  /// 보호자 이름
   Rx<TextEditingController> guardianNameController = TextEditingController(
           text: AuthService.to.userData.value.guardianName ?? '')
       .obs;
+
+  /// 보호자 핸드폰 번호
   Rx<TextEditingController> guardianPhoneController = TextEditingController(
           text: AuthService.to.userData.value.guardianPhoneNumber ?? '')
       .obs;
 
-  // FocusNode ▼ ========================================
-  Rx<FocusNode> userNameFoucesNode = FocusNode().obs;
-  Rx<FocusNode> userPhoneFoucesNode = FocusNode().obs;
+  // Variable ▼
 
-  Rx<FocusNode> guardianNameFoucesNode = FocusNode().obs;
-  Rx<FocusNode> guardianPhoneFoucesNode = FocusNode().obs;
+  /// 이름
+  Rx<String> userGender = '남성'.obs;
 
-  // Function ▼ ========================================
-  // * 날짜 선택기
+  /// 성별 리스트
+  RxList<String> userGenderList = ['남성', '여성'].obs;
+
+  /// 진단 상태
+  Rx<String> diagnosticStatus = '의심'.obs;
+
+  /// 진단 상태 리스트
+  RxList<String> diagnosticStatusList = ['의심', '초기', '중증', '해당없음'].obs;
+
+  /// 나이대 리스트
+  RxList<BirthDayModel> userBirthDayList = [
+    BirthDayModel(
+      label: '40대 이하',
+      birthday: 40,
+      isSelected: false,
+    ),
+    BirthDayModel(
+      label: '50대',
+      birthday: 50,
+      isSelected: false,
+    ),
+    BirthDayModel(
+      label: '60대',
+      birthday: 60,
+      isSelected: false,
+    ),
+    BirthDayModel(
+      label: '70대',
+      birthday: 70,
+      isSelected: false,
+    ),
+    BirthDayModel(
+      label: '80대 이상',
+      birthday: 81,
+      isSelected: false,
+    ),
+  ].obs;
+
+  /// 이름 오류 메세지
+  Rx<String> userNameError = ''.obs;
+
+  /// 핸드폰 번호 오류 메세지
+  Rx<String> userPhoneError = ''.obs;
+
+  /// 보호자 이름 오류 메세지
+  Rx<String> guardianNameError = ''.obs;
+
+  /// 보호자 핸드폰 번호 오류 메세지
+  Rx<String> guardianPhoneError = ''.obs;
+
+  /// 파킨슨 의심시기 (DateTime)
+  Rx<DateTime> diagnosticDay = DateTime.now().obs;
+
+  /// 파킨슨 의심시기 (String)
+  Rx<String> diagnosticDayString = Formmater.dateTimeFormat(DateTime.now()).obs;
+
+  // Function ▼
+
+  /// 날짜 선택
   void handleSelectDate() {
     Get.dialog(
       Dialog(
@@ -77,90 +153,106 @@ class ProfileSettingController extends GetxController {
     );
   }
 
-  // * 데이터 수정하기 API
-  Future<void> handleSubmit() async {
+  /// 벨리데이터
+  bool handleValidator() {
     if (userNameController.value.text.isEmpty) {
       userNameError.value = '이름은 필수입니다.';
-    } else {
-      userNameError.value = '';
+      return false;
     }
+
     if (userPhoneController.value.text.isEmpty) {
       userPhoneError.value = '핸드폰 번호는 필수입니다.';
-    } else {
-      userPhoneError.value = '';
+      return false;
     }
+
     if (guardianNameController.value.text.isEmpty) {
       guardianNameError.value = '보호자 이름은 필수입니다.';
-    } else {
-      guardianNameError.value = '';
+      return false;
     }
+
     if (guardianPhoneController.value.text.isEmpty) {
       guardianPhoneError.value = '보호자 핸드폰 필수입니다.';
-    } else {
-      guardianPhoneError.value = '';
-    }
-    if (userNameError.value.isNotEmpty ||
-        userPhoneError.value.isNotEmpty ||
-        guardianNameError.value.isNotEmpty ||
-        guardianPhoneError.value.isNotEmpty) {
-      return;
+      return false;
     }
 
-    try {
-      Map<String, dynamic> request = {
-        'user_name': userNameController.value.text,
-        'user_phoneNumber': userPhoneController.value.text,
-        'guardian_name': guardianNameController.value.text,
-        'guardian_phoneNumber': guardianPhoneController.value.text,
-        'user_gender': userGender.value,
-        'user_birth_day': userBirthDay.value,
-        'diagnostic_status': diagnosticStatus.value,
-        'diagnostic_day': diagnosticDayString.value
-      };
-      AuthBaseResponseModel response = await Provider.dio(
-        method: 'PUT',
-        url: '/myinfo',
-        requestModel: request,
-      );
-      switch (response.statusCode) {
-        case 200:
-          UserModel user = UserModel.fromJson(response.data['user']);
-          AuthService.to.userData.value = user;
-          AuthService.to.userData.refresh();
-          Get.back();
-          GlobalToastWidget('프로필 수정이 완료되었습니다.');
-          break;
+    return true;
+  }
 
-        default:
-          throw Exception(response.message);
-      }
-    } catch (e) {
-      Logger().d(e);
-      GlobalToastWidget(e.toString());
+  /// 라디오 선택 핸들러
+  void handleRadioSelect(
+    int index, {
+    required String type,
+  }) {
+    switch (type) {
+      case '성별':
+        userGender.value = userGenderList[index];
+        break;
+      case '연령대':
+        for (var element in userBirthDayList) {
+          if (element.birthday == userBirthDayList[index].birthday) {
+            element.isSelected = true;
+          } else {
+            element.isSelected = false;
+          }
+        }
+        userBirthDayList.refresh();
+        break;
+      case '파킨슨 진단 결과':
+        diagnosticStatus.value = diagnosticStatusList[index];
+        break;
     }
   }
 
-  // Variable ▼ ========================================
-  Rx<String> userGender = '남성'.obs;
-  RxList<String> userGenderList = ['남성', '여성'].obs;
+  /// 데이터 수정하기 API
+  Future<void> handlePutMyInfoProvider() async {
+    try {
+      // 벨리데이터
+      if (!handleValidator()) {
+        return;
+      }
 
-  Rx<String> diagnosticStatus = '의심'.obs;
-  RxList<String> diagnosticStatusList = ['의심', '초기', '중증', '해당없음'].obs;
+      await Provider.dio(
+        method: 'PUT',
+        url: '/myinfo',
+        requestModel: {
+          'user_name': userNameController.value.text,
+          'user_phoneNumber': userPhoneController.value.text,
+          'guardian_name': guardianNameController.value.text,
+          'guardian_phoneNumber': guardianPhoneController.value.text,
+          'user_gender': userGender.value,
+          'user_birth_day':
+              '${userBirthDayList.firstWhere((element) => element.isSelected).birthday}',
+          'diagnostic_status': diagnosticStatus.value,
+          'diagnostic_day': diagnosticDayString.value
+        },
+      ).then((response) {
+        switch (response.statusCode) {
+          case 200:
+            Future.wait([
+              () async {
+                AuthService.to.userData.value =
+                    UserModel.fromJson(response.data['user']);
+              }(),
+              () async {
+                AuthService.to.userData.refresh();
+              }(),
+            ]).then((value) {
+              GlobalToastWidget('프로필 수정이 완료되었습니다.');
+            });
+            break;
 
-  Rx<String> userBirthDay = '30대'.obs;
-  RxList<String> userBirthDayList = ['30대', '40대', '50대', '60대'].obs;
+          default:
+            throw Exception(response.message);
+        }
+      });
+    } catch (e) {
+      Logger().d(e);
+      GlobalToastWidget(e.toString().substring(11));
+    }
+  }
 
-  Rx<DateTime> diagnosticDay = DateTime.now().obs;
-  Rx<String> diagnosticDayString = Formmater.dateTimeFormat(DateTime.now()).obs;
-
-  // * 에러 리스트
-  Rx<String> userNameError = ''.obs;
-  Rx<String> userPhoneError = ''.obs;
-  Rx<String> guardianNameError = ''.obs;
-  Rx<String> guardianPhoneError = ''.obs;
-
-  @override
-  Future<void> onInit() async {
+  /// 초기화
+  Future<void> handleInitialize() async {
     if (AuthService.to.userData.value.userGender != null) {
       userGender.value = AuthService.to.userData.value.userGender!;
     }
@@ -170,13 +262,29 @@ class ProfileSettingController extends GetxController {
     }
 
     if (AuthService.to.userData.value.userBirthDay != null) {
-      userBirthDay.value = AuthService.to.userData.value.userBirthDay!;
+      // 연령대 초기화
+      for (var element in userBirthDayList) {
+        if (element.birthday ==
+            int.parse(AuthService.to.userData.value.userBirthDay!)) {
+          element.isSelected = true;
+        } else {
+          element.isSelected = false;
+        }
+      }
+      userBirthDayList.refresh();
     }
 
     if (AuthService.to.userData.value.diagnosticDay != null) {
       diagnosticDay.value = AuthService.to.userData.value.diagnosticDay!;
       diagnosticDayString.value = Formmater.dateTimeFormat(diagnosticDay.value);
     }
+
+    Logger().d(AuthService.to.userData.value.userBirthDay);
+  }
+
+  @override
+  Future<void> onInit() async {
+    handleInitialize();
 
     super.onInit();
   }
