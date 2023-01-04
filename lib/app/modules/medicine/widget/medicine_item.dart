@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../theme/color_path.dart';
-import '../../../theme/texts.dart';
+import '../../../theme/text_path.dart';
 
 /// 약재 설명 : 이미지 + 설명글
 ///

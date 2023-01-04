@@ -3,7 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
 import '../theme/color_path.dart';
-import '../theme/texts.dart';
+import '../theme/text_path.dart';
 
 /// 글로벌 앱바 위젯
 ///
@@ -31,7 +31,7 @@ class GlobalAppBarWidget extends StatelessWidget
     this.elevation = 0,
     this.backgroundColor = Colors.white,
     this.leadingIcon = const Icon(
-      Icons.keyboard_backspace_rounded,
+      Icons.arrow_back,
       color: Colors.black,
       size: 24,
     ),
@@ -62,31 +62,31 @@ class GlobalAppBarWidget extends StatelessWidget
 
   @override
   Widget build(BuildContext context) {
-    return PreferredSize(
-      preferredSize: Size.fromHeight(62.w),
-      child: AppBar(
-        backgroundColor: backgroundColor,
-        elevation: elevation,
-        centerTitle: centerTitle,
-        toolbarHeight: toolbarHeight.w,
-        automaticallyImplyLeading: automaticallyImplyLeading,
-        titleSpacing: titleSpacing.w,
-        leading: !isLeadingVisible
-            ? IconButton(
-                padding: EdgeInsets.zero,
-                icon: leadingIcon,
-                onPressed: () => onBack != null ? onBack!() : Get.back(),
-              )
-            : null,
-        title: Text(
-          title,
-          style: TextPath.Heading2F18W600.copyWith(
-            color: ColorPath.TextGrey1H212121,
-          ),
-          textAlign: TextAlign.left,
+    // PreferredSize(
+    //   preferredSize: Size.fromHeight(62.w),
+    //   child:
+    return AppBar(
+      backgroundColor: backgroundColor,
+      elevation: elevation,
+      centerTitle: centerTitle,
+      toolbarHeight: toolbarHeight.w,
+      automaticallyImplyLeading: automaticallyImplyLeading,
+      titleSpacing: titleSpacing.w,
+      leading: !isLeadingVisible
+          ? IconButton(
+              padding: EdgeInsets.zero,
+              icon: leadingIcon,
+              onPressed: () => onBack != null ? onBack!() : Get.back(),
+            )
+          : null,
+      title: Text(
+        title,
+        style: TextPath.Heading2F18W600.copyWith(
+          color: ColorPath.TextGrey1H212121,
         ),
-        actions: actions ?? [],
+        textAlign: TextAlign.left,
       ),
+      actions: actions ?? [],
     );
   }
 }

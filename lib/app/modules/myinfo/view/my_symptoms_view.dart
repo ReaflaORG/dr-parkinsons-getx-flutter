@@ -2,10 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
+import '../../../globals/global_appbar_widget.dart';
 import '../../../globals/global_dialog_widget.dart';
+import '../../../globals/global_layout_widget.dart';
 import '../../../routes/app_pages.dart';
 import '../../../theme/color_path.dart';
-import '../../../theme/texts.dart';
+import '../../../theme/text_path.dart';
 import '../controller/my_symptoms_controller.dart';
 import '../models/my_symptoms_item_model.dart';
 
@@ -21,50 +23,25 @@ class MySymptomsView extends GetView<MySymptomsController> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: ColorPath.BackgroundWhite,
-        elevation: 0,
-        centerTitle: false,
-        leadingWidth: 39.w,
-        leading: InkWell(
-          onTap: () {
-            Get.back();
-          },
-          child: Container(
-            alignment: Alignment.centerLeft,
-            padding: const EdgeInsets.only(left: 18).w,
-            child: Image.asset(
-              'assets/doctor/back_arrow.png',
-              width: 21.w,
-              height: 13.5.w,
-            ),
-          ),
-        ),
-        title: Container(
-          padding: const EdgeInsets.symmetric(horizontal: 4).w,
-          child: Text(
-            '내 증상 기록',
-            style: TextPath.Heading2F18W600.copyWith(
-              color: ColorPath.TextGrey1H212121,
-            ),
-            textAlign: TextAlign.left,
-          ),
-        ),
+    return GlobalLayoutWidget(
+      context: context,
+      appBar: GlobalAppBarWidget(
+        title: '내 증상 기록',
+        appBar: AppBar(),
         actions: [
           Container(
-            padding: const EdgeInsets.fromLTRB(0, 10, 18, 10).w,
-            child: InkWell(
-              onTap: () async {
-                await Get.toNamed(Routes.WRITE_MY_SYMPTOMS);
-                await controller.getMySymptomsData();
+            alignment: Alignment.center,
+            margin: const EdgeInsets.only(right: 5).w,
+            child: TextButton(
+              onPressed: () {
+                Get.toNamed(Routes.WRITE_MY_SYMPTOMS);
+                controller.getMySymptomsData();
               },
               child: Text(
                 '추가하기',
-                style: TextPath.TextF16W600.copyWith(
+                style: TextPath.TextF14W600.copyWith(
                   color: ColorPath.TextGrey1H212121,
                 ),
-                textAlign: TextAlign.right,
               ),
             ),
           ),

@@ -7,8 +7,6 @@ import 'package:get/get.dart';
 class ThemeController extends GetxController {
   static ThemeController get to => Get.find();
 
-  // Funcion ▼ ========================================
-
   // Variable ▼ =======================================
 
   // 체크박스

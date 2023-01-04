@@ -3,7 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
 import '../../../theme/color_path.dart';
-import '../../../theme/texts.dart';
+import '../../../theme/text_path.dart';
 import '../controller/diagnosis_controller.dart';
 import '../widget/diagnosis_answer.dart';
 
@@ -11,56 +11,53 @@ class DiagnosisView extends GetView<DiagnosisController> {
   const DiagnosisView({super.key});
 
   @override
-  Widget build(BuildContext context) => Obx(
-        () => Scaffold(
-          appBar: PreferredSize(
-            preferredSize: Size.fromHeight(74.w),
-            child: AppBar(
-              toolbarHeight: 84.w,
-              backgroundColor: ColorPath.SecondaryLightColor,
-              leadingWidth: 60.w,
-              leading: Container(
-                margin: const EdgeInsets.only(
-                  left: 20,
-                ).w,
-                child: CircleAvatar(
-                  backgroundColor: ColorPath.BackgroundWhite,
-                  radius: 24.r,
-                  child: IconButton(
-                    onPressed: () => Get.back(),
-                    icon: Icon(
-                      Icons.arrow_back,
-                      color: ColorPath.TextGrey1H212121,
-                    ),
+  Widget build(BuildContext context) {
+    return Obx(
+      () => Scaffold(
+        appBar: PreferredSize(
+          preferredSize: Size.fromHeight(74.w),
+          child: AppBar(
+            toolbarHeight: 84.w,
+            backgroundColor: ColorPath.SecondaryLightColor,
+            leadingWidth: 60.w,
+            leading: Container(
+              margin: const EdgeInsets.only(
+                left: 20,
+              ).w,
+              child: CircleAvatar(
+                backgroundColor: ColorPath.BackgroundWhite,
+                radius: 24.r,
+                child: IconButton(
+                  onPressed: () => Get.back(),
+                  icon: Icon(
+                    Icons.arrow_back,
+                    color: ColorPath.TextGrey1H212121,
                   ),
                 ),
               ),
-              centerTitle: false,
-              elevation: 0,
-              shadowColor: Colors.white,
-              title: Text(
-                controller.survey.value.nameOfSurvey,
-                style: TextPath.Heading2F18W600.copyWith(
-                  color: ColorPath.TextGrey1H212121,
-                ),
+            ),
+            centerTitle: false,
+            elevation: 0,
+            shadowColor: Colors.white,
+            title: Text(
+              controller.survey.value.nameOfSurvey,
+              style: TextPath.Heading2F18W600.copyWith(
+                color: ColorPath.TextGrey1H212121,
               ),
             ),
           ),
-          body: controller.isFinish.value
-              ? const SurveyResultView()
-              : const SurveyTestingView(),
         ),
-      );
+        body: controller.isFinish.value
+            ? const SurveyResultView()
+            : const SurveyTestingView(),
+      ),
+    );
+  }
 }
 
-// class TestAfterWidget extends GetView<DiagnosisController> {
-//   @override
-//   Widget build(BuildContext context) {
-//     return Text('Test Finished');
-//   }
-// }
-
 class TestInProgressWidget extends GetView<DiagnosisController> {
+  const TestInProgressWidget({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Obx(
@@ -76,7 +73,7 @@ class TestInProgressWidget extends GetView<DiagnosisController> {
                     color: ColorPath.TextGrey2H424242),
               ),
               Text(
-                "${controller.questionNumber.value + 1} ",
+                '${controller.questionNumber.value + 1} ',
                 style: TextPath.TextF16W500.copyWith(
                     color: ColorPath.TertiaryColor),
               ),
@@ -95,8 +92,8 @@ class TestInProgressWidget extends GetView<DiagnosisController> {
             child: Text(
               controller.survey.value.quizes[controller.questionNumber.value]
                   .questionText,
-              style: TextPath.TextF16W500Expand,
               maxLines: 3,
+              style: TextPath.TextF16W500Expand,
             ),
           ),
         ],
@@ -105,7 +102,7 @@ class TestInProgressWidget extends GetView<DiagnosisController> {
   }
 }
 
-// * 설문 진행화면
+/// 설문 진행화면
 class SurveyTestingView extends GetView<DiagnosisController> {
   const SurveyTestingView({super.key});
 
@@ -131,7 +128,7 @@ class SurveyTestingView extends GetView<DiagnosisController> {
                             borderRadius: const BorderRadius.only(
                               bottomLeft: Radius.circular(36),
                               bottomRight: Radius.circular(36),
-                            ),
+                            ).r,
                           ),
                         ),
                       ),
@@ -140,7 +137,7 @@ class SurveyTestingView extends GetView<DiagnosisController> {
                           padding: const EdgeInsets.symmetric(
                             horizontal: 28,
                             vertical: 26,
-                          ).w.w,
+                          ).w,
                           width: 320.w,
                           height: 180.w,
                           decoration: BoxDecoration(
@@ -149,10 +146,7 @@ class SurveyTestingView extends GetView<DiagnosisController> {
                                 color: ColorPath.PrimaryColor.withOpacity(0.1),
                                 spreadRadius: 2,
                                 blurRadius: 10,
-                                offset: const Offset(
-                                  5,
-                                  5,
-                                ), // changes position of shadow
+                                offset: const Offset(5, 5),
                               ),
                             ],
                             color: ColorPath.BackgroundWhite,
@@ -160,22 +154,20 @@ class SurveyTestingView extends GetView<DiagnosisController> {
                               Radius.circular(16),
                             ).r,
                           ),
-                          child: TestInProgressWidget(),
+                          child: const TestInProgressWidget(),
                         ),
                       ),
                     ],
                   ),
-                  SizedBox(
-                    height: 54.w,
-                  ),
-                  ...List.generate(
-                      controller
-                          .survey
-                          .value
-                          .quizes[controller.questionNumber.value]
-                          .answers
-                          .length, (index) {
-                    return DiagnosisAnswer(
+                  SizedBox(height: 54.w),
+                  ListView.builder(
+                    shrinkWrap: true,
+                    itemCount: controller.survey.value
+                        .quizes[controller.questionNumber.value].answers.length,
+                    itemBuilder: (context, index) {
+                      return DiagnosisAnswer(
+                        isPass: controller.survey.value
+                            .quizes[controller.questionNumber.value].isPass,
                         handleSelectItem: () =>
                             controller.handlePickUserAnswer(index),
                         isPicked: controller
@@ -188,14 +180,19 @@ class SurveyTestingView extends GetView<DiagnosisController> {
                             .survey
                             .value
                             .quizes[controller.questionNumber.value]
-                            .answers[index]);
-                  }).toList()
+                            .answers[index],
+                      );
+                    },
+                  ),
                 ],
               ),
             ),
           ),
           Container(
-            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 30).w,
+            padding: const EdgeInsets.symmetric(
+              horizontal: 20,
+              vertical: 30,
+            ).w,
             child: Row(
               children: [
                 OutlinedButton(
@@ -212,14 +209,14 @@ class SurveyTestingView extends GetView<DiagnosisController> {
                 const SizedBox(width: 10),
                 ElevatedButton(
                   style: ElevatedButton.styleFrom(
-                    //change width and height on your need width = 200 and height = 50
                     minimumSize: Size(180.w, 44.w),
                   ),
                   onPressed: () => controller.nextQuestion(),
                   child: Text(
                     '다음',
                     style: TextPath.TextF14W400.copyWith(
-                        color: ColorPath.TextWhite),
+                      color: ColorPath.TextWhite,
+                    ),
                   ),
                 )
               ],
@@ -231,7 +228,7 @@ class SurveyTestingView extends GetView<DiagnosisController> {
   }
 }
 
-// * 결과 페이지
+/// 결과 페이지
 class SurveyResultView extends GetView<DiagnosisController> {
   const SurveyResultView({super.key});
 
@@ -256,117 +253,106 @@ class SurveyResultView extends GetView<DiagnosisController> {
                           borderRadius: const BorderRadius.only(
                             bottomLeft: Radius.circular(36),
                             bottomRight: Radius.circular(36),
-                          ),
+                          ).r,
                         ),
                       ),
                     ),
                     Positioned(
                       child: Container(
-                          padding: const EdgeInsets.symmetric(
-                            horizontal: 60,
-                            vertical: 26,
-                          ).w,
-                          width: 320.w,
-                          height: 437.w,
-                          decoration: BoxDecoration(
-                            boxShadow: [
-                              BoxShadow(
-                                color: ColorPath.PrimaryColor.withOpacity(0.1),
-                                spreadRadius: 2,
-                                blurRadius: 10,
-                                offset: const Offset(
-                                    5, 5), // changes position of shadow
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 60,
+                          vertical: 26,
+                        ).w,
+                        width: 320.w,
+                        height: 437.w,
+                        decoration: BoxDecoration(
+                          boxShadow: [
+                            BoxShadow(
+                              color: ColorPath.PrimaryColor.withOpacity(0.1),
+                              spreadRadius: 2,
+                              blurRadius: 10,
+                              offset: const Offset(5, 5),
+                            ),
+                          ],
+                          color: ColorPath.BackgroundWhite,
+                          borderRadius: const BorderRadius.all(
+                            Radius.circular(16),
+                          ).r,
+                        ),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            Text(
+                              '진단결과',
+                              style: TextPath.Heading1F24W600,
+                            ),
+                            SizedBox(height: 34.w),
+                            Text(
+                              controller.handleResultValue(),
+                              style: TextPath.TextF16W500Expand.copyWith(
+                                color: ColorPath.TextGrey2H424242,
                               ),
-                            ],
-                            color: ColorPath.BackgroundWhite,
-                            borderRadius: const BorderRadius.all(
-                              Radius.circular(16),
                             ),
-                          ),
-                          child: Container(
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              children: [
-                                Text(
-                                  '진단결과',
-                                  style: TextPath.Heading1F24W600,
-                                ),
-                                const SizedBox(
-                                  height: 34,
-                                ),
-                                Text(controller.handleResultValue(),
-                                    style: TextPath.TextF16W500Expand.copyWith(
-                                        color: ColorPath.TextGrey2H424242)),
-                                SizedBox(
-                                  height: 34.w,
-                                ),
-                                Text(
-                                  '''전문의와의 상담을 원하시면,\n하단의 링크를 눌러주세요.''',
-                                  style: TextPath.TextF14W400.copyWith(
-                                      color: ColorPath.TextGrey2H424242),
-                                ),
-                                SizedBox(
-                                  height: 34.w,
-                                ),
-                                InkWell(
-                                  onTap: () => Get.toNamed('/search'),
-                                  child: Container(
-                                    padding:
-                                        const EdgeInsets.symmetric(vertical: 6)
-                                            .w,
-                                    height: 60.w,
-                                    width: 210.w,
-                                    decoration: BoxDecoration(
-                                      color: ColorPath.PrimaryLightColor,
-                                      borderRadius: BorderRadius.circular(16).r,
-                                      boxShadow: [
-                                        BoxShadow(
-                                          color: ColorPath.PrimaryColor
-                                              .withOpacity(0.1),
-                                          spreadRadius: 2,
-                                          blurRadius: 20,
-                                          offset: const Offset(
-                                            5,
-                                            5,
-                                          ), // changes position of shadow
-                                        ),
-                                      ],
+                            SizedBox(height: 34.w),
+                            Text(
+                              '''전문의와의 상담을 원하시면,\n하단의 링크를 눌러주세요.''',
+                              style: TextPath.TextF14W400.copyWith(
+                                  color: ColorPath.TextGrey2H424242),
+                            ),
+                            SizedBox(height: 34.w),
+                            InkWell(
+                              onTap: () => Get.toNamed('/search'),
+                              child: Container(
+                                padding:
+                                    const EdgeInsets.symmetric(vertical: 6).w,
+                                height: 60.w,
+                                width: 210.w,
+                                decoration: BoxDecoration(
+                                  color: ColorPath.PrimaryLightColor,
+                                  borderRadius: BorderRadius.circular(16).r,
+                                  boxShadow: [
+                                    BoxShadow(
+                                      color: ColorPath.PrimaryColor.withOpacity(
+                                        0.1,
+                                      ),
+                                      spreadRadius: 2,
+                                      blurRadius: 20,
+                                      offset: const Offset(5, 5),
                                     ),
-                                    child: Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.center,
-                                      children: [
-                                        CircleAvatar(
-                                          backgroundColor:
-                                              ColorPath.BackgroundWhite,
-                                          radius: 24,
-                                          child: IconButton(
-                                            onPressed: () => Get.back(),
-                                            icon: Image.asset(
-                                                'assets/images/icons/3d/28stethoscope.png'),
-                                          ),
+                                  ],
+                                ),
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  children: [
+                                    CircleAvatar(
+                                      backgroundColor:
+                                          ColorPath.BackgroundWhite,
+                                      radius: 24,
+                                      child: IconButton(
+                                        onPressed: () => Get.back(),
+                                        icon: Image.asset(
+                                          'assets/images/icons/3d/28stethoscope.png',
                                         ),
-                                        SizedBox(
-                                          width: 14.w,
-                                        ),
-                                        Text(
-                                          '''파킨슨 전문의 찾기 
+                                      ),
+                                    ),
+                                    SizedBox(width: 14.w),
+                                    Text(
+                                      '''파킨슨 전문의 찾기 
 바로가기''',
-                                          textAlign: TextAlign.center,
-                                          style: TextPath.TextF14W500.copyWith(
-                                            color: ColorPath.TextGrey2H424242,
-                                          ),
-                                        ),
-                                      ],
+                                      textAlign: TextAlign.center,
+                                      style: TextPath.TextF14W500.copyWith(
+                                        color: ColorPath.TextGrey2H424242,
+                                      ),
                                     ),
-                                  ),
-                                )
-                              ],
-                            ),
-                          )),
+                                  ],
+                                ),
+                              ),
+                            )
+                          ],
+                        ),
+                      ),
                     ),
                   ],
                 ),
@@ -375,20 +361,21 @@ class SurveyResultView extends GetView<DiagnosisController> {
           ),
         ),
         Container(
-            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 30).w,
-            child: ElevatedButton(
-              style: ElevatedButton.styleFrom(
-                //change width and height on your need width = 200 and height = 50
-                minimumSize: Size(320.w, 44.w),
-              ),
-              // onPressed: () => controller.nextQuestion(),
-              onPressed: () => Get.back(),
-              child: Text(
-                '확인',
-                style:
-                    TextPath.TextF14W400.copyWith(color: ColorPath.TextWhite),
-              ),
-            )),
+          padding: const EdgeInsets.symmetric(
+            horizontal: 20,
+            vertical: 30,
+          ).w,
+          child: ElevatedButton(
+            style: ElevatedButton.styleFrom(
+              minimumSize: Size(320.w, 44.w),
+            ),
+            onPressed: () => Get.back(),
+            child: Text(
+              '확인',
+              style: TextPath.TextF14W400.copyWith(color: ColorPath.TextWhite),
+            ),
+          ),
+        ),
       ],
     );
   }

@@ -4,14 +4,14 @@ import 'package:get/get.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
 import '../../../theme/color_path.dart';
-import '../../../theme/texts.dart';
+import '../../../theme/text_path.dart';
 import '../../../utils/formatter.dart';
-import '../controller/doctor_controller.dart';
+import '../controller/doctor_detail_controller.dart';
 
 /// 비디오 플레이어 위젯
 ///
 /// [index] int: 비디오 인덱스
-class DoctorVideoWidget extends GetView<DoctorController> {
+class DoctorVideoWidget extends GetView<DoctorDetailController> {
   final int index;
 
   const DoctorVideoWidget({
@@ -40,6 +40,7 @@ class DoctorVideoWidget extends GetView<DoctorController> {
               // ),
               thumbnail: Image.network(
                 controller.videoData[index].thumbnail,
+                cacheWidth: 640,
                 fit: BoxFit.fill,
               ),
               bottomActions: [

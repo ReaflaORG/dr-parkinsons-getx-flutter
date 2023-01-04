@@ -109,8 +109,6 @@ class HomeController extends GetxController {
         url: '/home/message',
       );
 
-      // api 보내는거 에러뜸. 403
-      Logger().d(response.statusCode);
       switch (response.statusCode) {
         case 201:
           break;
@@ -127,8 +125,6 @@ class HomeController extends GetxController {
 
   /// 미션 남은 시간 계산
   int getDeffMinit(int time) {
-    Logger().d(time);
-
     String now = DateFormat('HH:mm').format(DateTime.now());
     return time - int.parse(now.replaceAll(':', ''));
   }

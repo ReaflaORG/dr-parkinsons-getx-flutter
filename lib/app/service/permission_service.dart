@@ -11,7 +11,7 @@ import '../models/permission_model.dart';
 class PermissionService extends GetxService {
   static PermissionService get to => Get.find();
 
-  // Data ▼ ============================================
+  // Data ▼
 
   RxList<PermissionModel> permissionList = [
     PermissionModel(
@@ -66,7 +66,7 @@ class PermissionService extends GetxService {
     // ),
   ].obs;
 
-  // Variable ▼ ========================================
+  // Variable ▼
 
   /// 권한 프로세스 종료 체크
   RxBool isPermissionSuccess = false.obs;
@@ -74,7 +74,7 @@ class PermissionService extends GetxService {
   /// 위치기반 허용 여부
   RxBool isLocationPermissionsGranted = false.obs;
 
-  // Funcion ▼ ========================================
+  // Funcion ▼
 
   /// 권한 허용 버튼
   Future<dynamic> handlePermissionOnPressed() async {

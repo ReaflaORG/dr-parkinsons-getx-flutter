@@ -1,60 +1,41 @@
-import 'package:dr_parkinsons/app/service/auth_service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
+import '../../../globals/global_appbar_widget.dart';
+import '../../../globals/global_dialog_widget.dart';
+import '../../../globals/global_layout_widget.dart';
+import '../../../service/auth_service.dart';
 import '../../../theme/color_path.dart';
-import '../../../theme/texts.dart';
+import '../../../theme/text_path.dart';
 import '../controller/alarm_setting_controller.dart';
 
-// alarm setting view
 class AlarmSettingView extends GetView<AlarmSettingController> {
   const AlarmSettingView({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Obx(
-      () => Scaffold(
-        appBar: AppBar(
-          backgroundColor: ColorPath.BackgroundWhite,
-          elevation: 0,
-          centerTitle: false,
-          leadingWidth: 39.w,
-          leading: InkWell(
-            onTap: () {
-              Get.back();
-            },
-            child: Container(
-              alignment: Alignment.centerLeft,
-              padding: EdgeInsets.only(left: 18.w),
-              child: Image.asset(
-                'assets/doctor/back_arrow.png',
-                width: 21.w,
-                height: 13.5.w,
-              ),
-            ),
-          ),
-          title: Container(
-            padding: EdgeInsets.symmetric(horizontal: 4.w),
-            child: Text(
-              '알람 설정',
-              style: TextPath.Heading2F18W600.copyWith(
-                color: ColorPath.TextGrey1H212121,
-              ),
-              textAlign: TextAlign.left,
-            ),
-          ),
+      () => GlobalLayoutWidget(
+        context: context,
+        appBar: GlobalAppBarWidget(
+          appBar: AppBar(),
+          title: '알람 설정',
           actions: [
             Container(
-              padding: EdgeInsets.fromLTRB(0.w, 10.w, 18.w, 10.w),
+              padding: const EdgeInsets.fromLTRB(0, 10, 18, 10).w,
               child: InkWell(
-                onTap: () {},
+                onTap: () {
+                  AuthService.to.userData.value.guardianPhoneNumber != null
+                      ? GlobalEmergencyModalWidget(context: context)
+                      : GlobalEmergencyModalWidget2(context: context);
+                },
                 child: Container(
                   alignment: Alignment.centerRight,
                   child: Image.asset(
                     'assets/search_doctors/search_doctors_icon.png',
                     width: 24.w,
-                    height: 24,
+                    height: 24.w,
                   ),
                 ),
               ),
@@ -63,25 +44,26 @@ class AlarmSettingView extends GetView<AlarmSettingController> {
         ),
         body: SingleChildScrollView(
           physics: const ClampingScrollPhysics(),
-          child: Container(
-            padding: EdgeInsets.symmetric(horizontal: 20.w),
+          padding: const EdgeInsets.symmetric(horizontal: 20),
+          child: Padding(
+            padding: const EdgeInsets.only(top: 20, bottom: 50).w,
             child: Column(
               children: [
-                Container(
-                  padding: EdgeInsets.symmetric(vertical: 2.w),
-                  child: Column(
-                    children: [
-                      Container(
-                        alignment: Alignment.centerLeft,
-                        child: Text(
-                          '환자 보호를 위한 문자 발송 서비스',
-                          style: TextPath.TextF14W400.copyWith(),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                SizedBox(height: 52.w),
+                // Container(
+                //   padding: EdgeInsets.symmetric(vertical: 2.w),
+                //   child: Column(
+                //     children: [
+                //       Container(
+                //         alignment: Alignment.centerLeft,
+                //         child: Text(
+                //           '환자 보호를 위한 문자 발송 서비스',
+                //           style: TextPath.TextF14W400.copyWith(),
+                //         ),
+                //       ),
+                //     ],
+                //   ),
+                // ),
+                // SizedBox(height: 52.w),
                 SizedBox(
                   width: double.infinity,
                   child: Column(
@@ -95,10 +77,10 @@ class AlarmSettingView extends GetView<AlarmSettingController> {
                           ),
                         ),
                       ),
-                      const SizedBox(height: 17.5),
+                      SizedBox(height: 17.5.w),
                       Container(
                         alignment: Alignment.centerLeft,
-                        padding: const EdgeInsets.only(left: 10, right: 10),
+                        padding: const EdgeInsets.only(left: 10, right: 10).w,
                         child: Row(
                           children: [
                             Text(
@@ -110,8 +92,8 @@ class AlarmSettingView extends GetView<AlarmSettingController> {
                             const Spacer(),
                             Switch(
                               value: AuthService.to.userData.value.notification,
-                              onChanged: (value) async {
-                                await controller.checkBasicAlarm(
+                              onChanged: (value) {
+                                controller.checkBasicAlarm(
                                   type: 'common',
                                 );
                               },
@@ -119,10 +101,10 @@ class AlarmSettingView extends GetView<AlarmSettingController> {
                           ],
                         ),
                       ),
-                      const SizedBox(height: 15),
+                      SizedBox(height: 15.w),
                       Container(
                         alignment: Alignment.centerLeft,
-                        padding: const EdgeInsets.only(left: 10, right: 10),
+                        padding: const EdgeInsets.only(left: 10, right: 10).w,
                         child: Row(
                           children: [
                             Text(
@@ -135,8 +117,8 @@ class AlarmSettingView extends GetView<AlarmSettingController> {
                             Switch(
                               value: AuthService
                                   .to.userData.value.missionNotification,
-                              onChanged: (value) async {
-                                await controller.checkBasicAlarm(
+                              onChanged: (value) {
+                                controller.checkBasicAlarm(
                                   type: 'mission',
                                 );
                               },
@@ -144,10 +126,10 @@ class AlarmSettingView extends GetView<AlarmSettingController> {
                           ],
                         ),
                       ),
-                      const SizedBox(height: 15),
+                      SizedBox(height: 15.w),
                       Container(
                         alignment: Alignment.centerLeft,
-                        padding: const EdgeInsets.only(left: 10, right: 10),
+                        padding: const EdgeInsets.only(left: 10, right: 10).w,
                         child: Row(
                           children: [
                             Text(
@@ -160,8 +142,8 @@ class AlarmSettingView extends GetView<AlarmSettingController> {
                             Switch(
                               value: AuthService
                                   .to.userData.value.postNotification,
-                              onChanged: (value) async {
-                                await controller.checkBasicAlarm(
+                              onChanged: (value) {
+                                controller.checkBasicAlarm(
                                   type: 'post',
                                 );
                               },
@@ -169,7 +151,7 @@ class AlarmSettingView extends GetView<AlarmSettingController> {
                           ],
                         ),
                       ),
-                      const SizedBox(height: 54.5),
+                      SizedBox(height: 54.5.w),
                       Container(
                         alignment: Alignment.centerLeft,
                         child: Text(
@@ -179,10 +161,10 @@ class AlarmSettingView extends GetView<AlarmSettingController> {
                           ),
                         ),
                       ),
-                      const SizedBox(height: 15),
+                      SizedBox(height: 15.w),
                       Container(
                         alignment: Alignment.centerLeft,
-                        padding: const EdgeInsets.only(left: 10, right: 10),
+                        padding: const EdgeInsets.only(left: 10, right: 10).w,
                         child: Row(
                           children: [
                             Text(
@@ -195,8 +177,8 @@ class AlarmSettingView extends GetView<AlarmSettingController> {
                             Switch(
                               value: AuthService
                                   .to.userData.value.guardianNotification,
-                              onChanged: (value) async {
-                                await controller.checkBasicAlarm(
+                              onChanged: (value) {
+                                controller.checkBasicAlarm(
                                   type: 'guardian',
                                 );
                               },

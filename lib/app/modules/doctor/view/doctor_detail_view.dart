@@ -7,13 +7,13 @@ import '../../../globals/global_divier_widget.dart';
 import '../../../globals/global_layout_widget.dart';
 import '../../../globals/global_loader_indicator_widget.dart';
 import '../../../theme/color_path.dart';
-import '../../../theme/texts.dart';
-import '../controller/doctor_controller.dart';
+import '../../../theme/text_path.dart';
+import '../controller/doctor_detail_controller.dart';
 import '../widget/doctor_video_widget.dart';
 
 // 전문의 화면
-class DoctorView extends GetView<DoctorController> {
-  const DoctorView({super.key});
+class DoctorDetailView extends GetView<DoctorDetailController> {
+  const DoctorDetailView({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -27,42 +27,37 @@ class DoctorView extends GetView<DoctorController> {
                 appBar: AppBar(),
                 isLeadingVisible: false,
               ),
-              body: RefreshIndicator(
-                onRefresh: () async {
-                  controller.handleDoctorDetailProvider();
-                },
-                child: SingleChildScrollView(
-                  physics: const ClampingScrollPhysics(),
-                  child: Column(
-                    children: [
-                      Container(
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.vertical(
-                            bottom: const Radius.circular(24).r,
+              body: SingleChildScrollView(
+                physics: const ClampingScrollPhysics(),
+                child: Column(
+                  children: [
+                    Container(
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.vertical(
+                          bottom: const Radius.circular(24).r,
+                        ),
+                        color: Colors.white,
+                      ),
+                    ),
+                    Container(
+                      padding: const EdgeInsets.symmetric(horizontal: 20).w,
+                      child: Column(
+                        children: [
+                          const DoctorHeaderWidget(),
+                          GlobalDividerWidget.basic(
+                            margin: const EdgeInsets.only(
+                              left: 0,
+                              top: 30,
+                              right: 0,
+                              bottom: 20,
+                            ).w,
                           ),
-                          color: Colors.white,
-                        ),
+                          const DoctorCardWidget(),
+                          SizedBox(height: 30.w),
+                        ],
                       ),
-                      Container(
-                        padding: const EdgeInsets.symmetric(horizontal: 20).w,
-                        child: Column(
-                          children: [
-                            const DoctorHeaderWidget(),
-                            GlobalDividerWidget.basic(
-                              margin: const EdgeInsets.only(
-                                left: 0,
-                                top: 30,
-                                right: 0,
-                                bottom: 20,
-                              ).w,
-                            ),
-                            const DoctorCardWidget(),
-                            SizedBox(height: 30.w),
-                          ],
-                        ),
-                      ),
-                    ],
-                  ),
+                    ),
+                  ],
                 ),
               ),
             ),
@@ -71,7 +66,7 @@ class DoctorView extends GetView<DoctorController> {
 }
 
 /// 전문의 헤더
-class DoctorHeaderWidget extends GetView<DoctorController> {
+class DoctorHeaderWidget extends GetView<DoctorDetailController> {
   const DoctorHeaderWidget({super.key});
 
   @override
@@ -120,26 +115,30 @@ class DoctorHeaderWidget extends GetView<DoctorController> {
 }
 
 /// 전문의 목록
-class DoctorCardWidget extends GetView<DoctorController> {
+class DoctorCardWidget extends GetView<DoctorDetailController> {
   const DoctorCardWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Obx(
-      () => ListView.separated(
-        padding: const EdgeInsets.only(top: 20).w,
-        shrinkWrap: true,
-        physics: const NeverScrollableScrollPhysics(),
-        itemCount: controller.videoData.length,
-        itemBuilder: (BuildContext context, int index) {
-          return DoctorVideoWidget(
-            index: index,
+    return controller.doctor_id == 94
+        ? ListView.separated(
+            padding: const EdgeInsets.only(top: 20).w,
+            shrinkWrap: true,
+            physics: const NeverScrollableScrollPhysics(),
+            itemCount: controller.videoData.length,
+            itemBuilder: (BuildContext context, int index) {
+              return DoctorVideoWidget(
+                index: index,
+              );
+            },
+            separatorBuilder: (BuildContext context, int index) {
+              return const Divider(color: Colors.transparent);
+            },
+          )
+        : const Center(
+            child: Text(
+              '컨텐츠가 없습니다',
+            ),
           );
-        },
-        separatorBuilder: (BuildContext context, int index) {
-          return const Divider(color: Colors.transparent);
-        },
-      ),
-    );
   }
 }

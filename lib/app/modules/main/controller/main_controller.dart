@@ -21,7 +21,7 @@ import '../../myinfo/view/my_info_view.dart';
 class MainController extends GetxController {
   static MainController get to => Get.find();
 
-  // Data ▼ ============================================\
+  // Data ▼
 
   final List<NavigationModel> navigationData = [
     NavigationModel(
@@ -57,12 +57,12 @@ class MainController extends GetxController {
     ),
   ];
 
-  // Variable ▼ ========================================
+  // Variable ▼
 
   Rx<int> subIndex = 0.obs;
   Rx<int> navigationIndex = 0.obs;
 
-  // Funcion ▼ =========================================
+  // Funcion ▼
 
   Widget handleScreen() {
     final map = [

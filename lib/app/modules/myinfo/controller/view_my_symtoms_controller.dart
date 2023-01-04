@@ -13,12 +13,14 @@ import '../models/my_symptoms_item_model.dart';
 class ViewMySymptomsController extends GetxController {
   static ViewMySymptomsController get to => Get.find();
 
-  // Data ▼ ============================================
+  // Data ▼
+
   late Rx<MySymptomsModel> item;
   Rx<bool> isLoad = true.obs;
   Rx<int> symptomId = 1.obs;
 
-  // Function ▼ ========================================
+  // Function ▼
+
   Future<void> getMySymptomsData() async {
     try {
       AuthBaseResponseModel response = await Provider.dio(
@@ -42,7 +44,6 @@ class ViewMySymptomsController extends GetxController {
       Logger().d(e);
     }
   }
-  // Variable ▼ ========================================
 
   @override
   Future<void> onInit() async {

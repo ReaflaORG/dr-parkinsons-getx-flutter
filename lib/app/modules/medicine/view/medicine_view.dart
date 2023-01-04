@@ -3,7 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
 import '../../../theme/color_path.dart';
-import '../../../theme/texts.dart';
+import '../../../theme/text_path.dart';
 import '../controller/medicine_controller.dart';
 import '../widget/medicine_card_widget.dart';
 
@@ -48,7 +48,7 @@ class MedicineView extends GetView<MedicineController> {
         ),
       ),
       body: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 30).w,
+        padding: const EdgeInsets.all(20).w,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
@@ -62,8 +62,8 @@ class MedicineView extends GetView<MedicineController> {
                   shrinkWrap: true,
                   crossAxisCount: 2,
                   childAspectRatio: 1,
-                  mainAxisSpacing: 20.w,
-                  crossAxisSpacing: 20.w,
+                  mainAxisSpacing: 10.w,
+                  crossAxisSpacing: 10.w,
                   children: List.generate(
                     controller.pillBtns.length,
                     (index) {

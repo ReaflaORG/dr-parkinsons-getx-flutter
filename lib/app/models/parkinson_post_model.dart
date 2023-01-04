@@ -1,43 +1,41 @@
 class ParkinsonPostModel {
-  int parkinson_post_id;
+  int idx;
   String title;
   String image;
   String description;
-  String created_at;
-  String updated_at;
+  DateTime createdAt;
+  DateTime updatedAt;
 
   ParkinsonPostModel({
-    required this.parkinson_post_id,
+    required this.idx,
     required this.title,
     required this.image,
     required this.description,
-    required this.created_at,
-    required this.updated_at,
+    required this.createdAt,
+    required this.updatedAt,
   });
 
   ParkinsonPostModel.fromJson(json)
       : this(
-          parkinson_post_id: json['parkinson_post_id'] != null
+          idx: json['parkinson_post_id'] != null
               ? json['parkinson_post_id'] as int
               : 0,
           title: json['title'] != null ? json['title'] as String : '',
           image: json['image'] != null ? json['image'] as String : '',
           description:
               json['description'] != null ? json['description'] as String : '',
-          created_at:
-              json['created_at'] != null ? json['created_at'] as String : '',
-          updated_at:
-              json['updated_at'] != null ? json['updated_at'] as String : '',
+          createdAt: DateTime.parse(json['created_at']),
+          updatedAt: DateTime.parse(json['updated_at']),
         );
 
   Map<String, dynamic> toJson() {
     return {
-      'parkinson_post_id': parkinson_post_id,
+      'idx': idx,
       'title': title,
       'image': image,
       'description': description,
-      'created_at': created_at,
-      'updated_at': updated_at,
+      'created_at': createdAt,
+      'updated_at': updatedAt,
     };
   }
 }

@@ -22,56 +22,52 @@ void main() async {
 }
 
 Future<void> initialize() async {
-  await Future.value([
-    // Widget Binding 초기화
-    WidgetsFlutterBinding.ensureInitialized(),
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      SchedulerBinding.instance.scheduleWarmUpFrame();
-    }),
+  // Widget Binding 초기화
+  WidgetsFlutterBinding.ensureInitialized();
+  WidgetsBinding.instance.addPostFrameCallback((_) {
+    SchedulerBinding.instance.scheduleWarmUpFrame();
+  });
 
-    // .env 초기화
-    await dotenv.load(),
+  // .env 초기화
+  await dotenv.load();
 
-    // Get Storage 초기화
-    await GetStorage.init(),
+  // Get Storage 초기화
+  await GetStorage.init();
 
-    // Timeago 언어 초기화
-    timeago.setLocaleMessages('ko', timeago.KoMessages()),
+  // Timeago 언어 초기화
+  timeago.setLocaleMessages('ko', timeago.KoMessages());
 
-    // 가로모드 방지
-    SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]),
+  // 가로모드 방지
+  SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
 
-    // Status 텍스트 색상
-    Future.delayed(const Duration(milliseconds: 1)).then((value) {
-      return SystemChrome.setSystemUIOverlayStyle(
-        SystemUiOverlayStyle.dark.copyWith(
-          statusBarColor: Colors.transparent,
-          statusBarBrightness: Brightness.light,
-        ),
-      );
-    }),
+  // Status 텍스트 색상
+  SystemChrome.setSystemUIOverlayStyle(
+    SystemUiOverlayStyle.dark.copyWith(
+      statusBarColor: Colors.white,
+      statusBarBrightness: Brightness.light,
+    ),
+  );
 
-    /// Firebase 초기화
-    // await Firebase.initializeApp();
+  /// Firebase 초기화
+  // await Firebase.initializeApp();
 
-    // Kakao 초기화
-    KakaoSdk.init(nativeAppKey: dotenv.env['APP_KAKAO_NATIVE_APP_KEY']),
+  // Kakao 초기화
+  KakaoSdk.init(nativeAppKey: dotenv.env['APP_KAKAO_NATIVE_APP_KEY']);
 
-    // 글로벌 서비스
-    Get.put(GlobalService(), permanent: true),
+  // 글로벌 서비스
+  Get.put(GlobalService(), permanent: true);
 
-    // 인증 서비스
-    Get.put(AuthService(), permanent: true),
+  // 인증 서비스
+  Get.put(AuthService(), permanent: true);
 
-    /// 위치 서비스
-    Get.put(LocationService(), permanent: true),
+  /// 위치 서비스
+  Get.put(LocationService(), permanent: true);
 
-    // FCM 서비스
-    // Get.put(FCMService(), permanent: true),
+  // FCM 서비스
+  // Get.put(FCMService(), permanent: true),
 
-    // 퍼미션 서비스
-    Get.lazyPut(() => PermissionService()),
-  ]);
+  // 퍼미션 서비스
+  Get.lazyPut(() => PermissionService());
 }
 
 class MyApp extends StatelessWidget {

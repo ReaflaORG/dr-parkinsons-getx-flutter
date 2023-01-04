@@ -8,7 +8,7 @@ import '../../../globals/global_layout_widget.dart';
 import '../../../globals/global_loader_indicator_widget.dart';
 import '../../../routes/app_pages.dart';
 import '../../../theme/color_path.dart';
-import '../../../theme/texts.dart';
+import '../../../theme/text_path.dart';
 import '../../../utils/image/photo_view.dart';
 import '../../../utils/video/video_view.dart';
 import '../controller/view_my_symtoms_controller.dart';

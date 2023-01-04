@@ -5,7 +5,7 @@ import 'package:get/get.dart';
 import '../../../globals/global_dialog_widget.dart';
 import '../../../globals/global_inkwell_widget.dart';
 import '../../../theme/color_path.dart';
-import '../../../theme/texts.dart';
+import '../../../theme/text_path.dart';
 import '../controller/mission_controller.dart';
 
 class MissionCard extends GetView<MissionController> {

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../theme/texts.dart';
+import '../theme/text_path.dart';
 
 /// 글로벌 이클립스 텍스트 위젯
 ///

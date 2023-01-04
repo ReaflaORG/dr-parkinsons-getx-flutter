@@ -2,6 +2,8 @@
 
 import 'dart:async';
 
+import 'package:flutter/cupertino.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
@@ -11,8 +13,14 @@ import '../../../models/disorder_model.dart';
 class DisorderController extends GetxController {
   static DisorderController get to => Get.find();
 
+  // Controller ▼
+
+  /// 스크롤 컨트롤러
+  Rx<ScrollController> scrollController = ScrollController().obs;
+
   // Data ▼
 
+  /// 비디오 데이터
   RxList<YoutubeVideoModel> videoData = [
     YoutubeVideoModel(
       title: 'EP1 파킨슨증 핵심만 콕콕! 운동증상 비운동증상 알아봐요!',
@@ -76,14 +84,55 @@ class DisorderController extends GetxController {
     ),
   ].obs;
 
+  /// 이미지 데이터
   RxList<String> imageData = [
     'assets/images/disorder/1.webp',
     'assets/images/disorder/2.webp',
     'assets/images/disorder/3.webp'
   ].obs;
 
+  // Variable ▼
+
+  /// 스크롤 감지
+  Rx<bool> isScrollCheck = false.obs;
+
+  /// 앱바 타이틀 애니메이션
+  Rx<bool> isAppBarTitleAnimation = false.obs;
+
+  /// 초기화
+  Future<void> handleInitailize() async {
+    // 스크롤 이벤트
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+      scrollController.value.addListener(() {
+        // Logger().d('scrolling');
+        if (scrollController.value.offset >= 30.w) {
+          isScrollCheck.value = true;
+          Future.delayed(const Duration(milliseconds: 100), () {
+            isAppBarTitleAnimation.value = true;
+          });
+          return;
+        }
+
+        isScrollCheck.value = false;
+        Future.delayed(const Duration(milliseconds: 100), () {
+          isAppBarTitleAnimation.value = false;
+        });
+      });
+
+      scrollController.value.position.isScrollingNotifier.addListener(() {
+        if (!scrollController.value.position.isScrollingNotifier.value) {
+          // Logger().d('scroll is stopped');
+        } else {
+          // Logger().d('scroll is started');
+        }
+      });
+    });
+  }
+
   @override
   Future<void> onInit() async {
+    await handleInitailize();
+
     super.onInit();
   }
 

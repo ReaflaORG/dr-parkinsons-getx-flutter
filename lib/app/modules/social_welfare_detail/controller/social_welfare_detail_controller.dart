@@ -6,6 +6,7 @@ import 'package:get/get.dart';
 import 'package:logger/logger.dart';
 
 import '../../../globals/global_toast_widget.dart';
+import '../../../models/base_response_model.dart';
 import '../../../models/welfare_model.dart';
 import '../../../provider/provider.dart';
 
@@ -15,10 +16,12 @@ class SocialWelfareDetailController extends GetxController {
 
   // Arguments ▼
 
+  /// 인자값
   dynamic arguments = Get.arguments;
 
   // Controller ▼
 
+  /// 스크롤 컨트롤러
   Rx<ScrollController> scrollController = ScrollController().obs;
 
   // Data ▼
@@ -39,21 +42,21 @@ class SocialWelfareDetailController extends GetxController {
 
   // Function ▼
 
-  /// 사회복지제도 상세보기 프로바이더
-  Future<void> getSocialWelafrePostDetailProvider() async {
+  /// 사회복지제도 프로바이더
+  Future<void> handleSocialWelafrePostDetailProvider() async {
     try {
-      await Provider.dio(
+      AuthBaseResponseModel response = await Provider.dio(
         method: 'GET',
         url: '/home/welfare/${arguments['id']}',
-      ).then((value) {
-        switch (value.statusCode) {
-          case 200:
-            postData = WelfareModel.fromJson(value.data).obs;
-            break;
-          default:
-            throw Exception(value.message);
-        }
-      });
+      );
+
+      switch (response.statusCode) {
+        case 200:
+          postData = WelfareModel.fromJson(response.data).obs;
+          break;
+        default:
+          throw Exception(response.message);
+      }
     } catch (e) {
       Logger().d(e);
       GlobalToastWidget(e.toString().substring(11));
@@ -64,7 +67,7 @@ class SocialWelfareDetailController extends GetxController {
 
   /// 초기화
   Future<void> handleInitailize() async {
-    await getSocialWelafrePostDetailProvider();
+    await handleSocialWelafrePostDetailProvider();
 
     // 스크롤 이벤트
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {

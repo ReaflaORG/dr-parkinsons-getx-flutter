@@ -14,21 +14,14 @@ import '../../../provider/provider.dart';
 class FaqController extends GetxController {
   static FaqController get to => Get.find();
 
-  //**
-  // 1. 모델 정의 = API 확인
-  // 2. 변수 할당
-  // 3. 초기화 API 로 데이터 받기
-  // 4. 뷰와 데이터 바인딩 [싱크 ]
-  // */
+  // Variable ▼
 
-  // Data ▼ ============================================
-  // FAQ Model
   RxList<FaqModel> faqData = <FaqModel>[].obs;
   Rx<bool> process = true.obs;
 
-  // Function ▼ ========================================
+  // Function ▼
 
-  /// * get FAQ Data from API
+  /// get FAQ Data from API
   Future<void> getFaqData() async {
     try {
       AuthBaseResponseModel response = await Provider.dio(
@@ -36,7 +29,6 @@ class FaqController extends GetxController {
         url: '/myinfo/question',
       );
 
-      Logger().d(response.data);
       switch (response.statusCode) {
         case 200:
           faqData.assignAll(List.generate(response.data.length,
@@ -52,7 +44,6 @@ class FaqController extends GetxController {
       GlobalToastWidget(e.toString().substring(11));
     }
   }
-  // Variable ▼ ========================================
 
   @override
   Future<void> onInit() async {

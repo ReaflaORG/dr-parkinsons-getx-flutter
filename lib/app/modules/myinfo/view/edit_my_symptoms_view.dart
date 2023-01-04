@@ -8,7 +8,7 @@ import 'package:get/get.dart';
 import 'package:mime/mime.dart';
 
 import '../../../theme/color_path.dart';
-import '../../../theme/texts.dart';
+import '../../../theme/text_path.dart';
 import '../controller/edit_my_symptoms_controller.dart';
 
 const String alertTitleMsg = '내 증상 기록 수정';

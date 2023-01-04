@@ -12,29 +12,35 @@ import '../../../models/base_response_model.dart';
 import '../../../provider/provider.dart';
 import '../widgets/show_dialog.dart';
 
-// suggest policy controller
 class SuggestPolicyController extends GetxController {
   static SuggestPolicyController get to => Get.find();
 
-  // Data ▼ ============================================
+  // Controller ▼
 
-  // EditController ▼ ========================================
-  Rx<TextEditingController> policyTitleController =
-      TextEditingController(text: '').obs;
+  /// 제안하기 제목 텍스트 에디팅 컨트롤러
+  Rx<TextEditingController> titleController = TextEditingController().obs;
 
-  Rx<TextEditingController> policyContentController =
-      TextEditingController(text: '').obs;
+  /// 제안하기 내용 텍스트 에디팅 컨트롤러
+  Rx<TextEditingController> contentController = TextEditingController().obs;
 
-  // FocusNode ▼ ========================================
-  Rx<FocusNode> polityTitleFoucesNode = FocusNode().obs;
-  Rx<FocusNode> policyContentFoucesNode = FocusNode().obs;
+  // FocusNode ▼
 
-  // * 에러 리스트
-  Rx<String> polityTitleError = ''.obs;
-  Rx<String> policyContentError = ''.obs;
+  Rx<FocusNode> titleFoucesNode = FocusNode().obs;
+  Rx<FocusNode> contentFoucesNode = FocusNode().obs;
+
+  // Variable ▼
+
+  /// 제목 에러
+  Rx<String> titleError = ''.obs;
+
+  /// 내용 에러
+  Rx<String> contentError = ''.obs;
 
   Rx<bool> boxStatusWithPersonalAgree = false.obs;
   Rx<bool> boxStatusWithAnonymous = false.obs;
+
+  /// 저장 버튼 활성화 여부
+  Rx<bool> isSaveButtonEnable = false.obs;
 
   changeCheckBoxWithPersonalAgree(value) {
     boxStatusWithPersonalAgree.value = value;
@@ -44,19 +50,69 @@ class SuggestPolicyController extends GetxController {
     boxStatusWithAnonymous.value = value;
   }
 
-  // Function ▼ ========================================
-// * 데이터 수정하기 API
-  Future<void> handleSubmit(BuildContext context) async {
-    if (policyTitleController.value.text.isEmpty) {
-      polityTitleError.value = '제목은 필수입니다.';
-    } else {
-      polityTitleError.value = '';
+  // Function ▼
+
+  /// 텍스트 필드 OnChanged 핸들러
+  ///
+  /// [text] String: 텍스트 필드에 입력된 텍스트
+  ///
+  /// [type] String : 텍스트 필드 타입
+  void handleOnChanged(
+    String text, {
+    required String type,
+  }) {
+    switch (type) {
+      case 'title':
+        if (text.isEmpty) {
+          isSaveButtonEnable.value = false;
+          titleError.value = '제목을 입력해주세요';
+          return;
+        }
+
+        if (text.length < 6) {
+          isSaveButtonEnable.value = false;
+          titleError.value = '6자 이상 입력해주세요';
+          return;
+        }
+
+        titleError.value = '';
+        isSaveButtonEnable.value = true;
+        break;
+      case 'content':
+        if (text.isEmpty) {
+          isSaveButtonEnable.value = false;
+          contentError.value = '내 증상 기록 내용을 입력해주세요';
+          return;
+        }
+
+        if (text.length < 6) {
+          isSaveButtonEnable.value = false;
+          contentError.value = '6자 이상 입력해주세요';
+          return;
+        }
+
+        contentError.value = '';
+        isSaveButtonEnable.value = true;
+        break;
     }
 
-    if (policyContentController.value.text.isEmpty) {
-      policyContentError.value = '내용은 필수입니다.';
+    // 저장 버튼 활성화 여부
+    isSaveButtonEnable.value =
+        titleError.value.isEmpty && contentError.value.isEmpty;
+  }
+
+  /// 데이터 수정하기 API
+  Future<void> handleSubmit(BuildContext context) async {
+    if (titleController.value.text.isEmpty) {
+      titleError.value = '제목은 필수입니다.';
     } else {
-      policyContentError.value = '';
+      titleError.value = '';
+    }
+
+    if (contentController.value.text.isEmpty) {
+      contentError.value = '내용은 필수입니다.';
+    } else {
+      contentError.value = '';
     }
 
     if (boxStatusWithPersonalAgree.isFalse) {
@@ -69,15 +125,14 @@ class SuggestPolicyController extends GetxController {
       return;
     }
 
-    if (polityTitleError.value.isNotEmpty ||
-        policyContentError.value.isNotEmpty) {
+    if (titleError.value.isNotEmpty || contentError.value.isNotEmpty) {
       return;
     }
 
     try {
       Map<String, dynamic> request = {
-        'title': policyTitleController.value.text,
-        'description': policyContentController.value.text,
+        'title': titleController.value.text,
+        'description': contentController.value.text,
       };
       AuthBaseResponseModel response = await Provider.dio(
         method: 'POST',
@@ -86,16 +141,14 @@ class SuggestPolicyController extends GetxController {
       );
       switch (response.statusCode) {
         case 201:
-          policyTitleController.value.text = '';
-          policyContentController.value.text = '';
+          titleController.value.text = '';
+          contentController.value.text = '';
 
           boxStatusWithPersonalAgree.value = false;
           boxStatusWithAnonymous.value = false;
 
-          //await GlobalToastWidget( '정책 제안이 완료되었습니다.');
           await showAlertDialog(context, '정책 제안 발신 완료',
               '작성된 제안은 닥터 파킨슨 관리자에게 전송되어 향후 정책 결정의 자료로 사용됩니다.\n소중한 의견에 감사합니다.');
-          //Get.back();
           break;
 
         default:
@@ -106,8 +159,6 @@ class SuggestPolicyController extends GetxController {
       GlobalToastWidget(e.toString().substring(11));
     }
   }
-
-  // Variable ▼ ========================================
 
   @override
   Future<void> onInit() async {

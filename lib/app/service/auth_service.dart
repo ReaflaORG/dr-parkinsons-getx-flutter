@@ -12,7 +12,7 @@ import '../routes/app_pages.dart';
 class AuthService extends GetxService {
   static AuthService get to => Get.find();
 
-  // Variable ▼ ========================================
+  // Variable ▼
 
   /// 액세스 토큰
   Rx<String?> accessToken = GetStorage().read<String>('access_token').obs;
@@ -26,7 +26,7 @@ class AuthService extends GetxService {
   // 전담의 의사 데이터
   Rx<DoctorModel> myDoctor = DoctorModel().obs;
 
-  // Functions ▼ ========================================
+  // Functions ▼
 
   /// 로그인 처리 핸들러
   Future<void> handleLogin({

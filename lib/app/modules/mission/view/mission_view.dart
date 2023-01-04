@@ -10,7 +10,7 @@ import '../../../globals/global_layout_widget.dart';
 import '../../../globals/global_loader_indicator_widget.dart';
 import '../../../service/auth_service.dart';
 import '../../../theme/color_path.dart';
-import '../../../theme/texts.dart';
+import '../../../theme/text_path.dart';
 import '../controller/mission_controller.dart';
 import '../widgets/mini_calendar_widget.dart';
 import '../widgets/mission_card_widget.dart';

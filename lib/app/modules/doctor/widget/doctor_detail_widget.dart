@@ -6,7 +6,7 @@ import 'package:get/get.dart';
 import '../../../globals/global_inkwell_widget.dart';
 import '../../../models/doctor_model.dart';
 import '../../../theme/color_path.dart';
-import '../../../theme/texts.dart';
+import '../../../theme/text_path.dart';
 import '../../../utils/formatter.dart';
 import '../../../utils/video/video_view.dart';
 

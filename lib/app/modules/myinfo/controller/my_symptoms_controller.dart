@@ -14,11 +14,11 @@ import '../models/my_symptoms_item_model.dart';
 class MySymptomsController extends GetxController {
   static MySymptomsController get to => Get.find();
 
-  // Data ▼ ============================================
+  // Data ▼
   RxList<MySymptomsModel> listArray = <MySymptomsModel>[].obs;
   Rx<bool> process = true.obs;
 
-  // Function ▼ ========================================
+  // Function ▼
   Future<void> getMySymptomsData() async {
     try {
       AuthBaseResponseModel response = await Provider.dio(
@@ -65,8 +65,6 @@ class MySymptomsController extends GetxController {
       GlobalToastWidget(e.toString().substring(11));
     }
   }
-
-  // Variable ▼ ========================================
 
   @override
   Future<void> onInit() async {

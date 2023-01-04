@@ -18,16 +18,10 @@ import '../../../theme/color_path.dart';
 class HealthCareController extends GetxController {
   static HealthCareController get to => Get.find();
 
-  //**
-  //* Step 1 복지혜택 모델링하기 [x]
+  // Data ▼
 
-  //* Step 2 복지혜택 변수 변언하기 [x]
-
-  //* Step 3 api 받아와서 복지혜택 변수에 할당하기 [x]
-  //* Step 4 View와 맞추기
-  // */
-  // Data ▼ ============================================
-  RxList<HealthCareBtnModel> btns = <HealthCareBtnModel>[
+  /// 메뉴 데이터
+  RxList<HealthCareBtnModel> menuData = [
     HealthCareBtnModel(
         name: '약물검색',
         color: ColorPath.PrimaryLightColor,
@@ -72,9 +66,13 @@ class HealthCareController extends GetxController {
         }),
   ].obs;
 
-  // Function ▼ ========================================
-  /// 데이터 초기화 함수
-  Future<void> onInitData() async {
+  /// 복지 혜택 데이터
+  RxList<WelfareModel> welfareData = <WelfareModel>[].obs;
+
+  // Function ▼
+
+  /// 복지 혜택 데이터 프로바이더
+  Future<void> handleSocialWelfareProvider() async {
     try {
       AuthBaseResponseModel response = await Provider.dio(
         method: 'GET',
@@ -83,8 +81,13 @@ class HealthCareController extends GetxController {
 
       switch (response.statusCode) {
         case 200:
-          welfareLists.assignAll(List<WelfareModel>.from(
-              response.data.map((e) => WelfareModel.fromJson(e))));
+          welfareData.assignAll(
+            List<WelfareModel>.from(
+              response.data.map(
+                (e) => WelfareModel.fromJson(e),
+              ),
+            ),
+          );
           break;
         default:
           throw Exception(response.message);
@@ -94,13 +97,10 @@ class HealthCareController extends GetxController {
     }
   }
 
-  // Variable ▼ ========================================
-  /// 복지 혜택 리스트 변수
-  RxList<WelfareModel> welfareLists = <WelfareModel>[].obs;
-
   @override
   Future<void> onInit() async {
-    await onInitData();
+    await handleSocialWelfareProvider();
+
     super.onInit();
   }
 

@@ -11,7 +11,7 @@ import '../../../globals/global_loader_indicator_widget.dart';
 import '../../../routes/app_pages.dart';
 import '../../../service/auth_service.dart';
 import '../../../theme/color_path.dart';
-import '../../../theme/texts.dart';
+import '../../../theme/text_path.dart';
 import '../../main/controller/main_controller.dart';
 import '../controller/home_controller.dart';
 
@@ -127,7 +127,7 @@ class HomeView extends GetView<HomeController> {
                                 SizedBox(height: 14.w),
                                 Text(
                                   '파킨슨 병이란?',
-                                  style: TextPath.TextF13W500.copyWith(
+                                  style: TextPath.TextF12W500.copyWith(
                                     color: ColorPath.TextGrey3H616161,
                                   ),
                                 ),
@@ -144,6 +144,7 @@ class HomeView extends GetView<HomeController> {
                         ),
                         SizedBox(width: 12.w),
                         Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Container(
@@ -158,44 +159,52 @@ class HomeView extends GetView<HomeController> {
                                 onTap: () {
                                   Get.toNamed('/seminar');
                                 },
-                                child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  crossAxisAlignment: CrossAxisAlignment.center,
-                                  children: [
-                                    SizedBox(
-                                      width: 52.w,
-                                      height: 52.w,
-                                      child: CircleAvatar(
-                                        backgroundColor:
-                                            ColorPath.BackgroundWhite,
-                                        child: Image.asset(
-                                          width: 36.w,
-                                          height: 27.w,
-                                          'assets/images/icons/page2/36 Hospital.png',
+                                child: Padding(
+                                  padding: const EdgeInsets.all(10).w,
+                                  child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.center,
+                                    children: [
+                                      SizedBox(
+                                        width: 48.w,
+                                        height: 48.w,
+                                        child: CircleAvatar(
+                                          backgroundColor:
+                                              ColorPath.BackgroundWhite,
+                                          child: Image.asset(
+                                            width: 36.w,
+                                            height: 27.w,
+                                            'assets/images/icons/page2/36 Hospital.png',
+                                          ),
                                         ),
                                       ),
-                                    ),
-                                    SizedBox(width: 8.w),
-                                    Column(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      children: [
-                                        Text(
-                                          '처음 오셨나요?',
-                                          style: TextPath.TextF13W500.copyWith(
-                                            color: ColorPath.TextGrey3H616161,
+                                      SizedBox(width: 10.w),
+                                      Column(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          Text(
+                                            '처음 오셨나요?',
+                                            style:
+                                                TextPath.TextF12W500.copyWith(
+                                              color: ColorPath.TextGrey3H616161,
+                                            ),
                                           ),
-                                        ),
-                                        SizedBox(height: 4.w),
-                                        Text(
-                                          '학회 및 앱 소개',
-                                          style: TextPath.TextF16W500.copyWith(
-                                            color: ColorPath.TextGrey1H212121,
+                                          SizedBox(height: 4.w),
+                                          Text(
+                                            '학회 및 앱 소개',
+                                            style:
+                                                TextPath.TextF14W500.copyWith(
+                                              color: ColorPath.TextGrey1H212121,
+                                            ),
                                           ),
-                                        ),
-                                      ],
-                                    ),
-                                  ],
+                                        ],
+                                      ),
+                                    ],
+                                  ),
                                 ),
                               ),
                             ),
@@ -212,44 +221,52 @@ class HomeView extends GetView<HomeController> {
                                 onTap: () {
                                   Get.toNamed('/fact');
                                 },
-                                child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  crossAxisAlignment: CrossAxisAlignment.center,
-                                  children: [
-                                    SizedBox(
-                                      width: 52.w,
-                                      height: 52.w,
-                                      child: CircleAvatar(
-                                        backgroundColor:
-                                            ColorPath.BackgroundWhite,
-                                        child: Image.asset(
-                                          width: 36.w,
-                                          height: 27.w,
-                                          'assets/images/icons/page2/36 Medical Record.png',
+                                child: Padding(
+                                  padding: const EdgeInsets.all(10).w,
+                                  child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.center,
+                                    children: [
+                                      SizedBox(
+                                        width: 48.w,
+                                        height: 48.w,
+                                        child: CircleAvatar(
+                                          backgroundColor:
+                                              ColorPath.BackgroundWhite,
+                                          child: Image.asset(
+                                            width: 36.w,
+                                            height: 27.w,
+                                            'assets/images/icons/page2/36 Medical Record.png',
+                                          ),
                                         ),
                                       ),
-                                    ),
-                                    SizedBox(width: 8.w),
-                                    Column(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      children: [
-                                        Text(
-                                          '팩트체크',
-                                          style: TextPath.TextF13W500.copyWith(
-                                            color: ColorPath.TextGrey3H616161,
+                                      SizedBox(width: 10.w),
+                                      Column(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          Text(
+                                            '팩트체크',
+                                            style:
+                                                TextPath.TextF12W500.copyWith(
+                                              color: ColorPath.TextGrey3H616161,
+                                            ),
                                           ),
-                                        ),
-                                        SizedBox(height: 4.w),
-                                        Text(
-                                          '파킨슨병 완전정복',
-                                          style: TextPath.TextF14W500.copyWith(
-                                            color: ColorPath.TextGrey1H212121,
+                                          SizedBox(height: 4.w),
+                                          Text(
+                                            '파킨슨병 완전정복',
+                                            style:
+                                                TextPath.TextF14W500.copyWith(
+                                              color: ColorPath.TextGrey1H212121,
+                                            ),
                                           ),
-                                        ),
-                                      ],
-                                    ),
-                                  ],
+                                        ],
+                                      ),
+                                    ],
+                                  ),
                                 ),
                               ),
                             ),
@@ -334,12 +351,12 @@ class HomeView extends GetView<HomeController> {
                     SizedBox(height: 12.w),
                     Container(
                       width: 320.w,
-                      decoration: BoxDecoration(
-                        border: Border.all(
-                          color: ColorPath.Border2HECEFF1,
-                          width: 1.w,
-                        ),
-                      ),
+                      // decoration: BoxDecoration(
+                      //   border: Border.all(
+                      //     color: ColorPath.Border2HECEFF1,
+                      //     width: 1.w,
+                      //   ),
+                      // ),
                       child: ListView.builder(
                         physics: const NeverScrollableScrollPhysics(),
                         shrinkWrap: true,
@@ -350,14 +367,16 @@ class HomeView extends GetView<HomeController> {
                               Get.toNamed(
                                 '/socialwelfare/socialwelfarepost',
                                 arguments: {
-                                  'id': controller
-                                      .homeData.value!.welfare[index].welfare_id
+                                  'id': controller.homeData.value!
+                                      .welfare[index].welfare_id,
+                                  'image': controller
+                                      .homeData.value!.welfare[index].image
                                 },
                               );
                             },
                             child: Padding(
                               padding: const EdgeInsets.symmetric(
-                                horizontal: 20,
+                                horizontal: 10,
                                 vertical: 10,
                               ).w,
                               child: Row(
@@ -377,11 +396,11 @@ class HomeView extends GetView<HomeController> {
                                   ),
                                   SizedBox(width: 10.w),
                                   Text(
-                                    DateFormat('yyyy-MM-dd').format(
+                                    DateFormat('yy.MM.dd').format(
                                       controller.homeData.value!.welfare[index]
                                           .created_at,
                                     ),
-                                    style: TextPath.TextF13W500.copyWith(
+                                    style: TextPath.TextF12W500.copyWith(
                                       color: ColorPath.TextGrey2H424242,
                                     ),
                                   ),
@@ -610,17 +629,11 @@ class HomeView extends GetView<HomeController> {
                           ),
                         ),
                         Container(
-                          margin: const EdgeInsets.symmetric(horizontal: 10).w,
-                          child: Padding(
-                            padding: const EdgeInsets.symmetric(
-                              horizontal: 5,
-                              vertical: 2.5,
-                            ).w,
-                            child: Text(
-                              ' | ',
-                              style: TextPath.TextF12W400.copyWith(
-                                color: ColorPath.TextGrey3H616161,
-                              ),
+                          margin: const EdgeInsets.symmetric(horizontal: 2.5).w,
+                          child: Text(
+                            '|',
+                            style: TextPath.TextF12W400.copyWith(
+                              color: ColorPath.TextGrey3H616161,
                             ),
                           ),
                         ),
@@ -660,7 +673,7 @@ class HomeView extends GetView<HomeController> {
                           ),
                         ),
                         Container(
-                          margin: const EdgeInsets.symmetric(horizontal: 10).w,
+                          margin: const EdgeInsets.symmetric(horizontal: 2.5).w,
                           child: Text(
                             ' | ',
                             style: TextPath.TextF12W400.copyWith(
@@ -670,16 +683,10 @@ class HomeView extends GetView<HomeController> {
                         ),
                         GlobalInkWellWidget(
                           onTap: () {},
-                          child: Padding(
-                            padding: const EdgeInsets.symmetric(
-                              horizontal: 5,
-                              vertical: 2.5,
-                            ).w,
-                            child: Text(
-                              '고유식별정보수집동의',
-                              style: TextPath.TextF12W400.copyWith(
-                                color: ColorPath.TextGrey3H616161,
-                              ),
+                          child: Text(
+                            '고유식별정보수집동의',
+                            style: TextPath.TextF12W400.copyWith(
+                              color: ColorPath.TextGrey3H616161,
                             ),
                           ),
                         ),
@@ -695,14 +702,14 @@ class HomeView extends GetView<HomeController> {
                           vertical: 2.5,
                         ).w,
                         child: Text(
-                          'Copyright © 2022 길 의료재단. All right reserved.',
+                          'Copyright © 2022 가천대 길 의료재단. All right reserved.',
                           style: TextPath.TextF10W400.copyWith(
                             color: ColorPath.TextGrey3H616161,
                           ),
                         ),
                       ),
                     ),
-                    SizedBox(height: 100.w),
+                    SizedBox(height: 50.w),
                   ],
                 ),
               ),

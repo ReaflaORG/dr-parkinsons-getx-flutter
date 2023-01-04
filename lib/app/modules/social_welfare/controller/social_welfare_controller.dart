@@ -3,6 +3,8 @@
 import 'dart:async';
 
 import 'package:dr_parkinsons/app/models/welfare_model.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:logger/logger.dart';
 
@@ -13,20 +15,31 @@ import '../../../provider/provider.dart';
 class SocialWelfareController extends GetxController {
   static SocialWelfareController get to => Get.find();
 
+  // Controller ▼
+
+  /// 스크롤 컨트롤러
+  Rx<ScrollController> scrollController = ScrollController().obs;
+
   // Data ▼
 
   /// 사회복지제도 리스트 데이터
-  late RxList<WelfareModel> welfareDatas = <WelfareModel>[].obs;
+  late RxList<WelfareModel> welfareData = <WelfareModel>[].obs;
 
   // Variable ▼
 
   /// 로딩 상태
   Rx<bool> isLoad = true.obs;
 
+  /// 스크롤 감지
+  Rx<bool> isScrollCheck = false.obs;
+
+  /// 앱바 타이틀 애니메이션
+  Rx<bool> isAppBarTitleAnimation = false.obs;
+
   // Function ▼
 
   /// 사회복지제도 리스트 프로바이더
-  Future<void> getWelfareListProvider() async {
+  Future<void> handleWelfareListProvider() async {
     try {
       await Provider.dio(
         method: 'GET',
@@ -35,7 +48,7 @@ class SocialWelfareController extends GetxController {
         switch (value.statusCode) {
           case 200:
             Future.value([
-              welfareDatas.assignAll(
+              welfareData.assignAll(
                 List.generate(
                   value.data.length,
                   (index) => WelfareModel.fromJson(
@@ -56,9 +69,41 @@ class SocialWelfareController extends GetxController {
     }
   }
 
+  /// 초기화
+  Future<void> handleInitailize() async {
+    await handleWelfareListProvider();
+
+    // 스크롤 이벤트
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+      scrollController.value.addListener(() {
+        // Logger().d('scrolling');
+        if (scrollController.value.offset >= 30.w) {
+          isScrollCheck.value = true;
+          Future.delayed(const Duration(milliseconds: 100), () {
+            isAppBarTitleAnimation.value = true;
+          });
+          return;
+        }
+
+        isScrollCheck.value = false;
+        Future.delayed(const Duration(milliseconds: 100), () {
+          isAppBarTitleAnimation.value = false;
+        });
+      });
+
+      scrollController.value.position.isScrollingNotifier.addListener(() {
+        if (!scrollController.value.position.isScrollingNotifier.value) {
+          // Logger().d('scroll is stopped');
+        } else {
+          // Logger().d('scroll is started');
+        }
+      });
+    });
+  }
+
   @override
   Future<void> onInit() async {
-    await getWelfareListProvider();
+    await handleInitailize();
 
     super.onInit();
   }

@@ -2,237 +2,222 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
+import '../../../globals/global_appbar_widget.dart';
+import '../../../globals/global_inkwell_widget.dart';
+import '../../../globals/global_layout_widget.dart';
+import '../../../globals/global_text_widget.dart';
 import '../../../theme/color_path.dart';
-import '../../../theme/texts.dart';
+import '../../../theme/text_path.dart';
 import '../controller/suggest_policy_controller.dart';
 
-// suggest policy view
 class SuggestPolicyView extends GetView<SuggestPolicyController> {
   const SuggestPolicyView({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: ColorPath.BackgroundWhite,
-        elevation: 0,
-        centerTitle: false,
-        leadingWidth: 39.w,
-        leading: InkWell(
-          onTap: () {
-            Get.back();
-          },
-          child: Container(
-            alignment: Alignment.centerLeft,
-            padding: EdgeInsets.only(left: 18.w),
-            child: Image.asset(
-              'assets/doctor/back_arrow.png',
-              width: 21.w,
-              height: 13.5.w,
-            ),
-          ),
-        ),
-        title: Container(
-          padding: const EdgeInsets.symmetric(horizontal: 4),
-          child: Text(
-            '정책 제안하기',
-            style: TextPath.Heading2F18W600.copyWith(
-              color: ColorPath.TextGrey1H212121,
-            ),
-            textAlign: TextAlign.left,
-          ),
-        ),
-      ),
-      body: SingleChildScrollView(
-        physics: const ClampingScrollPhysics(),
-        child: Stack(
-          children: [
+    return Obx(
+      () => GlobalLayoutWidget(
+        context: context,
+        resizeToAvoidBottomInset: true,
+        appBar: GlobalAppBarWidget(
+          appBar: AppBar(),
+          title: '정책 제안하기',
+          actions: [
             Container(
-              padding: EdgeInsets.fromLTRB(20.w, 0, 20.w, 0),
-              child: Column(
-                children: [
-                  SizedBox(height: 40.w),
-                  const SuggestPolicyBodyView(),
-                  SizedBox(height: 40.w),
-                  const SuggestPolicyActionView(),
-                ],
+              alignment: Alignment.center,
+              margin: const EdgeInsets.only(right: 5).w,
+              child: TextButton(
+                onPressed: controller.isSaveButtonEnable.value ? () {} : null,
+                child: Text(
+                  '전송',
+                  style: TextPath.TextF14W600.copyWith(
+                    color: controller.isSaveButtonEnable.value
+                        ? ColorPath.TextGrey1H212121
+                        : const Color(0XFFDADADA),
+                  ),
+                ),
               ),
-            )
+            ),
           ],
+        ),
+        body: SingleChildScrollView(
+          physics: const ClampingScrollPhysics(),
+          padding: const EdgeInsets.symmetric(horizontal: 20),
+          child: Padding(
+            padding: const EdgeInsets.only(top: 20, bottom: 50).w,
+            child: Column(
+              children: [
+                const TextFieldWidget(),
+                SizedBox(height: 50.w),
+              ],
+            ),
+          ),
         ),
       ),
     );
   }
 }
 
-/// suggest policy body view
-class SuggestPolicyBodyView extends GetView<SuggestPolicyController> {
-  const SuggestPolicyBodyView({super.key});
+/// 텍스트 필드 위젯
+class TextFieldWidget extends GetView<SuggestPolicyController> {
+  const TextFieldWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Obx(
-      () => Container(
-        padding: EdgeInsets.fromLTRB(20.w, 0, 20.w, 0),
-        child: Column(
-          children: [
-            Container(
-              alignment: Alignment.centerLeft,
-              child: Text(
-                '제목',
-                style: TextPath.TextF14W500.copyWith(
-                  color: ColorPath.TextGrey1H212121,
+      () => Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            '제목',
+            style: TextPath.TextF16W500.copyWith(
+              color: ColorPath.TextGrey1H212121,
+            ),
+          ),
+          SizedBox(height: 5.w),
+          TextField(
+            controller: controller.titleController.value,
+            focusNode: controller.titleFoucesNode.value,
+            onChanged: (String value) {
+              controller.handleOnChanged(value, type: 'title');
+            },
+            decoration: InputDecoration(
+              contentPadding: const EdgeInsets.symmetric(
+                vertical: 14,
+              ).w,
+              hintText: '제목을 입력해주세요',
+              hintStyle: TextPath.TextF14W500.copyWith(
+                color: ColorPath.TextGrey4H9E9E9E,
+              ),
+              focusedBorder: UnderlineInputBorder(
+                borderSide: BorderSide(
+                  color: ColorPath.Gray333Color,
                 ),
               ),
             ),
-            SizedBox(height: 6.w),
-            TextField(
-              controller: controller.policyTitleController.value,
-              focusNode: controller.polityTitleFoucesNode.value,
-              decoration: InputDecoration(
-                border: UnderlineInputBorder(
-                  borderSide: BorderSide(color: ColorPath.GrayCCCColor),
-                ),
-                focusedBorder: UnderlineInputBorder(
-                  borderSide: BorderSide(color: ColorPath.Gray333Color),
-                ),
-                hintText: '정책제안합니다.',
-                hintStyle: TextPath.TextF14W500.copyWith(
-                  color: ColorPath.TextGrey4H9E9E9E,
-                ),
-                contentPadding: EdgeInsets.symmetric(
-                  vertical: 14.w,
-                  horizontal: 8.w,
+          ),
+          if (controller.titleError.value.isNotEmpty)
+            Padding(
+              padding: const EdgeInsets.only(top: 5).w,
+              child: GlobalTextWidget.error(
+                controller.titleError.value,
+              ),
+            ),
+          SizedBox(height: 32.w),
+          Text(
+            '내용',
+            style: TextPath.TextF16W500.copyWith(
+              color: ColorPath.TextGrey1H212121,
+            ),
+          ),
+          SizedBox(height: 5.w),
+          TextField(
+            controller: controller.contentController.value,
+            focusNode: controller.contentFoucesNode.value,
+            maxLines: 5,
+            onChanged: (String value) {
+              controller.handleOnChanged(value, type: 'content');
+            },
+            decoration: InputDecoration(
+              contentPadding: const EdgeInsets.symmetric(
+                vertical: 14,
+              ).w,
+              hintText: '정책을 제안할 내용을 입력해주세요',
+              hintStyle: TextPath.TextF14W500.copyWith(
+                color: ColorPath.TextGrey4H9E9E9E,
+              ),
+              focusedBorder: UnderlineInputBorder(
+                borderSide: BorderSide(
+                  color: ColorPath.Gray333Color,
                 ),
               ),
             ),
-            if (controller.polityTitleError.value.isNotEmpty)
-              Container(
-                margin: EdgeInsets.only(top: 4.w),
-                alignment: Alignment.bottomLeft,
-                child: Text(
-                  controller.polityTitleError.value,
-                  style: TextPath.TextF10W400.copyWith(
-                    color: ColorPath.ErrorColor,
+          ),
+          if (controller.contentError.value.isNotEmpty)
+            Padding(
+              padding: const EdgeInsets.only(top: 5).w,
+              child: GlobalTextWidget.error(
+                controller.contentError.value,
+              ),
+            ),
+          SizedBox(height: 18.w),
+          GlobalInkWellWidget(
+            onTap: () {
+              controller.changeCheckBoxWithPersonalAgree(
+                !controller.boxStatusWithPersonalAgree.value,
+              );
+            },
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                SizedBox(
+                  width: 20.w,
+                  height: 20.w,
+                  child: Checkbox(
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(4).r,
+                    ),
+                    side: BorderSide(
+                      color: ColorPath.Border1H9E9E9E,
+                      width: 1.w,
+                    ),
+                    value: controller.boxStatusWithPersonalAgree.value,
+                    onChanged: (bool? value) {
+                      controller.changeCheckBoxWithPersonalAgree(value);
+                    },
                   ),
                 ),
-              ),
-            SizedBox(height: 24.w),
-            Container(
-              alignment: Alignment.centerLeft,
-              child: Text(
-                '내용',
-                style: TextPath.TextF14W500.copyWith(
-                  color: ColorPath.TextGrey1H212121,
-                ),
-              ),
-            ),
-            SizedBox(height: 6.w),
-            TextField(
-              controller: controller.policyContentController.value,
-              focusNode: controller.policyContentFoucesNode.value,
-              maxLines: 10,
-              keyboardType: TextInputType.multiline,
-              decoration: InputDecoration(
-                border: OutlineInputBorder(
-                  borderSide: BorderSide(color: ColorPath.GrayCCCColor),
-                ),
-                focusedBorder: OutlineInputBorder(
-                  borderSide: BorderSide(color: ColorPath.Gray333Color),
-                ),
-                hintText: '내용입력',
-                hintStyle: TextPath.TextF14W500.copyWith(
-                  color: ColorPath.TextGrey4H9E9E9E,
-                ),
-                contentPadding: EdgeInsets.symmetric(
-                  vertical: 14.w,
-                  horizontal: 8.w,
-                ),
-              ),
-            ),
-            if (controller.policyContentError.value.isNotEmpty)
-              Container(
-                margin: EdgeInsets.only(top: 4.w),
-                alignment: Alignment.bottomLeft,
-                child: Text(
-                  controller.policyContentError.value,
-                  style: TextPath.TextF10W400.copyWith(
-                    color: ColorPath.ErrorColor,
+                SizedBox(width: 12.w),
+                Text(
+                  '개인정보 처리방침에 동의합니다',
+                  style: TextPath.TextF14W500.copyWith(
+                    color: ColorPath.TextGrey1H212121,
                   ),
                 ),
-              ),
-            SizedBox(height: 15.w),
-            Container(
-              alignment: Alignment.centerLeft,
-              height: 24,
-              child: SizedBox(
-                child: Row(
-                  children: [
-                    SizedBox(
-                      width: 20,
-                      height: 20,
-                      child: Checkbox(
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(6),
-                        ),
-                        side: BorderSide(
-                          color: ColorPath.Border1H9E9E9E,
-                          width: 1,
-                        ),
-                        value: controller.boxStatusWithPersonalAgree.value,
-                        onChanged: (bool? value) {
-                          controller.changeCheckBoxWithPersonalAgree(value);
-                        },
-                      ),
-                    ),
-                    SizedBox(width: 12.w),
-                    Text(
-                      '개인정보 처리방침에 동의합니다.',
-                      style: TextPath.TextF14W500.copyWith(
-                        color: ColorPath.TextGrey1H212121,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
+              ],
             ),
-            SizedBox(height: 5.w),
-            Container(
-              alignment: Alignment.centerLeft,
-              height: 24,
-              child: SizedBox(
-                child: Row(
-                  children: [
-                    SizedBox(
-                      width: 20,
-                      height: 20,
-                      child: Checkbox(
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(6),
-                        ),
-                        side: BorderSide(
-                          color: ColorPath.Border1H9E9E9E,
-                          width: 1,
-                        ),
-                        value: controller.boxStatusWithAnonymous.value,
-                        onChanged: (bool? value) {
-                          controller.changeCheckBoxWithAnonymous(value);
-                        },
-                      ),
+          ),
+          SizedBox(height: 5.w),
+          GlobalInkWellWidget(
+            onTap: () {
+              controller.changeCheckBoxWithAnonymous(
+                !controller.boxStatusWithAnonymous.value,
+              );
+            },
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                SizedBox(
+                  width: 20.w,
+                  height: 20.w,
+                  child: Checkbox(
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(4).r,
                     ),
-                    SizedBox(width: 12.w),
-                    Text(
-                      '익명으로 전송합니다.',
-                      style: TextPath.TextF14W500.copyWith(
-                        color: ColorPath.TextGrey1H212121,
-                      ),
+                    side: BorderSide(
+                      color: ColorPath.Border1H9E9E9E,
+                      width: 1.w,
                     ),
-                  ],
+                    value: controller.boxStatusWithAnonymous.value,
+                    onChanged: (bool? value) {
+                      controller.changeCheckBoxWithAnonymous(value);
+                    },
+                  ),
                 ),
-              ),
+                SizedBox(width: 12.w),
+                Text(
+                  '익명으로 전송합니다',
+                  style: TextPath.TextF14W500.copyWith(
+                    color: ColorPath.TextGrey1H212121,
+                  ),
+                ),
+              ],
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }

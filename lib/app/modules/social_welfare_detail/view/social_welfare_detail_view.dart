@@ -10,7 +10,7 @@ import '../../../globals/global_layout_widget.dart';
 import '../../../globals/global_loader_indicator_widget.dart';
 import '../../../globals/global_toast_widget.dart';
 import '../../../theme/color_path.dart';
-import '../../../theme/texts.dart';
+import '../../../theme/text_path.dart';
 import '../controller/social_welfare_detail_controller.dart';
 
 /// 사회복지제도 상세 페이지
@@ -32,11 +32,12 @@ class SocialWelfareDetailView extends GetView<SocialWelfareDetailController> {
                 children: [
                   SizedBox(
                     width: double.infinity,
-                    height: 242,
+                    height: 242.w,
                     child: Hero(
-                      tag: 'welfare_${controller.arguments['id']}',
+                      tag: controller.arguments['id'],
                       child: Image.network(
                         controller.arguments['image'],
+                        cacheWidth: 640,
                         fit: BoxFit.cover,
                       ),
                     ),

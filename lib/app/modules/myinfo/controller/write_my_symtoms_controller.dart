@@ -15,39 +15,102 @@ import 'package:mime/mime.dart';
 import '../../../globals/global_toast_widget.dart';
 import '../../../models/base_response_model.dart';
 import '../../../provider/provider.dart';
-import '../../../theme/texts.dart';
+import '../../../theme/text_path.dart';
 
-// write my symptoms controller
 class WriteMySymptomsController extends GetxController {
   static WriteMySymptomsController get to => Get.find();
 
-  RxList<XFile> files = <XFile>[].obs;
-  // Data ▼ ============================================
+  // Controller ▼
 
-  // EditController ▼ ========================================
-  Rx<TextEditingController> mySymptomsTitleTextEditController =
-      TextEditingController(text: '').obs;
+  /// 내 증상 기록 등록하기 컨트롤러
+  Rx<TextEditingController> titleTextEditController =
+      TextEditingController().obs;
 
-  Rx<TextEditingController> mySymptomsContentTextEditController =
-      TextEditingController(text: '').obs;
+  /// 내 증상 기록 내용 텍스트 에디팅 컨트롤러
+  Rx<TextEditingController> contentTextEditController =
+      TextEditingController().obs;
 
-  // FocusNode ▼ ========================================
+  // FocusNode ▼
+
+  /// 제목 포커스 노드
   Rx<FocusNode> titleFoucesNode = FocusNode().obs;
+
+  /// 내용 포커스 노드
   Rx<FocusNode> contentFoucesNode = FocusNode().obs;
 
+  // Variable ▼
+
+  /// 저장 버튼 활성화 여부
+  Rx<bool> isSaveButtonEnable = false.obs;
+
+  /// 제목 에러
   Rx<String> titleError = ''.obs;
+
+  /// 내용 에러
   Rx<String> contentError = ''.obs;
 
-  // Function ▼ ========================================
+  /// 이미지 및 영상 파일
+  RxList<XFile> files = <XFile>[].obs;
 
-  // 내 증상 기록 등록하기
+  // Function ▼
+
+  /// 텍스트 필드 OnChanged 핸들러
+  ///
+  /// [text] String: 텍스트 필드에 입력된 텍스트
+  ///
+  /// [type] String : 텍스트 필드 타입
+  void handleOnChanged(
+    String text, {
+    required String type,
+  }) {
+    switch (type) {
+      case 'title':
+        if (text.isEmpty) {
+          isSaveButtonEnable.value = false;
+          titleError.value = '제목을 입력해주세요';
+          return;
+        }
+
+        if (text.length < 6) {
+          isSaveButtonEnable.value = false;
+          titleError.value = '6자 이상 입력해주세요';
+          return;
+        }
+
+        titleError.value = '';
+        isSaveButtonEnable.value = true;
+        break;
+      case 'content':
+        if (text.isEmpty) {
+          isSaveButtonEnable.value = false;
+          contentError.value = '내 증상 기록 내용을 입력해주세요';
+          return;
+        }
+
+        if (text.length < 6) {
+          isSaveButtonEnable.value = false;
+          contentError.value = '6자 이상 입력해주세요';
+          return;
+        }
+
+        contentError.value = '';
+        isSaveButtonEnable.value = true;
+        break;
+    }
+
+    // 저장 버튼 활성화 여부
+    isSaveButtonEnable.value =
+        titleError.value.isEmpty && contentError.value.isEmpty;
+  }
+
+  /// 내 증상 기록 등록하기
   Future<void> handleSubmit() async {
-    if (mySymptomsTitleTextEditController.value.text.isEmpty) {
+    if (titleTextEditController.value.text.isEmpty) {
       titleError.value = '제목은 필수입니다.';
     } else {
       titleError.value = '';
     }
-    if (mySymptomsContentTextEditController.value.text.isEmpty) {
+    if (contentTextEditController.value.text.isEmpty) {
       contentError.value = '내용은 필수입니다.';
     } else {
       contentError.value = '';
@@ -66,8 +129,8 @@ class WriteMySymptomsController extends GetxController {
                 MediaType(content.split('/')[0], content.split('/')[1])));
       }
       Dio.FormData request = Dio.FormData.fromMap({
-        'title': mySymptomsTitleTextEditController.value.text,
-        'description': mySymptomsContentTextEditController.value.text,
+        'title': titleTextEditController.value.text,
+        'description': contentTextEditController.value.text,
         'files': _files
       });
 
@@ -79,8 +142,8 @@ class WriteMySymptomsController extends GetxController {
 
       switch (response.statusCode) {
         case 201:
-          mySymptomsTitleTextEditController.value.text = '';
-          mySymptomsContentTextEditController.value.text = '';
+          titleTextEditController.value.text = '';
+          contentTextEditController.value.text = '';
 
           Get.back();
           GlobalToastWidget('저장이 완료되었습니다.');
@@ -96,7 +159,7 @@ class WriteMySymptomsController extends GetxController {
     }
   }
 
-  // 파일 추가하기
+  /// 파일 추가하기
   Future<void> handleFileAdd({required bool isImage}) async {
     final ImagePicker _picker = ImagePicker();
     XFile? image;
@@ -111,12 +174,12 @@ class WriteMySymptomsController extends GetxController {
     }
   }
 
-  // 파일 삭제하기
+  /// 파일 삭제하기
   handleFileRemove({required int index}) {
     files.removeAt(index);
   }
 
-  // 파일 선택기
+  /// 파일 선택기
   Future<void> handleFileSelected() async {
     await Get.bottomSheet(
       Container(
@@ -195,8 +258,6 @@ class WriteMySymptomsController extends GetxController {
       ),
     );
   }
-
-  // Variable ▼ ========================================
 
   @override
   Future<void> onInit() async {

@@ -1,5 +1,5 @@
 import 'package:dr_parkinsons/app/theme/color_path.dart';
-import 'package:dr_parkinsons/app/theme/texts.dart';
+import 'package:dr_parkinsons/app/theme/text_path.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 

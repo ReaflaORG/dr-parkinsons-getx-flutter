@@ -4,7 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../globals/global_inkwell_widget.dart';
 import '../../../models/healthcare_btn_model.dart';
 import '../../../theme/color_path.dart';
-import '../../../theme/texts.dart';
+import '../../../theme/text_path.dart';
 
 /// 건강관리 메인 버튼
 ///

@@ -15,12 +15,7 @@ import '../../../provider/provider.dart';
 class AlarmSettingController extends GetxController {
   static AlarmSettingController get to => Get.find();
 
-  // Data ▼ ============================================
-  // alarm setting item model
-
-  // Function ▼ ========================================
-
-  // Variable ▼ ========================================
+  // Function ▼
 
   Future<void> checkBasicAlarm({required String type}) async {
     try {

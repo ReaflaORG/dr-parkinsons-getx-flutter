@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../theme/color_path.dart';
-import '../../../theme/texts.dart';
+import '../../../theme/text_path.dart';
 import '../models/view_my_symptoms_item_model.dart';
 import 'image_dialog.dart';
 

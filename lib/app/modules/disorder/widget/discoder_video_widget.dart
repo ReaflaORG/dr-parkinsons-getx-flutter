@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
 import '../../../theme/color_path.dart';
-import '../../../theme/texts.dart';
+import '../../../theme/text_path.dart';
 import '../../../utils/formatter.dart';
 import '../controller/disorder_controller.dart';
 
@@ -63,6 +63,7 @@ class DiscoderVideoWidget extends GetView<DisorderController> {
               // ),
               thumbnail: Image.network(
                 controller.videoData[index].thumbnail,
+                cacheWidth: 640,
                 fit: BoxFit.fill,
               ),
               bottomActions: [

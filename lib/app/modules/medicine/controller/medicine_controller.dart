@@ -9,7 +9,7 @@ import '../../../models/medicine_btn_model.dart';
 class MedicineController extends GetxController {
   static MedicineController get to => Get.find();
 
-  // Data ▼ ============================================
+  // Data ▼
 
   List<MedicineBtnModel> pillBtns = <MedicineBtnModel>[
     MedicineBtnModel(
@@ -57,9 +57,9 @@ class MedicineController extends GetxController {
     ),
   ];
 
-  // Function ▼ ========================================
+  // Function ▼
 
-  // Variable ▼ ========================================
+  // Variable ▼
 
   @override
   Future<void> onInit() async {

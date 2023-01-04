@@ -7,10 +7,9 @@ import '../../../globals/global_dialog_widget.dart';
 import '../../../globals/global_inkwell_widget.dart';
 import '../../../globals/global_layout_widget.dart';
 import '../../../models/sarch_doctors_model.dart';
-import '../../../routes/app_pages.dart';
 import '../../../service/auth_service.dart';
 import '../../../theme/color_path.dart';
-import '../../../theme/texts.dart';
+import '../../../theme/text_path.dart';
 import '../controller/search_doctors_controller.dart';
 import '../widget/doctor_card_widget.dart';
 
@@ -26,7 +25,11 @@ class DoctorSearchView extends GetView<DoctorSearchController> {
         appBar: GlobalAppBarWidget(
           title: '파킨슨병 전문의 검색',
           appBar: AppBar(),
-          isLeadingVisible: true,
+          isLeadingVisible: controller.argument == null
+              ? true
+              : controller.argument['isLeadingVisible'] == true
+                  ? false
+                  : true,
           actions: [
             InkWell(
               onTap: () {
@@ -217,7 +220,7 @@ class SearchDoctorsListWidget extends GetView<DoctorSearchController> {
           return DoctorSearchItemWidget(
             onClick: () {
               Get.toNamed(
-                Routes.DOCTOR,
+                '/search/doctor/detail',
                 arguments: {
                   'doctor_id': controller.doctorListData[index].doctorId,
                 },

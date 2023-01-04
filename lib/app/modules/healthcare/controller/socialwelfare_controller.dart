@@ -7,11 +7,8 @@ import 'package:get/get.dart';
 class SocialWelfareController extends GetxController {
   static SocialWelfareController get to => Get.find();
 
-  // Data ▼ ============================================
+  // Variable ▼
 
-  // Function ▼ ========================================
-
-  // Variable ▼ ========================================
   Rx<int> socialWelfarePostData = 5.obs;
 
   @override

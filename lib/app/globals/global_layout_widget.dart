@@ -27,6 +27,8 @@ class GlobalLayoutWidget extends StatelessWidget {
     this.bottomNavigationBar,
     this.isSafeArea = true,
     this.backgroundColor = Colors.white,
+    this.floatingActionButton,
+    this.floatingActionButtonLocation,
   });
 
   /// 컨텍스트
@@ -56,6 +58,12 @@ class GlobalLayoutWidget extends StatelessWidget {
   /// 세이프 영역 여부
   final Color? backgroundColor;
 
+  /// 플로팅 액션 버튼
+  final Widget? floatingActionButton;
+
+  /// 플로팅 액션 버튼 위치
+  final FloatingActionButtonLocation? floatingActionButtonLocation;
+
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -71,6 +79,8 @@ class GlobalLayoutWidget extends StatelessWidget {
                   appBar: appBar,
                   backgroundColor: backgroundColor,
                   bottomNavigationBar: bottomNavigationBar,
+                  floatingActionButton: floatingActionButton,
+                  floatingActionButtonLocation: floatingActionButtonLocation,
                   body: body,
                 ),
               )
@@ -80,6 +90,8 @@ class GlobalLayoutWidget extends StatelessWidget {
                 appBar: appBar,
                 backgroundColor: backgroundColor,
                 bottomNavigationBar: bottomNavigationBar,
+                floatingActionButton: floatingActionButton,
+                floatingActionButtonLocation: floatingActionButtonLocation,
                 body: body,
               ),
       ),

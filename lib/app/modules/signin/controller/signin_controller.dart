@@ -19,12 +19,12 @@ import '../../../provider/provider.dart';
 class SignInController extends GetxController {
   static SignInController get to => Get.find();
 
-  // Controller ▼ ======================================
+  // Controller ▼
 
   /// 슬라이드 컨트롤러
   Rx<CarouselController> carouselController = CarouselController().obs;
 
-  // Data ▼ ===========================================
+  // Data ▼
 
   /// 슬라이드 데이터
   RxList<CarouselSlideModel> carouselSlideData = <CarouselSlideModel>[
@@ -53,7 +53,7 @@ class SignInController extends GetxController {
     )
   ].obs;
 
-  // Variable ▼ ========================================
+  // Variable ▼
 
   /// 카카오 토큰
   RxSet<OAuthToken> kakaoToken = <OAuthToken>{}.obs;
@@ -64,7 +64,7 @@ class SignInController extends GetxController {
   /// 슬라이드 인덱스
   Rx<int> carouselSliderIndex = 0.obs;
 
-  // Funcion ▼ =========================================
+  // Funcion ▼
 
   /// 카카오 로그인 프로바이더
   Future<void> handleKakaoProvider() async {

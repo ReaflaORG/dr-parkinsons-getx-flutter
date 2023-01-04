@@ -16,34 +16,38 @@ import '../../../globals/global_toast_widget.dart';
 import '../../../models/base_response_model.dart';
 import '../../../provider/provider.dart';
 import '../../../theme/color_path.dart';
-import '../../../theme/texts.dart';
+import '../../../theme/text_path.dart';
 import '../models/my_symptoms_item_model.dart';
 
 // edity my symptoms controller
 class EditMySymptomsController extends GetxController {
   static EditMySymptomsController get to => Get.find();
 
-  // Data ▼ ============================================
+  // Data ▼
+
   RxList<XFile> files = <XFile>[].obs;
   RxList<String> remove_items = <String>[].obs;
-  // EditController ▼ ========================================
+
+  // Controller ▼
+
   late Rx<TextEditingController> titleController;
   late Rx<TextEditingController> contentController;
 
-  // FocusNode ▼ ========================================
+  // FocusNode ▼
+
   Rx<FocusNode> titleFoucesNode = FocusNode().obs;
   Rx<FocusNode> contentFoucesNode = FocusNode().obs;
 
-  // * 에러 리스트
+  // Variable ▼
+
   Rx<String> titleError = ''.obs;
   Rx<String> contentError = ''.obs;
-
-  // Variable ▼ ============================================
   late Rx<MySymptomsModel> editItem;
   Rx<bool> process = true.obs;
   Rx<dynamic> symptomId = 1.obs;
 
-  // Function ▼ ========================================
+  // Function ▼
+
   Future<void> getMySymptomsData() async {
     try {
       AuthBaseResponseModel response = await Provider.dio(
@@ -131,8 +135,7 @@ class EditMySymptomsController extends GetxController {
     }
   }
 
-  // Function ▼ ========================================
-  // 파일 추가하기
+  /// 파일 추가하기
   Future<void> handleFileAdd({required bool isImage}) async {
     final ImagePicker _picker = ImagePicker();
     XFile? image;
@@ -147,12 +150,12 @@ class EditMySymptomsController extends GetxController {
     }
   }
 
-  // 파일 삭제하기
+  /// 파일 삭제하기
   handleFileRemove({required int index}) {
     files.removeAt(index);
   }
 
-  // 컨텐츠 삭제하기
+  /// 컨텐츠 삭제하기
   handleContentRemove({required int index}) {
     remove_items
         .add(editItem.value.symptomHistoryFiles[index].fileId.toString());

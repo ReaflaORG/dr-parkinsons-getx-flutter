@@ -11,7 +11,7 @@ import '../utils/app_version_check.dart';
 class GlobalService extends GetxService {
   static GlobalService get to => Get.find();
 
-  // Funcion ▼ ========================================
+  // Funcion ▼
 
   /// 디바이스 스크린 사이즈 체크
   Future<void> handleScreenSize() async {

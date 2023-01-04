@@ -65,8 +65,8 @@ abstract class Routes {
   /// 주치의 찾기
   static const SEARCH = _Paths.SEARCH;
 
-  /// 주치의 찾기 - 주치의 상세
-  static const DOCTOR = _Paths.SEARCH + _Paths.DOCTOR;
+  /// 주치의 찾기 - 주치의 상세보기
+  static const DOCTOR_DETAIL = _Paths.SEARCH + _Paths.DOCTOR_DETAIL;
 
   /// 내정보
   static const MY_INFO = _Paths.MY_INFO;
@@ -96,7 +96,10 @@ abstract class Routes {
   static const ALARM_SETTING = _Paths.ALARM_SETTING;
 
   /// 약관 및 정책
-  static const TERMS_AND_CONDITION = _Paths.TERMS_AND_CONDITION;
+  static const TERMS = _Paths.TERMS;
+
+  /// 약관 및 정책 - 웹뷰
+  static const TERMS_WEBVIEW = _Paths.TERMS_WEBVIEW;
 
   /// 회원관리
   static const MANAGE_MEMBER = _Paths.MANAGE_MEMBER;
@@ -166,7 +169,7 @@ abstract class _Paths {
   static const SEARCH = '/search';
 
   /// 주치의 찾기 - 주치의 상세보기
-  static const DOCTOR = '/doctor';
+  static const DOCTOR_DETAIL = '/doctor/detail';
 
   /// 내정보
   static const MY_INFO = '/myinfo';
@@ -196,7 +199,10 @@ abstract class _Paths {
   static const ALARM_SETTING = '/myinfo/alarm_setting';
 
   /// 약관 및 정책
-  static const TERMS_AND_CONDITION = '/myinfo/terms_and_condition';
+  static const TERMS = '/terms';
+
+  /// 약관 및 정책 - 웹뷰
+  static const TERMS_WEBVIEW = '/webview';
 
   /// 회원관리
   static const MANAGE_MEMBER = '/myinfo/manage_member';

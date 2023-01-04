@@ -13,6 +13,10 @@ import '../../../service/location_service.dart';
 class DoctorSearchController extends GetxController {
   static DoctorSearchController get to => Get.find();
 
+  // Argument ▼
+
+  dynamic argument = Get.arguments;
+
   // GlobalKey ▼
 
   Rx<GlobalKey<FormState>> globalFormKey = GlobalKey<FormState>().obs;
@@ -80,7 +84,7 @@ class DoctorSearchController extends GetxController {
 
   @override
   Future<void> onInit() async {
-    handleDoctorProvider();
+    await handleDoctorProvider();
 
     super.onInit();
   }

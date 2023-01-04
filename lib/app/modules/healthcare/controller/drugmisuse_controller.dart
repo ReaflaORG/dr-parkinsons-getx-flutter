@@ -5,9 +5,8 @@ import 'dart:async';
 import 'package:dr_parkinsons/app/models/base_response_model.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:logger/logger.dart';
 
-import '../../../globals/global_dialog_widget.dart';
-import '../../../globals/global_toast_widget.dart';
 import '../../../models/drugmisuse_infobox_model.dart';
 import '../../../models/drugmisuse_model.dart';
 import '../../../provider/provider.dart';
@@ -15,77 +14,32 @@ import '../../../provider/provider.dart';
 class DrugMisuseController extends GetxController {
   static DrugMisuseController get to => Get.find();
 
-  //**
-  //* Step 1 주의해야할 약물 모델링하기  [x]
-  //* Step 2 주의해야할 약물 변수 변언하기 []
-  //* Step 3 api 받아와서 주약 변수에 할당하기 []
-  //* Step 4 View와 맞추기[]
-  //**/
+  // GlobalKey ▼
 
-  // RxList<DrugmisuseModel> drugMisuseList = <DrugmisuseModel>[].obs;
-  RxList<DrugmisuseModel> boxesSearchData = <DrugmisuseModel>[].obs;
-  RxList<String> drugMisuseList = <String>[].obs;
-
-  // Function ▼ =======================================
-  Future<void> onHandleSearch(String value) async {
-    // 값 저장
-    globalFormKey.value.currentState!.save();
-
-    // 벨리데이터
-    if (value.isNotEmpty) {
-      isSearch.value = true;
-      try {
-        AuthBaseResponseModel response = await Provider.dio(
-            method: 'GET',
-            url:
-                '/healthcare/drug_misuse_medicine?orderBy=title&search=${drugmisuseTextFormFieldController.value.text}');
-        switch (response.statusCode) {
-          case 200:
-            if (response.data.length == 0) {
-              Get.dialog(GlobalDrugmisuseModalWidget(
-                medicineName: '',
-                isFound: false,
-                okOnPressed: () => Get.back(),
-              ));
-            } else {
-              boxesSearchData.assignAll(List<DrugmisuseModel>.from(
-                  response.data.map((e) => DrugmisuseModel.fromJson(e))));
-              for (var i = 0; i < boxesSearchData.length; i++) {
-                drugMisuseList.add(boxesSearchData[i].medicineName);
-              }
-            }
-
-            break;
-          default:
-            throw Exception(response.message);
-        }
-      } catch (e) {
-        GlobalToastWidget(e.toString().substring(11));
-      }
-    } else {
-      isSearch.value = false;
-    }
-  }
-
-  // GlobalKey ▼ =======================================
-
-  /// * 글로벌 폼키
+  /// 글로벌 폼키
   Rx<GlobalKey<FormState>> globalFormKey = GlobalKey<FormState>().obs;
 
-  // Controller ▼ =======================================
+  // Controller ▼
 
-  /// * 약물 검색 텍스트 폼 필드 컨트롤러
+  /// 약물 검색 텍스트 폼 필드 컨트롤러
   Rx<TextEditingController> drugmisuseTextFormFieldController =
       TextEditingController().obs;
 
-  // FocusNode ▼ ========================================
+  // FocusNode ▼
 
-  /// * 약물 검색 포커스 노드
+  /// 약물 검색 포커스 노드
   Rx<FocusNode> drugmisuseTextFormFieldFocusScopeNode = FocusNode().obs;
 
-  // Data ▼ ============================================
+  // Data ▼
 
-  RxList<DrugMisuseInfoBoxModel> boxesData = <DrugMisuseInfoBoxModel>[
+  /// 약물 검색 데이터
+  RxList<DrugmisuseModel> boxesSearchData = <DrugmisuseModel>[].obs;
+
+  /// 약물 검색 자동완성 데이터
+  RxList<String> drugMisuseList = <String>[].obs;
+
+  /// 약물 데이터
+  RxList<DrugMisuseInfoBoxModel> drugMisuseInfoData = <DrugMisuseInfoBoxModel>[
     DrugMisuseInfoBoxModel(
       title: '정신병약',
       text:
@@ -127,11 +81,57 @@ class DrugMisuseController extends GetxController {
     ),
   ].obs;
 
-  // Variable ▼ ========================================
+  // Variable ▼
 
-  RxBool isSearch = false.obs;
+  /// 검색 여부
+  Rx<bool> isSearch = false.obs;
 
-  // Function ▼ ========================================
+  // Function ▼
+
+  /// 약물 검색 핸들러
+  Future<void> handleSearchProvider(String value) async {
+    try {
+      // 값이 있을때 검색
+      if (value.isNotEmpty) {
+        isSearch.value = true;
+
+        AuthBaseResponseModel response = await Provider.dio(
+          method: 'GET',
+          url:
+              '/healthcare/drug_misuse_medicine?orderBy=title&search=${drugmisuseTextFormFieldController.value.text}',
+        );
+
+        switch (response.statusCode) {
+          case 200:
+            if (response.data.length == 0) {
+              boxesSearchData.clear();
+
+              return;
+            }
+
+            boxesSearchData.assignAll(
+              List<DrugmisuseModel>.from(
+                response.data.map(
+                  (e) => DrugmisuseModel.fromJson(e),
+                ),
+              ),
+            );
+
+            // for (var i = 0; i < boxesSearchData.length; i++) {
+            //   drugMisuseList.add(boxesSearchData[i].medicineName);
+            // }
+            break;
+          default:
+            throw Exception(response.message);
+        }
+      } else {
+        isSearch.value = false;
+      }
+    } catch (e) {
+      Logger().d(e);
+      isSearch.value = true;
+    }
+  }
 
   @override
   Future<void> onInit() async {

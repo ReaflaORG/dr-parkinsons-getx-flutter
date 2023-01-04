@@ -7,18 +7,17 @@ import '../../../globals/global_layout_widget.dart';
 import '../../../routes/app_pages.dart';
 import '../../../service/auth_service.dart';
 import '../../../theme/color_path.dart';
-import '../../../theme/texts.dart';
+import '../../../theme/text_path.dart';
 import '../../main/controller/main_controller.dart';
 import '../controller/my_info_controller.dart';
-import '../models/my_info_item_model.dart';
-import '../widgets/my_info_item_widget.dart';
 
-// my info view
 class MyInfoView extends GetView<MyInfoController> {
   const MyInfoView({super.key});
 
   @override
-  Widget build(BuildContext context) => GlobalLayoutWidget(
+  Widget build(BuildContext context) {
+    return Obx(
+      () => GlobalLayoutWidget(
         context: context,
         appBar: GlobalAppBarWidget(
           title: '내정보',
@@ -27,75 +26,69 @@ class MyInfoView extends GetView<MyInfoController> {
           backgroundColor: ColorPath.PrimaryLightColor,
         ),
         body: SingleChildScrollView(
-          padding: EdgeInsets.only(bottom: 50.w),
           physics: const ClampingScrollPhysics(),
           child: Stack(
             children: [
               Container(
+                height: 160.w,
                 decoration: BoxDecoration(
-                  borderRadius:
-                      BorderRadius.vertical(bottom: Radius.circular(24.w)),
+                  borderRadius: const BorderRadius.vertical(
+                    bottom: Radius.circular(16),
+                  ).r,
                   color: ColorPath.PrimaryLightColor,
                 ),
-                height: 230,
               ),
               Container(
-                padding: EdgeInsets.symmetric(horizontal: 20.w),
+                padding: const EdgeInsets.symmetric(horizontal: 20).w,
                 child: Column(
                   children: [
-                    SizedBox(height: MediaQuery.of(context).padding.top),
-                    MyInfoHeader(),
-                    MyInfoBodyView(),
-                    // Expanded(
-                    //   child: MyInfoBodyView(),
-                    // ),
-                    SizedBox(height: MediaQuery.of(context).padding.bottom),
+                    const MyInfoHeaderWidget(),
+                    ListView.builder(
+                      padding: EdgeInsets.only(top: 20.w),
+                      physics: const NeverScrollableScrollPhysics(),
+                      shrinkWrap: true,
+                      itemCount: controller.menuData.length,
+                      itemBuilder: (BuildContext context, int index) {
+                        return MenuWidget(
+                          index: index,
+                        );
+                      },
+                    ),
+                    SizedBox(height: 50.w),
                   ],
                 ),
               )
             ],
           ),
         ),
-      );
+      ),
+    );
+  }
 }
 
-// my info header
-class MyInfoHeader extends GetView<MyInfoController> {
+/// 내정보 헤더
+class MyInfoHeaderWidget extends GetView<MyInfoController> {
+  const MyInfoHeaderWidget({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Obx(
       () => Container(
         width: double.infinity,
-        padding: EdgeInsets.symmetric(horizontal: 10.w),
+        padding: const EdgeInsets.symmetric(horizontal: 10).w,
         child: Column(
           children: [
             SizedBox(height: 15.w),
             Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 AuthService.to.userData.value.userName != null
-                    ? Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Container(
-                            alignment: Alignment.center,
-                            child: Text(
-                              AuthService.to.userData.value.userName!,
-                              style: TextPath.TextF24W600.copyWith(
-                                color: ColorPath.TextGrey1H212121,
-                              ),
-                            ),
-                          ),
-                          Container(
-                            padding: EdgeInsets.only(left: 10.w),
-                            alignment: Alignment.center,
-                            child: Text(
-                              '님',
-                              style: TextPath.TextF14W400.copyWith(
-                                color: ColorPath.TextGrey3H616161,
-                              ),
-                            ),
-                          ),
-                        ],
+                    ? Text(
+                        '${AuthService.to.userData.value.userName!}님',
+                        style: TextPath.TextF24W600.copyWith(
+                          color: ColorPath.TextGrey1H212121,
+                        ),
                       )
                     : InkWell(
                         onTap: () => Get.toNamed(Routes.PROFILE_SETTING),
@@ -109,37 +102,35 @@ class MyInfoHeader extends GetView<MyInfoController> {
                           ),
                         ),
                       ),
+                SizedBox(height: 30.w),
                 Container(
-                  margin: EdgeInsets.only(top: 30.w),
-                  padding:
-                      EdgeInsets.symmetric(horizontal: 20.w, vertical: 24.w),
+                  padding: const EdgeInsets.fromLTRB(20, 20, 10, 20).w,
                   decoration: BoxDecoration(
                     color: Colors.white,
-                    borderRadius: BorderRadius.circular(7.w),
-                    boxShadow: [
+                    borderRadius: BorderRadius.circular(8).r,
+                    boxShadow: const [
                       BoxShadow(
-                        color: const Color.fromRGBO(25, 118, 210, 0.15),
-                        spreadRadius: -5,
-                        blurRadius: 10,
-                        offset: Offset(10.w, 10.w),
+                        color: Color.fromRGBO(25, 118, 210, 0.15),
+                        spreadRadius: 1,
+                        blurRadius: 20,
+                        offset: Offset(0, 5),
                       ),
                     ],
                   ),
                   child: Column(
                     children: [
                       !AuthService.to.isMyDoctor
-                          ? myinfoSearchDoctor(context)
-                          : myinfoMyDoctor(context),
-                      Container(
-                        padding: EdgeInsets.only(top: 20.w, bottom: 20.w),
-                        child: Divider(
-                          height: 1,
-                          color: ColorPath.GrayCCCColor,
-                        ),
-                      ),
+                          ? const DoctorEmptyWidget()
+                          : const DoctorWidget(),
+                      // GlobalDividerWidget(
+                      //   margin: const EdgeInsets.only(top: 10, bottom: 20).w,
+                      //   color: ColorPath.GreyLightColor,
+                      //   height: 1.w,
+                      // ),
+                      SizedBox(height: 10.w),
                       AuthService.to.userData.value.guardianName == null
-                          ? myinfoSettingProfile()
-                          : myinfoMyGuardianProfile(),
+                          ? const GuardianEmptyWidget()
+                          : const GuardianWidget(),
                     ],
                   ),
                 ),
@@ -151,146 +142,128 @@ class MyInfoHeader extends GetView<MyInfoController> {
       ),
     );
   }
+}
 
-  // my info my doctor
-  Widget myinfoMyDoctor(BuildContext context) {
-    return InkWell(
-      onTap: () {
-        Get.toNamed(Routes.DOCTOR,
-            arguments: {'doctor_id': AuthService.to.myDoctor.value.doctorId});
-      },
-      child: Row(
-        children: [
-          Text(
-            '내 주치의',
-            style: TextPath.TextF12W200.copyWith(
-              color: ColorPath.TextGrey3H616161,
-            ),
-          ),
-          SizedBox(width: 10.w),
-          Row(
-            children: [
-              Text(
-                AuthService.to.myDoctor.value.doctorName!,
-                style: TextPath.TextF14W400.copyWith(
-                  color: ColorPath.TextGrey1H212121,
-                ),
-              ),
-              Text(
-                '(${AuthService.to.myDoctor.value.hospitalName})',
-                style: TextPath.TextF12W400.copyWith(
-                  color: ColorPath.TextGrey1H212121,
-                ),
-              ),
-            ],
-          ),
-          // Container(
-          //   alignment: Alignment.centerLeft,
-          //   padding: EdgeInsets.only(left: 4.5.w),
-          //   child:
-          // ),
-          // Container(
-          //   alignment: Alignment.centerLeft,
-          //   padding: EdgeInsets.only(left: 4.5.w),
-          //   child: Text(
-          //     '(${AuthService.to.myDoctor.value.hospitalName})',
-          //     style: TextPath.TextF12W400.copyWith(
-          //       color: ColorPath.TextGrey1H212121,
-          //     ),
-          //   ),
-          // ),
-          const Spacer(),
-          InkWell(
-            onTap: () async {
-              await controller.putDoctorUser(context);
-            },
-            child: Container(
-              alignment: Alignment.centerRight,
-              child: Image.asset(
-                'assets/myinfo/trash_icon.png',
-                width: 18.w,
-                height: 18.w,
-              ),
-            ),
-          ),
-        ],
-      ),
-    );
-  }
+/// 주치의가 없을 때 위젯
+class DoctorEmptyWidget extends StatelessWidget {
+  const DoctorEmptyWidget({super.key});
 
-// my info search doctor
-  Widget myinfoSearchDoctor(BuildContext context) {
+  @override
+  Widget build(BuildContext context) {
     return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Text(
-          '내 주치의가 설정되어 있지 않습니다.\n버튼을 선택하면 주치의 검색으로 이동합니다.',
-          style: TextPath.TextF12W400.copyWith(),
+          '내 주치의가 설정되어 있지 않습니다\r\n버튼을 클릭하면 주치의 검색으로 이동합니다',
+          style: TextPath.TextF12W400,
         ),
         const Spacer(),
-        InkWell(
-          onTap: () {
-            MainController.to.navigationIndex.value = 3;
-          },
-          child: Container(
-            width: 36,
-            height: 36,
-            padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 6.w),
-            decoration: BoxDecoration(
-                color: ColorPath.PrimaryLightColor,
-                borderRadius: BorderRadius.circular(18.w)),
-            child: Image.asset(
-              'assets/myinfo/arrow_right_icon.png',
-              width: 18,
-              height: 14,
+        Material(
+          clipBehavior: Clip.antiAlias,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(50).r,
+          ),
+          child: IconButton(
+            splashColor: ColorPath.PrimaryLightColor,
+            highlightColor: ColorPath.PrimaryColor.withOpacity(0.05),
+            onPressed: () {
+              MainController.to.navigationIndex.value = 3;
+            },
+            style: ButtonStyle(
+              padding: MaterialStateProperty.all(EdgeInsets.zero),
+              backgroundColor: MaterialStateProperty.all(Colors.transparent),
+            ),
+            icon: Icon(
+              Icons.east_rounded,
+              color: ColorPath.SecondaryColor,
             ),
           ),
         ),
       ],
     );
   }
+}
 
-  // my info MyGuardian Profile
-  Widget myinfoMyGuardianProfile() {
-    return Container(
-      child: Row(
+/// 주치의가 있을 때 위젯
+class DoctorWidget extends GetView<MyInfoController> {
+  const DoctorWidget({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return InkWell(
+      onTap: () {
+        Get.toNamed(
+          '/search/doctor/detail',
+          arguments: {
+            'doctor_id': AuthService.to.myDoctor.value.doctorId,
+          },
+        );
+      },
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Container(
-            alignment: Alignment.centerLeft,
-            width: 60.w,
-            child: Text(
-              '보호자',
-              style: TextPath.TextF12W200.copyWith(
-                color: ColorPath.TextGrey3H616161,
-              ),
+          Text(
+            '내 주치의',
+            style: TextPath.TextF12W400.copyWith(
+              color: ColorPath.TextGrey3H616161,
             ),
           ),
-          Container(
-            alignment: Alignment.centerLeft,
-            padding: EdgeInsets.only(left: 4.5.w),
-            child: Text(
-              AuthService.to.userData.value.guardianName!,
-              style: TextPath.TextF14W400.copyWith(
-                color: ColorPath.TextGrey1H212121,
+          Row(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Text(
+                    AuthService.to.myDoctor.value.doctorName!,
+                    style: TextPath.TextF14W400.copyWith(
+                      color: ColorPath.TextGrey1H212121,
+                    ),
+                  ),
+                  Text(
+                    '(${AuthService.to.myDoctor.value.hospitalName})',
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                    style: TextPath.TextF12W400.copyWith(
+                      color: ColorPath.TextGrey1H212121,
+                    ),
+                  ),
+                ],
               ),
-            ),
-          ),
-          Spacer(),
-          Container(
-            alignment: Alignment.centerRight,
-            child: Text(
-              AuthService.to.userData.value.guardianPhoneNumber!,
-              style: TextPath.TextF12W400.copyWith(
-                color: ColorPath.TextGrey1H212121,
+              const Spacer(),
+              Material(
+                clipBehavior: Clip.antiAlias,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(50).r,
+                ),
+                child: IconButton(
+                  splashColor: ColorPath.PrimaryLightColor,
+                  highlightColor: ColorPath.PrimaryColor.withOpacity(0.05),
+                  onPressed: () {
+                    controller.putDoctorUser(context);
+                  },
+                  icon: Icon(
+                    Icons.delete_rounded,
+                    color: ColorPath.SecondaryDarkColor,
+                    size: 18.sp,
+                  ),
+                ),
               ),
-            ),
+            ],
           ),
         ],
       ),
     );
   }
+}
 
-  // my info setting profile
-  Widget myinfoSettingProfile() {
+/// 보호자가 없을 때 위젯
+class GuardianEmptyWidget extends StatelessWidget {
+  const GuardianEmptyWidget({super.key});
+
+  @override
+  Widget build(BuildContext context) {
     return Container(
       alignment: Alignment.centerLeft,
       child: RichText(
@@ -322,27 +295,115 @@ class MyInfoHeader extends GetView<MyInfoController> {
   }
 }
 
-// my info view - call item widget with listview
-class MyInfoBodyView extends GetView<MyInfoController> {
+/// 보호자가 있을 때 위젯
+class GuardianWidget extends StatelessWidget {
+  const GuardianWidget({super.key});
+
   @override
   Widget build(BuildContext context) {
-    return Obx(
-      () => ListView.builder(
-        padding: EdgeInsets.only(top: 40.w),
-        shrinkWrap: true,
-        physics: const NeverScrollableScrollPhysics(),
-        itemCount: controller.listArray.length,
-        itemBuilder: (BuildContext context, int index) {
-          MyInfoItemModel item = controller.listArray[index];
-          return MyInfoItemWidget(
-            onClick: () {
-              if (item.vc != null) {
-                Get.toNamed(item.vc!);
-              }
-            },
-            item: item,
-          );
-        },
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          '나의 보호자',
+          style: TextPath.TextF12W400.copyWith(
+            color: ColorPath.TextGrey3H616161,
+          ),
+        ),
+        Row(
+          children: [
+            Text(
+              AuthService.to.userData.value.guardianName!,
+              style: TextPath.TextF14W400.copyWith(
+                color: ColorPath.TextGrey1H212121,
+              ),
+            ),
+            Text(
+              '(${AuthService.to.userData.value.guardianPhoneNumber!})',
+              style: TextPath.TextF12W400.copyWith(
+                color: ColorPath.TextGrey1H212121,
+              ),
+            ),
+            const Spacer(),
+            Material(
+              clipBehavior: Clip.antiAlias,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(50).r,
+              ),
+              child: IconButton(
+                splashColor: ColorPath.PrimaryLightColor,
+                highlightColor: ColorPath.PrimaryColor.withOpacity(0.05),
+                onPressed: () {
+                  Get.toNamed('/myinfo/profile_setting');
+                },
+                icon: Icon(
+                  Icons.call_made_rounded,
+                  color: ColorPath.SecondaryDarkColor,
+                  size: 18.sp,
+                ),
+              ),
+            ),
+          ],
+        ),
+      ],
+    );
+  }
+}
+
+/// 내정보 메뉴 위젯
+class MenuWidget extends GetView<MyInfoController> {
+  const MenuWidget({
+    super.key,
+    required this.index,
+  });
+
+  final int index;
+
+  @override
+  Widget build(BuildContext context) {
+    return InkWell(
+      onTap: () {
+        if (controller.menuData[index].page != null) {
+          Get.toNamed(controller.menuData[index].page!);
+        }
+      },
+      child: Container(
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(16),
+        ),
+        child: Container(
+          alignment: Alignment.centerLeft,
+          child: Row(
+            children: [
+              Container(
+                height: 50,
+                padding: const EdgeInsets.only(left: 10),
+                alignment: Alignment.centerLeft,
+                child: Text(
+                  controller.menuData[index].title,
+                  style: TextPath.TextF14W500.copyWith(
+                    color: ColorPath.TextGrey1H212121,
+                  ),
+                ),
+              ),
+              const Spacer(),
+              Visibility(
+                visible: controller.menuData[index].page != null,
+                child: Container(
+                  height: 50,
+                  padding: const EdgeInsets.only(right: 10),
+                  alignment: Alignment.centerRight,
+                  child: Image.asset(
+                    'assets/myinfo/myinfo_list_icon.png',
+                    width: 6,
+                    height: 12,
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
       ),
     );
   }

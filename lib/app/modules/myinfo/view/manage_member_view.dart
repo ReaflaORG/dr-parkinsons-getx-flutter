@@ -3,7 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
 import '../../../theme/color_path.dart';
-import '../../../theme/texts.dart';
+import '../../../theme/text_path.dart';
 import '../controller/manage_member_controller.dart';
 import '../models/manage_member_item_model.dart';
 import '../widgets/manage_member_item_widget.dart';

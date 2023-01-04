@@ -12,8 +12,8 @@ import '../../../provider/provider.dart';
 import '../../../service/auth_service.dart';
 
 /// 주치의 찾기 컨트롤러
-class DoctorController extends GetxController {
-  static DoctorController get to => Get.find();
+class DoctorDetailController extends GetxController {
+  static DoctorDetailController get to => Get.find();
 
   // Data ▼
 
@@ -164,8 +164,6 @@ class DoctorController extends GetxController {
         ? isDoctorSubscribe.value = false
         : isDoctorSubscribe.value = true;
   }
-
-  // Variable ▼ ========================================
 
   @override
   Future<void> onInit() async {

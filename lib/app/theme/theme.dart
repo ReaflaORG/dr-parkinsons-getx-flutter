@@ -5,20 +5,16 @@ import 'package:flutter/services.dart';
 
 import 'color_path.dart';
 
-/**
- * * 테마
- */
-
-/// Primary FontFamily ▼ =========================
+/// Primary FontFamily ▼
 const FontFamily = 'NotoSansKR';
 
-/// Primary FontSize ▼ ===========================
+/// Primary FontSize ▼
 const double PrimaryFontSize = 16;
 
-/// Secondary FontSize ▼ =========================
+/// Secondary FontSize ▼
 const double SecondaryFontSize = 14;
 
-/// Main Theme ▼ =================================
+/// Main Theme ▼
 ThemeData theme() => ThemeData(
       useMaterial3: false,
       fontFamily: FontFamily,
@@ -55,7 +51,7 @@ ThemeData theme() => ThemeData(
       visualDensity: VisualDensity.adaptivePlatformDensity,
     );
 
-/// ExpansionTile, dividerColor ▼ ================
+/// ExpansionTile, dividerColor ▼
 ThemeData themeExpansionTile() => ThemeData(
       fontFamily: FontFamily,
       brightness: Brightness.light,
@@ -88,7 +84,7 @@ ThemeData themeExpansionTile() => ThemeData(
       visualDensity: VisualDensity.adaptivePlatformDensity,
     );
 
-/// Dark Theme ▼ =================================
+/// Dark Theme ▼
 ThemeData darkTheme({
   required BuildContext context,
 }) =>
@@ -122,7 +118,7 @@ ThemeData darkTheme({
       visualDensity: VisualDensity.adaptivePlatformDensity,
     );
 
-/// Appbar ▼ =====================================
+/// Appbar ▼
 AppBarTheme appBarThemeData() => AppBarTheme(
       color: Colors.white,
       foregroundColor: Colors.white,
@@ -153,14 +149,14 @@ AppBarTheme appBarThemeData() => AppBarTheme(
       systemOverlayStyle: SystemUiOverlayStyle.light,
     );
 
-/// Text Selection ▼ =============================
+/// Text Selection ▼
 TextSelectionThemeData textSelectionThemeData() => TextSelectionThemeData(
       cursorColor: ColorPath.BlackColor,
       selectionColor: ColorPath.BlackColor,
       selectionHandleColor: ColorPath.BlackColor,
     );
 
-/// TextFormField ▼ ==============================
+/// TextFormField ▼
 InputDecorationTheme inputDecorationThemeData() => InputDecorationTheme(
       // 상단 라벨
       labelStyle: TextStyle(
@@ -236,7 +232,7 @@ InputDecorationTheme inputDecorationThemeData() => InputDecorationTheme(
       ),
     );
 
-/// Text ▼ =======================================
+/// Text ▼
 TextTheme textThemeData() => TextTheme(
       // displayLarge:
       // displayMedium:,
@@ -353,7 +349,7 @@ TextTheme textThemeData() => TextTheme(
       ),
     );
 
-/// Button ▼ =====================================
+/// Button ▼
 ButtonThemeData buttonThemeData() => ButtonThemeData(
       buttonColor: ColorPath.BlackColor,
       disabledColor: ColorPath.DisabledColor,
@@ -363,7 +359,7 @@ ButtonThemeData buttonThemeData() => ButtonThemeData(
       splashColor: ColorPath.BlackColor,
     );
 
-/// ElevatedButton ▼ =============================
+/// ElevatedButton ▼
 ElevatedButtonThemeData elevatedButtonThemeData() => ElevatedButtonThemeData(
       style: ElevatedButton.styleFrom(
         backgroundColor: ColorPath.PrimaryColor,
@@ -377,7 +373,7 @@ ElevatedButtonThemeData elevatedButtonThemeData() => ElevatedButtonThemeData(
       ),
     );
 
-/// OutlinedButton ▼ =============================
+/// OutlinedButton ▼
 OutlinedButtonThemeData outlinedButtonThemeData() => OutlinedButtonThemeData(
       style: OutlinedButton.styleFrom(
         backgroundColor: ColorPath.BackgroundWhite,
@@ -391,7 +387,7 @@ OutlinedButtonThemeData outlinedButtonThemeData() => OutlinedButtonThemeData(
       ),
     );
 
-/// TextButton ▼ =================================
+/// TextButton ▼
 TextButtonThemeData textButtonThemeData() => TextButtonThemeData(
       style: TextButton.styleFrom(
         foregroundColor: ColorPath.PrimaryColor,
@@ -399,13 +395,13 @@ TextButtonThemeData textButtonThemeData() => TextButtonThemeData(
       ),
     );
 
-/// BottomSheet ▼ ================================
+/// BottomSheet ▼
 BottomSheetThemeData bottomSheetThemeData() => const BottomSheetThemeData(
       backgroundColor: Colors.white,
       modalBackgroundColor: Colors.white,
     );
 
-/// Checkbox ▼ ===================================
+/// Checkbox ▼
 CheckboxThemeData checkboxThemeData() => CheckboxThemeData(
       fillColor: MaterialStateProperty.all(
         ColorPath.PrimaryColor,
@@ -418,7 +414,7 @@ CheckboxThemeData checkboxThemeData() => CheckboxThemeData(
       ),
     );
 
-/// Chip ▼ =======================================
+/// Chip ▼
 ChipThemeData chipThemeData() => ChipThemeData(
       backgroundColor: Colors.grey.shade300,
       deleteIconColor: Colors.white,

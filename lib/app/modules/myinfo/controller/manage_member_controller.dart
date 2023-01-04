@@ -1,6 +1,7 @@
 // ignore_for_file: unnecessary_overrides
 
 import 'dart:async';
+
 import 'package:get/get.dart';
 
 import '../models/manage_member_item_model.dart';
@@ -9,14 +10,14 @@ import '../models/manage_member_item_model.dart';
 class ManageMemeberController extends GetxController {
   static ManageMemeberController get to => Get.find();
 
-  // Data ▼ ============================================
+  // Data ▼
   // manage member item model
   ManageMemberItemModel listArray =
       ManageMemberItemModel(isLogin: false, isMember: false);
 
-  // Function ▼ ========================================
+  // Function ▼
 
-  // Variable ▼ ========================================
+  // Variable ▼
 
   @override
   Future<void> onInit() async {

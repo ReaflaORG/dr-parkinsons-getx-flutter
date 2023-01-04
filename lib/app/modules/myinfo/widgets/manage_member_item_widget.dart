@@ -1,8 +1,8 @@
-import 'package:dr_parkinsons/app/service/auth_service.dart';
+import '../../../service/auth_service.dart';
 import 'package:flutter/material.dart';
 
 import '../../../theme/color_path.dart';
-import '../../../theme/texts.dart';
+import '../../../theme/text_path.dart';
 import '../models/manage_member_item_model.dart';
 import 'show_dialog_two_options.dart';
 

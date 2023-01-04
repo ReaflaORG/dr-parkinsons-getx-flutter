@@ -14,8 +14,9 @@ import 'package:logger/logger.dart';
 
 import '../service/permission_service.dart';
 import '../theme/color_path.dart';
-import '../theme/texts.dart';
+import '../theme/text_path.dart';
 
+/// 뒤로가기 확인 모달
 Future<dynamic> GlobalWillPopScopeDialogWidget({String? type}) =>
     Get.bottomSheet(
       Container(
@@ -110,6 +111,7 @@ Future<dynamic> GlobalWillPopScopeDialogWidget({String? type}) =>
       exitBottomSheetDuration: const Duration(milliseconds: 100),
     );
 
+/// 권한 허용 확인 모달
 Future<dynamic> GlobalPermissionModalOpenAppSettingsWidget({
   required PermissionService controller,
   Future<void> Function()? okOnPressed,
@@ -201,6 +203,7 @@ Future<dynamic> GlobalPermissionModalOpenAppSettingsWidget({
           name: 'GlobalPermissionModalOpenAppSettingsWidget'),
     );
 
+/// 응급상황 모달
 Future<dynamic> GlobalEmergencyModalWidget({required BuildContext context}) =>
     showDialog(
       context: context,
@@ -309,7 +312,7 @@ Future<dynamic> GlobalEmergencyModalWidget({required BuildContext context}) =>
       },
     );
 
-///* 보호자 번호 추가 해야하는 모달
+/// 보호자 번호 추가 해야하는 모달
 Future<dynamic> GlobalEmergencyModalWidget2({required BuildContext context}) =>
     showDialog(
       context: context,
@@ -382,6 +385,7 @@ Future<dynamic> GlobalEmergencyModalWidget2({required BuildContext context}) =>
                     flex: 1,
                     child: InkWell(
                       onTap: () {
+                        Get.back();
                         Get.toNamed(Routes.PROFILE_SETTING);
                       },
                       child: Container(
@@ -410,74 +414,71 @@ Future<dynamic> GlobalEmergencyModalWidget2({required BuildContext context}) =>
       },
     );
 
-class GlobalDrugmisuseModalWidget extends StatelessWidget {
-  final String medicineName;
-  final void Function()? okOnPressed;
-
-  final bool isFound;
-  const GlobalDrugmisuseModalWidget({
-    super.key,
-    required this.medicineName,
-    required this.okOnPressed,
-    required this.isFound,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.transparent,
-      body: Center(
-        child: ClipRRect(
-          borderRadius: BorderRadius.circular(15),
-          child: Container(
-            padding: const EdgeInsets.all(20),
-            width: MediaQuery.of(context).size.width - 20,
-            height: 200.w,
-            color: Colors.white,
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                const SizedBox(height: 10),
-                Text(
-                  '주의해야할 약품',
-                  style: TextPath.Heading2F18W600,
-                ),
-                const SizedBox(height: 20),
-                isFound
-                    ? Text(
-                        '$medicineName(은/는)\r\n파킨슨 증상을 악화시킬 수 있는 약물이므로,\r\n전문의와 상의하시기 바랍니다.',
-                        style: TextPath.TextF14W400.copyWith(
-                          color: const Color(0XFF475467),
-                        ),
-                      )
-                    : const Text('검색 결과 없음'),
-                SizedBox(height: 30.w),
-                SizedBox(
-                  width: double.infinity,
-                  height: 44.w,
-                  child: ElevatedButton(
-                    onPressed: okOnPressed,
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: ColorPath.PrimaryDarkColor,
-                    ),
-                    child: Text(
-                      '확인',
-                      style: TextPath.Heading3F16W600.copyWith(
-                        color: Colors.white,
-                      ),
-                    ),
-                  ),
-                ),
-              ],
+/// 주의해야할 약품 모달
+///
+/// [medicineName] String : 약품 이름
+///
+/// [okOnPressed] void Function()? : 확인 버튼 클릭시 실행할 함수
+Future<dynamic> GlobalDrugmisuseModalWidget(
+  String medicineName, {
+  void Function()? okOnPressed,
+}) {
+  return Get.dialog(
+    AlertDialog(
+      shape: RoundedRectangleBorder(
+        borderRadius: const BorderRadius.all(
+          Radius.circular(8),
+        ).r,
+      ),
+      title: Text(
+        '주의해야할 약품',
+        style: TextPath.TextF18W600.copyWith(),
+      ),
+      titlePadding: const EdgeInsets.fromLTRB(20, 20, 20, 0).w,
+      contentPadding: EdgeInsets.zero,
+      content: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Padding(
+            padding: const EdgeInsets.fromLTRB(20, 20, 20, 0).w,
+            child: Text(
+              '$medicineName(은/는)\r\n파킨슨 증상을 악화시킬 수 있는 약물이므로\r\n전문의와 상의하시기 바랍니다.',
+              style: TextPath.TextF14W400.copyWith(
+                color: const Color(0XFF475467),
+              ),
             ),
           ),
-        ),
+          SizedBox(height: 20.w),
+          SizedBox(
+            width: double.infinity,
+            height: 44.w,
+            child: ElevatedButton(
+              onPressed: okOnPressed,
+              style: TextButton.styleFrom(
+                foregroundColor: Colors.white,
+                backgroundColor: ColorPath.PrimaryDarkColor,
+                shape: RoundedRectangleBorder(
+                  borderRadius: const BorderRadius.only(
+                    bottomLeft: Radius.circular(8),
+                    bottomRight: Radius.circular(8),
+                  ).r,
+                ),
+              ),
+              child: Text(
+                '확인',
+                style: TextPath.Heading3F16W600.copyWith(
+                  color: Colors.white,
+                ),
+              ),
+            ),
+          ),
+        ],
       ),
-    );
-  }
+    ),
+  );
 }
 
+/// 앱 업데이트 모달
 Future<dynamic> GlobalAppVersionUpgradeModalWidget({
   Future<void> Function()? cancelOnPressed,
   Future<void> Function()? okOnPressed,
@@ -528,7 +529,7 @@ Future<dynamic> GlobalAppVersionUpgradeModalWidget({
           const RouteSettings(name: 'GlobalAppVersionUpgradeModalWidget'),
     );
 
-///*투약 생성 모달
+/// 투약 생성 모달
 Future<dynamic> GlobalMakeAlarm({
   required BuildContext context,
 }) =>
@@ -1031,7 +1032,7 @@ Future<dynamic> GlobalMissionUpdateAlarm({
 //   },
 // );
 
-///* 준비중입니다. 모달
+/// 준비중입니다. 모달
 Future<dynamic> GlobalReadyModal({required BuildContext context}) => showDialog(
       context: context,
       barrierDismissible: true,
@@ -1099,34 +1100,20 @@ Future<dynamic> GlobalReadyModal({required BuildContext context}) => showDialog(
     );
 
 /// 내 증상 기록 모달
+///
+/// [alertTitleMsg] String : 제목
+///
+/// [alertContentMsg] String : 내용
+///
+/// [onCancelPressed] void Function()? : 취소 버튼 클릭시
+///
+/// [onOkPressed] void Function()? : 확인 버튼 클릭시
 Future<dynamic> GlobalSymptomRecordWidget({
   required String alertTitleMsg,
   required String alertContentMsg,
   required void Function()? onCancelPressed,
   required void Function()? onOkPressed,
 }) {
-  // return Get.dialog(
-  //   CupertinoAlertDialog(
-  //     title: Text(
-  //       alertTitleMsg,
-  //       style: TextPath.TextF18W600.copyWith(),
-  //     ),
-  //     content: Text(
-  //       alertContentMsg,
-  //       style: TextPath.TextF16W400.copyWith(),
-  //     ),
-  //     actions: [
-  //       CupertinoDialogAction(
-  //         isDefaultAction: true,
-  //         child: Text("Close"),
-  //       ),
-  //       CupertinoDialogAction(
-  //         isDefaultAction: true,
-  //         child: Text("Close"),
-  //       ),
-  //     ],
-  //   ),
-  // );
   return Get.dialog(
     AlertDialog(
       shape: const RoundedRectangleBorder(
@@ -1220,4 +1207,175 @@ Future<dynamic> GlobalSymptomRecordWidget({
       ),
     ),
   );
+}
+
+/// 쿠퍼티노 바텀시트 모달
+///
+/// [albumOnPressed] void Function()? : 앨범 버튼 클릭시
+///
+/// [videoOnPressed] void Function()? : 비디오 버튼 클릭시
+void GlobalAlbumBottomSheetModal({
+  required void Function()? albumOnPressed,
+  required void Function()? videoOnPressed,
+}) {
+  Get.bottomSheet(
+    Padding(
+      padding: const EdgeInsets.all(9).w,
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Container(
+            // margin: const EdgeInsets.symmetric(vertical: 2).w,
+            width: 50.w,
+            height: 4.w,
+            decoration: BoxDecoration(
+              color: ColorPath.Background2HD9D9D9,
+              borderRadius: BorderRadius.circular(4.w),
+            ),
+          ),
+          SizedBox(height: 8.w),
+          // Row(
+          //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          //   crossAxisAlignment: CrossAxisAlignment.center,
+          //   children: [
+          //     IconButton(
+          //       onPressed: () {
+          //         Get.back();
+          //       },
+          //       icon: Icon(
+          //         Icons.arrow_back_ios_rounded,
+          //         color: Colors.transparent,
+          //         size: 18.sp,
+          //       ),
+          //     ),
+          //     Text(
+          //       '사진선택',
+          //       style: TextPath.TextF14W600,
+          //     ),
+          //     IconButton(
+          //       onPressed: () {
+          //         Get.back();
+          //       },
+          //       icon: Icon(
+          //         Icons.close_rounded,
+          //         size: 22.sp,
+          //       ),
+          //     )
+          //   ],
+          // ),
+          TextButton(
+            onPressed: albumOnPressed,
+            // style: TextButton.styleFrom(
+            //   elevation: 0,
+            //   backgroundColor: ColorPath.GreyLightColor,
+            //   shape: RoundedRectangleBorder(
+            //     borderRadius: BorderRadius.circular(8.w),
+            //   ),
+            // ),
+            child: Container(
+              padding: const EdgeInsets.symmetric(vertical: 8).w,
+              alignment: Alignment.center,
+              width: double.infinity,
+              child: Text(
+                '사진앨범',
+                style: TextPath.TextF16W500.copyWith(
+                  color: ColorPath.PrimaryColor,
+                ),
+              ),
+            ),
+          ),
+          SizedBox(height: 4.w),
+          TextButton(
+            onPressed: videoOnPressed,
+            // style: TextButton.styleFrom(
+            //   elevation: 0,
+            //   backgroundColor: ColorPath.GreyLightColor,
+            //   shape: RoundedRectangleBorder(
+            //     borderRadius: BorderRadius.circular(8.w),
+            //   ),
+            // ),
+            child: Container(
+              padding: const EdgeInsets.symmetric(vertical: 8).w,
+              alignment: Alignment.center,
+              width: double.infinity,
+              child: Text(
+                '영상앨범',
+                style: TextPath.TextF16W500.copyWith(
+                  color: ColorPath.PrimaryColor,
+                ),
+              ),
+            ),
+          ),
+        ],
+      ),
+    ),
+    backgroundColor: Colors.white,
+    elevation: 0,
+    shape: RoundedRectangleBorder(
+      borderRadius: BorderRadius.only(
+        topLeft: const Radius.circular(24).w,
+        topRight: const Radius.circular(24).w,
+      ),
+    ),
+    ignoreSafeArea: true,
+    useRootNavigator: true,
+  );
+  // await showCupertinoModalPopup(
+  //   context: Get.overlayContext as BuildContext,
+  //   builder: ((context) {
+  //     return CupertinoActionSheet(
+  //       actions: [
+  //         CupertinoActionSheetAction(
+  //           onPressed: () {
+  //             Get.back();
+  //             // handle_call(ESITMATE.number);
+  //           },
+  //           child: Text(
+  //             '이미지 선택하기',
+  //             style: TextPath.TextF14W500.copyWith(
+  //               color: ColorPath.TextGrey2H424242,
+  //             ),
+  //           ),
+  //         ),
+  //         CupertinoActionSheetAction(
+  //           onPressed: () async {
+  //             // Get.back();
+  //             // bool cancle = await APPMODAL.confirmModal(
+  //             //     title: "계약을 취소하기겠습니까?",
+  //             //     dscription:
+  //             //         "계약취소 요청 후 되돌릴 수 없으며,\n반드시 전문가와 상의 후 진행해주세요.");
+  //             // if (!cancle) return;
+  //             // // todo 취소 API 호출
+  //             // int findIndex = faker_estimate_connect.indexWhere(
+  //             //     (element) => item.connect_id == element.connect_id);
+  //             // faker_estimate_connect[findIndex].type = "취소내역";
+  //             // faker_estimate_connect[findIndex].status = "계약취소";
+  //             // await APPMODAL.alertModal(
+  //             //     title: "계약이 취소되었습니다.",
+  //             //     dscription: "취소 내역은 '나의견적'에서 '취소내역'\n항목에서 확인 가능합니다.");
+  //             // // todo 데이터 리스트 업데이트
+  //             // await onInitData();
+  //           },
+  //           child: Text(
+  //             '동영상 선택하기',
+  //             style: TextPath.TextF14W500.copyWith(
+  //               color: ColorPath.TextGrey2H424242,
+  //             ),
+  //           ),
+  //         ),
+  //       ],
+  //       cancelButton: CupertinoActionSheetAction(
+  //         onPressed: () => Get.back(),
+  //         child: Text(
+  //           '닫기',
+  //           style: TextStyle(
+  //             color: Colors.black87,
+  //             fontWeight: FontWeight.w600,
+  //             fontSize: 14.sp,
+  //           ),
+  //         ),
+  //       ),
+  //     );
+  //   }),
+  // );
 }

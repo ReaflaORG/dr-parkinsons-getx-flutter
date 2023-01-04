@@ -1,15 +1,16 @@
 // ignore_for_file: non_constant_identifier_names, constant_identifier_names
 
+import 'package:dr_parkinsons/app/modules/myinfo/view/terms_webview_view.dart';
 import 'package:get/get.dart';
 
 import '../modules/diagnosis/binding/diagnosis_binding.dart';
 import '../modules/diagnosis/view/diagnosis_view.dart';
 import '../modules/disorder/binding/disorder_binding.dart';
 import '../modules/disorder/view/disorder_view.dart';
-import '../modules/doctor/binding/doctor_binding.dart';
+import '../modules/doctor/binding/doctor_detail_binding.dart';
 import '../modules/doctor/binding/search_doctors_binding.dart';
+import '../modules/doctor/view/doctor_detail_view.dart';
 import '../modules/doctor/view/doctor_search_view.dart';
-import '../modules/doctor/view/doctor_view.dart';
 import '../modules/fact/binding/fact_binding.dart';
 import '../modules/fact/view/fact_view.dart';
 import '../modules/factpost/binding/fact_detail_binding.dart';
@@ -36,7 +37,8 @@ import '../modules/myinfo/binding/my_info_binding.dart';
 import '../modules/myinfo/binding/my_symptoms_binding.dart';
 import '../modules/myinfo/binding/profile_setting_binding.dart';
 import '../modules/myinfo/binding/suggest_policy_binding.dart';
-import '../modules/myinfo/binding/terms_and_condition_binding.dart';
+import '../modules/myinfo/binding/terms_binding.dart';
+import '../modules/myinfo/binding/terms_webview_binding.dart';
 import '../modules/myinfo/binding/view_my_symptoms_binding.dart';
 import '../modules/myinfo/binding/write_my_symptoms_binding.dart';
 import '../modules/myinfo/view/alarm_setting_view.dart';
@@ -47,7 +49,7 @@ import '../modules/myinfo/view/my_info_view.dart';
 import '../modules/myinfo/view/my_symptoms_view.dart';
 import '../modules/myinfo/view/profile_setting_view.dart';
 import '../modules/myinfo/view/suggest_policy_view.dart';
-import '../modules/myinfo/view/terms_and_condition_view.dart';
+import '../modules/myinfo/view/terms_view.dart';
 import '../modules/myinfo/view/view_my_symptoms_view.dart';
 import '../modules/myinfo/view/write_my_symptoms_view.dart';
 import '../modules/permission/binding/permission_binding.dart';
@@ -128,7 +130,7 @@ class AppPages {
       name: Routes.DISORDER,
       page: () => const DisorderView(),
       binding: DisorderBinding(),
-      transition: Transition.native,
+      transition: Transition.downToUp,
       popGesture: true,
     ),
     GetPage(
@@ -136,7 +138,7 @@ class AppPages {
       name: Routes.SEMINAR,
       page: () => const SeminarView(),
       binding: SeminarBinding(),
-      transition: Transition.native,
+      transition: Transition.downToUp,
       popGesture: true,
     ),
     GetPage(
@@ -144,15 +146,15 @@ class AppPages {
       name: Routes.PROTECTOR,
       page: () => const ProtectorView(),
       binding: ProtectorBinding(),
-      transition: Transition.native,
+      transition: Transition.downToUp,
       popGesture: true,
     ),
     GetPage(
-      title: '오해와 진실',
+      title: '파키슨병 완전정복',
       name: Routes.FACT,
       page: () => const FactView(),
       binding: FactBinding(),
-      transition: Transition.native,
+      transition: Transition.downToUp,
       popGesture: true,
       children: [
         GetPage(
@@ -160,7 +162,7 @@ class AppPages {
           name: '${Routes.FACTPOST}/:id',
           page: () => const FactDetailView(),
           binding: FactDetailBinding(),
-          transition: Transition.native,
+          transition: Transition.rightToLeft,
           popGesture: true,
         ),
       ],
@@ -170,8 +172,7 @@ class AppPages {
       name: Routes.SOCIALWELFARE,
       page: () => const SocialWelfareView(),
       binding: SocialWelfareBinding(),
-      transition: Transition.native,
-      // transitionDuration: const Duration(milliseconds: 1000),
+      transition: Transition.downToUp,
       popGesture: true,
       children: [
         GetPage(
@@ -179,8 +180,7 @@ class AppPages {
           name: Routes.SOCIALWELFAREPOST,
           page: () => const SocialWelfareDetailView(),
           binding: SocialWelfareDetailBinding(),
-          transition: Transition.native,
-          // transitionDuration: const Duration(milliseconds: 1000),
+          transition: Transition.rightToLeft,
           popGesture: true,
         ),
       ],
@@ -198,7 +198,7 @@ class AppPages {
       name: Routes.MEDICINE,
       page: () => const MedicineView(),
       binding: MedicineBinding(),
-      transition: Transition.native,
+      transition: Transition.downToUp,
       popGesture: true,
     ),
     GetPage(
@@ -214,7 +214,7 @@ class AppPages {
       name: Routes.DRUGMISUSE,
       page: () => const DrugMisuseView(),
       binding: DrugMisuseBinding(),
-      transition: Transition.native,
+      transition: Transition.downToUp,
       popGesture: true,
     ),
     GetPage(
@@ -222,7 +222,7 @@ class AppPages {
       name: '${Routes.DIAGNOSIS}/:id',
       page: () => const DiagnosisView(),
       binding: DiagnosisBinding(),
-      transition: Transition.native,
+      transition: Transition.downToUp,
       popGesture: true,
     ),
     GetPage(
@@ -230,7 +230,7 @@ class AppPages {
       name: Routes.MISSION,
       page: () => const MissionView(),
       binding: MissionBinding(),
-      transition: Transition.native,
+      transition: Transition.rightToLeft,
       popGesture: true,
     ),
     GetPage(
@@ -238,15 +238,15 @@ class AppPages {
       name: Routes.SEARCH,
       page: () => const DoctorSearchView(),
       binding: SearchDoctorsBinding(),
-      transition: Transition.native,
+      transition: Transition.rightToLeft,
       popGesture: true,
       children: [
         GetPage(
           title: '주치의 찾기 - 주치의 상세보기',
-          name: _Paths.DOCTOR,
-          page: () => const DoctorView(),
-          binding: DoctorBinding(),
-          transition: Transition.native,
+          name: _Paths.DOCTOR_DETAIL,
+          page: () => const DoctorDetailView(),
+          binding: DoctorDetailBinding(),
+          transition: Transition.rightToLeft,
           popGesture: true,
         ),
       ],
@@ -256,15 +256,35 @@ class AppPages {
       name: Routes.MY_INFO,
       page: () => const MyInfoView(),
       binding: MyInfoBinding(),
-      transition: Transition.native,
+      transition: Transition.noTransition,
       popGesture: true,
+      children: [
+        GetPage(
+          title: '약관 및 정책',
+          name: Routes.TERMS,
+          page: () => const TermsAndConditionView(),
+          binding: TermsBinding(),
+          transition: Transition.rightToLeft,
+          popGesture: true,
+          children: [
+            GetPage(
+              title: '약관 및 정책 - 웹뷰',
+              name: Routes.TERMS_WEBVIEW,
+              page: () => const TermsWebviewview(),
+              binding: TermsWebviewBinding(),
+              transition: Transition.rightToLeft,
+              popGesture: true,
+            ),
+          ],
+        ),
+      ],
     ),
     GetPage(
       title: '내 증상 기록',
       name: Routes.MY_SYMPTOMS,
       page: () => const MySymptomsView(),
       binding: MySymptomsBinding(),
-      transition: Transition.native,
+      transition: Transition.rightToLeft,
       popGesture: true,
     ),
     GetPage(
@@ -272,7 +292,7 @@ class AppPages {
       name: Routes.WRITE_MY_SYMPTOMS,
       page: () => const WriteMySymptomsView(),
       binding: WriteMySymptomsBinding(),
-      transition: Transition.native,
+      transition: Transition.rightToLeft,
       popGesture: true,
     ),
     GetPage(
@@ -280,7 +300,7 @@ class AppPages {
       name: Routes.EDIT_MY_SYMPTOMS,
       page: () => const EditMySymptomsView(),
       binding: EditMySymptomsBinding(),
-      transition: Transition.native,
+      transition: Transition.rightToLeft,
       popGesture: true,
     ),
     GetPage(
@@ -288,7 +308,7 @@ class AppPages {
       name: Routes.VIEW_MY_SYMPTOMS,
       page: () => const ViewMySymptomsView(),
       binding: ViewMySymptomsBinding(),
-      transition: Transition.native,
+      transition: Transition.rightToLeft,
       popGesture: true,
     ),
     GetPage(
@@ -296,7 +316,7 @@ class AppPages {
       name: Routes.SUGGEST_POLICY,
       page: () => const SuggestPolicyView(),
       binding: SuggestPolicyBinding(),
-      transition: Transition.native,
+      transition: Transition.rightToLeft,
       popGesture: true,
     ),
     GetPage(
@@ -320,14 +340,6 @@ class AppPages {
       name: Routes.ALARM_SETTING,
       page: () => const AlarmSettingView(),
       binding: AlarmSettingBinding(),
-      transition: Transition.rightToLeft,
-      popGesture: true,
-    ),
-    GetPage(
-      title: '약관 및 정책',
-      name: Routes.TERMS_AND_CONDITION,
-      page: () => const TermsAndConditionView(),
-      binding: TermsAndConditionBinding(),
       transition: Transition.rightToLeft,
       popGesture: true,
     ),

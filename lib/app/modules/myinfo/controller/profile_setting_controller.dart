@@ -100,6 +100,9 @@ class ProfileSettingController extends GetxController {
     ),
   ].obs;
 
+  /// 저장 버튼 활성화 여부
+  Rx<bool> isSaveButtonEnable = false.obs;
+
   /// 이름 오류 메세지
   Rx<String> userNameError = ''.obs;
 
@@ -119,6 +122,87 @@ class ProfileSettingController extends GetxController {
   Rx<String> diagnosticDayString = Formmater.dateTimeFormat(DateTime.now()).obs;
 
   // Function ▼
+
+  /// 텍스트 필드 OnChanged 핸들러
+  ///
+  /// [text] String: 텍스트 필드에 입력된 텍스트
+  ///
+  /// [type] String : 텍스트 필드 타입
+  void handleOnChanged(
+    String text, {
+    required String type,
+  }) {
+    switch (type) {
+      case 'userName':
+        if (text.isEmpty) {
+          isSaveButtonEnable.value = false;
+          userNameError.value = '본인의 이름을 입력해주세요';
+          return;
+        }
+
+        if (text.length < 3) {
+          isSaveButtonEnable.value = false;
+          userNameError.value = '본인의 이름을 입력해주세요';
+          return;
+        }
+
+        userNameError.value = '';
+        isSaveButtonEnable.value = true;
+        break;
+      case 'userPhone':
+        if (text.isEmpty) {
+          isSaveButtonEnable.value = false;
+          userPhoneError.value = '본인의 연락처를 입력해주세요';
+          return;
+        }
+
+        if (text.length < 10) {
+          isSaveButtonEnable.value = false;
+          userPhoneError.value = "'-'를 제외한 11자리를 입력해주세요";
+          return;
+        }
+
+        userPhoneError.value = '';
+        isSaveButtonEnable.value = true;
+        break;
+      case 'guardianName':
+        if (text.isEmpty) {
+          isSaveButtonEnable.value = false;
+          guardianNameError.value = '보호자 이름을 입력해주세요';
+          return;
+        }
+
+        if (text.length < 3) {
+          isSaveButtonEnable.value = false;
+          guardianNameError.value = '보호자 이름을 입력해주세요';
+          return;
+        }
+
+        guardianNameError.value = '';
+        isSaveButtonEnable.value = true;
+        break;
+      case 'guardianPhone':
+        if (text.isEmpty) {
+          isSaveButtonEnable.value = false;
+          guardianPhoneError.value = '보호자 연락처를 입력해주세요';
+          return;
+        }
+
+        if (text.length < 10) {
+          isSaveButtonEnable.value = false;
+          guardianPhoneError.value = "'-'를 제외한 11자리를 입력해주세요";
+          return;
+        }
+
+        guardianPhoneError.value = '';
+        isSaveButtonEnable.value = true;
+        break;
+    }
+
+    // 저장 버튼 활성화 여부
+    isSaveButtonEnable.value =
+        userNameError.value.isEmpty && userPhoneError.value.isEmpty;
+  }
 
   /// 날짜 선택
   void handleSelectDate() {
@@ -153,32 +237,11 @@ class ProfileSettingController extends GetxController {
     );
   }
 
-  /// 벨리데이터
-  bool handleValidator() {
-    if (userNameController.value.text.isEmpty) {
-      userNameError.value = '이름은 필수입니다.';
-      return false;
-    }
-
-    if (userPhoneController.value.text.isEmpty) {
-      userPhoneError.value = '핸드폰 번호는 필수입니다.';
-      return false;
-    }
-
-    if (guardianNameController.value.text.isEmpty) {
-      guardianNameError.value = '보호자 이름은 필수입니다.';
-      return false;
-    }
-
-    if (guardianPhoneController.value.text.isEmpty) {
-      guardianPhoneError.value = '보호자 핸드폰 필수입니다.';
-      return false;
-    }
-
-    return true;
-  }
-
   /// 라디오 선택 핸들러
+  ///
+  /// [index] int : 선택된 라디오 인덱스
+  ///
+  /// [type] String : 라디오 타입
   void handleRadioSelect(
     int index, {
     required String type,
@@ -203,14 +266,9 @@ class ProfileSettingController extends GetxController {
     }
   }
 
-  /// 데이터 수정하기 API
+  /// 데이터 수정하기 프로바이더
   Future<void> handlePutMyInfoProvider() async {
     try {
-      // 벨리데이터
-      if (!handleValidator()) {
-        return;
-      }
-
       await Provider.dio(
         method: 'PUT',
         url: '/myinfo',
@@ -228,19 +286,11 @@ class ProfileSettingController extends GetxController {
       ).then((response) {
         switch (response.statusCode) {
           case 200:
-            Future.wait([
-              () async {
-                AuthService.to.userData.value =
-                    UserModel.fromJson(response.data['user']);
-              }(),
-              () async {
-                AuthService.to.userData.refresh();
-              }(),
-            ]).then((value) {
-              GlobalToastWidget('프로필 수정이 완료되었습니다.');
-            });
+            AuthService.to.userData.value =
+                UserModel.fromJson(response.data['user']);
+            AuthService.to.userData.refresh();
+            GlobalToastWidget('프로필 수정이 완료되었습니다.');
             break;
-
           default:
             throw Exception(response.message);
         }
@@ -252,7 +302,7 @@ class ProfileSettingController extends GetxController {
   }
 
   /// 초기화
-  Future<void> handleInitialize() async {
+  Future<void> Initialize() async {
     if (AuthService.to.userData.value.userGender != null) {
       userGender.value = AuthService.to.userData.value.userGender!;
     }
@@ -278,13 +328,11 @@ class ProfileSettingController extends GetxController {
       diagnosticDay.value = AuthService.to.userData.value.diagnosticDay!;
       diagnosticDayString.value = Formmater.dateTimeFormat(diagnosticDay.value);
     }
-
-    Logger().d(AuthService.to.userData.value.userBirthDay);
   }
 
   @override
   Future<void> onInit() async {
-    handleInitialize();
+    await Initialize();
 
     super.onInit();
   }

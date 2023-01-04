@@ -5,7 +5,7 @@ import 'package:intl/intl.dart';
 
 import '../../../globals/global_inkwell_widget.dart';
 import '../../../theme/color_path.dart';
-import '../../../theme/texts.dart';
+import '../../../theme/text_path.dart';
 import '../controller/mission_controller.dart';
 
 /// 미션 작성 페이지의 날짜 선택 위젯

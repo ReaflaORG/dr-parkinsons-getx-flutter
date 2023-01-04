@@ -1,16 +1,13 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:intl/intl.dart';
 
 import '../../../globals/global_appbar_widget.dart';
 import '../../../globals/global_inkwell_widget.dart';
 import '../../../globals/global_layout_widget.dart';
-import '../../../models/welfare_model.dart';
 import '../../../routes/app_pages.dart';
 import '../../../theme/color_path.dart';
-import '../../../theme/texts.dart';
+import '../../../theme/text_path.dart';
 import '../controller/healthcare_controller.dart';
 import '../widgets/healthcare_mainbtn.dart';
 
@@ -99,12 +96,14 @@ class HealthCareView extends GetView<HealthCareController> {
                               childAspectRatio: 1,
                               mainAxisSpacing: 10.w,
                               crossAxisSpacing: 10.w,
-                              children: List.generate(controller.btns.length,
-                                  (index) {
-                                return HealthcareMainbtn(
-                                  item: controller.btns[index],
-                                );
-                              }),
+                              children: List.generate(
+                                controller.menuData.length,
+                                (index) {
+                                  return HealthcareMainbtn(
+                                    item: controller.menuData[index],
+                                  );
+                                },
+                              ),
                             ),
                           ],
                         ),
@@ -168,12 +167,12 @@ class HealthCareView extends GetView<HealthCareController> {
                     Column(
                       mainAxisSize: MainAxisSize.min,
                       children: List.generate(
-                        controller.welfareLists.length,
+                        controller.welfareData.length,
                         (index) {
                           return Container(
                             margin: const EdgeInsets.only(bottom: 20).w,
-                            child: WelfareCardWidget(
-                              item: controller.welfareLists[index],
+                            child: CardWidget(
+                              index: index,
                             ),
                           );
                         },
@@ -190,73 +189,68 @@ class HealthCareView extends GetView<HealthCareController> {
   }
 }
 
-/// 복지 혜택 카드 위젯
-class WelfareCardWidget extends StatelessWidget {
-  final WelfareModel item;
-  const WelfareCardWidget({
-    Key? key,
-    required this.item,
-  }) : super(key: key);
+/// 카드 위젯
+class CardWidget extends GetView<HealthCareController> {
+  const CardWidget({
+    super.key,
+    required this.index,
+  });
+
+  final int index;
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      alignment: Alignment.bottomLeft,
-      width: 320.w,
-      height: 130.w,
-      decoration: BoxDecoration(
-        image: DecorationImage(
-          // 이미지 api로 처음받아봄
-          image: CachedNetworkImageProvider(item.image),
-          fit: BoxFit.cover,
-        ),
-        borderRadius: BorderRadius.circular(8).r,
-      ),
-      child: GlobalInkWellWidget(
-        padding: const EdgeInsets.only(
-          left: 16,
-          bottom: 8,
-        ).w,
-        borderRadius: 8.r,
-        onTap: () {
-          Get.toNamed(
-            Routes.SOCIALWELFARE + Routes.SOCIALWELFAREPOST,
-            arguments: {
-              'id': item.welfare_id,
-            },
-          );
-        },
-        child: SizedBox(
-          width: double.infinity,
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.end,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Container(
-                color: ColorPath.SecondaryLightColor,
-                padding: const EdgeInsets.fromLTRB(4, 2, 4, 0).w,
-                child: Text(
-                  DateFormat('yy.MM.dd').format(item.created_at),
-                  style: TextPath.TextF13W500.copyWith(
-                    color: ColorPath.TextGrey3H616161,
+    return Column(
+      children: [
+        GlobalInkWellWidget(
+          borderRadius: 8.r,
+          onTap: () {
+            Get.toNamed(
+              '/socialwelfare/socialwelfarepost',
+              arguments: {
+                'id': controller.welfareData[index].welfare_id,
+                'image': controller.welfareData[index].image,
+              },
+            );
+          },
+          child: Hero(
+            tag: controller.welfareData[index].welfare_id,
+            child: Container(
+              alignment: Alignment.bottomLeft,
+              height: 130.w,
+              decoration: BoxDecoration(
+                image: DecorationImage(
+                  image: NetworkImage(
+                    controller.welfareData[index].image,
                   ),
+                  fit: BoxFit.cover,
                 ),
+                borderRadius: BorderRadius.circular(8).r,
               ),
-              SizedBox(height: 4.w),
-              Container(
-                padding: const EdgeInsets.fromLTRB(6, 6, 6, 4).w,
-                color: ColorPath.PrimaryColor.withOpacity(0.8),
+              child: Container(
+                margin: const EdgeInsets.all(10).w,
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 6,
+                  vertical: 2,
+                ).w,
+                decoration: BoxDecoration(
+                  color: ColorPath.PrimaryColor.withOpacity(
+                    0.8,
+                  ),
+                  borderRadius: BorderRadius.circular(4).r,
+                ),
                 child: Text(
-                  item.title,
+                  controller.welfareData[index].title,
                   style: TextPath.Heading3F16W600.copyWith(
-                    color: ColorPath.BackgroundWhite,
+                    color: ColorPath.TextWhite,
                   ),
                 ),
               ),
-            ],
+            ),
           ),
         ),
-      ),
+        SizedBox(height: 10.w),
+      ],
     );
   }
 }

@@ -22,7 +22,7 @@ class Survey {
   int surveyId;
   String nameOfSurvey;
 
-  List<SurveyQuiz> quizes; //20문제
+  List<SurveyQuizModel> quizes; //20문제
 
   Map<String, dynamic> toJson() {
     return {
@@ -33,19 +33,35 @@ class Survey {
   }
 }
 
-class SurveyQuiz {
-  SurveyQuiz(
-      {required this.surveyId,
-      required this.surveyQuizId,
-      required this.questionText,
-      this.userAnswer = 999,
-      required this.answers});
-  // 문제, 사용자 값 int, 문항
+/// 설문 모델
+///
+/// [surveyId] int : 설문의 인덱스
+///
+/// [surveyQuizId] int : 문제의 인덱스
+///
+/// [questionText] String : 문제의 내용
+///
+/// [userAnswer] int : 유저가 선택한 답안의 인덱스
+///
+/// [isPass] bool : 문제의 통과 여부
+///
+/// [answers] List<AnswerModel> : 문제의 선택지
+class SurveyQuizModel {
+  SurveyQuizModel({
+    required this.surveyId,
+    required this.surveyQuizId,
+    this.isPass = false,
+    required this.questionText,
+    this.userAnswer = 999,
+    required this.answers,
+  });
+
   int surveyId;
   int surveyQuizId;
-  String questionText; // 질문
-  int userAnswer; // 유저의 답변 인덱스
-  List<Answer> answers;
+  String questionText;
+  bool isPass;
+  int userAnswer;
+  List<AnswerModel> answers;
 
   Map<String, dynamic> toJson() {
     return {
@@ -53,17 +69,27 @@ class SurveyQuiz {
       'surveyQuizId': surveyQuizId,
       'questionText': questionText,
       'userAnswer': userAnswer,
-      'answers': answers.map((e) => e.toJson()),
+      'answers': answers.map(
+        (e) => e.toJson(),
+      ),
     };
   }
 }
 
-class Answer {
-  // 질문, int 배점
-  Answer(
-      {required this.surveyQuizId,
-      required this.answerScore,
-      required this.answerText});
+/// 선택지 모델
+///
+/// [surveyQuizId] int : 문제의 인덱스
+///
+/// [answerText] String : 선택지의 내용
+///
+/// [answerScore] int : 선택지의 점수
+class AnswerModel {
+  AnswerModel({
+    required this.surveyQuizId,
+    required this.answerScore,
+    required this.answerText,
+  });
+
   int surveyQuizId;
   String answerText;
   int answerScore;

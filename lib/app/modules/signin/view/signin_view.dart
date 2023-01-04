@@ -6,7 +6,7 @@ import 'package:get/get.dart';
 import '../../../globals/global_layout_widget.dart';
 import '../../../globals/global_toast_widget.dart';
 import '../../../theme/color_path.dart';
-import '../../../theme/texts.dart';
+import '../../../theme/text_path.dart';
 import '../controller/signin_controller.dart';
 
 class SignInView extends GetView<SignInController> {
