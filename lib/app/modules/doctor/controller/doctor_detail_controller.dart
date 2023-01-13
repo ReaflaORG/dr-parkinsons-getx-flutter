@@ -107,14 +107,11 @@ class DoctorDetailController extends GetxController {
       ).then((response) {
         switch (response.statusCode) {
           case 200:
-            Future.value([
-              AuthService.to.handleMyInfo(),
-              doctor.value = DoctorModel.fromJson(response.data),
-            ]).then((value) {
-              handleDoctorSubscribe();
-              isLoad.value = false;
-            });
-
+            AuthService.to.handleMyInfo();
+            doctor.value = DoctorModel.fromJson(response.data);
+            Logger().d(doctor.value.toJson());
+            handleDoctorSubscribe();
+            isLoad.value = false;
             break;
           default:
             throw Exception(response.message);

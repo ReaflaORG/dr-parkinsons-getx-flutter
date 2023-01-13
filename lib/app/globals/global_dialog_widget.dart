@@ -1058,7 +1058,7 @@ Future<dynamic> GlobalReadyModal({required BuildContext context}) => showDialog(
                     Container(
                       alignment: Alignment.center,
                       child: Text(
-                        '준비 중 입니다.',
+                        '파킨슨 파킨슨병 조기진단을 위한 선별검사도구를 개발 및 검증 중에 있습니다',
                         style: TextPath.Heading3F16W600.copyWith(
                           color: ColorPath.TextGrey1H212121,
                         ),

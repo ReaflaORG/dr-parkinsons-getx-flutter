@@ -70,7 +70,7 @@ class MedicineItemTitleWidget extends StatelessWidget {
       child: Text(
         text,
         textAlign: TextAlign.left,
-        style: TextPath.TextF14W400.copyWith(
+        style: TextPath.TextF16W400.copyWith(
           color: ColorPath.TextGrey4H9E9E9E,
         ),
       ),
@@ -95,8 +95,9 @@ class MedicineItemDescriptionWidget extends StatelessWidget {
       alignment: Alignment.centerLeft,
       child: Text(
         text,
-        style: TextPath.TextF14W400Expand.copyWith(
-            color: ColorPath.TextGrey1H212121),
+        style: TextPath.TextF16W400.copyWith(
+          color: ColorPath.TextGrey1H212121,
+        ),
       ),
     );
   }
@@ -122,7 +123,7 @@ class MedicineItemLabel1Widget extends StatelessWidget {
       height: 30.w,
       child: Text(
         text,
-        style: TextPath.TextF14W500.copyWith(
+        style: TextPath.TextF16W500.copyWith(
           color: ColorPath.TextGrey1H212121,
         ),
       ),

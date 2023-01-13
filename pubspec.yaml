@@ -69,6 +69,7 @@ flutter:
     - assets/images/appbar/
     - assets/images/disorder/
     - assets/images/logo/
+    - assets/images/video/
     # - assets/images/splash/
     - assets/images/permission/
     - assets/images/signin/

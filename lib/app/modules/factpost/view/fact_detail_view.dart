@@ -30,19 +30,20 @@ class FactDetailView extends GetView<FactDetailController> {
               controller: controller.scrollController.value,
               child: Column(
                 children: [
-                  SizedBox(
-                    width: double.infinity,
-                    height: 242.w,
-                    child: Hero(
-                      tag: controller.arguments['id'],
-                      child: Image.network(
-                        controller.arguments['image'],
-                        cacheWidth: 640,
-                        fit: BoxFit.cover,
-                      ),
-                    ),
-                  ),
-                  SizedBox(height: 24.w),
+                  // SizedBox(
+                  //   width: double.infinity,
+                  //   height: 242.w,
+                  //   child: Hero(
+                  //     tag: controller.arguments['id'],
+                  //     child: Image.network(
+                  //       controller.arguments['image'],
+                  //       cacheWidth: 640,
+                  //       fit: BoxFit.cover,
+                  //     ),
+                  //   ),
+                  // ),
+                  // SizedBox(height: 24.w),
+                  SizedBox(height: 100.w),
                   if (!controller.isLoad.value)
                     Container(
                       width: double.infinity,

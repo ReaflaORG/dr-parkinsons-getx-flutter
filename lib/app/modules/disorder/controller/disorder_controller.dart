@@ -20,8 +20,8 @@ class DisorderController extends GetxController {
 
   // Data ▼
 
-  /// 비디오 데이터
-  RxList<YoutubeVideoModel> videoData = [
+  /// 유튜브 비디오 데이터
+  RxList<YoutubeVideoModel> youtubeVideoData = [
     YoutubeVideoModel(
       title: 'EP1 파킨슨증 핵심만 콕콕! 운동증상 비운동증상 알아봐요!',
       thumbnail: 'https://img.youtube.com/vi/Z_MXzuK9wjk/maxresdefault.jpg',
@@ -84,11 +84,50 @@ class DisorderController extends GetxController {
     ),
   ].obs;
 
-  /// 이미지 데이터
-  RxList<String> imageData = [
-    'assets/images/disorder/1.webp',
-    'assets/images/disorder/2.webp',
-    'assets/images/disorder/3.webp'
+  // 비디오 데이터
+  RxList<Map<String, String>> videoData = [
+    {
+      'title': '파킨슨병이란 무엇인가?',
+      'link':
+          'https://s3.ap-northeast-2.amazonaws.com/dr.parkinsons/disorder/disorder_1_%EA%B3%A0%EC%84%B1%EB%B2%94.mp4',
+      'thumbnail':
+          'https://s3.ap-northeast-2.amazonaws.com/dr.parkinsons/disorder/disorder_1_%EA%B3%A0%EC%84%B1%EB%B2%94.webp',
+    },
+    {
+      'title': '파킨슨병 VS 파킨슨증후군',
+      'link':
+          'https://s3.ap-northeast-2.amazonaws.com/dr.parkinsons/disorder/disorder_2_%EC%9D%B4%ED%95%84%ED%9C%B4.mp4',
+      'thumbnail':
+          'https://s3.ap-northeast-2.amazonaws.com/dr.parkinsons/disorder/disorder_2_%EC%9D%B4%ED%95%84%ED%9C%B4.webp'
+    },
+    {
+      'title': '파킨스병 전구증상',
+      'link':
+          'https://s3.ap-northeast-2.amazonaws.com/dr.parkinsons/disorder/disorder_3_%EC%95%88%ED%83%9C%EB%B2%94.mp4',
+      'thumbnail':
+          'https://s3.ap-northeast-2.amazonaws.com/dr.parkinsons/disorder/disorder_3_%EC%95%88%ED%83%9C%EB%B2%94.webp'
+    },
+    {
+      'title': '파킨슨병 진단과정',
+      'link':
+          'https://s3.ap-northeast-2.amazonaws.com/dr.parkinsons/disorder/disorder_4_%EB%B0%B1%EC%A2%85%EC%82%BC.mp4',
+      'thumbnail':
+          'https://s3.ap-northeast-2.amazonaws.com/dr.parkinsons/disorder/disorder_4_%EB%B0%B1%EC%A2%85%EC%82%BC.webp'
+    },
+    {
+      'title': '파킨슨병 약물치료',
+      'link':
+          'https://s3.ap-northeast-2.amazonaws.com/dr.parkinsons/disorder/disorder_5_%EC%84%B1%EC%98%81%ED%9D%AC.mp4',
+      'thumbnail':
+          'https://s3.ap-northeast-2.amazonaws.com/dr.parkinsons/disorder/disorder_5_%EC%84%B1%EC%98%81%ED%9D%AC.webp'
+    },
+    {
+      'title': '파킨슨 약제의 종류',
+      'link':
+          'https://s3.ap-northeast-2.amazonaws.com/dr.parkinsons/disorder/disorder_6_%EC%9D%B4%EC%9B%85%EC%9A%B0.mp4',
+      'thumbnail':
+          'https://s3.ap-northeast-2.amazonaws.com/dr.parkinsons/disorder/disorder_6_%EC%9D%B4%EC%9B%85%EC%9A%B0.webp'
+    },
   ].obs;
 
   // Variable ▼

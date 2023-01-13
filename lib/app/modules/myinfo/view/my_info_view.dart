@@ -244,9 +244,9 @@ class DoctorWidget extends GetView<MyInfoController> {
                     controller.putDoctorUser(context);
                   },
                   icon: Icon(
-                    Icons.delete_rounded,
+                    Icons.swap_horiz_rounded,
                     color: ColorPath.SecondaryDarkColor,
-                    size: 18.sp,
+                    size: 20.sp,
                   ),
                 ),
               ),

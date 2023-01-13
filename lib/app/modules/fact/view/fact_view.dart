@@ -23,22 +23,22 @@ class FactView extends GetView<FactController> {
           title: '파킨슨병 완전정복',
           elevation: controller.isScrollCheck.value ? 1 : 0,
         ),
-        floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
-        floatingActionButton: FloatingActionButton.extended(
-          backgroundColor: ColorPath.PrimaryDarkColor,
-          splashColor: ColorPath.PrimaryColor,
-          onPressed: () {
-            Get.toNamed('/myinfo/suggest_policy');
-          },
-          icon: const Icon(Icons.add_rounded),
-          label: Text(
-            '정책제안',
-            style: TextPath.TextF14W500.copyWith(
-              color: ColorPath.TextWhite,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
-        ),
+        // floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
+        // floatingActionButton: FloatingActionButton.extended(
+        //   backgroundColor: ColorPath.PrimaryDarkColor,
+        //   splashColor: ColorPath.PrimaryColor,
+        //   onPressed: () {
+        //     Get.toNamed('/myinfo/suggest_policy');
+        //   },
+        //   icon: const Icon(Icons.add_rounded),
+        //   label: Text(
+        //     '정책제안',
+        //     style: TextPath.TextF14W500.copyWith(
+        //       color: ColorPath.TextWhite,
+        //       fontWeight: FontWeight.bold,
+        //     ),
+        //   ),
+        // ),
         body: controller.isLoad.value
             ? const GlobalLoaderIndicatorWidget()
             : SingleChildScrollView(

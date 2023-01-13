@@ -39,7 +39,8 @@ class DoctorVideoWidget extends GetView<DoctorDetailController> {
               //   playedColor: Colors.black,
               // ),
               thumbnail: Image.network(
-                controller.videoData[index].thumbnail,
+                controller
+                    .doctor.value.doctorContents![index].contentThumbnail!,
                 cacheWidth: 640,
                 fit: BoxFit.fill,
               ),
@@ -57,7 +58,7 @@ class DoctorVideoWidget extends GetView<DoctorDetailController> {
         SizedBox(height: 10.w),
         Text(
           Formmater.dateTimeFormatYYMMDD(
-            controller.videoData[index].createdAt,
+            controller.doctor.value.doctorContents![index].createdAt,
           ),
           style: TextPath.TextF13W500.copyWith(
             color: ColorPath.TextGrey1H212121,
@@ -65,7 +66,7 @@ class DoctorVideoWidget extends GetView<DoctorDetailController> {
         ),
         SizedBox(height: 5.w),
         Text(
-          controller.videoData[index].title,
+          controller.doctor.value.doctorContents![index].title,
           style: TextPath.TextF14W600.copyWith(
             color: ColorPath.TextGrey1H212121,
           ),

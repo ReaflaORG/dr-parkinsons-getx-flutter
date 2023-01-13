@@ -26,6 +26,9 @@ abstract class Routes {
   /// 파킨슨 병 소개
   static const DISORDER = _Paths.DISORDER;
 
+  /// 파킨슨 병 소개 - 상세보기
+  static const DISORDER_DETAIL = _Paths.DISORDER_DETAIL;
+
   /// 학회 및 앱 소개
   static const SEMINAR = _Paths.SEMINAR;
 
@@ -129,6 +132,9 @@ abstract class _Paths {
   /// 파킨슨 병 소개
   static const DISORDER = '/disorder';
 
+  /// 파킨슨 병 소개
+  static const DISORDER_DETAIL = '/detail';
+
   /// 학회 및 앱 소개
   static const SEMINAR = '/seminar';
 
@@ -138,10 +144,10 @@ abstract class _Paths {
   /// 오해와 진실 포스트
   static const FACTPOST = '/factpost';
 
-  ///사회복지제도
+  /// 사회복지제도
   static const SOCIALWELFARE = '/socialwelfare';
 
-  ///사회복지제도 포스트
+  /// 사회복지제도 포스트
   static const SOCIALWELFAREPOST = '/socialwelfarepost';
 
   /// 보호자 알람 서비스

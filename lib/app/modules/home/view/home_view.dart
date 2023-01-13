@@ -385,8 +385,8 @@ class HomeView extends GetView<HomeController> {
                                 children: [
                                   Expanded(
                                     child: Text(
-                                      controller.homeData.value!.welfare[index]
-                                          .description,
+                                      controller
+                                          .homeData.value!.welfare[index].title,
                                       style: TextPath.TextF13W500.copyWith(
                                         color: ColorPath.TextGrey2H424242,
                                       ),

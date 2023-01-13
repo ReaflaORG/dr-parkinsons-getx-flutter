@@ -6,6 +6,8 @@ import 'package:get/get.dart';
 import '../modules/diagnosis/binding/diagnosis_binding.dart';
 import '../modules/diagnosis/view/diagnosis_view.dart';
 import '../modules/disorder/binding/disorder_binding.dart';
+import '../modules/disorder/binding/disorder_detail_binding.dart';
+import '../modules/disorder/view/discoder_detail_view.dart';
 import '../modules/disorder/view/disorder_view.dart';
 import '../modules/doctor/binding/doctor_detail_binding.dart';
 import '../modules/doctor/binding/search_doctors_binding.dart';
@@ -132,6 +134,16 @@ class AppPages {
       binding: DisorderBinding(),
       transition: Transition.downToUp,
       popGesture: true,
+      children: [
+        GetPage(
+          title: '파킨슨 병 소개 - 상세보기',
+          name: Routes.DISORDER_DETAIL,
+          page: () => const DiscoderDetailView(),
+          binding: DisorderDetailBinding(),
+          transition: Transition.noTransition,
+          popGesture: true,
+        ),
+      ],
     ),
     GetPage(
       title: '학회 및 앱 소개',
