@@ -75,7 +75,7 @@ class CardWidget extends GetView<SocialWelfareController> {
             tag: controller.welfareData[index].welfare_id,
             child: Container(
               alignment: Alignment.bottomLeft,
-              height: 130.w,
+              height: 150.w,
               decoration: BoxDecoration(
                 image: DecorationImage(
                   image: NetworkImage(
@@ -92,7 +92,7 @@ class CardWidget extends GetView<SocialWelfareController> {
                   vertical: 2,
                 ).w,
                 decoration: BoxDecoration(
-                  color: ColorPath.PrimaryColor.withOpacity(
+                  color: ColorPath.BlackColor.withOpacity(
                     0.8,
                   ),
                   borderRadius: BorderRadius.circular(4).r,

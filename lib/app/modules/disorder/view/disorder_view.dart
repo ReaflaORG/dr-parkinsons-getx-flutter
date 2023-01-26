@@ -24,24 +24,29 @@ class DisorderView extends GetView<DisorderController> {
         ),
         body: SingleChildScrollView(
           controller: controller.scrollController.value,
-          padding: const EdgeInsets.symmetric(horizontal: 20),
-          physics: const BouncingScrollPhysics(),
+          physics: const ClampingScrollPhysics(),
           child: Padding(
-            padding: EdgeInsets.only(top: 20.w, bottom: 50.w),
+            padding: const EdgeInsets.only(
+              left: 20,
+              right: 20,
+              top: 20,
+            ).w,
             child: Column(
+              mainAxisSize: MainAxisSize.min,
               children: [
-                // SizedBox(height: 30.w),
-                // Text(
-                //   '파킨슨 병과 안내과정 소개',
-                //   style: TextPath.Heading2F18W600,
-                // ),
-                // SizedBox(height: 30.w),
-                ListView.builder(
+                GridView.builder(
+                  scrollDirection: Axis.vertical,
                   physics: const NeverScrollableScrollPhysics(),
                   shrinkWrap: true,
                   itemCount: controller.videoData.length,
-                  itemBuilder: (context, index) {
-                    return DiscoderImageWidget(
+                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 2,
+                    childAspectRatio: 1 / 1.35,
+                    mainAxisSpacing: 20.w,
+                    crossAxisSpacing: 20.w,
+                  ),
+                  itemBuilder: (BuildContext context, int index) {
+                    return DiscoderCardWidget(
                       index: index,
                       onTap: () {
                         Get.toNamed(
@@ -54,7 +59,7 @@ class DisorderView extends GetView<DisorderController> {
                     );
                   },
                 ),
-                SizedBox(height: 100.w),
+                SizedBox(height: 20.w),
               ],
             ),
           ),
@@ -64,8 +69,8 @@ class DisorderView extends GetView<DisorderController> {
   }
 }
 
-class DiscoderImageWidget extends GetView<DisorderController> {
-  const DiscoderImageWidget({
+class DiscoderCardWidget extends GetView<DisorderController> {
+  const DiscoderCardWidget({
     super.key,
     required this.index,
     required this.onTap,
@@ -76,62 +81,89 @@ class DiscoderImageWidget extends GetView<DisorderController> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      margin: const EdgeInsets.only(bottom: 20).w,
-      width: double.infinity,
-      height: 180.w,
-      child: GlobalInkWellWidget(
-        borderRadius: 8.r,
-        onTap: onTap,
-        child: Stack(
-          children: [
-            Container(
-              width: double.infinity,
-              decoration: BoxDecoration(
-                image: DecorationImage(
-                  image: NetworkImage(
-                    controller.videoData[index]['thumbnail']!,
-                  ),
-                  fit: BoxFit.cover,
+    return GlobalInkWellWidget(
+      borderRadius: 8.r,
+      onTap: onTap,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Container(
+            width: double.infinity,
+            height: 150.w,
+            decoration: BoxDecoration(
+              image: DecorationImage(
+                image: NetworkImage(
+                  controller.videoData[index]['thumbnail']!,
                 ),
-                borderRadius: BorderRadius.circular(8).r,
+                fit: BoxFit.cover,
               ),
+              borderRadius: BorderRadius.circular(8).r,
             ),
-            Positioned.fill(
-              child: Center(
-                child: Image.asset(
-                  'assets/images/video/play_button.webp',
-                  fit: BoxFit.contain,
-                  width: 50.w,
-                ),
-              ),
+          ),
+          SizedBox(height: 10.w),
+          Text(
+            controller.videoData[index]['title']!,
+            style: TextPath.TextF14W600.copyWith(
+              color: ColorPath.BlackColor,
             ),
-            Positioned(
-              left: 10.w,
-              bottom: 10.w,
-              child: Container(
-                margin: const EdgeInsets.all(10).w,
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 6,
-                  vertical: 2,
-                ).w,
-                decoration: BoxDecoration(
-                  color: ColorPath.PrimaryColor.withOpacity(
-                    0.8,
-                  ),
-                  borderRadius: BorderRadius.circular(4).r,
-                ),
-                child: Text(
-                  controller.videoData[index]['title']!,
-                  style: TextPath.Heading3F16W600.copyWith(
-                    color: ColorPath.TextWhite,
-                  ),
-                ),
-              ),
-            )
-          ],
-        ),
+          ),
+          SizedBox(height: 5.w),
+          Text(
+            controller.videoData[index]['description']!,
+            style: TextPath.TextF12W600.copyWith(
+              color: ColorPath.BlackColor,
+            ),
+          ),
+        ],
       ),
+      // child: Stack(
+      //   children: [
+      //     Container(
+      //       width: double.infinity,
+      //       decoration: BoxDecoration(
+      //         image: DecorationImage(
+      //           image: NetworkImage(
+      //             controller.videoData[index]['thumbnail']!,
+      //           ),
+      //           fit: BoxFit.cover,
+      //         ),
+      //         borderRadius: BorderRadius.circular(8).r,
+      //       ),
+      //     ),
+      //     Positioned.fill(
+      //       child: Center(
+      //         child: Image.asset(
+      //           'assets/images/video/play_button.webp',
+      //           fit: BoxFit.contain,
+      //           width: 50.w,
+      //         ),
+      //       ),
+      //     ),
+      //     Positioned(
+      //       left: 10.w,
+      //       bottom: 10.w,
+      //       child: Container(
+      //         margin: const EdgeInsets.all(10).w,
+      //         padding: const EdgeInsets.symmetric(
+      //           horizontal: 6,
+      //           vertical: 2,
+      //         ).w,
+      //         decoration: BoxDecoration(
+      //           color: ColorPath.PrimaryColor.withOpacity(
+      //             0.8,
+      //           ),
+      //           borderRadius: BorderRadius.circular(4).r,
+      //         ),
+      //         child: Text(
+      //           controller.videoData[index]['title']!,
+      //           style: TextPath.Heading3F16W600.copyWith(
+      //             color: ColorPath.TextWhite,
+      //           ),
+      //         ),
+      //       ),
+      //     )
+      //   ],
+      // ),
     );
   }
 }
