@@ -40,10 +40,9 @@ class HomeController extends GetxController {
         case 200:
           homeData = HomeModel.fromJson(response.data).obs;
 
-          int timeCount = int.parse(DateFormat('HHdd').format(DateTime.now()));
           if (homeData.value != null && homeData.value!.mission.isNotEmpty) {
             homeData.value!.mission.assignAll(homeData.value!.mission
-                .where((element) => element.mission_time >= timeCount)
+                .where((element) => getDeffMinit(element.mission_time) >= 0)
                 .toList());
             homeData.refresh();
           }
@@ -73,10 +72,9 @@ class HomeController extends GetxController {
       switch (response.statusCode) {
         case 200:
           homeData.value = HomeModel.fromJson(response.data);
-          int timeCount = int.parse(DateFormat('HHdd').format(DateTime.now()));
           if (homeData.value != null && homeData.value!.mission.isNotEmpty) {
             homeData.value!.mission.assignAll(homeData.value!.mission
-                .where((element) => element.mission_time >= timeCount)
+                .where((element) => getDeffMinit(element.mission_time) >= 0)
                 .toList());
             homeData.refresh();
           }
