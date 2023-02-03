@@ -26,6 +26,29 @@ class MissionView extends GetView<MissionController> {
           ? const GlobalLoaderIndicatorWidget()
           : GlobalLayoutWidget(
               context: context,
+              floatingActionButton: SizedBox(
+                width: 110.w,
+                height: 34.w,
+                child: FloatingActionButton.extended(
+                  extendedPadding: const EdgeInsets.symmetric(
+                    horizontal: 23.5,
+                    vertical: 8,
+                  ),
+                  elevation: 4,
+                  onPressed: () {
+                    GlobalMakeAlarm(context: context);
+                  },
+                  label: Text(
+                    '+ 미션추가',
+                    style: TextPath.TextF14W500.copyWith(
+                      color: ColorPath.BackgroundWhite,
+                    ),
+                  ),
+                  backgroundColor: ColorPath.PrimaryColor,
+                ),
+              ),
+              floatingActionButtonLocation:
+                  FloatingActionButtonLocation.centerFloat,
               appBar: GlobalAppBarWidget(
                 title: '미션관리',
                 appBar: AppBar(),
@@ -290,23 +313,28 @@ class MissionView extends GetView<MissionController> {
                           SizedBox(height: 24.w),
                           Container(
                             alignment: Alignment.centerLeft,
-                            child: Text(
-                              '오늘의 미션',
-                              style: TextPath.Heading2F18W600.copyWith(
-                                color: ColorPath.BlackColor,
-                              ),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  '오늘의 미션',
+                                  style: TextPath.Heading2F18W600.copyWith(
+                                    color: ColorPath.BlackColor,
+                                  ),
+                                ),
+                                SizedBox(height: 12.w),
+                                ...List.generate(
+                                  controller.missionData.length,
+                                  (index) {
+                                    return MissionCard(
+                                      index: index,
+                                    );
+                                  },
+                                ),
+                                SizedBox(height: 250.w),
+                              ],
                             ),
                           ),
-                          SizedBox(height: 12.w),
-                          ...List.generate(
-                            controller.missionData.length,
-                            (index) {
-                              return MissionCard(
-                                index: index,
-                              );
-                            },
-                          ),
-                          SizedBox(height: 100.w),
                         ],
                       ),
                     ),

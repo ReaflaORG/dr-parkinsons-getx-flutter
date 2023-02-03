@@ -171,7 +171,7 @@ class MissionCard extends GetView<MissionController> {
               ),
             ),
           ),
-          SizedBox(height: 100.w),
+          SizedBox(height: 10.w),
         ],
       ),
     );
