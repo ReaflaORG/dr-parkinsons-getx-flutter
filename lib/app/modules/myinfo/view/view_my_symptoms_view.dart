@@ -202,33 +202,28 @@ class SymptomsKeyChildImageListWidget extends StatelessWidget {
           children: List.generate(
             items.length,
             (index) {
-              return GlobalInkWellWidget(
-                onTap: () {
-                  if (type == 'video') {
-                    Get.to(() => VideoView(content_url: items[index].url));
-                  } else {
-                    Get.to(
-                      () => PhotoPageView(
-                        images: items.map((e) => e.url).toList(),
-                        initIndex: index,
-                      ),
-                    );
-                  }
-                },
-                child: Container(
-                  width: 110.w,
-                  height: 110.w,
-                  margin: const EdgeInsets.only(right: 10).w,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(15).w,
-                    image: DecorationImage(
-                      image: CachedNetworkImageProvider(
-                        type == 'image'
-                            ? items[index].url
-                            : items[index].thumbnail!,
-                      ),
-                      fit: BoxFit.cover,
-                    ),
+              return ClipRRect(
+                borderRadius: BorderRadius.circular(6.w),
+                child: GlobalInkWellWidget(
+                  onTap: () {
+                    if (type == 'video') {
+                      Get.to(() => VideoView(content_url: items[index].url));
+                    } else {
+                      Get.to(
+                        () => PhotoPageView(
+                          images: items.map((e) => e.url).toList(),
+                          initIndex: index,
+                        ),
+                      );
+                    }
+                  },
+                  child: CachedNetworkImage(
+                    imageUrl: type == 'image'
+                        ? items[index].url
+                        : items[index].thumbnail!,
+                    width: 110.w,
+                    height: 110.w,
+                    fit: BoxFit.cover,
                   ),
                 ),
               );

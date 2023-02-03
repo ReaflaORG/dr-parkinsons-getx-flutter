@@ -192,9 +192,9 @@ class TextFieldWidget extends GetView<WriteMySymptomsController> {
                   radius: const Radius.circular(6).w,
                   child: Center(
                     child: Icon(
-                      Icons.image,
-                      color: ColorPath.TextGrey4H9E9E9E,
-                      size: 20.sp,
+                      Icons.add_rounded,
+                      color: Colors.grey.shade300,
+                      size: 32.sp,
                     ),
                   ),
                 ),

@@ -158,7 +158,12 @@ class MySymptomsItemWidget extends StatelessWidget {
                             child: ClipRRect(
                               borderRadius: BorderRadius.circular(6.w),
                               child: CachedNetworkImage(
-                                imageUrl: item.symptomHistoryFiles[index].url,
+                                imageUrl:
+                                    item.symptomHistoryFiles[index].type ==
+                                            'image'
+                                        ? item.symptomHistoryFiles[index].url
+                                        : item.symptomHistoryFiles[index]
+                                            .thumbnail!,
                                 width: 110.w,
                                 height: 110.w,
                                 fit: BoxFit.cover,

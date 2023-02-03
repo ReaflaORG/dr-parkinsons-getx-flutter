@@ -40,6 +40,8 @@ class EditMySymptomsController extends GetxController {
 
   // Variable ▼
 
+  /// 저장 버튼 활성화 여부
+  Rx<bool> isSaveButtonEnable = false.obs;
   Rx<String> titleError = ''.obs;
   Rx<String> contentError = ''.obs;
   late Rx<MySymptomsModel> editItem;
@@ -77,7 +79,7 @@ class EditMySymptomsController extends GetxController {
     }
   }
 
-  Future<void> handleSubmit(BuildContext context) async {
+  Future<void> handleSubmit() async {
     if (titleController.value.text.isEmpty) {
       titleError.value = '제목은 필수입니다.';
     } else {
@@ -93,7 +95,9 @@ class EditMySymptomsController extends GetxController {
     if (titleError.value.isNotEmpty || contentError.value.isNotEmpty) {
       return;
     }
+
     List<Dio.MultipartFile> _files = [];
+
     for (int i = 0; i < files.length; i++) {
       String content = lookupMimeType(files[i].path)!;
       _files.add(Dio.MultipartFile.fromFileSync(files[i].path,
@@ -137,13 +141,17 @@ class EditMySymptomsController extends GetxController {
 
   /// 파일 추가하기
   Future<void> handleFileAdd({required bool isImage}) async {
-    final ImagePicker _picker = ImagePicker();
     XFile? image;
+
     if (isImage) {
-      image = await _picker.pickImage(source: ImageSource.gallery);
+      Logger().d("A");
+      image = await ImagePicker().pickImage(source: ImageSource.gallery);
     } else {
-      image = await _picker.pickVideo(source: ImageSource.gallery);
+      Logger().d("B");
+      image = await ImagePicker().pickVideo(source: ImageSource.gallery);
     }
+
+    Logger().d(image);
 
     if (image != null) {
       files.add(image);
