@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'dart:io';
 
-import 'package:flutter_webview_pro/webview_flutter.dart';
+// import 'package:flutter_webview_pro/webview_flutter.dart';
 import 'package:get/get.dart';
 import 'package:logger/logger.dart';
 
@@ -15,7 +15,7 @@ class TermsWebviewController extends GetxController {
   // Controller ▼
 
   /// 웹뷰 컨트롤러
-  late final WebViewController webViewController;
+  // late final WebViewController webViewController;
 
   // Variable ▼
 
@@ -37,20 +37,20 @@ class TermsWebviewController extends GetxController {
   dynamic handleOnPageFinished() async {
     try {
       timer.value = Timer.periodic(const Duration(milliseconds: 100), (timer) {
-        webViewController.runJavascript('''
-(function() {
-  console.log(window.location.href);
-  window.document.querySelector('.ui-header').remove();
-  window.document.querySelector('.ui-content:nth-of-type(1) > section').style.padding = '0px';
-  const util = window.document.querySelectorAll('.util');
-  const footer = window.document.getElementsByTagName('footer');
-  for (let index = 0; index < util.length; index++) {
-      util[index].remove();
-  }
-  for (let index = 0; index < footer.length; index++) {
-      footer[index].remove();
-  }
-})()''');
+//         webViewController.runJavascript('''
+// (function() {
+//   console.log(window.location.href);
+//   window.document.querySelector('.ui-header').remove();
+//   window.document.querySelector('.ui-content:nth-of-type(1) > section').style.padding = '0px';
+//   const util = window.document.querySelectorAll('.util');
+//   const footer = window.document.getElementsByTagName('footer');
+//   for (let index = 0; index < util.length; index++) {
+//       util[index].remove();
+//   }
+//   for (let index = 0; index < footer.length; index++) {
+//       footer[index].remove();
+//   }
+// })()''');
         timer.cancel();
       });
     } catch (e) {
@@ -62,7 +62,7 @@ class TermsWebviewController extends GetxController {
   Future<void> Initialization() async {
     /// 웹뷰 문서상 권장방법
     if (Platform.isAndroid) {
-      WebView.platform = AndroidWebView();
+      // WebView.platform = AndroidWebView();
     }
   }
 

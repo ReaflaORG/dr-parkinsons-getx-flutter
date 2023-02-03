@@ -27,7 +27,11 @@ class SuggestPolicyView extends GetView<SuggestPolicyController> {
               alignment: Alignment.center,
               margin: const EdgeInsets.only(right: 5).w,
               child: TextButton(
-                onPressed: controller.isSaveButtonEnable.value ? () {} : null,
+                onPressed: controller.isSaveButtonEnable.value
+                    ? () {
+                        controller.handleSubmit(context);
+                      }
+                    : null,
                 child: Text(
                   '전송',
                   style: TextPath.TextF14W600.copyWith(

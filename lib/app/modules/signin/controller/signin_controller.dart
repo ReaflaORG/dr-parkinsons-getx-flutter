@@ -181,19 +181,17 @@ class SignInController extends GetxController {
           String token = response.data['access_token'];
           DoctorModel? doctor;
 
-          Future.value([
-            if (response_user.doctorId != null)
-              {
-                doctor = DoctorModel.fromJson(response.data['doctor']),
-              },
-            AuthService.to.handleLogin(
-              user: response_user,
-              responseAccessToken: token,
-              doctor: doctor,
-            )
-          ]).then((value) {
-            Get.offAllNamed('/main');
-          });
+          if (response_user.doctorId != null) {
+            doctor = DoctorModel.fromJson(response.data['doctor']);
+          }
+
+          AuthService.to.handleLogin(
+            user: response_user,
+            responseAccessToken: token,
+            doctor: doctor,
+          );
+
+          Get.offAllNamed('/main');
           break;
         default:
           throw Exception(response.message);

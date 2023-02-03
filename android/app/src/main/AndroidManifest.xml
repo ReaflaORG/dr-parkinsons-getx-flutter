@@ -52,6 +52,11 @@
                 android:name="com.google.firebase.messaging.default_notification_channel_id"
                 android:value="high_importance_channel" />
 
+            <!-- 3.7 임펠러 -->
+            <meta-data
+                android:name="io.flutter.embedding.android.EnableImpeller"
+                android:value="true" />
+
             <!-- 자동 초기화 방지 -->
             <!-- FCM 등록 토큰이 생성되면 라이브러리는 식별자와 구성 데이터를 Firebase에 업로드합니다.
             토큰이 자동 생성되는 것을 방지하려면 AndroidManifest.xml에 다음 메타데이터 값을 추가하여

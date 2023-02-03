@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_widget_from_html_core/flutter_widget_from_html_core.dart';
@@ -25,74 +26,86 @@ class FactDetailView extends GetView<FactDetailController> {
         isSafeArea: false,
         body: Stack(
           children: [
-            SingleChildScrollView(
-              physics: const AlwaysScrollableScrollPhysics(),
-              controller: controller.scrollController.value,
-              child: Column(
-                children: [
-                  // SizedBox(
-                  //   width: double.infinity,
-                  //   height: 242.w,
-                  //   child: Hero(
-                  //     tag: controller.arguments['id'],
-                  //     child: Image.network(
-                  //       controller.arguments['image'],
-                  //       cacheWidth: 640,
-                  //       fit: BoxFit.cover,
-                  //     ),
-                  //   ),
-                  // ),
-                  // SizedBox(height: 24.w),
-                  SizedBox(height: 100.w),
-                  if (!controller.isLoad.value)
-                    Container(
+            RefreshIndicator(
+              displacement: 40,
+              edgeOffset: 20,
+              onRefresh: () async {
+                controller.handleFactProvider();
+                await Future.delayed(const Duration(milliseconds: 1000));
+              },
+              child: SingleChildScrollView(
+                physics: const AlwaysScrollableScrollPhysics(),
+                controller: controller.scrollController.value,
+                child: Column(
+                  children: [
+                    SizedBox(
                       width: double.infinity,
-                      margin: const EdgeInsets.symmetric(horizontal: 20).w,
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            controller.postData.value.title,
-                            style: TextPath.Heading2F18W600.copyWith(
-                              color: ColorPath.TextGrey1H212121,
-                            ),
-                          ),
-                          SizedBox(height: 4.w),
-                          Text(
-                            DateFormat('yyyy-MM-dd').format(
-                              controller.postData.value.createdAt,
-                            ),
-                            style: TextPath.TextF12W500.copyWith(
-                              color: ColorPath.TextGrey4H9E9E9E,
-                            ),
-                          ),
-                          SizedBox(height: 12.w),
-                          HtmlWidget(
-                            controller.postData.value.description,
-                            textStyle: TextPath.TextF16W400.copyWith(
-                              // letterSpacing: 0.5.w,
-                              height: 1.25.w,
-                            ),
-                            onTapUrl: (String url) async {
-                              if (!await launchUrl(Uri.parse(url))) {
-                                GlobalToastWidget('일시적으로 링크를 열 수 없습니다');
-                              }
-
-                              return false;
-                            },
-                          ),
-                          // Text(
-                          //   parse()
-                          //       .outerHtml,
-                          //   style: TextPath.TextF16W400.copyWith(
-                          //     color: ColorPath.TextGrey2H424242,
-                          //   ),
-                          // ),
-                          SizedBox(height: 500.w)
-                        ],
+                      height: 242.w,
+                      child: Hero(
+                        tag: controller.arguments['id'],
+                        child: CachedNetworkImage(
+                          imageUrl: controller.arguments['image'],
+                          width: double.infinity,
+                          height: 150.w,
+                          fit: BoxFit.cover,
+                          placeholder: (context, url) {
+                            return Center(
+                              child: CircularProgressIndicator(
+                                color: ColorPath.PrimaryColor.withOpacity(0.1),
+                              ),
+                            );
+                          },
+                          errorWidget: (context, url, error) {
+                            return const Icon(Icons.error);
+                          },
+                        ),
                       ),
                     ),
-                ],
+                    SizedBox(height: 24.w),
+                    // SizedBox(height: 100.w),
+                    if (!controller.isLoad.value)
+                      Container(
+                        width: double.infinity,
+                        margin: const EdgeInsets.symmetric(horizontal: 20).w,
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              controller.postData.value.title,
+                              style: TextPath.Heading2F18W600.copyWith(
+                                color: ColorPath.TextGrey1H212121,
+                              ),
+                            ),
+                            SizedBox(height: 4.w),
+                            Text(
+                              DateFormat('yyyy-MM-dd').format(
+                                controller.postData.value.createdAt,
+                              ),
+                              style: TextPath.TextF12W500.copyWith(
+                                color: ColorPath.TextGrey4H9E9E9E,
+                              ),
+                            ),
+                            SizedBox(height: 12.w),
+                            HtmlWidget(
+                              controller.postData.value.description,
+                              textStyle: TextPath.TextF16W400.copyWith(
+                                // letterSpacing: 0.5.w,
+                                height: 1.25.w,
+                              ),
+                              onTapUrl: (String url) async {
+                                if (!await launchUrl(Uri.parse(url))) {
+                                  GlobalToastWidget('일시적으로 링크를 열 수 없습니다');
+                                }
+
+                                return false;
+                              },
+                            ),
+                            SizedBox(height: 50.w)
+                          ],
+                        ),
+                      ),
+                  ],
+                ),
               ),
             ),
             controller.isLoad.value

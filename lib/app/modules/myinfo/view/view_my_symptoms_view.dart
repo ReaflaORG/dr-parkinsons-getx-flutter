@@ -1,4 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:dr_parkinsons/app/globals/global_inkwell_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -56,23 +57,23 @@ class ViewMySymptomsView extends GetView<ViewMySymptomsController> {
                 ),
                 actions: [
                   Container(
-                    padding: const EdgeInsets.fromLTRB(0, 10, 18, 10).w,
-                    child: InkWell(
-                      onTap: () async {
-                        await Get.toNamed(
+                    alignment: Alignment.center,
+                    margin: const EdgeInsets.only(right: 10).w,
+                    child: TextButton(
+                      onPressed: () {
+                        Get.toNamed(
                           Routes.EDIT_MY_SYMPTOMS,
                           arguments: {
                             'id': controller.item.value.symptomHistoryId
                           },
                         );
-                        await controller.getMySymptomsData();
+                        controller.getMySymptomsData();
                       },
                       child: Text(
                         '편집하기',
-                        style: TextPath.TextF16W600.copyWith(
+                        style: TextPath.TextF14W600.copyWith(
                           color: ColorPath.TextGrey1H212121,
                         ),
-                        textAlign: TextAlign.right,
                       ),
                     ),
                   ),
@@ -80,44 +81,46 @@ class ViewMySymptomsView extends GetView<ViewMySymptomsController> {
               ),
               body: SingleChildScrollView(
                 physics: const ClampingScrollPhysics(),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisSize: MainAxisSize.min,
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    SizedBox(height: 40.w),
-                    SymptomsKeyValueWidget(
-                      label: controller.item.value.title,
-                      text: DateFormat('MM월 dd일 hh시 mm분')
-                          .format(controller.item.value.createdAt),
-                    ),
-                    SizedBox(height: 20.w),
-                    SymptomsKeyValueWidget(
-                      label: '내 증상 기록',
-                      text: controller.item.value.description,
-                    ),
-                    SizedBox(height: 20.w),
-                    SymptomsKeyChildImageListWidget(
-                      items: controller.item.value.symptomHistoryFiles
-                          .where((element) => element.type == 'video')
-                          .toList(),
-                      type: 'video',
-                      label: '영상',
-                    ),
-                    SizedBox(height: 20.w),
-                    if (controller.item.value.symptomHistoryFiles
-                        .where((element) => element.type == 'image')
-                        .toList()
-                        .isNotEmpty)
+                child: Padding(
+                  padding: const EdgeInsets.all(20).w,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisSize: MainAxisSize.min,
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      SymptomsKeyValueWidget(
+                        label: controller.item.value.title,
+                        text: DateFormat('MM월 dd일 hh시 mm분')
+                            .format(controller.item.value.createdAt),
+                      ),
+                      SizedBox(height: 20.w),
+                      SymptomsKeyValueWidget(
+                        label: '내 증상 기록',
+                        text: controller.item.value.description,
+                      ),
+                      SizedBox(height: 40.w),
                       SymptomsKeyChildImageListWidget(
                         items: controller.item.value.symptomHistoryFiles
-                            .where((element) => element.type == 'image')
+                            .where((element) => element.type == 'video')
                             .toList(),
-                        type: 'image',
-                        label: '사진',
+                        type: 'video',
+                        label: '영상',
                       ),
-                    SizedBox(height: 6.w),
-                  ],
+                      SizedBox(height: 20.w),
+                      if (controller.item.value.symptomHistoryFiles
+                          .where((element) => element.type == 'image')
+                          .toList()
+                          .isNotEmpty)
+                        SymptomsKeyChildImageListWidget(
+                          items: controller.item.value.symptomHistoryFiles
+                              .where((element) => element.type == 'image')
+                              .toList(),
+                          type: 'image',
+                          label: '사진',
+                        ),
+                      SizedBox(height: 6.w),
+                    ],
+                  ),
                 ),
               ),
             ),
@@ -138,28 +141,25 @@ class SymptomsKeyValueWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 40).w,
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        mainAxisAlignment: MainAxisAlignment.start,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(
-            label,
-            style: TextPath.Heading3F16W600.copyWith(
-              color: ColorPath.TextGrey2H424242,
-            ),
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      mainAxisAlignment: MainAxisAlignment.start,
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          label,
+          style: TextPath.Heading3F16W600.copyWith(
+            color: ColorPath.TextGrey2H424242,
           ),
-          SizedBox(height: 6.w),
-          Text(
-            text,
-            style: TextPath.TextF14W400.copyWith(
-              color: ColorPath.TextGrey2H424242,
-            ),
-          )
-        ],
-      ),
+        ),
+        SizedBox(height: 5.w),
+        Text(
+          text,
+          style: TextPath.TextF14W400.copyWith(
+            color: ColorPath.TextGrey2H424242,
+          ),
+        )
+      ],
     );
   }
 }
@@ -184,23 +184,25 @@ class SymptomsKeyChildImageListWidget extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.start,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Container(
-          padding: const EdgeInsets.symmetric(horizontal: 40).w,
-          child: Text(
-            label,
-            style: TextPath.Heading3F16W600.copyWith(
-              color: ColorPath.TextGrey2H424242,
-            ),
+        Text(
+          label,
+          style: TextPath.Heading3F16W600.copyWith(
+            color: ColorPath.TextGrey2H424242,
           ),
         ),
-        SizedBox(height: 6.w),
-        SizedBox(
-          height: 100.w,
-          child: ListView.builder(
-            itemCount: items.length,
-            scrollDirection: Axis.horizontal,
-            itemBuilder: (BuildContext context, int index) {
-              return InkWell(
+        SizedBox(height: 20.w),
+        GridView.count(
+          crossAxisCount: 3,
+          childAspectRatio: 2 / 2,
+          mainAxisSpacing: 10.w,
+          crossAxisSpacing: 10.w,
+          physics: const NeverScrollableScrollPhysics(),
+          padding: EdgeInsets.zero,
+          shrinkWrap: true,
+          children: List.generate(
+            items.length,
+            (index) {
+              return GlobalInkWellWidget(
                 onTap: () {
                   if (type == 'video') {
                     Get.to(() => VideoView(content_url: items[index].url));
@@ -214,12 +216,9 @@ class SymptomsKeyChildImageListWidget extends StatelessWidget {
                   }
                 },
                 child: Container(
-                  width: 130.w,
-                  height: 100.w,
-                  margin: EdgeInsets.only(
-                    right: 10,
-                    left: index == 0 ? 40 : 0,
-                  ).w,
+                  width: 110.w,
+                  height: 110.w,
+                  margin: const EdgeInsets.only(right: 10).w,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(15).w,
                     image: DecorationImage(
@@ -236,6 +235,16 @@ class SymptomsKeyChildImageListWidget extends StatelessWidget {
             },
           ),
         ),
+        // SizedBox(
+        //   height: 100.w,
+        //   child: ListView.builder(
+        //     itemCount: items.length,
+        //     scrollDirection: Axis.horizontal,
+        //     itemBuilder: (BuildContext context, int index) {
+        //       return
+        //     },
+        //   ),
+        // ),
       ],
     );
   }

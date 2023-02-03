@@ -17,15 +17,22 @@ class SignInView extends GetView<SignInController> {
     return GlobalLayoutWidget(
       context: context,
       isSafeArea: false,
-      body: ListView(
-        physics: const AlwaysScrollableScrollPhysics(),
-        children: [
-          const CarouselSliderWidget(),
-          SizedBox(height: 24.w),
-          const SocialLoginButtonWidget(),
-          SizedBox(height: 20.w),
-          const TermsGuideTextWidget(),
-        ],
+      body: Center(
+        child: SingleChildScrollView(
+          physics: const BouncingScrollPhysics(),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              const CarouselSliderWidget(),
+              SizedBox(height: 24.w),
+              const SocialLoginButtonWidget(),
+              SizedBox(height: 20.w),
+              const TermsGuideTextWidget(),
+            ],
+          ),
+        ),
       ),
     );
   }

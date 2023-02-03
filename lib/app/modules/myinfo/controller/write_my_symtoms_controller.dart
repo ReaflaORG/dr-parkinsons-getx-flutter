@@ -16,6 +16,7 @@ import '../../../globals/global_toast_widget.dart';
 import '../../../models/base_response_model.dart';
 import '../../../provider/provider.dart';
 import '../../../theme/text_path.dart';
+import 'my_symptoms_controller.dart';
 
 class WriteMySymptomsController extends GetxController {
   static WriteMySymptomsController get to => Get.find();
@@ -146,6 +147,7 @@ class WriteMySymptomsController extends GetxController {
           contentTextEditController.value.text = '';
 
           Get.back();
+          await MySymptomsController.to.getMySymptomsData();
           GlobalToastWidget('저장이 완료되었습니다.');
 
           break;
@@ -161,12 +163,12 @@ class WriteMySymptomsController extends GetxController {
 
   /// 파일 추가하기
   Future<void> handleFileAdd({required bool isImage}) async {
-    final ImagePicker _picker = ImagePicker();
     XFile? image;
+
     if (isImage) {
-      image = await _picker.pickImage(source: ImageSource.gallery);
+      image = await ImagePicker().pickImage(source: ImageSource.gallery);
     } else {
-      image = await _picker.pickVideo(source: ImageSource.gallery);
+      image = await ImagePicker().pickVideo(source: ImageSource.gallery);
     }
 
     if (image != null) {
@@ -175,7 +177,9 @@ class WriteMySymptomsController extends GetxController {
   }
 
   /// 파일 삭제하기
-  handleFileRemove({required int index}) {
+  handleFileRemove({
+    required int index,
+  }) {
     files.removeAt(index);
   }
 

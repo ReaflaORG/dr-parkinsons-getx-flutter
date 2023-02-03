@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -87,18 +88,67 @@ class DiscoderCardWidget extends GetView<DisorderController> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Container(
-            width: double.infinity,
-            height: 150.w,
-            decoration: BoxDecoration(
-              image: DecorationImage(
-                image: NetworkImage(
-                  controller.videoData[index]['thumbnail']!,
+          Stack(
+            children: [
+              SizedBox(
+                width: double.infinity,
+                height: 150.w,
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(8).r,
+                  child: CachedNetworkImage(
+                    imageUrl: controller.videoData[index]['thumbnail']!,
+                    fit: BoxFit.cover,
+                    placeholder: (context, url) {
+                      return Center(
+                        child: CircularProgressIndicator(
+                          color: ColorPath.PrimaryColor.withOpacity(0.1),
+                        ),
+                      );
+                    },
+                    errorWidget: (context, url, error) {
+                      return const Icon(Icons.error);
+                    },
+                  ),
                 ),
-                fit: BoxFit.cover,
               ),
-              borderRadius: BorderRadius.circular(8).r,
-            ),
+              Positioned(
+                top: 10,
+                left: 10,
+                child: Icon(
+                  Icons.smart_display_rounded,
+                  size: 20.w,
+                  color: Colors.redAccent,
+                ),
+              ),
+              Positioned(
+                top: 15,
+                right: 10,
+                child: Container(
+                  padding: EdgeInsets.symmetric(horizontal: 5.w),
+                  decoration: BoxDecoration(
+                    color: Colors.black54,
+                    borderRadius: BorderRadius.circular(8).r,
+                  ),
+                  child: Row(
+                    children: [
+                      Icon(
+                        Icons.check_rounded,
+                        size: 8.w,
+                        color: Colors.white70,
+                      ),
+                      SizedBox(width: 2.5.w),
+                      Text(
+                        '523',
+                        style: TextPath.TextF12W600.copyWith(
+                          color: Colors.white70,
+                          fontSize: 10.sp,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ],
           ),
           SizedBox(height: 10.w),
           Text(
@@ -116,54 +166,6 @@ class DiscoderCardWidget extends GetView<DisorderController> {
           ),
         ],
       ),
-      // child: Stack(
-      //   children: [
-      //     Container(
-      //       width: double.infinity,
-      //       decoration: BoxDecoration(
-      //         image: DecorationImage(
-      //           image: NetworkImage(
-      //             controller.videoData[index]['thumbnail']!,
-      //           ),
-      //           fit: BoxFit.cover,
-      //         ),
-      //         borderRadius: BorderRadius.circular(8).r,
-      //       ),
-      //     ),
-      //     Positioned.fill(
-      //       child: Center(
-      //         child: Image.asset(
-      //           'assets/images/video/play_button.webp',
-      //           fit: BoxFit.contain,
-      //           width: 50.w,
-      //         ),
-      //       ),
-      //     ),
-      //     Positioned(
-      //       left: 10.w,
-      //       bottom: 10.w,
-      //       child: Container(
-      //         margin: const EdgeInsets.all(10).w,
-      //         padding: const EdgeInsets.symmetric(
-      //           horizontal: 6,
-      //           vertical: 2,
-      //         ).w,
-      //         decoration: BoxDecoration(
-      //           color: ColorPath.PrimaryColor.withOpacity(
-      //             0.8,
-      //           ),
-      //           borderRadius: BorderRadius.circular(4).r,
-      //         ),
-      //         child: Text(
-      //           controller.videoData[index]['title']!,
-      //           style: TextPath.Heading3F16W600.copyWith(
-      //             color: ColorPath.TextWhite,
-      //           ),
-      //         ),
-      //       ),
-      //     )
-      //   ],
-      // ),
     );
   }
 }

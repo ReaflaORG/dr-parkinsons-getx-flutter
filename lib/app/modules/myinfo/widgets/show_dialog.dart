@@ -12,7 +12,7 @@ showAlertDialog(
   String alertContentMsg,
 ) {
   AlertDialog alert = AlertDialog(
-    shape: RoundedRectangleBorder(
+    shape: const RoundedRectangleBorder(
       borderRadius: BorderRadius.all(
         Radius.circular(12),
       ),
@@ -23,31 +23,31 @@ showAlertDialog(
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisSize: MainAxisSize.min,
         children: [
-          Container(
-            child: Text(
-              alertTitleMsg,
-              style: TextPath.TextF18W600.copyWith(),
-            ),
+          Text(
+            alertTitleMsg,
+            style: TextPath.TextF18W600.copyWith(),
           ),
           SizedBox(height: 16.w),
-          Container(
-            child: Text(
-              alertContentMsg,
-              style: TextPath.TextF16W400.copyWith(),
-            ),
+          Text(
+            alertContentMsg,
+            style: TextPath.TextF16W400.copyWith(),
           ),
-          SizedBox(height: 24),
+          const SizedBox(height: 24),
           SizedBox(
             width: double.infinity,
             height: 44,
             child: TextButton(
-              onPressed: () => Navigator.pop(context),
+              onPressed: () {
+                Get.back();
+                Get.back();
+              },
               style: TextButton.styleFrom(
-                  foregroundColor: Colors.white,
-                  backgroundColor: ColorPath.PrimaryDarkColor,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(8),
-                  )),
+                foregroundColor: Colors.white,
+                backgroundColor: ColorPath.PrimaryDarkColor,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(8),
+                ),
+              ),
               child: Text(
                 '확인',
                 style: TextPath.TextF16W600White.copyWith(),

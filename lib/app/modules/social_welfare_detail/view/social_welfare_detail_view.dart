@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_widget_from_html_core/flutter_widget_from_html_core.dart';
@@ -35,10 +36,21 @@ class SocialWelfareDetailView extends GetView<SocialWelfareDetailController> {
                     height: 242.w,
                     child: Hero(
                       tag: controller.arguments['id'],
-                      child: Image.network(
-                        controller.arguments['image'],
-                        cacheWidth: 640,
+                      child: CachedNetworkImage(
+                        imageUrl: controller.arguments['image'],
+                        width: double.infinity,
+                        height: 150.w,
                         fit: BoxFit.cover,
+                        placeholder: (context, url) {
+                          return Center(
+                            child: CircularProgressIndicator(
+                              color: ColorPath.PrimaryColor.withOpacity(0.1),
+                            ),
+                          );
+                        },
+                        errorWidget: (context, url, error) {
+                          return const Icon(Icons.error);
+                        },
                       ),
                     ),
                   ),

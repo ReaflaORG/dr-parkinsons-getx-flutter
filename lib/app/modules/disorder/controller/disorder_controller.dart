@@ -90,49 +90,49 @@ class DisorderController extends GetxController {
       'title': '파킨슨병이란 무엇인가?',
       'description': '전문의가 알려주는 파킨슨병!',
       'link':
-          'https://s3.ap-northeast-2.amazonaws.com/dr.parkinsons/disorder/disorder_1_%EA%B3%A0%EC%84%B1%EB%B2%94.mp4',
+          'http://s3.ap-northeast-2.amazonaws.com/dr.parkinsons/disorder/disorder_1_%EA%B3%A0%EC%84%B1%EB%B2%94.mp4',
       'thumbnail':
-          'https://s3.ap-northeast-2.amazonaws.com/dr.parkinsons/disorder/disorder_1.webp',
+          'http://s3.ap-northeast-2.amazonaws.com/dr.parkinsons/disorder/disorder_1.webp',
     },
     {
       'title': '파킨슨병 VS 파킨슨증후군',
       'description': '차이점을 알아봐요',
       'link':
-          'https://s3.ap-northeast-2.amazonaws.com/dr.parkinsons/disorder/disorder_2_%EC%9D%B4%ED%95%84%ED%9C%B4.mp4',
+          'http://s3.ap-northeast-2.amazonaws.com/dr.parkinsons/disorder/disorder_2_%EC%9D%B4%ED%95%84%ED%9C%B4.mp4',
       'thumbnail':
-          'https://s3.ap-northeast-2.amazonaws.com/dr.parkinsons/disorder/disorder_2.webp'
+          'http://s3.ap-northeast-2.amazonaws.com/dr.parkinsons/disorder/disorder_2.webp'
     },
     {
       'title': '파킨스병 전구증상',
       'description': '나한테도 이런 증상이?',
       'link':
-          'https://s3.ap-northeast-2.amazonaws.com/dr.parkinsons/disorder/disorder_3_%EC%95%88%ED%83%9C%EB%B2%94.mp4',
+          'http://s3.ap-northeast-2.amazonaws.com/dr.parkinsons/disorder/disorder_3_%EC%95%88%ED%83%9C%EB%B2%94.mp4',
       'thumbnail':
-          'https://s3.ap-northeast-2.amazonaws.com/dr.parkinsons/disorder/disorder_3.webp'
+          'http://s3.ap-northeast-2.amazonaws.com/dr.parkinsons/disorder/disorder_3.webp'
     },
     {
       'title': '파킨슨병 진단과정',
       'description': '진단과정 미리 알아보자!',
       'link':
-          'https://s3.ap-northeast-2.amazonaws.com/dr.parkinsons/disorder/disorder_4_%EB%B0%B1%EC%A2%85%EC%82%BC.mp4',
+          'http://s3.ap-northeast-2.amazonaws.com/dr.parkinsons/disorder/disorder_4_%EB%B0%B1%EC%A2%85%EC%82%BC.mp4',
       'thumbnail':
-          'https://s3.ap-northeast-2.amazonaws.com/dr.parkinsons/disorder/disorder_4.webp'
+          'http://s3.ap-northeast-2.amazonaws.com/dr.parkinsons/disorder/disorder_4.webp'
     },
     {
       'title': '파킨슨병 약물치료',
       'description': '약물치료엔 어떤것이 있을까?',
       'link':
-          'https://s3.ap-northeast-2.amazonaws.com/dr.parkinsons/disorder/disorder_5_%EC%84%B1%EC%98%81%ED%9D%AC.mp4',
+          'http://s3.ap-northeast-2.amazonaws.com/dr.parkinsons/disorder/disorder_5_%EC%84%B1%EC%98%81%ED%9D%AC.mp4',
       'thumbnail':
-          'https://s3.ap-northeast-2.amazonaws.com/dr.parkinsons/disorder/disorder_5.webp'
+          'http://s3.ap-northeast-2.amazonaws.com/dr.parkinsons/disorder/disorder_5.webp'
     },
     {
       'title': '파킨슨 약제의 종류',
       'description': '약제! 꼭 알고 먹어요',
       'link':
-          'https://s3.ap-northeast-2.amazonaws.com/dr.parkinsons/disorder/disorder_6_%EC%9D%B4%EC%9B%85%EC%9A%B0.mp4',
+          'http://s3.ap-northeast-2.amazonaws.com/dr.parkinsons/disorder/disorder_6_%EC%9D%B4%EC%9B%85%EC%9A%B0.mp4',
       'thumbnail':
-          'https://s3.ap-northeast-2.amazonaws.com/dr.parkinsons/disorder/disorder_6.webp'
+          'http://s3.ap-northeast-2.amazonaws.com/dr.parkinsons/disorder/disorder_6.webp'
     },
   ].obs;
 

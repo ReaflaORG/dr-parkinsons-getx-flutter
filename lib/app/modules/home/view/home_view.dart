@@ -310,7 +310,7 @@ class HomeView extends GetView<HomeController> {
                     controller.homeData.value!.mission.isEmpty
                         ? const MissionItemEnptyWidget()
                         : const MissionItemNotEnptyWidget(),
-                    SizedBox(height: 40.w),
+                    SizedBox(height: 42.w),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
@@ -349,14 +349,8 @@ class HomeView extends GetView<HomeController> {
                       ],
                     ),
                     SizedBox(height: 12.w),
-                    Container(
+                    SizedBox(
                       width: 320.w,
-                      // decoration: BoxDecoration(
-                      //   border: Border.all(
-                      //     color: ColorPath.Border2HECEFF1,
-                      //     width: 1.w,
-                      //   ),
-                      // ),
                       child: ListView.builder(
                         physics: const NeverScrollableScrollPhysics(),
                         shrinkWrap: true,
@@ -411,7 +405,7 @@ class HomeView extends GetView<HomeController> {
                         },
                       ),
                     ),
-                    SizedBox(height: 40.w),
+                    SizedBox(height: 42.w),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
@@ -833,28 +827,6 @@ class MissionItemNotEnptyWidget extends GetView<HomeController> {
                   ],
                 ),
               ),
-
-              // Container(
-              //   alignment: Alignment.centerLeft,
-              //   width: 110.w,
-              //   child: Column(
-              //     mainAxisAlignment: MainAxisAlignment.center,
-              //     crossAxisAlignment: CrossAxisAlignment.start,
-              //     children: [
-
-              //     ],
-              //   ),
-              // ),
-              // Container(
-              //   margin: EdgeInsets.only(right: 25.w),
-              //   child: Column(
-              //     mainAxisAlignment: MainAxisAlignment.center,
-              //     crossAxisAlignment: CrossAxisAlignment.end,
-              //     children: [
-
-              //     ],
-              //   ),
-              // ),
             ],
           ),
         ),

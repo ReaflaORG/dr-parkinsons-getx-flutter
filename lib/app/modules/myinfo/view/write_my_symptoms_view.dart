@@ -1,10 +1,12 @@
 import 'dart:io';
 
 import 'package:dotted_border/dotted_border.dart';
+import 'package:dr_parkinsons/app/globals/global_inkwell_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:mime/mime.dart';
+import 'package:video_player/video_player.dart';
 
 import '../../../globals/global_appbar_widget.dart';
 import '../../../globals/global_dialog_widget.dart';
@@ -162,109 +164,110 @@ class TextFieldWidget extends GetView<WriteMySymptomsController> {
               ),
             ),
           ),
-          SizedBox(height: 12.w),
+          SizedBox(height: 20.w),
           GridView.count(
-              crossAxisCount: 3,
-              mainAxisSpacing: 10.w,
-              childAspectRatio: 3 / 2,
-              crossAxisSpacing: 10.w,
-              physics: const NeverScrollableScrollPhysics(),
-              padding: EdgeInsets.zero,
-              shrinkWrap: true,
-              children: [
-                DottedBorder(
-                  color: const Color.fromRGBO(4, 168, 180, 0.9),
+            crossAxisCount: 3,
+            childAspectRatio: 2 / 2,
+            mainAxisSpacing: 10.w,
+            crossAxisSpacing: 10.w,
+            physics: const NeverScrollableScrollPhysics(),
+            padding: EdgeInsets.zero,
+            shrinkWrap: true,
+            children: [
+              GlobalInkWellWidget(
+                onTap: () {
+                  GlobalAlbumBottomSheetModal(albumOnPressed: () {
+                    controller.handleFileAdd(isImage: true);
+                    Get.back();
+                  }, videoOnPressed: () {
+                    controller.handleFileAdd(isImage: false);
+                    Get.back();
+                  });
+                },
+                child: DottedBorder(
+                  color: ColorPath.TextGrey4H9E9E9E,
                   strokeWidth: 1,
-                  dashPattern: const [3, 1],
+                  dashPattern: const [6, 1],
                   borderType: BorderType.RRect,
-                  radius: Radius.circular(6.w),
-                  child: TextButton(
-                    onPressed: () {
-                      GlobalAlbumBottomSheetModal(albumOnPressed: () {
-                        controller.handleFileAdd(isImage: false);
-                        Get.back();
-                      }, videoOnPressed: () {
-                        controller.handleFileAdd(isImage: true);
-                        Get.back();
-                      });
-                    },
-                    style: TextButton.styleFrom(
-                      foregroundColor: ColorPath.TextGrey1H212121,
-                    ),
-                    child: Container(
-                      alignment: Alignment.center,
-                      child: Text(
-                        '+',
-                        style: TextPath.TextF20W400.copyWith(
-                          color: ColorPath.SecondaryColor,
-                        ),
-                        textAlign: TextAlign.center,
-                      ),
+                  radius: const Radius.circular(6).w,
+                  child: Center(
+                    child: Icon(
+                      Icons.image,
+                      color: ColorPath.TextGrey4H9E9E9E,
+                      size: 20.sp,
                     ),
                   ),
                 ),
-                ...List.generate(controller.files.length, (index) {
-                  String mimeStr = lookupMimeType(controller.files[index].path)!
-                      .split('/')[0];
+              ),
+              ...List.generate(controller.files.length, (index) {
+                String mimeStr =
+                    lookupMimeType(controller.files[index].path)!.split('/')[0];
 
-                  return mimeStr == 'image'
-                      ? Container(
-                          width: double.infinity,
-                          decoration: BoxDecoration(
-                              image: DecorationImage(
-                            image: FileImage(
+                return mimeStr == 'image'
+                    ? Stack(
+                        children: [
+                          ClipRRect(
+                            borderRadius: BorderRadius.circular(6.w),
+                            child: Image.file(
                               File(controller.files[index].path),
+                              fit: BoxFit.cover,
+                              width: double.infinity,
+                              height: double.infinity,
                             ),
-                            fit: BoxFit.cover,
-                          )),
-                          padding: EdgeInsets.all(5.w),
-                          alignment: Alignment.topRight,
-                          child: GestureDetector(
-                            onTap: () {
-                              controller.handleFileRemove(index: index);
-                            },
-                            child: Container(
-                              margin: EdgeInsets.only(right: 5.w),
-                              decoration: const BoxDecoration(
-                                  color: Colors.white, shape: BoxShape.circle),
+                          ),
+                          Positioned(
+                            top: 5.w,
+                            right: 5.w,
+                            child: GestureDetector(
+                              onTap: () {
+                                controller.handleFileRemove(index: index);
+                              },
                               child: const Icon(
-                                Icons.cancel_rounded,
+                                Icons.close_rounded,
+                                color: Colors.white,
                               ),
                             ),
                           ),
-                        )
-                      : Stack(
-                          children: [
-                            Container(
-                              width: double.infinity,
-                              color: Colors.black,
-                              alignment: Alignment.center,
-                              padding: EdgeInsets.all(7.w),
-                              child: Image.asset(
-                                  'assets/doctor/video_play_button.png'),
+                        ],
+                      )
+                    : Stack(
+                        children: [
+                          ClipRRect(
+                            borderRadius: BorderRadius.circular(6.w),
+                            child: VideoPlayer(
+                              VideoPlayerController.network(
+                                controller.files[index].path,
+                              )..initialize().then((_) {}),
                             ),
-                            Positioned(
-                              top: 5.w,
-                              right: 3.w,
-                              child: GestureDetector(
-                                onTap: () {
-                                  controller.handleFileRemove(index: index);
-                                },
-                                child: Container(
-                                  margin: EdgeInsets.only(right: 5.w),
-                                  decoration: const BoxDecoration(
-                                      color: Colors.white,
-                                      shape: BoxShape.circle),
-                                  child: const Icon(
-                                    Icons.cancel_rounded,
-                                  ),
+                          ),
+                          Positioned.fill(
+                            child: Center(
+                              child: SizedBox(
+                                width: 30.w,
+                                child: Image.asset(
+                                  'assets/doctor/video_play_button.png',
                                 ),
                               ),
-                            )
-                          ],
-                        );
-                }).toList(),
-              ]),
+                            ),
+                          ),
+                          Positioned(
+                            top: 5.w,
+                            right: 5.w,
+                            child: GlobalInkWellWidget(
+                              onTap: () {
+                                controller.handleFileRemove(index: index);
+                              },
+                              child: const Icon(
+                                Icons.close_rounded,
+                                color: Colors.white,
+                              ),
+                            ),
+                          )
+                        ],
+                      );
+              }).toList(),
+            ],
+          ),
         ],
       ),
     );

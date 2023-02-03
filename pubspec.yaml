@@ -5,7 +5,7 @@ publish_to: "REAFELA"
 version: 1.0.0+1
 
 environment:
-  sdk: ">=2.18.5 <3.0.0"
+  sdk: ">=2.19.0 <3.0.0"
 
 dependencies:
   flutter:
@@ -43,7 +43,6 @@ dependencies:
   flutter_time_picker_spinner: ^2.0.0
   location: ^4.4.0
   device_info_plus: ^8.0.0
-  video_player: ^2.4.10
   wakelock: ^0.6.2
   image_picker: ^0.8.6
   mime: ^1.0.3
@@ -53,13 +52,22 @@ dependencies:
   flutter_easyloading: ^3.0.5
   dropdown_plus: ^0.0.9
   flutter_widget_from_html_core: ^0.9.0+2
-  flutter_webview_pro: ^3.0.1+3
+  custom_refresh_indicator: ^2.0.1
+  video_player: ^2.5.1
+  # flutter_webview_pro: ^3.0.1+4
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
 
   flutter_lints: ^2.0.0
+
+flutter_flags:
+  - --obfuscate
+  - --dart-define=flutter.inspector.debugDescription=false
+  - --enable-software-rendering=false
+  - --dart-define=flutter.jank=none
+  - --enable-impeller
 
 flutter:
   uses-material-design: true

@@ -155,18 +155,14 @@ class DoctorSearchView extends GetView<DoctorSearchController> {
                       borderRadius: BorderRadius.circular(15).r,
                     ),
                     child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.start,
                       children: [
-                        Text(
-                          '또는',
-                          style: TextPath.TextF12W500.copyWith(),
-                        ),
                         SizedBox(width: 5.w),
                         Text(
                           '거리순으로 보기',
                           style: TextPath.TextF14W500.copyWith(),
                         ),
-                        SizedBox(width: 5.w),
+                        SizedBox(width: 10.w),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: List.generate(

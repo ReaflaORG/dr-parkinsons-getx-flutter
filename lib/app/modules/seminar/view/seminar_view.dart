@@ -61,7 +61,7 @@ class SeminarView extends GetView<SeminarController> {
                                 style: TextPath.TextF14W400Expand.copyWith(
                                   color: ColorPath.TextGrey2H424242,
                                 ),
-                                '또한 일반인에게는 파킨슨병에 대한 올바른 정보 제공을 통해 파킨슨병에 인지를 개선하고, 파킨슨병의 조기진단에 기여하고자 합니다.',
+                                '또한 일반인에게는 파킨슨병에 대한 올바른 정보 제공을 통해 파킨슨병에 인지도를 개선하고, 파킨슨병의 조기진단에 기여하고자 합니다.',
                               ),
                             ],
                           ),
