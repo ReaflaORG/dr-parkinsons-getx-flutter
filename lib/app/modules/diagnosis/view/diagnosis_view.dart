@@ -92,7 +92,6 @@ class TestInProgressWidget extends GetView<DiagnosisController> {
             child: Text(
               controller.survey.value.quizes[controller.questionNumber.value]
                   .questionText,
-              maxLines: 3,
               style: TextPath.TextF16W500Expand,
             ),
           ),
@@ -139,7 +138,7 @@ class SurveyTestingView extends GetView<DiagnosisController> {
                             vertical: 26,
                           ).w,
                           width: 320.w,
-                          height: 180.w,
+                          // height: 180.w,
                           decoration: BoxDecoration(
                             boxShadow: [
                               BoxShadow(

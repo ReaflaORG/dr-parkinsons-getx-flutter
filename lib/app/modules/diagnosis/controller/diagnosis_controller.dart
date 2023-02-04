@@ -391,7 +391,7 @@ class DiagnosisController extends GetxController {
           SurveyQuizModel(
             surveyId: 3,
             surveyQuizId: 311,
-            questionText: '7. 침대 주변에 물건(예:침대 전등, 책, 안경)이 떨어져 있는 일',
+            questionText: '7. 수면 중 내 움직임에 스스로 깨기도 한다.',
             answers: [
               AnswerModel(surveyQuizId: 311, answerScore: 1, answerText: '예'),
               AnswerModel(surveyQuizId: 311, answerScore: 0, answerText: '아니요'),
@@ -477,8 +477,15 @@ class DiagnosisController extends GetxController {
     if (questionNumber.value >= survey.value.quizes.length - 1) {
       // 반목문으로 quzie에 저장된 유저 답을 기반으로 계산
       for (int i = 0; i < survey.value.quizes.length; i++) {
-        score.value += survey.value.quizes[i]
-            .answers[survey.value.quizes[i].userAnswer].answerScore;
+        if (survey_id.value == 3) {
+          if (i != 5) {
+            score.value += survey.value.quizes[i]
+                .answers[survey.value.quizes[i].userAnswer].answerScore;
+          }
+        } else {
+          score.value += survey.value.quizes[i]
+              .answers[survey.value.quizes[i].userAnswer].answerScore;
+        }
       }
       isFinish.value = true;
     } else {
