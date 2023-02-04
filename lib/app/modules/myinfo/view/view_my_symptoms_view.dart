@@ -99,14 +99,22 @@ class ViewMySymptomsView extends GetView<ViewMySymptomsController> {
                         text: controller.item.value.description,
                       ),
                       SizedBox(height: 40.w),
-                      SymptomsKeyChildImageListWidget(
-                        items: controller.item.value.symptomHistoryFiles
-                            .where((element) => element.type == 'video')
-                            .toList(),
-                        type: 'video',
-                        label: '영상',
-                      ),
-                      SizedBox(height: 20.w),
+                      if (controller.item.value.symptomHistoryFiles
+                          .where((element) => element.type == 'video')
+                          .toList()
+                          .isNotEmpty)
+                        Column(
+                          children: [
+                            SymptomsKeyChildImageListWidget(
+                              items: controller.item.value.symptomHistoryFiles
+                                  .where((element) => element.type == 'video')
+                                  .toList(),
+                              type: 'video',
+                              label: '영상',
+                            ),
+                            SizedBox(height: 20.w),
+                          ],
+                        ),
                       if (controller.item.value.symptomHistoryFiles
                           .where((element) => element.type == 'image')
                           .toList()
@@ -217,13 +225,28 @@ class SymptomsKeyChildImageListWidget extends StatelessWidget {
                       );
                     }
                   },
-                  child: CachedNetworkImage(
-                    imageUrl: type == 'image'
-                        ? items[index].url
-                        : items[index].thumbnail!,
-                    width: 110.w,
-                    height: 110.w,
-                    fit: BoxFit.cover,
+                  child: Stack(
+                    children: [
+                      CachedNetworkImage(
+                        imageUrl: type == 'image'
+                            ? items[index].url
+                            : items[index].thumbnail!,
+                        width: 110.w,
+                        height: 110.w,
+                        fit: BoxFit.cover,
+                      ),
+                      if (type == 'video')
+                        Positioned.fill(
+                          child: Center(
+                            child: SizedBox(
+                              width: 30.w,
+                              child: Image.asset(
+                                'assets/doctor/video_play_button.png',
+                              ),
+                            ),
+                          ),
+                        ),
+                    ],
                   ),
                 ),
               );

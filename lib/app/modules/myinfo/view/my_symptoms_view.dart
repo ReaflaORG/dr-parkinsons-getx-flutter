@@ -157,16 +157,32 @@ class MySymptomsItemWidget extends StatelessWidget {
                             padding: const EdgeInsets.only(right: 10).w,
                             child: ClipRRect(
                               borderRadius: BorderRadius.circular(6.w),
-                              child: CachedNetworkImage(
-                                imageUrl:
-                                    item.symptomHistoryFiles[index].type ==
+                              child: Stack(
+                                children: [
+                                  CachedNetworkImage(
+                                    imageUrl: item.symptomHistoryFiles[index]
+                                                .type ==
                                             'image'
                                         ? item.symptomHistoryFiles[index].url
                                         : item.symptomHistoryFiles[index]
                                             .thumbnail!,
-                                width: 110.w,
-                                height: 110.w,
-                                fit: BoxFit.cover,
+                                    width: 110.w,
+                                    height: 110.w,
+                                    fit: BoxFit.cover,
+                                  ),
+                                  if (item.symptomHistoryFiles[index].type ==
+                                      'video')
+                                    Positioned.fill(
+                                      child: Center(
+                                        child: SizedBox(
+                                          width: 30.w,
+                                          child: Image.asset(
+                                            'assets/doctor/video_play_button.png',
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                ],
                               ),
                             ),
                           ),

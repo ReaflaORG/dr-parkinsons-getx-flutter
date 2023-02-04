@@ -311,6 +311,7 @@ class GuardianWidget extends StatelessWidget {
             color: ColorPath.TextGrey3H616161,
           ),
         ),
+        SizedBox(height: 5.w),
         Row(
           children: [
             Text(
@@ -326,24 +327,24 @@ class GuardianWidget extends StatelessWidget {
               ),
             ),
             const Spacer(),
-            Material(
-              clipBehavior: Clip.antiAlias,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(50).r,
-              ),
-              child: IconButton(
-                splashColor: ColorPath.PrimaryLightColor,
-                highlightColor: ColorPath.PrimaryColor.withOpacity(0.05),
-                onPressed: () {
-                  Get.toNamed('/myinfo/profile_setting');
-                },
-                icon: Icon(
-                  Icons.call_made_rounded,
-                  color: ColorPath.SecondaryDarkColor,
-                  size: 18.sp,
-                ),
-              ),
-            ),
+            // Material(
+            //   clipBehavior: Clip.antiAlias,
+            //   shape: RoundedRectangleBorder(
+            //     borderRadius: BorderRadius.circular(50).r,
+            //   ),
+            //   child: IconButton(
+            //     splashColor: ColorPath.PrimaryLightColor,
+            //     highlightColor: ColorPath.PrimaryColor.withOpacity(0.05),
+            //     onPressed: () {
+            //       Get.toNamed('/myinfo/profile_setting');
+            //     },
+            //     icon: Icon(
+            //       Icons.call_made_rounded,
+            //       color: ColorPath.SecondaryDarkColor,
+            //       size: 18.sp,
+            //     ),
+            //   ),
+            // ),
           ],
         ),
       ],

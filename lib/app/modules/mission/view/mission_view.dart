@@ -72,7 +72,7 @@ class MissionView extends GetView<MissionController> {
                 ],
               ),
               body: SingleChildScrollView(
-                physics: const BouncingScrollPhysics(),
+                physics: const AlwaysScrollableScrollPhysics(),
                 child: Column(
                   children: [
                     Container(

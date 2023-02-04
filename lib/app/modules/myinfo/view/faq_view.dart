@@ -3,9 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
 import '../../../globals/global_appbar_widget.dart';
-import '../../../globals/global_dialog_widget.dart';
 import '../../../globals/global_layout_widget.dart';
-import '../../../service/auth_service.dart';
 import '../../../theme/color_path.dart';
 import '../../../theme/text_path.dart';
 import '../controller/faq_controller.dart';
@@ -22,32 +20,12 @@ class FaqView extends GetView<FaqController> {
         appBar: GlobalAppBarWidget(
           appBar: AppBar(),
           title: '자주 묻는 질문',
-          actions: [
-            Container(
-              padding: EdgeInsets.fromLTRB(0.w, 10.w, 18.w, 10.w),
-              child: InkWell(
-                onTap: () {
-                  AuthService.to.userData.value.guardianPhoneNumber != null
-                      ? GlobalEmergencyModalWidget(context: context)
-                      : GlobalEmergencyModalWidget2(context: context);
-                },
-                child: Container(
-                  alignment: Alignment.centerRight,
-                  child: Image.asset(
-                    'assets/search_doctors/search_doctors_icon.png',
-                    width: 24.w,
-                    height: 24.w,
-                  ),
-                ),
-              ),
-            ),
-          ],
         ),
         body: SingleChildScrollView(
           physics: const BouncingScrollPhysics(),
           padding: const EdgeInsets.symmetric(horizontal: 20),
           child: Padding(
-            padding: const EdgeInsets.only(top: 20, bottom: 50).w,
+            padding: const EdgeInsets.only(bottom: 50).w,
             child: Column(
               children: [
                 ListView.builder(

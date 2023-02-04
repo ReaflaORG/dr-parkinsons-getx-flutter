@@ -3,7 +3,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
 import '../../../globals/global_appbar_widget.dart';
-import '../../../globals/global_dialog_widget.dart';
 import '../../../globals/global_layout_widget.dart';
 import '../../../service/auth_service.dart';
 import '../../../theme/color_path.dart';
@@ -21,26 +20,6 @@ class AlarmSettingView extends GetView<AlarmSettingController> {
         appBar: GlobalAppBarWidget(
           appBar: AppBar(),
           title: '알람 설정',
-          actions: [
-            Container(
-              padding: const EdgeInsets.fromLTRB(0, 10, 18, 10).w,
-              child: InkWell(
-                onTap: () {
-                  AuthService.to.userData.value.guardianPhoneNumber != null
-                      ? GlobalEmergencyModalWidget(context: context)
-                      : GlobalEmergencyModalWidget2(context: context);
-                },
-                child: Container(
-                  alignment: Alignment.centerRight,
-                  child: Image.asset(
-                    'assets/search_doctors/search_doctors_icon.png',
-                    width: 24.w,
-                    height: 24.w,
-                  ),
-                ),
-              ),
-            ),
-          ],
         ),
         body: SingleChildScrollView(
           physics: const ClampingScrollPhysics(),

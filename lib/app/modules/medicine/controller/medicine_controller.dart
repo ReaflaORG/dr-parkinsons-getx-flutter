@@ -21,7 +21,7 @@ class MedicineController extends GetxController {
       },
     ),
     MedicineBtnModel(
-      name: '복합체',
+      name: '복합제',
       icon: 'assets/images/icons/3d/48mpill2.png',
       onClick: () {
         Get.toNamed('/medicineinfo/${Uri.encodeComponent('복합제')}');

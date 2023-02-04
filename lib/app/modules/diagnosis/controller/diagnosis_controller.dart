@@ -104,7 +104,7 @@ class DiagnosisController extends GetxController {
         SurveyQuizModel(
           surveyId: 2,
           surveyQuizId: 10,
-          questionText: '10. 아무 것도 할 수 없을 것 같은 무력감이 자주 듭니까?',
+          questionText: '10. 아무것도 할 수 없을 것 같은 무력감이 자주 듭니까?',
           answers: [
             AnswerModel(surveyQuizId: 10, answerScore: 1, answerText: '예'),
             AnswerModel(surveyQuizId: 10, answerScore: 0, answerText: '아니요'),

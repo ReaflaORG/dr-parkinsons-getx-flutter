@@ -35,7 +35,7 @@ showAlertDialog(
           const SizedBox(height: 24),
           SizedBox(
             width: double.infinity,
-            height: 44,
+            height: 44.w,
             child: TextButton(
               onPressed: () {
                 Get.back();
@@ -96,49 +96,57 @@ showConfimDialog(
             style: TextPath.TextF16W400.copyWith(),
           ),
           SizedBox(height: 24.w),
-          SizedBox(
-            width: double.infinity,
-            height: 44.w,
-            child: TextButton(
-              onPressed: () async {
-                await handleOk();
-                Get.back();
-              },
-              style: TextButton.styleFrom(
-                  foregroundColor: Colors.white,
-                  backgroundColor: ColorPath.PrimaryDarkColor,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(8),
-                  )),
-              child: Text(
-                '삭제하기',
-                style: TextPath.TextF16W600White.copyWith(),
-              ),
-            ),
-          ),
-          SizedBox(height: 10.w),
-          SizedBox(
-            width: double.infinity,
-            height: 44,
-            child: TextButton(
-              onPressed: () {
-                Get.back();
-              },
-              style: TextButton.styleFrom(
-                foregroundColor: ColorPath.TextGrey2H424242,
-                backgroundColor: Colors.white,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(8).r,
-                ),
-                side: BorderSide(
-                  color: ColorPath.Background1HECEFF1,
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: [
+              SizedBox(
+                width: 100.w,
+                height: 44.w,
+                child: TextButton(
+                  onPressed: () {
+                    Get.back();
+                  },
+                  style: TextButton.styleFrom(
+                    foregroundColor: ColorPath.TextGrey2H424242,
+                    backgroundColor: Colors.white,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(8).r,
+                    ),
+                    side: BorderSide(
+                      color: ColorPath.Background1HECEFF1,
+                    ),
+                  ),
+                  child: Text(
+                    '취소하기',
+                    style: TextPath.TextF16W600.copyWith(
+                      color: ColorPath.TextGrey3H616161,
+                    ),
+                  ),
                 ),
               ),
-              child: Text(
-                '취소하기',
-                style: TextPath.TextF16W600.copyWith(),
+              SizedBox(width: 10.w),
+              Expanded(
+                child: SizedBox(
+                  height: 44.w,
+                  child: TextButton(
+                    onPressed: () async {
+                      await handleOk();
+                      Get.back();
+                    },
+                    style: TextButton.styleFrom(
+                        foregroundColor: Colors.white,
+                        backgroundColor: ColorPath.PrimaryDarkColor,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(8),
+                        )),
+                    child: Text(
+                      '삭제하기',
+                      style: TextPath.TextF16W600White.copyWith(),
+                    ),
+                  ),
+                ),
               ),
-            ),
+            ],
           ),
         ],
       ),

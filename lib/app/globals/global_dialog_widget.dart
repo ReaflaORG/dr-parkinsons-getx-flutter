@@ -1233,7 +1233,7 @@ void GlobalAlbumBottomSheetModal({
               borderRadius: BorderRadius.circular(4.w),
             ),
           ),
-          SizedBox(height: 8.w),
+          SizedBox(height: 15.w),
           // Row(
           //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
           //   crossAxisAlignment: CrossAxisAlignment.center,
