@@ -1,15 +1,28 @@
 include: package:flutter_lints/flutter.yaml
 
+# https://github.com/Appdynamics/flutter-plugin/blob/master/analysis_options.yaml
+
+analyzer:
+  # strong-mode:
+  #   implicit-casts: false
+  #   implicit-dynamic: false
+  errors:
+    todo: ignore
+    undefined_identifier: ignore
+    unnecessary_null_comparison: ignore
+    override_on_non_overriding_member: ignore
+    unnecessary_cast: ignore
+    must_be_immutable: ignore
+  exclude:
+    - android/**
+    - ios/**
+
 linter:
   rules:
     non_constant_identifier_names: false
-    undefined_identifier: false
     unnecessary_overrides: false
-    unnecessary_null_comparison: false
     constant_identifier_names: false
-    override_on_non_overriding_member: false
     prefer_single_quotes: true
     use_build_context_synchronously: false
     prefer_typing_uninitialized_variables: false
     use_super_parameters: true
-    unnecessary_cast: false

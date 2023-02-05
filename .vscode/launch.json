@@ -7,7 +7,12 @@
     {
       "name": "base",
       "request": "launch",
-      "type": "dart"
+      "type": "dart",
+      "args": [
+        "--dart-define=flutter.inspector.debugDescription=false",
+        "--dart-define=flutter.jank=none"
+        // "--enable-impeller"
+      ]
     },
     {
       "name": "base (profile mode)",

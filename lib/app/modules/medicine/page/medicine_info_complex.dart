@@ -7,9 +7,9 @@ class MedicineInfoComplexPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Column(
+    return Column(
       mainAxisAlignment: MainAxisAlignment.start,
-      children: [
+      children: const [
         MedicineItemTitleWidget(text: '약제명'),
         MedicineItemDescriptionWidget(
           text: '''레보도파 엔타카폰 복합제''',
