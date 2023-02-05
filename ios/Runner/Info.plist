@@ -38,11 +38,11 @@
 	<string>Main</string>
 	<!-- 위치 -->
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>Need to get location information</string>
+	<string>주변 병원 및 의사를 검색하기 위해 허용해야 합니다.</string>
 	<key>NSLocationAlwaysUsageDescription</key>
-	<string>Need to get location information</string>
-	<!-- <key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
-	<string>Need to get location information</string> -->
+	<string>주변 병원 및 의사를 검색하기 위해 허용해야 합니다.</string>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string>주변 병원 및 의사를 검색하기 위해 허용해야 합니다.</string>
 	<!-- 사진 -->
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>증상 기록을 작성하기 위해서는 string관련 권한이 필요로 합니다.</string>

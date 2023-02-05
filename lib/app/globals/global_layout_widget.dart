@@ -72,18 +72,30 @@ class GlobalLayoutWidget extends StatelessWidget {
       child: WillPopScope(
         onWillPop: onWillPop,
         child: isSafeArea!
-            ? SafeArea(
-                child: Scaffold(
-                  resizeToAvoidBottomInset: resizeToAvoidBottomInset,
-                  extendBodyBehindAppBar: extendBodyBehindAppBar,
-                  appBar: appBar,
-                  backgroundColor: backgroundColor,
-                  bottomNavigationBar: bottomNavigationBar,
-                  floatingActionButton: floatingActionButton,
-                  floatingActionButtonLocation: floatingActionButtonLocation,
-                  body: body,
-                ),
-              )
+            ? Platform.isAndroid
+                ? SafeArea(
+                    child: Scaffold(
+                      resizeToAvoidBottomInset: resizeToAvoidBottomInset,
+                      extendBodyBehindAppBar: extendBodyBehindAppBar,
+                      appBar: appBar,
+                      backgroundColor: backgroundColor,
+                      bottomNavigationBar: bottomNavigationBar,
+                      floatingActionButton: floatingActionButton,
+                      floatingActionButtonLocation:
+                          floatingActionButtonLocation,
+                      body: body,
+                    ),
+                  )
+                : Scaffold(
+                    resizeToAvoidBottomInset: resizeToAvoidBottomInset,
+                    extendBodyBehindAppBar: extendBodyBehindAppBar,
+                    appBar: appBar,
+                    backgroundColor: backgroundColor,
+                    bottomNavigationBar: bottomNavigationBar,
+                    floatingActionButton: floatingActionButton,
+                    floatingActionButtonLocation: floatingActionButtonLocation,
+                    body: body,
+                  )
             : Scaffold(
                 resizeToAvoidBottomInset: resizeToAvoidBottomInset,
                 extendBodyBehindAppBar: extendBodyBehindAppBar,
