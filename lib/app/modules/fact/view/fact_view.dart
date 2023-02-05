@@ -19,7 +19,6 @@ class FactView extends GetView<FactController> {
     return Obx(
       () => GlobalLayoutWidget(
         context: context,
-        isSafeArea: false,
         appBar: GlobalAppBarWidget(
           appBar: AppBar(),
           title: '파킨슨병 완전정복',
