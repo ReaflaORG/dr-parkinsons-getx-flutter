@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:flutter/material.dart';
 
 /// 글로벌 레이아웃 위젯
@@ -74,41 +72,16 @@ class GlobalLayoutWidget extends StatelessWidget {
       onTap: () => FocusScope.of(context).unfocus(),
       child: WillPopScope(
         onWillPop: onWillPop,
-        child: isSafeArea!
-            ? Platform.isAndroid
-                ? SafeArea(
-                    child: Scaffold(
-                      resizeToAvoidBottomInset: resizeToAvoidBottomInset,
-                      extendBodyBehindAppBar: extendBodyBehindAppBar,
-                      appBar: appBar,
-                      backgroundColor: backgroundColor,
-                      bottomNavigationBar: bottomNavigationBar,
-                      floatingActionButton: floatingActionButton,
-                      floatingActionButtonLocation:
-                          floatingActionButtonLocation,
-                      body: body,
-                    ),
-                  )
-                : Scaffold(
-                    resizeToAvoidBottomInset: resizeToAvoidBottomInset,
-                    extendBodyBehindAppBar: extendBodyBehindAppBar,
-                    appBar: appBar,
-                    backgroundColor: backgroundColor,
-                    bottomNavigationBar: bottomNavigationBar,
-                    floatingActionButton: floatingActionButton,
-                    floatingActionButtonLocation: floatingActionButtonLocation,
-                    body: body,
-                  )
-            : Scaffold(
-                resizeToAvoidBottomInset: resizeToAvoidBottomInset,
-                extendBodyBehindAppBar: extendBodyBehindAppBar,
-                appBar: appBar,
-                backgroundColor: backgroundColor,
-                bottomNavigationBar: bottomNavigationBar,
-                floatingActionButton: floatingActionButton,
-                floatingActionButtonLocation: floatingActionButtonLocation,
-                body: body,
-              ),
+        child: Scaffold(
+          resizeToAvoidBottomInset: resizeToAvoidBottomInset,
+          extendBodyBehindAppBar: extendBodyBehindAppBar,
+          appBar: appBar,
+          backgroundColor: backgroundColor,
+          bottomNavigationBar: bottomNavigationBar,
+          floatingActionButton: floatingActionButton,
+          floatingActionButtonLocation: floatingActionButtonLocation,
+          body: isSafeArea! ? SafeArea(child: body) : body,
+        ),
       ),
     );
   }
