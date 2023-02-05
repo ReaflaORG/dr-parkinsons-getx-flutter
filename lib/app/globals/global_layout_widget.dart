@@ -53,6 +53,7 @@ class GlobalLayoutWidget extends StatelessWidget {
   final Widget? bottomNavigationBar;
 
   /// 세이프 영역 여부
+  /// `IOS`의 경우 `SafeArea`를 사용하게 되면 `StatusBar`가 보이지 않는 현상이 있음
   final bool? isSafeArea;
 
   /// 세이프 영역 여부
