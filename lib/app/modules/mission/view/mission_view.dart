@@ -144,7 +144,7 @@ class MissionView extends GetView<MissionController> {
                                   vertical: 22.w,
                                 ),
                                 width: 150.w,
-                                height: 105.w,
+                                height: 115.w,
                                 decoration: BoxDecoration(
                                   color: ColorPath.BackgroundWhite,
                                   borderRadius: BorderRadius.circular(12).r,
