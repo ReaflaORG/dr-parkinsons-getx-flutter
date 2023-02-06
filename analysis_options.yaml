@@ -8,7 +8,7 @@ analyzer:
   #   implicit-dynamic: false
   errors:
     todo: ignore
-    undefined_identifier: ignore
+    # undefined_identifier: ignore
     unnecessary_null_comparison: ignore
     override_on_non_overriding_member: ignore
     unnecessary_cast: ignore

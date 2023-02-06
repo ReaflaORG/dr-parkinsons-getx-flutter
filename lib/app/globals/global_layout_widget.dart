@@ -53,7 +53,6 @@ class GlobalLayoutWidget extends StatelessWidget {
   final Widget? bottomNavigationBar;
 
   /// 세이프 영역 여부
-  /// `IOS`의 경우 `SafeArea`를 사용하게 되면 `StatusBar`가 보이지 않는 현상이 있음
   final bool? isSafeArea;
 
   /// 세이프 영역 여부
@@ -67,20 +66,20 @@ class GlobalLayoutWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      behavior: HitTestBehavior.translucent,
-      onTap: () => FocusScope.of(context).unfocus(),
-      child: WillPopScope(
-        onWillPop: onWillPop,
-        child: Scaffold(
-          resizeToAvoidBottomInset: resizeToAvoidBottomInset,
-          extendBodyBehindAppBar: extendBodyBehindAppBar,
-          appBar: appBar,
-          backgroundColor: backgroundColor,
-          bottomNavigationBar: bottomNavigationBar,
-          floatingActionButton: floatingActionButton,
-          floatingActionButtonLocation: floatingActionButtonLocation,
-          body: isSafeArea! ? SafeArea(child: body) : body,
+    return Scaffold(
+      resizeToAvoidBottomInset: resizeToAvoidBottomInset,
+      extendBodyBehindAppBar: extendBodyBehindAppBar,
+      appBar: appBar,
+      backgroundColor: backgroundColor,
+      bottomNavigationBar: bottomNavigationBar,
+      floatingActionButton: floatingActionButton,
+      floatingActionButtonLocation: floatingActionButtonLocation,
+      body: GestureDetector(
+        behavior: HitTestBehavior.translucent,
+        onTap: () => FocusScope.of(context).unfocus(),
+        child: WillPopScope(
+          onWillPop: onWillPop,
+          child: isSafeArea! ? SafeArea(child: body) : body,
         ),
       ),
     );

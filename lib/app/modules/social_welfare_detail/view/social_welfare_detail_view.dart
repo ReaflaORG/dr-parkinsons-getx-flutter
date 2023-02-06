@@ -105,22 +105,22 @@ class SocialWelfareDetailView extends GetView<SocialWelfareDetailController> {
             controller.isLoad.value
                 ? const GlobalLoaderIndicatorWidget()
                 : controller.isScrollCheck.value
-                    ? AnimatedOpacity(
-                        duration: const Duration(milliseconds: 100),
-                        opacity:
-                            controller.isAppBarTitleAnimation.value ? 1 : 0,
-                        child: Positioned(
-                          child: Container(
-                            padding: const EdgeInsets.fromLTRB(10, 50, 3, 0),
-                            height: 105.1,
-                            decoration: BoxDecoration(
-                              color: Colors.white,
-                              border: Border(
-                                bottom: BorderSide(
-                                  color: Colors.grey.shade400,
-                                ),
+                    ? Positioned(
+                        child: Container(
+                          padding: const EdgeInsets.fromLTRB(10, 50, 3, 0),
+                          height: 105.1,
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            border: Border(
+                              bottom: BorderSide(
+                                color: Colors.grey.shade400,
                               ),
                             ),
+                          ),
+                          child: AnimatedOpacity(
+                            duration: const Duration(milliseconds: 100),
+                            opacity:
+                                controller.isAppBarTitleAnimation.value ? 1 : 0,
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.start,
                               crossAxisAlignment: CrossAxisAlignment.center,

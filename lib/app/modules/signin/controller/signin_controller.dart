@@ -175,6 +175,8 @@ class SignInController extends GetxController {
         },
       );
 
+      Logger().d(response);
+
       switch (response.statusCode) {
         case 201:
           UserModel response_user = UserModel.fromJson(response.data['user']);

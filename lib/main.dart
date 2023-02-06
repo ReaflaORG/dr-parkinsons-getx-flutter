@@ -1,3 +1,6 @@
+import 'dart:io';
+
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter/services.dart';
@@ -15,6 +18,7 @@ import 'app/service/global_service.dart';
 import 'app/service/location_service.dart';
 import 'app/service/permission_service.dart';
 import 'app/theme/theme.dart';
+import 'app/utils/http_utils.dart';
 
 void main() async {
   await initialize();
@@ -27,6 +31,11 @@ Future<void> initialize() async {
   WidgetsBinding.instance.addPostFrameCallback((_) {
     SchedulerBinding.instance.scheduleWarmUpFrame();
   });
+
+  // Http 초기화 (디버그 모드일 경우)
+  if (kDebugMode) {
+    HttpOverrides.global = MyHttpOverrides();
+  }
 
   // .env 초기화
   await dotenv.load();

@@ -1,4 +1,3 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -88,67 +87,95 @@ class DiscoderCardWidget extends GetView<DisorderController> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Stack(
-            children: [
-              SizedBox(
-                width: double.infinity,
-                height: 150.w,
-                child: ClipRRect(
-                  borderRadius: BorderRadius.circular(8).r,
-                  child: CachedNetworkImage(
-                    imageUrl: controller.videoData[index]['thumbnail']!,
-                    fit: BoxFit.cover,
-                    placeholder: (context, url) {
-                      return Center(
-                        child: CircularProgressIndicator(
-                          color: ColorPath.PrimaryColor.withOpacity(0.1),
+          ClipRRect(
+            borderRadius: BorderRadius.circular(8).r,
+            child: SizedBox(
+              width: double.infinity,
+              height: 150.w,
+              child: Stack(
+                children: [
+                  Container(
+                    decoration: BoxDecoration(
+                      image: DecorationImage(
+                        image: NetworkImage(
+                          controller.videoData[index]['thumbnail']!,
                         ),
-                      );
-                    },
-                    errorWidget: (context, url, error) {
-                      return const Icon(Icons.error);
-                    },
-                  ),
-                ),
-              ),
-              Positioned(
-                top: 10,
-                left: 10,
-                child: Icon(
-                  Icons.smart_display_rounded,
-                  size: 20.w,
-                  color: Colors.redAccent,
-                ),
-              ),
-              Positioned(
-                top: 15,
-                right: 10,
-                child: Container(
-                  padding: EdgeInsets.symmetric(horizontal: 5.w),
-                  decoration: BoxDecoration(
-                    color: Colors.black54,
-                    borderRadius: BorderRadius.circular(8).r,
-                  ),
-                  child: Row(
-                    children: [
-                      Icon(
-                        Icons.check_rounded,
-                        size: 8.w,
-                        color: Colors.white70,
+                        fit: BoxFit.cover,
                       ),
-                      SizedBox(width: 2.5.w),
-                      Text(
-                        '523',
-                        style: TextPath.TextF12W600.copyWith(
-                          color: Colors.white70,
-                          fontSize: 10.sp,
-                        ),
-                      ),
-                    ],
+                    ),
                   ),
-                ),
+                  // Image.network(
+                  //   controller.videoData[index]['thumbnail']!,
+                  //   width: double.infinity,
+                  //   height: 150.w,
+                  //   fit: BoxFit.cover,
+                  //   filterQuality: FilterQuality.medium,
+                  //   loadingBuilder: (context, child, loadingProgress) {
+                  //     if (loadingProgress == null) return child;
+                  //     return Center(
+                  //       child: CircularProgressIndicator(
+                  //         color: ColorPath.PrimaryColor.withOpacity(0.1),
+                  //       ),
+                  //     );
+                  //   },
+                  // ),
+                  // `CachedNetworkImage` 위젯 오류 이슈 있는듯함
+                  // CachedNetworkImage(
+                  //   imageUrl: controller.videoData[index]['thumbnail']!,
+                  //   fit: BoxFit.cover,
+                  //   placeholder: (context, url) {
+                  //     return Center(
+                  //       child: CircularProgressIndicator(
+                  //         color: ColorPath.PrimaryColor.withOpacity(0.1),
+                  //       ),
+                  //     );
+                  //   },
+                  //   errorWidget: (context, url, error) {
+                  //     return const Icon(Icons.error);
+                  //   },
+                  // ),
+                  Positioned(
+                    top: 10,
+                    left: 10,
+                    child: Icon(
+                      Icons.smart_display_rounded,
+                      size: 20.w,
+                      color: Colors.redAccent,
+                    ),
+                  ),
+                ],
               ),
-            ],
+            ),
+
+            // 조회수
+            // Positioned(
+            //   top: 15,
+            //   right: 10,
+            //   child: Container(
+            //     padding: EdgeInsets.symmetric(horizontal: 5.w),
+            //     decoration: BoxDecoration(
+            //       color: Colors.black54,
+            //       borderRadius: BorderRadius.circular(8).r,
+            //     ),
+            //     child: Row(
+            //       children: [
+            //         Icon(
+            //           Icons.check_rounded,
+            //           size: 8.w,
+            //           color: Colors.white70,
+            //         ),
+            //         SizedBox(width: 2.5.w),
+            //         Text(
+            //           '523',
+            //           style: TextPath.TextF12W600.copyWith(
+            //             color: Colors.white70,
+            //             fontSize: 10.sp,
+            //           ),
+            //         ),
+            //       ],
+            //     ),
+            //   ),
+            // ),
           ),
           SizedBox(height: 10.w),
           Text(

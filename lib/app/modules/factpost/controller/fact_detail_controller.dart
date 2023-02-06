@@ -1,5 +1,3 @@
-// ignore_for_file: unnecessary_overrides
-
 import 'dart:async';
 
 import 'package:dr_parkinsons/app/globals/global_toast_widget.dart';

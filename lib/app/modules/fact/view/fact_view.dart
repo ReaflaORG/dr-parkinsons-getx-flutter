@@ -1,4 +1,3 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -83,99 +82,87 @@ class CardWidget extends GetView<FactController> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Stack(
-            children: [
-              Hero(
-                tag: controller.factData[index].idx,
-                child: ClipRRect(
-                  borderRadius: BorderRadius.circular(8).r,
-                  // child: Image.network(
-                  //   controller.factData[index].image,
-                  //   width: double.infinity,
+          ClipRRect(
+            borderRadius: BorderRadius.circular(8).r,
+            // child: Image.network(
+            //   controller.factData[index].image,
+            //   width: double.infinity,
+            //   height: 150.w,
+            //   fit: BoxFit.cover,
+            // ),
+            child: SizedBox(
+              height: 150.w,
+              child: Stack(
+                children: [
+                  Hero(
+                    tag: controller.factData[index].idx,
+                    // child: Container(
+                    //   decoration: BoxDecoration(
+                    //     borderRadius: BorderRadius.circular(8).r,
+                    //     image: DecorationImage(
+                    //       image: CachedNetworkImageProvider(
+                    //         controller.factData[index].image,
+                    //         maxWidth: 600,
+                    //       ),
+                    //       fit: BoxFit.cover,
+                    //     ),
+                    //   ),
+                    // ),
+                    child: Container(
+                      decoration: BoxDecoration(
+                        image: DecorationImage(
+                          image: NetworkImage(
+                            controller.factData[index].image,
+                          ),
+                          fit: BoxFit.cover,
+                        ),
+                      ),
+                    ),
+                    // child: Image.network(
+                    //   controller.factData[index].image,
+                    //   width: double.infinity,
+                    //   height: 150.w,
+                    //   fit: BoxFit.cover,
+                    //   // filterQuality: FilterQuality.medium,
+                    //   loadingBuilder: (context, child, loadingProgress) {
+                    //     if (loadingProgress == null) return child;
+                    //     return Center(
+                    //       child: CircularProgressIndicator(
+                    //         color: ColorPath.PrimaryColor.withOpacity(0.1),
+                    //       ),
+                    //     );
+                    //   },
+                    // ),
+                  ),
+                  // `CachedNetworkImage` 위젯 오류 이슈 있는듯함
+                  // CachedNetworkImage(
+                  //   imageUrl: controller.factData[index].image,
+                  //   // width: double.infinity,
                   //   height: 150.w,
                   //   fit: BoxFit.cover,
+                  //   placeholder: (context, url) {
+                  //     return Center(
+                  //       child: CircularProgressIndicator(
+                  //         color: ColorPath.PrimaryColor.withOpacity(0.1),
+                  //       ),
+                  //     );
+                  //   },
+                  //   errorWidget: (context, url, error) {
+                  //     return const Icon(Icons.error);
+                  //   },
                   // ),
-                  child: CachedNetworkImage(
-                    imageUrl: controller.factData[index].image,
-                    width: double.infinity,
-                    height: 150.w,
-                    fit: BoxFit.cover,
-                    placeholder: (context, url) {
-                      return Center(
-                        child: CircularProgressIndicator(
-                          color: ColorPath.PrimaryColor.withOpacity(0.1),
-                        ),
-                      );
-                    },
-                    errorWidget: (context, url, error) {
-                      return const Icon(Icons.error);
-                    },
+                  Positioned(
+                    top: 10,
+                    left: 10,
+                    child: Icon(
+                      Icons.article_rounded,
+                      size: 20.w,
+                      color: Colors.black54,
+                    ),
                   ),
-                ),
+                ],
               ),
-              // Hero(
-              //   tag: controller.factData[index].idx,
-              //   child: Container(
-              //     width: double.infinity,
-              //     height: 150.w,
-              //     decoration: BoxDecoration(
-              //       image: DecorationImage(
-              //         image: NetworkImage(controller.factData[index].image),
-              //         fit: BoxFit.cover,
-              //       ),
-              //       borderRadius: BorderRadius.circular(8).r,
-              //     ),
-              //   ),
-              // ),
-              if (index == 0)
-                Positioned(
-                  top: 10,
-                  left: 10,
-                  child: Icon(
-                    Icons.article_rounded,
-                    size: 20.w,
-                    color: Colors.black54,
-                  ),
-                ),
-              Positioned(
-                top: 15,
-                right: 10,
-                child: Container(
-                  padding: EdgeInsets.symmetric(horizontal: 5.w),
-                  decoration: BoxDecoration(
-                    color: Colors.black54,
-                    borderRadius: BorderRadius.circular(8).r,
-                  ),
-                  child: Row(
-                    children: [
-                      Icon(
-                        Icons.check_rounded,
-                        size: 8.w,
-                        color: Colors.white70,
-                      ),
-                      SizedBox(width: 2.5.w),
-                      Text(
-                        '523',
-                        style: TextPath.TextF12W600.copyWith(
-                          color: Colors.white70,
-                          fontSize: 10.sp,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-              // if (index == 0)
-              //   Positioned(
-              //     top: 10,
-              //     left: 40,
-              //     child: Icon(
-              //       Icons.fiber_new_rounded,
-              //       size: 20.w,
-              //       color: Colors.deepOrange,
-              //     ),
-              //   ),
-            ],
+            ),
           ),
           SizedBox(height: 10.w),
           Text(
