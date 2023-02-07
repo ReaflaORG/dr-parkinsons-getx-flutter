@@ -109,19 +109,30 @@ class MySymptomsItemWidget extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Padding(
-            padding: const EdgeInsets.all(20).w,
-            child: Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Column(
+          Column(
+            children: [
+              Padding(
+                padding: const EdgeInsets.all(20).w,
+                child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(
-                      item.title,
-                      style: TextPath.TextF16W400.copyWith(
-                        color: ColorPath.BlackColor,
-                      ),
+                    Row(
+                      children: [
+                        Expanded(
+                          child: Text(
+                            item.title,
+                            style: TextPath.TextF16W400.copyWith(
+                              color: ColorPath.BlackColor,
+                            ),
+                          ),
+                        ),
+                        Text(
+                          item.createdAt.toString().substring(0, 10),
+                          style: TextPath.TextF14W400.copyWith(
+                            color: ColorPath.TextGrey3H616161,
+                          ),
+                        ),
+                      ],
                     ),
                     SizedBox(height: 5.w),
                     Text(
@@ -130,120 +141,61 @@ class MySymptomsItemWidget extends StatelessWidget {
                         color: ColorPath.TextGrey3H616161,
                       ),
                     ),
-                    SizedBox(height: 20.w),
-                    // if (item.symptomHistoryFiles.isEmpty)
-                    //   DottedBorder(
-                    //     color: ColorPath.TextGrey4H9E9E9E,
-                    //     strokeWidth: 1,
-                    //     dashPattern: const [6, 1],
-                    //     borderType: BorderType.RRect,
-                    //     radius: const Radius.circular(6).w,
-                    //     child: SizedBox(
-                    //       width: 110.w,
-                    //       height: 110.w,
-                    //       child: Center(
-                    //         child: Icon(
-                    //           Icons.image,
-                    //           color: ColorPath.TextGrey4H9E9E9E,
-                    //         ),
-                    //       ),
-                    //     ),
-                    //   ),
-                    if (item.symptomHistoryFiles.isNotEmpty)
-                      Row(
-                        children: List.generate(
-                          item.symptomHistoryFiles.length,
-                          (index) => Padding(
-                            padding: const EdgeInsets.only(right: 10).w,
-                            child: ClipRRect(
-                              borderRadius: BorderRadius.circular(6.w),
-                              child: Stack(
-                                children: [
-                                  CachedNetworkImage(
-                                    imageUrl: item.symptomHistoryFiles[index]
-                                                .type ==
+                  ],
+                ),
+              ),
+              if (item.symptomHistoryFiles.isNotEmpty)
+                Container(
+                  padding: const EdgeInsets.only(left: 20).w,
+                  height: 110.w,
+                  child: ListView.builder(
+                    scrollDirection: Axis.horizontal,
+                    physics: const ClampingScrollPhysics(),
+                    itemCount: item.symptomHistoryFiles.length,
+                    itemBuilder: (BuildContext context, int index) {
+                      return Padding(
+                        padding: const EdgeInsets.only(right: 10).w,
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(6.w),
+                          child: Stack(
+                            children: [
+                              CachedNetworkImage(
+                                imageUrl:
+                                    item.symptomHistoryFiles[index].type ==
                                             'image'
                                         ? item.symptomHistoryFiles[index].url
                                         : item.symptomHistoryFiles[index]
                                             .thumbnail!,
+                                width: 110.w,
+                                height: 110.w,
+                                fit: BoxFit.cover,
+                              ),
+                              if (item.symptomHistoryFiles[index].type ==
+                                  'video')
+                                Positioned(
+                                  top: 0,
+                                  left: 0,
+                                  child: Container(
                                     width: 110.w,
                                     height: 110.w,
-                                    fit: BoxFit.cover,
-                                  ),
-                                  if (item.symptomHistoryFiles[index].type ==
-                                      'video')
-                                    Positioned.fill(
-                                      child: Center(
-                                        child: SizedBox(
-                                          width: 30.w,
-                                          child: Image.asset(
-                                            'assets/doctor/video_play_button.png',
-                                          ),
-                                        ),
+                                    color: Colors.black.withOpacity(0.5),
+                                    child: Center(
+                                      child: Image.asset(
+                                        'assets/images/video/play_button.webp',
+                                        width: 30.w,
+                                        height: 30.w,
                                       ),
                                     ),
-                                ],
-                              ),
-                            ),
+                                  ),
+                                ),
+                            ],
                           ),
                         ),
-                      ),
-                  ],
-                ),
-                const Spacer(),
-                Text(
-                  item.createdAt.toString().substring(0, 10),
-                  style: TextPath.TextF14W400.copyWith(
-                    color: ColorPath.TextGrey3H616161,
+                      );
+                    },
                   ),
                 ),
-                // InkWell(
-                //   onTap: () {
-                //     Get.toNamed(
-                //       Routes.EDIT_MY_SYMPTOMS,
-                //       arguments: {
-                //         'id': item.symptomHistoryId,
-                //       },
-                //     );
-                //   },
-                //   child: Ink.image(
-                //     image: const AssetImage(
-                //       'assets/my_symptoms/modify_pencil_icon.png',
-                //     ),
-                //     width: 12.w,
-                //     height: 12.w,
-                //   ),
-                // ),
-                // SizedBox(width: 10.w),
-                // InkWell(
-                //   onTap: () {
-                //     GlobalSymptomRecordWidget(
-                //       alertTitleMsg: alertTitleMsg,
-                //       alertContentMsg: alertContentMsg,
-                //       onCancelPressed: () {
-                //         Get.back();
-                //       },
-                //       onOkPressed: () {
-                //         controller.deleteMySymptomsData(
-                //           item.symptomHistoryId,
-                //         );
-                //         Get.back();
-                //       },
-                //     );
-                //   },
-                //   child: Container(
-                //     padding: const EdgeInsets.only(right: 10).w,
-                //     child: Ink.image(
-                //       image: const AssetImage(
-                //         'assets/my_symptoms/trash_icon.png',
-                //       ),
-                //       width: 18.w,
-                //       height: 18.w,
-                //     ),
-                //   ),
-                // ),
-              ],
-            ),
+            ],
           ),
           Container(
             width: double.infinity,

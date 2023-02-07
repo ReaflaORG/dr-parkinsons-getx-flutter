@@ -72,9 +72,9 @@ class WriteMySymptomsController extends GetxController {
           return;
         }
 
-        if (text.length < 6) {
+        if (text.length < 2) {
           isSaveButtonEnable.value = false;
-          titleError.value = '6자 이상 입력해주세요';
+          titleError.value = '2자 이상 입력해주세요';
           return;
         }
 
@@ -88,9 +88,9 @@ class WriteMySymptomsController extends GetxController {
           return;
         }
 
-        if (text.length < 6) {
+        if (text.length < 2) {
           isSaveButtonEnable.value = false;
-          contentError.value = '6자 이상 입력해주세요';
+          contentError.value = '2자 이상 입력해주세요';
           return;
         }
 

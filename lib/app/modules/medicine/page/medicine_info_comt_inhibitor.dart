@@ -43,7 +43,7 @@ class MedicineInfoComptInhibitorPage extends StatelessWidget {
         MedicineItemLabel1Widget(text: '2. 오피카폰'),
         MedicineItemDescriptionWidget(
           text:
-              '''오피카폰은 기존의 엔타카폰이 가지고 있는 부작용인 설사와 소변색깔 변화의 부작용이 개선된 장점이 있고, 콤탄이 매번 도판민과 같이 복용하는 약제라면 온젠티스는 하루 한번 복용한다는 장점''',
+              '''오피카폰은 기존의 엔타카폰이 가지고 있는 부작용인 설사와 소변색깔 변화의 부작용이 개선된 장점이 있고, 콤탄이 매번 도파민과 같이 복용하는 약제라면 온젠티스는 하루 한번 복용한다는 장점''',
         ),
         SizedBox(height: 5),
         MedicineImageItem(

@@ -50,6 +50,32 @@ class EditMySymptomsController extends GetxController {
 
   // Function ▼
 
+  /// 텍스트 필드 OnChanged 핸들러
+  ///
+  /// [text] String: 텍스트 필드에 입력된 텍스트
+  ///
+  /// [type] String : 텍스트 필드 타입
+  bool handleOnChanged() {
+    if (titleController.value.text.isEmpty) {
+      isSaveButtonEnable.value = false;
+      titleError.value = '제목은 필수입니다.';
+    }
+
+    isSaveButtonEnable.value = true;
+    contentError.value = '';
+
+    if (contentController.value.text.isEmpty) {
+      isSaveButtonEnable.value = false;
+      contentError.value = '내용은 필수입니다.';
+    }
+
+    isSaveButtonEnable.value = true;
+    contentError.value = '';
+
+    return titleController.value.text.isNotEmpty &&
+        contentController.value.text.isNotEmpty;
+  }
+
   Future<void> getMySymptomsData() async {
     try {
       AuthBaseResponseModel response = await Provider.dio(
@@ -80,19 +106,7 @@ class EditMySymptomsController extends GetxController {
   }
 
   Future<void> handleSubmit() async {
-    if (titleController.value.text.isEmpty) {
-      titleError.value = '제목은 필수입니다.';
-    } else {
-      titleError.value = '';
-    }
-
-    if (contentController.value.text.isEmpty) {
-      contentError.value = '내용은 필수입니다.';
-    } else {
-      contentError.value = '';
-    }
-
-    if (titleError.value.isNotEmpty || contentError.value.isNotEmpty) {
+    if (!handleOnChanged()) {
       return;
     }
 
@@ -144,10 +158,8 @@ class EditMySymptomsController extends GetxController {
     XFile? image;
 
     if (isImage) {
-      Logger().d("A");
       image = await ImagePicker().pickImage(source: ImageSource.gallery);
     } else {
-      Logger().d("B");
       image = await ImagePicker().pickVideo(source: ImageSource.gallery);
     }
 
@@ -155,6 +167,7 @@ class EditMySymptomsController extends GetxController {
 
     if (image != null) {
       files.add(image);
+      handleOnChanged();
     }
   }
 
