@@ -140,7 +140,11 @@ class HomeController extends GetxController {
 
   /// 미션 남은 시간 계산
   int getDeffMinit(int time) {
+    // Logger().d(time);
+
     String now = DateFormat('HH:mm').format(DateTime.now());
+    // Logger().d(now);
+    Logger().d(time - int.parse(now.replaceAll(':', '')));
     return time - int.parse(now.replaceAll(':', ''));
   }
 

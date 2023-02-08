@@ -775,9 +775,9 @@ Future<dynamic> GlobalMissionUpdateAlarm({
       () => AlertDialog(
         backgroundColor: ColorPath.Background1HECEFF1,
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.all(
-            const Radius.circular(16).r,
-          ),
+          borderRadius: const BorderRadius.all(
+            Radius.circular(16),
+          ).r,
         ),
         content: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -948,14 +948,8 @@ Future<dynamic> GlobalMissionUpdateAlarm({
                     flex: 1,
                     child: GestureDetector(
                       onTap: () async {
-                        await Future.wait([
-                          () async {
-                            MissionController.to.deleteMission(mission_id: id);
-                          }(),
-                          () async {
-                            Get.back();
-                          }(),
-                        ]);
+                        MissionController.to.deleteMission(mission_id: id);
+                        Get.back();
                       },
                       child: Container(
                         alignment: Alignment.center,
@@ -985,14 +979,8 @@ Future<dynamic> GlobalMissionUpdateAlarm({
                           return;
                         }
 
-                        await Future.wait([
-                          () async {
-                            MissionController.to.updateMission(mission_id: id);
-                          }(),
-                          () async {
-                            Get.back();
-                          }(),
-                        ]);
+                        MissionController.to.updateMission(mission_id: id);
+                        Get.back();
                       },
                       child: Container(
                         alignment: Alignment.center,
@@ -1002,7 +990,7 @@ Future<dynamic> GlobalMissionUpdateAlarm({
                             bottomRight: const Radius.circular(16).r,
                           ),
                         ),
-                        height: 48,
+                        height: 48.w,
                         child: Text(
                           '수정하기',
                           style: TextPath.TextF14W500.copyWith(
@@ -1116,10 +1104,10 @@ Future<dynamic> GlobalSymptomRecordWidget({
 }) {
   return Get.dialog(
     AlertDialog(
-      shape: const RoundedRectangleBorder(
-        borderRadius: BorderRadius.all(
+      shape: RoundedRectangleBorder(
+        borderRadius: const BorderRadius.all(
           Radius.circular(16),
-        ),
+        ).r,
       ),
       title: Text(
         alertTitleMsg,

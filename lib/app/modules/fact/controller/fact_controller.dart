@@ -54,6 +54,7 @@ class FactController extends GetxController {
               response.data[index],
             ),
           ).obs;
+          factData.value = factData.reversed.toList();
           break;
         default:
           throw Exception(response.message);
