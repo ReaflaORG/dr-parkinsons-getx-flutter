@@ -142,10 +142,27 @@ class HomeController extends GetxController {
   int getDeffMinit(int time) {
     // Logger().d(time);
 
-    String now = DateFormat('HH:mm').format(DateTime.now());
-    // Logger().d(now);
-    Logger().d(time - int.parse(now.replaceAll(':', '')));
-    return time - int.parse(now.replaceAll(':', ''));
+    int now = int.parse(DateFormat('HHmm').format(DateTime.now()));
+    int now_m = int.parse(DateFormat('mm').format(DateTime.now()));
+
+    int now_add = 0;
+
+    int now_h = (now ~/ 100) + now_add;
+
+    Logger().d("시간 ${now_h}  : 분 :${now_m}");
+
+    int time_h = time ~/ 100; // 시간
+    int time_m = time % 100;
+
+    if (time - now < 0) {
+      return -1;
+    }
+
+    if (time_h - now_h <= 0) {
+      return time_m - now_m;
+    } else {
+      return ((time_h - now_h) * 60) + (time_m - now_m);
+    }
   }
 
   @override
