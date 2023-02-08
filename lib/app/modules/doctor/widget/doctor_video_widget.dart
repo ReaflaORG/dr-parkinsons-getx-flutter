@@ -30,7 +30,21 @@ class DoctorVideoWidget extends GetView<DoctorDetailController> {
           child: ClipRRect(
             borderRadius: BorderRadius.circular(8).r,
             child: YoutubePlayer(
-              controller: controller.videoData[index].youtubePlayer,
+              controller: YoutubePlayerController(
+                initialVideoId: YoutubePlayer.convertUrlToId(
+                  controller.doctor.value.doctorContents![index].content,
+                ) as String,
+                flags: const YoutubePlayerFlags(
+                  mute: false,
+                  autoPlay: false,
+                  disableDragSeek: false,
+                  loop: false,
+                  isLive: false,
+                  forceHD: false,
+                  enableCaption: true,
+                  captionLanguage: 'ko',
+                ),
+              ),
               actionsPadding: const EdgeInsets.only(left: 15).w,
               // progressIndicatorColor: Colors.black,
               // progressColors: ProgressBarColors(

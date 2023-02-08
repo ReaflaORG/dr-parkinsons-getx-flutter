@@ -571,7 +571,7 @@ class HomeView extends GetView<HomeController> {
                           height: 71.w,
                           child: GlobalInkWellWidget(
                             onTap: () {
-                              Get.toNamed(Routes.FAQ);
+                              Get.toNamed(Routes.SUGGEST_POLICY);
                             },
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -593,7 +593,7 @@ class HomeView extends GetView<HomeController> {
                                   ),
                                 ),
                                 Text(
-                                  '자주묻는질문',
+                                  '정책제안',
                                   style: TextPath.TextF12W500.copyWith(
                                     color: ColorPath.TextGrey1H212121,
                                   ),

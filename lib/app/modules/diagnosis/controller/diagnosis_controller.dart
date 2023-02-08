@@ -10,6 +10,8 @@ class DiagnosisController extends GetxController {
 
   /// Data ▼
 
+  dynamic params = Get.parameters['id'];
+
   /// 설문 데이터
   List<Survey> surveyList = [
     Survey(
@@ -345,10 +347,10 @@ class DiagnosisController extends GetxController {
           SurveyQuizModel(
             surveyId: 3,
             surveyQuizId: 306,
-            questionText: '6. 꿈을 꿀 때 아래의 일이 발생한다.',
+            questionText: '6. 꿈을 꿀 때 다음에 일이 발생한다.',
             answers: [
-              AnswerModel(surveyQuizId: 306, answerScore: 0, answerText: '예'),
-              AnswerModel(surveyQuizId: 306, answerScore: 0, answerText: '아니요'),
+              // AnswerModel(surveyQuizId: 306, answerScore: 0, answerText: '예'),
+              // AnswerModel(surveyQuizId: 306, answerScore: 0, answerText: '아니요'),
             ],
           ),
           SurveyQuizModel(
@@ -510,13 +512,13 @@ class DiagnosisController extends GetxController {
 
   @override
   Future<void> onInit() async {
-    survey_id.value = int.parse(Get.parameters['id']!);
+    survey_id.value = int.parse(params);
     // get parameter로 들어오는 서베이 아이디 값을 기준으로 서베이를 초기화
     int findIndex = surveyList.indexWhere(
       (element) =>
           element.surveyId ==
           int.parse(
-            Get.parameters['id']!,
+            params!,
           ),
     );
 

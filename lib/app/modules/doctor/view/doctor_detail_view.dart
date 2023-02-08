@@ -120,25 +120,27 @@ class DoctorCardWidget extends GetView<DoctorDetailController> {
 
   @override
   Widget build(BuildContext context) {
-    return controller.doctor.value.doctorContents!.isEmpty
-        ? const Center(
-            child: Text(
-              '컨텐츠가 없습니다',
+    return Obx(
+      () => controller.doctor.value.doctorContents!.isEmpty
+          ? const Center(
+              child: Text(
+                '컨텐츠가 없습니다',
+              ),
+            )
+          : ListView.separated(
+              padding: const EdgeInsets.only(top: 20).w,
+              shrinkWrap: true,
+              physics: const NeverScrollableScrollPhysics(),
+              itemCount: controller.doctor.value.doctorContents!.length,
+              itemBuilder: (BuildContext context, int index) {
+                return DoctorVideoWidget(
+                  index: index,
+                );
+              },
+              separatorBuilder: (BuildContext context, int index) {
+                return const Divider(color: Colors.transparent);
+              },
             ),
-          )
-        : ListView.separated(
-            padding: const EdgeInsets.only(top: 20).w,
-            shrinkWrap: true,
-            physics: const NeverScrollableScrollPhysics(),
-            itemCount: controller.doctor.value.doctorContents!.length,
-            itemBuilder: (BuildContext context, int index) {
-              return DoctorVideoWidget(
-                index: index,
-              );
-            },
-            separatorBuilder: (BuildContext context, int index) {
-              return const Divider(color: Colors.transparent);
-            },
-          );
+    );
   }
 }

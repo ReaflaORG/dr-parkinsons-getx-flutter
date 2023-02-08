@@ -23,47 +23,53 @@ class HealthCareController extends GetxController {
   /// 메뉴 데이터
   RxList<HealthCareBtnModel> menuData = [
     HealthCareBtnModel(
-        name: '약물검색',
-        color: ColorPath.PrimaryLightColor,
-        icon: 'assets/images/icons/3d/48pharmacy.png',
-        onClick: () {
-          Get.toNamed(Routes.MEDICINE);
-        }),
+      name: '약물검색',
+      color: ColorPath.PrimaryLightColor,
+      icon: 'assets/images/icons/3d/48pharmacy.png',
+      onClick: () {
+        Get.toNamed(Routes.MEDICINE);
+      },
+    ),
     HealthCareBtnModel(
-        name: '주의해야할 약',
-        color: ColorPath.TertiaryLightColor,
-        icon: 'assets/images/icons/3d/48pill1.png',
-        onClick: () {
-          Get.toNamed(Routes.DRUGMISUSE);
-        }),
+      name: '주의해야할 약',
+      color: ColorPath.TertiaryLightColor,
+      icon: 'assets/images/icons/3d/48pill1.png',
+      onClick: () {
+        Get.toNamed(Routes.DRUGMISUSE);
+      },
+    ),
     HealthCareBtnModel(
-        name: '파킨슨 자가진단',
-        color: ColorPath.SecondaryLightColor,
-        icon: 'assets/images/icons/3d/48test1.png',
-        onClick: () {
-          GlobalReadyModal(context: Get.overlayContext as BuildContext);
-        }),
+      name: '파킨슨 자가진단',
+      color: ColorPath.SecondaryLightColor,
+      icon: 'assets/images/icons/3d/48test1.png',
+      onClick: () {
+        GlobalReadyModal(context: Get.overlayContext as BuildContext);
+      },
+    ),
     HealthCareBtnModel(
-        name: '파킨슨 심리진단',
-        color: ColorPath.SecondaryLightColor,
-        icon: 'assets/images/icons/3d/48test2.png',
-        onClick: () {
-          Get.toNamed('${Routes.DIAGNOSIS}/2');
-        }),
+      name: '파킨슨 심리진단',
+      color: ColorPath.SecondaryLightColor,
+      icon: 'assets/images/icons/3d/48test2.png',
+      onClick: () {
+        Get.toNamed('${Routes.DIAGNOSIS}/2');
+      },
+    ),
     HealthCareBtnModel(
-        name: '수면장애진단',
-        color: ColorPath.SecondaryLightColor,
-        icon: 'assets/images/icons/3d/48test3.png',
-        onClick: () {
-          Get.toNamed('${Routes.DIAGNOSIS}/3');
-        }),
+      name: '수면장애진단',
+      color: ColorPath.SecondaryLightColor,
+      icon: 'assets/images/icons/3d/48test3.png',
+      onClick: () {
+        Get.toNamed('${Routes.DIAGNOSIS}/3');
+      },
+    ),
     HealthCareBtnModel(
-        name: '미션관리',
-        color: ColorPath.Background1HECEFF1,
-        icon: 'assets/images/icons/3d/48timer.png',
-        onClick: () {
-          MainController.to.navigationIndex.value = 2;
-        }),
+      name: '미션관리',
+      color: ColorPath.Background1HECEFF1,
+      icon: 'assets/images/icons/3d/48timer.png',
+      onClick: () {
+        MainController.to.navigationIndex.value = 2;
+      },
+    ),
   ].obs;
 
   /// 복지 혜택 데이터
