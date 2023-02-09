@@ -471,10 +471,16 @@ class DiagnosisController extends GetxController {
 
   /// 유저가 다음 문제로 이동하는 함수
   void nextQuestion() {
+    if (survey.value.quizes[questionNumber.value].surveyQuizId == 306) {
+      questionNumber.value += 1;
+      return;
+    }
+
     //! questionNumber.value => 현재 문제 번호
     //! survey.value.quizes[questionNumber.value].userAnswer => 현재 문제에 유저가 답을 작성했는지 : 안했으면 999 , 했으면 0,1
     // 유저가 문제에 대한 답을 선택하지 않았을 경우 디폴트값이 0 이므로 아무 액션 안함
     if (survey.value.quizes[questionNumber.value].userAnswer == 999) return;
+
     // 현재 문제 번호가 문제 전체 개수보다 크거나 같으면 종료 [ 스코어 점수 계산 ]
     if (questionNumber.value >= survey.value.quizes.length - 1) {
       // 반목문으로 quzie에 저장된 유저 답을 기반으로 계산

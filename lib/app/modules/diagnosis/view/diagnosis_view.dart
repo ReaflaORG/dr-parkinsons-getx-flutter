@@ -79,7 +79,8 @@ class TestInProgressWidget extends GetView<DiagnosisController> {
               ),
               // 3번 수면장애진단에서 6번 항목은 리스트에서 제외되어 -1 처리
               Text(
-                '/ ${controller.survey_id.value != 3 ? controller.survey.value.quizes.length : controller.survey.value.quizes.length - 1}',
+                // '/ ${controller.survey_id.value != 3 ? controller.survey.value.quizes.length : controller.survey.value.quizes.length - 1}',
+                '/ ${controller.survey.value.quizes.length}',
                 style: TextPath.TextF16W500.copyWith(
                     color: ColorPath.TextGrey2H424242),
               ),
