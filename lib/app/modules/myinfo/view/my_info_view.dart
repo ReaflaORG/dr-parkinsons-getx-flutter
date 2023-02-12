@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
 import '../../../globals/global_appbar_widget.dart';
+import '../../../globals/global_dialog_widget.dart';
 import '../../../globals/global_layout_widget.dart';
 import '../../../routes/app_pages.dart';
 import '../../../service/auth_service.dart';
@@ -241,7 +242,8 @@ class DoctorWidget extends GetView<MyInfoController> {
                   splashColor: ColorPath.PrimaryLightColor,
                   highlightColor: ColorPath.PrimaryColor.withOpacity(0.05),
                   onPressed: () {
-                    controller.putDoctorUser(context);
+                    GlobalMyDoctorModalWidget(context: context);
+                    // controller.putDoctorUser(context);
                   },
                   icon: Icon(
                     Icons.swap_horiz_rounded,

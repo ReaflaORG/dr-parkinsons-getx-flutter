@@ -58,6 +58,18 @@ class ViewMySymptomsView extends GetView<ViewMySymptomsController> {
                 actions: [
                   Container(
                     alignment: Alignment.center,
+                    child: TextButton(
+                      onPressed: () {},
+                      child: Text(
+                        '삭제하기',
+                        style: TextPath.TextF14W600.copyWith(
+                          color: ColorPath.TextGrey1H212121,
+                        ),
+                      ),
+                    ),
+                  ),
+                  Container(
+                    alignment: Alignment.center,
                     margin: const EdgeInsets.only(right: 10).w,
                     child: TextButton(
                       onPressed: () {

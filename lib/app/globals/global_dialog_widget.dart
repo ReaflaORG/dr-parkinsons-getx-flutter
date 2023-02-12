@@ -204,7 +204,9 @@ Future<dynamic> GlobalPermissionModalOpenAppSettingsWidget({
     );
 
 /// 응급상황 모달
-Future<dynamic> GlobalEmergencyModalWidget({required BuildContext context}) =>
+Future<dynamic> GlobalEmergencyModalWidget({
+  required BuildContext context,
+}) =>
     showDialog(
       context: context,
       barrierDismissible: true,
@@ -674,7 +676,9 @@ Future<dynamic> GlobalMakeAlarm({
                                 width: 110.w,
                                 height: 17.w,
                                 child: Text(
-                                  MissionController.to.dateFormatString.value,
+                                  MissionController.to.dateFormatString.value
+                                      .replaceAll('오전 오전', '오전')
+                                      .replaceAll('오후 오후', '오후'),
                                   style: TextPath.TextF14W500.copyWith(
                                       color: ColorPath.TextGrey1H212121),
                                 ),
@@ -916,7 +920,9 @@ Future<dynamic> GlobalMissionUpdateAlarm({
                             width: 110.w,
                             height: 17.w,
                             child: Text(
-                              MissionController.to.dateFormatString.value,
+                              MissionController.to.dateFormatString.value
+                                  .replaceAll('오전 오전', '오전')
+                                  .replaceAll('오후 오후', '오후'),
                               style: TextPath.TextF14W500.copyWith(
                                 color: ColorPath.TextGrey1H212121,
                               ),
@@ -1367,3 +1373,120 @@ void GlobalAlbumBottomSheetModal({
   //   }),
   // );
 }
+
+/// 내 주치의 삭제 모달
+Future<dynamic> GlobalMyDoctorModalWidget({
+  required BuildContext context,
+}) =>
+    showDialog(
+      context: context,
+      barrierDismissible: true,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text(
+            '내 주치의 삭제',
+            style: TextPath.Heading2F18W600.copyWith(
+              color: ColorPath.TextGrey1H212121,
+            ),
+          ),
+          shape: const RoundedRectangleBorder(
+            borderRadius: BorderRadius.all(Radius.circular(16)),
+          ),
+          content: Column(
+            mainAxisSize: MainAxisSize.min,
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              const SizedBox(height: 30),
+              SizedBox(
+                width: 80.w,
+                height: 80.w,
+                child: Image.asset('assets/images/icons/page2/80 alert.png'),
+              ),
+              const SizedBox(height: 12),
+              Text(
+                '응급 문자 보내기',
+                style: TextPath.Heading2F18W600.copyWith(
+                  color: ColorPath.TextGrey1H212121,
+                ),
+              ),
+              const SizedBox(height: 4),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    '보호자 연락처',
+                    style: TextPath.TextF12W400.copyWith(
+                      color: ColorPath.TextGrey2H424242,
+                    ),
+                  ),
+                  const SizedBox(
+                    width: 5,
+                  ),
+                  Text(
+                    '010 - XXXX - XXXX',
+                    style: TextPath.TextF12W400.copyWith(
+                      color: ColorPath.TextGrey2H424242,
+                    ),
+                  ),
+                ],
+              ),
+              const SizedBox(height: 40),
+              Row(
+                children: [
+                  Expanded(
+                    flex: 1,
+                    child: InkWell(
+                      onTap: () {
+                        Get.back();
+                      },
+                      child: Container(
+                        alignment: Alignment.center,
+                        decoration: BoxDecoration(
+                          color: ColorPath.Background1HECEFF1,
+                          borderRadius: const BorderRadius.only(
+                            bottomLeft: Radius.circular(16),
+                          ),
+                        ),
+                        height: 48.w,
+                        child: Text(
+                          '취소',
+                          style: TextPath.TextF14W500.copyWith(
+                            color: ColorPath.TextGrey1H212121,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                  Expanded(
+                    flex: 1,
+                    child: InkWell(
+                      onTap: () {
+                        HomeController.to.sendEmergency();
+                        Get.back();
+                      },
+                      child: Container(
+                        alignment: Alignment.center,
+                        decoration: BoxDecoration(
+                            color: ColorPath.PrimaryColor,
+                            borderRadius: const BorderRadius.only(
+                              bottomRight: Radius.circular(16),
+                            )),
+                        height: 48.w,
+                        child: Text(
+                          '전송',
+                          style: TextPath.TextF14W500.copyWith(
+                            color: ColorPath.BackgroundWhite,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              )
+            ],
+          ),
+          contentPadding: EdgeInsets.zero,
+        );
+      },
+    );

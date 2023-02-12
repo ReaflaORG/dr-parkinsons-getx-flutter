@@ -134,7 +134,7 @@ class DoctorCardWidget extends GetView<DoctorDetailController> {
               itemCount: controller.doctor.value.doctorContents!.length,
               itemBuilder: (BuildContext context, int index) {
                 return DoctorVideoWidget(
-                  index: index,
+                  data: controller.doctor.value.doctorContents![index],
                 );
               },
               separatorBuilder: (BuildContext context, int index) {

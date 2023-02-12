@@ -109,7 +109,6 @@ class DoctorDetailController extends GetxController {
           case 200:
             AuthService.to.handleMyInfo();
             doctor.value = DoctorModel.fromJson(response.data);
-            Logger().d(doctor.value.toJson());
             handleDoctorSubscribe();
             isLoad.value = false;
             break;
@@ -133,15 +132,12 @@ class DoctorDetailController extends GetxController {
       ).then((response) async {
         switch (response.statusCode) {
           case 200:
-            Future.value([
-              AuthService.to.handleMyInfo(),
-              doctor.value = DoctorModel.fromJson(response.data),
-            ]).then((value) {
-              handleDoctorSubscribe();
-              if (isDoctorSubscribe.value) {
-                GlobalToastWidget('내 주치의 설정이 완료되었습니다');
-              }
-            });
+            AuthService.to.handleMyInfo();
+            doctor.value = DoctorModel.fromJson(response.data);
+            handleDoctorSubscribe();
+            if (isDoctorSubscribe.value) {
+              GlobalToastWidget('내 주치의 설정이 완료되었습니다');
+            }
             break;
           default:
             throw Exception(response.message);
