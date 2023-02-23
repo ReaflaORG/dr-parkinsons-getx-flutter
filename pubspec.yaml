@@ -82,11 +82,12 @@ flutter:
     - assets/my_symptoms/
     - assets/images/icons/3d/
     - assets/images/icons/2d/
+    - assets/images/icons/page2/
+    - assets/images/icons/page4/
+    - assets/images/icons/medical_treatment/
     - assets/images/samples/
     - assets/images/medicine/
     - assets/images/etc/
-    - assets/images/icons/page2/
-    - assets/images/icons/page4/
     - assets/images/mock/page2/
 
   fonts:

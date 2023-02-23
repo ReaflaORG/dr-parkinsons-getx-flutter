@@ -118,9 +118,8 @@ class HomeView extends GetView<HomeController> {
                                   child: CircleAvatar(
                                     backgroundColor: ColorPath.BackgroundWhite,
                                     child: Image.asset(
-                                      width: 44.w,
-                                      height: 43.2.w,
-                                      'assets/images/icons/page2/44 DNA.png',
+                                      width: 38.w,
+                                      'assets/images/icons/medical_treatment/medical_treatment_32.webp',
                                     ),
                                   ),
                                 ),
@@ -173,9 +172,8 @@ class HomeView extends GetView<HomeController> {
                                           backgroundColor:
                                               ColorPath.BackgroundWhite,
                                           child: Image.asset(
-                                            width: 36.w,
-                                            height: 27.w,
-                                            'assets/images/icons/page2/36 Hospital.png',
+                                            width: 28.w,
+                                            'assets/images/icons/medical_treatment/medical_treatment_31.webp',
                                           ),
                                         ),
                                       ),
@@ -235,9 +233,8 @@ class HomeView extends GetView<HomeController> {
                                           backgroundColor:
                                               ColorPath.BackgroundWhite,
                                           child: Image.asset(
-                                            width: 36.w,
-                                            height: 27.w,
-                                            'assets/images/icons/page2/36 Medical Record.png',
+                                            width: 26.w,
+                                            'assets/images/icons/medical_treatment/medical_treatment_34.webp',
                                           ),
                                         ),
                                       ),
@@ -441,9 +438,9 @@ class HomeView extends GetView<HomeController> {
                                     backgroundColor:
                                         ColorPath.Background1HECEFF1,
                                     child: Image.asset(
-                                      width: 36.w,
-                                      height: 36.w,
-                                      'assets/images/icons/page2/36 Sketch Book.png',
+                                      width: 28.w,
+                                      height: 28.w,
+                                      'assets/images/icons/medical_treatment/medical_treatment_28.webp',
                                     ),
                                   ),
                                 ),
@@ -478,9 +475,9 @@ class HomeView extends GetView<HomeController> {
                                       backgroundColor:
                                           ColorPath.Background1HECEFF1,
                                       child: Image.asset(
-                                        width: 36.w,
-                                        height: 36.w,
-                                        'assets/images/icons/page2/36 Medical Record.png',
+                                        width: 28.w,
+                                        height: 28.w,
+                                        'assets/images/icons/medical_treatment/medical_treatment_15.webp',
                                       ),
                                     ),
                                   ),
@@ -513,9 +510,9 @@ class HomeView extends GetView<HomeController> {
                                     backgroundColor:
                                         ColorPath.Background1HECEFF1,
                                     child: Image.asset(
-                                      width: 36.w,
-                                      height: 36.w,
-                                      'assets/images/icons/page2/36 ambulance.png',
+                                      width: 28.w,
+                                      height: 28.w,
+                                      'assets/images/icons/medical_treatment/medical_treatment_27.webp',
                                     ),
                                   ),
                                 ),
@@ -550,9 +547,9 @@ class HomeView extends GetView<HomeController> {
                                     backgroundColor:
                                         ColorPath.Background1HECEFF1,
                                     child: Image.asset(
-                                      width: 36.w,
-                                      height: 36.w,
-                                      'assets/images/icons/page2/36 pharmacy.png',
+                                      width: 28.w,
+                                      height: 28.w,
+                                      'assets/images/icons/medical_treatment/medical_treatment_26.webp',
                                     ),
                                   ),
                                 ),
@@ -586,9 +583,9 @@ class HomeView extends GetView<HomeController> {
                                     backgroundColor:
                                         ColorPath.Background1HECEFF1,
                                     child: Image.asset(
-                                      width: 36.w,
-                                      height: 36.w,
-                                      'assets/images/icons/page2/36 Help.png',
+                                      width: 28.w,
+                                      height: 28.w,
+                                      'assets/images/icons/medical_treatment/medical_treatment_1.webp',
                                     ),
                                   ),
                                 ),

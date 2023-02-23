@@ -53,8 +53,8 @@ class HealthcareMainbtn extends StatelessWidget {
                   child: CircleAvatar(
                     backgroundColor: ColorPath.BackgroundWhite,
                     child: Image.asset(
-                      width: 44.w,
-                      height: 44.w,
+                      width: item.icon_width?.w,
+                      height: item.icon_height?.w,
                       item.icon,
                     ),
                   ),

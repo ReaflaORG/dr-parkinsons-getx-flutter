@@ -11,7 +11,6 @@ import '../../../routes/app_pages.dart';
 import '../../../theme/color_path.dart';
 import '../../../theme/text_path.dart';
 import '../../../utils/image/photo_view.dart';
-import '../../../utils/video/video_view.dart';
 import '../controller/view_my_symtoms_controller.dart';
 import '../models/my_symptoms_item_model.dart';
 
@@ -59,7 +58,9 @@ class ViewMySymptomsView extends GetView<ViewMySymptomsController> {
                   Container(
                     alignment: Alignment.center,
                     child: TextButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        controller.deleteMySymptomsData();
+                      },
                       child: Text(
                         '삭제하기',
                         style: TextPath.TextF14W600.copyWith(
@@ -227,7 +228,7 @@ class SymptomsKeyChildImageListWidget extends StatelessWidget {
                 child: GlobalInkWellWidget(
                   onTap: () {
                     if (type == 'video') {
-                      Get.to(() => VideoView(content_url: items[index].url));
+                      // Get.to(() => VideoView(content_url: items[index].url));
                     } else {
                       Get.to(
                         () => PhotoPageView(

@@ -138,7 +138,7 @@ class AppPages {
         GetPage(
           title: '파킨슨 병 소개 - 상세보기',
           name: Routes.DISORDER_DETAIL,
-          page: () => const DiscoderDetailView(),
+          page: () => DiscoderDetailView(),
           binding: DisorderDetailBinding(),
           transition: Transition.noTransition,
           popGesture: true,

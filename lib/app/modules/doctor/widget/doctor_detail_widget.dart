@@ -1,14 +1,12 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:get/get.dart';
 
 import '../../../globals/global_inkwell_widget.dart';
 import '../../../models/doctor_model.dart';
 import '../../../theme/color_path.dart';
 import '../../../theme/text_path.dart';
 import '../../../utils/formatter.dart';
-import '../../../utils/video/video_view.dart';
 
 /// 의사 상세 페이지
 class DoctorDetailWidget extends StatelessWidget {
@@ -27,7 +25,7 @@ class DoctorDetailWidget extends StatelessWidget {
       child: GlobalInkWellWidget(
         borderRadius: 16.r,
         onTap: () {
-          Get.to(() => VideoView(content_url: item.content));
+          // Get.to(() => VideoView(content_url: item.content));
         },
         child: Column(
           children: [

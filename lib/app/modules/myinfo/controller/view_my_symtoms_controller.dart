@@ -45,6 +45,26 @@ class ViewMySymptomsController extends GetxController {
     }
   }
 
+  Future<void> deleteMySymptomsData() async {
+    try {
+      AuthBaseResponseModel response = await Provider.dio(
+        method: 'DELETE',
+        url: '/myinfo/sympthom/${symptomId.value}',
+      );
+
+      switch (response.statusCode) {
+        case 200:
+          Get.back();
+          isLoad.value = false;
+          break;
+        default:
+          throw Exception(response.message);
+      }
+    } catch (e) {
+      Logger().d(e);
+    }
+  }
+
   @override
   Future<void> onInit() async {
     symptomId.value = Get.arguments['id'];

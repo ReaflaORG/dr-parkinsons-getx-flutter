@@ -25,7 +25,7 @@ class HealthCareController extends GetxController {
     HealthCareBtnModel(
       name: '약물검색',
       color: ColorPath.PrimaryLightColor,
-      icon: 'assets/images/icons/3d/48pharmacy.png',
+      icon: 'assets/images/icons/medical_treatment/medical_treatment_14.webp',
       onClick: () {
         Get.toNamed(Routes.MEDICINE);
       },
@@ -33,7 +33,7 @@ class HealthCareController extends GetxController {
     HealthCareBtnModel(
       name: '주의해야할 약',
       color: ColorPath.TertiaryLightColor,
-      icon: 'assets/images/icons/3d/48pill1.png',
+      icon: 'assets/images/icons/medical_treatment/medical_treatment_9.webp',
       onClick: () {
         Get.toNamed(Routes.DRUGMISUSE);
       },
@@ -41,7 +41,7 @@ class HealthCareController extends GetxController {
     HealthCareBtnModel(
       name: '파킨슨 자가진단',
       color: ColorPath.SecondaryLightColor,
-      icon: 'assets/images/icons/3d/48test1.png',
+      icon: 'assets/images/icons/medical_treatment/medical_treatment_15.webp',
       onClick: () {
         GlobalReadyModal(context: Get.overlayContext as BuildContext);
       },
@@ -49,7 +49,7 @@ class HealthCareController extends GetxController {
     HealthCareBtnModel(
       name: '파킨슨 심리진단',
       color: ColorPath.SecondaryLightColor,
-      icon: 'assets/images/icons/3d/48test2.png',
+      icon: 'assets/images/icons/medical_treatment/medical_treatment_17.webp',
       onClick: () {
         Get.toNamed('${Routes.DIAGNOSIS}/2');
       },
@@ -57,7 +57,7 @@ class HealthCareController extends GetxController {
     HealthCareBtnModel(
       name: '수면장애진단',
       color: ColorPath.SecondaryLightColor,
-      icon: 'assets/images/icons/3d/48test3.png',
+      icon: 'assets/images/icons/medical_treatment/medical_treatment_33.webp',
       onClick: () {
         Get.toNamed('${Routes.DIAGNOSIS}/3');
       },
@@ -65,7 +65,9 @@ class HealthCareController extends GetxController {
     HealthCareBtnModel(
       name: '미션관리',
       color: ColorPath.Background1HECEFF1,
-      icon: 'assets/images/icons/3d/48timer.png',
+      icon: 'assets/images/icons/medical_treatment/medical_treatment_35.webp',
+      icon_width: 32,
+      icon_height: 32,
       onClick: () {
         MainController.to.navigationIndex.value = 2;
       },
