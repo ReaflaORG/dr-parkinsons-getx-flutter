@@ -5,10 +5,6 @@ import 'dart:async';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:intl/intl.dart';
-import 'package:youtube_player_flutter/youtube_player_flutter.dart';
-
-import '../../../models/disorder_model.dart';
 
 class DisorderController extends GetxController {
   static DisorderController get to => Get.find();
@@ -19,70 +15,6 @@ class DisorderController extends GetxController {
   Rx<ScrollController> scrollController = ScrollController().obs;
 
   // Data ▼
-
-  /// 유튜브 비디오 데이터
-  RxList<YoutubeVideoModel> youtubeVideoData = [
-    YoutubeVideoModel(
-      title: 'EP1 파킨슨증 핵심만 콕콕! 운동증상 비운동증상 알아봐요!',
-      thumbnail: 'https://img.youtube.com/vi/Z_MXzuK9wjk/maxresdefault.jpg',
-      createdAt: DateFormat('yyyy-MM-dd').parse('2022-10-7'),
-      youtubePlayer: YoutubePlayerController(
-        initialVideoId: YoutubePlayer.convertUrlToId(
-          'https://www.youtube.com/watch?v=Z_MXzuK9wjk',
-        ) as String,
-        flags: const YoutubePlayerFlags(
-          mute: false,
-          autoPlay: false,
-          disableDragSeek: false,
-          loop: false,
-          isLive: false,
-          forceHD: false,
-          enableCaption: true,
-          captionLanguage: 'ko',
-        ),
-      ),
-    ),
-    YoutubeVideoModel(
-      title: 'EP2 파킨슨증이냐? 파킨슨병이냐? 진단 과정과 약물치료까지!',
-      thumbnail: 'https://img.youtube.com/vi/Y3EfqMEou30/maxresdefault.jpg',
-      createdAt: DateFormat('yyyy-MM-dd').parse('2022-10-21'),
-      youtubePlayer: YoutubePlayerController(
-        initialVideoId: YoutubePlayer.convertUrlToId(
-          'https://www.youtube.com/watch?v=Y3EfqMEou30',
-        ) as String,
-        flags: const YoutubePlayerFlags(
-          mute: false,
-          autoPlay: false,
-          disableDragSeek: false,
-          loop: false,
-          isLive: false,
-          forceHD: false,
-          enableCaption: true,
-          captionLanguage: 'ko',
-        ),
-      ),
-    ),
-    YoutubeVideoModel(
-      title: 'EP3 파킨슨병 환자, 어떻게 지내고 먹고 치료할까?',
-      thumbnail: 'https://img.youtube.com/vi/ISj6KAuk7z0/maxresdefault.jpg',
-      createdAt: DateFormat('yyyy-MM-dd').parse('2022-10-27'),
-      youtubePlayer: YoutubePlayerController(
-        initialVideoId: YoutubePlayer.convertUrlToId(
-          'https://www.youtube.com/watch?v=ISj6KAuk7z0',
-        ) as String,
-        flags: const YoutubePlayerFlags(
-          mute: false,
-          autoPlay: false,
-          disableDragSeek: false,
-          loop: false,
-          isLive: false,
-          forceHD: false,
-          enableCaption: true,
-          captionLanguage: 'ko',
-        ),
-      ),
-    ),
-  ].obs;
 
   // 비디오 데이터
   RxList<Map<String, String>> videoData = [
@@ -133,6 +65,46 @@ class DisorderController extends GetxController {
           'https://dr-parkinsons.s3.ap-northeast-2.amazonaws.com/disorder/disorder_6_%EC%9D%B4%EC%9B%85%EC%9A%B0.mp4',
       'thumbnail':
           'https://dr-parkinsons.s3.ap-northeast-2.amazonaws.com/disorder/disorder_6.webp'
+    },
+    {
+      'title': '파킨슨병은 치매와 어떤 연관이 있나요?',
+      'description': '',
+      'link':
+          'https://dr-parkinsons.s3.ap-northeast-2.amazonaws.com/disorder/disorder_7_%EA%B6%8C%EB%8F%84%EC%98%81.mp4',
+      'thumbnail':
+          'https://dr-parkinsons.s3.ap-northeast-2.amazonaws.com/disorder/disorder_7.webp'
+    },
+    {
+      'title': '닥터파킨슨으로 내 약물을 스스로 검색해보세요',
+      'description': '',
+      'link':
+          'https://dr-parkinsons.s3.ap-northeast-2.amazonaws.com/disorder/disorder_8_%EC%84%B1%EC%98%81%ED%9D%AC.mp4',
+      'thumbnail':
+          'https://dr-parkinsons.s3.ap-northeast-2.amazonaws.com/disorder/disorder_8.webp'
+    },
+    {
+      'title': '파킨슨 환자의 보행장애 극복',
+      'description': '',
+      'link':
+          'https://dr-parkinsons.s3.ap-northeast-2.amazonaws.com/disorder/disorder_9_%EC%84%B1%EC%98%81%ED%9D%AC.mp4',
+      'thumbnail':
+          'https://dr-parkinsons.s3.ap-northeast-2.amazonaws.com/disorder/disorder_9.webp'
+    },
+    {
+      'title': '파킨슨 환자의 건강한 식생활',
+      'description': '',
+      'link':
+          'https://dr-parkinsons.s3.ap-northeast-2.amazonaws.com/disorder/disorder_10_%EC%84%B1%EC%98%81%ED%9D%AC.mp4',
+      'thumbnail':
+          'https://dr-parkinsons.s3.ap-northeast-2.amazonaws.com/disorder/disorder_10.webp'
+    },
+    {
+      'title': '떨리면 다 파킨슨? No!!',
+      'description': '',
+      'link':
+          'https://dr-parkinsons.s3.ap-northeast-2.amazonaws.com/disorder/disorder_11_%EC%9C%A0%EB%8B%AC%EB%9D%BC.mp4',
+      'thumbnail':
+          'https://dr-parkinsons.s3.ap-northeast-2.amazonaws.com/disorder/disorder_11.webp'
     },
   ].obs;
 
