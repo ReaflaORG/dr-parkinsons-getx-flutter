@@ -6,6 +6,7 @@ import '../../../globals/global_appbar_widget.dart';
 import '../../../globals/global_dialog_widget.dart';
 import '../../../globals/global_inkwell_widget.dart';
 import '../../../globals/global_layout_widget.dart';
+import '../../../globals/global_loader_indicator_widget.dart';
 import '../../../models/sarch_doctors_model.dart';
 import '../../../service/auth_service.dart';
 import '../../../theme/color_path.dart';
@@ -20,183 +21,186 @@ class DoctorSearchView extends GetView<DoctorSearchController> {
   @override
   Widget build(BuildContext context) {
     return Obx(
-      () => GlobalLayoutWidget(
-        context: context,
-        appBar: GlobalAppBarWidget(
-          title: '파킨슨병 전문의 검색',
-          appBar: AppBar(),
-          isLeadingVisible: controller.argument == null
-              ? true
-              : controller.argument['isLeadingVisible'] == true
-                  ? false
-                  : true,
-          actions: [
-            InkWell(
-              onTap: () {
-                AuthService.to.userData.value.guardianPhoneNumber != null
-                    ? GlobalEmergencyModalWidget(context: context)
-                    : GlobalEmergencyModalWidget2(context: context);
-              },
-              child: SizedBox(
-                width: 24.w,
-                height: 24.w,
-                child: Image.asset(
-                  'assets/images/icons/page2/24 alert.png',
-                ),
-              ),
-            ),
-            SizedBox(width: 20.w),
-          ],
-        ),
-        body: RefreshIndicator(
-          onRefresh: () async {
-            controller.handleDoctorProvider();
-          },
-          child: SingleChildScrollView(
-            physics: const AlwaysScrollableScrollPhysics(),
-            child: Container(
-              padding: const EdgeInsets.symmetric(horizontal: 20).w,
-              child: Column(
-                children: [
-                  SizedBox(height: 15.w),
+      () => controller.isLoad.value
+          ? const GlobalLoaderIndicatorWidget()
+          : GlobalLayoutWidget(
+              context: context,
+              appBar: GlobalAppBarWidget(
+                title: '파킨슨병 전문의 검색',
+                appBar: AppBar(),
+                isLeadingVisible: controller.argument == null
+                    ? true
+                    : controller.argument['isLeadingVisible'] == true
+                        ? false
+                        : true,
+                actions: [
                   InkWell(
                     onTap: () {
-                      controller.distance.value = '0';
-                      controller.handleDoctorProvider();
+                      AuthService.to.userData.value.guardianPhoneNumber != null
+                          ? GlobalEmergencyModalWidget(context: context)
+                          : GlobalEmergencyModalWidget2(context: context);
                     },
-                    child: Form(
-                      key: controller.globalFormKey.value,
-                      child: TextFormField(
-                        textInputAction: TextInputAction.search,
-                        controller:
-                            controller.searchTextFormFieldController.value,
-                        focusNode: controller.searchTextFocusNode.value,
-                        onChanged: (value) {
-                          controller.distance.value = '0';
-                          controller.handleDoctorProvider();
-                        },
-                        onFieldSubmitted: (value) {
-                          controller.distance.value = '0';
-                          controller.handleDoctorProvider();
-                        },
-                        decoration: InputDecoration(
-                          filled: true,
-                          fillColor: ColorPath.Border2HECEFF1,
-                          contentPadding: const EdgeInsets.symmetric(
-                            vertical: 17,
-                            horizontal: 8,
-                          ).w,
-                          border: OutlineInputBorder(
-                            borderSide: BorderSide(
-                              width: 1,
-                              color: ColorPath.Border2HECEFF1,
-                            ),
-                            borderRadius: BorderRadius.circular(50).r,
-                          ),
-                          enabledBorder: OutlineInputBorder(
-                            borderSide: BorderSide(
-                              width: 1,
-                              color: ColorPath.Border2HECEFF1,
-                            ),
-                            borderRadius: BorderRadius.circular(50).r,
-                          ),
-                          focusedBorder: OutlineInputBorder(
-                            borderSide: BorderSide(
-                              width: 1,
-                              color: ColorPath.Border2HECEFF1,
-                            ),
-                            borderRadius: BorderRadius.circular(50).r,
-                          ),
-                          errorBorder: OutlineInputBorder(
-                            borderSide: BorderSide(
-                              width: 1,
-                              color: ColorPath.Border2HECEFF1,
-                            ),
-                            borderRadius: BorderRadius.circular(50).r,
-                          ),
-                          disabledBorder: OutlineInputBorder(
-                            borderSide: BorderSide(
-                              width: 1,
-                              color: ColorPath.Border2HECEFF1,
-                            ),
-                            borderRadius: BorderRadius.circular(50).r,
-                          ),
-                          prefixIcon: Padding(
-                            padding: const EdgeInsets.fromLTRB(
-                              18.75,
-                              12.5,
-                              22.75,
-                              12.5,
-                            ).w,
-                            child: InkWell(
-                              onTap: () {
-                                controller.distance.value = '0';
-                                controller.handleDoctorProvider();
-                              },
-                              child: Image.asset(
-                                'assets/search_doctors/search_icon.png',
-                                width: 16.5.w,
-                                height: 16.5.w,
-                              ),
-                            ),
-                          ),
-                          hintText: '병원명 또는 의사명을 입력하세요.',
-                          hintStyle: TextPath.TextF14W500.copyWith(
-                            color: ColorPath.TextGrey4H9E9E9E,
-                          ),
-                        ),
+                    child: SizedBox(
+                      width: 24.w,
+                      height: 24.w,
+                      child: Image.asset(
+                        'assets/images/icons/page2/24 alert.png',
                       ),
                     ),
                   ),
-                  SizedBox(height: 15.w),
-                  Container(
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(15).r,
-                    ),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
+                  SizedBox(width: 20.w),
+                ],
+              ),
+              body: RefreshIndicator(
+                onRefresh: () async {
+                  controller.handleDoctorProvider();
+                },
+                child: SingleChildScrollView(
+                  physics: const AlwaysScrollableScrollPhysics(),
+                  child: Container(
+                    padding: const EdgeInsets.symmetric(horizontal: 20).w,
+                    child: Column(
                       children: [
-                        SizedBox(width: 5.w),
-                        Text(
-                          '거리순으로 보기',
-                          style: TextPath.TextF14W500.copyWith(),
-                        ),
-                        SizedBox(width: 10.w),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: List.generate(
-                              controller.distanceList.length, (index) {
-                            return Container(
-                              margin: const EdgeInsets.only(right: 3).w,
-                              child: DoctorCardWidget(
-                                title: '${controller.distanceList[index]} Km',
-                                isCheck: controller.distanceList[index] ==
-                                    controller.distance.value,
-                                onClick: () {
-                                  controller.searchTextFormFieldController.value
-                                      .text = '';
-                                  controller.searchTextFormFieldController
-                                      .refresh();
-                                  controller.distance.value =
-                                      controller.distanceList[index];
-                                  controller.handleDoctorProvider();
-                                },
+                        SizedBox(height: 15.w),
+                        InkWell(
+                          onTap: () {
+                            controller.distance.value = '0';
+                            controller.handleDoctorProvider();
+                          },
+                          child: Form(
+                            key: controller.globalFormKey.value,
+                            child: TextFormField(
+                              textInputAction: TextInputAction.search,
+                              controller: controller
+                                  .searchTextFormFieldController.value,
+                              focusNode: controller.searchTextFocusNode.value,
+                              onChanged: (value) {
+                                controller.distance.value = '0';
+                                controller.handleDoctorProvider();
+                              },
+                              onFieldSubmitted: (value) {
+                                controller.distance.value = '0';
+                                controller.handleDoctorProvider();
+                              },
+                              decoration: InputDecoration(
+                                filled: true,
+                                fillColor: ColorPath.Border2HECEFF1,
+                                contentPadding: const EdgeInsets.symmetric(
+                                  vertical: 17,
+                                  horizontal: 8,
+                                ).w,
+                                border: OutlineInputBorder(
+                                  borderSide: BorderSide(
+                                    width: 1,
+                                    color: ColorPath.Border2HECEFF1,
+                                  ),
+                                  borderRadius: BorderRadius.circular(50).r,
+                                ),
+                                enabledBorder: OutlineInputBorder(
+                                  borderSide: BorderSide(
+                                    width: 1,
+                                    color: ColorPath.Border2HECEFF1,
+                                  ),
+                                  borderRadius: BorderRadius.circular(50).r,
+                                ),
+                                focusedBorder: OutlineInputBorder(
+                                  borderSide: BorderSide(
+                                    width: 1,
+                                    color: ColorPath.Border2HECEFF1,
+                                  ),
+                                  borderRadius: BorderRadius.circular(50).r,
+                                ),
+                                errorBorder: OutlineInputBorder(
+                                  borderSide: BorderSide(
+                                    width: 1,
+                                    color: ColorPath.Border2HECEFF1,
+                                  ),
+                                  borderRadius: BorderRadius.circular(50).r,
+                                ),
+                                disabledBorder: OutlineInputBorder(
+                                  borderSide: BorderSide(
+                                    width: 1,
+                                    color: ColorPath.Border2HECEFF1,
+                                  ),
+                                  borderRadius: BorderRadius.circular(50).r,
+                                ),
+                                prefixIcon: Padding(
+                                  padding: const EdgeInsets.fromLTRB(
+                                    18.75,
+                                    12.5,
+                                    22.75,
+                                    12.5,
+                                  ).w,
+                                  child: InkWell(
+                                    onTap: () {
+                                      controller.distance.value = '0';
+                                      controller.handleDoctorProvider();
+                                    },
+                                    child: Image.asset(
+                                      'assets/search_doctors/search_icon.png',
+                                      width: 16.5.w,
+                                      height: 16.5.w,
+                                    ),
+                                  ),
+                                ),
+                                hintText: '병원명 또는 의사명을 입력하세요.',
+                                hintStyle: TextPath.TextF14W500.copyWith(
+                                  color: ColorPath.TextGrey4H9E9E9E,
+                                ),
                               ),
-                            );
-                          }),
+                            ),
+                          ),
                         ),
+                        SizedBox(height: 15.w),
+                        Container(
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(15).r,
+                          ),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              SizedBox(width: 5.w),
+                              Text(
+                                '거리순으로 보기',
+                                style: TextPath.TextF14W500.copyWith(),
+                              ),
+                              SizedBox(width: 10.w),
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                children: List.generate(
+                                    controller.distanceList.length, (index) {
+                                  return Container(
+                                    margin: const EdgeInsets.only(right: 3).w,
+                                    child: DoctorCardWidget(
+                                      title:
+                                          '${controller.distanceList[index]} Km',
+                                      isCheck: controller.distanceList[index] ==
+                                          controller.distance.value,
+                                      onClick: () {
+                                        controller.searchTextFormFieldController
+                                            .value.text = '';
+                                        controller.searchTextFormFieldController
+                                            .refresh();
+                                        controller.distance.value =
+                                            controller.distanceList[index];
+                                        controller.handleDoctorProvider();
+                                      },
+                                    ),
+                                  );
+                                }),
+                              ),
+                            ],
+                          ),
+                        ),
+                        SizedBox(height: 15.w),
+                        const SearchDoctorsListWidget()
                       ],
                     ),
                   ),
-                  SizedBox(height: 15.w),
-                  const SearchDoctorsListWidget()
-                ],
+                ),
               ),
             ),
-          ),
-        ),
-      ),
     );
   }
 }

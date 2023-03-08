@@ -1,11 +1,11 @@
 name: dr_parkinsons
 description: A new Flutter project.
-publish_to: "REAFELA"
+publish_to: "REAFLA"
 
 version: 1.0.0+1
 
 environment:
-  sdk: ">=2.19.1 <3.0.0"
+  sdk: ">=2.19.3 <3.0.0"
 
 dependencies:
   flutter:
@@ -54,8 +54,8 @@ dependencies:
   flutter_widget_from_html_core: ^0.9.0+2
   custom_refresh_indicator: ^2.0.1
   video_player: ^2.5.1
-  webview_flutter: ^4.0.2
   flick_video_player: ^0.5.0
+  webview_flutter: ^4.0.6
 
 dev_dependencies:
   flutter_test:
@@ -69,7 +69,7 @@ flutter:
   assets:
     - .env
     - assets/images/appbar/
-    - assets/images/disorder/
+    # - assets/images/disorder/
     - assets/images/logo/
     - assets/images/video/
     # - assets/images/splash/
@@ -80,14 +80,15 @@ flutter:
     - assets/doctor/
     - assets/myinfo/
     - assets/my_symptoms/
+    - assets/images/icons/
     - assets/images/icons/3d/
     - assets/images/icons/2d/
     - assets/images/icons/page2/
     - assets/images/icons/page4/
     - assets/images/icons/medical_treatment/
-    - assets/images/samples/
+    # - assets/images/samples/
     - assets/images/medicine/
-    - assets/images/etc/
+    # - assets/images/etc/
     - assets/images/mock/page2/
 
   fonts:

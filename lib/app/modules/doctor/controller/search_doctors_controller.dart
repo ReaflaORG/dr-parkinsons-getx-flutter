@@ -37,6 +37,9 @@ class DoctorSearchController extends GetxController {
 
   // Variable ▼
 
+  /// 로딩 상태
+  Rx<bool> isLoad = true.obs;
+
   /// 검색
   Rx<dynamic> search = ''.obs;
 
@@ -61,16 +64,15 @@ class DoctorSearchController extends GetxController {
       ).then((response) {
         switch (response.statusCode) {
           case 200:
-            Future.value([
-              doctorListData.assignAll(
-                List<SearchDoctorsModel>.from(
-                  response.data.map(
-                    (e) => SearchDoctorsModel.fromJson(e),
-                  ),
+            doctorListData.assignAll(
+              List<SearchDoctorsModel>.from(
+                response.data.map(
+                  (e) => SearchDoctorsModel.fromJson(e),
                 ),
               ),
-              doctorListData.refresh(),
-            ]);
+            );
+            doctorListData.refresh();
+            isLoad.value = false;
             break;
           default:
             throw Exception(response.message);

@@ -69,7 +69,7 @@ class HealthCareView extends GetView<HealthCareController> {
                                     width: 18.w,
                                     height: 18.w,
                                     child: Image.asset(
-                                      'assets/images/icons/2d/18loud.png',
+                                      'assets/images/icons/loud_speaker.webp',
                                     ),
                                   ),
                                   SizedBox(width: 10.w),

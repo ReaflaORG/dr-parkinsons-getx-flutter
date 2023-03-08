@@ -38,11 +38,23 @@ class MissionView extends GetView<MissionController> {
                   onPressed: () {
                     GlobalMakeAlarm(context: context);
                   },
-                  label: Text(
-                    '+ 미션추가',
-                    style: TextPath.TextF14W500.copyWith(
-                      color: ColorPath.BackgroundWhite,
-                    ),
+                  label: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Icon(
+                        Icons.add_rounded,
+                        color: Colors.white,
+                        size: 18.sp,
+                      ),
+                      SizedBox(width: 2.5.w),
+                      Text(
+                        '미션추가',
+                        style: TextPath.TextF14W500.copyWith(
+                          color: ColorPath.BackgroundWhite,
+                        ),
+                      ),
+                    ],
                   ),
                   backgroundColor: ColorPath.PrimaryColor,
                 ),

@@ -149,7 +149,7 @@ class HomeController extends GetxController {
 
     int now_h = (now ~/ 100) + now_add;
 
-    Logger().d("시간 ${now_h}  : 분 :${now_m}");
+    // Logger().d("시간 ${now_h}  : 분 :${now_m}");
 
     int time_h = time ~/ 100; // 시간
     int time_m = time % 100;

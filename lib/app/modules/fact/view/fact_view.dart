@@ -33,9 +33,10 @@ class FactView extends GetView<FactController> {
                 ).w,
                 child: GridView.builder(
                   controller: controller.scrollController.value,
+                  itemCount: controller.factData.length,
                   scrollDirection: Axis.vertical,
                   physics: const ClampingScrollPhysics(),
-                  itemCount: controller.factData.length,
+                  shrinkWrap: true,
                   gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                     crossAxisCount: 2,
                     childAspectRatio: 1 / 1.35,

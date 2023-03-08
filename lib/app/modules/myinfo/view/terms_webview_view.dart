@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
-// import 'package:flutter_webview_pro/webview_flutter.dart';
 import 'package:get/get.dart';
+import 'package:webview_flutter/webview_flutter.dart';
 
+import '../../../globals/global_appbar_widget.dart';
+import '../../../globals/global_layout_widget.dart';
 import '../controller/terms_webview_controller.dart';
 
 class TermsWebviewview extends GetView<TermsWebviewController> {
@@ -9,7 +11,16 @@ class TermsWebviewview extends GetView<TermsWebviewController> {
 
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return GlobalLayoutWidget(
+      context: context,
+      appBar: GlobalAppBarWidget(
+        appBar: AppBar(),
+        title: '',
+      ),
+      body: WebViewWidget(
+        controller: controller.webViewController,
+      ),
+    );
   }
 
   // @override
@@ -43,15 +54,15 @@ class TermsWebviewview extends GetView<TermsWebviewController> {
   //         if (Platform.isAndroid) {
   //           /// [AOS] item 이라는 주소가 있는 경우 새로운 탭으로 띄운다.
   //           /// 뒤로가기 했을때 이전 위치를 보여주기 위함
-  //           if (controller.webViewNewTabList
-  //               .where((element) => request.url.contains(element as Pattern))
-  //               .isNotEmpty) {
-  //             if (!await launchUrl(Uri.parse(request.url))) {
-  //               Logger().e('Could not launch ${request.url}');
-  //             }
+  //           // if (controller.webViewNewTabList
+  //           //     .where((element) => request.url.contains(element as Pattern))
+  //           //     .isNotEmpty) {
+  //           //   if (!await launchUrl(Uri.parse(request.url))) {
+  //           //     Logger().e('Could not launch ${request.url}');
+  //           //   }
 
-  //             return NavigationDecision.prevent;
-  //           }
+  //           //   return NavigationDecision.prevent;
+  //           // }
 
   //           /// 전화걸기 체크
   //           if (request.url.contains('tel')) {

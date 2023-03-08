@@ -1,9 +1,9 @@
 import 'dart:async';
-import 'dart:io';
+import 'dart:ui';
 
-// import 'package:flutter_webview_pro/webview_flutter.dart';
 import 'package:get/get.dart';
 import 'package:logger/logger.dart';
+import 'package:webview_flutter/webview_flutter.dart';
 
 class TermsWebviewController extends GetxController {
   static TermsWebviewController get to => Get.find();
@@ -16,59 +16,63 @@ class TermsWebviewController extends GetxController {
 
   /// 웹뷰 컨트롤러
   // late final WebViewController webViewController;
+  WebViewController webViewController = WebViewController();
 
   // Variable ▼
 
   /// 타이머
   Rx<Timer> timer =
       Timer.periodic(const Duration(milliseconds: 0), (timer) {}).obs;
-
-  /// 뉴탭 리스트
-  /// 새로운 탭이 뜨는 형태로 가야하는 경우
-  RxList<dynamic> webViewNewTabList = [
-    // 'memo.php',
-    // 'scrap.php',
-    // 'member_confirm.php',
-  ].obs;
-
   // Function ▼
 
   /// 자바스크립트 주입
-  dynamic handleOnPageFinished() async {
-    try {
-      timer.value = Timer.periodic(const Duration(milliseconds: 100), (timer) {
-//         webViewController.runJavascript('''
-// (function() {
-//   console.log(window.location.href);
-//   window.document.querySelector('.ui-header').remove();
-//   window.document.querySelector('.ui-content:nth-of-type(1) > section').style.padding = '0px';
-//   const util = window.document.querySelectorAll('.util');
-//   const footer = window.document.getElementsByTagName('footer');
-//   for (let index = 0; index < util.length; index++) {
-//       util[index].remove();
-//   }
-//   for (let index = 0; index < footer.length; index++) {
-//       footer[index].remove();
-//   }
-// })()''');
-        timer.cancel();
-      });
-    } catch (e) {
-      Logger().d(e);
-    }
-  }
-
-  /// 컨트롤러 초기화
-  Future<void> Initialization() async {
-    /// 웹뷰 문서상 권장방법
-    if (Platform.isAndroid) {
-      // WebView.platform = AndroidWebView();
-    }
-  }
+  dynamic handleOnPageFinished() async {}
 
   @override
   Future<void> onInit() async {
-    await Initialization();
+    webViewController
+      ..setJavaScriptMode(JavaScriptMode.unrestricted)
+      ..setBackgroundColor(const Color(0x00000000))
+      ..setNavigationDelegate(
+        NavigationDelegate(
+          onProgress: (int progress) {
+            // Update loading bar.
+          },
+          onPageStarted: (String url) {},
+          onPageFinished: (String url) {
+            try {
+              timer.value =
+                  Timer.periodic(const Duration(milliseconds: 100), (timer) {
+                webViewController.runJavaScript('''
+                  (function() {
+                    console.log(window.location.href);
+                    window.document.querySelector('.ui-header').remove();
+                    window.document.querySelector('.ui-content:nth-of-type(1) > section').style.padding = '0px';
+                    const util = window.document.querySelectorAll('.util');
+                    const footer = window.document.getElementsByTagName('footer');
+                    for (let index = 0; index < util.length; index++) {
+                        util[index].remove();
+                    }
+                    for (let index = 0; index < footer.length; index++) {
+                        footer[index].remove();
+                    }
+                  })()''');
+                timer.cancel();
+              });
+            } catch (e) {
+              Logger().d(e);
+            }
+          },
+          onWebResourceError: (WebResourceError error) {},
+          onNavigationRequest: (NavigationRequest request) {
+            if (request.url.startsWith(Get.arguments['url'])) {
+              return NavigationDecision.prevent;
+            }
+            return NavigationDecision.navigate;
+          },
+        ),
+      )
+      ..loadRequest(Uri.parse(Get.arguments['url']));
 
     super.onInit();
   }

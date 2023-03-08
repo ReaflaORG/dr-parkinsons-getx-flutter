@@ -50,7 +50,7 @@ class HomeView extends GetView<HomeController> {
               ),
               body: SingleChildScrollView(
                 padding: const EdgeInsets.symmetric(horizontal: 20).w,
-                physics: const BouncingScrollPhysics(),
+                physics: const ClampingScrollPhysics(),
                 child: Column(
                   children: [
                     Container(
@@ -73,7 +73,7 @@ class HomeView extends GetView<HomeController> {
                                 width: 18.w,
                                 height: 18.w,
                                 child: Image.asset(
-                                  'assets/images/icons/page2/18 bell.png',
+                                  'assets/images/icons/bell.webp',
                                 ),
                               ),
                               SizedBox(

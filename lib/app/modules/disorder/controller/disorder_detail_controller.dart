@@ -1,5 +1,3 @@
-// ignore_for_file: unnecessary_overrides
-
 import 'dart:async';
 
 import 'package:flick_video_player/flick_video_player.dart';
@@ -12,7 +10,17 @@ class DisorderDetailController extends GetxController {
   static DisorderDetailController get to => Get.find();
 
   dynamic arguments = Get.arguments['content_url'];
-  late final FlickManager flickManager;
+  late Rx<FlickManager> flickManager = FlickManager(
+    videoPlayerController: VideoPlayerController.network(
+      arguments,
+      videoPlayerOptions: VideoPlayerOptions(
+        mixWithOthers: false,
+        allowBackgroundPlayback: false,
+      ),
+    ),
+    autoInitialize: true,
+    autoPlay: true,
+  ).obs;
 
   Future setLandScap() async {
     await SystemChrome.setPreferredOrientations([
@@ -31,12 +39,17 @@ class DisorderDetailController extends GetxController {
 
   @override
   Future<void> onInit() async {
-    flickManager = FlickManager(
-      videoPlayerController: VideoPlayerController.network(
-        arguments,
-      ),
-      autoPlay: true,
-    );
+    // flickManager.value = FlickManager(
+    //   videoPlayerController: VideoPlayerController.network(
+    //     arguments,
+    //     videoPlayerOptions: VideoPlayerOptions(
+    //       mixWithOthers: false,
+    //       allowBackgroundPlayback: false,
+    //     ),
+    //   ),
+    //   autoInitialize: true,
+    //   autoPlay: true,
+    // );
 
     super.onInit();
   }
@@ -48,7 +61,7 @@ class DisorderDetailController extends GetxController {
 
   @override
   void onClose() {
-    flickManager.dispose();
+    flickManager.value.dispose();
 
     super.onClose();
   }

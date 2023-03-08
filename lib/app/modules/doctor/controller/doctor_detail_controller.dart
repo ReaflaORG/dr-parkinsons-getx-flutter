@@ -132,10 +132,12 @@ class DoctorDetailController extends GetxController {
       ).then((response) async {
         switch (response.statusCode) {
           case 200:
+            Logger().d(response.data);
             AuthService.to.handleMyInfo();
             doctor.value = DoctorModel.fromJson(response.data);
+            doctor.refresh();
             handleDoctorSubscribe();
-            if (isDoctorSubscribe.value) {
+            if (!isDoctorSubscribe.value) {
               GlobalToastWidget('내 주치의 설정이 완료되었습니다');
             }
             break;

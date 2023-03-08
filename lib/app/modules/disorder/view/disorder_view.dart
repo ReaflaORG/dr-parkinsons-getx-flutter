@@ -41,6 +41,7 @@ class DisorderView extends GetView<DisorderController> {
                   itemCount: controller.videoData.length,
                   gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                     crossAxisCount: 2,
+                    // childAspectRatio: 0.60.w,
                     childAspectRatio: 0.60.w,
                     mainAxisSpacing: 20.w,
                     crossAxisSpacing: 20.w,

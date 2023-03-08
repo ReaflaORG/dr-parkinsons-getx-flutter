@@ -61,7 +61,7 @@ class ProtectorView extends GetView<ProtectorController> {
                   const CardWidget(
                     index: 4,
                     title: '주치의 찾기 > 의사명을 검색',
-                    sub: '앱 우상단의  알람 버튼을 누르시면 등록된 병원에 응급 알림 메세지가 동시에 전송됩니다',
+                    sub: '앱 우상단의 알람 버튼을 누르시면 등록된 보호자에게 응급 알림 메세지가 동시에 전송됩니다',
                     isIconVisible: true,
                   ),
                   SizedBox(height: 100.w),

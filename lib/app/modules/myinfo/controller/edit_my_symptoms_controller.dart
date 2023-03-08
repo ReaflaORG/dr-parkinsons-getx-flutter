@@ -4,6 +4,7 @@ import 'dart:async';
 
 import 'package:dio/dio.dart' as Dio;
 import 'package:dr_parkinsons/app/modules/myinfo/controller/my_symptoms_controller.dart';
+import 'package:dr_parkinsons/app/modules/myinfo/controller/view_my_symtoms_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -134,16 +135,12 @@ class EditMySymptomsController extends GetxController {
       );
       switch (response.statusCode) {
         case 200:
-          titleController.value.text = '';
-          contentController.value.text = '';
-
           MySymptomsController.to.getMySymptomsData();
-
+          ViewMySymptomsController.to.getMySymptomsData();
+          GlobalToastWidget('수정되었습니다.');
           Get.back();
-          await GlobalToastWidget('수정되었습니다.');
 
           break;
-
         default:
           throw Exception(response.message);
       }
@@ -268,6 +265,8 @@ class EditMySymptomsController extends GetxController {
   Future<void> onInit() async {
     symptomId.value = await Get.arguments['id'];
     await getMySymptomsData();
+    handleOnChanged();
+
     super.onInit();
   }
 

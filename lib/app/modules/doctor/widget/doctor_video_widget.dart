@@ -1,6 +1,7 @@
 import 'package:dr_parkinsons/app/globals/global_inkwell_widget.dart';
 import 'package:flick_video_player/flick_video_player.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:video_player/video_player.dart';
 
@@ -53,6 +54,20 @@ class _DoctorVideoWidgetState extends State<DoctorVideoWidget> {
                 height: 170.w,
                 child: FlickVideoPlayer(
                   flickManager: flickManager,
+                  flickVideoWithControls: const FlickVideoWithControls(
+                    controls: FlickPortraitControls(),
+                    videoFit: BoxFit.fitHeight,
+                  ),
+                  preferredDeviceOrientation: const [
+                    DeviceOrientation.portraitUp,
+                    DeviceOrientation.portraitDown,
+                  ],
+                  preferredDeviceOrientationFullscreen: const [
+                    // DeviceOrientation.portraitUp,
+                    // DeviceOrientation.portraitDown,
+                    DeviceOrientation.landscapeLeft,
+                    DeviceOrientation.landscapeRight,
+                  ],
                 ),
               )
             : GlobalInkWellWidget(

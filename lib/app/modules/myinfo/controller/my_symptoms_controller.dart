@@ -31,6 +31,7 @@ class MySymptomsController extends GetxController {
         case 200:
           listArray.assignAll(List.generate(response.data.length,
               (index) => MySymptomsModel.fromJson(response.data[index])));
+          listArray.refresh();
           process.value = false;
           break;
 

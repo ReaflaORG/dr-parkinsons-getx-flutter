@@ -140,7 +140,7 @@ class ProfileSettingController extends GetxController {
           return;
         }
 
-        if (text.length < 3) {
+        if (text.length < 2) {
           isSaveButtonEnable.value = false;
           userNameError.value = '본인의 이름을 입력해주세요';
           return;
