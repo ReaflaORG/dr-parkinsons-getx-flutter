@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -218,48 +220,49 @@ class SocialLoginButtonWidget extends GetView<SignInController> {
           //   ),
           // ),
           // SizedBox(height: 12.w),
-          SizedBox(
-            width: double.infinity,
-            height: 50.w,
-            child: ElevatedButton(
-              onPressed: () {
-                // Get.offAllNamed('/main');
-                GlobalToastWidget('임시로 로그인합니다');
-                controller.handleTempSignIn();
-              },
-              style: ElevatedButton.styleFrom(
-                backgroundColor: ColorPath.TextGrey2H424242,
-                shape: RoundedRectangleBorder(
-                  borderRadius: const BorderRadius.all(
-                    Radius.circular(15),
-                  ).r,
+          if (Platform.isIOS)
+            SizedBox(
+              width: double.infinity,
+              height: 50.w,
+              child: ElevatedButton(
+                onPressed: () {
+                  // Get.offAllNamed('/main');
+                  GlobalToastWidget('임시로 로그인합니다');
+                  controller.handleTempSignIn();
+                },
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: ColorPath.TextGrey2H424242,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: const BorderRadius.all(
+                      Radius.circular(15),
+                    ).r,
+                  ),
                 ),
-              ),
-              child: Container(
-                padding: const EdgeInsets.all(15).w,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Image.asset(
-                      'assets/images/signin/apple_logo.png',
-                      fit: BoxFit.contain,
-                    ),
-                    SizedBox(width: 15.w),
-                    Padding(
-                      padding: const EdgeInsets.only(top: 1).w,
-                      child: Text(
-                        '애플로 계속하기',
-                        style: TextPath.Heading3F16W600.copyWith(
-                          color: ColorPath.TextWhite,
+                child: Container(
+                  padding: const EdgeInsets.all(15).w,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Image.asset(
+                        'assets/images/signin/apple_logo.png',
+                        fit: BoxFit.contain,
+                      ),
+                      SizedBox(width: 15.w),
+                      Padding(
+                        padding: const EdgeInsets.only(top: 1).w,
+                        child: Text(
+                          '애플로 계속하기',
+                          style: TextPath.Heading3F16W600.copyWith(
+                            color: ColorPath.TextWhite,
+                          ),
                         ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
               ),
             ),
-          ),
         ],
       ),
     );

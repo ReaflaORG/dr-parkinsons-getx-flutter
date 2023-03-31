@@ -28,7 +28,7 @@ class MissionView extends GetView<MissionController> {
               context: context,
               floatingActionButton: SizedBox(
                 width: 110.w,
-                height: 34.w,
+                height: 40.w,
                 child: FloatingActionButton.extended(
                   extendedPadding: const EdgeInsets.symmetric(
                     horizontal: 23.5,
@@ -152,11 +152,11 @@ class MissionView extends GetView<MissionController> {
                             children: [
                               Container(
                                 padding: EdgeInsets.symmetric(
-                                  horizontal: 20.w,
+                                  horizontal: 10.w,
                                   vertical: 22.w,
                                 ),
                                 width: 150.w,
-                                height: 115.w,
+                                height: 120.w,
                                 decoration: BoxDecoration(
                                   color: ColorPath.BackgroundWhite,
                                   borderRadius: BorderRadius.circular(12).r,
@@ -173,75 +173,100 @@ class MissionView extends GetView<MissionController> {
                                 child: Column(
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
-                                    Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
-                                      children: [
-                                        Text(
-                                          '운동',
-                                          style: TextPath.TextF16W500.copyWith(
-                                            color: ColorPath.BlackColor,
+                                    Padding(
+                                      padding: EdgeInsets.symmetric(
+                                        horizontal: 10.w,
+                                      ),
+                                      child: Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          Text(
+                                            '운동',
+                                            style:
+                                                TextPath.TextF16W500.copyWith(
+                                              color: ColorPath.BlackColor,
+                                            ),
                                           ),
-                                        ),
-                                        Text(
-                                          controller.move.value != 0
-                                              ? '${(controller.clearMove.value * 100 / controller.move.value).toStringAsFixed(0)}%'
-                                              : '0%',
-                                          style: TextPath.TextF16W500.copyWith(
-                                            color: ColorPath.BlackColor,
+                                          Text(
+                                            controller.move.value != 0
+                                                ? '${(controller.clearMove.value * 100 / controller.move.value).toStringAsFixed(0)}%'
+                                                : '0%',
+                                            style:
+                                                TextPath.TextF16W500.copyWith(
+                                              color: ColorPath.BlackColor,
+                                            ),
                                           ),
-                                        ),
-                                      ],
+                                        ],
+                                      ),
                                     ),
-                                    SizedBox(height: 6.w),
-                                    LinearPercentIndicator(
-                                      animation: true,
-                                      width: 100.w,
-                                      animationDuration: 1000,
-                                      lineHeight: 14.0,
-                                      percent: controller.move.value == 0
-                                          ? 0
-                                          : controller.clearMove.value /
-                                              controller.move.value,
-                                      barRadius: const Radius.circular(10).r,
-                                      progressColor: ColorPath.PrimaryColor,
-                                      backgroundColor:
-                                          ColorPath.PrimaryLightColor,
+                                    SizedBox(height: 10.w),
+                                    SizedBox(
+                                      width: double.infinity,
+                                      child: LinearPercentIndicator(
+                                        animation: true,
+                                        animationDuration: 1000,
+                                        lineHeight: 14.0,
+                                        percent: controller.move.value == 0
+                                            ? 0
+                                            : controller.clearMove.value /
+                                                controller.move.value,
+                                        barRadius: const Radius.circular(10).r,
+                                        progressColor: ColorPath.PrimaryColor,
+                                        backgroundColor:
+                                            ColorPath.PrimaryLightColor,
+                                      ),
                                     ),
-                                    SizedBox(height: 6.w),
-                                    Row(
-                                      mainAxisAlignment: MainAxisAlignment.end,
-                                      children: [
-                                        Text(
-                                          controller.clearMove.value.toString(),
-                                          style: TextPath.TextF12W400.copyWith(
-                                            color: ColorPath.SecondaryColor,
+                                    SizedBox(height: 10.w),
+                                    Padding(
+                                      padding: EdgeInsets.symmetric(
+                                        horizontal: 10.w,
+                                      ),
+                                      child: Align(
+                                        alignment: Alignment.centerRight,
+                                        child: RichText(
+                                          text: TextSpan(
+                                            style:
+                                                TextPath.TextF12W400.copyWith(
+                                              color: ColorPath.SecondaryColor,
+                                            ),
+                                            children: [
+                                              TextSpan(
+                                                text: controller.clearMove.value
+                                                    .toString(),
+                                              ),
+                                              TextSpan(
+                                                text: ' / ',
+                                                style: TextPath.TextF12W400
+                                                    .copyWith(
+                                                  color: ColorPath
+                                                      .TextGrey2H424242,
+                                                ),
+                                              ),
+                                              TextSpan(
+                                                text:
+                                                    '${controller.move.value}회',
+                                                style: TextPath.TextF12W400
+                                                    .copyWith(
+                                                  color: ColorPath
+                                                      .TextGrey2H424242,
+                                                ),
+                                              ),
+                                            ],
                                           ),
                                         ),
-                                        Text(
-                                          ' / ',
-                                          style: TextPath.TextF12W400.copyWith(
-                                            color: ColorPath.TextGrey2H424242,
-                                          ),
-                                        ),
-                                        Text(
-                                          '${controller.move.value}회',
-                                          style: TextPath.TextF12W400.copyWith(
-                                            color: ColorPath.TextGrey2H424242,
-                                          ),
-                                        ),
-                                      ],
-                                    )
+                                      ),
+                                    ),
                                   ],
                                 ),
                               ),
                               Container(
                                 padding: EdgeInsets.symmetric(
-                                  horizontal: 20.w,
+                                  horizontal: 10.w,
                                   vertical: 22.w,
                                 ),
                                 width: 150.w,
-                                height: 105.w,
+                                height: 120.w,
                                 decoration: BoxDecoration(
                                   color: ColorPath.BackgroundWhite,
                                   borderRadius: BorderRadius.circular(12).r,
@@ -258,65 +283,90 @@ class MissionView extends GetView<MissionController> {
                                 child: Column(
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
-                                    Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
-                                      children: [
-                                        Text(
-                                          '투약',
-                                          style: TextPath.TextF16W500.copyWith(
-                                            color: ColorPath.BlackColor,
+                                    Padding(
+                                      padding: EdgeInsets.symmetric(
+                                        horizontal: 10.w,
+                                      ),
+                                      child: Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          Text(
+                                            '투약',
+                                            style:
+                                                TextPath.TextF16W500.copyWith(
+                                              color: ColorPath.BlackColor,
+                                            ),
                                           ),
-                                        ),
-                                        Text(
-                                          controller.pill.value != 0
-                                              ? '${(controller.clearPill.value * 100 / controller.pill.value).toStringAsFixed(0)}%'
-                                              : '0%',
-                                          style: TextPath.TextF16W500.copyWith(
-                                            color: ColorPath.BlackColor,
+                                          Text(
+                                            controller.pill.value != 0
+                                                ? '${(controller.clearPill.value * 100 / controller.pill.value).toStringAsFixed(0)}%'
+                                                : '0%',
+                                            style:
+                                                TextPath.TextF16W500.copyWith(
+                                              color: ColorPath.BlackColor,
+                                            ),
                                           ),
-                                        ),
-                                      ],
+                                        ],
+                                      ),
                                     ),
-                                    const SizedBox(height: 6),
-                                    LinearPercentIndicator(
-                                      animation: true,
-                                      width: 100.w,
-                                      animationDuration: 1000,
-                                      lineHeight: 14.0,
-                                      percent: controller.pill.value == 0
-                                          ? 0
-                                          : controller.clearPill.value /
-                                              controller.pill.value,
-                                      barRadius: const Radius.circular(10).r,
-                                      progressColor: ColorPath.PrimaryColor,
-                                      backgroundColor:
-                                          ColorPath.PrimaryLightColor,
+                                    SizedBox(height: 10.w),
+                                    SizedBox(
+                                      width: double.infinity,
+                                      child: LinearPercentIndicator(
+                                        animation: true,
+                                        animationDuration: 1000,
+                                        lineHeight: 14.0,
+                                        percent: controller.pill.value == 0
+                                            ? 0
+                                            : controller.clearPill.value /
+                                                controller.pill.value,
+                                        barRadius: const Radius.circular(10).r,
+                                        progressColor: ColorPath.PrimaryColor,
+                                        backgroundColor:
+                                            ColorPath.PrimaryLightColor,
+                                      ),
                                     ),
-                                    SizedBox(height: 6.w),
-                                    Row(
-                                      mainAxisAlignment: MainAxisAlignment.end,
-                                      children: [
-                                        Text(
-                                          controller.clearPill.value.toString(),
-                                          style: TextPath.TextF12W400.copyWith(
-                                            color: ColorPath.SecondaryColor,
+                                    SizedBox(height: 10.w),
+                                    Padding(
+                                      padding: EdgeInsets.symmetric(
+                                        horizontal: 10.w,
+                                      ),
+                                      child: Align(
+                                        alignment: Alignment.centerRight,
+                                        child: RichText(
+                                          text: TextSpan(
+                                            style:
+                                                TextPath.TextF12W400.copyWith(
+                                              color: ColorPath.SecondaryColor,
+                                            ),
+                                            children: [
+                                              TextSpan(
+                                                text: controller.clearPill.value
+                                                    .toString(),
+                                              ),
+                                              TextSpan(
+                                                text: ' / ',
+                                                style: TextPath.TextF12W400
+                                                    .copyWith(
+                                                  color: ColorPath
+                                                      .TextGrey2H424242,
+                                                ),
+                                              ),
+                                              TextSpan(
+                                                text:
+                                                    '${controller.pill.value}회',
+                                                style: TextPath.TextF12W400
+                                                    .copyWith(
+                                                  color: ColorPath
+                                                      .TextGrey2H424242,
+                                                ),
+                                              ),
+                                            ],
                                           ),
                                         ),
-                                        Text(
-                                          ' / ',
-                                          style: TextPath.TextF12W400.copyWith(
-                                            color: ColorPath.TextGrey2H424242,
-                                          ),
-                                        ),
-                                        Text(
-                                          '${controller.pill.value}회',
-                                          style: TextPath.TextF12W400.copyWith(
-                                            color: ColorPath.TextGrey2H424242,
-                                          ),
-                                        ),
-                                      ],
-                                    )
+                                      ),
+                                    ),
                                   ],
                                 ),
                               ),

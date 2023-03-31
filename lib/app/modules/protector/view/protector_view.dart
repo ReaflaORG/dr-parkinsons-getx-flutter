@@ -102,7 +102,7 @@ class CardWidget extends GetView<ProtectorController> {
       children: [
         Container(
           width: double.infinity,
-          height: index != 4 ? 100.w : 150.w,
+          height: index != 4 ? 110.w : 150.w,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(8).r,
             color: ColorPath.BackgroundWhite,

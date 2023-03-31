@@ -5,7 +5,7 @@ publish_to: "REAFLA"
 version: 1.0.0+1
 
 environment:
-  sdk: ">=2.19.3 <3.0.0"
+  sdk: ">=2.19.5 <3.0.0"
 
 dependencies:
   flutter:
@@ -92,23 +92,23 @@ flutter:
     - assets/images/mock/page2/
 
   fonts:
-    - family: SUIT
+    - family: Pretendard
       fonts:
-        - asset: assets/fonts/suit/SUIT-Thin.ttf
+        - asset: assets/fonts/pretendard/pretendardThin.otf
           weight: 100
-        - asset: assets/fonts/suit/SUIT-ExtraLight.ttf
+        - asset: assets/fonts/pretendard/pretendardExtraLight.otf
           weight: 200
-        - asset: assets/fonts/suit/SUIT-Light.ttf
+        - asset: assets/fonts/pretendard/pretendardLight.otf
           weight: 300
-        - asset: assets/fonts/suit/SUIT-Regular.ttf
+        - asset: assets/fonts/pretendard/pretendardRegular.otf
           weight: 400
-        - asset: assets/fonts/suit/SUIT-Medium.ttf
+        - asset: assets/fonts/pretendard/pretendardMedium.otf
           weight: 500
-        - asset: assets/fonts/suit/SUIT-SemiBold.ttf
+        - asset: assets/fonts/pretendard/pretendardSemiBold.otf
           weight: 600
-        - asset: assets/fonts/suit/SUIT-Bold.ttf
+        - asset: assets/fonts/pretendard/pretendardBold.otf
           weight: 700
-        - asset: assets/fonts/suit/SUIT-ExtraBold.ttf
+        - asset: assets/fonts/pretendard/pretendardExtraBold.otf
           weight: 800
-        - asset: assets/fonts/suit/SUIT-Heavy.ttf
+        - asset: assets/fonts/pretendard/pretendardBlack.otf
           weight: 900

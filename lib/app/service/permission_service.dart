@@ -21,13 +21,13 @@ class PermissionService extends GetxService {
       isRequired: true,
       isExpanded: false,
     ),
-    PermissionModel(
-      title: '주소록',
-      image: 'assets/images/permission/address.png',
-      description: '가까운 의사, 병원 검색을 위한 용도입니다',
-      isRequired: false,
-      isExpanded: false,
-    ),
+    // PermissionModel(
+    //   title: '주소록',
+    //   image: 'assets/images/permission/address.png',
+    //   description: '가까운 의사, 병원 검색을 위한 용도입니다',
+    //   isRequired: false,
+    //   isExpanded: false,
+    // ),
     PermissionModel(
       title: '알림',
       image: 'assets/images/permission/notifications.png',
@@ -35,13 +35,13 @@ class PermissionService extends GetxService {
       isRequired: false,
       isExpanded: false,
     ),
-    PermissionModel(
-      title: '연락처',
-      image: 'assets/images/permission/phone.png',
-      description: '휴대폰 사용자 본인인증 용도로 사용합니다',
-      isRequired: false,
-      isExpanded: false,
-    ),
+    // PermissionModel(
+    //   title: '연락처',
+    //   image: 'assets/images/permission/phone.png',
+    //   description: '휴대폰 사용자 본인인증 용도로 사용합니다',
+    //   isRequired: false,
+    //   isExpanded: false,
+    // ),
     // PermissionModel(
     //   title: '카메라 및 앨범',
     //   icon: Icon(

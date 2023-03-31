@@ -256,7 +256,7 @@ class HomeView extends GetView<HomeController> {
                                           Text(
                                             '파킨슨병 완전정복',
                                             style:
-                                                TextPath.TextF14W500.copyWith(
+                                                TextPath.TextF13W500.copyWith(
                                               color: ColorPath.TextGrey1H212121,
                                             ),
                                           ),
