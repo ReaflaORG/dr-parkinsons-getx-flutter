@@ -5,7 +5,7 @@ publish_to: "REAFLA"
 version: 2.0.0+2
 
 environment:
-  sdk: ">=2.19.6 <3.0.0"
+  sdk: ">=2.19.2 <3.0.0"
 
 dependencies:
   flutter:
