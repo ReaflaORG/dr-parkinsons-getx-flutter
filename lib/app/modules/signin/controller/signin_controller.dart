@@ -8,13 +8,16 @@ import 'package:dr_parkinsons/app/models/base_response_model.dart';
 import 'package:dr_parkinsons/app/models/doctor_model.dart';
 import 'package:dr_parkinsons/app/models/user_model.dart';
 import 'package:dr_parkinsons/app/service/auth_service.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
-import 'package:kakao_flutter_sdk/kakao_flutter_sdk.dart';
+import 'package:get_storage/get_storage.dart';
+import 'package:kakao_flutter_sdk/kakao_flutter_sdk.dart' as KAKAO;
 import 'package:logger/logger.dart';
 
 import '../../../models/carousel_slide_model.dart';
 import '../../../provider/provider.dart';
+import '../../../service/firebase_auth_service.dart';
 
 class SignInController extends GetxController {
   static SignInController get to => Get.find();
@@ -56,70 +59,97 @@ class SignInController extends GetxController {
   // Variable ▼
 
   /// 카카오 토큰
-  RxSet<OAuthToken> kakaoToken = <OAuthToken>{}.obs;
+  RxSet<KAKAO.OAuthToken> kakaoToken = <KAKAO.OAuthToken>{}.obs;
 
   /// 유저 데이터
-  RxSet<AccessTokenInfo> userData = <AccessTokenInfo>{}.obs;
+  RxSet<KAKAO.AccessTokenInfo> userData = <KAKAO.AccessTokenInfo>{}.obs;
 
   /// 슬라이드 인덱스
   Rx<int> carouselSliderIndex = 0.obs;
 
   // Funcion ▼
 
-  /// 카카오 로그인 프로바이더
-  Future<void> handleKakaoProvider() async {
-    if (await isKakaoTalkInstalled()) {
-      try {
-        await UserApi.instance.loginWithKakaoTalk();
-      } catch (error) {
-        if (error is PlatformException && error.code == 'CANCELED') {
+  /// 소셜 로그인 프로바이더
+  Future<void> handleSocialProvider(String platform) async {
+    switch (platform) {
+      case 'kakao':
+        if (await KAKAO.isKakaoTalkInstalled()) {
+          try {
+            await KAKAO.UserApi.instance.loginWithKakaoTalk();
+          } catch (error) {
+            if (error is PlatformException && error.code == 'CANCELED') {
+              return;
+            }
+
+            try {
+              await KAKAO.UserApi.instance.loginWithKakaoAccount();
+              Logger().d('카카오계정으로 로그인 성공');
+            } catch (error) {
+              Logger().d('카카오계정으로 로그인 실패 $error');
+              return;
+            }
+          }
+        } else {
+          try {
+            await KAKAO.UserApi.instance.loginWithKakaoAccount();
+            Logger().d('카카오계정으로 로그인 성공');
+          } catch (error) {
+            Logger().d('카카오계정으로 로그인 실패 $error');
+            return;
+          }
+        }
+
+        KAKAO.User user = await KAKAO.UserApi.instance.me();
+        KAKAO.Account? userInfo = user.kakaoAccount;
+
+        if (userInfo == null) {
+          await KAKAO.UserApi.instance.unlink();
+          GlobalToastWidget('카카오 계정 정보를 가져오지 못했습니다');
+
           return;
         }
 
-        try {
-          await UserApi.instance.loginWithKakaoAccount();
-          Logger().d('카카오계정으로 로그인 성공');
-        } catch (error) {
-          Logger().d('카카오계정으로 로그인 실패 $error');
+        if (userInfo.email == null) {
+          await KAKAO.UserApi.instance.unlink();
+          GlobalToastWidget('카카오 계정에 이메일을 허용해주세요');
+
           return;
         }
-      }
-    } else {
-      try {
-        await UserApi.instance.loginWithKakaoAccount();
-        Logger().d('카카오계정으로 로그인 성공');
-      } catch (error) {
-        Logger().d('카카오계정으로 로그인 실패 $error');
-        return;
-      }
+
+        await handleAPIProvider(
+          provider: 'kakao',
+          provider_id: user.id.toString(),
+          user_email: userInfo.email!,
+        );
+        break;
+      case 'apple':
+        UserCredential user = await FirebaseAuthService.to.signInWithApple();
+        Logger().d(user.user?.uid);
+        Logger().d(user.user?.displayName);
+        Logger().d(user.user?.email);
+        await handleAPIProvider(
+          provider: 'apple',
+          provider_id: user.user?.uid ?? '',
+          user_email: user.user?.email ?? '',
+        );
+        break;
     }
+  }
 
+  Future<void> handleAPIProvider({
+    required String provider,
+    required String provider_id,
+    required String user_email,
+  }) async {
     try {
-      User user = await UserApi.instance.me();
-      Account? userInfo = user.kakaoAccount;
-
-      if (userInfo == null) {
-        await UserApi.instance.unlink();
-        GlobalToastWidget('카카오 계정 정보를 가져오지 못했습니다');
-
-        return;
-      }
-
-      if (userInfo.email == null) {
-        await UserApi.instance.unlink();
-        GlobalToastWidget('카카오 계정에 이메일을 허용해주세요');
-
-        return;
-      }
-
       AuthBaseResponseModel response = await Provider.dio(
         method: 'POST',
         url: '/auth/register/kakao',
         requestModel: {
-          'provider': 'kakao',
-          'provider_id': user.id.toString(),
-          'user_email': userInfo.email,
-          'device_token': DateTime.now().millisecondsSinceEpoch.toString(),
+          'provider': provider,
+          'provider_id': provider_id,
+          'user_email': user_email,
+          'device_token': GetStorage().read('fcm_token') ?? '',
         },
       );
 
@@ -152,6 +182,70 @@ class SignInController extends GetxController {
       return;
     }
   }
+
+  // 애플 로그인 프로바이더
+  // Future<void> handleAppleProvider() async {
+  //   try {
+  //     final AuthorizationResult result = await AppleSignIn.performRequests([
+  //       AppleIdRequest(requestedScopes: [Scope.email, Scope.fullName])
+  //     ]);
+
+  //     switch (result.status) {
+  //       case AuthorizationStatus.authorized:
+  //         final AppleIdCredential appleIdCredential = result.credential;
+  //         final OAuthProvider oAuthProvider = OAuthProvider('apple.com');
+  //         final OAuthCredential credential = oAuthProvider.credential(
+  //           idToken: String.fromCharCodes(appleIdCredential.identityToken!),
+  //           accessToken:
+  //               String.fromCharCodes(appleIdCredential.authorizationCode!),
+  //         );
+
+  //         AuthBaseResponseModel response = await Provider.dio(
+  //           method: 'POST',
+  //           url: '/auth/register/apple',
+  //           requestModel: {
+  //             'provider': 'apple',
+  //             'provider_id': appleIdCredential.user,
+  //             'user_email': appleIdCredential.email,
+  //             'device_token': DateTime.now().millisecondsSinceEpoch.toString(),
+  //           },
+  //         );
+
+  //         switch (response.statusCode) {
+  //           case 201:
+  //             UserModel response_user = UserModel.fromJson(response.data['user']);
+  //             String token = response.data['access_token'];
+  //             DoctorModel? doctor;
+
+  //             Future.value([
+  //               if (response_user.doctorId != null)
+  //                 {
+  //                   doctor = DoctorModel.fromJson(response.data['doctor']),
+  //                 },
+  //               AuthService.to.handleLogin(
+  //                 user: response_user,
+  //                 responseAccessToken: token,
+  //                 doctor: doctor,
+  //               )
+  //             ]).then((value) {
+  //               Get.offAllNamed('/main');
+  //             });
+  //             break;
+  //           default:
+  //             throw Exception(response.message);
+  //         }
+  //         break;
+  //       case AuthorizationStatus.error:
+  //         throw Exception('Sign in failed: ${result.error!.localizedDescription}');
+  //       case AuthorizationStatus.cancelled:
+  //         throw Exception('User cancelled');
+  //     }
+  //   } catch (e) {
+  //     Logger().d(e);
+  //     GlobalToastWidget(e.toString().substring(11));
+  //     return;
+  //   }
+  // }
 
   /// 임시 로그인
   /// {"id":2585184509,"connected_at":"2022-12-18T12:15:52Z","kakao_account":{"has_email":true,"email_needs_agreement":false,"is_email_valid":true,"is_email_verified":true,"email":"dormitalk@naver.com"}}

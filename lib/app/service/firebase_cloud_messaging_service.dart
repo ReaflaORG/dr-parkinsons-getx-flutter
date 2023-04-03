@@ -79,6 +79,7 @@ class FirebaseCloudMessagingService extends GetxService {
 
 /// 옵션 설정
 Future<void> handleSetForegroundNotificationPresentationOptions() async {
+  // `settings`의 경우 `IOS`의 경우 권한화면이 나오기 전에 권한 요청이 간다.
   final NotificationSettings settings =
       await FirebaseMessaging.instance.requestPermission(
     alert: true,

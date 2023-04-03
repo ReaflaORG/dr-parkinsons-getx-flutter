@@ -35,6 +35,9 @@ Future<void> initialize() async {
     SchedulerBinding.instance.scheduleWarmUpFrame();
   });
 
+  /// Firebase 초기화
+  await Firebase.initializeApp();
+
   // Http 초기화 (디버그 모드일 경우)
   if (kDebugMode) {
     HttpOverrides.global = MyHttpOverrides();
@@ -60,14 +63,15 @@ Future<void> initialize() async {
     ),
   );
 
-  /// Firebase 초기화
-  await Firebase.initializeApp();
-
   // Kakao 초기화
   KakaoSdk.init(nativeAppKey: dotenv.env['APP_KAKAO_NATIVE_APP_KEY']);
 
   // 글로벌 서비스
   Get.put(GlobalService(), permanent: true);
+
+  // FCM 서비스
+  // Get.put(FirebaseCloudMessagingService(), permanent: true);
+  Get.put(FirebaseCloudMessagingService(), permanent: true);
 
   // 인증 서비스
   Get.put(AuthService(), permanent: true);
@@ -75,14 +79,12 @@ Future<void> initialize() async {
   /// 위치 서비스
   Get.put(LocationService(), permanent: true);
 
-  // FCM 서비스
-  Get.put(FirebaseCloudMessagingService(), permanent: true);
-
   // 퍼미션 서비스
   Get.put(PermissionService(), permanent: true);
 
   // 파이어베이스 인증 서비스
-  Get.put(FirebaseAuthService(), permanent: true);
+  // Get.put(FirebaseAuthService(), permanent: true);
+  Get.lazyPut(() => FirebaseAuthService());
 }
 
 class MyApp extends StatelessWidget {
