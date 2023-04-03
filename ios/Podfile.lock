@@ -63,26 +63,26 @@ PODS:
   - FMDB (2.7.5):
     - FMDB/standard (= 2.7.5)
   - FMDB/standard (2.7.5)
-  - GoogleDataTransport (9.2.1):
+  - GoogleDataTransport (9.2.2):
     - GoogleUtilities/Environment (~> 7.7)
     - nanopb (< 2.30910.0, >= 2.30908.0)
     - PromisesObjC (< 3.0, >= 1.2)
-  - GoogleUtilities/AppDelegateSwizzler (7.11.0):
+  - GoogleUtilities/AppDelegateSwizzler (7.11.1):
     - GoogleUtilities/Environment
     - GoogleUtilities/Logger
     - GoogleUtilities/Network
-  - GoogleUtilities/Environment (7.11.0):
+  - GoogleUtilities/Environment (7.11.1):
     - PromisesObjC (< 3.0, >= 1.2)
-  - GoogleUtilities/Logger (7.11.0):
+  - GoogleUtilities/Logger (7.11.1):
     - GoogleUtilities/Environment
-  - GoogleUtilities/Network (7.11.0):
+  - GoogleUtilities/Network (7.11.1):
     - GoogleUtilities/Logger
     - "GoogleUtilities/NSData+zlib"
     - GoogleUtilities/Reachability
-  - "GoogleUtilities/NSData+zlib (7.11.0)"
-  - GoogleUtilities/Reachability (7.11.0):
+  - "GoogleUtilities/NSData+zlib (7.11.1)"
+  - GoogleUtilities/Reachability (7.11.1):
     - GoogleUtilities/Logger
-  - GoogleUtilities/UserDefaults (7.11.0):
+  - GoogleUtilities/UserDefaults (7.11.1):
     - GoogleUtilities/Logger
   - GTMSessionFetcher/Core (3.1.0)
   - image_picker_ios (0.0.1):
@@ -227,8 +227,8 @@ SPEC CHECKSUMS:
   flutter_local_notifications: 0c0b1ae97e741e1521e4c1629a459d04b9aec743
   fluttertoast: eb263d302cc92e04176c053d2385237e9f43fad0
   FMDB: 2ce00b547f966261cd18927a3ddb07cb6f3db82a
-  GoogleDataTransport: ea169759df570f4e37bdee1623ec32a7e64e67c4
-  GoogleUtilities: c2bdc4cf2ce786c4d2e6b3bcfd599a25ca78f06f
+  GoogleDataTransport: 8378d1fa8ac49753ea6ce70d65a7cb70ce5f66e6
+  GoogleUtilities: 9aa0ad5a7bc171f8bae016300bfcfa3fb8425749
   GTMSessionFetcher: c9e714f7eec91a55641e2bab9f45fd83a219b882
   image_picker_ios: b786a5dcf033a8336a657191401bfdf12017dabb
   kakao_flutter_sdk_common: b1f30bb70b2341db4d9bbad727f8356e64729668
@@ -248,6 +248,6 @@ SPEC CHECKSUMS:
   wakelock: d0fc7c864128eac40eba1617cb5264d9c940b46f
   webview_flutter_wkwebview: b7e70ef1ddded7e69c796c7390ee74180182971f
 
-PODFILE CHECKSUM: 7806beb4c934356b7dbb0b1009ca7e06bf42865d
+PODFILE CHECKSUM: 5d3de0f07830a5c695252e8e382de546eb3990fa
 
 COCOAPODS: 1.11.3
