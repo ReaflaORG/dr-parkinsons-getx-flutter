@@ -26,7 +26,7 @@
 	<string>$(FLUTTER_BUILD_NUMBER)</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
-	<key>NSPotoLibraryUsageDescription</key>
+	<key>NSPhotoLibraryUsageDescription</key>
 	<string>자신의 증상을 기록하기 위해 갤러리 권한이 필요로 합니다</string>
 	<key>NSCameraUsageDescription</key>
 	<string>자신의 증상을 기록하기 위해 갤러리 권한이 필요로 합니다</string>
