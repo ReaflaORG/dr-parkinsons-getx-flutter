@@ -14,6 +14,8 @@ import 'package:timeago/timeago.dart' as timeago;
 
 import 'app/routes/app_pages.dart';
 import 'app/service/auth_service.dart';
+import 'app/service/firebase_auth_service.dart';
+import 'app/service/firebase_cloud_messaging_service.dart';
 import 'app/service/global_service.dart';
 import 'app/service/location_service.dart';
 import 'app/service/permission_service.dart';
@@ -73,10 +75,13 @@ Future<void> initialize() async {
   Get.put(LocationService(), permanent: true);
 
   // FCM 서비스
-  // Get.put(FCMService(), permanent: true),
+  Get.put(FirebaseCloudMessagingService(), permanent: true);
 
   // 퍼미션 서비스
-  Get.lazyPut(() => PermissionService());
+  Get.put(PermissionService(), permanent: true);
+
+  // 파이어베이스 인증 서비스
+  Get.put(FirebaseAuthService(), permanent: true);
 }
 
 class MyApp extends StatelessWidget {

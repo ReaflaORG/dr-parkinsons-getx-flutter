@@ -8,8 +8,9 @@ import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:logger/logger.dart';
 
-class FCMService extends GetxService {
-  static FCMService get to => Get.find();
+// 파이어베이스 클라우드 메시징 서비스
+class FirebaseCloudMessagingService extends GetxService {
+  static FirebaseCloudMessagingService get to => Get.find();
 
   /// AndroidNotificationChannel
   /// id: 임의 ID
@@ -148,7 +149,7 @@ visibility : ${android?.visibility}
 
       // 메세지가 온 경우에만 체크
       if (message.notification != null) {
-        FCMService.to.message.value = message;
+        FirebaseCloudMessagingService.to.message.value = message;
 
         if (Platform.isAndroid) {
           // 메세지 출력 부분
@@ -218,7 +219,8 @@ Future<void> handleOnForegroundMessage({
   required RemoteMessage message,
 }) async {
   // if (message.notification != null) {
-  Logger().d('[FCM] 앱 포그라운드 상태 메세지 : ${FCMService.to.message.value.messageId}');
+  Logger().d(
+      '[FCM] 앱 포그라운드 상태 메세지 : ${FirebaseCloudMessagingService.to.message.value.messageId}');
   // }
 
   return;
@@ -226,9 +228,10 @@ Future<void> handleOnForegroundMessage({
 
 /// 포그라운드 상태에서 알림 메세지를 사용자가 눌렀을때
 Future<void> handleOnForegroundMessageOpenedApp() async {
-  Logger().d('[FCM] 앱 포그라운드 알림 메세지 클릭 : ${FCMService.to.message.value.data}');
+  Logger().d(
+      '[FCM] 앱 포그라운드 알림 메세지 클릭 : ${FirebaseCloudMessagingService.to.message.value.data}');
   // await MainController.to
-  //     .handleWebViewControllerLoadURL(message: FCMService.to.message.value);
+  //     .handleWebViewControllerLoadURL(message: FirebaseCloudMessageingService.to.message.value);
 }
 
 /// 백그라운드 메세지

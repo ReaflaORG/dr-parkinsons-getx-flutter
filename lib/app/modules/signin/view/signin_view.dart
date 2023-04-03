@@ -1,12 +1,12 @@
 import 'dart:io';
 
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:dr_parkinsons/app/service/firebase_auth_service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
 import '../../../globals/global_layout_widget.dart';
-import '../../../globals/global_toast_widget.dart';
 import '../../../theme/color_path.dart';
 import '../../../theme/text_path.dart';
 import '../controller/signin_controller.dart';
@@ -226,9 +226,10 @@ class SocialLoginButtonWidget extends GetView<SignInController> {
               height: 50.w,
               child: ElevatedButton(
                 onPressed: () {
+                  FirebaseAuthService.to.signInWithApple();
                   // Get.offAllNamed('/main');
-                  GlobalToastWidget('임시로 로그인합니다');
-                  controller.handleTempSignIn();
+                  // GlobalToastWidget('임시로 로그인합니다');
+                  // controller.handleTempSignIn();
                 },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: ColorPath.TextGrey2H424242,
