@@ -80,6 +80,7 @@ class PermissionService extends GetxService {
   Future<dynamic> handlePermissionOnPressed() async {
     final Map<Permission, PermissionStatus> permissionStatus = await [
       Permission.location,
+      Permission.notification,
       // Permission.camera,
       // Permission.photos,
       // Permission.microphone,

@@ -2,7 +2,7 @@ name: dr_parkinsons
 description: A new Flutter project.
 publish_to: "REAFLA"
 
-version: 1.0.0+1
+version: 2.0.0+2
 
 environment:
   sdk: ">=2.19.6 <3.0.0"
@@ -29,7 +29,9 @@ dependencies:
   flutter_screenutil: ^5.5.1
   permission_handler: ^10.0.0
   app_settings: ^4.1.6
-  firebase_messaging: ^14.1.0
+  firebase_auth: ^4.4.0
+  firebase_core: ^2.9.0
+  firebase_messaging: ^14.4.0
   flutter_local_notifications: ^13.0.0
   fluttertoast: ^8.1.2
   url_launcher: ^6.1.7
@@ -57,7 +59,6 @@ dependencies:
   flick_video_player: ^0.5.0
   webview_flutter: ^4.0.6
   sign_in_with_apple: ^4.3.0
-  firebase_auth: ^4.4.0
   crypto: ^3.0.2
 
 dev_dependencies:

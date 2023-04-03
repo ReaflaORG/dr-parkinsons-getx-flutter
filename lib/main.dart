@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
@@ -60,7 +61,7 @@ Future<void> initialize() async {
   );
 
   /// Firebase 초기화
-  // await Firebase.initializeApp();
+  await Firebase.initializeApp();
 
   // Kakao 초기화
   KakaoSdk.init(nativeAppKey: dotenv.env['APP_KAKAO_NATIVE_APP_KEY']);
