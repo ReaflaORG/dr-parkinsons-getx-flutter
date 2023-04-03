@@ -1,0 +1,54 @@
+{
+  "project_info": {
+    "project_number": "1067094005511",
+    "project_id": "dr-parkinsons",
+    "storage_bucket": "dr-parkinsons.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1067094005511:android:1888abb14508d01cec17a2",
+        "android_client_info": {
+          "package_name": "com.gilhospital.parkinsons"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1067094005511-pmclqn2v537vfi5cdf5ekki8u3dg2sil.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.gilhospital.parkinsons",
+            "certificate_hash": "cfa6fd8353b97c5936a6dcf7f7b6682dfb912a05"
+          }
+        },
+        {
+          "client_id": "1067094005511-c8jc9jnaskjb3u49rv72o1btnqrnfq7t.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDBYCSCunrDlTQBbYZ_trJNByQBfBzYB_Y"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1067094005511-c8jc9jnaskjb3u49rv72o1btnqrnfq7t.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "1067094005511-8bd1ij4vud6bg8qef48i8ror14n7i4vn.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.gilhospital.parkinsons"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
