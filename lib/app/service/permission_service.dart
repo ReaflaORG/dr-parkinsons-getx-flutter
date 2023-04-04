@@ -1,5 +1,6 @@
 // ignore_for_file: unnecessary_overrides, cast_nullable_to_non_nullable
 
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:logger/logger.dart';
@@ -42,28 +43,28 @@ class PermissionService extends GetxService {
     //   isRequired: false,
     //   isExpanded: false,
     // ),
-    // PermissionModel(
-    //   title: '카메라 및 앨범',
-    //   icon: Icon(
-    //     Icons.camera_alt_rounded,
-    //     size: 32,
-    //     color: Colors.grey.shade700,
-    //   ),
-    //   description: '프로필 이미지 업로드에 사용',
-    //   isRequired: true,
-    //   isExpanded: false,
-    // ),
-    // PermissionModel(
-    //   title: '마이크',
-    //   icon: Icon(
-    //     Icons.mic_rounded,
-    //     size: 32,
-    //     color: Colors.grey.shade700,
-    //   ),
-    //   description: '프로필 동영상 업로드시 녹화에 사용',
-    //   isRequired: true,
-    //   isExpanded: false,
-    // ),
+    PermissionModel(
+      title: '카메라 및 앨범',
+      icon: Icon(
+        Icons.camera_alt_rounded,
+        size: 32,
+        color: Colors.grey.shade700,
+      ),
+      description: '프로필 이미지 업로드에 사용',
+      isRequired: true,
+      isExpanded: false,
+    ),
+    PermissionModel(
+      title: '마이크',
+      icon: Icon(
+        Icons.mic_rounded,
+        size: 32,
+        color: Colors.grey.shade700,
+      ),
+      description: '프로필 동영상 업로드시 녹화에 사용',
+      isRequired: true,
+      isExpanded: false,
+    ),
   ].obs;
 
   // Variable ▼
@@ -81,9 +82,9 @@ class PermissionService extends GetxService {
     final Map<Permission, PermissionStatus> permissionStatus = await [
       Permission.location,
       Permission.notification,
-      // Permission.camera,
-      // Permission.photos,
-      // Permission.microphone,
+      Permission.camera,
+      Permission.photos,
+      Permission.microphone,
     ].request();
 
     for (var index = 0; index < permissionStatus.length; index++) {
