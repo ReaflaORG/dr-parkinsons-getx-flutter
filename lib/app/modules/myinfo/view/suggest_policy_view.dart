@@ -127,7 +127,7 @@ class TextFieldWidget extends GetView<SuggestPolicyController> {
               contentPadding: const EdgeInsets.symmetric(
                 vertical: 14,
               ).w,
-              hintText: '정책을 제안할 내용을 입력해주세요',
+              hintText: '의견을 제안할 내용을 입력해주세요',
               hintStyle: TextPath.TextF14W500.copyWith(
                 color: ColorPath.TextGrey4H9E9E9E,
               ),
