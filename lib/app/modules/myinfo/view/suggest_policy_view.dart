@@ -21,7 +21,7 @@ class SuggestPolicyView extends GetView<SuggestPolicyController> {
         resizeToAvoidBottomInset: true,
         appBar: GlobalAppBarWidget(
           appBar: AppBar(),
-          title: '정책 제안하기',
+          title: '의견 제안하기',
           actions: [
             Container(
               alignment: Alignment.center,

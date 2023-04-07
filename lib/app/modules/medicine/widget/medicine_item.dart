@@ -32,7 +32,7 @@ class MedicineImageItem extends StatelessWidget {
             child: Image.asset(
               assest!,
               fit: BoxFit.cover,
-              width: MediaQuery.of(context).size.width * .35.w,
+              width: MediaQuery.of(context).size.width,
               // height: 70.w,
             ),
           ),

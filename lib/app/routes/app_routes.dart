@@ -86,7 +86,7 @@ abstract class Routes {
   /// 내 증상 보기
   static const VIEW_MY_SYMPTOMS = _Paths.VIEW_MY_SYMPTOMS;
 
-  /// 정책 제안
+  /// 의견 제안
   static const SUGGEST_POLICY = _Paths.SUGGEST_POLICY;
 
   /// 프로필 설정
@@ -192,7 +192,7 @@ abstract class _Paths {
   /// 내 증상 보기
   static const VIEW_MY_SYMPTOMS = '/myinfo/view_my_symptoms';
 
-  /// 정책 제안
+  /// 의견 제안
   static const SUGGEST_POLICY = '/myinfo/suggest_policy';
 
   /// 프로필 세팅

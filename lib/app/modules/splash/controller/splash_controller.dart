@@ -3,6 +3,7 @@
 import 'dart:async';
 import 'dart:io';
 
+import 'package:flutter/cupertino.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
@@ -12,8 +13,19 @@ import '../../../globals/global_dialog_widget.dart';
 import '../../../service/global_service.dart';
 import '../../../service/permission_service.dart';
 
-class SplashController extends GetxController {
+class SplashController extends GetxController
+    with GetSingleTickerProviderStateMixin {
   static SplashController get to => Get.find();
+
+  // Controller ▼
+
+  /// 애니메이션 컨트롤러
+  late AnimationController animationController = AnimationController(
+    vsync: this,
+    duration: const Duration(milliseconds: 3000),
+  )..repeat(reverse: true);
+
+  // Veriable ▼
 
   // Function ▼
 
@@ -57,7 +69,7 @@ class SplashController extends GetxController {
 
   @override
   Future<void> onInit() async {
-    /// 컨트롤러 초기화
+    // 컨트롤러 초기화
     await handleInitialization();
 
     super.onInit();
@@ -73,6 +85,8 @@ class SplashController extends GetxController {
 
   @override
   void onClose() {
+    animationController.dispose();
+
     super.onClose();
   }
 

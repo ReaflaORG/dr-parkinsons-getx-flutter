@@ -1,5 +1,7 @@
+import 'package:dr_parkinsons/app/globals/global_toast_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import '../../../theme/color_path.dart';
 import '../../../theme/text_path.dart';
@@ -57,9 +59,7 @@ class MedicineInfoDopaminePage extends StatelessWidget {
             ),
           ),
         ),
-        const SizedBox(
-          height: 20,
-        ),
+        SizedBox(height: 20.w),
         Container(
           alignment: Alignment.centerLeft,
           height: 34.w,
@@ -127,9 +127,9 @@ class MedicineInfoDopaminePage extends StatelessWidget {
           alignment: Alignment.centerLeft,
           padding: const EdgeInsets.only(bottom: 6).w,
           child: Image.asset(
-            'assets/images/medicine/pill0101.jpg',
+            'assets/images/medicine/pill0101.webp',
             fit: BoxFit.cover,
-            width: MediaQuery.of(context).size.width * .35,
+            width: MediaQuery.of(context).size.width,
             // height: 70.w,
           ),
         ),
@@ -172,16 +172,14 @@ class MedicineInfoDopaminePage extends StatelessWidget {
             ),
           ),
         ),
-
         // 약제 3번
         Container(
           alignment: Alignment.centerLeft,
           padding: const EdgeInsets.only(bottom: 6).w,
           child: Image.asset(
-            'assets/images/medicine/pill0103.jpg',
+            'assets/images/medicine/pill0103.webp',
             fit: BoxFit.cover,
-            width: MediaQuery.of(context).size.width * .35,
-            // height: 70.w,
+            width: MediaQuery.of(context).size.width,
           ),
         ),
         Container(
@@ -194,15 +192,14 @@ class MedicineInfoDopaminePage extends StatelessWidget {
             ),
           ),
         ),
-
         // 약제 4번
         Container(
           alignment: Alignment.centerLeft,
           padding: const EdgeInsets.only(bottom: 6).w,
           child: Image.asset(
-            'assets/images/medicine/pill0104.jpg',
+            'assets/images/medicine/pill0104.webp',
             fit: BoxFit.cover,
-            width: MediaQuery.of(context).size.width * .35,
+            width: MediaQuery.of(context).size.width,
             // height: 70.w,
           ),
         ),
@@ -210,9 +207,124 @@ class MedicineInfoDopaminePage extends StatelessWidget {
           alignment: Alignment.centerLeft,
           padding: const EdgeInsets.only(bottom: 12).w,
           child: Text(
-            '''레보도파 100mg, 벤세라지드염산염 28.5mg''',
+            '''레보도파 200mg, 벤세라지드염산염 28.5mg''',
             style: TextPath.TextF13W400.copyWith(
               color: ColorPath.TextGrey2H424242,
+            ),
+          ),
+        ),
+        Container(
+          alignment: Alignment.centerLeft,
+          padding: const EdgeInsets.only(bottom: 6).w,
+          height: 30.w,
+          child: Text(
+            '출처',
+            style: TextPath.TextF14W500.copyWith(
+              color: ColorPath.PrimaryDarkColor,
+            ),
+          ),
+        ),
+        Container(
+          alignment: Alignment.centerLeft,
+          child: TextButton(
+            onPressed: () async {
+              if (!await launchUrl(
+                Uri.parse(
+                    'https://www.health.kr/searchDrug/result_drug.asp?drug_cd=A11A0920A0216'),
+              )) {
+                GlobalToastWidget('잠시 후 다시 시도해주세요');
+              }
+            },
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Icon(
+                  Icons.open_in_new_rounded,
+                  size: 16.sp,
+                ),
+                SizedBox(width: 3.w),
+                const Text(
+                  '퍼킨정25/100mg',
+                ),
+              ],
+            ),
+          ),
+        ),
+        Container(
+          alignment: Alignment.centerLeft,
+          child: TextButton(
+            onPressed: () async {
+              if (!await launchUrl(
+                Uri.parse(
+                    'https://www.health.kr/searchDrug/result_drug.asp?drug_cd=A11A0920A0216'),
+              )) {
+                GlobalToastWidget('잠시 후 다시 시도해주세요');
+              }
+            },
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Icon(
+                  Icons.open_in_new_rounded,
+                  size: 16.sp,
+                ),
+                SizedBox(width: 3.w),
+                const Text(
+                  '퍼킨정25/250mg',
+                ),
+              ],
+            ),
+          ),
+        ),
+        Container(
+          alignment: Alignment.centerLeft,
+          child: TextButton(
+            onPressed: () async {
+              if (!await launchUrl(
+                Uri.parse(
+                    'https://www.health.kr/searchDrug/result_drug.asp?drug_cd=2021060400005'),
+              )) {
+                GlobalToastWidget('잠시 후 다시 시도해주세요');
+              }
+            },
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Icon(
+                  Icons.open_in_new_rounded,
+                  size: 16.sp,
+                ),
+                SizedBox(width: 3.w),
+                const Text(
+                  '명도파정25/100mg',
+                ),
+              ],
+            ),
+          ),
+        ),
+        Container(
+          alignment: Alignment.centerLeft,
+          child: TextButton(
+            onPressed: () async {
+              if (!await launchUrl(
+                Uri.parse(
+                    'https://www.health.kr/searchDrug/result_drug.asp?drug_cd=2021051700004'),
+              )) {
+                GlobalToastWidget('잠시 후 다시 시도해주세요');
+              }
+            },
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Icon(
+                  Icons.open_in_new_rounded,
+                  size: 16.sp,
+                ),
+                SizedBox(width: 3.w),
+                const Text(
+                  '명도파정25/200mg',
+                ),
+              ],
             ),
           ),
         ),

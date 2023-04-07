@@ -324,7 +324,7 @@ class AppPages {
       popGesture: true,
     ),
     GetPage(
-      title: '정책제안',
+      title: '의견제안',
       name: Routes.SUGGEST_POLICY,
       page: () => const SuggestPolicyView(),
       binding: SuggestPolicyBinding(),

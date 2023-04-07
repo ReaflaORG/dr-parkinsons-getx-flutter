@@ -144,8 +144,6 @@ class MissionController extends GetxController {
                       : '대기';
             }
 
-            Logger().d(missionData[0].toJson());
-
             missionData.refresh();
             isLoad.value = false;
             break;

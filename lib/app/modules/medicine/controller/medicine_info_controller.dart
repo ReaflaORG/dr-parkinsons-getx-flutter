@@ -48,8 +48,6 @@ class MedicineInfoController extends GetxController {
 
   @override
   Future<void> onInit() async {
-    Logger().d(medicineName);
-
     super.onInit();
   }
 

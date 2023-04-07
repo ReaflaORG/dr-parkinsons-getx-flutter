@@ -80,30 +80,30 @@ class FirebaseCloudMessagingService extends GetxService {
 /// 옵션 설정
 Future<void> handleSetForegroundNotificationPresentationOptions() async {
   // `settings`의 경우 `IOS`의 경우 권한화면이 나오기 전에 권한 요청이 간다.
-  final NotificationSettings settings =
-      await FirebaseMessaging.instance.requestPermission(
-    alert: true,
-    announcement: false,
-    badge: true,
-    carPlay: false,
-    criticalAlert: false,
-    provisional: false,
-    sound: true,
-  );
+  // final NotificationSettings settings =
+  //     await FirebaseMessaging.instance.requestPermission(
+  //   alert: true,
+  //   announcement: false,
+  //   badge: true,
+  //   carPlay: false,
+  //   criticalAlert: false,
+  //   provisional: false,
+  //   sound: true,
+  // );
 
-  Logger().d('''
-  [FCM] IOS TEST 권한동의
-  alert : ${settings.alert}
-  announcement: ${settings.announcement}
-  badge: ${settings.badge}
-  carPlay: ${settings.carPlay}
-  criticalAlert: ${settings.criticalAlert}
-  authorizationStatus: ${settings.authorizationStatus}
-  lockScreen: ${settings.lockScreen}
-  notificationCenter: ${settings.notificationCenter}
-  showPreviews: ${settings.showPreviews}
-  timeSensitive: ${settings.timeSensitive}
-  sound: ${settings.sound}''');
+  // Logger().d('''
+  // [FCM] IOS TEST 권한동의
+  // alert : ${settings.alert}
+  // announcement: ${settings.announcement}
+  // badge: ${settings.badge}
+  // carPlay: ${settings.carPlay}
+  // criticalAlert: ${settings.criticalAlert}
+  // authorizationStatus: ${settings.authorizationStatus}
+  // lockScreen: ${settings.lockScreen}
+  // notificationCenter: ${settings.notificationCenter}
+  // showPreviews: ${settings.showPreviews}
+  // timeSensitive: ${settings.timeSensitive}
+  // sound: ${settings.sound}''');
 
   await FirebaseMessaging.instance.setForegroundNotificationPresentationOptions(
     alert: true,

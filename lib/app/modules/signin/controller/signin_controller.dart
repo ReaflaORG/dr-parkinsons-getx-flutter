@@ -15,6 +15,7 @@ import 'package:get_storage/get_storage.dart';
 import 'package:kakao_flutter_sdk/kakao_flutter_sdk.dart' as KAKAO;
 import 'package:logger/logger.dart';
 
+import '../../../globals/global_dialog_widget.dart';
 import '../../../models/carousel_slide_model.dart';
 import '../../../provider/provider.dart';
 import '../../../service/firebase_auth_service.dart';
@@ -39,7 +40,7 @@ class SignInController extends GetxController {
     CarouselSlideModel(
       title: '자가 테스트와 주치의 찾기',
       description:
-          '파킨슨 병인지 검사하고,\r\n진행도를 테스트 할 수 있어요\r\n가까운 파킨슨 병 전문의를  확인할 수 있어요\r\n',
+          '파킨슨 병인지 검사하고,\r\n진행도를 테스트 할 수 있어요\r\n가까운 파킨슨 병 전문의를 확인할 수 있어요\r\n',
       image: 'assets/images/signin/onboarding_2.png',
     ),
     CarouselSlideModel(
@@ -311,6 +312,11 @@ class SignInController extends GetxController {
 
   @override
   void onReady() {
+    // 면책조항 모달
+    GlobalDisclaimerModalWidget(okOnPressed: () {
+      Get.back();
+    });
+
     super.onReady();
   }
 

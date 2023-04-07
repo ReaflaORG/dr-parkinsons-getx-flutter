@@ -4,8 +4,10 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import '../../../globals/global_layout_widget.dart';
+import '../../../globals/global_toast_widget.dart';
 import '../../../theme/color_path.dart';
 import '../../../theme/text_path.dart';
 import '../controller/signin_controller.dart';
@@ -162,7 +164,7 @@ class SocialLoginButtonWidget extends GetView<SignInController> {
                 ),
               ),
               child: Container(
-                padding: const EdgeInsets.all(15).w,
+                padding: const EdgeInsets.all(10).w,
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.center,
@@ -170,12 +172,16 @@ class SocialLoginButtonWidget extends GetView<SignInController> {
                     Image.asset(
                       'assets/images/signin/kakao_logo.png',
                       fit: BoxFit.cover,
+                      width: 25.w,
                     ),
                     SizedBox(width: 15.w),
-                    Text(
-                      '카카오톡으로 계속하기',
-                      style: TextPath.Heading3F16W600.copyWith(
-                        color: ColorPath.TextGrey2H424242,
+                    Container(
+                      margin: const EdgeInsets.only(bottom: 2.5).w,
+                      child: Text(
+                        '카카오톡으로 계속하기',
+                        style: TextPath.Heading3F16W600.copyWith(
+                          color: ColorPath.TextGrey2H424242,
+                        ),
                       ),
                     ),
                   ],
@@ -278,34 +284,59 @@ class TermsGuideTextWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Text.rich(
-      TextSpan(
-        text: '회원가입 시 파킨슨앱',
-        children: [
-          TextSpan(
-            text: '서비스 이용 약관',
-            style: TextPath.TextF10W400.copyWith(
-              color: ColorPath.TextGrey3H616161,
-            ),
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: [
+        Text(
+          '회원가입시 파킨슨앱',
+          style: TextPath.TextF10W400.copyWith(
+            color: ColorPath.TextGrey4H9E9E9E,
           ),
-          const TextSpan(
-            text: '과',
-          ),
-          TextSpan(
-            text: '개인정보 보호정책',
-            style: TextPath.TextF10W400.copyWith(
-              color: ColorPath.TextGrey3H616161,
-            ),
-          ),
-          const TextSpan(
-            text: '에 동의하게 됩니다',
-          ),
-        ],
-        style: TextPath.TextF10W400.copyWith(
-          color: ColorPath.TextGrey4H9E9E9E,
         ),
-      ),
-      textAlign: TextAlign.center,
+        InkWell(
+          onTap: () async {
+            if (!await launchUrl(
+              Uri.parse('https://www.gilhospital.com/web/mobile/lemon1'),
+            )) {
+              GlobalToastWidget('잠시 후 다시 시도해주세요');
+            }
+          },
+          child: Text(
+            ' 서비스 이용 약관',
+            style: TextPath.TextF10W400.copyWith(
+              color: ColorPath.TextGrey3H616161,
+            ),
+          ),
+        ),
+        Text(
+          '과',
+          style: TextPath.TextF10W400.copyWith(
+            color: ColorPath.TextGrey4H9E9E9E,
+          ),
+        ),
+        InkWell(
+          onTap: () async {
+            if (!await launchUrl(
+              Uri.parse('https://www.kmds.or.kr/popup/person_info.php'),
+            )) {
+              GlobalToastWidget('잠시 후 다시 시도해주세요');
+            }
+          },
+          child: Text(
+            '개인정보 보호정책',
+            style: TextPath.TextF10W400.copyWith(
+              color: ColorPath.TextGrey3H616161,
+            ),
+          ),
+        ),
+        Text(
+          '에 동의하게 됩니다',
+          style: TextPath.TextF10W400.copyWith(
+            color: ColorPath.TextGrey4H9E9E9E,
+          ),
+        ),
+      ],
     );
   }
 }

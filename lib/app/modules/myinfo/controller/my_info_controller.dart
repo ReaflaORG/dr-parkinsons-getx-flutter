@@ -25,7 +25,7 @@ class MyInfoController extends GetxController {
       page: Routes.MY_SYMPTOMS,
     ),
     MyInfoMenuModel(
-      title: '정책제안',
+      title: '의견제안',
       page: Routes.SUGGEST_POLICY,
     ),
     MyInfoMenuModel(

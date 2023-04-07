@@ -207,213 +207,205 @@ Future<dynamic> GlobalPermissionModalOpenAppSettingsWidget({
 Future<dynamic> GlobalEmergencyModalWidget({
   required BuildContext context,
 }) =>
-    showDialog(
-      context: context,
-      barrierDismissible: true,
-      builder: (BuildContext context) {
-        return AlertDialog(
-          shape: const RoundedRectangleBorder(
-            borderRadius: BorderRadius.all(Radius.circular(16)),
-          ),
-          content: Column(
-            mainAxisSize: MainAxisSize.min,
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              const SizedBox(height: 30),
-              SizedBox(
-                width: 80.w,
-                height: 80.w,
-                child: Image.asset('assets/images/icons/page2/80 alert.png'),
+    Get.dialog(
+      AlertDialog(
+        shape: const RoundedRectangleBorder(
+          borderRadius: BorderRadius.all(Radius.circular(16)),
+        ),
+        content: Column(
+          mainAxisSize: MainAxisSize.min,
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            const SizedBox(height: 30),
+            SizedBox(
+              width: 80.w,
+              height: 80.w,
+              child: Image.asset('assets/images/icons/page2/80 alert.png'),
+            ),
+            const SizedBox(height: 12),
+            Text(
+              '응급 문자 보내기',
+              style: TextPath.Heading2F18W600.copyWith(
+                color: ColorPath.TextGrey1H212121,
               ),
-              const SizedBox(height: 12),
-              Text(
-                '응급 문자 보내기',
-                style: TextPath.Heading2F18W600.copyWith(
-                  color: ColorPath.TextGrey1H212121,
+            ),
+            const SizedBox(height: 4),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(
+                  '보호자 연락처',
+                  style: TextPath.TextF12W400.copyWith(
+                    color: ColorPath.TextGrey2H424242,
+                  ),
                 ),
-              ),
-              const SizedBox(height: 4),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(
-                    '보호자 연락처',
-                    style: TextPath.TextF12W400.copyWith(
-                      color: ColorPath.TextGrey2H424242,
+                const SizedBox(
+                  width: 5,
+                ),
+                Text(
+                  '010 - XXXX - XXXX',
+                  style: TextPath.TextF12W400.copyWith(
+                    color: ColorPath.TextGrey2H424242,
+                  ),
+                ),
+              ],
+            ),
+            const SizedBox(height: 40),
+            Row(
+              children: [
+                Expanded(
+                  flex: 1,
+                  child: InkWell(
+                    onTap: () {
+                      Get.back();
+                    },
+                    child: Container(
+                      alignment: Alignment.center,
+                      decoration: BoxDecoration(
+                        color: ColorPath.Background1HECEFF1,
+                        borderRadius: const BorderRadius.only(
+                          bottomLeft: Radius.circular(16),
+                        ),
+                      ),
+                      height: 48.w,
+                      child: Text(
+                        '취소',
+                        style: TextPath.TextF14W500.copyWith(
+                          color: ColorPath.TextGrey1H212121,
+                        ),
+                      ),
                     ),
                   ),
-                  const SizedBox(
-                    width: 5,
-                  ),
-                  Text(
-                    '010 - XXXX - XXXX',
-                    style: TextPath.TextF12W400.copyWith(
-                      color: ColorPath.TextGrey2H424242,
-                    ),
-                  ),
-                ],
-              ),
-              const SizedBox(height: 40),
-              Row(
-                children: [
-                  Expanded(
-                    flex: 1,
-                    child: InkWell(
-                      onTap: () {
-                        Get.back();
-                      },
-                      child: Container(
-                        alignment: Alignment.center,
-                        decoration: BoxDecoration(
-                          color: ColorPath.Background1HECEFF1,
+                ),
+                Expanded(
+                  flex: 1,
+                  child: InkWell(
+                    onTap: () {
+                      HomeController.to.sendEmergency();
+                      Get.back();
+                    },
+                    child: Container(
+                      alignment: Alignment.center,
+                      decoration: BoxDecoration(
+                          color: ColorPath.PrimaryColor,
                           borderRadius: const BorderRadius.only(
-                            bottomLeft: Radius.circular(16),
-                          ),
-                        ),
-                        height: 48.w,
-                        child: Text(
-                          '취소',
-                          style: TextPath.TextF14W500.copyWith(
-                            color: ColorPath.TextGrey1H212121,
-                          ),
+                            bottomRight: Radius.circular(16),
+                          )),
+                      height: 48.w,
+                      child: Text(
+                        '전송',
+                        style: TextPath.TextF14W500.copyWith(
+                          color: ColorPath.BackgroundWhite,
                         ),
                       ),
                     ),
                   ),
-                  Expanded(
-                    flex: 1,
-                    child: InkWell(
-                      onTap: () {
-                        HomeController.to.sendEmergency();
-                        Get.back();
-                      },
-                      child: Container(
-                        alignment: Alignment.center,
-                        decoration: BoxDecoration(
-                            color: ColorPath.PrimaryColor,
-                            borderRadius: const BorderRadius.only(
-                              bottomRight: Radius.circular(16),
-                            )),
-                        height: 48.w,
-                        child: Text(
-                          '전송',
-                          style: TextPath.TextF14W500.copyWith(
-                            color: ColorPath.BackgroundWhite,
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
-                ],
-              )
-            ],
-          ),
-          contentPadding: EdgeInsets.zero,
-        );
-      },
+                ),
+              ],
+            )
+          ],
+        ),
+        contentPadding: EdgeInsets.zero,
+      ),
     );
 
 /// 보호자 번호 추가 해야하는 모달
 Future<dynamic> GlobalEmergencyModalWidget2({required BuildContext context}) =>
-    showDialog(
-      context: context,
-      barrierDismissible: true,
-      builder: (BuildContext context) {
-        return AlertDialog(
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.all(
-              const Radius.circular(16).r,
+    Get.dialog(
+      AlertDialog(
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.all(
+            const Radius.circular(16).r,
+          ),
+        ),
+        content: Column(
+          mainAxisSize: MainAxisSize.min,
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            SizedBox(height: 30.w),
+            SizedBox(
+              width: 80.w,
+              height: 80.w,
+              child: Image.asset('assets/images/icons/page2/80 alert.png'),
             ),
-          ),
-          content: Column(
-            mainAxisSize: MainAxisSize.min,
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              SizedBox(height: 30.w),
-              SizedBox(
-                width: 80.w,
-                height: 80.w,
-                child: Image.asset('assets/images/icons/page2/80 alert.png'),
+            SizedBox(height: 12.w),
+            Text(
+              '응급 문자 보내기',
+              style: TextPath.Heading2F18W600.copyWith(
+                color: ColorPath.TextGrey1H212121,
               ),
-              SizedBox(height: 12.w),
-              Text(
-                '응급 문자 보내기',
-                style: TextPath.Heading2F18W600.copyWith(
-                  color: ColorPath.TextGrey1H212121,
+            ),
+            SizedBox(height: 4.w),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(
+                  '보호자 연락처가 등록되어 있지 않습니다.',
+                  style: TextPath.TextF12W400.copyWith(
+                    color: ColorPath.TertiaryColor,
+                  ),
                 ),
-              ),
-              SizedBox(height: 4.w),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(
-                    '보호자 연락처가 등록되어 있지 않습니다.',
-                    style: TextPath.TextF12W400.copyWith(
-                      color: ColorPath.TertiaryColor,
+              ],
+            ),
+            SizedBox(height: 40.w),
+            Row(
+              children: [
+                Expanded(
+                  flex: 1,
+                  child: InkWell(
+                    onTap: () {
+                      Get.back();
+                    },
+                    child: Container(
+                      alignment: Alignment.center,
+                      decoration: BoxDecoration(
+                        color: ColorPath.Background1HECEFF1,
+                        borderRadius: const BorderRadius.only(
+                          bottomLeft: Radius.circular(16),
+                        ),
+                      ),
+                      height: 48.w,
+                      child: Text(
+                        '뒤로가기',
+                        style: TextPath.TextF14W500.copyWith(
+                          color: ColorPath.TextGrey1H212121,
+                        ),
+                      ),
                     ),
                   ),
-                ],
-              ),
-              SizedBox(height: 40.w),
-              Row(
-                children: [
-                  Expanded(
-                    flex: 1,
-                    child: InkWell(
-                      onTap: () {
-                        Get.back();
-                      },
-                      child: Container(
-                        alignment: Alignment.center,
-                        decoration: BoxDecoration(
-                          color: ColorPath.Background1HECEFF1,
+                ),
+                Expanded(
+                  flex: 1,
+                  child: InkWell(
+                    onTap: () {
+                      Get.back();
+                      Get.toNamed(Routes.PROFILE_SETTING);
+                    },
+                    child: Container(
+                      alignment: Alignment.center,
+                      decoration: BoxDecoration(
+                          color: ColorPath.PrimaryColor,
                           borderRadius: const BorderRadius.only(
-                            bottomLeft: Radius.circular(16),
-                          ),
-                        ),
-                        height: 48.w,
-                        child: Text(
-                          '뒤로가기',
-                          style: TextPath.TextF14W500.copyWith(
-                            color: ColorPath.TextGrey1H212121,
-                          ),
+                            bottomRight: Radius.circular(16),
+                          )),
+                      height: 48.w,
+                      child: Text(
+                        '프로필 설정',
+                        style: TextPath.TextF14W500.copyWith(
+                          color: ColorPath.BackgroundWhite,
                         ),
                       ),
                     ),
                   ),
-                  Expanded(
-                    flex: 1,
-                    child: InkWell(
-                      onTap: () {
-                        Get.back();
-                        Get.toNamed(Routes.PROFILE_SETTING);
-                      },
-                      child: Container(
-                        alignment: Alignment.center,
-                        decoration: BoxDecoration(
-                            color: ColorPath.PrimaryColor,
-                            borderRadius: const BorderRadius.only(
-                              bottomRight: Radius.circular(16),
-                            )),
-                        height: 48.w,
-                        child: Text(
-                          '프로필 설정',
-                          style: TextPath.TextF14W500.copyWith(
-                            color: ColorPath.BackgroundWhite,
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
-                ],
-              )
-            ],
-          ),
-          contentPadding: EdgeInsets.zero,
-        );
-      },
+                ),
+              ],
+            )
+          ],
+        ),
+        contentPadding: EdgeInsets.zero,
+      ),
     );
 
 /// 주의해야할 약품 모달
@@ -535,232 +527,227 @@ Future<dynamic> GlobalAppVersionUpgradeModalWidget({
 Future<dynamic> GlobalMakeAlarm({
   required BuildContext context,
 }) =>
-    showDialog(
-      context: context,
-      barrierDismissible: true,
-      builder: (BuildContext context) {
-        return Obx(
-          () => AlertDialog(
-            backgroundColor: ColorPath.Background1HECEFF1,
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.all(
-                const Radius.circular(16).r,
-              ),
+    Get.dialog(
+      Obx(
+        () => AlertDialog(
+          backgroundColor: ColorPath.Background1HECEFF1,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.all(
+              const Radius.circular(16).r,
             ),
-            content: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Container(
-                  padding: const EdgeInsets.only(
-                    top: 30,
-                    left: 20,
-                    right: 20,
-                    bottom: 30,
-                  ).w,
-                  child: Column(
-                    children: <Widget>[
-                      Container(
-                        alignment: Alignment.centerLeft,
-                        child: Text(
-                          '알람 종류 선택',
-                          style: TextPath.Heading3F16W600.copyWith(
-                            color: ColorPath.TextGrey1H212121,
-                          ),
+          ),
+          content: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Container(
+                padding: const EdgeInsets.only(
+                  top: 30,
+                  left: 20,
+                  right: 20,
+                  bottom: 30,
+                ).w,
+                child: Column(
+                  children: <Widget>[
+                    Container(
+                      alignment: Alignment.centerLeft,
+                      child: Text(
+                        '알람 종류 선택',
+                        style: TextPath.Heading3F16W600.copyWith(
+                          color: ColorPath.TextGrey1H212121,
                         ),
                       ),
-                      const SizedBox(
-                        height: 14,
-                      ),
-                      SizedBox(
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceAround,
-                          children: [
-                            Alarm(
-                                isPick: MissionController.to.alarm[0] ==
-                                    MissionController.to.type.value,
-                                ontap: () async {
-                                  await MissionController.to.updateType(
-                                      MissionController.to.alarm[0]);
-                                },
-                                imageUrl: 'assets/images/icons/3d/48pill.png',
-                                text: MissionController.to.alarm[0]),
-                            Alarm(
-                                isPick: MissionController.to.alarm[1] ==
-                                    MissionController.to.type.value,
-                                ontap: () async {
-                                  await MissionController.to.updateType(
-                                      MissionController.to.alarm[1]);
-                                },
-                                imageUrl: 'assets/images/icons/3d/36water.png',
-                                text: MissionController.to.alarm[1]),
-                            Alarm(
-                                isPick: MissionController.to.alarm[2] ==
-                                    MissionController.to.type.value,
-                                ontap: () async {
-                                  await MissionController.to.updateType(
-                                      MissionController.to.alarm[2]);
-                                },
-                                imageUrl: 'assets/images/icons/3d/36vegi.png',
-                                text: MissionController.to.alarm[2]),
-                            Alarm(
-                                isPick: MissionController.to.alarm[3] ==
-                                    MissionController.to.type.value,
-                                ontap: () async {
-                                  await MissionController.to.updateType(
-                                      MissionController.to.alarm[3]);
-                                },
-                                imageUrl:
-                                    'assets/images/icons/3d/36outdoor.png',
-                                text: MissionController.to.alarm[3]),
-                            Alarm(
-                              isPick: MissionController.to.alarm[4] ==
+                    ),
+                    const SizedBox(
+                      height: 14,
+                    ),
+                    SizedBox(
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        children: [
+                          Alarm(
+                              isPick: MissionController.to.alarm[0] ==
                                   MissionController.to.type.value,
                               ontap: () async {
                                 await MissionController.to
-                                    .updateType(MissionController.to.alarm[4]);
+                                    .updateType(MissionController.to.alarm[0]);
                               },
-                              imageUrl: 'assets/images/icons/3d/36heart.png',
-                              text: MissionController.to.alarm[4],
+                              imageUrl: 'assets/images/icons/3d/48pill.png',
+                              text: MissionController.to.alarm[0]),
+                          Alarm(
+                              isPick: MissionController.to.alarm[1] ==
+                                  MissionController.to.type.value,
+                              ontap: () async {
+                                await MissionController.to
+                                    .updateType(MissionController.to.alarm[1]);
+                              },
+                              imageUrl: 'assets/images/icons/3d/36water.png',
+                              text: MissionController.to.alarm[1]),
+                          Alarm(
+                              isPick: MissionController.to.alarm[2] ==
+                                  MissionController.to.type.value,
+                              ontap: () async {
+                                await MissionController.to
+                                    .updateType(MissionController.to.alarm[2]);
+                              },
+                              imageUrl: 'assets/images/icons/3d/36vegi.png',
+                              text: MissionController.to.alarm[2]),
+                          Alarm(
+                              isPick: MissionController.to.alarm[3] ==
+                                  MissionController.to.type.value,
+                              ontap: () async {
+                                await MissionController.to
+                                    .updateType(MissionController.to.alarm[3]);
+                              },
+                              imageUrl: 'assets/images/icons/3d/36outdoor.png',
+                              text: MissionController.to.alarm[3]),
+                          Alarm(
+                            isPick: MissionController.to.alarm[4] ==
+                                MissionController.to.type.value,
+                            ontap: () async {
+                              await MissionController.to
+                                  .updateType(MissionController.to.alarm[4]);
+                            },
+                            imageUrl: 'assets/images/icons/3d/36heart.png',
+                            text: MissionController.to.alarm[4],
+                          ),
+                        ],
+                      ),
+                    ),
+                    SizedBox(height: 30.w),
+                    Container(
+                      alignment: Alignment.centerLeft,
+                      child: Text(
+                        '시간 설정하기',
+                        style: TextPath.Heading3F16W600.copyWith(
+                          color: ColorPath.TextGrey1H212121,
+                        ),
+                      ),
+                    ),
+                    SizedBox(height: 12.w),
+                    InkWell(
+                      onTap: () {
+                        Future<TimeOfDay?> selectedTime = showTimePicker(
+                          initialEntryMode: TimePickerEntryMode.input,
+                          context: context,
+                          initialTime: TimeOfDay.now(),
+                        );
+                        //여기서 사용자가 시간을 선택할 때까지 멈춤
+                        selectedTime.then((timeofDay) {
+                          if (timeofDay != null) {
+                            String temp_string =
+                                '${timeofDay.hour.toString().padLeft(2, '0')}시${timeofDay.minute.toString().padLeft(2, '0')}분';
+                            int temp_value = int.parse(
+                                '${timeofDay.hour.toString().padLeft(2, '0')}${timeofDay.minute.toString().padLeft(2, '0')}');
+                            Logger().d(
+                                '${timeofDay.hour.toString().padLeft(2, '0')}시${timeofDay.minute.toString().padLeft(2, '0')}분');
+                            MissionController.to
+                                .updateTime(temp_value, temp_string);
+                          }
+                        });
+                      },
+                      child: Container(
+                        alignment: Alignment.center,
+                        padding: const EdgeInsets.all(10),
+                        width: double.infinity,
+                        decoration: BoxDecoration(
+                            color: ColorPath.BackgroundWhite,
+                            borderRadius:
+                                const BorderRadius.all(Radius.circular(6))),
+                        child: Row(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            const Icon(Icons.access_time),
+                            const SizedBox(width: 10),
+                            Container(
+                              alignment: Alignment.center,
+                              width: 110.w,
+                              height: 17.w,
+                              child: Text(
+                                MissionController.to.dateFormatString.value
+                                    .replaceAll('오전 오전', '오전')
+                                    .replaceAll('오후 오후', '오후'),
+                                style: TextPath.TextF14W500.copyWith(
+                                    color: ColorPath.TextGrey1H212121),
+                              ),
+                            ),
+                            Container(
+                              alignment: Alignment.centerRight,
+                              width: 70.w,
+                              height: 18.w,
+                              child: Text(
+                                '변경',
+                                style: TextPath.TextF12W400.copyWith(
+                                  color: ColorPath.TextGrey2H424242,
+                                ),
+                              ),
                             ),
                           ],
                         ),
                       ),
-                      SizedBox(height: 30.w),
-                      Container(
-                        alignment: Alignment.centerLeft,
-                        child: Text(
-                          '시간 설정하기',
-                          style: TextPath.Heading3F16W600.copyWith(
-                            color: ColorPath.TextGrey1H212121,
-                          ),
-                        ),
-                      ),
-                      SizedBox(height: 12.w),
-                      InkWell(
+                    ),
+                  ],
+                ),
+              ),
+              SizedBox(
+                height: 48,
+                child: Row(
+                  children: [
+                    Expanded(
+                      flex: 1,
+                      child: GestureDetector(
                         onTap: () {
-                          Future<TimeOfDay?> selectedTime = showTimePicker(
-                            initialEntryMode: TimePickerEntryMode.input,
-                            context: context,
-                            initialTime: TimeOfDay.now(),
-                          );
-                          //여기서 사용자가 시간을 선택할 때까지 멈춤
-                          selectedTime.then((timeofDay) {
-                            if (timeofDay != null) {
-                              String temp_string =
-                                  '${timeofDay.hour.toString().padLeft(2, '0')}시${timeofDay.minute.toString().padLeft(2, '0')}분';
-                              int temp_value = int.parse(
-                                  '${timeofDay.hour.toString().padLeft(2, '0')}${timeofDay.minute.toString().padLeft(2, '0')}');
-                              Logger().d(
-                                  '${timeofDay.hour.toString().padLeft(2, '0')}시${timeofDay.minute.toString().padLeft(2, '0')}분');
-                              MissionController.to
-                                  .updateTime(temp_value, temp_string);
-                            }
-                          });
+                          Get.back();
                         },
                         child: Container(
                           alignment: Alignment.center,
-                          padding: const EdgeInsets.all(10),
-                          width: double.infinity,
                           decoration: BoxDecoration(
                               color: ColorPath.BackgroundWhite,
-                              borderRadius:
-                                  const BorderRadius.all(Radius.circular(6))),
-                          child: Row(
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              const Icon(Icons.access_time),
-                              const SizedBox(width: 10),
-                              Container(
-                                alignment: Alignment.center,
-                                width: 110.w,
-                                height: 17.w,
-                                child: Text(
-                                  MissionController.to.dateFormatString.value
-                                      .replaceAll('오전 오전', '오전')
-                                      .replaceAll('오후 오후', '오후'),
-                                  style: TextPath.TextF14W500.copyWith(
-                                      color: ColorPath.TextGrey1H212121),
-                                ),
-                              ),
-                              Container(
-                                alignment: Alignment.centerRight,
-                                width: 70.w,
-                                height: 18.w,
-                                child: Text(
-                                  '변경',
-                                  style: TextPath.TextF12W400.copyWith(
-                                    color: ColorPath.TextGrey2H424242,
-                                  ),
-                                ),
-                              ),
-                            ],
+                              borderRadius: const BorderRadius.only(
+                                bottomLeft: Radius.circular(16),
+                              )),
+                          height: 48,
+                          child: Text(
+                            '취소',
+                            style: TextPath.TextF14W500.copyWith(
+                              color: ColorPath.TextGrey1H212121,
+                            ),
                           ),
                         ),
                       ),
-                    ],
-                  ),
+                    ),
+                    Expanded(
+                      flex: 1,
+                      child: GestureDetector(
+                        onTap: () {
+                          MissionController.to.addMission();
+                        },
+                        child: Container(
+                          alignment: Alignment.center,
+                          decoration: BoxDecoration(
+                              color: ColorPath.PrimaryDarkColor,
+                              borderRadius: const BorderRadius.only(
+                                bottomRight: Radius.circular(16),
+                              )),
+                          height: 48,
+                          child: Text(
+                            '등록하기',
+                            style: TextPath.TextF14W500.copyWith(
+                              color: ColorPath.BackgroundWhite,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
-                SizedBox(
-                  height: 48,
-                  child: Row(
-                    children: [
-                      Expanded(
-                        flex: 1,
-                        child: GestureDetector(
-                          onTap: () {
-                            Get.back();
-                          },
-                          child: Container(
-                            alignment: Alignment.center,
-                            decoration: BoxDecoration(
-                                color: ColorPath.BackgroundWhite,
-                                borderRadius: const BorderRadius.only(
-                                  bottomLeft: Radius.circular(16),
-                                )),
-                            height: 48,
-                            child: Text(
-                              '취소',
-                              style: TextPath.TextF14W500.copyWith(
-                                color: ColorPath.TextGrey1H212121,
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
-                      Expanded(
-                        flex: 1,
-                        child: GestureDetector(
-                          onTap: () {
-                            MissionController.to.addMission();
-                          },
-                          child: Container(
-                            alignment: Alignment.center,
-                            decoration: BoxDecoration(
-                                color: ColorPath.PrimaryDarkColor,
-                                borderRadius: const BorderRadius.only(
-                                  bottomRight: Radius.circular(16),
-                                )),
-                            height: 48,
-                            child: Text(
-                              '등록하기',
-                              style: TextPath.TextF14W500.copyWith(
-                                color: ColorPath.BackgroundWhite,
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                )
-              ],
-            ),
-            // ),
-            contentPadding: const EdgeInsets.all(0),
+              )
+            ],
           ),
-        );
-      },
+          // ),
+          contentPadding: const EdgeInsets.all(0),
+        ),
+      ),
     );
 
 /// 미션 수정 다이얼로그
@@ -1018,79 +1005,69 @@ Future<dynamic> GlobalMissionUpdateAlarm({
   );
 }
 
-// showDialog(
-//   context: context,
-//   barrierDismissible: true,
-//   builder: (BuildContext context) {
-//     return
-//   },
-// );
-
 /// 준비중입니다. 모달
-Future<dynamic> GlobalReadyModal({required BuildContext context}) => showDialog(
-      context: context,
-      barrierDismissible: true,
-      builder: (BuildContext context) {
-        return AlertDialog(
-          backgroundColor: ColorPath.BackgroundWhite,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.all(Radius.circular(16.w)),
-          ),
-          content: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Container(
-                padding: EdgeInsets.only(
-                  top: 30,
-                  left: 20,
-                  right: 20.w,
-                  bottom: 20,
-                ).w,
-                child: Column(
-                  children: <Widget>[
-                    Container(
-                      alignment: Alignment.center,
-                      child: Text(
-                        '파킨슨병 조기진단을 위한 선별검사도구를 개발 및 검증 중에 있습니다.\r\n검증이 완료되면 업데이트 하겠습니다.\r\n감사합니다.',
-                        style: TextPath.Heading3F16W600.copyWith(
-                          color: ColorPath.TextGrey1H212121,
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              GestureDetector(
-                onTap: () {
-                  Get.back();
-                },
-                child: SizedBox(
-                  height: 48.w,
-                  child: Container(
+Future<dynamic> GlobalReadyModal({
+  required BuildContext context,
+}) =>
+    Get.dialog(
+      AlertDialog(
+        backgroundColor: ColorPath.BackgroundWhite,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.all(Radius.circular(16.w)),
+        ),
+        content: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Container(
+              padding: EdgeInsets.only(
+                top: 30,
+                left: 20,
+                right: 20.w,
+                bottom: 20,
+              ).w,
+              child: Column(
+                children: <Widget>[
+                  Container(
                     alignment: Alignment.center,
-                    decoration: BoxDecoration(
-                        color: ColorPath.PrimaryColor,
-                        borderRadius: BorderRadius.only(
-                          bottomLeft: Radius.circular(16.w),
-                          bottomRight: Radius.circular(16.w),
-                        )),
-                    height: 48.w,
                     child: Text(
-                      '닫기',
-                      style: TextPath.TextF14W500.copyWith(
-                        color: ColorPath.TextWhite,
+                      '파킨슨병 조기진단을 위한 선별검사도구를 개발 및 검증 중에 있습니다.\r\n검증이 완료되면 업데이트 하겠습니다.\r\n감사합니다.',
+                      style: TextPath.Heading3F16W600.copyWith(
+                        color: ColorPath.TextGrey1H212121,
                       ),
                     ),
                   ),
+                ],
+              ),
+            ),
+            GestureDetector(
+              onTap: () {
+                Get.back();
+              },
+              child: SizedBox(
+                height: 48.w,
+                child: Container(
+                  alignment: Alignment.center,
+                  decoration: BoxDecoration(
+                      color: ColorPath.PrimaryColor,
+                      borderRadius: BorderRadius.only(
+                        bottomLeft: Radius.circular(16.w),
+                        bottomRight: Radius.circular(16.w),
+                      )),
+                  height: 48.w,
+                  child: Text(
+                    '닫기',
+                    style: TextPath.TextF14W500.copyWith(
+                      color: ColorPath.TextWhite,
+                    ),
+                  ),
                 ),
-              )
-            ],
-          ),
-          // ),
-          contentPadding: const EdgeInsets.all(0),
-        );
-      },
+              ),
+            )
+          ],
+        ),
+        contentPadding: const EdgeInsets.all(0),
+      ),
     );
 
 /// 내 증상 기록 모달
@@ -1378,115 +1355,174 @@ void GlobalAlbumBottomSheetModal({
 Future<dynamic> GlobalMyDoctorModalWidget({
   required BuildContext context,
 }) =>
-    showDialog(
-      context: context,
-      barrierDismissible: true,
-      builder: (BuildContext context) {
-        return AlertDialog(
+    Get.dialog(
+      AlertDialog(
+        title: Text(
+          '내 주치의 삭제',
+          style: TextPath.Heading2F18W600.copyWith(
+            color: ColorPath.TextGrey1H212121,
+          ),
+        ),
+        shape: const RoundedRectangleBorder(
+          borderRadius: BorderRadius.all(Radius.circular(16)),
+        ),
+        content: Column(
+          mainAxisSize: MainAxisSize.min,
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            const SizedBox(height: 30),
+            SizedBox(
+              width: 80.w,
+              height: 80.w,
+              child: Image.asset('assets/images/icons/page2/80 alert.png'),
+            ),
+            const SizedBox(height: 12),
+            Text(
+              '응급 문자 보내기',
+              style: TextPath.Heading2F18W600.copyWith(
+                color: ColorPath.TextGrey1H212121,
+              ),
+            ),
+            const SizedBox(height: 4),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(
+                  '보호자 연락처',
+                  style: TextPath.TextF12W400.copyWith(
+                    color: ColorPath.TextGrey2H424242,
+                  ),
+                ),
+                const SizedBox(
+                  width: 5,
+                ),
+                Text(
+                  '010 - XXXX - XXXX',
+                  style: TextPath.TextF12W400.copyWith(
+                    color: ColorPath.TextGrey2H424242,
+                  ),
+                ),
+              ],
+            ),
+            const SizedBox(height: 40),
+            Row(
+              children: [
+                Expanded(
+                  flex: 1,
+                  child: InkWell(
+                    onTap: () {
+                      Get.back();
+                    },
+                    child: Container(
+                      alignment: Alignment.center,
+                      decoration: BoxDecoration(
+                        color: ColorPath.Background1HECEFF1,
+                        borderRadius: const BorderRadius.only(
+                          bottomLeft: Radius.circular(16),
+                        ),
+                      ),
+                      height: 48.w,
+                      child: Text(
+                        '취소',
+                        style: TextPath.TextF14W500.copyWith(
+                          color: ColorPath.TextGrey1H212121,
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+                Expanded(
+                  flex: 1,
+                  child: InkWell(
+                    onTap: () {
+                      HomeController.to.sendEmergency();
+                      Get.back();
+                    },
+                    child: Container(
+                      alignment: Alignment.center,
+                      decoration: BoxDecoration(
+                          color: ColorPath.PrimaryColor,
+                          borderRadius: const BorderRadius.only(
+                            bottomRight: Radius.circular(16),
+                          )),
+                      height: 48.w,
+                      child: Text(
+                        '전송',
+                        style: TextPath.TextF14W500.copyWith(
+                          color: ColorPath.BackgroundWhite,
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            )
+          ],
+        ),
+        contentPadding: EdgeInsets.zero,
+      ),
+    );
+
+// 면책조항 모달
+Future<dynamic> GlobalDisclaimerModalWidget({
+  Function()? okOnPressed,
+}) =>
+    Get.dialog(
+      WillPopScope(
+        onWillPop: () async => false,
+        child: AlertDialog(
           title: Text(
-            '내 주치의 삭제',
+            '면책사항',
             style: TextPath.Heading2F18W600.copyWith(
               color: ColorPath.TextGrey1H212121,
             ),
           ),
-          shape: const RoundedRectangleBorder(
-            borderRadius: BorderRadius.all(Radius.circular(16)),
+          shape: RoundedRectangleBorder(
+            borderRadius: const BorderRadius.all(
+              Radius.circular(16),
+            ).r,
           ),
           content: Column(
             mainAxisSize: MainAxisSize.min,
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              const SizedBox(height: 30),
-              SizedBox(
-                width: 80.w,
-                height: 80.w,
-                child: Image.asset('assets/images/icons/page2/80 alert.png'),
+              Padding(
+                padding: const EdgeInsets.all(20).w,
+                child: const Text('''
+닥터파킨슨 앱은 파킨슨병을
+진단하고 치료를 위한 도구가 아니며
+
+환자분들에게 정보전
+달과 관리에 도움을 드리는 앱입니다.
+
+파킨슨병의 정확한 진단과 치료는 전문의와 상의하십시오.
+'''),
               ),
-              const SizedBox(height: 12),
-              Text(
-                '응급 문자 보내기',
-                style: TextPath.Heading2F18W600.copyWith(
-                  color: ColorPath.TextGrey1H212121,
+              InkWell(
+                onTap: okOnPressed,
+                child: Container(
+                  alignment: Alignment.center,
+                  decoration: BoxDecoration(
+                    color: ColorPath.PrimaryColor,
+                    borderRadius: const BorderRadius.only(
+                      bottomLeft: Radius.circular(16),
+                      bottomRight: Radius.circular(16),
+                    ).r,
+                  ),
+                  height: 48.w,
+                  child: Text(
+                    '동의합니다',
+                    style: TextPath.TextF14W500.copyWith(
+                      color: ColorPath.BackgroundWhite,
+                    ),
+                  ),
                 ),
               ),
-              const SizedBox(height: 4),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(
-                    '보호자 연락처',
-                    style: TextPath.TextF12W400.copyWith(
-                      color: ColorPath.TextGrey2H424242,
-                    ),
-                  ),
-                  const SizedBox(
-                    width: 5,
-                  ),
-                  Text(
-                    '010 - XXXX - XXXX',
-                    style: TextPath.TextF12W400.copyWith(
-                      color: ColorPath.TextGrey2H424242,
-                    ),
-                  ),
-                ],
-              ),
-              const SizedBox(height: 40),
-              Row(
-                children: [
-                  Expanded(
-                    flex: 1,
-                    child: InkWell(
-                      onTap: () {
-                        Get.back();
-                      },
-                      child: Container(
-                        alignment: Alignment.center,
-                        decoration: BoxDecoration(
-                          color: ColorPath.Background1HECEFF1,
-                          borderRadius: const BorderRadius.only(
-                            bottomLeft: Radius.circular(16),
-                          ),
-                        ),
-                        height: 48.w,
-                        child: Text(
-                          '취소',
-                          style: TextPath.TextF14W500.copyWith(
-                            color: ColorPath.TextGrey1H212121,
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
-                  Expanded(
-                    flex: 1,
-                    child: InkWell(
-                      onTap: () {
-                        HomeController.to.sendEmergency();
-                        Get.back();
-                      },
-                      child: Container(
-                        alignment: Alignment.center,
-                        decoration: BoxDecoration(
-                            color: ColorPath.PrimaryColor,
-                            borderRadius: const BorderRadius.only(
-                              bottomRight: Radius.circular(16),
-                            )),
-                        height: 48.w,
-                        child: Text(
-                          '전송',
-                          style: TextPath.TextF14W500.copyWith(
-                            color: ColorPath.BackgroundWhite,
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
-                ],
-              )
             ],
           ),
           contentPadding: EdgeInsets.zero,
-        );
-      },
+        ),
+      ),
     );

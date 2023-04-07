@@ -1,7 +1,9 @@
+import 'package:dr_parkinsons/app/globals/global_toast_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import '../../../globals/global_appbar_widget.dart';
 import '../../../globals/global_dialog_widget.dart';
@@ -590,7 +592,7 @@ class HomeView extends GetView<HomeController> {
                                   ),
                                 ),
                                 Text(
-                                  '정책제안',
+                                  '의견제안',
                                   style: TextPath.TextF12W500.copyWith(
                                     color: ColorPath.TextGrey1H212121,
                                   ),
@@ -605,7 +607,12 @@ class HomeView extends GetView<HomeController> {
                     Row(
                       children: [
                         GlobalInkWellWidget(
-                          onTap: () {},
+                          onTap: () async {
+                            if (!await launchUrl(Uri.parse(
+                                'https://www.gilhospital.com/web/mobile/lemon1'))) {
+                              GlobalToastWidget('잠시 후 다시 시도해주세요');
+                            }
+                          },
                           child: Padding(
                             padding: const EdgeInsets.symmetric(
                               horizontal: 5,
@@ -629,7 +636,12 @@ class HomeView extends GetView<HomeController> {
                           ),
                         ),
                         GlobalInkWellWidget(
-                          onTap: () {},
+                          onTap: () async {
+                            if (!await launchUrl(Uri.parse(
+                                'https://www.kmds.or.kr/popup/person_info.php'))) {
+                              GlobalToastWidget('잠시 후 다시 시도해주세요');
+                            }
+                          },
                           child: Padding(
                             padding: const EdgeInsets.symmetric(
                               horizontal: 5,
@@ -649,7 +661,12 @@ class HomeView extends GetView<HomeController> {
                     Row(
                       children: [
                         GlobalInkWellWidget(
-                          onTap: () {},
+                          onTap: () async {
+                            if (!await launchUrl(Uri.parse(
+                                'https://www.kmds.or.kr/popup/person_info.php'))) {
+                              GlobalToastWidget('잠시 후 다시 시도해주세요');
+                            }
+                          },
                           child: Padding(
                             padding: const EdgeInsets.symmetric(
                               horizontal: 5,
@@ -673,9 +690,37 @@ class HomeView extends GetView<HomeController> {
                           ),
                         ),
                         GlobalInkWellWidget(
-                          onTap: () {},
+                          onTap: () async {
+                            if (!await launchUrl(Uri.parse(
+                                'https://www.kmds.or.kr/popup/person_info.php'))) {
+                              GlobalToastWidget('잠시 후 다시 시도해주세요');
+                            }
+                          },
                           child: Text(
                             '고유식별정보수집동의',
+                            style: TextPath.TextF12W400.copyWith(
+                              color: ColorPath.TextGrey3H616161,
+                            ),
+                          ),
+                        ),
+                        Container(
+                          margin: const EdgeInsets.symmetric(horizontal: 2.5).w,
+                          child: Text(
+                            ' | ',
+                            style: TextPath.TextF12W400.copyWith(
+                              color: ColorPath.TextGrey3H616161,
+                            ),
+                          ),
+                        ),
+                        GlobalInkWellWidget(
+                          onTap: () async {
+                            if (!await launchUrl(Uri.parse(
+                                'https://www.kmds.or.kr/popup/person_info.php'))) {
+                              GlobalToastWidget('잠시 후 다시 시도해주세요');
+                            }
+                          },
+                          child: Text(
+                            '면책조항',
                             style: TextPath.TextF12W400.copyWith(
                               color: ColorPath.TextGrey3H616161,
                             ),

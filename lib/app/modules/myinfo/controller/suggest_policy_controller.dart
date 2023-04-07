@@ -147,8 +147,11 @@ class SuggestPolicyController extends GetxController {
           boxStatusWithPersonalAgree.value = false;
           boxStatusWithAnonymous.value = false;
 
-          await showAlertDialog(context, '정책 제안 발신 완료',
-              '작성된 제안은 닥터 파킨슨 관리자에게 전송되어 향후 정책 결정의 자료로 사용됩니다.\n소중한 의견에 감사합니다.');
+          await showAlertDialog(
+            context,
+            '의견 제안 발신 완료',
+            '작성된 제안은 닥터 파킨슨 관리자에게 전송되어 향후 정책 결정의 자료로 사용됩니다.\r\n\r\n소중한 의견에 감사합니다.',
+          );
           break;
 
         default:

@@ -1,6 +1,5 @@
 // ignore_for_file: unnecessary_overrides, cast_nullable_to_non_nullable
 
-import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:logger/logger.dart';
@@ -45,22 +44,14 @@ class PermissionService extends GetxService {
     // ),
     PermissionModel(
       title: '카메라 및 앨범',
-      icon: Icon(
-        Icons.camera_alt_rounded,
-        size: 32,
-        color: Colors.grey.shade700,
-      ),
+      image: 'assets/images/permission/camera.png',
       description: '프로필 이미지 업로드에 사용',
       isRequired: true,
       isExpanded: false,
     ),
     PermissionModel(
       title: '마이크',
-      icon: Icon(
-        Icons.mic_rounded,
-        size: 32,
-        color: Colors.grey.shade700,
-      ),
+      image: 'assets/images/permission/microphone.png',
       description: '프로필 동영상 업로드시 녹화에 사용',
       isRequired: true,
       isExpanded: false,
