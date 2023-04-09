@@ -63,9 +63,11 @@ class MissionCard extends GetView<MissionController> {
                         child: CircleAvatar(
                           backgroundColor: ColorPath.Border2HECEFF1,
                           child: Image.asset(
+                            'assets/images/icons/3d/48pill.png',
                             width: 28.w,
                             height: 28.w,
-                            'assets/images/icons/3d/48pill.png',
+                            cacheWidth: 64,
+                            cacheHeight: 63,
                           ),
                         ),
                       )

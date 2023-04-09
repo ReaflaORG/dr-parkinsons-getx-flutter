@@ -75,13 +75,17 @@ class SeminarView extends GetView<SeminarController> {
                     children: [
                       Image.asset(
                         'assets/images/logo/logo3.webp',
-                        fit: BoxFit.cover,
                         width: 140.w,
+                        cacheWidth: 280,
+                        cacheHeight: 79,
+                        fit: BoxFit.cover,
                       ),
                       Image.asset(
                         'assets/images/logo/logo2.webp',
-                        fit: BoxFit.cover,
                         width: 130.w,
+                        cacheWidth: 260,
+                        cacheHeight: 70,
+                        fit: BoxFit.cover,
                       )
                     ],
                   ),

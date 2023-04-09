@@ -19,26 +19,35 @@ class Alarm extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      child:
-          Column(mainAxisAlignment: MainAxisAlignment.spaceAround, children: [
-        InkWell(
-          onTap: () async {
-            await ontap();
-          },
-          child: CircleAvatar(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        children: [
+          InkWell(
+            onTap: () async {
+              await ontap();
+            },
+            child: CircleAvatar(
               backgroundColor: isPick
                   ? ColorPath.TertiaryLightColor
                   : ColorPath.BackgroundWhite,
-              child: Image.asset(width: 32.w, height: 32.w, imageUrl)),
-        ),
-        const SizedBox(height: 4),
-        Text(
-          text,
-          style: TextPath.TextF12W500.copyWith(
-            color: ColorPath.TextGrey1H212121,
+              child: Image.asset(
+                imageUrl,
+                width: 32.w,
+                height: 32.w,
+                cacheWidth: 64,
+                cacheHeight: 63,
+              ),
+            ),
           ),
-        ),
-      ]),
+          const SizedBox(height: 4),
+          Text(
+            text,
+            style: TextPath.TextF12W500.copyWith(
+              color: ColorPath.TextGrey1H212121,
+            ),
+          ),
+        ],
+      ),
     );
   }
 }

@@ -121,7 +121,7 @@ class TermsAndConditionItemWidget extends GetView<TermsController> {
         title: Text(
           controller.termsData[index].title,
           style: TextStyle(
-            fontFamily: 'SUIT',
+            fontFamily: 'Pretendard',
             color: ColorPath.TextGrey1H212121,
             fontWeight: FontWeight.w500,
           ),

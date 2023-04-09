@@ -108,6 +108,7 @@ class DoctorDetailController extends GetxController {
         switch (response.statusCode) {
           case 200:
             AuthService.to.handleMyInfo();
+            Logger().d(DoctorModel.fromJson(response.data));
             doctor.value = DoctorModel.fromJson(response.data);
             handleDoctorSubscribe();
             isLoad.value = false;

@@ -70,6 +70,8 @@ class HealthCareView extends GetView<HealthCareController> {
                                     height: 18.w,
                                     child: Image.asset(
                                       'assets/images/icons/loud_speaker.webp',
+                                      cacheWidth: 36,
+                                      cacheHeight: 36,
                                     ),
                                   ),
                                   SizedBox(width: 10.w),
@@ -170,7 +172,7 @@ class HealthCareView extends GetView<HealthCareController> {
                         controller.welfareData.length,
                         (index) {
                           return Container(
-                            margin: const EdgeInsets.only(bottom: 20).w,
+                            margin: const EdgeInsets.only(bottom: 10).w,
                             child: CardWidget(
                               index: index,
                             ),
@@ -215,38 +217,78 @@ class CardWidget extends GetView<HealthCareController> {
           },
           child: Hero(
             tag: controller.welfareData[index].welfare_id,
-            child: Container(
-              alignment: Alignment.bottomLeft,
-              height: 130.w,
-              decoration: BoxDecoration(
-                image: DecorationImage(
-                  image: NetworkImage(
-                    controller.welfareData[index].image,
-                  ),
-                  fit: BoxFit.cover,
-                ),
-                borderRadius: BorderRadius.circular(8).r,
-              ),
-              child: Container(
-                margin: const EdgeInsets.all(10).w,
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 6,
-                  vertical: 2,
-                ).w,
-                decoration: BoxDecoration(
-                  color: ColorPath.PrimaryColor.withOpacity(
-                    0.8,
-                  ),
-                  borderRadius: BorderRadius.circular(4).r,
-                ),
-                child: Text(
-                  controller.welfareData[index].title,
-                  style: TextPath.Heading3F16W600.copyWith(
-                    color: ColorPath.TextWhite,
-                  ),
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(8).r,
+              child: SizedBox(
+                width: double.infinity,
+                height: 150.w,
+                child: Stack(
+                  children: [
+                    Image.network(
+                      controller.welfareData[index].image,
+                      height: double.infinity,
+                      cacheWidth: 640,
+                      cacheHeight: 280,
+                      fit: BoxFit.cover,
+                    ),
+                    Positioned(
+                      bottom: 0,
+                      child: Container(
+                        margin: const EdgeInsets.all(10).w,
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 6,
+                          vertical: 2,
+                        ).w,
+                        decoration: BoxDecoration(
+                          color: ColorPath.PrimaryColor.withOpacity(
+                            0.8,
+                          ),
+                          borderRadius: BorderRadius.circular(4).r,
+                        ),
+                        child: Text(
+                          controller.welfareData[index].title,
+                          style: TextPath.Heading3F16W600.copyWith(
+                            color: ColorPath.TextWhite,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
               ),
             ),
+            // child: Container(
+            //   alignment: Alignment.bottomLeft,
+            //   height: 130.w,
+            //   decoration: BoxDecoration(
+            //     image: DecorationImage(
+            //       image: NetworkImage(
+            //         controller.welfareData[index].image,
+            //       ),
+            //       fit: BoxFit.cover,
+            //     ),
+            //     borderRadius: BorderRadius.circular(8).r,
+            //   ),
+            //   child: Container(
+            //     margin: const EdgeInsets.all(10).w,
+            //     padding: const EdgeInsets.symmetric(
+            //       horizontal: 6,
+            //       vertical: 2,
+            //     ).w,
+            //     decoration: BoxDecoration(
+            //       color: ColorPath.PrimaryColor.withOpacity(
+            //         0.8,
+            //       ),
+            //       borderRadius: BorderRadius.circular(4).r,
+            //     ),
+            //     child: Text(
+            //       controller.welfareData[index].title,
+            //       style: TextPath.Heading3F16W600.copyWith(
+            //         color: ColorPath.TextWhite,
+            //       ),
+            //     ),
+            //   ),
+            // ),
           ),
         ),
         SizedBox(height: 10.w),

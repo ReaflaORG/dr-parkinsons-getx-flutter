@@ -14,21 +14,40 @@ class SplashView extends GetView<SplashController> {
         width: double.infinity,
         height: double.infinity,
         color: Colors.white,
-        child: FadeTransition(
-          opacity: CurvedAnimation(
-            parent: controller.animationController,
-            curve: Curves.ease,
-          ),
-          child: Center(
-            child: Image.asset(
-              'assets/images/logo/logo.png',
-              width: 170.w,
-              // height: 100.h,
-              fit: BoxFit.contain,
-            ),
+        child: Center(
+          child: Image.asset(
+            'assets/images/logo/logo.png',
+            width: 170.w,
+            // height: 100.h,
+            cacheWidth: 340,
+            cacheHeight: 293,
+            fit: BoxFit.contain,
           ),
         ),
       ),
     );
+    // return Scaffold(
+    //   body: Container(
+    //     width: double.infinity,
+    //     height: double.infinity,
+    //     color: Colors.white,
+    //     child: FadeTransition(
+    //       opacity: CurvedAnimation(
+    //         parent: controller.animationController,
+    //         curve: Curves.ease,
+    //       ),
+    //       child: Center(
+    //         child: Image.asset(
+    //           'assets/images/logo/logo2.png',
+    //           width: 170.w,
+    //           // height: 100.h,
+    //           // cacheWidth: 340,
+    //           // cacheHeight: 293,
+    //           fit: BoxFit.contain,
+    //         ),
+    //       ),
+    //     ),
+    //   ),
+    // );
   }
 }

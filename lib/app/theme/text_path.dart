@@ -36,7 +36,7 @@ class TextPath {
   /// fontWeight: SemiBold 600
   static TextStyle Heading4F16W600 = TextStyle(
     color: ColorPath.TextGrey1H212121,
-    fontFamily: 'SUIT',
+    fontFamily: 'Pretendard',
     fontSize: 14.0.sp,
     fontWeight: FontWeight.w600,
     fontStyle: FontStyle.normal,
@@ -54,7 +54,7 @@ class TextPath {
   /// fontWeight: SemiBold 600
   static TextStyle Heading3F16W600 = TextStyle(
     color: ColorPath.TextGrey1H212121,
-    fontFamily: 'SUIT',
+    fontFamily: 'Pretendard',
     fontSize: 16.0.sp,
     fontWeight: FontWeight.w600,
     fontStyle: FontStyle.normal,
@@ -72,7 +72,7 @@ class TextPath {
   /// fontWeight: SemiBold 600
   static TextStyle Heading2F18W600 = TextStyle(
     color: ColorPath.TextGrey1H212121,
-    fontFamily: 'SUIT',
+    fontFamily: 'Pretendard',
     fontSize: 18.0.sp,
     fontWeight: FontWeight.w600,
     fontStyle: FontStyle.normal,
@@ -90,7 +90,7 @@ class TextPath {
   /// fontWeight: SemiBold 600
   static TextStyle Heading1F24W600 = TextStyle(
     color: ColorPath.TextGrey1H212121,
-    fontFamily: 'SUIT',
+    fontFamily: 'Pretendard',
     fontSize: 24.0.sp,
     fontWeight: FontWeight.w600,
     fontStyle: FontStyle.normal,
@@ -106,7 +106,7 @@ class TextPath {
   /// fontWeight: Regular 400
   static TextStyle TextF10W400 = TextStyle(
     color: ColorPath.TextGrey1H212121,
-    fontFamily: 'SUIT',
+    fontFamily: 'Pretendard',
     fontSize: 10.0.sp,
     fontWeight: FontWeight.w400,
     fontStyle: FontStyle.normal,
@@ -122,7 +122,7 @@ class TextPath {
   /// fontWeight: Regular 200
   static TextStyle TextF12W200 = TextStyle(
     color: ColorPath.TextGrey1H212121,
-    fontFamily: 'SUIT',
+    fontFamily: 'Pretendard',
     fontSize: 12.0.sp,
     fontWeight: FontWeight.w200,
     fontStyle: FontStyle.normal,
@@ -138,7 +138,7 @@ class TextPath {
   /// fontWeight: Regular 400
   static TextStyle TextF12W400 = TextStyle(
     color: ColorPath.TextGrey1H212121,
-    fontFamily: 'SUIT',
+    fontFamily: 'Pretendard',
     fontSize: 12.0.sp,
     fontWeight: FontWeight.w400,
     fontStyle: FontStyle.normal,
@@ -154,7 +154,7 @@ class TextPath {
   /// fontWeight: Medium 500
   static TextStyle TextF12W500White = TextStyle(
     color: ColorPath.TextWhite,
-    fontFamily: 'SUIT',
+    fontFamily: 'Pretendard',
     fontSize: 12.0.sp,
     fontWeight: FontWeight.w500,
     fontStyle: FontStyle.normal,
@@ -170,7 +170,7 @@ class TextPath {
   /// fontWeight: Medium 500
   static TextStyle TextF12W500 = TextStyle(
     color: ColorPath.TextGrey1H212121,
-    fontFamily: 'SUIT',
+    fontFamily: 'Pretendard',
     fontSize: 12.0.sp,
     fontWeight: FontWeight.w500,
     fontStyle: FontStyle.normal,
@@ -186,7 +186,7 @@ class TextPath {
   /// fontWeight: Semibold 600
   static TextStyle TextF12W600 = TextStyle(
     color: ColorPath.TextGrey1H212121,
-    fontFamily: 'SUIT',
+    fontFamily: 'Pretendard',
     fontSize: 12.0.sp,
     fontWeight: FontWeight.w600,
     fontStyle: FontStyle.normal,
@@ -202,7 +202,7 @@ class TextPath {
   /// fontWeight: Regular 400
   static TextStyle TextF13W400 = TextStyle(
     color: ColorPath.TextGrey1H212121,
-    fontFamily: 'SUIT',
+    fontFamily: 'Pretendard',
     fontSize: 13.0.sp,
     fontWeight: FontWeight.w400,
     fontStyle: FontStyle.normal,
@@ -218,7 +218,7 @@ class TextPath {
   /// fontWeight: Medium 500
   static TextStyle TextF13W500 = TextStyle(
     color: ColorPath.TextGrey1H212121,
-    fontFamily: 'SUIT',
+    fontFamily: 'Pretendard',
     fontSize: 13.0.sp,
     fontWeight: FontWeight.w500,
     fontStyle: FontStyle.normal,
@@ -234,7 +234,7 @@ class TextPath {
   /// fontWeight: Medium 500
   static TextStyle TextF13W500Expand = TextStyle(
     color: ColorPath.TextGrey1H212121,
-    fontFamily: 'SUIT',
+    fontFamily: 'Pretendard',
     fontSize: 13.0.sp,
     fontWeight: FontWeight.w500,
     fontStyle: FontStyle.normal,
@@ -250,7 +250,7 @@ class TextPath {
   /// fontWeight: Regular 400
   static TextStyle TextF14W400 = TextStyle(
     color: ColorPath.TextGrey1H212121,
-    fontFamily: 'SUIT',
+    fontFamily: 'Pretendard',
     fontSize: 14.0.sp,
     fontWeight: FontWeight.w400,
     fontStyle: FontStyle.normal,
@@ -266,7 +266,7 @@ class TextPath {
   /// fontWeight: Medium 500
   static TextStyle TextF14W500 = TextStyle(
     color: ColorPath.TextGrey1H212121,
-    fontFamily: 'SUIT',
+    fontFamily: 'Pretendard',
     fontSize: 14.0.sp,
     fontWeight: FontWeight.w500,
     fontStyle: FontStyle.normal,
@@ -282,7 +282,7 @@ class TextPath {
   /// fontWeight: SemiBold 600
   static TextStyle TextF14W600 = TextStyle(
     color: ColorPath.TextGrey1H212121,
-    fontFamily: 'SUIT',
+    fontFamily: 'Pretendard',
     fontSize: 14.0.sp,
     fontWeight: FontWeight.w600,
     fontStyle: FontStyle.normal,
@@ -298,7 +298,7 @@ class TextPath {
   /// fontWeight: Regular 400
   static TextStyle TextF14W400Expand = TextStyle(
     color: ColorPath.TextGrey1H212121,
-    fontFamily: 'SUIT',
+    fontFamily: 'Pretendard',
     fontSize: 14.0.sp,
     fontWeight: FontWeight.w400,
     fontStyle: FontStyle.normal,
@@ -314,7 +314,7 @@ class TextPath {
   /// fontWeight: Regular 400
   static TextStyle TextF16W400 = TextStyle(
     color: ColorPath.TextGrey1H212121,
-    fontFamily: 'SUIT',
+    fontFamily: 'Pretendard',
     fontSize: 16.0.sp,
     fontWeight: FontWeight.w400,
     fontStyle: FontStyle.normal,
@@ -330,7 +330,7 @@ class TextPath {
   /// fontWeight: Medium 500
   static TextStyle TextF16W500 = TextStyle(
     color: ColorPath.TextGrey1H212121,
-    fontFamily: 'SUIT',
+    fontFamily: 'Pretendard',
     fontSize: 16.0.sp,
     fontWeight: FontWeight.w500,
     fontStyle: FontStyle.normal,
@@ -346,7 +346,7 @@ class TextPath {
   /// fontWeight: Medium 500
   static TextStyle TextF16W500Expand = TextStyle(
     color: ColorPath.TextGrey1H212121,
-    fontFamily: 'SUIT',
+    fontFamily: 'Pretendard',
     fontSize: 16.0.sp,
     fontWeight: FontWeight.w500,
     fontStyle: FontStyle.normal,
@@ -362,7 +362,7 @@ class TextPath {
   /// fontWeight: Medium 600
   static TextStyle TextF16W600 = TextStyle(
     color: ColorPath.TextGrey1H212121,
-    fontFamily: 'SUIT',
+    fontFamily: 'Pretendard',
     fontSize: 16.0.sp,
     fontWeight: FontWeight.w600,
     fontStyle: FontStyle.normal,
@@ -378,7 +378,7 @@ class TextPath {
   /// fontWeight: Medium 600
   static TextStyle TextF16W600White = TextStyle(
     color: ColorPath.TextWhite,
-    fontFamily: 'SUIT',
+    fontFamily: 'Pretendard',
     fontSize: 16.0.sp,
     fontWeight: FontWeight.w600,
     fontStyle: FontStyle.normal,
@@ -394,7 +394,7 @@ class TextPath {
   /// fontWeight: Medium 700
   static TextStyle TextF16W700 = TextStyle(
     color: ColorPath.TextGrey1H212121,
-    fontFamily: 'SUIT',
+    fontFamily: 'Pretendard',
     fontSize: 16.0.sp,
     fontWeight: FontWeight.w700,
     fontStyle: FontStyle.normal,
@@ -410,7 +410,7 @@ class TextPath {
   /// fontWeight: Regular 600
   static TextStyle TextF18W600 = TextStyle(
     color: ColorPath.TextGrey1H212121,
-    fontFamily: 'SUIT',
+    fontFamily: 'Pretendard',
     fontSize: 18.0.sp,
     fontWeight: FontWeight.w600,
     fontStyle: FontStyle.normal,
@@ -426,7 +426,7 @@ class TextPath {
   /// fontWeight: Regular 400
   static TextStyle TextF20W400 = TextStyle(
     color: ColorPath.TextGrey1H212121,
-    fontFamily: 'SUIT',
+    fontFamily: 'Pretendard',
     fontSize: 20.0.sp,
     fontWeight: FontWeight.w400,
     fontStyle: FontStyle.normal,
@@ -442,7 +442,7 @@ class TextPath {
   /// fontWeight: Regular 600
   static TextStyle TextF20W600 = TextStyle(
     color: ColorPath.TextGrey1H212121,
-    fontFamily: 'SUIT',
+    fontFamily: 'Pretendard',
     fontSize: 20.0.sp,
     fontWeight: FontWeight.w600,
     fontStyle: FontStyle.normal,
@@ -458,7 +458,7 @@ class TextPath {
   /// fontWeight: Regular 600
   static TextStyle TextF24W600 = TextStyle(
     color: ColorPath.TextGrey1H212121,
-    fontFamily: 'SUIT',
+    fontFamily: 'Pretendard',
     fontSize: 24.0.sp,
     fontWeight: FontWeight.w600,
     fontStyle: FontStyle.normal,

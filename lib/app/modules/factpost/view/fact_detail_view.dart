@@ -41,15 +41,30 @@ class FactDetailView extends GetView<FactDetailController> {
                       height: 242.w,
                       child: Hero(
                         tag: controller.arguments['id'],
-                        child: Container(
-                          decoration: BoxDecoration(
-                            image: DecorationImage(
-                              image: NetworkImage(
-                                controller.arguments['image'],
+                        // child: Container(
+                        //   decoration: BoxDecoration(
+                        //     image: DecorationImage(
+                        //       image: NetworkImage(
+                        //         controller.arguments['image'],
+                        //       ),
+                        //       fit: BoxFit.cover,
+                        //     ),
+                        //   ),
+                        // ),
+                        child: Image.network(
+                          controller.arguments['image'],
+                          cacheWidth: 374,
+                          cacheHeight: 332,
+                          fit: BoxFit.cover,
+                          // filterQuality: FilterQuality.medium,
+                          loadingBuilder: (context, child, loadingProgress) {
+                            if (loadingProgress == null) return child;
+                            return Center(
+                              child: CircularProgressIndicator(
+                                color: ColorPath.PrimaryColor.withOpacity(0.1),
                               ),
-                              fit: BoxFit.cover,
-                            ),
-                          ),
+                            );
+                          },
                         ),
                         // child: CachedNetworkImage(
                         //   imageUrl: controller.arguments['image'],
@@ -165,7 +180,7 @@ class FactDetailView extends GetView<FactDetailController> {
                                 ),
                               ),
                             ),
-                            SizedBox(width: 27),
+                            SizedBox(width: 27.w),
                             Expanded(
                               child: Text(
                                 controller.postData.value.title,

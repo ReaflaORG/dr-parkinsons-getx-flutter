@@ -59,6 +59,8 @@ class CarouselSliderWidget extends GetView<SignInController> {
                       controller.carouselSlideData[index].image,
                       width: 320.w,
                       height: 200.w,
+                      cacheWidth: 639,
+                      cacheHeight: 400,
                       fit: BoxFit.contain,
                     ),
                     SizedBox(height: 38.w),

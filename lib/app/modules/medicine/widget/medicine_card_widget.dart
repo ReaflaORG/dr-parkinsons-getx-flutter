@@ -46,6 +46,8 @@ class MedicineCardWidget extends GetView<MedicineController> {
                     controller.pillBtns[index].icon,
                     width: 44.w,
                     height: 44.w,
+                    cacheWidth: 87,
+                    cacheHeight: 88,
                   ),
                 ),
               ),

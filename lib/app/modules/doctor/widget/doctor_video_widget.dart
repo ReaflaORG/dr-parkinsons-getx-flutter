@@ -82,26 +82,52 @@ class _DoctorVideoWidgetState extends State<DoctorVideoWidget> {
                     );
                   });
                 },
-                child: Container(
-                  width: 320.w,
-                  height: 170.w,
-                  decoration: BoxDecoration(
-                    image: DecorationImage(
-                      image: NetworkImage(widget.data.contentThumbnail!),
+                child: Stack(
+                  children: [
+                    Image.network(
+                      widget.data.contentThumbnail!,
+                      width: 320.w,
+                      height: 170.w,
+                      cacheWidth: 639,
+                      cacheHeight: 340,
                       fit: BoxFit.cover,
                     ),
-                    borderRadius: BorderRadius.circular(8).r,
-                    color: Colors.black,
-                  ),
-                  child: Center(
-                    child: Image.asset(
-                      'assets/images/video/play_button.webp',
-                      width: 50.w,
-                      cacheWidth: 50,
-                      fit: BoxFit.fill,
+                    Positioned(
+                      top: 0,
+                      right: 0,
+                      bottom: 0,
+                      left: 0,
+                      child: Center(
+                        child: Image.asset(
+                          'assets/images/video/play_button.webp',
+                          width: 50.w,
+                          cacheWidth: 50,
+                          cacheHeight: 50,
+                        ),
+                      ),
                     ),
-                  ),
+                  ],
                 ),
+                // child: Container(
+                //   width: 320.w,
+                //   height: 170.w,
+                //   decoration: BoxDecoration(
+                //     image: DecorationImage(
+                //       image: NetworkImage(widget.data.contentThumbnail!),
+                //       fit: BoxFit.cover,
+                //     ),
+                //     borderRadius: BorderRadius.circular(8).r,
+                //     color: Colors.black,
+                //   ),
+                //   child: Center(
+                //     child: Image.asset(
+                //       'assets/images/video/play_button.webp',
+                //       width: 50.w,
+                //       cacheWidth: 50,
+                //       fit: BoxFit.fill,
+                //     ),
+                //   ),
+                // ),
               ),
         SizedBox(height: 10.w),
         Text(

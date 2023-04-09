@@ -221,7 +221,11 @@ Future<dynamic> GlobalEmergencyModalWidget({
             SizedBox(
               width: 80.w,
               height: 80.w,
-              child: Image.asset('assets/images/icons/page2/80 alert.png'),
+              child: Image.asset(
+                'assets/images/icons/page2/80 alert.png',
+                cacheWidth: 159,
+                cacheHeight: 159,
+              ),
             ),
             const SizedBox(height: 12),
             Text(
@@ -328,7 +332,11 @@ Future<dynamic> GlobalEmergencyModalWidget2({required BuildContext context}) =>
             SizedBox(
               width: 80.w,
               height: 80.w,
-              child: Image.asset('assets/images/icons/page2/80 alert.png'),
+              child: Image.asset(
+                'assets/images/icons/page2/80 alert.png',
+                cacheWidth: 159,
+                cacheHeight: 159,
+              ),
             ),
             SizedBox(height: 12.w),
             Text(
@@ -566,20 +574,23 @@ Future<dynamic> GlobalMakeAlarm({
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
                         children: [
                           Alarm(
-                              isPick: MissionController.to.alarm[0] ==
-                                  MissionController.to.type.value,
-                              ontap: () async {
-                                await MissionController.to
-                                    .updateType(MissionController.to.alarm[0]);
-                              },
-                              imageUrl: 'assets/images/icons/3d/48pill.png',
-                              text: MissionController.to.alarm[0]),
+                            isPick: MissionController.to.alarm[0] ==
+                                MissionController.to.type.value,
+                            ontap: () async {
+                              await MissionController.to.updateType(
+                                MissionController.to.alarm[0],
+                              );
+                            },
+                            imageUrl: 'assets/images/icons/3d/48pill.png',
+                            text: MissionController.to.alarm[0],
+                          ),
                           Alarm(
                               isPick: MissionController.to.alarm[1] ==
                                   MissionController.to.type.value,
                               ontap: () async {
-                                await MissionController.to
-                                    .updateType(MissionController.to.alarm[1]);
+                                await MissionController.to.updateType(
+                                  MissionController.to.alarm[1],
+                                );
                               },
                               imageUrl: 'assets/images/icons/3d/36water.png',
                               text: MissionController.to.alarm[1]),
@@ -587,26 +598,30 @@ Future<dynamic> GlobalMakeAlarm({
                               isPick: MissionController.to.alarm[2] ==
                                   MissionController.to.type.value,
                               ontap: () async {
-                                await MissionController.to
-                                    .updateType(MissionController.to.alarm[2]);
+                                await MissionController.to.updateType(
+                                  MissionController.to.alarm[2],
+                                );
                               },
                               imageUrl: 'assets/images/icons/3d/36vegi.png',
                               text: MissionController.to.alarm[2]),
                           Alarm(
-                              isPick: MissionController.to.alarm[3] ==
-                                  MissionController.to.type.value,
-                              ontap: () async {
-                                await MissionController.to
-                                    .updateType(MissionController.to.alarm[3]);
-                              },
-                              imageUrl: 'assets/images/icons/3d/36outdoor.png',
-                              text: MissionController.to.alarm[3]),
+                            isPick: MissionController.to.alarm[3] ==
+                                MissionController.to.type.value,
+                            ontap: () async {
+                              await MissionController.to.updateType(
+                                MissionController.to.alarm[3],
+                              );
+                            },
+                            imageUrl: 'assets/images/icons/3d/36outdoor.png',
+                            text: MissionController.to.alarm[3],
+                          ),
                           Alarm(
                             isPick: MissionController.to.alarm[4] ==
                                 MissionController.to.type.value,
                             ontap: () async {
-                              await MissionController.to
-                                  .updateType(MissionController.to.alarm[4]);
+                              await MissionController.to.updateType(
+                                MissionController.to.alarm[4],
+                              );
                             },
                             imageUrl: 'assets/images/icons/3d/36heart.png',
                             text: MissionController.to.alarm[4],
@@ -1375,7 +1390,11 @@ Future<dynamic> GlobalMyDoctorModalWidget({
             SizedBox(
               width: 80.w,
               height: 80.w,
-              child: Image.asset('assets/images/icons/page2/80 alert.png'),
+              child: Image.asset(
+                'assets/images/icons/page2/80 alert.png',
+                cacheWidth: 159,
+                cacheHeight: 159,
+              ),
             ),
             const SizedBox(height: 12),
             Text(
@@ -1514,6 +1533,154 @@ Future<dynamic> GlobalDisclaimerModalWidget({
                   height: 48.w,
                   child: Text(
                     '동의합니다',
+                    style: TextPath.TextF14W500.copyWith(
+                      color: ColorPath.BackgroundWhite,
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          ),
+          contentPadding: EdgeInsets.zero,
+        ),
+      ),
+    );
+
+// 컨펌 모달
+Future<dynamic> GlobalConfirmModalWidget({
+  required String title,
+  required String content,
+  String okText = '확인',
+  String cancelText = '취소',
+  Function()? okOnPressed,
+  Function()? cancelOnPressed,
+}) =>
+    Get.dialog(
+      WillPopScope(
+        onWillPop: () async => false,
+        child: AlertDialog(
+          title: Text(
+            title,
+            style: TextPath.Heading2F18W600.copyWith(
+              color: ColorPath.TextGrey1H212121,
+            ),
+          ),
+          shape: RoundedRectangleBorder(
+            borderRadius: const BorderRadius.all(
+              Radius.circular(16),
+            ).r,
+          ),
+          content: Column(
+            mainAxisSize: MainAxisSize.min,
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Padding(
+                padding: const EdgeInsets.all(20).w,
+                child: Text(content),
+              ),
+              SizedBox(height: 5.w),
+              Row(
+                children: [
+                  Expanded(
+                    child: InkWell(
+                      onTap: cancelOnPressed ??
+                          () {
+                            Get.back();
+                          },
+                      child: Container(
+                        alignment: Alignment.center,
+                        decoration: BoxDecoration(
+                          color: ColorPath.GreyLightColor,
+                          borderRadius: const BorderRadius.only(
+                            bottomLeft: Radius.circular(16),
+                          ).r,
+                        ),
+                        height: 48.w,
+                        child: Text(
+                          cancelText,
+                          style: TextPath.TextF14W500.copyWith(
+                            color: ColorPath.TextGrey3H616161,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                  Expanded(
+                    child: InkWell(
+                      onTap: okOnPressed,
+                      child: Container(
+                        alignment: Alignment.center,
+                        decoration: BoxDecoration(
+                          color: ColorPath.PrimaryColor,
+                          borderRadius: const BorderRadius.only(
+                            bottomRight: Radius.circular(16),
+                          ).r,
+                        ),
+                        height: 48.w,
+                        child: Text(
+                          okText,
+                          style: TextPath.TextF14W500.copyWith(
+                            color: ColorPath.BackgroundWhite,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ],
+          ),
+          contentPadding: EdgeInsets.zero,
+        ),
+      ),
+    );
+
+// 확인 모달
+Future<dynamic> GlobalModalWidget({
+  required String title,
+  required String content,
+  String okText = '확인',
+  Function()? okOnPressed,
+}) =>
+    Get.dialog(
+      WillPopScope(
+        onWillPop: () async => false,
+        child: AlertDialog(
+          title: Text(
+            title,
+            style: TextPath.Heading2F18W600.copyWith(
+              color: ColorPath.TextGrey1H212121,
+            ),
+          ),
+          shape: RoundedRectangleBorder(
+            borderRadius: const BorderRadius.all(
+              Radius.circular(16),
+            ).r,
+          ),
+          content: Column(
+            mainAxisSize: MainAxisSize.min,
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Padding(
+                padding: const EdgeInsets.all(20).w,
+                child: Text(content),
+              ),
+              InkWell(
+                onTap: okOnPressed,
+                child: Container(
+                  alignment: Alignment.center,
+                  decoration: BoxDecoration(
+                    color: ColorPath.PrimaryColor,
+                    borderRadius: const BorderRadius.only(
+                      bottomLeft: Radius.circular(16),
+                      bottomRight: Radius.circular(16),
+                    ).r,
+                  ),
+                  height: 48.w,
+                  child: Text(
+                    okText,
                     style: TextPath.TextF14W500.copyWith(
                       color: ColorPath.BackgroundWhite,
                     ),

@@ -94,6 +94,8 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     final heroController = HeroController();
 
+    debugInvertOversizedImages = true;
+
     return ScreenUtilInit(
       designSize: const Size(360, 640),
       minTextAdapt: true,

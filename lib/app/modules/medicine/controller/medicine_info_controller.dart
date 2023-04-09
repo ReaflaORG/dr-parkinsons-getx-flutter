@@ -6,12 +6,12 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:logger/logger.dart';
 
-import '../page/medicine_info_complex.dart';
-import '../page/medicine_info_comt_inhibitor.dart';
-import '../page/medicine_info_dopamine.dart';
-import '../page/medicine_info_dopamine_agonist.dart';
-import '../page/medicine_info_etc.dart';
-import '../page/medicine_info_maob_inhibitor.dart';
+import '../widget/medicine_info_complex.dart';
+import '../widget/medicine_info_comt_inhibitor.dart';
+import '../widget/medicine_info_dopamine.dart';
+import '../widget/medicine_info_dopamine_agonist.dart';
+import '../widget/medicine_info_etc.dart';
+import '../widget/medicine_info_maob_inhibitor.dart';
 
 class MedicineInfoController extends GetxController {
   static MedicineInfoController get to => Get.find();

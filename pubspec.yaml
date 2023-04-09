@@ -2,7 +2,7 @@ name: dr_parkinsons
 description: A new Flutter project.
 publish_to: "REAFLA"
 
-version: 4.0.0+6
+version: 8.0.0+10
 
 environment:
   sdk: ">=2.19.2 <3.0.0"
@@ -98,21 +98,21 @@ flutter:
   fonts:
     - family: Pretendard
       fonts:
-        - asset: assets/fonts/pretendard/pretendardThin.otf
+        - asset: assets/fonts/pretendard/Pretendard-Thin.otf
           weight: 100
-        - asset: assets/fonts/pretendard/pretendardExtraLight.otf
+        - asset: assets/fonts/pretendard/Pretendard-ExtraLight.otf
           weight: 200
-        - asset: assets/fonts/pretendard/pretendardLight.otf
+        - asset: assets/fonts/pretendard/Pretendard-Light.otf
           weight: 300
-        - asset: assets/fonts/pretendard/pretendardRegular.otf
+        - asset: assets/fonts/pretendard/Pretendard-Regular.otf
           weight: 400
-        - asset: assets/fonts/pretendard/pretendardMedium.otf
+        - asset: assets/fonts/pretendard/Pretendard-Medium.otf
           weight: 500
-        - asset: assets/fonts/pretendard/pretendardSemiBold.otf
+        - asset: assets/fonts/pretendard/Pretendard-SemiBold.otf
           weight: 600
-        - asset: assets/fonts/pretendard/pretendardBold.otf
+        - asset: assets/fonts/pretendard/Pretendard-Bold.otf
           weight: 700
-        - asset: assets/fonts/pretendard/pretendardExtraBold.otf
+        - asset: assets/fonts/pretendard/Pretendard-ExtraBold.otf
           weight: 800
-        - asset: assets/fonts/pretendard/pretendardBlack.otf
+        - asset: assets/fonts/pretendard/Pretendard-Black.otf
           weight: 900

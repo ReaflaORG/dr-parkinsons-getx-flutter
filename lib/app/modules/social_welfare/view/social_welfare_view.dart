@@ -88,33 +88,33 @@ class CardWidget extends GetView<SocialWelfareController> {
                 child: SizedBox(
                   height: 150.w,
                   child: ClipRRect(
-                      borderRadius: BorderRadius.circular(8).r,
-                      child: Container(
-                        decoration: BoxDecoration(
-                          image: DecorationImage(
-                            image: NetworkImage(
-                              controller.welfareData[index].image,
-                            ),
-                            fit: BoxFit.cover,
+                    borderRadius: BorderRadius.circular(8).r,
+                    // child: Container(
+                    //   decoration: BoxDecoration(
+                    //     image: DecorationImage(
+                    //       image: NetworkImage(
+                    //         controller.welfareData[index].image,
+                    //       ),
+                    //       fit: BoxFit.cover,
+                    //     ),
+                    //   ),
+                    // )
+                    child: Image.network(
+                      controller.welfareData[index].image,
+                      cacheWidth: 300,
+                      cacheHeight: 300,
+                      fit: BoxFit.cover,
+                      // filterQuality: FilterQuality.medium,
+                      loadingBuilder: (context, child, loadingProgress) {
+                        if (loadingProgress == null) return child;
+                        return Center(
+                          child: CircularProgressIndicator(
+                            color: ColorPath.PrimaryColor.withOpacity(0.1),
                           ),
-                        ),
-                      )
-                      // child: Image.network(
-                      //   controller.welfareData[index].image,
-                      //   width: double.infinity,
-                      //   height: 150.w,
-                      //   fit: BoxFit.cover,
-                      //   // filterQuality: FilterQuality.medium,
-                      //   loadingBuilder: (context, child, loadingProgress) {
-                      //     if (loadingProgress == null) return child;
-                      //     return Center(
-                      //       child: CircularProgressIndicator(
-                      //         color: ColorPath.PrimaryColor.withOpacity(0.1),
-                      //       ),
-                      //     );
-                      //   },
-                      // ),
-                      ),
+                        );
+                      },
+                    ),
+                  ),
                 ),
               ),
               // Hero(

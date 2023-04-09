@@ -109,31 +109,31 @@ class CardWidget extends GetView<FactController> {
                     //     ),
                     //   ),
                     // ),
-                    child: Container(
-                      decoration: BoxDecoration(
-                        image: DecorationImage(
-                          image: NetworkImage(
-                            controller.factData[index].image,
-                          ),
-                          fit: BoxFit.cover,
-                        ),
-                      ),
-                    ),
-                    // child: Image.network(
-                    //   controller.factData[index].image,
-                    //   width: double.infinity,
-                    //   height: 150.w,
-                    //   fit: BoxFit.cover,
-                    //   // filterQuality: FilterQuality.medium,
-                    //   loadingBuilder: (context, child, loadingProgress) {
-                    //     if (loadingProgress == null) return child;
-                    //     return Center(
-                    //       child: CircularProgressIndicator(
-                    //         color: ColorPath.PrimaryColor.withOpacity(0.1),
+                    // child: Container(
+                    //   decoration: BoxDecoration(
+                    //     image: DecorationImage(
+                    //       image: NetworkImage(
+                    //         controller.factData[index].image,
                     //       ),
-                    //     );
-                    //   },
+                    //       fit: BoxFit.cover,
+                    //     ),
+                    //   ),
                     // ),
+                    child: Image.network(
+                      controller.factData[index].image,
+                      cacheWidth: 300,
+                      cacheHeight: 300,
+                      fit: BoxFit.cover,
+                      // filterQuality: FilterQuality.medium,
+                      loadingBuilder: (context, child, loadingProgress) {
+                        if (loadingProgress == null) return child;
+                        return Center(
+                          child: CircularProgressIndicator(
+                            color: ColorPath.PrimaryColor.withOpacity(0.1),
+                          ),
+                        );
+                      },
+                    ),
                   ),
                   // `CachedNetworkImage` 위젯 오류 이슈 있는듯함
                   // CachedNetworkImage(

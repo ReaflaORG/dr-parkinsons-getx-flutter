@@ -22,47 +22,36 @@ class DisorderView extends GetView<DisorderController> {
           title: '파킨슨 병 소개',
           elevation: controller.isScrollCheck.value ? 1 : 0,
         ),
-        body: SingleChildScrollView(
-          controller: controller.scrollController.value,
-          physics: const ClampingScrollPhysics(),
-          child: Padding(
-            padding: const EdgeInsets.only(
-              left: 20,
-              right: 20,
-              top: 20,
-            ).w,
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                GridView.builder(
-                  scrollDirection: Axis.vertical,
-                  physics: const NeverScrollableScrollPhysics(),
-                  shrinkWrap: true,
-                  itemCount: controller.videoData.length,
-                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 2,
-                    // childAspectRatio: 0.60.w,
-                    childAspectRatio: 0.60.w,
-                    mainAxisSpacing: 20.w,
-                    crossAxisSpacing: 20.w,
-                  ),
-                  itemBuilder: (BuildContext context, int index) {
-                    return DiscoderCardWidget(
-                      index: index,
-                      onTap: () {
-                        Get.toNamed(
-                          '/disorder/detail',
-                          arguments: {
-                            'content_url': controller.videoData[index]['link'],
-                          },
-                        );
-                      },
-                    );
-                  },
-                ),
-                SizedBox(height: 20.w),
-              ],
+        body: Padding(
+          padding: const EdgeInsets.only(
+            left: 20,
+            right: 20,
+            top: 20,
+          ).w,
+          child: GridView.builder(
+            controller: controller.scrollController.value,
+            scrollDirection: Axis.vertical,
+            itemCount: controller.videoData.length,
+            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: 2,
+              // childAspectRatio: 0.60.w,
+              childAspectRatio: 0.60.w,
+              mainAxisSpacing: 20.w,
+              crossAxisSpacing: 20.w,
             ),
+            itemBuilder: (BuildContext context, int index) {
+              return DiscoderCardWidget(
+                index: index,
+                onTap: () {
+                  Get.toNamed(
+                    '/disorder/detail',
+                    arguments: {
+                      'content_url': controller.videoData[index]['link'],
+                    },
+                  );
+                },
+              );
+            },
           ),
         ),
       ),
@@ -95,31 +84,31 @@ class DiscoderCardWidget extends GetView<DisorderController> {
               height: 150.w,
               child: Stack(
                 children: [
-                  Container(
-                    decoration: BoxDecoration(
-                      image: DecorationImage(
-                        image: NetworkImage(
-                          controller.videoData[index]['thumbnail']!,
-                        ),
-                        fit: BoxFit.cover,
-                      ),
-                    ),
-                  ),
-                  // Image.network(
-                  //   controller.videoData[index]['thumbnail']!,
-                  //   width: double.infinity,
-                  //   height: 150.w,
-                  //   fit: BoxFit.cover,
-                  //   filterQuality: FilterQuality.medium,
-                  //   loadingBuilder: (context, child, loadingProgress) {
-                  //     if (loadingProgress == null) return child;
-                  //     return Center(
-                  //       child: CircularProgressIndicator(
-                  //         color: ColorPath.PrimaryColor.withOpacity(0.1),
+                  // Container(
+                  //   decoration: BoxDecoration(
+                  //     image: DecorationImage(
+                  //       image: NetworkImage(
+                  //         controller.videoData[index]['thumbnail']!,
                   //       ),
-                  //     );
-                  //   },
+                  //       fit: BoxFit.cover,
+                  //     ),
+                  //   ),
                   // ),
+                  Image.network(
+                    controller.videoData[index]['thumbnail']!,
+                    cacheWidth: 300,
+                    cacheHeight: 300,
+                    fit: BoxFit.cover,
+                    // filterQuality: FilterQuality.medium,
+                    loadingBuilder: (context, child, loadingProgress) {
+                      if (loadingProgress == null) return child;
+                      return Center(
+                        child: CircularProgressIndicator(
+                          color: ColorPath.PrimaryColor.withOpacity(0.1),
+                        ),
+                      );
+                    },
+                  ),
                   // `CachedNetworkImage` 위젯 오류 이슈 있는듯함
                   // CachedNetworkImage(
                   //   imageUrl: controller.videoData[index]['thumbnail']!,

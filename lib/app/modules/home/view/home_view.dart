@@ -120,8 +120,10 @@ class HomeView extends GetView<HomeController> {
                                   child: CircleAvatar(
                                     backgroundColor: ColorPath.BackgroundWhite,
                                     child: Image.asset(
-                                      width: 38.w,
                                       'assets/images/icons/medical_treatment/medical_treatment_32.webp',
+                                      width: 38.w,
+                                      cacheWidth: 76,
+                                      cacheHeight: 76,
                                     ),
                                   ),
                                 ),
@@ -174,8 +176,10 @@ class HomeView extends GetView<HomeController> {
                                           backgroundColor:
                                               ColorPath.BackgroundWhite,
                                           child: Image.asset(
-                                            width: 28.w,
                                             'assets/images/icons/medical_treatment/medical_treatment_31.webp',
+                                            width: 28.w,
+                                            cacheWidth: 56,
+                                            cacheHeight: 51,
                                           ),
                                         ),
                                       ),
@@ -235,8 +239,10 @@ class HomeView extends GetView<HomeController> {
                                           backgroundColor:
                                               ColorPath.BackgroundWhite,
                                           child: Image.asset(
-                                            width: 26.w,
                                             'assets/images/icons/medical_treatment/medical_treatment_34.webp',
+                                            width: 26.w,
+                                            cacheWidth: 52,
+                                            cacheHeight: 52,
                                           ),
                                         ),
                                       ),
@@ -440,9 +446,11 @@ class HomeView extends GetView<HomeController> {
                                     backgroundColor:
                                         ColorPath.Background1HECEFF1,
                                     child: Image.asset(
+                                      'assets/images/icons/medical_treatment/medical_treatment_28.webp',
                                       width: 28.w,
                                       height: 28.w,
-                                      'assets/images/icons/medical_treatment/medical_treatment_28.webp',
+                                      cacheWidth: 55,
+                                      cacheHeight: 56,
                                     ),
                                   ),
                                 ),
@@ -477,9 +485,11 @@ class HomeView extends GetView<HomeController> {
                                       backgroundColor:
                                           ColorPath.Background1HECEFF1,
                                       child: Image.asset(
+                                        'assets/images/icons/medical_treatment/medical_treatment_15.webp',
                                         width: 28.w,
                                         height: 28.w,
-                                        'assets/images/icons/medical_treatment/medical_treatment_15.webp',
+                                        cacheWidth: 55,
+                                        cacheHeight: 56,
                                       ),
                                     ),
                                   ),
@@ -512,9 +522,11 @@ class HomeView extends GetView<HomeController> {
                                     backgroundColor:
                                         ColorPath.Background1HECEFF1,
                                     child: Image.asset(
+                                      'assets/images/icons/medical_treatment/medical_treatment_27.webp',
                                       width: 28.w,
                                       height: 28.w,
-                                      'assets/images/icons/medical_treatment/medical_treatment_27.webp',
+                                      cacheWidth: 56,
+                                      cacheHeight: 56,
                                     ),
                                   ),
                                 ),
@@ -549,9 +561,11 @@ class HomeView extends GetView<HomeController> {
                                     backgroundColor:
                                         ColorPath.Background1HECEFF1,
                                     child: Image.asset(
+                                      'assets/images/icons/medical_treatment/medical_treatment_26.webp',
                                       width: 28.w,
                                       height: 28.w,
-                                      'assets/images/icons/medical_treatment/medical_treatment_26.webp',
+                                      cacheWidth: 56,
+                                      cacheHeight: 56,
                                     ),
                                   ),
                                 ),
@@ -585,9 +599,11 @@ class HomeView extends GetView<HomeController> {
                                     backgroundColor:
                                         ColorPath.Background1HECEFF1,
                                     child: Image.asset(
+                                      'assets/images/icons/medical_treatment/medical_treatment_1.webp',
                                       width: 28.w,
                                       height: 28.w,
-                                      'assets/images/icons/medical_treatment/medical_treatment_1.webp',
+                                      cacheWidth: 56,
+                                      cacheHeight: 56,
                                     ),
                                   ),
                                 ),

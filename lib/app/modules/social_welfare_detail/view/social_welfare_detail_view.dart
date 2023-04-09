@@ -38,8 +38,10 @@ class SocialWelfareDetailView extends GetView<SocialWelfareDetailController> {
                       tag: controller.arguments['id'],
                       child: CachedNetworkImage(
                         imageUrl: controller.arguments['image'],
-                        width: double.infinity,
-                        height: 150.w,
+                        // width: double.infinity,
+                        // height: 150.w,
+                        memCacheWidth: 646,
+                        memCacheHeight: 315,
                         fit: BoxFit.cover,
                         placeholder: (context, url) {
                           return Center(
