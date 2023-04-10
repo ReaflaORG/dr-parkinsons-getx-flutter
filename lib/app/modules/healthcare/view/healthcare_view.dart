@@ -71,7 +71,7 @@ class HealthCareView extends GetView<HealthCareController> {
                                     child: Image.asset(
                                       'assets/images/icons/loud_speaker.webp',
                                       cacheWidth: 36,
-                                      cacheHeight: 36,
+                                      // cacheHeight: 36,
                                     ),
                                   ),
                                   SizedBox(width: 10.w),
@@ -156,9 +156,9 @@ class HealthCareView extends GetView<HealthCareController> {
                                   ),
                                 ),
                                 Image.asset(
-                                  width: 24.w,
-                                  height: 24.w,
                                   'assets/images/icons/2d/24arrowright.png',
+                                  width: 18.w,
+                                  height: 18.w,
                                 )
                               ],
                             ),
@@ -226,9 +226,9 @@ class CardWidget extends GetView<HealthCareController> {
                   children: [
                     Image.network(
                       controller.welfareData[index].image,
-                      height: double.infinity,
+                      width: double.infinity,
                       cacheWidth: 640,
-                      cacheHeight: 280,
+                      // cacheHeight: 280,
                       fit: BoxFit.cover,
                     ),
                     Positioned(

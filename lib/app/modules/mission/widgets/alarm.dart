@@ -35,7 +35,7 @@ class Alarm extends StatelessWidget {
                 width: 32.w,
                 height: 32.w,
                 cacheWidth: 64,
-                cacheHeight: 63,
+                // cacheHeight: 63,
               ),
             ),
           ),

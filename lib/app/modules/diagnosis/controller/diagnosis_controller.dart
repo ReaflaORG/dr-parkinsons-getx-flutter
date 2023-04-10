@@ -25,7 +25,7 @@ class DiagnosisController extends GetxController {
         SurveyQuizModel(
           surveyId: 2,
           surveyQuizId: 1,
-          questionText: '1. 자신의 삶에 대체로 만족하십니까?',
+          questionText: '자신의 삶에 대체로 만족하십니까?',
           answers: [
             AnswerModel(surveyQuizId: 1, answerScore: 0, answerText: '예'),
             AnswerModel(surveyQuizId: 1, answerScore: 1, answerText: '아니요'),
@@ -34,7 +34,7 @@ class DiagnosisController extends GetxController {
         SurveyQuizModel(
           surveyId: 2,
           surveyQuizId: 2,
-          questionText: '2. 활동이나 관심거리가 많이 줄었습니까?',
+          questionText: '활동이나 관심거리가 많이 줄었습니까?',
           answers: [
             AnswerModel(surveyQuizId: 2, answerScore: 1, answerText: '예'),
             AnswerModel(surveyQuizId: 2, answerScore: 0, answerText: '아니요'),
@@ -43,7 +43,7 @@ class DiagnosisController extends GetxController {
         SurveyQuizModel(
           surveyId: 2,
           surveyQuizId: 3,
-          questionText: '3. 삶이 공허하다고 느끼십니까?',
+          questionText: '삶이 공허하다고 느끼십니까?',
           answers: [
             AnswerModel(surveyQuizId: 3, answerScore: 1, answerText: '예'),
             AnswerModel(surveyQuizId: 3, answerScore: 0, answerText: '아니요'),
@@ -52,7 +52,7 @@ class DiagnosisController extends GetxController {
         SurveyQuizModel(
           surveyId: 2,
           surveyQuizId: 4,
-          questionText: '4. 지루하거나 따분할 때가 많습니까?',
+          questionText: '지루하거나 따분할 때가 많습니까?',
           answers: [
             AnswerModel(surveyQuizId: 4, answerScore: 1, answerText: '예'),
             AnswerModel(surveyQuizId: 4, answerScore: 0, answerText: '아니요'),
@@ -61,7 +61,7 @@ class DiagnosisController extends GetxController {
         SurveyQuizModel(
           surveyId: 2,
           surveyQuizId: 5,
-          questionText: '5. 앞날이 희망적이라고 생각하십니까?',
+          questionText: '앞날이 희망적이라고 생각하십니까?',
           answers: [
             AnswerModel(surveyQuizId: 5, answerScore: 0, answerText: '예'),
             AnswerModel(surveyQuizId: 5, answerScore: 1, answerText: '아니요'),
@@ -70,7 +70,7 @@ class DiagnosisController extends GetxController {
         SurveyQuizModel(
           surveyId: 2,
           surveyQuizId: 6,
-          questionText: '6. 떨쳐버릴 수 없는 생각들 때문에 괴롭습니까?',
+          questionText: '떨쳐버릴 수 없는 생각들 때문에 괴롭습니까?',
           answers: [
             AnswerModel(surveyQuizId: 6, answerScore: 1, answerText: '예'),
             AnswerModel(surveyQuizId: 6, answerScore: 0, answerText: '아니요'),
@@ -79,7 +79,7 @@ class DiagnosisController extends GetxController {
         SurveyQuizModel(
           surveyId: 2,
           surveyQuizId: 7,
-          questionText: '7. 대체로 활기차게 사시는 편입니까?',
+          questionText: '대체로 활기차게 사시는 편입니까?',
           answers: [
             AnswerModel(surveyQuizId: 7, answerScore: 0, answerText: '예'),
             AnswerModel(surveyQuizId: 7, answerScore: 1, answerText: '아니요'),
@@ -88,7 +88,7 @@ class DiagnosisController extends GetxController {
         SurveyQuizModel(
           surveyId: 2,
           surveyQuizId: 8,
-          questionText: '8. 자신에게 좋지 않은 일이 생길 것 같아 걱정스럽습니까?',
+          questionText: '자신에게 좋지 않은 일이 생길 것 같아 걱정스럽습니까?',
           answers: [
             AnswerModel(surveyQuizId: 8, answerScore: 1, answerText: '예'),
             AnswerModel(surveyQuizId: 8, answerScore: 0, answerText: '아니요'),
@@ -97,7 +97,7 @@ class DiagnosisController extends GetxController {
         SurveyQuizModel(
           surveyId: 2,
           surveyQuizId: 9,
-          questionText: '9. 대체로 행복하다고 느끼십니까?',
+          questionText: '대체로 행복하다고 느끼십니까?',
           answers: [
             AnswerModel(surveyQuizId: 9, answerScore: 0, answerText: '예'),
             AnswerModel(surveyQuizId: 9, answerScore: 1, answerText: '아니요'),
@@ -106,7 +106,7 @@ class DiagnosisController extends GetxController {
         SurveyQuizModel(
           surveyId: 2,
           surveyQuizId: 10,
-          questionText: '10. 아무것도 할 수 없을 것 같은 무력감이 자주 듭니까?',
+          questionText: '아무것도 할 수 없을 것 같은 무력감이 자주 듭니까?',
           answers: [
             AnswerModel(surveyQuizId: 10, answerScore: 1, answerText: '예'),
             AnswerModel(surveyQuizId: 10, answerScore: 0, answerText: '아니요'),
@@ -115,7 +115,7 @@ class DiagnosisController extends GetxController {
         SurveyQuizModel(
           surveyId: 2,
           surveyQuizId: 11,
-          questionText: '11. 불안해지거나 안절부절 못 할 때가 자주 있습니까?',
+          questionText: '불안해지거나 안절부절 못 할 때가 자주 있습니까?',
           answers: [
             AnswerModel(surveyQuizId: 11, answerScore: 1, answerText: '예'),
             AnswerModel(surveyQuizId: 11, answerScore: 0, answerText: '아니요'),
@@ -124,7 +124,7 @@ class DiagnosisController extends GetxController {
         SurveyQuizModel(
           surveyId: 2,
           surveyQuizId: 12,
-          questionText: '12. 외출하는 것 보다 그냥 집안에 있는 것이 더 좋습니까?',
+          questionText: '외출하는 것 보다 그냥 집안에 있는 것이 더 좋습니까?',
           answers: [
             AnswerModel(surveyQuizId: 12, answerScore: 1, answerText: '예'),
             AnswerModel(surveyQuizId: 12, answerScore: 0, answerText: '아니요'),
@@ -133,7 +133,7 @@ class DiagnosisController extends GetxController {
         SurveyQuizModel(
           surveyId: 2,
           surveyQuizId: 13,
-          questionText: '13. 앞날에 대한 걱정을 자주 하십니까?',
+          questionText: '앞날에 대한 걱정을 자주 하십니까?',
           answers: [
             AnswerModel(surveyQuizId: 13, answerScore: 1, answerText: '예'),
             AnswerModel(surveyQuizId: 13, answerScore: 0, answerText: '아니요'),
@@ -142,7 +142,7 @@ class DiagnosisController extends GetxController {
         SurveyQuizModel(
           surveyId: 2,
           surveyQuizId: 14,
-          questionText: '14. 다른 사람들 보다 기억력에 문제가 더 많다고 느끼십니까?',
+          questionText: '다른 사람들 보다 기억력에 문제가 더 많다고 느끼십니까?',
           answers: [
             AnswerModel(surveyQuizId: 14, answerScore: 1, answerText: '예'),
             AnswerModel(surveyQuizId: 14, answerScore: 0, answerText: '아니요'),
@@ -151,7 +151,7 @@ class DiagnosisController extends GetxController {
         SurveyQuizModel(
           surveyId: 2,
           surveyQuizId: 15,
-          questionText: '15. 지금 살아있다는 사실이 정말 좋다고 느껴지십니까?',
+          questionText: '지금 살아있다는 사실이 정말 좋다고 느껴지십니까?',
           answers: [
             AnswerModel(surveyQuizId: 15, answerScore: 0, answerText: '예'),
             AnswerModel(surveyQuizId: 15, answerScore: 1, answerText: '아니요'),
@@ -160,7 +160,7 @@ class DiagnosisController extends GetxController {
         SurveyQuizModel(
           surveyId: 2,
           surveyQuizId: 16,
-          questionText: '16. 기분이 가라앉거나 울적할 때가 자주 있습니까?',
+          questionText: '기분이 가라앉거나 울적할 때가 자주 있습니까?',
           answers: [
             AnswerModel(surveyQuizId: 16, answerScore: 1, answerText: '예'),
             AnswerModel(surveyQuizId: 16, answerScore: 0, answerText: '아니요'),
@@ -169,7 +169,7 @@ class DiagnosisController extends GetxController {
         SurveyQuizModel(
           surveyId: 2,
           surveyQuizId: 17,
-          questionText: '17. 요즘 자신이 아무 쓸모없는 사람처럼 느껴지십니까?',
+          questionText: '요즘 자신이 아무 쓸모없는 사람처럼 느껴지십니까?',
           answers: [
             AnswerModel(surveyQuizId: 17, answerScore: 1, answerText: '예'),
             AnswerModel(surveyQuizId: 17, answerScore: 0, answerText: '아니요'),
@@ -178,7 +178,7 @@ class DiagnosisController extends GetxController {
         SurveyQuizModel(
           surveyId: 2,
           surveyQuizId: 18,
-          questionText: '18. 지난 일에 대해 걱정을 많이 하십니까?',
+          questionText: '지난 일에 대해 걱정을 많이 하십니까?',
           answers: [
             AnswerModel(surveyQuizId: 18, answerScore: 1, answerText: '예'),
             AnswerModel(surveyQuizId: 18, answerScore: 0, answerText: '아니요'),
@@ -187,7 +187,7 @@ class DiagnosisController extends GetxController {
         SurveyQuizModel(
           surveyId: 2,
           surveyQuizId: 19,
-          questionText: '19. 산다는 것이 매우 신나고 즐겁습니까?',
+          questionText: '산다는 것이 매우 신나고 즐겁습니까?',
           answers: [
             AnswerModel(surveyQuizId: 19, answerScore: 0, answerText: '예'),
             AnswerModel(surveyQuizId: 19, answerScore: 1, answerText: '아니요'),
@@ -196,7 +196,7 @@ class DiagnosisController extends GetxController {
         SurveyQuizModel(
           surveyId: 2,
           surveyQuizId: 20,
-          questionText: '20. 새로운 일을 시작하는 것이 어렵습니까?',
+          questionText: '새로운 일을 시작하는 것이 어렵습니까?',
           answers: [
             AnswerModel(surveyQuizId: 20, answerScore: 1, answerText: '예'),
             AnswerModel(surveyQuizId: 20, answerScore: 0, answerText: '아니요'),
@@ -205,7 +205,7 @@ class DiagnosisController extends GetxController {
         SurveyQuizModel(
           surveyId: 2,
           surveyQuizId: 21,
-          questionText: '21. 생활의 활력이 넘치십니까?',
+          questionText: '생활의 활력이 넘치십니까?',
           answers: [
             AnswerModel(surveyQuizId: 21, answerScore: 0, answerText: '예'),
             AnswerModel(surveyQuizId: 21, answerScore: 1, answerText: '아니요'),
@@ -214,7 +214,7 @@ class DiagnosisController extends GetxController {
         SurveyQuizModel(
           surveyId: 2,
           surveyQuizId: 22,
-          questionText: '22. 자신의 처지가 절망적이라고 느끼십니까?',
+          questionText: '자신의 처지가 절망적이라고 느끼십니까?',
           answers: [
             AnswerModel(surveyQuizId: 22, answerScore: 1, answerText: '예'),
             AnswerModel(surveyQuizId: 22, answerScore: 0, answerText: '아니요'),
@@ -223,7 +223,7 @@ class DiagnosisController extends GetxController {
         SurveyQuizModel(
           surveyId: 2,
           surveyQuizId: 23,
-          questionText: '23. 다른 사람들이 대체로 자신보다 낫다고 느끼십니까?',
+          questionText: '다른 사람들이 대체로 자신보다 낫다고 느끼십니까?',
           answers: [
             AnswerModel(surveyQuizId: 23, answerScore: 1, answerText: '예'),
             AnswerModel(surveyQuizId: 23, answerScore: 0, answerText: '아니요'),
@@ -232,7 +232,7 @@ class DiagnosisController extends GetxController {
         SurveyQuizModel(
           surveyId: 2,
           surveyQuizId: 24,
-          questionText: '24. 사소한 일에도 속상할 때가 많습니까?',
+          questionText: '사소한 일에도 속상할 때가 많습니까?',
           answers: [
             AnswerModel(surveyQuizId: 24, answerScore: 1, answerText: '예'),
             AnswerModel(surveyQuizId: 24, answerScore: 0, answerText: '아니요'),
@@ -241,7 +241,7 @@ class DiagnosisController extends GetxController {
         SurveyQuizModel(
           surveyId: 2,
           surveyQuizId: 25,
-          questionText: '25. 울고 싶을 때가 자주 있습니까?',
+          questionText: '울고 싶을 때가 자주 있습니까?',
           answers: [
             AnswerModel(surveyQuizId: 25, answerScore: 1, answerText: '예'),
             AnswerModel(surveyQuizId: 25, answerScore: 0, answerText: '아니요'),
@@ -250,7 +250,7 @@ class DiagnosisController extends GetxController {
         SurveyQuizModel(
           surveyId: 2,
           surveyQuizId: 26,
-          questionText: '26. 집중하기가 어렵습니까?',
+          questionText: '집중하기가 어렵습니까?',
           answers: [
             AnswerModel(surveyQuizId: 26, answerScore: 1, answerText: '예'),
             AnswerModel(surveyQuizId: 26, answerScore: 0, answerText: '아니요'),
@@ -259,7 +259,7 @@ class DiagnosisController extends GetxController {
         SurveyQuizModel(
           surveyId: 2,
           surveyQuizId: 27,
-          questionText: '27. 아침에 기분 좋게 일어나십니까?',
+          questionText: '아침에 기분 좋게 일어나십니까?',
           answers: [
             AnswerModel(surveyQuizId: 27, answerScore: 0, answerText: '예'),
             AnswerModel(surveyQuizId: 27, answerScore: 1, answerText: '아니요'),
@@ -268,7 +268,7 @@ class DiagnosisController extends GetxController {
         SurveyQuizModel(
           surveyId: 2,
           surveyQuizId: 28,
-          questionText: '28. 사람들과 어울리는 자리를 피하는 편이십니까?',
+          questionText: '사람들과 어울리는 자리를 피하는 편이십니까?',
           answers: [
             AnswerModel(surveyQuizId: 28, answerScore: 1, answerText: '예'),
             AnswerModel(surveyQuizId: 28, answerScore: 0, answerText: '아니요'),
@@ -277,7 +277,7 @@ class DiagnosisController extends GetxController {
         SurveyQuizModel(
           surveyId: 2,
           surveyQuizId: 29,
-          questionText: '29. 쉽게 결정하는 편이십니까?',
+          questionText: '쉽게 결정하는 편이십니까?',
           answers: [
             AnswerModel(surveyQuizId: 29, answerScore: 0, answerText: '예'),
             AnswerModel(surveyQuizId: 29, answerScore: 1, answerText: '아니요'),
@@ -286,7 +286,7 @@ class DiagnosisController extends GetxController {
         SurveyQuizModel(
           surveyId: 2,
           surveyQuizId: 30,
-          questionText: '30. 예전처럼 정신이 맑습니까?',
+          questionText: '예전처럼 정신이 맑습니까?',
           answers: [
             AnswerModel(surveyQuizId: 30, answerScore: 0, answerText: '예'),
             AnswerModel(surveyQuizId: 30, answerScore: 1, answerText: '아니요'),
@@ -296,139 +296,142 @@ class DiagnosisController extends GetxController {
       nameOfSurvey: '파킨슨 심리진단',
     ),
     Survey(
-        surveyId: 3,
-        quizes: [
-          SurveyQuizModel(
-            surveyId: 3,
-            surveyQuizId: 301,
-            questionText: '1. 때때로 매우 생생한 꿈을 꾼다.',
-            answers: [
-              AnswerModel(surveyQuizId: 301, answerScore: 1, answerText: '예'),
-              AnswerModel(surveyQuizId: 301, answerScore: 0, answerText: '아니요'),
-            ],
-          ),
-          SurveyQuizModel(
-            surveyId: 3,
-            surveyQuizId: 302,
-            questionText: '2. 꿈이 공격적이거나 움직임이 많은 내용일 때가 많다.',
-            answers: [
-              AnswerModel(surveyQuizId: 302, answerScore: 1, answerText: '예'),
-              AnswerModel(surveyQuizId: 302, answerScore: 0, answerText: '아니요'),
-            ],
-          ),
-          SurveyQuizModel(
-            surveyId: 3,
-            surveyQuizId: 303,
-            questionText: '3. 꿈의 내용을 그대로 행동으로 옮긴다.',
-            answers: [
-              AnswerModel(surveyQuizId: 303, answerScore: 1, answerText: '예'),
-              AnswerModel(surveyQuizId: 303, answerScore: 0, answerText: '아니요'),
-            ],
-          ),
-          SurveyQuizModel(
-            surveyId: 3,
-            surveyQuizId: 304,
-            questionText: '4. 잘 때, 내 팔이나 발이 움직이는 것을 느낀다.',
-            answers: [
-              AnswerModel(surveyQuizId: 304, answerScore: 1, answerText: '예'),
-              AnswerModel(surveyQuizId: 304, answerScore: 0, answerText: '아니요'),
-            ],
-          ),
-          SurveyQuizModel(
-            surveyId: 3,
-            surveyQuizId: 305,
-            questionText: '5. 수면 중 행동 때문에 같이 자는 배우자나 내 자신이 다친 일이 있다.',
-            answers: [
-              AnswerModel(surveyQuizId: 305, answerScore: 1, answerText: '예'),
-              AnswerModel(surveyQuizId: 305, answerScore: 0, answerText: '아니요'),
-            ],
-          ),
-          // 6번 문항은 점수에서 제외된다.
-          SurveyQuizModel(
-            surveyId: 3,
-            surveyQuizId: 306,
-            questionText: '6. 꿈을 꿀 때 다음에 일이 발생한다.',
-            answers: [
-              // AnswerModel(surveyQuizId: 306, answerScore: 0, answerText: '예'),
-              // AnswerModel(surveyQuizId: 306, answerScore: 0, answerText: '아니요'),
-            ],
-          ),
-          SurveyQuizModel(
-            surveyId: 3,
-            surveyQuizId: 307,
-            questionText: '6.1. 말하거나 소리를 지르거나 욕하거나 크게 웃는 일',
-            answers: [
-              AnswerModel(surveyQuizId: 307, answerScore: 1, answerText: '예'),
-              AnswerModel(surveyQuizId: 307, answerScore: 0, answerText: '아니요'),
-            ],
-          ),
-          SurveyQuizModel(
-            surveyId: 3,
-            surveyQuizId: 308,
-            questionText: '6.2. “싸우듯이” 갑자기 팔과 다리를 움직이는 일',
-            answers: [
-              AnswerModel(surveyQuizId: 308, answerScore: 1, answerText: '예'),
-              AnswerModel(surveyQuizId: 308, answerScore: 0, answerText: '아니요'),
-            ],
-          ),
-          SurveyQuizModel(
-            surveyId: 3,
-            surveyQuizId: 309,
-            questionText:
-                '6.3. 자는 동안에는 필요 없는 몸짓이나 행동(예: 손 흔들기, 인사하기, 벌레 쫓는 행동, 침대에서 떨어지는 일)',
-            answers: [
-              AnswerModel(surveyQuizId: 309, answerScore: 1, answerText: '예'),
-              AnswerModel(surveyQuizId: 309, answerScore: 0, answerText: '아니요'),
-            ],
-          ),
-          SurveyQuizModel(
-            surveyId: 3,
-            surveyQuizId: 310,
-            questionText: '6.4. 침대 주변에 물건(예:침대 전등, 책, 안경)이 떨어져 있는 일',
-            answers: [
-              AnswerModel(surveyQuizId: 310, answerScore: 1, answerText: '예'),
-              AnswerModel(surveyQuizId: 310, answerScore: 0, answerText: '아니요'),
-            ],
-          ),
-          SurveyQuizModel(
-            surveyId: 3,
-            surveyQuizId: 311,
-            questionText: '7. 수면 중 내 움직임에 스스로 깨기도 한다.',
-            answers: [
-              AnswerModel(surveyQuizId: 311, answerScore: 1, answerText: '예'),
-              AnswerModel(surveyQuizId: 311, answerScore: 0, answerText: '아니요'),
-            ],
-          ),
-          SurveyQuizModel(
-            surveyId: 3,
-            surveyQuizId: 312,
-            questionText: '8. 잠에서 깼을 때, 대부분 꿈의 내용을 잘 기억한다.',
-            answers: [
-              AnswerModel(surveyQuizId: 312, answerScore: 1, answerText: '예'),
-              AnswerModel(surveyQuizId: 312, answerScore: 0, answerText: '아니요'),
-            ],
-          ),
-          SurveyQuizModel(
-            surveyId: 3,
-            surveyQuizId: 313,
-            questionText: '9. 잠을 설칠 때가 자주 있다.',
-            answers: [
-              AnswerModel(surveyQuizId: 313, answerScore: 1, answerText: '예'),
-              AnswerModel(surveyQuizId: 313, answerScore: 0, answerText: '아니요'),
-            ],
-          ),
-          SurveyQuizModel(
-            surveyId: 3,
-            surveyQuizId: 314,
-            questionText:
-                '10. 신경계 질환을 가진적이 있다.(예: 뇌졸중, 머리 타박상, 파킨슨병, 하지불안증후군, 기면병, 우울증, 간질, 뇌의 염증성 질환 등이 있다면 어떤질환인지 구체적으로 기술해 주십시오.',
-            answers: [
-              AnswerModel(surveyQuizId: 314, answerScore: 1, answerText: '예'),
-              AnswerModel(surveyQuizId: 314, answerScore: 0, answerText: '아니요'),
-            ],
-          ),
-        ],
-        nameOfSurvey: '수면자가진단'),
+      surveyId: 3,
+      quizes: [
+        SurveyQuizModel(
+          surveyId: 3,
+          surveyQuizId: 301,
+          questionText: '때때로 매우 생생한 꿈을 꾼다.',
+          answers: [
+            AnswerModel(surveyQuizId: 301, answerScore: 1, answerText: '예'),
+            AnswerModel(surveyQuizId: 301, answerScore: 0, answerText: '아니요'),
+          ],
+        ),
+        SurveyQuizModel(
+          surveyId: 3,
+          surveyQuizId: 302,
+          questionText: '꿈이 공격적이거나 움직임이 많은 내용일 때가 많다.',
+          answers: [
+            AnswerModel(surveyQuizId: 302, answerScore: 1, answerText: '예'),
+            AnswerModel(surveyQuizId: 302, answerScore: 0, answerText: '아니요'),
+          ],
+        ),
+        SurveyQuizModel(
+          surveyId: 3,
+          surveyQuizId: 303,
+          questionText: '꿈의 내용을 그대로 행동으로 옮긴다.',
+          answers: [
+            AnswerModel(surveyQuizId: 303, answerScore: 1, answerText: '예'),
+            AnswerModel(surveyQuizId: 303, answerScore: 0, answerText: '아니요'),
+          ],
+        ),
+        SurveyQuizModel(
+          surveyId: 3,
+          surveyQuizId: 304,
+          questionText: '잘 때, 내 팔이나 발이 움직이는 것을 느낀다.',
+          answers: [
+            AnswerModel(surveyQuizId: 304, answerScore: 1, answerText: '예'),
+            AnswerModel(surveyQuizId: 304, answerScore: 0, answerText: '아니요'),
+          ],
+        ),
+        SurveyQuizModel(
+          surveyId: 3,
+          surveyQuizId: 305,
+          questionText: '수면 중 행동 때문에 같이 자는 배우자나 내 자신이 다친 일이 있다.',
+          answers: [
+            AnswerModel(surveyQuizId: 305, answerScore: 1, answerText: '예'),
+            AnswerModel(surveyQuizId: 305, answerScore: 0, answerText: '아니요'),
+          ],
+        ),
+        // 6번 문항은 점수에서 제외된다.
+        SurveyQuizModel(
+          surveyId: 3,
+          surveyQuizId: 306,
+          questionText: '꿈을 꿀 때 다음에 일이 발생한다.',
+          questionSubText: '(다음을 눌러 진단을 이어서 해주세요)',
+          answers: [
+            // AnswerModel(surveyQuizId: 306, answerScore: 0, answerText: '예'),
+            // AnswerModel(surveyQuizId: 306, answerScore: 0, answerText: '아니요'),
+          ],
+        ),
+        SurveyQuizModel(
+          surveyId: 3,
+          surveyQuizId: 307,
+          questionText: '말하거나 소리를 지르거나 욕하거나 크게 웃는 일',
+          answers: [
+            AnswerModel(surveyQuizId: 307, answerScore: 1, answerText: '예'),
+            AnswerModel(surveyQuizId: 307, answerScore: 0, answerText: '아니요'),
+          ],
+        ),
+        SurveyQuizModel(
+          surveyId: 3,
+          surveyQuizId: 308,
+          questionText: '“싸우듯이” 갑자기 팔과 다리를 움직이는 일',
+          answers: [
+            AnswerModel(surveyQuizId: 308, answerScore: 1, answerText: '예'),
+            AnswerModel(surveyQuizId: 308, answerScore: 0, answerText: '아니요'),
+          ],
+        ),
+        SurveyQuizModel(
+          surveyId: 3,
+          surveyQuizId: 309,
+          questionText:
+              '자는 동안에는 필요 없는 몸짓이나 행동(예: 손 흔들기, 인사하기, 벌레 쫓는 행동, 침대에서 떨어지는 일)',
+          answers: [
+            AnswerModel(surveyQuizId: 309, answerScore: 1, answerText: '예'),
+            AnswerModel(surveyQuizId: 309, answerScore: 0, answerText: '아니요'),
+          ],
+        ),
+        // 6.4.
+        SurveyQuizModel(
+          surveyId: 3,
+          surveyQuizId: 310,
+          questionText: '침대 주변에 물건(예:침대 전등, 책, 안경)이 떨어져 있는 일',
+          answers: [
+            AnswerModel(surveyQuizId: 310, answerScore: 1, answerText: '예'),
+            AnswerModel(surveyQuizId: 310, answerScore: 0, answerText: '아니요'),
+          ],
+        ),
+        SurveyQuizModel(
+          surveyId: 3,
+          surveyQuizId: 311,
+          questionText: '수면 중 내 움직임에 스스로 깨기도 한다.',
+          answers: [
+            AnswerModel(surveyQuizId: 311, answerScore: 1, answerText: '예'),
+            AnswerModel(surveyQuizId: 311, answerScore: 0, answerText: '아니요'),
+          ],
+        ),
+        SurveyQuizModel(
+          surveyId: 3,
+          surveyQuizId: 312,
+          questionText: '잠에서 깼을 때, 대부분 꿈의 내용을 잘 기억한다.',
+          answers: [
+            AnswerModel(surveyQuizId: 312, answerScore: 1, answerText: '예'),
+            AnswerModel(surveyQuizId: 312, answerScore: 0, answerText: '아니요'),
+          ],
+        ),
+        SurveyQuizModel(
+          surveyId: 3,
+          surveyQuizId: 313,
+          questionText: '잠을 설칠 때가 자주 있다.',
+          answers: [
+            AnswerModel(surveyQuizId: 313, answerScore: 1, answerText: '예'),
+            AnswerModel(surveyQuizId: 313, answerScore: 0, answerText: '아니요'),
+          ],
+        ),
+        SurveyQuizModel(
+          surveyId: 3,
+          surveyQuizId: 314,
+          questionText:
+              '신경계 질환을 가진적이 있다.(예: 뇌졸중, 머리 타박상, 파킨슨병, 하지불안증후군, 기면병, 우울증, 간질, 뇌의 염증성 질환 등이 있다면 어떤질환인지 구체적으로 기술해 주십시오.',
+          answers: [
+            AnswerModel(surveyQuizId: 314, answerScore: 1, answerText: '예'),
+            AnswerModel(surveyQuizId: 314, answerScore: 0, answerText: '아니요'),
+          ],
+        ),
+      ],
+      nameOfSurvey: '수면자가진단',
+    ),
   ];
 
   // Data ▼
@@ -446,21 +449,21 @@ class DiagnosisController extends GetxController {
       case 2:
         if (score.value >= 18) {
           //우울증
-          return "${AuthService.to.userData.value.userName ?? '사용자'} 님의 점수는 ${score.value}점으로\n유의미한 우울증상을 보이고 있습니다 \n주치의와 상의하십시오.";
+          return "${AuthService.to.userData.value.userName ?? '사용자'} 님의 점수는 ${score.value}점으로\r\n유의미한 우울증상을 보이고 있습니다.\r\n\r\n주치의와 상의하십시오.";
         } else if (score >= 11 && score <= 18) {
           //경상 우을
-          return "${AuthService.to.userData.value.userName ?? '사용자'} 님의 점수는 ${score.value}점으로\n경증 우울증상을 보이고 있습니다. \n주치의와 상의하십시오.";
+          return "${AuthService.to.userData.value.userName ?? '사용자'} 님의 점수는 ${score.value}점으로\r\n경증 우울증상을 보이고 있습니다.\r\n\r\n주치의와 상의하십시오.";
         } else {
           //정상
-          return "${AuthService.to.userData.value.userName ?? '사용자'} 님의 점수는 ${score.value}점으로\n의미있는 우울증상은 없습니다.\n경과관찰하세요.";
+          return "${AuthService.to.userData.value.userName ?? '사용자'} 님의 점수는 ${score.value}점으로\r\n의미있는 우울증상은 없습니다.\r\n\r\n경과를 관찰해보세요.";
         }
       case 3:
         if (score.value >= 5) {
           //우울증
-          return "${AuthService.to.userData.value.userName ?? '사용자'} 님의 점수는 ${score.value}점으로\n렘수면 행동 장애가 있습니다.\n전문의와 상의하십시오.";
+          return "${AuthService.to.userData.value.userName ?? '사용자'} 님의 점수는 ${score.value}점으로\r\n렘수면 행동 장애가 있습니다.\r\n\r\n주치의와 상의하십시오.";
         } else {
           //정상
-          return "${AuthService.to.userData.value.userName ?? '사용자'} 님의 점수는 ${score.value}점으로\n의미있는 렘수면 행동 장애는 없습니다.\n경과관찰하세요.";
+          return "${AuthService.to.userData.value.userName ?? '사용자'} 님의 점수는 ${score.value}점으로\r\n의미있는 렘수면 행동 장애는 없습니다.\r\n\r\n경과를 관찰해보세요.";
         }
       default:
         return 'Error';

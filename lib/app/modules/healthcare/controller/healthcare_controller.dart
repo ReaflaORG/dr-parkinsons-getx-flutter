@@ -55,7 +55,7 @@ class HealthCareController extends GetxController {
       },
     ),
     HealthCareBtnModel(
-      name: '수면장애진단',
+      name: '수면 장애진단',
       color: ColorPath.SecondaryLightColor,
       icon: 'assets/images/icons/medical_treatment/medical_treatment_33.webp',
       onClick: () {

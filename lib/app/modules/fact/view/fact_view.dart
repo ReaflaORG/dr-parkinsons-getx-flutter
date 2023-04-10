@@ -122,7 +122,7 @@ class CardWidget extends GetView<FactController> {
                     child: Image.network(
                       controller.factData[index].image,
                       cacheWidth: 300,
-                      cacheHeight: 300,
+                      // cacheHeight: 300,
                       fit: BoxFit.cover,
                       // filterQuality: FilterQuality.medium,
                       loadingBuilder: (context, child, loadingProgress) {

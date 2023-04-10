@@ -67,7 +67,7 @@ class MissionCard extends GetView<MissionController> {
                             width: 28.w,
                             height: 28.w,
                             cacheWidth: 64,
-                            cacheHeight: 63,
+                            // cacheHeight: 63,
                           ),
                         ),
                       )

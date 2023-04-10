@@ -31,73 +31,73 @@ class MedicineInfoMaobInhibitorPage extends StatelessWidget {
         const MedicineItemTitleWidget(text: '종류'),
         const MedicineItemLabel1Widget(text: '1. 셀레길린'),
         const MedicineImageItem(
-          assest: 'assets/images/medicine/pill0501.jpg',
-          text: '콤마오비정 5mg',
+          assest: 'assets/images/medicine/pill0501.webp',
+          text: '마오비정 5mg',
         ),
-        SizedBox(height: 20.w),
-        const MedicineItemLabel2Widget(text: '셀레길린 그외'),
-        MedicineItemTableWidget(
-          columnWidths: {
-            1: FlexColumnWidth(0.8.w),
-            2: FlexColumnWidth(0.3.w),
-          },
-          children: [
-            TableRow(
-              decoration: BoxDecoration(
-                color: Colors.grey.shade200.withOpacity(0.5),
-              ),
-              children: [
-                Padding(
-                  padding: const EdgeInsets.all(8.0).w,
-                  child: const Text('제조사'),
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(8.0).w,
-                  child: const Text(
-                    '이름',
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(8.0).w,
-                  child: const Text(
-                    '용량',
-                  ),
-                ),
-              ],
-            ),
-            TableRow(
-              decoration: const BoxDecoration(
-                color: Colors.white,
-              ),
-              children: [
-                Padding(
-                  padding: const EdgeInsets.all(8.0).w,
-                  child: const Text('초당약품공업'),
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(8.0).w,
-                  child: const Text(
-                    '마오비정',
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(8.0).w,
-                  child: const Text(
-                    '-',
-                  ),
-                ),
-              ],
-            ),
-          ],
-        ),
+        // SizedBox(height: 20.w),
+        // const MedicineItemLabel2Widget(text: '셀레길린 그외'),
+        // MedicineItemTableWidget(
+        //   columnWidths: {
+        //     1: FlexColumnWidth(0.8.w),
+        //     2: FlexColumnWidth(0.3.w),
+        //   },
+        //   children: [
+        //     TableRow(
+        //       decoration: BoxDecoration(
+        //         color: Colors.grey.shade200.withOpacity(0.5),
+        //       ),
+        //       children: [
+        //         Padding(
+        //           padding: const EdgeInsets.all(8.0).w,
+        //           child: const Text('제조사'),
+        //         ),
+        //         Padding(
+        //           padding: const EdgeInsets.all(8.0).w,
+        //           child: const Text(
+        //             '이름',
+        //           ),
+        //         ),
+        //         Padding(
+        //           padding: const EdgeInsets.all(8.0).w,
+        //           child: const Text(
+        //             '용량',
+        //           ),
+        //         ),
+        //       ],
+        //     ),
+        //     TableRow(
+        //       decoration: const BoxDecoration(
+        //         color: Colors.white,
+        //       ),
+        //       children: [
+        //         Padding(
+        //           padding: const EdgeInsets.all(8.0).w,
+        //           child: const Text('초당약품공업'),
+        //         ),
+        //         Padding(
+        //           padding: const EdgeInsets.all(8.0).w,
+        //           child: const Text(
+        //             '마오비정',
+        //           ),
+        //         ),
+        //         Padding(
+        //           padding: const EdgeInsets.all(8.0).w,
+        //           child: const Text(
+        //             '-',
+        //           ),
+        //         ),
+        //       ],
+        //     ),
+        //   ],
+        // ),
         SizedBox(height: 20.w),
         const MedicineItemLabel1Widget(text: '2. 라자질린'),
         const MedicineImageItem(
-          assest: 'assets/images/medicine/pill0502.jpg',
+          assest: 'assets/images/medicine/pill0502.webp',
           text: '아질렉트 0.5mg',
         ),
         const MedicineImageItem(
-          assest: 'assets/images/medicine/pill0503.jpg',
+          assest: 'assets/images/medicine/pill0503.webp',
           text: '아질렉트정 1mg',
         ),
         SizedBox(height: 20.w),
@@ -899,8 +899,8 @@ class MedicineInfoMaobInhibitorPage extends StatelessWidget {
                 '사파나마이드는 3세대 마오비 억제제로 dural 작용기전을 가지고 있어, 이전 세대의 MAO-B 억제제와는 차별적으로 Dopaminergic 경로 뿐만 아니라 glutamate 경로를 조절함으로서 진통제사용감소, 기분 개선, 삶의 질 개선 등의 비운동증상 개선에 도움이 된다.'),
         SizedBox(height: 20.w),
         const MedicineImageItem(
-          assest: 'assets/images/medicine/pill0502.jpg',
-          text: '''에퀴피나필름코팅정 50mg''',
+          assest: 'assets/images/medicine/pill0504.webp',
+          text: '에퀴피나필름코팅정 50mg',
         ),
         SizedBox(height: 20.w),
         const MedicineItemLabel2Widget(text: '사파나마이드 그외'),

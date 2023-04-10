@@ -89,7 +89,7 @@ class _DoctorVideoWidgetState extends State<DoctorVideoWidget> {
                       width: 320.w,
                       height: 170.w,
                       cacheWidth: 639,
-                      cacheHeight: 340,
+                      // cacheHeight: 340,
                       fit: BoxFit.cover,
                     ),
                     Positioned(
@@ -102,7 +102,7 @@ class _DoctorVideoWidgetState extends State<DoctorVideoWidget> {
                           'assets/images/video/play_button.webp',
                           width: 50.w,
                           cacheWidth: 50,
-                          cacheHeight: 50,
+                          // cacheHeight: 50,
                         ),
                       ),
                     ),

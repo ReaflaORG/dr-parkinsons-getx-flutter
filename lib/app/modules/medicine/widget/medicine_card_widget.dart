@@ -47,7 +47,7 @@ class MedicineCardWidget extends GetView<MedicineController> {
                     width: 44.w,
                     height: 44.w,
                     cacheWidth: 87,
-                    cacheHeight: 88,
+                    // cacheHeight: 88,
                   ),
                 ),
               ),

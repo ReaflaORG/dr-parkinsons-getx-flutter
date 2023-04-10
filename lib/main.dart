@@ -20,6 +20,7 @@ import 'app/service/firebase_cloud_messaging_service.dart';
 import 'app/service/global_service.dart';
 import 'app/service/location_service.dart';
 import 'app/service/permission_service.dart';
+import 'app/service/utils_service.dart';
 import 'app/theme/theme.dart';
 import 'app/utils/http_utils.dart';
 
@@ -85,6 +86,9 @@ Future<void> initialize() async {
   // 파이어베이스 인증 서비스
   // Get.put(FirebaseAuthService(), permanent: true);
   Get.lazyPut(() => FirebaseAuthService());
+
+  // 유틸 서비스
+  Get.put(UtilsService(), permanent: true);
 }
 
 class MyApp extends StatelessWidget {

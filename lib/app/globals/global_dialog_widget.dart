@@ -224,7 +224,7 @@ Future<dynamic> GlobalEmergencyModalWidget({
               child: Image.asset(
                 'assets/images/icons/page2/80 alert.png',
                 cacheWidth: 159,
-                cacheHeight: 159,
+                // cacheHeight: 159,
               ),
             ),
             const SizedBox(height: 12),
@@ -335,7 +335,7 @@ Future<dynamic> GlobalEmergencyModalWidget2({required BuildContext context}) =>
               child: Image.asset(
                 'assets/images/icons/page2/80 alert.png',
                 cacheWidth: 159,
-                cacheHeight: 159,
+                // cacheHeight: 159,
               ),
             ),
             SizedBox(height: 12.w),
@@ -1030,55 +1030,54 @@ Future<dynamic> GlobalReadyModal({
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.all(Radius.circular(16.w)),
         ),
+        title: Text(
+          '파킨슨 자가진단',
+          style: TextPath.Heading2F18W600.copyWith(
+            color: ColorPath.TextGrey1H212121,
+          ),
+        ),
         content: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisSize: MainAxisSize.min,
           children: [
-            Container(
-              padding: EdgeInsets.only(
-                top: 30,
-                left: 20,
-                right: 20.w,
-                bottom: 20,
-              ).w,
-              child: Column(
-                children: <Widget>[
-                  Container(
-                    alignment: Alignment.center,
-                    child: Text(
-                      '파킨슨병 조기진단을 위한 선별검사도구를 개발 및 검증 중에 있습니다.\r\n검증이 완료되면 업데이트 하겠습니다.\r\n감사합니다.',
-                      style: TextPath.Heading3F16W600.copyWith(
-                        color: ColorPath.TextGrey1H212121,
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            GestureDetector(
-              onTap: () {
-                Get.back();
-              },
-              child: SizedBox(
-                height: 48.w,
-                child: Container(
-                  alignment: Alignment.center,
-                  decoration: BoxDecoration(
-                      color: ColorPath.PrimaryColor,
-                      borderRadius: BorderRadius.only(
-                        bottomLeft: Radius.circular(16.w),
-                        bottomRight: Radius.circular(16.w),
-                      )),
-                  height: 48.w,
+            Column(
+              mainAxisSize: MainAxisSize.min,
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.all(20).w,
                   child: Text(
-                    '닫기',
-                    style: TextPath.TextF14W500.copyWith(
-                      color: ColorPath.TextWhite,
+                    '파킨슨병 조기진단을 위한 선별검사도구를 개발 및 검증 중에 있습니다.\r\n\r\n검증이 완료되면 업데이트 하겠습니다.\r\n\r\n감사합니다.',
+                    style: TextPath.TextF16W500.copyWith(
+                      color: ColorPath.TextGrey1H212121,
                     ),
                   ),
                 ),
+              ],
+            ),
+            InkWell(
+              onTap: () {
+                Get.back();
+              },
+              child: Container(
+                alignment: Alignment.center,
+                decoration: BoxDecoration(
+                  color: ColorPath.PrimaryColor,
+                  borderRadius: const BorderRadius.only(
+                    bottomLeft: Radius.circular(16),
+                    bottomRight: Radius.circular(16),
+                  ).r,
+                ),
+                height: 48.w,
+                child: Text(
+                  '확인',
+                  style: TextPath.TextF14W500.copyWith(
+                    color: ColorPath.BackgroundWhite,
+                  ),
+                ),
               ),
-            )
+            ),
           ],
         ),
         contentPadding: const EdgeInsets.all(0),
@@ -1393,7 +1392,7 @@ Future<dynamic> GlobalMyDoctorModalWidget({
               child: Image.asset(
                 'assets/images/icons/page2/80 alert.png',
                 cacheWidth: 159,
-                cacheHeight: 159,
+                // cacheHeight: 159,
               ),
             ),
             const SizedBox(height: 12),
@@ -1509,15 +1508,8 @@ Future<dynamic> GlobalDisclaimerModalWidget({
             children: [
               Padding(
                 padding: const EdgeInsets.all(20).w,
-                child: const Text('''
-닥터파킨슨 앱은 파킨슨병을
-진단하고 치료를 위한 도구가 아니며
-
-환자분들에게 정보전
-달과 관리에 도움을 드리는 앱입니다.
-
-파킨슨병의 정확한 진단과 치료는 전문의와 상의하십시오.
-'''),
+                child: const Text(
+                    '닥터파킨슨 앱은 파킨슨병을 진단하고 치료를 위한 도구가 아니며\r\n\r\n환자분들에게 정보전달과 관리에 도움을 드리는 앱입니다.\r\n\r\n파킨슨병의 정확한 진단과 치료는 전문의와 상의하십시오.'),
               ),
               InkWell(
                 onTap: okOnPressed,

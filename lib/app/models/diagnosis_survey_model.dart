@@ -52,6 +52,7 @@ class SurveyQuizModel {
     required this.surveyQuizId,
     this.isPass = false,
     required this.questionText,
+    this.questionSubText,
     this.userAnswer = 999,
     required this.answers,
   });
@@ -59,6 +60,7 @@ class SurveyQuizModel {
   int surveyId;
   int surveyQuizId;
   String questionText;
+  String? questionSubText;
   bool isPass;
   int userAnswer;
   List<AnswerModel> answers;
@@ -68,6 +70,7 @@ class SurveyQuizModel {
       'surveyId': surveyId,
       'surveyQuizId': surveyQuizId,
       'questionText': questionText,
+      'questionSubText': questionSubText,
       'userAnswer': userAnswer,
       'answers': answers.map(
         (e) => e.toJson(),

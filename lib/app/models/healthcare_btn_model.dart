@@ -5,8 +5,8 @@ class HealthCareBtnModel {
     required this.name,
     required this.color,
     required this.icon,
-    this.icon_width = 36,
-    this.icon_height = 36,
+    this.icon_width = 34,
+    this.icon_height = 34,
     required this.onClick,
   });
 

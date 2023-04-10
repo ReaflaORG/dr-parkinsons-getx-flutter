@@ -77,14 +77,14 @@ class SeminarView extends GetView<SeminarController> {
                         'assets/images/logo/logo3.webp',
                         width: 140.w,
                         cacheWidth: 280,
-                        cacheHeight: 79,
+                        // cacheHeight: 79,
                         fit: BoxFit.cover,
                       ),
                       Image.asset(
                         'assets/images/logo/logo2.webp',
                         width: 130.w,
                         cacheWidth: 260,
-                        cacheHeight: 70,
+                        // cacheHeight: 70,
                         fit: BoxFit.cover,
                       )
                     ],

@@ -31,11 +31,11 @@ class MedicineInfoEtcPage extends StatelessWidget {
         SizedBox(height: 20.w),
         const MedicineItemTitleWidget(text: '종류'),
         const MedicineImageItem(
-          assest: 'assets/images/medicine/pill0601.jpg',
+          assest: 'assets/images/medicine/pill0601.webp',
           text: '피케이멜즈정 100mg  - 한화제약',
         ),
         const MedicineImageItem(
-          assest: 'assets/images/medicine/pill0602.jpg',
+          assest: 'assets/images/medicine/pill0602.webp',
           text: '아만타정 100mg  - 고려제약',
         ),
         SizedBox(height: 40.w),
@@ -58,13 +58,13 @@ class MedicineInfoEtcPage extends StatelessWidget {
         const MedicineItemTitleWidget(text: '종류'),
         const MedicineItemLabel1Widget(text: '1. 트리헥시페니딜 염산염 '),
         const MedicineImageItem(
-          assest: 'assets/images/medicine/pill0603.jpg',
+          assest: 'assets/images/medicine/pill0603.webp',
           text: '트리헥신정 2mg - 태극제약',
         ),
         SizedBox(height: 20.w),
         const MedicineItemLabel1Widget(text: '2. 벤즈트로핀메실레이트 '),
         const MedicineImageItem(
-          assest: 'assets/images/medicine/pill0604.jpg',
+          assest: 'assets/images/medicine/pill0604.webp',
           text: '벤즈트로핀정 1mg',
         ),
         SizedBox(height: 20.w),
@@ -149,7 +149,7 @@ class MedicineInfoEtcPage extends StatelessWidget {
         SizedBox(height: 20.w),
         const MedicineItemLabel1Widget(text: '3. 프로시클리딘 '),
         const MedicineImageItem(
-          assest: 'assets/images/medicine/pill0605.jpg',
+          assest: 'assets/images/medicine/pill0605.webp',
           text: '프로이머 5mg ',
         ),
         SizedBox(height: 20.w),

@@ -30,7 +30,10 @@ class HealthcareMainbtn extends StatelessWidget {
           item.onClick();
         },
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 24).w,
+          padding: const EdgeInsets.symmetric(
+            horizontal: 16,
+            vertical: 24,
+          ).w,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -55,9 +58,9 @@ class HealthcareMainbtn extends StatelessWidget {
                     child: Image.asset(
                       item.icon,
                       width: item.icon_width?.w,
-                      height: item.icon_height?.w,
                       cacheWidth: 63,
-                      cacheHeight: 64,
+                      // cacheHeight: 64,
+                      fit: BoxFit.cover,
                     ),
                   ),
                 ),

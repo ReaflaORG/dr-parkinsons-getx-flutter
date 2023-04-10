@@ -42,7 +42,9 @@ class DiagnosisAnswer extends StatelessWidget {
           ).w,
           width: 300.w,
           decoration: BoxDecoration(
-            border: Border.all(color: ColorPath.PrimaryLightColor),
+            border: Border.all(
+              color: ColorPath.PrimaryLightColor,
+            ),
             borderRadius: BorderRadius.all(
               const Radius.circular(8).r,
             ),

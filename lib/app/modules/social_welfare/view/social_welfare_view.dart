@@ -102,7 +102,7 @@ class CardWidget extends GetView<SocialWelfareController> {
                     child: Image.network(
                       controller.welfareData[index].image,
                       cacheWidth: 300,
-                      cacheHeight: 300,
+                      // cacheHeight: 300,
                       fit: BoxFit.cover,
                       // filterQuality: FilterQuality.medium,
                       loadingBuilder: (context, child, loadingProgress) {

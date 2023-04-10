@@ -1,3 +1,4 @@
+import 'package:dr_parkinsons/app/globals/global_inkwell_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -94,9 +95,24 @@ class TestInProgressWidget extends GetView<DiagnosisController> {
             child: Text(
               controller.survey.value.quizes[controller.questionNumber.value]
                   .questionText,
+              textAlign: TextAlign.center,
               style: TextPath.TextF16W500Expand,
             ),
           ),
+          if (controller.survey.value.quizes[controller.questionNumber.value]
+                  .questionSubText !=
+              null)
+            SizedBox(
+              width: 260.w,
+              child: Text(
+                controller.survey.value.quizes[controller.questionNumber.value]
+                    .questionSubText!,
+                textAlign: TextAlign.center,
+                style: TextPath.TextF14W400.copyWith(
+                  color: ColorPath.TextGrey2H424242,
+                ),
+              ),
+            ),
         ],
       ),
     );
@@ -190,37 +206,61 @@ class SurveyTestingView extends GetView<DiagnosisController> {
             ),
           ),
           Container(
-            padding: const EdgeInsets.symmetric(
-              horizontal: 20,
-              vertical: 30,
-            ).w,
+            padding: const EdgeInsets.fromLTRB(20, 30, 20, 0).w,
             child: Row(
               children: [
                 OutlinedButton(
-                  onPressed: () => controller.prevQuestion(),
+                  onPressed: controller.questionNumber.value > 0
+                      ? () => controller.prevQuestion()
+                      : null,
                   style: OutlinedButton.styleFrom(
-                    // foregroundColor: Colors.deepPurple,
-                    // backgroundColor: Colors.amberAccent,
+                    disabledBackgroundColor: Colors.grey.shade200,
                     textStyle: TextPath.TextF14W400.copyWith(
-                        color: ColorPath.TextGrey2H424242),
+                      color: ColorPath.TextGrey2H424242,
+                    ),
                     fixedSize: Size(130.w, 44.w),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10).r,
+                    ),
                   ),
-                  child: const Text('뒤로가기'),
+                  child: Text(
+                    '뒤로가기',
+                    style: TextPath.TextF14W400.copyWith(
+                      color: ColorPath.GreyDarkColor,
+                    ),
+                  ),
                 ),
-                const SizedBox(width: 10),
+                SizedBox(width: 10.w),
                 ElevatedButton(
                   style: ElevatedButton.styleFrom(
                     minimumSize: Size(180.w, 44.w),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10).r,
+                    ),
                   ),
                   onPressed: () => controller.nextQuestion(),
                   child: Text(
                     '다음',
-                    style: TextPath.TextF14W400.copyWith(
+                    style: TextPath.TextF14W600.copyWith(
                       color: ColorPath.TextWhite,
                     ),
                   ),
                 )
               ],
+            ),
+          ),
+          Container(
+            padding: const EdgeInsets.all(20).w,
+            width: double.infinity,
+            child: Text(
+              controller.survey_id.value == 2
+                  ? '참조 논문 : J Korean Neuropsychiatr Assoc. 1999 Jan;38(1):48-63 Validation of Geriatric Depression Scale, Korean Version(GDS) in the Assessment of DSM-III-R Major Depression'
+                  : '참조 논문 : J Clin Sleep Med. 2017 Dec 15; 13(12): 1429–1433.',
+              textAlign: TextAlign.left,
+              style: TextStyle(
+                color: ColorPath.TextGrey4H9E9E9E,
+                fontSize: 8.sp,
+              ),
             ),
           ),
         ],
@@ -261,20 +301,20 @@ class SurveyResultView extends GetView<DiagnosisController> {
                     Positioned(
                       child: Container(
                         padding: const EdgeInsets.symmetric(
-                          horizontal: 60,
+                          horizontal: 40,
                           vertical: 26,
                         ).w,
-                        width: 320.w,
+                        width: double.infinity,
                         height: 437.w,
                         decoration: BoxDecoration(
-                          boxShadow: [
-                            BoxShadow(
-                              color: ColorPath.PrimaryColor.withOpacity(0.1),
-                              spreadRadius: 2,
-                              blurRadius: 10,
-                              offset: const Offset(5, 5),
-                            ),
-                          ],
+                          // boxShadow: [
+                          //   BoxShadow(
+                          //     color: ColorPath.PrimaryColor.withOpacity(0.1),
+                          //     spreadRadius: 2,
+                          //     blurRadius: 10,
+                          //     offset: const Offset(5, 5),
+                          //   ),
+                          // ],
                           color: ColorPath.BackgroundWhite,
                           borderRadius: const BorderRadius.all(
                             Radius.circular(16),
@@ -291,24 +331,27 @@ class SurveyResultView extends GetView<DiagnosisController> {
                             SizedBox(height: 34.w),
                             Text(
                               controller.handleResultValue(),
+                              textAlign: TextAlign.center,
                               style: TextPath.TextF16W500Expand.copyWith(
                                 color: ColorPath.TextGrey2H424242,
                               ),
                             ),
                             SizedBox(height: 34.w),
                             Text(
-                              '''전문의와의 상담을 원하시면,\n하단의 링크를 눌러주세요.''',
+                              '전문의와의 상담을 원하시면,\r\n하단의 링크를 눌러주세요.',
+                              textAlign: TextAlign.center,
                               style: TextPath.TextF14W400.copyWith(
                                   color: ColorPath.TextGrey2H424242),
                             ),
                             SizedBox(height: 34.w),
-                            InkWell(
+                            GlobalInkWellWidget(
                               onTap: () => Get.toNamed('/search'),
                               child: Container(
-                                padding:
-                                    const EdgeInsets.symmetric(vertical: 6).w,
+                                padding: const EdgeInsets.symmetric(
+                                  vertical: 6,
+                                ).w,
+                                // width: 220.w,
                                 height: 60.w,
-                                width: 210.w,
                                 decoration: BoxDecoration(
                                   color: ColorPath.PrimaryLightColor,
                                   borderRadius: BorderRadius.circular(16).r,
@@ -340,8 +383,7 @@ class SurveyResultView extends GetView<DiagnosisController> {
                                     ),
                                     SizedBox(width: 14.w),
                                     Text(
-                                      '''파킨슨 전문의 찾기 
-바로가기''',
+                                      '파킨슨 전문의 찾기',
                                       textAlign: TextAlign.center,
                                       style: TextPath.TextF14W500.copyWith(
                                         color: ColorPath.TextGrey2H424242,
@@ -369,11 +411,16 @@ class SurveyResultView extends GetView<DiagnosisController> {
           child: ElevatedButton(
             style: ElevatedButton.styleFrom(
               minimumSize: Size(320.w, 44.w),
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(10).r,
+              ),
             ),
             onPressed: () => Get.back(),
             child: Text(
               '확인',
-              style: TextPath.TextF14W400.copyWith(color: ColorPath.TextWhite),
+              style: TextPath.TextF14W600.copyWith(
+                color: ColorPath.TextWhite,
+              ),
             ),
           ),
         ),

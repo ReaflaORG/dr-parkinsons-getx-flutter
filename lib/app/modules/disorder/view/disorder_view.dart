@@ -96,8 +96,10 @@ class DiscoderCardWidget extends GetView<DisorderController> {
                   // ),
                   Image.network(
                     controller.videoData[index]['thumbnail']!,
+                    width: double.infinity,
+                    height: double.infinity,
                     cacheWidth: 300,
-                    cacheHeight: 300,
+                    // cacheHeight: 300,
                     fit: BoxFit.cover,
                     // filterQuality: FilterQuality.medium,
                     loadingBuilder: (context, child, loadingProgress) {

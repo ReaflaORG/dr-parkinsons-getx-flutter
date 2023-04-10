@@ -32,19 +32,19 @@ class MedicineInfoDopamineAgonistPage extends StatelessWidget {
         const MedicineItemLabel1Widget(text: '1. 로파티롤'),
         const MedicineItemLabel2Widget(text: '일반형'),
         const MedicineImageItem(
-          assest: 'assets/images/medicine/pill0301.jpg',
+          assest: 'assets/images/medicine/pill0301.webp',
           text: '리큅 0.25mg',
         ),
         const MedicineImageItem(
-          assest: 'assets/images/medicine/pill0302.jpg',
+          assest: 'assets/images/medicine/pill0302.webp',
           text: '리큅 1mg',
         ),
         const MedicineImageItem(
-          assest: 'assets/images/medicine/pill0303.jpg',
+          assest: 'assets/images/medicine/pill0303.webp',
           text: '리큅 2mg',
         ),
         const MedicineImageItem(
-          assest: 'assets/images/medicine/pill0304.jpg',
+          assest: 'assets/images/medicine/pill0304.webp',
           text: '리큅 4mg',
         ),
         const MedicineItemLabel2Widget(text: '일반형 그외'),
@@ -259,15 +259,15 @@ class MedicineInfoDopamineAgonistPage extends StatelessWidget {
         SizedBox(height: 20.w),
         const MedicineItemLabel2Widget(text: '서방형'),
         const MedicineImageItem(
-          assest: 'assets/images/medicine/pill0305.jpg',
+          assest: 'assets/images/medicine/pill0305.webp',
           text: '리큅 피디 2mg',
         ),
         const MedicineImageItem(
-          assest: 'assets/images/medicine/pill0306.jpg',
+          assest: 'assets/images/medicine/pill0306.webp',
           text: '리큅 피디 4mg',
         ),
         const MedicineImageItem(
-          assest: 'assets/images/medicine/pill0307.jpg',
+          assest: 'assets/images/medicine/pill0307.webp',
           text: '리큅 피디 8mg',
         ),
         SizedBox(height: 20.w),
@@ -629,15 +629,15 @@ class MedicineInfoDopamineAgonistPage extends StatelessWidget {
         const MedicineItemLabel1Widget(text: '2. 프라미펙솔'),
         const MedicineItemLabel2Widget(text: '일반형'),
         const MedicineImageItem(
-          assest: 'assets/images/medicine/pill0308.jpg',
+          assest: 'assets/images/medicine/pill0308.webp',
           text: '미라펙스 0.25mg ',
         ),
         const MedicineImageItem(
-          assest: 'assets/images/medicine/pill0309.jpg',
+          assest: 'assets/images/medicine/pill0309.webp',
           text: '미라펙스 0.5mg',
         ),
         const MedicineImageItem(
-          assest: 'assets/images/medicine/pill0310.jpg',
+          assest: 'assets/images/medicine/pill0310.webp',
           text: '미라펙스 1mg ',
         ),
         SizedBox(height: 20.w),
@@ -768,15 +768,15 @@ class MedicineInfoDopamineAgonistPage extends StatelessWidget {
         SizedBox(height: 20.w),
         const MedicineItemLabel2Widget(text: '서방형'),
         const MedicineImageItem(
-          assest: 'assets/images/medicine/pill0311.jpg',
+          assest: 'assets/images/medicine/pill0311.webp',
           text: '미라펙스 서방정 0.375mg',
         ),
         const MedicineImageItem(
-          assest: 'assets/images/medicine/pill0312.jpg',
+          assest: 'assets/images/medicine/pill0312.webp',
           text: '미라펙스 서방정 0.75mg',
         ),
         const MedicineImageItem(
-          assest: 'assets/images/medicine/pill0313.jpg',
+          assest: 'assets/images/medicine/pill0313.webp',
           text: '미미라펙스 서방정 1.5mg',
         ),
         SizedBox(height: 20.w),

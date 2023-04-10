@@ -54,7 +54,7 @@ class FactDetailView extends GetView<FactDetailController> {
                         child: Image.network(
                           controller.arguments['image'],
                           cacheWidth: 374,
-                          cacheHeight: 332,
+                          // cacheHeight: 332,
                           fit: BoxFit.cover,
                           // filterQuality: FilterQuality.medium,
                           loadingBuilder: (context, child, loadingProgress) {

@@ -20,7 +20,7 @@ class SplashView extends GetView<SplashController> {
             width: 170.w,
             // height: 100.h,
             cacheWidth: 340,
-            cacheHeight: 293,
+            // cacheHeight: 293,
             fit: BoxFit.contain,
           ),
         ),
