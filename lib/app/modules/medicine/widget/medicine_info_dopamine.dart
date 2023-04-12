@@ -51,7 +51,7 @@ class MedicineInfoDopaminePage extends StatelessWidget {
           text: '레보도파 100mg, 카르비도파수화물 27mg',
         ),
         const MedicineImageItem(
-          assest: 'assets/images/medicine/pill0102.jpg',
+          assest: 'assets/images/medicine/pill0102.webp',
           text: '레보도파 250mg, 카르비도파수화물 27mg',
         ),
         SizedBox(height: 20.w),
