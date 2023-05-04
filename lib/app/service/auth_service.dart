@@ -1,5 +1,6 @@
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:logger/logger.dart';
 
 import '../globals/global_toast_widget.dart';
 import '../models/base_response_model.dart';
@@ -45,24 +46,45 @@ class AuthService extends GetxService {
         },
       GetStorage().write('access_token', responseAccessToken),
     ]);
-
     return;
   }
 
   /// 토큰 로그인 처리 핸들러
-  // Future<void> handleTokenLogin({
-  //   required AuthBaseResponseModel resposne,
-  // }) async {
-  //   // 데이터 초기화
-  //   accessToken.value = resposne.data!.tokenInfo.accessToken;
-  //   userData = resposne.data!.userInfo.obs;
-  //   isLogin.value = true;
+  Future<void> handleTokenLogin() async {
+    try {
+      String _access_token = GetStorage().read('access_token');
 
-  //   /// 스토리지 초기화
-  //   await Future.wait([
-  //     GetStorage().write('access_token', resposne.data!.tokenInfo.accessToken),
-  //   ]);
-  // }
+      AuthBaseResponseModel response = await Provider.dio(
+          method: 'GET', url: '/auth/signIn', accessToken: _access_token);
+
+      switch (response.statusCode) {
+        case 200:
+
+          /// 데이터 초기화
+
+          accessToken.value = response.data['access_token'];
+          userData = UserModel.fromJson(response.data['user']).obs;
+          isLogin.value = true;
+          if (userData.value.doctorId != null) {
+            myDoctor = DoctorModel.fromJson(response.data['doctor']).obs;
+          }
+
+          /// 스토리지 초기화
+          await Future.wait([
+            GetStorage().write('access_token', response.data['access_token']),
+          ]);
+          Logger().d('자동로그인 성공');
+          await Get.offAllNamed(Routes.MAIN);
+
+          break;
+        default:
+          throw Exception(response.message);
+      }
+    } catch (e) {
+      Logger().e('자동로그인 에러 : ${e.toString()}');
+      await Get.offAllNamed('/signin');
+    }
+  }
 
   /// 로그아웃 처리 핸들러
   Future<void> handleLogout() async {

@@ -11,11 +11,16 @@ class Provider with DioMixin implements Dio {
     required String method,
     required String url,
     dynamic requestModel,
+    String? accessToken = null,
   }) async {
     try {
       Map<String, dynamic> headers = {};
 
       if (AuthService.to.isLogin.value) {
+        headers['Authorization'] = 'Bearer ${AuthService.to.accessToken.value}';
+      }
+
+      if (accessToken != null) {
         headers['Authorization'] = 'Bearer ${AuthService.to.accessToken.value}';
       }
 

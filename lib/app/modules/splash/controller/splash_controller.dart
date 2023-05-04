@@ -3,6 +3,7 @@
 import 'dart:async';
 import 'dart:io';
 
+import 'package:dr_parkinsons/app/service/auth_service.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:get/get.dart';
@@ -34,6 +35,7 @@ class SplashController extends GetxController
     int milliseconds = 3000,
   }) async {
     Future.delayed(Duration(milliseconds: milliseconds), () async {
+      // 처음 접속
       if (GetStorage().read('initialize_permission') == null) {
         if (PermissionService.to.permissionList.isNotEmpty) {
           await Get.offAllNamed('/permission');
@@ -41,7 +43,14 @@ class SplashController extends GetxController
           await Get.offAllNamed('/signin');
         }
       } else {
-        await Get.offAllNamed('/signin');
+        String accessToken = GetStorage().read('access_token');
+        // 처음 접속이 아닐경우
+        if (accessToken != null) {
+          await AuthService.to.handleTokenLogin();
+        } else {
+          /// 로그인이 안되어 있을 경우 체크
+          await Get.offAllNamed('/signin');
+        }
       }
     });
   }
@@ -71,7 +80,6 @@ class SplashController extends GetxController
   Future<void> onInit() async {
     // 컨트롤러 초기화
     await handleInitialization();
-
     super.onInit();
   }
 
