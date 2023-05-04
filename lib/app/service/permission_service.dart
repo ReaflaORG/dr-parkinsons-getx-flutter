@@ -1,5 +1,6 @@
 // ignore_for_file: unnecessary_overrides, cast_nullable_to_non_nullable
 
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:logger/logger.dart';
@@ -16,42 +17,32 @@ class PermissionService extends GetxService {
   RxList<PermissionModel> permissionList = [
     PermissionModel(
       title: '위치 권한',
-      image: 'assets/images/permission/location.png',
+      icon: Icons.location_on_rounded,
+      // image: 'assets/images/permission/location.png',
       description: '위치기반 검색을 허용합니다',
       isRequired: true,
       isExpanded: false,
     ),
-    // PermissionModel(
-    //   title: '주소록',
-    //   image: 'assets/images/permission/address.png',
-    //   description: '가까운 의사, 병원 검색을 위한 용도입니다',
-    //   isRequired: false,
-    //   isExpanded: false,
-    // ),
     PermissionModel(
       title: '알림',
-      image: 'assets/images/permission/notifications.png',
+      icon: Icons.notifications_on_rounded,
+      // image: 'assets/images/permission/notifications.png',
       description: '새로운 이벤트나 혜택을 알려드립니다',
       isRequired: false,
       isExpanded: false,
     ),
-    // PermissionModel(
-    //   title: '연락처',
-    //   image: 'assets/images/permission/phone.png',
-    //   description: '휴대폰 사용자 본인인증 용도로 사용합니다',
-    //   isRequired: false,
-    //   isExpanded: false,
-    // ),
     PermissionModel(
       title: '카메라 및 앨범',
-      image: 'assets/images/permission/camera.png',
+      icon: Icons.camera_alt_rounded,
+      // image: 'assets/images/permission/camera.png',
       description: '프로필 이미지 업로드에 사용',
       isRequired: true,
       isExpanded: false,
     ),
     PermissionModel(
       title: '마이크',
-      image: 'assets/images/permission/microphone.png',
+      icon: Icons.mic_rounded,
+      // image: 'assets/images/permission/microphone.png',
       description: '프로필 동영상 업로드시 녹화에 사용',
       isRequired: true,
       isExpanded: false,

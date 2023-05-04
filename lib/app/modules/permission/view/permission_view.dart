@@ -235,11 +235,16 @@ class PermissionContentWidget extends StatelessWidget {
               color: ColorPath.Background1HECEFF1,
               shape: BoxShape.circle,
             ),
-            child: Image.asset(
-              permissionList[index].image!,
-              width: 19.w,
-              height: 19.w,
-            ),
+            child: permissionList[index].icon != null
+                ? Icon(
+                    permissionList[index].icon! as IconData?,
+                    color: Colors.black54,
+                  )
+                : Image.asset(
+                    permissionList[index].image!,
+                    width: 19.w,
+                    height: 19.w,
+                  ),
           ),
           SizedBox(width: 18.w),
           Column(

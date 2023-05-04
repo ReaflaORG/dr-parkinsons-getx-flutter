@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 class PermissionModel {
   String title;
-  Icon? icon;
+  IconData? icon;
   String? image;
   String description;
   bool isRequired;
@@ -19,7 +19,7 @@ class PermissionModel {
 
   PermissionModel copyWith({
     String title = '',
-    Icon icon = const Icon(Icons.abc),
+    IconData icon = Icons.abc,
     String image = '',
     String description = '',
     bool isRequired = false,

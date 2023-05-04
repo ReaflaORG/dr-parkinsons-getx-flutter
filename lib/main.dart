@@ -98,7 +98,8 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     final heroController = HeroController();
 
-    debugInvertOversizedImages = true;
+    // 이미지 크기 확인 (디버그 모드일 경우)
+    // debugInvertOversizedImages = true;
 
     return ScreenUtilInit(
       designSize: const Size(360, 640),
