@@ -39,10 +39,11 @@
               "client_type": 3
             },
             {
-              "client_id": "1067094005511-8bd1ij4vud6bg8qef48i8ror14n7i4vn.apps.googleusercontent.com",
+              "client_id": "1067094005511-12te32efdaonv7rj910uov7tn5qvm7up.apps.googleusercontent.com",
               "client_type": 2,
               "ios_info": {
-                "bundle_id": "com.gilhospital.parkinsons"
+                "bundle_id": "com.gilhospital.parkinsons",
+                "app_store_id": "6447192989"
               }
             }
           ]

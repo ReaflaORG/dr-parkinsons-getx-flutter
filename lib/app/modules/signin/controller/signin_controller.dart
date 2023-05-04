@@ -282,7 +282,7 @@ class SignInController extends GetxController {
             doctor = DoctorModel.fromJson(response.data['doctor']);
           }
 
-          AuthService.to.handleLogin(
+          await AuthService.to.handleLogin(
             user: response_user,
             responseAccessToken: token,
             doctor: doctor,
