@@ -2,7 +2,7 @@ name: dr_parkinsons
 description: A new Flutter project.
 publish_to: "REAFLA"
 
-version: 10.0.0+12
+version: 10.0.0+14
 
 environment:
   sdk: ">=2.19.2 <3.0.0"

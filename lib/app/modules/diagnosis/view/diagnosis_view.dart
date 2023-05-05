@@ -254,12 +254,12 @@ class SurveyTestingView extends GetView<DiagnosisController> {
             width: double.infinity,
             child: Text(
               controller.survey_id.value == 2
-                  ? '참조 논문 : J Korean Neuropsychiatr Assoc. 1999 Jan;38(1):48-63 Validation of Geriatric Depression Scale, Korean Version(GDS) in the Assessment of DSM-III-R Major Depression'
-                  : '참조 논문 : J Clin Sleep Med. 2017 Dec 15; 13(12): 1429–1433.',
+                  ? '출처 : J Korean Neuropsychiatr Assoc. 1999 Jan;38(1):48-63 Validation of Geriatric Depression Scale, Korean Version(GDS) in the Assessment of DSM-III-R Major Depression'
+                  : '출처 : J Clin Sleep Med. 2017 Dec 15; 13(12): 1429–1433.',
               textAlign: TextAlign.left,
               style: TextStyle(
                 color: ColorPath.TextGrey4H9E9E9E,
-                fontSize: 8.sp,
+                fontSize: 10.sp,
               ),
             ),
           ),
