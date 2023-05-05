@@ -43,7 +43,7 @@ class SplashController extends GetxController
           await Get.offAllNamed('/signin');
         }
       } else {
-        String accessToken = GetStorage().read('access_token');
+        String? accessToken = GetStorage().read('access_token');
         // 처음 접속이 아닐경우
         if (accessToken != null) {
           await AuthService.to.handleTokenLogin();
