@@ -15,14 +15,14 @@ class PermissionService extends GetxService {
   // Data ▼
 
   RxList<PermissionModel> permissionList = [
-    PermissionModel(
-      title: '사용자 활동',
-      icon: Icons.insights_rounded,
-      // image: 'assets/images/permission/location.png',
-      description: '사용자 활동의 추적을 허용합니다',
-      isRequired: true,
-      isExpanded: false,
-    ),
+    // PermissionModel(
+    //   title: '사용자 활동',
+    //   icon: Icons.insights_rounded,
+    //   // image: 'assets/images/permission/location.png',
+    //   description: '사용자 활동의 추적을 허용합니다',
+    //   isRequired: true,
+    //   isExpanded: false,
+    // ),
     PermissionModel(
       title: '위치 권한',
       icon: Icons.location_on_rounded,
@@ -70,7 +70,7 @@ class PermissionService extends GetxService {
   /// 권한 허용 버튼
   Future<dynamic> handlePermissionOnPressed() async {
     final Map<Permission, PermissionStatus> permissionStatus = await [
-      Permission.appTrackingTransparency,
+      // Permission.appTrackingTransparency,
       Permission.location,
       Permission.notification,
       Permission.camera,
