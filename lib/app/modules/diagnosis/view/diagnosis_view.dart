@@ -259,7 +259,7 @@ class SurveyTestingView extends GetView<DiagnosisController> {
               textAlign: TextAlign.left,
               style: TextStyle(
                 color: ColorPath.TextGrey4H9E9E9E,
-                fontSize: 10.sp,
+                fontSize: 8.sp,
               ),
             ),
           ),
