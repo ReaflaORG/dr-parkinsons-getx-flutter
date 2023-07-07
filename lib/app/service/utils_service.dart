@@ -9,7 +9,7 @@ class UtilsService extends GetxService {
   // 회전 체크
   Rx<bool> isLandscape = false.obs;
 
-  /// 세로 모드로 설정하는 함수입니다.
+  /// 가로 모드로 설정하는 함수입니다.
   ///
   /// isLandscape 값이 현재와 반대로 바뀌고, SystemChrome과 Wakelock을 이용하여
   ///

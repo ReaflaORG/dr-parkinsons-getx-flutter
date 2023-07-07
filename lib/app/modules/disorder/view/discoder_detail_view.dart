@@ -1,7 +1,7 @@
-import 'package:flick_video_player/flick_video_player.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:get/get.dart';
+import 'package:logger/logger.dart';
+import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
 import '../../../globals/global_inkwell_widget.dart';
 import '../../../service/utils_service.dart';
@@ -35,9 +35,11 @@ class DiscoderDetailView extends GetView<DisorderDetailController> {
             ),
           ),
         ),
+        backgroundColor: Colors.black,
         body: OrientationBuilder(
           builder: (context, orientation) {
-            return FlickVideoPlayerWidget(orientation: orientation);
+            // return FlickVideoPlayerWidget(orientation: orientation);
+            return YoutubePlayerWidget(orientation: orientation);
           },
         ),
       ),
@@ -45,11 +47,11 @@ class DiscoderDetailView extends GetView<DisorderDetailController> {
   }
 }
 
-// Flick 비디오 플레이어 위젯
-class FlickVideoPlayerWidget extends GetView<DisorderDetailController> {
-  const FlickVideoPlayerWidget({
-    required this.orientation,
+// Youtube 비디어 플레이어 위젯
+class YoutubePlayerWidget extends GetView<DisorderDetailController> {
+  const YoutubePlayerWidget({
     super.key,
+    required this.orientation,
   });
 
   final Orientation orientation;
@@ -57,51 +59,99 @@ class FlickVideoPlayerWidget extends GetView<DisorderDetailController> {
   @override
   Widget build(BuildContext context) {
     return Obx(
-      () => Stack(
-        children: [
-          FlickVideoPlayer(
-            flickManager: controller.flickManager.value,
-            systemUIOverlay: const [],
-            flickVideoWithControls: const FlickVideoWithControls(
-              controls: FlickPortraitControls(),
-              // videoFit: BoxFit.fitWidth,
-              videoFit: BoxFit.fitHeight,
+      () => YoutubePlayerBuilder(
+        player: YoutubePlayer(
+          controller: controller.youtubeController.value,
+          aspectRatio: 18.5 / 9,
+          bottomActions: [
+            const SizedBox(width: 14),
+            CurrentPosition(),
+            const SizedBox(width: 8),
+            ProgressBar(
+              isExpanded: true,
             ),
-            preferredDeviceOrientation: const [
-              // DeviceOrientation.portraitUp,
-              // DeviceOrientation.portraitDown,
-              DeviceOrientation.landscapeLeft,
-              DeviceOrientation.landscapeRight,
+            RemainingDuration(),
+            const PlaybackSpeedButton(),
+          ],
+        ),
+        builder: (context, player) {
+          Logger().d(orientation);
+          return Column(
+            children: [
+              // some widgets
+              player,
+              //some other widgets
             ],
-            // preferredDeviceOrientationFullscreen: const [
-            //   DeviceOrientation.landscapeLeft,
-            //   DeviceOrientation.landscapeRight,
-            //   // DeviceOrientation.portraitUp,
-            //   // DeviceOrientation.portraitDown,
-            // ],
-            // systemUIOverlay: const [
-            //   SystemUiOverlay.top,
-            //   SystemUiOverlay.bottom,
-            // ],
-            // systemUIOverlayFullscreen: const [
-            //   SystemUiOverlay.top,
-            //   SystemUiOverlay.bottom,
-            // ],
-          ),
-          // Positioned(
-          //   top: 0,
-          //   left: 0,
-          //   height: 30.w,
-          //   child: Column(
-          //     mainAxisAlignment: MainAxisAlignment.center,
-          //     crossAxisAlignment: CrossAxisAlignment.center,
-          //     children: [
-          //       Text("asd"),
-          //     ],
-          //   ),
-          // ),
-        ],
+          );
+        },
       ),
     );
+    // return Obx(
+    //   () => YoutubePlayer(
+    //     controller: controller.youtubeController.value,
+    //     showVideoProgressIndicator: true,
+    //   ),
+    // );
   }
 }
+
+// Flick 비디오 플레이어 위젯
+// class FlickVideoPlayerWidget extends GetView<DisorderDetailController> {
+//   const FlickVideoPlayerWidget({
+//     required this.orientation,
+//     super.key,
+//   });
+
+//   final Orientation orientation;
+
+//   @override
+//   Widget build(BuildContext context) {
+//     return Obx(
+//       () => Stack(
+//         children: [
+//           FlickVideoPlayer(
+//             flickManager: controller.flickManager.value,
+//             systemUIOverlay: const [],
+//             flickVideoWithControls: const FlickVideoWithControls(
+//               controls: FlickPortraitControls(),
+//               // videoFit: BoxFit.fitWidth,
+//               videoFit: BoxFit.fitHeight,
+//             ),
+//             preferredDeviceOrientation: const [
+//               // DeviceOrientation.portraitUp,
+//               // DeviceOrientation.portraitDown,
+//               DeviceOrientation.landscapeLeft,
+//               DeviceOrientation.landscapeRight,
+//             ],
+//             // preferredDeviceOrientationFullscreen: const [
+//             //   // DeviceOrientation.landscapeLeft,
+//             //   // DeviceOrientation.landscapeRight,
+//             //   DeviceOrientation.portraitUp,
+//             //   DeviceOrientation.portraitDown,
+//             // ],
+//             // systemUIOverlay: const [
+//             //   SystemUiOverlay.top,
+//             //   SystemUiOverlay.bottom,
+//             // ],
+//             // systemUIOverlayFullscreen: const [
+//             //   SystemUiOverlay.top,
+//             //   SystemUiOverlay.bottom,
+//             // ],
+//           ),
+//           // Positioned(
+//           //   top: 0,
+//           //   left: 0,
+//           //   height: 30.w,
+//           //   child: Column(
+//           //     mainAxisAlignment: MainAxisAlignment.center,
+//           //     crossAxisAlignment: CrossAxisAlignment.center,
+//           //     children: [
+//           //       Text("asd"),
+//           //     ],
+//           //   ),
+//           // ),
+//         ],
+//       ),
+//     );
+//   }
+// }

@@ -46,7 +46,7 @@ class DisorderView extends GetView<DisorderController> {
                   Get.toNamed(
                     '/disorder/detail',
                     arguments: {
-                      'content_url': controller.videoData[index]['link'],
+                      'link': controller.videoData[index]['link'],
                     },
                   );
                 },
@@ -84,16 +84,6 @@ class DiscoderCardWidget extends GetView<DisorderController> {
               height: 150.w,
               child: Stack(
                 children: [
-                  // Container(
-                  //   decoration: BoxDecoration(
-                  //     image: DecorationImage(
-                  //       image: NetworkImage(
-                  //         controller.videoData[index]['thumbnail']!,
-                  //       ),
-                  //       fit: BoxFit.cover,
-                  //     ),
-                  //   ),
-                  // ),
                   Image.network(
                     controller.videoData[index]['thumbnail']!,
                     width: double.infinity,
@@ -111,21 +101,6 @@ class DiscoderCardWidget extends GetView<DisorderController> {
                       );
                     },
                   ),
-                  // `CachedNetworkImage` 위젯 오류 이슈 있는듯함
-                  // CachedNetworkImage(
-                  //   imageUrl: controller.videoData[index]['thumbnail']!,
-                  //   fit: BoxFit.cover,
-                  //   placeholder: (context, url) {
-                  //     return Center(
-                  //       child: CircularProgressIndicator(
-                  //         color: ColorPath.PrimaryColor.withOpacity(0.1),
-                  //       ),
-                  //     );
-                  //   },
-                  //   errorWidget: (context, url, error) {
-                  //     return const Icon(Icons.error);
-                  //   },
-                  // ),
                   Positioned(
                     top: 10,
                     left: 10,
@@ -138,36 +113,6 @@ class DiscoderCardWidget extends GetView<DisorderController> {
                 ],
               ),
             ),
-
-            // 조회수
-            // Positioned(
-            //   top: 15,
-            //   right: 10,
-            //   child: Container(
-            //     padding: EdgeInsets.symmetric(horizontal: 5.w),
-            //     decoration: BoxDecoration(
-            //       color: Colors.black54,
-            //       borderRadius: BorderRadius.circular(8).r,
-            //     ),
-            //     child: Row(
-            //       children: [
-            //         Icon(
-            //           Icons.check_rounded,
-            //           size: 8.w,
-            //           color: Colors.white70,
-            //         ),
-            //         SizedBox(width: 2.5.w),
-            //         Text(
-            //           '523',
-            //           style: TextPath.TextF12W600.copyWith(
-            //             color: Colors.white70,
-            //             fontSize: 10.sp,
-            //           ),
-            //         ),
-            //       ],
-            //     ),
-            //   ),
-            // ),
           ),
           SizedBox(height: 10.w),
           Text(

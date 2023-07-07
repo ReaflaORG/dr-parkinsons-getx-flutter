@@ -1,30 +1,44 @@
 import 'dart:async';
 
-import 'package:flick_video_player/flick_video_player.dart';
 import 'package:get/get.dart';
-import 'package:video_player/video_player.dart';
+import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
 import '../../../service/utils_service.dart';
 
 class DisorderDetailController extends GetxController {
   static DisorderDetailController get to => Get.find();
 
-  dynamic arguments = Get.arguments['content_url'];
+  // 영상 링크
+  dynamic arguments = Get.arguments['link'];
 
-  late Rx<FlickManager> flickManager = FlickManager(
-    videoPlayerController: VideoPlayerController.network(
-      arguments,
-      videoPlayerOptions: VideoPlayerOptions(
-        mixWithOthers: false,
-        allowBackgroundPlayback: false,
-      ),
+  late Rx<YoutubePlayerController> youtubeController = YoutubePlayerController(
+    initialVideoId: arguments,
+    flags: const YoutubePlayerFlags(
+      enableCaption: false,
+      autoPlay: true,
+      mute: false,
+      useHybridComposition: true,
+      showLiveFullscreenButton: false,
     ),
-    autoInitialize: true,
-    autoPlay: true,
   ).obs;
+
+  // late Rx<FlickManager> flickManager = FlickManager(
+  //   videoPlayerController: VideoPlayerController.network(
+  //     arguments,
+  //     videoPlayerOptions: VideoPlayerOptions(
+  //       mixWithOthers: false,
+  //       allowBackgroundPlayback: false,
+  //     ),
+  //   ),
+  //   autoInitialize: true,
+  //   autoPlay: true,
+  // ).obs;
 
   @override
   Future<void> onInit() async {
+    // UtilsService.to.handleLandScap();
+    youtubeController.value.toggleFullScreenMode();
+
     super.onInit();
   }
 
@@ -35,11 +49,18 @@ class DisorderDetailController extends GetxController {
 
   @override
   void onClose() async {
-    flickManager.value.dispose();
-    Future.wait([
-      UtilsService.to.handlePortrait(),
-      UtilsService.to.handleShowSystemUI(),
-    ]);
+    // flickManager.value.dispose();
+    youtubeController.value.dispose();
+    UtilsService.to.handleShowSystemUI();
+
+    // Future.wait([
+    //   UtilsService.to.handlePortrait(),
+    // ]);
+
+    // 1초 뒤 UtilsService.to.handlePortrait() 실행
+    // Future.delayed(const Duration(seconds: 1), () async {
+    //   await UtilsService.to.handlePortrait();
+    // });
 
     super.onClose();
   }
