@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
 import '../../../globals/global_appbar_widget.dart';
 import '../../../globals/global_divier_widget.dart';
@@ -20,46 +21,73 @@ class DoctorDetailView extends GetView<DoctorDetailController> {
     return Obx(
       () => controller.isLoad.value
           ? const GlobalLoaderIndicatorWidget()
-          : GlobalLayoutWidget(
-              context: context,
-              appBar: GlobalAppBarWidget(
-                title: '${controller.doctor.value.doctorName} 의사',
-                appBar: AppBar(),
-                isLeadingVisible: false,
-              ),
-              body: SingleChildScrollView(
-                physics: const ClampingScrollPhysics(),
-                child: Column(
+          : OrientationBuilder(
+              builder: (context, orientation) {
+                // Logger().d('orientation: $orientation');
+                return Stack(
                   children: [
-                    Container(
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.vertical(
-                          bottom: const Radius.circular(24).r,
-                        ),
-                        color: Colors.white,
-                      ),
-                    ),
-                    Container(
-                      padding: const EdgeInsets.symmetric(horizontal: 20).w,
-                      child: Column(
-                        children: [
-                          const DoctorHeaderWidget(),
-                          GlobalDividerWidget.basic(
-                            margin: const EdgeInsets.only(
-                              left: 0,
-                              top: 30,
-                              right: 0,
-                              bottom: 20,
-                            ).w,
+                    orientation == Orientation.landscape &&
+                            controller.isPlaying.value
+                        ? YoutubePlayerBuilder(
+                            player: YoutubePlayer(
+                              controller: controller.youtubeController,
+                              aspectRatio: 18.5 / 9,
+                              onReady: () {
+                                controller.youtubeController.play();
+                              },
+                            ),
+                            builder: (context, player) {
+                              return Container(
+                                child: player,
+                              );
+                            },
+                          )
+                        : GlobalLayoutWidget(
+                            context: context,
+                            appBar: GlobalAppBarWidget(
+                              title: '${controller.doctor.value.doctorName} 의사',
+                              appBar: AppBar(),
+                              isLeadingVisible: false,
+                            ),
+                            body: SingleChildScrollView(
+                              physics: const ClampingScrollPhysics(),
+                              child: Column(
+                                children: [
+                                  Container(
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.vertical(
+                                        bottom: const Radius.circular(24).r,
+                                      ),
+                                      color: Colors.white,
+                                    ),
+                                  ),
+                                  Container(
+                                    padding: const EdgeInsets.symmetric(
+                                            horizontal: 20)
+                                        .w,
+                                    child: Column(
+                                      children: [
+                                        const DoctorHeaderWidget(),
+                                        GlobalDividerWidget.basic(
+                                          margin: const EdgeInsets.only(
+                                            left: 0,
+                                            top: 30,
+                                            right: 0,
+                                            bottom: 20,
+                                          ).w,
+                                        ),
+                                        const DoctorCardWidget(),
+                                        SizedBox(height: 30.w),
+                                      ],
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
                           ),
-                          const DoctorCardWidget(),
-                          SizedBox(height: 30.w),
-                        ],
-                      ),
-                    ),
                   ],
-                ),
-              ),
+                );
+              },
             ),
     );
   }
@@ -133,9 +161,7 @@ class DoctorCardWidget extends GetView<DoctorDetailController> {
               physics: const NeverScrollableScrollPhysics(),
               itemCount: controller.doctor.value.doctorContents!.length,
               itemBuilder: (BuildContext context, int index) {
-                return DoctorVideoWidget(
-                  data: controller.doctor.value.doctorContents![index],
-                );
+                return DoctorVideoWidget(index: index, controller: controller);
               },
               separatorBuilder: (BuildContext context, int index) {
                 return const Divider(color: Colors.transparent);

@@ -1,12 +1,10 @@
 import 'dart:async';
 
 import 'package:get/get.dart';
-import 'package:intl/intl.dart';
 import 'package:logger/logger.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
 import '../../../globals/global_toast_widget.dart';
-import '../../../models/disorder_model.dart';
 import '../../../models/doctor_model.dart';
 import '../../../provider/provider.dart';
 import '../../../service/auth_service.dart';
@@ -20,79 +18,22 @@ class DoctorDetailController extends GetxController {
   /// 의사 데이터
   Rx<DoctorModel> doctor = DoctorModel().obs;
 
-  RxList<YoutubeVideoModel> videoData = [
-    YoutubeVideoModel(
-      title: '파킨슨TV+? 플러스가 뭐죠? 이상운동질환의 개념과 종류 완벽정리!',
-      thumbnail: 'https://img.youtube.com/vi/B3XHI4vua1E/maxresdefault.jpg',
-      createdAt: DateFormat('yyyy-MM-dd').parse('2022-10-7'),
-      youtubePlayer: YoutubePlayerController(
-        initialVideoId: YoutubePlayer.convertUrlToId(
-          'https://www.youtube.com/watch?v=B3XHI4vua1E',
-        ) as String,
-        flags: const YoutubePlayerFlags(
-          mute: false,
-          autoPlay: false,
-          disableDragSeek: false,
-          loop: false,
-          isLive: false,
-          forceHD: false,
-          enableCaption: true,
-          captionLanguage: 'ko',
-        ),
-      ),
-    ),
-    YoutubeVideoModel(
-      title: '위치 불문! 근육이 부르르~ 근긴장이상증의 원인부터 치료까지 한방에 정리',
-      thumbnail: 'https://img.youtube.com/vi/b0bg1TWHZCY/maxresdefault.jpg',
-      createdAt: DateFormat('yyyy-MM-dd').parse('2022-10-21'),
-      youtubePlayer: YoutubePlayerController(
-        initialVideoId: YoutubePlayer.convertUrlToId(
-          'https://www.youtube.com/watch?v=b0bg1TWHZCY',
-        ) as String,
-        flags: const YoutubePlayerFlags(
-          mute: false,
-          autoPlay: false,
-          disableDragSeek: false,
-          loop: false,
-          isLive: false,
-          forceHD: false,
-          enableCaption: true,
-          captionLanguage: 'ko',
-        ),
-      ),
-    ),
-    YoutubeVideoModel(
-      title: 'EP4 임상시험 왜 이렇게 오래 걸리나 했더니... 이것 때문이었어?',
-      thumbnail: 'https://img.youtube.com/vi/cu9DxNP06KM/maxresdefault.jpg',
-      createdAt: DateFormat('yyyy-MM-dd').parse('2022-10-27'),
-      youtubePlayer: YoutubePlayerController(
-        initialVideoId: YoutubePlayer.convertUrlToId(
-          'https://www.youtube.com/watch?v=cu9DxNP06KM',
-        ) as String,
-        flags: const YoutubePlayerFlags(
-          mute: false,
-          autoPlay: false,
-          disableDragSeek: false,
-          loop: false,
-          isLive: false,
-          forceHD: false,
-          enableCaption: true,
-          captionLanguage: 'ko',
-        ),
-      ),
-    ),
-  ].obs;
-
   // Data ▼
 
   /// 로딩 상태
   Rx<bool> isLoad = true.obs;
 
-  // 의사 이이디
+  /// 의사 이이디
   dynamic doctor_id = Get.arguments['doctor_id'] ?? 1;
 
   /// 전문의 설정 여부
   Rx<bool> isDoctorSubscribe = false.obs;
+
+  // 유튜브 플레이어 컨트롤러
+  late YoutubePlayerController youtubeController;
+
+  // 유튜브 전체 화면 여부
+  Rx<bool> isPlaying = false.obs;
 
   // Function ▼
 
@@ -177,6 +118,8 @@ class DoctorDetailController extends GetxController {
 
   @override
   void onClose() {
+    youtubeController.dispose();
+
     super.onClose();
   }
 

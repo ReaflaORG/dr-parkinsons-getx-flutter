@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:logger/logger.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
 import '../../../globals/global_inkwell_widget.dart';
@@ -75,13 +74,8 @@ class YoutubePlayerWidget extends GetView<DisorderDetailController> {
           ],
         ),
         builder: (context, player) {
-          Logger().d(orientation);
-          return Column(
-            children: [
-              // some widgets
-              player,
-              //some other widgets
-            ],
+          return Container(
+            child: player,
           );
         },
       ),
