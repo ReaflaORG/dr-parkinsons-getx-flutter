@@ -19,6 +19,7 @@ class MyInfoView extends GetView<MyInfoController> {
     return Obx(
       () => GlobalLayoutWidget(
         context: context,
+        onWillPop: () => MainController.to.handleBackPressed(),
         appBar: GlobalAppBarWidget(
           title: '내정보',
           appBar: AppBar(),

@@ -1,7 +1,9 @@
 // ignore_for_file: unnecessary_overrides, dead_null_aware_expression
 
 import 'dart:async';
+import 'dart:io';
 
+import 'package:dr_parkinsons/app/globals/global_toast_widget.dart';
 import 'package:dr_parkinsons/app/service/location_service.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -68,6 +70,9 @@ class MainController extends GetxController {
   /// 네비게이션 현재 인덱스
   Rx<int> navigationCurrentIndex = 0.obs;
 
+  /// 뒤로가기 상태
+  Rx<bool> isBackPressed = false.obs;
+
   // Funcion ▼
 
   // 네비게이션 화면 핸들러
@@ -96,6 +101,23 @@ class MainController extends GetxController {
     ];
 
     return map[navigationCurrentIndex.value] ?? const SizedBox.shrink();
+  }
+
+  /// 뒤로가기 핸들러
+  Future<bool> handleBackPressed() async {
+    if (isBackPressed.value) {
+      // 앱 종료
+      return exit(0);
+    } else {
+      isBackPressed.value = true;
+      GlobalToastWidget('뒤로가기 버튼을 한번 더 누르면 종료됩니다.');
+
+      // 1초 후에 _isBackPressed 값을 초기화
+      await Future.delayed(const Duration(milliseconds: 1000));
+      isBackPressed.value = false;
+
+      return false;
+    }
   }
 
   @override

@@ -11,6 +11,7 @@ import '../../../globals/global_loader_indicator_widget.dart';
 import '../../../service/auth_service.dart';
 import '../../../theme/color_path.dart';
 import '../../../theme/text_path.dart';
+import '../../main/controller/main_controller.dart';
 import '../controller/mission_controller.dart';
 import '../widgets/mini_calendar_widget.dart';
 import '../widgets/mission_card_widget.dart';
@@ -26,6 +27,7 @@ class MissionView extends GetView<MissionController> {
           ? const GlobalLoaderIndicatorWidget()
           : GlobalLayoutWidget(
               context: context,
+              onWillPop: () => MainController.to.handleBackPressed(),
               floatingActionButton: SizedBox(
                 width: 110.w,
                 height: 40.w,

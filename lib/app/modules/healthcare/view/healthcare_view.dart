@@ -1,3 +1,4 @@
+import 'package:dr_parkinsons/app/modules/main/controller/main_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -19,6 +20,7 @@ class HealthCareView extends GetView<HealthCareController> {
     return Obx(
       () => GlobalLayoutWidget(
         context: context,
+        onWillPop: () => MainController.to.handleBackPressed(),
         appBar: GlobalAppBarWidget(
           title: '건강관리',
           appBar: AppBar(),

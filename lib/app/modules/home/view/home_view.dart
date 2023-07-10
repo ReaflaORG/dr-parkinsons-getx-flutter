@@ -27,6 +27,7 @@ class HomeView extends GetView<HomeController> {
           ? const GlobalLoaderIndicatorWidget()
           : GlobalLayoutWidget(
               context: context,
+              onWillPop: () => MainController.to.handleBackPressed(),
               appBar: GlobalAppBarWidget(
                 title: '닥터 파킨슨',
                 appBar: AppBar(),

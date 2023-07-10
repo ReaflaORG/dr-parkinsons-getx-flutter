@@ -11,6 +11,7 @@ import '../../../models/sarch_doctors_model.dart';
 import '../../../service/auth_service.dart';
 import '../../../theme/color_path.dart';
 import '../../../theme/text_path.dart';
+import '../../main/controller/main_controller.dart';
 import '../controller/search_doctors_controller.dart';
 import '../widget/doctor_card_widget.dart';
 
@@ -25,6 +26,7 @@ class DoctorSearchView extends GetView<DoctorSearchController> {
           ? const GlobalLoaderIndicatorWidget()
           : GlobalLayoutWidget(
               context: context,
+              onWillPop: () => MainController.to.handleBackPressed(),
               appBar: GlobalAppBarWidget(
                 title: '파킨슨병 전문의 검색',
                 appBar: AppBar(),
