@@ -380,13 +380,13 @@ class SurveyResultView extends GetView<DiagnosisController> {
                               ),
                             ),
                             SizedBox(height: 34.w),
-                            Text(
-                              '파킨슨 전문의를 찾기 원하시면,\r\n하단의 링크를 눌러주세요.',
-                              textAlign: TextAlign.center,
-                              style: TextPath.TextF14W400.copyWith(
-                                  color: ColorPath.TextGrey2H424242),
-                            ),
-                            SizedBox(height: 34.w),
+                            // Text(
+                            //   '파킨슨 전문의를 찾기 원하시면,\r\n하단의 링크를 눌러주세요.',
+                            //   textAlign: TextAlign.center,
+                            //   style: TextPath.TextF14W400.copyWith(
+                            //       color: ColorPath.TextGrey2H424242),
+                            // ),
+                            // SizedBox(height: 34.w),
                             GlobalInkWellWidget(
                               onTap: () => Get.toNamed('/search'),
                               child: Container(

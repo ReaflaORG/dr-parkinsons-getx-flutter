@@ -2,7 +2,6 @@ import 'package:dr_parkinsons/app/globals/global_toast_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:intl/intl.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../../../globals/global_appbar_widget.dart';
@@ -397,16 +396,16 @@ class HomeView extends GetView<HomeController> {
                                       overflow: TextOverflow.ellipsis,
                                     ),
                                   ),
-                                  SizedBox(width: 10.w),
-                                  Text(
-                                    DateFormat('yy.MM.dd').format(
-                                      controller.homeData.value!.welfare[index]
-                                          .created_at,
-                                    ),
-                                    style: TextPath.TextF12W500.copyWith(
-                                      color: ColorPath.TextGrey2H424242,
-                                    ),
-                                  ),
+                                  // SizedBox(width: 10.w),
+                                  // Text(
+                                  //   DateFormat('yy.MM.dd').format(
+                                  //     controller.homeData.value!.welfare[index]
+                                  //         .created_at,
+                                  //   ),
+                                  //   style: TextPath.TextF12W500.copyWith(
+                                  //     color: ColorPath.TextGrey2H424242,
+                                  //   ),
+                                  // ),
                                 ],
                               ),
                             ),
