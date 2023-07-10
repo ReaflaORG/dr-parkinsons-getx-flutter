@@ -20,7 +20,7 @@ class ProtectorView extends GetView<ProtectorController> {
         context: context,
         appBar: GlobalAppBarWidget(
           appBar: AppBar(),
-          title: '보호자 알림 서비스',
+          title: '주치의 검색 및 보호자 정보',
           elevation: controller.isScrollCheck.value ? 1 : 0,
           backgroundColor: ColorPath.Background1HECEFF1,
         ),

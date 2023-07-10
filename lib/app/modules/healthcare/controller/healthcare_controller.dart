@@ -69,7 +69,7 @@ class HealthCareController extends GetxController {
       icon_width: 32,
       icon_height: 32,
       onClick: () {
-        MainController.to.navigationIndex.value = 2;
+        MainController.to.navigationCurrentIndex.value = 2;
       },
     ),
   ].obs;

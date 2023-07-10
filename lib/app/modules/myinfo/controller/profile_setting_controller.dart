@@ -14,6 +14,8 @@ import 'package:syncfusion_flutter_datepicker/datepicker.dart';
 import '../../../models/birth_day_model.dart';
 import '../../../models/user_model.dart';
 import '../../../provider/provider.dart';
+import '../../../theme/color_path.dart';
+import '../../../theme/text_path.dart';
 
 // profile setting controller
 class ProfileSettingController extends GetxController {
@@ -228,6 +230,7 @@ class ProfileSettingController extends GetxController {
                 },
                 selectionMode: DateRangePickerSelectionMode.single,
                 initialSelectedDate: diagnosticDay.value,
+                maxDate: DateTime.now(),
               ),
             ],
           ),
@@ -328,6 +331,87 @@ class ProfileSettingController extends GetxController {
       diagnosticDay.value = AuthService.to.userData.value.diagnosticDay!;
       diagnosticDayString.value = Formmater.dateTimeFormat(diagnosticDay.value);
     }
+  }
+
+  /// 회원탈퇴 모달 핸들러
+  void handleSignoutModal() {
+    Get.dialog(
+      AlertDialog(
+        title: Text(
+          '정말 탈퇴를 하시겠습니까?',
+          style: TextPath.Heading2F18W600.copyWith(
+            color: ColorPath.TextGrey1H212121,
+          ),
+        ),
+        shape: const RoundedRectangleBorder(
+          borderRadius: BorderRadius.all(Radius.circular(16)),
+        ),
+        content: Column(
+          mainAxisSize: MainAxisSize.min,
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Padding(
+              padding: const EdgeInsets.all(20).w,
+              child: const Text('탈퇴할 경우 사용하고 계신 계정의 모든 정보는 복구가 불가능합니다.'),
+            ),
+            Row(
+              children: [
+                Expanded(
+                  flex: 1,
+                  child: InkWell(
+                    onTap: () {
+                      Get.back();
+                    },
+                    child: Container(
+                      alignment: Alignment.center,
+                      decoration: BoxDecoration(
+                        color: ColorPath.Background1HECEFF1,
+                        borderRadius: const BorderRadius.only(
+                          bottomLeft: Radius.circular(16),
+                        ),
+                      ),
+                      height: 48.w,
+                      child: Text(
+                        '취소',
+                        style: TextPath.TextF14W500.copyWith(
+                          color: ColorPath.TextGrey1H212121,
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+                Expanded(
+                  flex: 1,
+                  child: InkWell(
+                    onTap: () async {
+                      // 로그아웃
+                      await AuthService.to.handleLogout();
+                    },
+                    child: Container(
+                      alignment: Alignment.center,
+                      decoration: BoxDecoration(
+                          color: ColorPath.PrimaryColor,
+                          borderRadius: const BorderRadius.only(
+                            bottomRight: Radius.circular(16),
+                          )),
+                      height: 48.w,
+                      child: Text(
+                        '탈퇴',
+                        style: TextPath.TextF14W500.copyWith(
+                          color: ColorPath.BackgroundWhite,
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            )
+          ],
+        ),
+        contentPadding: EdgeInsets.zero,
+      ),
+    );
   }
 
   @override

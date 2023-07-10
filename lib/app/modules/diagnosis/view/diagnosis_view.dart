@@ -1,6 +1,7 @@
 import 'package:dr_parkinsons/app/globals/global_inkwell_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 
 import '../../../theme/color_path.dart';
@@ -14,43 +15,67 @@ class DiagnosisView extends GetView<DiagnosisController> {
   @override
   Widget build(BuildContext context) {
     return Obx(
-      () => Scaffold(
-        appBar: PreferredSize(
-          preferredSize: Size.fromHeight(74.w),
-          child: AppBar(
-            toolbarHeight: 84.w,
-            backgroundColor: ColorPath.SecondaryLightColor,
-            leadingWidth: 60.w,
-            leading: Container(
-              margin: const EdgeInsets.only(
-                left: 20,
-              ).w,
-              child: CircleAvatar(
-                backgroundColor: ColorPath.BackgroundWhite,
-                radius: 24.r,
-                child: IconButton(
-                  onPressed: () => Get.back(),
-                  icon: Icon(
-                    Icons.arrow_back,
-                    color: ColorPath.TextGrey1H212121,
+      () => WillPopScope(
+        onWillPop: () async {
+          // 첫번째 및 마지막 질문일 경우 뒤로가기시 홈으로 이동
+          if (controller.questionNumber.value == 0 ||
+              controller.questionNumber.value == 29) {
+            Get.back();
+            return Future.value(false);
+          }
+
+          // 두번째 질문부터는 뒤로가기시 확인창 띄우기
+          controller.handlePrevOnPressed();
+          return Future.value(false);
+        },
+        child: Scaffold(
+          appBar: PreferredSize(
+            preferredSize: Size.fromHeight(74.w),
+            child: AppBar(
+              toolbarHeight: 84.w,
+              backgroundColor: ColorPath.SecondaryLightColor,
+              leadingWidth: 60.w,
+              leading: Container(
+                margin: const EdgeInsets.only(
+                  left: 20,
+                ).w,
+                child: CircleAvatar(
+                  backgroundColor: ColorPath.BackgroundWhite,
+                  radius: 24.r,
+                  child: IconButton(
+                    onPressed: () {
+                      // 첫번째 및 마지막 질문일 경우 뒤로가기시 홈으로 이동
+                      if (controller.questionNumber.value == 0 ||
+                          controller.questionNumber.value == 29) {
+                        Get.back();
+                        return;
+                      }
+
+                      // 두번째 질문부터는 뒤로가기시 확인창 띄우기
+                      controller.handlePrevOnPressed();
+                    },
+                    icon: Icon(
+                      Icons.arrow_back,
+                      color: ColorPath.TextGrey1H212121,
+                    ),
                   ),
                 ),
               ),
-            ),
-            centerTitle: false,
-            elevation: 0,
-            shadowColor: Colors.white,
-            title: Text(
-              controller.survey.value.nameOfSurvey,
-              style: TextPath.Heading2F18W600.copyWith(
-                color: ColorPath.TextGrey1H212121,
+              centerTitle: true,
+              elevation: 0,
+              shadowColor: Colors.white,
+              title: Text(
+                controller.survey.value.nameOfSurvey,
+                style: TextPath.Heading2F18W600.copyWith(
+                  color: ColorPath.TextGrey1H212121,
+                ),
               ),
             ),
           ),
+          body: controller.isFinish.value
+              ? const SurveyResultView()
+              : const SurveyTestingView(),
         ),
-        body: controller.isFinish.value
-            ? const SurveyResultView()
-            : const SurveyTestingView(),
       ),
     );
   }
@@ -218,6 +243,9 @@ class SurveyTestingView extends GetView<DiagnosisController> {
                     textStyle: TextPath.TextF14W400.copyWith(
                       color: ColorPath.TextGrey2H424242,
                     ),
+                    side: BorderSide(
+                      color: Colors.grey.shade200,
+                    ),
                     fixedSize: Size(130.w, 44.w),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(10).r,
@@ -234,15 +262,30 @@ class SurveyTestingView extends GetView<DiagnosisController> {
                 ElevatedButton(
                   style: ElevatedButton.styleFrom(
                     minimumSize: Size(180.w, 44.w),
+                    disabledBackgroundColor: Colors.grey.shade400,
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(10).r,
                     ),
                   ),
-                  onPressed: () => controller.nextQuestion(),
+                  onPressed: controller
+                              .survey
+                              .value
+                              .quizes[controller.questionNumber.value]
+                              .userAnswer ==
+                          null
+                      ? null
+                      : () => controller.nextQuestion(),
                   child: Text(
                     '다음',
                     style: TextPath.TextF14W600.copyWith(
-                      color: ColorPath.TextWhite,
+                      color: controller
+                                  .survey
+                                  .value
+                                  .quizes[controller.questionNumber.value]
+                                  .userAnswer ==
+                              null
+                          ? Colors.grey.shade600
+                          : ColorPath.TextWhite,
                     ),
                   ),
                 )
@@ -338,7 +381,7 @@ class SurveyResultView extends GetView<DiagnosisController> {
                             ),
                             SizedBox(height: 34.w),
                             Text(
-                              '전문의와의 상담을 원하시면,\r\n하단의 링크를 눌러주세요.',
+                              '파킨슨 전문의를 찾기 원하시면,\r\n하단의 링크를 눌러주세요.',
                               textAlign: TextAlign.center,
                               style: TextPath.TextF14W400.copyWith(
                                   color: ColorPath.TextGrey2H424242),
@@ -376,8 +419,12 @@ class SurveyResultView extends GetView<DiagnosisController> {
                                       radius: 24,
                                       child: IconButton(
                                         onPressed: () => Get.back(),
-                                        icon: Image.asset(
-                                          'assets/images/icons/3d/28stethoscope.png',
+                                        // icon: Image.asset(
+                                        //   'assets/images/icons/3d/28stethoscope.png',
+                                        // ),
+                                        icon: SvgPicture.asset(
+                                          'assets/images/diagnosis/stethoscope-regular.svg',
+                                          width: 20.w,
                                         ),
                                       ),
                                     ),

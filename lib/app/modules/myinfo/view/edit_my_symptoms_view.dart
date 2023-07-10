@@ -16,9 +16,6 @@ import '../../../theme/color_path.dart';
 import '../../../theme/text_path.dart';
 import '../controller/edit_my_symptoms_controller.dart';
 
-const String alertTitleMsg = '내 증상 기록 수정';
-const String alertContentMsg = '내 증상 기록이 수정되었습니다.';
-
 // edit my symptoms view
 class EditMySymptomsView extends GetView<EditMySymptomsController> {
   const EditMySymptomsView({super.key});
@@ -31,7 +28,7 @@ class EditMySymptomsView extends GetView<EditMySymptomsController> {
         resizeToAvoidBottomInset: true,
         appBar: GlobalAppBarWidget(
           appBar: AppBar(),
-          title: '내 증상 편집',
+          title: '내 증상 수정하기',
           actions: [
             Container(
               alignment: Alignment.center,
@@ -91,8 +88,11 @@ class TextFieldWidget extends GetView<EditMySymptomsController> {
           ),
           SizedBox(height: 5.w),
           TextField(
-            controller: controller.titleController.value,
+            controller: controller.titleTextEditController.value,
             focusNode: controller.titleFoucesNode.value,
+            onChanged: (String value) {
+              controller.handleOnChanged(value, type: 'title');
+            },
             decoration: InputDecoration(
               border: UnderlineInputBorder(
                 borderSide: BorderSide(color: ColorPath.GrayCCCColor),
@@ -128,8 +128,11 @@ class TextFieldWidget extends GetView<EditMySymptomsController> {
           TextField(
             maxLines: 10,
             keyboardType: TextInputType.multiline,
-            controller: controller.contentController.value,
+            controller: controller.contentTextEditController.value,
             focusNode: controller.contentFoucesNode.value,
+            onChanged: (String value) {
+              controller.handleOnChanged(value, type: 'content');
+            },
             decoration: InputDecoration(
               border: OutlineInputBorder(
                 borderSide: BorderSide(color: ColorPath.GrayCCCColor),

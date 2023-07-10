@@ -7,6 +7,7 @@ import '../../../globals/global_appbar_widget.dart';
 import '../../../globals/global_divier_widget.dart';
 import '../../../globals/global_layout_widget.dart';
 import '../../../globals/global_loader_indicator_widget.dart';
+import '../../../service/utils_service.dart';
 import '../../../theme/color_path.dart';
 import '../../../theme/text_path.dart';
 import '../controller/doctor_detail_controller.dart';
@@ -30,10 +31,28 @@ class DoctorDetailView extends GetView<DoctorDetailController> {
                             controller.isPlaying.value
                         ? YoutubePlayerBuilder(
                             player: YoutubePlayer(
-                              controller: controller.youtubeController,
+                              controller: controller.youtubeController!,
                               aspectRatio: 18.5 / 9,
                               onReady: () {
-                                controller.youtubeController.play();
+                                controller.youtubeController!.play();
+
+                                // 유튜브 컨트롤러 이벤트 리스너
+                                controller.youtubeController!.addListener(() {
+                                  if (!controller
+                                      .youtubeController!.value.isFullScreen) {
+                                    UtilsService.to.handleShowSystemUI();
+                                  }
+                                });
+                              },
+                              onEnded: (data) {
+                                // addListener 제거
+                                controller.youtubeController!
+                                    .removeListener(() {
+                                  if (!controller
+                                      .youtubeController!.value.isFullScreen) {
+                                    UtilsService.to.handleShowSystemUI();
+                                  }
+                                });
                               },
                             ),
                             builder: (context, player) {

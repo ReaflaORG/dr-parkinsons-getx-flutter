@@ -34,7 +34,6 @@ import '../modules/mission/view/mission_view.dart';
 import '../modules/myinfo/binding/alarm_setting_binding.dart';
 import '../modules/myinfo/binding/edit_my_symptoms_binding.dart';
 import '../modules/myinfo/binding/faq_binding.dart';
-import '../modules/myinfo/binding/manage_member_binding.dart';
 import '../modules/myinfo/binding/my_info_binding.dart';
 import '../modules/myinfo/binding/my_symptoms_binding.dart';
 import '../modules/myinfo/binding/profile_setting_binding.dart';
@@ -46,7 +45,6 @@ import '../modules/myinfo/binding/write_my_symptoms_binding.dart';
 import '../modules/myinfo/view/alarm_setting_view.dart';
 import '../modules/myinfo/view/edit_my_symptoms_view.dart';
 import '../modules/myinfo/view/faq_view.dart';
-import '../modules/myinfo/view/manage_member_view.dart';
 import '../modules/myinfo/view/my_info_view.dart';
 import '../modules/myinfo/view/my_symptoms_view.dart';
 import '../modules/myinfo/view/profile_setting_view.dart';
@@ -138,7 +136,7 @@ class AppPages {
         GetPage(
           title: '파킨슨 병 소개 - 상세보기',
           name: Routes.DISORDER_DETAIL,
-          page: () => DiscoderDetailView(),
+          page: () => const DiscoderDetailView(),
           binding: DisorderDetailBinding(),
           transition: Transition.noTransition,
           popGesture: true,
@@ -154,7 +152,7 @@ class AppPages {
       popGesture: true,
     ),
     GetPage(
-      title: '보호자 알림 서비스',
+      title: '주치의 검색 및 보호자 정보',
       name: Routes.PROTECTOR,
       page: () => const ProtectorView(),
       binding: ProtectorBinding(),
@@ -352,14 +350,6 @@ class AppPages {
       name: Routes.ALARM_SETTING,
       page: () => const AlarmSettingView(),
       binding: AlarmSettingBinding(),
-      transition: Transition.rightToLeft,
-      popGesture: true,
-    ),
-    GetPage(
-      title: '회원 관리',
-      name: Routes.MANAGE_MEMBER,
-      page: () => const ManageMemberView(),
-      binding: ManageMemberBinding(),
       transition: Transition.rightToLeft,
       popGesture: true,
     ),

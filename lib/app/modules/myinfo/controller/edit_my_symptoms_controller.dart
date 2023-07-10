@@ -31,12 +31,20 @@ class EditMySymptomsController extends GetxController {
 
   // Controller ▼
 
-  late Rx<TextEditingController> titleController;
-  late Rx<TextEditingController> contentController;
+  /// 내 증상 기록 등록하기 컨트롤러
+  Rx<TextEditingController> titleTextEditController =
+      TextEditingController().obs;
+
+  /// 내 증상 기록 내용 텍스트 에디팅 컨트롤러
+  Rx<TextEditingController> contentTextEditController =
+      TextEditingController().obs;
 
   // FocusNode ▼
 
+  /// 제목 포커스 노드
   Rx<FocusNode> titleFoucesNode = FocusNode().obs;
+
+  /// 내용 포커스 노드
   Rx<FocusNode> contentFoucesNode = FocusNode().obs;
 
   // Variable ▼
@@ -56,25 +64,53 @@ class EditMySymptomsController extends GetxController {
   /// [text] String: 텍스트 필드에 입력된 텍스트
   ///
   /// [type] String : 텍스트 필드 타입
-  bool handleOnChanged() {
-    if (titleController.value.text.isEmpty) {
-      isSaveButtonEnable.value = false;
-      titleError.value = '제목은 필수입니다.';
+  /// 텍스트 필드 OnChanged 핸들러
+  ///
+  /// [text] String: 텍스트 필드에 입력된 텍스트
+  ///
+  /// [type] String : 텍스트 필드 타입
+  void handleOnChanged(
+    String text, {
+    required String type,
+  }) {
+    switch (type) {
+      case 'title':
+        if (text.isEmpty) {
+          isSaveButtonEnable.value = false;
+          titleError.value = '제목을 입력해주세요';
+          return;
+        }
+
+        if (text.length < 2) {
+          isSaveButtonEnable.value = false;
+          titleError.value = '2자 이상 입력해주세요';
+          return;
+        }
+
+        titleError.value = '';
+        isSaveButtonEnable.value = true;
+        break;
+      case 'content':
+        if (text.isEmpty) {
+          isSaveButtonEnable.value = false;
+          contentError.value = '내 증상 기록 내용을 입력해주세요';
+          return;
+        }
+
+        if (text.length < 2) {
+          isSaveButtonEnable.value = false;
+          contentError.value = '2자 이상 입력해주세요';
+          return;
+        }
+
+        contentError.value = '';
+        isSaveButtonEnable.value = true;
+        break;
     }
 
-    isSaveButtonEnable.value = true;
-    contentError.value = '';
-
-    if (contentController.value.text.isEmpty) {
-      isSaveButtonEnable.value = false;
-      contentError.value = '내용은 필수입니다.';
-    }
-
-    isSaveButtonEnable.value = true;
-    contentError.value = '';
-
-    return titleController.value.text.isNotEmpty &&
-        contentController.value.text.isNotEmpty;
+    // 저장 버튼 활성화 여부
+    isSaveButtonEnable.value =
+        titleError.value.isEmpty && contentError.value.isEmpty;
   }
 
   Future<void> getMySymptomsData() async {
@@ -90,9 +126,9 @@ class EditMySymptomsController extends GetxController {
           editItem = MySymptomsModel.fromJson(response.data).obs;
           process.value = false;
 
-          titleController =
+          titleTextEditController =
               TextEditingController(text: editItem.value.title).obs;
-          contentController =
+          contentTextEditController =
               TextEditingController(text: editItem.value.description).obs;
 
           break;
@@ -107,7 +143,18 @@ class EditMySymptomsController extends GetxController {
   }
 
   Future<void> handleSubmit() async {
-    if (!handleOnChanged()) {
+    if (titleTextEditController.value.text.isEmpty) {
+      titleError.value = '제목은 필수입니다.';
+    } else {
+      titleError.value = '';
+    }
+    if (contentTextEditController.value.text.isEmpty) {
+      contentError.value = '내용은 필수입니다.';
+    } else {
+      contentError.value = '';
+    }
+
+    if (titleError.value.isNotEmpty || contentError.value.isNotEmpty) {
       return;
     }
 
@@ -122,8 +169,8 @@ class EditMySymptomsController extends GetxController {
 
     try {
       Dio.FormData request = Dio.FormData.fromMap({
-        'title': titleController.value.text,
-        'description': contentController.value.text,
+        'title': titleTextEditController.value.text,
+        'description': contentTextEditController.value.text,
         'files': _files,
         'remove_symptom_history_files': remove_items.join(','),
       });
@@ -164,7 +211,30 @@ class EditMySymptomsController extends GetxController {
 
     if (image != null) {
       files.add(image);
-      handleOnChanged();
+
+      if (titleTextEditController.value.text.isEmpty) {
+        titleError.value = '제목은 필수입니다.';
+      } else {
+        isSaveButtonEnable.value = true;
+        titleError.value = '';
+      }
+      if (contentTextEditController.value.text.isEmpty) {
+        contentError.value = '내용은 필수입니다.';
+      } else {
+        isSaveButtonEnable.value = true;
+        contentError.value = '';
+      }
+
+      if (titleError.value.isNotEmpty || contentError.value.isNotEmpty) {
+        return;
+      }
+
+      if (files.isNotEmpty) {
+        isSaveButtonEnable.value = true;
+        return;
+      }
+
+      isSaveButtonEnable.value = false;
     }
   }
 
@@ -265,7 +335,6 @@ class EditMySymptomsController extends GetxController {
   Future<void> onInit() async {
     symptomId.value = await Get.arguments['id'];
     await getMySymptomsData();
-    handleOnChanged();
 
     super.onInit();
   }

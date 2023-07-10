@@ -37,7 +37,8 @@ class SocialWelfareView extends GetView<SocialWelfareController> {
             itemCount: controller.welfareData.length,
             gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
               crossAxisCount: 2,
-              childAspectRatio: 1 / 1.35,
+              // childAspectRatio: 1 / 1.35,// 가로 / 세로 비율
+              childAspectRatio: Get.width / (Get.height / 1.8), // 가로 / 세로 비율
               mainAxisSpacing: 20.w,
               crossAxisSpacing: 20.w,
             ),
@@ -81,24 +82,15 @@ class CardWidget extends GetView<SocialWelfareController> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Stack(
-            children: [
-              Hero(
-                tag: controller.welfareData[index].welfare_id,
-                child: SizedBox(
-                  height: 150.w,
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.circular(8).r,
-                    // child: Container(
-                    //   decoration: BoxDecoration(
-                    //     image: DecorationImage(
-                    //       image: NetworkImage(
-                    //         controller.welfareData[index].image,
-                    //       ),
-                    //       fit: BoxFit.cover,
-                    //     ),
-                    //   ),
-                    // )
+          ClipRRect(
+            borderRadius: BorderRadius.circular(8).r,
+            child: SizedBox(
+              height: 125.w,
+              child: Stack(
+                fit: StackFit.expand,
+                children: [
+                  Hero(
+                    tag: controller.welfareData[index].welfare_id,
                     child: Image.network(
                       controller.welfareData[index].image,
                       cacheWidth: 300,
@@ -115,72 +107,56 @@ class CardWidget extends GetView<SocialWelfareController> {
                       },
                     ),
                   ),
-                ),
+                  Positioned(
+                    top: 10,
+                    left: 10,
+                    child: Icon(
+                      Icons.article_rounded,
+                      size: 20.w,
+                      color: Colors.black38,
+                    ),
+                  ),
+                ],
               ),
-              // Hero(
-              //   tag: controller.factData[index].idx,
-              //   child: Container(
-              //     width: double.infinity,
-              //     height: 150.w,
-              //     decoration: BoxDecoration(
-              //       image: DecorationImage(
-              //         image: NetworkImage(controller.factData[index].image),
-              //         fit: BoxFit.cover,
-              //       ),
-              //       borderRadius: BorderRadius.circular(8).r,
-              //     ),
-              //   ),
-              // ),
-              Positioned(
-                top: 10,
-                left: 10,
-                child: Icon(
-                  Icons.article_rounded,
-                  size: 20.w,
-                  color: Colors.black54,
-                ),
-              ),
-              // 조회수
-              // Positioned(
-              //   top: 15,
-              //   right: 10,
-              //   child: Container(
-              //     padding: EdgeInsets.symmetric(horizontal: 5.w),
-              //     decoration: BoxDecoration(
-              //       color: Colors.black54,
-              //       borderRadius: BorderRadius.circular(8).r,
-              //     ),
-              //     child: Row(
-              //       children: [
-              //         Icon(
-              //           Icons.check_rounded,
-              //           size: 8.w,
-              //           color: Colors.white70,
-              //         ),
-              //         SizedBox(width: 2.5.w),
-              //         Text(
-              //           '523',
-              //           style: TextPath.TextF12W600.copyWith(
-              //             color: Colors.white70,
-              //             fontSize: 10.sp,
-              //           ),
-              //         ),
-              //       ],
-              //     ),
-              //   ),
-              // ),
-              // if (index == 0)
-              //   Positioned(
-              //     top: 10,
-              //     left: 40,
-              //     child: Icon(
-              //       Icons.fiber_new_rounded,
-              //       size: 20.w,
-              //       color: Colors.deepOrange,
-              //     ),
-              //   ),
-            ],
+            ),
           ),
+          // Stack(
+          //   children: [
+          //     Hero(
+          //       tag: controller.welfareData[index].welfare_id,
+          //       child: SizedBox(
+          //         height: 125.w,
+          //         child: ClipRRect(
+          //           borderRadius: BorderRadius.circular(8).r,
+          //           child: Image.network(
+          //             controller.welfareData[index].image,
+          //             cacheWidth: 300,
+          //             // cacheHeight: 300,
+          //             fit: BoxFit.cover,
+          //             // filterQuality: FilterQuality.medium,
+          //             loadingBuilder: (context, child, loadingProgress) {
+          //               if (loadingProgress == null) return child;
+          //               return Center(
+          //                 child: CircularProgressIndicator(
+          //                   color: ColorPath.PrimaryColor.withOpacity(0.1),
+          //                 ),
+          //               );
+          //             },
+          //           ),
+          //         ),
+          //       ),
+          //     ),
+          //     Positioned(
+          //       top: 10,
+          //       left: 10,
+          //       child: Icon(
+          //         Icons.article_rounded,
+          //         size: 20.w,
+          //         color: Colors.black54,
+          //       ),
+          //     ),
+          //   ],
+          // ),
           SizedBox(height: 10.w),
           Text(
             controller.welfareData[index].title,

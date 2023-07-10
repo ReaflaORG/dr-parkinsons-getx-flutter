@@ -1,9 +1,13 @@
 import 'dart:async';
 
+import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
 import '../../../models/diagnosis_survey_model.dart';
 import '../../../service/auth_service.dart';
+import '../../../theme/color_path.dart';
+import '../../../theme/text_path.dart';
 
 class DiagnosisController extends GetxController {
   static DiagnosisController get to => Get.find();
@@ -449,21 +453,21 @@ class DiagnosisController extends GetxController {
       case 2:
         if (score.value >= 18) {
           //우울증
-          return "${AuthService.to.userData.value.userName ?? '사용자'} 님의 점수는 ${score.value}점으로\r\n유의미한 우울증상을 보이고 있습니다.\r\n\r\n주치의와 상의하십시오.";
+          return "${AuthService.to.userData.value.userName ?? '사용자'}님의 점수는 ${score.value}점으로\r\n유의미한 우울증상을 보이고 있습니다.\r\n\r\n주치의와 상의하십시오.";
         } else if (score >= 11 && score <= 18) {
           //경상 우을
-          return "${AuthService.to.userData.value.userName ?? '사용자'} 님의 점수는 ${score.value}점으로\r\n경증 우울증상을 보이고 있습니다.\r\n\r\n주치의와 상의하십시오.";
+          return "${AuthService.to.userData.value.userName ?? '사용자'}님의 점수는 ${score.value}점으로\r\n경증 우울증상을 보이고 있습니다.\r\n\r\n주치의와 상의하십시오.";
         } else {
           //정상
-          return "${AuthService.to.userData.value.userName ?? '사용자'} 님의 점수는 ${score.value}점으로\r\n의미있는 우울증상은 없습니다.\r\n\r\n경과를 관찰해보세요.";
+          return "${AuthService.to.userData.value.userName ?? '사용자'}님의 점수는 ${score.value}점으로\r\n의미있는 우울증상은 없습니다.\r\n\r\n경과를 관찰해보세요.";
         }
       case 3:
         if (score.value >= 5) {
           //우울증
-          return "${AuthService.to.userData.value.userName ?? '사용자'} 님의 점수는 ${score.value}점으로\r\n렘수면 행동 장애가 있습니다.\r\n\r\n주치의와 상의하십시오.";
+          return "${AuthService.to.userData.value.userName ?? '사용자'}님의 점수는 ${score.value}점으로\r\n렘수면 행동 장애가 있습니다.\r\n\r\n주치의와 상의하십시오.";
         } else {
           //정상
-          return "${AuthService.to.userData.value.userName ?? '사용자'} 님의 점수는 ${score.value}점으로\r\n의미있는 렘수면 행동 장애는 없습니다.\r\n\r\n경과를 관찰해보세요.";
+          return "${AuthService.to.userData.value.userName ?? '사용자'}님의 점수는 ${score.value}점으로\r\n의미있는 렘수면 행동 장애는 없습니다.\r\n\r\n경과를 관찰해보세요.";
         }
       default:
         return 'Error';
@@ -491,11 +495,11 @@ class DiagnosisController extends GetxController {
         if (survey_id.value == 3) {
           if (i != 5) {
             score.value += survey.value.quizes[i]
-                .answers[survey.value.quizes[i].userAnswer].answerScore;
+                .answers[survey.value.quizes[i].userAnswer!].answerScore;
           }
         } else {
           score.value += survey.value.quizes[i]
-              .answers[survey.value.quizes[i].userAnswer].answerScore;
+              .answers[survey.value.quizes[i].userAnswer!].answerScore;
         }
       }
       isFinish.value = true;
@@ -517,6 +521,87 @@ class DiagnosisController extends GetxController {
   void handlePickUserAnswer(int value) {
     survey.value.quizes[questionNumber.value].userAnswer = value;
     survey.refresh();
+  }
+
+  /// 뒤로가기 버튼을 클릭했을 경우
+  void handlePrevOnPressed() {
+    Get.dialog(
+      AlertDialog(
+        title: Text(
+          '진단을 중단 하시겠습니까?',
+          style: TextPath.Heading2F18W600.copyWith(
+            color: ColorPath.TextGrey1H212121,
+          ),
+        ),
+        shape: const RoundedRectangleBorder(
+          borderRadius: BorderRadius.all(Radius.circular(16)),
+        ),
+        content: Column(
+          mainAxisSize: MainAxisSize.min,
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Padding(
+              padding: const EdgeInsets.all(20).w,
+              child: const Text('진단을 중단하는 경우 다시 처음부터 진행해야 합니다.'),
+            ),
+            Row(
+              children: [
+                Expanded(
+                  flex: 1,
+                  child: InkWell(
+                    onTap: () {
+                      Get.back();
+                    },
+                    child: Container(
+                      alignment: Alignment.center,
+                      decoration: BoxDecoration(
+                        color: ColorPath.Background1HECEFF1,
+                        borderRadius: const BorderRadius.only(
+                          bottomLeft: Radius.circular(16),
+                        ),
+                      ),
+                      height: 48.w,
+                      child: Text(
+                        '취소',
+                        style: TextPath.TextF14W500.copyWith(
+                          color: ColorPath.TextGrey1H212121,
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+                Expanded(
+                  flex: 1,
+                  child: InkWell(
+                    onTap: () async {
+                      Get.back();
+                      Get.back();
+                    },
+                    child: Container(
+                      alignment: Alignment.center,
+                      decoration: BoxDecoration(
+                          color: ColorPath.PrimaryColor,
+                          borderRadius: const BorderRadius.only(
+                            bottomRight: Radius.circular(16),
+                          )),
+                      height: 48.w,
+                      child: Text(
+                        '중단',
+                        style: TextPath.TextF14W500.copyWith(
+                          color: ColorPath.BackgroundWhite,
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            )
+          ],
+        ),
+        contentPadding: EdgeInsets.zero,
+      ),
+    );
   }
 
   @override

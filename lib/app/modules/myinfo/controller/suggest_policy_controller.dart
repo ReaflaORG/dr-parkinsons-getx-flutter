@@ -116,44 +116,50 @@ class SuggestPolicyController extends GetxController {
     }
 
     if (boxStatusWithPersonalAgree.isFalse) {
-      GlobalToastWidget('개인정보 처리방침에 체크해 주세요.');
+      Get.back();
+      GlobalToastWidget('개인정보 처리방침에 동의해주세요.');
       return;
     }
 
-    if (boxStatusWithAnonymous.isFalse) {
-      GlobalToastWidget('익명 전송에 체크해 주세요.');
-      return;
-    }
+    // if (boxStatusWithAnonymous.isFalse) {
+    //   GlobalToastWidget('익명 전송에 체크해 주세요.');
+    //   return;
+    // }
 
     if (titleError.value.isNotEmpty || contentError.value.isNotEmpty) {
       return;
     }
 
     try {
-      Map<String, dynamic> request = {
-        'title': titleController.value.text,
-        'description': contentController.value.text,
-      };
+      titleController.value.text = '';
+      contentController.value.text = '';
+      boxStatusWithPersonalAgree.value = false;
+      boxStatusWithAnonymous.value = false;
+
+      Get.back();
+
+      await showAlertDialog(
+        context,
+        '의견 제안 발신 완료',
+        '작성된 제안은 닥터 파킨슨 관리자에게 전송되어 향후 정책 결정의 자료로 사용됩니다.\r\n\r\n소중한 의견에 감사합니다.',
+      );
+
       AuthBaseResponseModel response = await Provider.dio(
         method: 'POST',
         url: '/myinfo/policy',
-        requestModel: request,
+        requestModel: {
+          'title': titleController.value.text,
+          'description': contentController.value.text,
+        },
       );
+
       switch (response.statusCode) {
         case 201:
-          titleController.value.text = '';
-          contentController.value.text = '';
-
-          boxStatusWithPersonalAgree.value = false;
-          boxStatusWithAnonymous.value = false;
-
-          await showAlertDialog(
-            context,
-            '의견 제안 발신 완료',
-            '작성된 제안은 닥터 파킨슨 관리자에게 전송되어 향후 정책 결정의 자료로 사용됩니다.\r\n\r\n소중한 의견에 감사합니다.',
-          );
+          // titleController.value.text = '';
+          // contentController.value.text = '';
+          // boxStatusWithPersonalAgree.value = false;
+          // boxStatusWithAnonymous.value = false;
           break;
-
         default:
           throw Exception(response.message);
       }

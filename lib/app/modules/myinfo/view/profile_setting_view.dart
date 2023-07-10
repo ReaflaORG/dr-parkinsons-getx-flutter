@@ -357,6 +357,20 @@ class TextFieldWidget extends GetView<ProfileSettingController> {
               ),
             ),
           ),
+          SizedBox(height: 32.w),
+          Container(
+            alignment: Alignment.bottomLeft,
+            child: OutlinedButton(
+              onPressed: () => controller.handleSignoutModal(),
+              child: Text(
+                '탈퇴하기',
+                style: TextPath.TextF16W500.copyWith(
+                  color: ColorPath.TextGrey1H212121,
+                ),
+              ),
+            ),
+          ), // 회원탈퇴
+
           SizedBox(height: 100.w),
         ],
       ),

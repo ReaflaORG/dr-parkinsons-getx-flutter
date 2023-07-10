@@ -53,7 +53,7 @@ class SurveyQuizModel {
     this.isPass = false,
     required this.questionText,
     this.questionSubText,
-    this.userAnswer = 999,
+    this.userAnswer,
     required this.answers,
   });
 
@@ -62,7 +62,7 @@ class SurveyQuizModel {
   String questionText;
   String? questionSubText;
   bool isPass;
-  int userAnswer;
+  int? userAnswer;
   List<AnswerModel> answers;
 
   Map<String, dynamic> toJson() {

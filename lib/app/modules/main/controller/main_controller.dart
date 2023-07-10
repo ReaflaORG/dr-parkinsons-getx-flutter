@@ -23,11 +23,14 @@ class MainController extends GetxController {
 
   // Data ▼
 
+  /// 네비게이션 데이터
   final List<NavigationModel> navigationData = [
     NavigationModel(
       title: '홈',
       image: 'assets/images/navigation/navigation_1.png',
       imageActive: 'assets/images/navigation/navigation_1_active.png',
+      width: 24,
+      height: 24,
     ),
     NavigationModel(
       title: '건강관리',
@@ -59,11 +62,15 @@ class MainController extends GetxController {
 
   // Variable ▼
 
+  /// 네비게이션 총 인덱스
   Rx<int> subIndex = 0.obs;
-  Rx<int> navigationIndex = 0.obs;
+
+  /// 네비게이션 현재 인덱스
+  Rx<int> navigationCurrentIndex = 0.obs;
 
   // Funcion ▼
 
+  // 네비게이션 화면 핸들러
   Widget handleScreen() {
     final map = [
       GetBuilder<HomeController>(
@@ -88,11 +95,12 @@ class MainController extends GetxController {
       ),
     ];
 
-    return map[navigationIndex.value] ?? const SizedBox.shrink();
+    return map[navigationCurrentIndex.value] ?? const SizedBox.shrink();
   }
 
   @override
   Future<void> onInit() async {
+    // 위치 정보 가져오기
     await LocationService.to.getLocation();
 
     super.onInit();

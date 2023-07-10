@@ -103,9 +103,6 @@ abstract class Routes {
 
   /// 약관 및 정책 - 웹뷰
   static const TERMS_WEBVIEW = _Paths.TERMS_WEBVIEW;
-
-  /// 회원관리
-  static const MANAGE_MEMBER = _Paths.MANAGE_MEMBER;
 }
 
 abstract class _Paths {

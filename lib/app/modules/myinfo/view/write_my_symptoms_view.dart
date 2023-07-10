@@ -16,9 +16,6 @@ import '../../../theme/color_path.dart';
 import '../../../theme/text_path.dart';
 import '../controller/write_my_symtoms_controller.dart';
 
-const String alertTitleMsg = '내 증상 기록';
-const String alertContentMsg = '저장이 완료되었습니다.';
-
 class WriteMySymptomsView extends GetView<WriteMySymptomsController> {
   const WriteMySymptomsView({super.key});
 

@@ -40,7 +40,7 @@ class MySymptomsView extends GetView<MySymptomsController> {
                   controller.getMySymptomsData();
                 },
                 child: Text(
-                  '추가하기',
+                  '기록하기',
                   style: TextPath.TextF14W600.copyWith(
                     color: ColorPath.TextGrey1H212121,
                   ),
@@ -55,7 +55,7 @@ class MySymptomsView extends GetView<MySymptomsController> {
                 height: Get.height - 150.w,
                 child: Center(
                   child: Text(
-                    '내 증상 기록이 없습니다\r\n오른쪽 상단에 추가하기 버튼을 눌러주세요!',
+                    '오른쪽 상단에 추가하기 버튼을 통해\r\n내 증상을 기록해보세요!',
                     textAlign: TextAlign.center,
                     style: TextPath.TextF16W400.copyWith(
                       color: ColorPath.TextGrey1H212121,

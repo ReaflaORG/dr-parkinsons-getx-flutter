@@ -154,7 +154,10 @@ class MissionCard extends GetView<MissionController> {
                       ),
                     ),
                     SizedBox(width: 10.w),
-                    Text(controller.missionData[index].mission_time_string),
+                    Text(controller.missionData[index].mission_time_string
+                        .replaceAll('오전', '')
+                        .replaceAll('오후', '')
+                        .replaceAll('시', '시 ')),
                     Checkbox(
                       value: controller.missionData[index].clear,
                       onChanged: (bool? value) async {

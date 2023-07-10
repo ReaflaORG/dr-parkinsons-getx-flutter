@@ -284,14 +284,14 @@ class HomeView extends GetView<HomeController> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
-                          '다가오는 미션 보기',
+                          '다가오는 미션',
                           style: TextPath.Heading2F18W600.copyWith(
                             color: ColorPath.TextGrey1H212121,
                           ),
                         ),
                         GlobalInkWellWidget(
                           onTap: () {
-                            MainController.to.navigationIndex.value = 2;
+                            MainController.to.navigationCurrentIndex.value = 2;
                           },
                           child: Row(
                             crossAxisAlignment: CrossAxisAlignment.center,
@@ -319,16 +319,20 @@ class HomeView extends GetView<HomeController> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Text(
-                          '복지 혜택 보기',
-                          style: TextPath.Heading2F18W600.copyWith(
-                            color: ColorPath.TextGrey1H212121,
-                          ),
-                        ),
-                        Text(
-                          '(사회복지제도 안내)',
-                          style: TextPath.TextF14W500.copyWith(
-                            color: ColorPath.TextGrey3H616161,
+                        RichText(
+                          text: TextSpan(
+                            text: '복지 혜택 ',
+                            style: TextPath.Heading2F18W600.copyWith(
+                              color: ColorPath.TextGrey1H212121,
+                            ),
+                            children: [
+                              TextSpan(
+                                text: '(사회복지제도 안내)',
+                                style: TextPath.TextF14W500.copyWith(
+                                  color: ColorPath.TextGrey3H616161,
+                                ),
+                              ),
+                            ],
                           ),
                         ),
                         SizedBox(width: 38.w),
@@ -469,7 +473,8 @@ class HomeView extends GetView<HomeController> {
                           height: 71.w,
                           child: GlobalInkWellWidget(
                             onTap: () {
-                              MainController.to.navigationIndex.value = 1;
+                              MainController.to.navigationCurrentIndex.value =
+                                  1;
                             },
                             child: Column(
                                 mainAxisAlignment:
@@ -794,7 +799,7 @@ class MissionItemNotEnptyWidget extends GetView<HomeController> {
       child: GlobalInkWellWidget(
         borderRadius: 8.r,
         onTap: () async {
-          MainController.to.navigationIndex.value = 2;
+          MainController.to.navigationCurrentIndex.value = 2;
         },
         child: Padding(
           padding: const EdgeInsets.fromLTRB(10, 10, 20, 10).w,
@@ -858,7 +863,10 @@ class MissionItemNotEnptyWidget extends GetView<HomeController> {
                         children: [
                           Text(
                             controller
-                                .homeData.value!.mission[0].mission_time_string,
+                                .homeData.value!.mission[0].mission_time_string
+                                .replaceAll('오전', '')
+                                .replaceAll('오후', '')
+                                .replaceAll('시', '시 '),
                             style: TextPath.TextF14W500.copyWith(
                               color: ColorPath.TextGrey3H616161,
                             ),
@@ -919,7 +927,7 @@ class MissionItemEnptyWidget extends StatelessWidget {
       child: GlobalInkWellWidget(
         borderRadius: 8.r,
         onTap: () {
-          MainController.to.navigationIndex.value = 2;
+          MainController.to.navigationCurrentIndex.value = 2;
         },
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,

@@ -30,7 +30,7 @@ class DoctorDetailController extends GetxController {
   Rx<bool> isDoctorSubscribe = false.obs;
 
   // 유튜브 플레이어 컨트롤러
-  late YoutubePlayerController youtubeController;
+  YoutubePlayerController? youtubeController;
 
   // 유튜브 전체 화면 여부
   Rx<bool> isPlaying = false.obs;
@@ -49,7 +49,6 @@ class DoctorDetailController extends GetxController {
         switch (response.statusCode) {
           case 200:
             AuthService.to.handleMyInfo();
-            Logger().d(DoctorModel.fromJson(response.data));
             doctor.value = DoctorModel.fromJson(response.data);
             handleDoctorSubscribe();
             isLoad.value = false;
@@ -118,7 +117,10 @@ class DoctorDetailController extends GetxController {
 
   @override
   void onClose() {
-    youtubeController.dispose();
+    // 유튜브 플레이어 컨트롤러가 존재할 경우 종료
+    if (youtubeController != null) {
+      youtubeController!.dispose();
+    }
 
     super.onClose();
   }

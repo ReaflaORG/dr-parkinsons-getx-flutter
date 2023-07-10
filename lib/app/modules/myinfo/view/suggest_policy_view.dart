@@ -29,7 +29,91 @@ class SuggestPolicyView extends GetView<SuggestPolicyController> {
               child: TextButton(
                 onPressed: controller.isSaveButtonEnable.value
                     ? () {
-                        controller.handleSubmit(context);
+                        Get.dialog(
+                          AlertDialog(
+                            title: Text(
+                              '의견을 전송 하시겠습니까?',
+                              style: TextPath.Heading2F18W600.copyWith(
+                                color: ColorPath.TextGrey1H212121,
+                              ),
+                            ),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: const BorderRadius.all(
+                                Radius.circular(16),
+                              ).r,
+                            ),
+                            content: Column(
+                              mainAxisSize: MainAxisSize.min,
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                Padding(
+                                  padding: EdgeInsets.all(20.w),
+                                  child: const Text('여러분의 소중한 의견은 익명으로 전송됩니다.'),
+                                ),
+                                Row(
+                                  children: [
+                                    Expanded(
+                                      flex: 1,
+                                      child: InkWell(
+                                        onTap: () {
+                                          Get.back();
+                                        },
+                                        child: Container(
+                                          alignment: Alignment.center,
+                                          decoration: BoxDecoration(
+                                            color: ColorPath.Background1HECEFF1,
+                                            borderRadius:
+                                                const BorderRadius.only(
+                                              bottomLeft: Radius.circular(16),
+                                            ),
+                                          ),
+                                          height: 48.w,
+                                          child: Text(
+                                            '취소',
+                                            style:
+                                                TextPath.TextF14W500.copyWith(
+                                              color: ColorPath.TextGrey1H212121,
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                    Expanded(
+                                      flex: 1,
+                                      child: InkWell(
+                                        onTap: () async {
+                                          // 로그아웃
+                                          await controller
+                                              .handleSubmit(context);
+                                        },
+                                        child: Container(
+                                          alignment: Alignment.center,
+                                          decoration: BoxDecoration(
+                                              color: ColorPath.PrimaryColor,
+                                              borderRadius:
+                                                  const BorderRadius.only(
+                                                bottomRight:
+                                                    Radius.circular(16),
+                                              )),
+                                          height: 48.w,
+                                          child: Text(
+                                            '전송',
+                                            style:
+                                                TextPath.TextF14W500.copyWith(
+                                              color: ColorPath.BackgroundWhite,
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                )
+                              ],
+                            ),
+                            contentPadding: EdgeInsets.zero,
+                          ),
+                        );
                       }
                     : null,
                 child: Text(
@@ -183,44 +267,43 @@ class TextFieldWidget extends GetView<SuggestPolicyController> {
               ],
             ),
           ),
-          SizedBox(height: 5.w),
-          GlobalInkWellWidget(
-            onTap: () {
-              controller.changeCheckBoxWithAnonymous(
-                !controller.boxStatusWithAnonymous.value,
-              );
-            },
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.start,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                SizedBox(
-                  width: 20.w,
-                  height: 20.w,
-                  child: Checkbox(
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(4).r,
-                    ),
-                    side: BorderSide(
-                      color: ColorPath.Border1H9E9E9E,
-                      width: 1.w,
-                    ),
-                    value: controller.boxStatusWithAnonymous.value,
-                    onChanged: (bool? value) {
-                      controller.changeCheckBoxWithAnonymous(value);
-                    },
-                  ),
-                ),
-                SizedBox(width: 12.w),
-                Text(
-                  '익명으로 전송합니다',
-                  style: TextPath.TextF14W500.copyWith(
-                    color: ColorPath.TextGrey1H212121,
-                  ),
-                ),
-              ],
-            ),
-          ),
+          // GlobalInkWellWidget(
+          //   onTap: () {
+          //     controller.changeCheckBoxWithAnonymous(
+          //       !controller.boxStatusWithAnonymous.value,
+          //     );
+          //   },
+          //   child: Row(
+          //     mainAxisAlignment: MainAxisAlignment.start,
+          //     crossAxisAlignment: CrossAxisAlignment.center,
+          //     children: [
+          //       SizedBox(
+          //         width: 20.w,
+          //         height: 20.w,
+          //         child: Checkbox(
+          //           shape: RoundedRectangleBorder(
+          //             borderRadius: BorderRadius.circular(4).r,
+          //           ),
+          //           side: BorderSide(
+          //             color: ColorPath.Border1H9E9E9E,
+          //             width: 1.w,
+          //           ),
+          //           value: controller.boxStatusWithAnonymous.value,
+          //           onChanged: (bool? value) {
+          //             controller.changeCheckBoxWithAnonymous(value);
+          //           },
+          //         ),
+          //       ),
+          //       SizedBox(width: 12.w),
+          //       Text(
+          //         '익명으로 전송합니다',
+          //         style: TextPath.TextF14W500.copyWith(
+          //           color: ColorPath.TextGrey1H212121,
+          //         ),
+          //       ),
+          //     ],
+          //   ),
+          // ),
         ],
       ),
     );

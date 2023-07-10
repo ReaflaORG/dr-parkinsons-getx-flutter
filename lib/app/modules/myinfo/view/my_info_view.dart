@@ -3,7 +3,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
 import '../../../globals/global_appbar_widget.dart';
-import '../../../globals/global_dialog_widget.dart';
 import '../../../globals/global_layout_widget.dart';
 import '../../../routes/app_pages.dart';
 import '../../../service/auth_service.dart';
@@ -129,7 +128,9 @@ class MyInfoHeaderWidget extends GetView<MyInfoController> {
                       //   height: 1.w,
                       // ),
                       SizedBox(height: 10.w),
-                      AuthService.to.userData.value.guardianName == null
+                      AuthService.to.userData.value.guardianName == null ||
+                              AuthService
+                                  .to.userData.value.guardianName!.isEmpty
                           ? const GuardianEmptyWidget()
                           : const GuardianWidget(),
                     ],
@@ -168,7 +169,7 @@ class DoctorEmptyWidget extends StatelessWidget {
             splashColor: ColorPath.PrimaryLightColor,
             highlightColor: ColorPath.PrimaryColor.withOpacity(0.05),
             onPressed: () {
-              MainController.to.navigationIndex.value = 3;
+              MainController.to.navigationCurrentIndex.value = 3;
             },
             style: ButtonStyle(
               padding: MaterialStateProperty.all(EdgeInsets.zero),
@@ -242,8 +243,7 @@ class DoctorWidget extends GetView<MyInfoController> {
                   splashColor: ColorPath.PrimaryLightColor,
                   highlightColor: ColorPath.PrimaryColor.withOpacity(0.05),
                   onPressed: () {
-                    GlobalMyDoctorModalWidget(context: context);
-                    // controller.putDoctorUser(context);
+                    controller.handlelMyDoctorModalWidget();
                   },
                   icon: Icon(
                     Icons.swap_horiz_rounded,
@@ -379,20 +379,48 @@ class MenuWidget extends GetView<MyInfoController> {
           alignment: Alignment.centerLeft,
           child: Row(
             children: [
-              Container(
-                height: 50,
-                padding: const EdgeInsets.only(left: 10),
-                alignment: Alignment.centerLeft,
-                child: Text(
-                  controller.menuData[index].title,
-                  style: TextPath.TextF14W500.copyWith(
-                    color: ColorPath.TextGrey1H212121,
+              if (controller.menuData[index].type == 'menu')
+                Container(
+                  height: 50,
+                  padding: const EdgeInsets.only(left: 10),
+                  alignment: Alignment.centerLeft,
+                  child: Text(
+                    controller.menuData[index].title,
+                    style: TextPath.TextF14W500.copyWith(
+                      color: ColorPath.TextGrey1H212121,
+                    ),
                   ),
                 ),
-              ),
+              if (controller.menuData[index].type == 'button')
+                Container(
+                  height: 50,
+                  padding: const EdgeInsets.only(left: 10),
+                  alignment: Alignment.centerLeft,
+                  child: InkWell(
+                    onTap: controller.menuData[index].onPressed,
+                    child: Text(
+                      controller.menuData[index].title,
+                      style: TextPath.TextF14W500.copyWith(
+                        color: ColorPath.TextGrey1H212121,
+                      ),
+                    ),
+                  ),
+                ),
+              if (controller.menuData[index].type == 'version')
+                Container(
+                  height: 50,
+                  padding: const EdgeInsets.only(left: 10),
+                  alignment: Alignment.centerLeft,
+                  child: Text(
+                    controller.menuData[index].title,
+                    style: TextPath.TextF14W500.copyWith(
+                      color: ColorPath.TextGrey4H9E9E9E,
+                    ),
+                  ),
+                ),
               const Spacer(),
               Visibility(
-                visible: controller.menuData[index].page != null,
+                visible: controller.menuData[index].type == 'menu',
                 child: Container(
                   height: 50,
                   padding: const EdgeInsets.only(right: 10),

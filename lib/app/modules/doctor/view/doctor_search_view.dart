@@ -162,7 +162,7 @@ class DoctorSearchView extends GetView<DoctorSearchController> {
                             children: [
                               SizedBox(width: 5.w),
                               Text(
-                                '거리순으로 보기',
+                                '거리별 검색',
                                 style: TextPath.TextF14W500.copyWith(),
                               ),
                               SizedBox(width: 10.w),
@@ -174,7 +174,7 @@ class DoctorSearchView extends GetView<DoctorSearchController> {
                                     margin: const EdgeInsets.only(right: 3).w,
                                     child: DoctorCardWidget(
                                       title:
-                                          '${controller.distanceList[index]} Km',
+                                          '${controller.distanceList[index]} km',
                                       isCheck: controller.distanceList[index] ==
                                           controller.distance.value,
                                       onClick: () {

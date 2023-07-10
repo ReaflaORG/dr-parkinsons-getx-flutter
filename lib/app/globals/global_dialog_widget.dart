@@ -556,7 +556,8 @@ Future<dynamic> GlobalMakeAlarm({
                   bottom: 30,
                 ).w,
                 child: Column(
-                  children: <Widget>[
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
                     Container(
                       alignment: Alignment.centerLeft,
                       child: Text(
@@ -701,6 +702,8 @@ Future<dynamic> GlobalMakeAlarm({
                         ),
                       ),
                     ),
+                    SizedBox(height: 12.w),
+                    Text('등록된 미션은 매일 반복됩니다.'),
                   ],
                 ),
               ),
@@ -1364,123 +1367,6 @@ void GlobalAlbumBottomSheetModal({
   //   }),
   // );
 }
-
-/// 내 주치의 삭제 모달
-Future<dynamic> GlobalMyDoctorModalWidget({
-  required BuildContext context,
-}) =>
-    Get.dialog(
-      AlertDialog(
-        title: Text(
-          '내 주치의 삭제',
-          style: TextPath.Heading2F18W600.copyWith(
-            color: ColorPath.TextGrey1H212121,
-          ),
-        ),
-        shape: const RoundedRectangleBorder(
-          borderRadius: BorderRadius.all(Radius.circular(16)),
-        ),
-        content: Column(
-          mainAxisSize: MainAxisSize.min,
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            const SizedBox(height: 30),
-            SizedBox(
-              width: 80.w,
-              height: 80.w,
-              child: Image.asset(
-                'assets/images/icons/page2/80 alert.png',
-                cacheWidth: 159,
-                // cacheHeight: 159,
-              ),
-            ),
-            const SizedBox(height: 12),
-            Text(
-              '응급 문자 보내기',
-              style: TextPath.Heading2F18W600.copyWith(
-                color: ColorPath.TextGrey1H212121,
-              ),
-            ),
-            const SizedBox(height: 4),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text(
-                  '보호자 연락처',
-                  style: TextPath.TextF12W400.copyWith(
-                    color: ColorPath.TextGrey2H424242,
-                  ),
-                ),
-                const SizedBox(
-                  width: 5,
-                ),
-                Text(
-                  '010 - XXXX - XXXX',
-                  style: TextPath.TextF12W400.copyWith(
-                    color: ColorPath.TextGrey2H424242,
-                  ),
-                ),
-              ],
-            ),
-            const SizedBox(height: 40),
-            Row(
-              children: [
-                Expanded(
-                  flex: 1,
-                  child: InkWell(
-                    onTap: () {
-                      Get.back();
-                    },
-                    child: Container(
-                      alignment: Alignment.center,
-                      decoration: BoxDecoration(
-                        color: ColorPath.Background1HECEFF1,
-                        borderRadius: const BorderRadius.only(
-                          bottomLeft: Radius.circular(16),
-                        ),
-                      ),
-                      height: 48.w,
-                      child: Text(
-                        '취소',
-                        style: TextPath.TextF14W500.copyWith(
-                          color: ColorPath.TextGrey1H212121,
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-                Expanded(
-                  flex: 1,
-                  child: InkWell(
-                    onTap: () {
-                      HomeController.to.sendEmergency();
-                      Get.back();
-                    },
-                    child: Container(
-                      alignment: Alignment.center,
-                      decoration: BoxDecoration(
-                          color: ColorPath.PrimaryColor,
-                          borderRadius: const BorderRadius.only(
-                            bottomRight: Radius.circular(16),
-                          )),
-                      height: 48.w,
-                      child: Text(
-                        '전송',
-                        style: TextPath.TextF14W500.copyWith(
-                          color: ColorPath.BackgroundWhite,
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-              ],
-            )
-          ],
-        ),
-        contentPadding: EdgeInsets.zero,
-      ),
-    );
 
 // 면책조항 모달
 Future<dynamic> GlobalDisclaimerModalWidget({

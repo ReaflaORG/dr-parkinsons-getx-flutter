@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 
 import '../../../globals/global_dialog_widget.dart';
@@ -206,10 +206,10 @@ class SearchAfterWigdet extends GetView<DrugMisuseController> {
     return Obx(
       () => Flexible(
         child: controller.boxesSearchData.isEmpty
-            ? Column(
+            ? const Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
-                children: const [
+                children: [
                   Text('검색 결과가 없습니다'),
                 ],
               )
@@ -249,13 +249,13 @@ class SearchAfterWigdet extends GetView<DrugMisuseController> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Container(
-                              alignment: Alignment.topLeft,
+                              alignment: Alignment.center,
                               width: 26.w,
                               height: 20.w,
-                              child: Image.asset(
-                                width: 18.w,
-                                height: 18.w,
-                                'assets/images/icons/2d/18checker.png',
+                              child: SvgPicture.asset(
+                                'assets/images/drugmisuse/circle-sharp-solid.svg',
+                                width: 5.w,
+                                color: ColorPath.ErrorColor5,
                               ),
                             ),
                             Expanded(

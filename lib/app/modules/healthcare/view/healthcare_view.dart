@@ -50,42 +50,43 @@ class HealthCareView extends GetView<HealthCareController> {
                       crossAxisAlignment: CrossAxisAlignment.center,
                       mainAxisSize: MainAxisSize.min,
                       children: [
-                        Container(
-                          width: 320.w,
-                          height: 36.w,
-                          decoration: BoxDecoration(
-                            color: ColorPath.Background1HECEFF1,
-                            borderRadius: BorderRadius.circular(36).r,
-                          ),
-                          child: GlobalInkWellWidget(
-                            borderRadius: 36.r,
-                            onTap: () {},
-                            child: Padding(
-                              padding: const EdgeInsets.only(left: 20).w,
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                children: [
-                                  SizedBox(
-                                    width: 18.w,
-                                    height: 18.w,
-                                    child: Image.asset(
-                                      'assets/images/icons/loud_speaker.webp',
-                                      cacheWidth: 36,
-                                      // cacheHeight: 36,
-                                    ),
-                                  ),
-                                  SizedBox(width: 10.w),
-                                  Text(
-                                    '[복지] 노인장기요양보험 안내',
-                                    style: TextPath.TextF13W400.copyWith(
-                                      color: ColorPath.TextGrey3H616161,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ),
-                        ),
+                        // 확인 후 수정 예정
+                        // Container(
+                        //   width: 320.w,
+                        //   height: 36.w,
+                        //   decoration: BoxDecoration(
+                        //     color: ColorPath.Background1HECEFF1,
+                        //     borderRadius: BorderRadius.circular(36).r,
+                        //   ),
+                        //   child: GlobalInkWellWidget(
+                        //     borderRadius: 36.r,
+                        //     onTap: () {},
+                        //     child: Padding(
+                        //       padding: const EdgeInsets.only(left: 20).w,
+                        //       child: Row(
+                        //         mainAxisAlignment: MainAxisAlignment.start,
+                        //         children: [
+                        //           SizedBox(
+                        //             width: 18.w,
+                        //             height: 18.w,
+                        //             child: Image.asset(
+                        //               'assets/images/icons/loud_speaker.webp',
+                        //               cacheWidth: 36,
+                        //               // cacheHeight: 36,
+                        //             ),
+                        //           ),
+                        //           SizedBox(width: 10.w),
+                        //           Text(
+                        //             '[복지] 노인장기요양보험 안내',
+                        //             style: TextPath.TextF13W400.copyWith(
+                        //               color: ColorPath.TextGrey3H616161,
+                        //             ),
+                        //           ),
+                        //         ],
+                        //       ),
+                        //     ),
+                        //   ),
+                        // ),
                         SizedBox(height: 18.w),
                         Column(
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,

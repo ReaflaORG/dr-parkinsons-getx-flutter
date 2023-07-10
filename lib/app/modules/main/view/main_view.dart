@@ -35,7 +35,7 @@ class MainView extends GetView<MainController> {
             ),
             child: BottomNavigationBar(
               type: BottomNavigationBarType.fixed,
-              currentIndex: controller.navigationIndex.value,
+              currentIndex: controller.navigationCurrentIndex.value,
               backgroundColor: ColorPath.BackgroundWhite,
               elevation: 10,
               selectedItemColor: ColorPath.BlackColor,
@@ -45,7 +45,7 @@ class MainView extends GetView<MainController> {
                 color: ColorPath.TextGrey4H9E9E9E,
               ),
               onTap: (index) {
-                controller.navigationIndex.value = index;
+                controller.navigationCurrentIndex.value = index;
               },
               items: List.generate(
                 controller.navigationData.length,
@@ -98,7 +98,6 @@ class IconWidget extends GetView<MainController> {
         image,
         width: width.w,
         height: height.h,
-        fit: BoxFit.cover,
       ),
     );
   }

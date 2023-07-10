@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_widget_from_html_core/flutter_widget_from_html_core.dart';
 import 'package:get/get.dart';
-import 'package:intl/intl.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../../../globals/global_inkwell_widget.dart';
@@ -71,14 +70,14 @@ class SocialWelfareDetailView extends GetView<SocialWelfareDetailController> {
                             ),
                           ),
                           SizedBox(height: 4.w),
-                          Text(
-                            DateFormat('yyyy-MM-dd').format(
-                              controller.postData.value.created_at,
-                            ),
-                            style: TextPath.TextF12W500.copyWith(
-                              color: ColorPath.TextGrey4H9E9E9E,
-                            ),
-                          ),
+                          // Text(
+                          //   DateFormat('yyyy-MM-dd').format(
+                          //     controller.postData.value.created_at,
+                          //   ),
+                          //   style: TextPath.TextF12W500.copyWith(
+                          //     color: ColorPath.TextGrey4H9E9E9E,
+                          //   ),
+                          // ),
                           SizedBox(height: 12.w),
                           HtmlWidget(
                             controller.postData.value.description,

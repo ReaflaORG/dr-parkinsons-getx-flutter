@@ -5,6 +5,7 @@ import 'dart:async';
 import 'package:get/get.dart';
 import 'package:logger/logger.dart';
 
+import '../../../globals/global_toast_widget.dart';
 import '../../../models/base_response_model.dart';
 import '../../../provider/provider.dart';
 import '../models/my_symptoms_item_model.dart';
@@ -55,6 +56,8 @@ class ViewMySymptomsController extends GetxController {
       switch (response.statusCode) {
         case 200:
           Get.back();
+          Get.back();
+          GlobalToastWidget('내 증상 기록이 삭제 되었습니다.');
           isLoad.value = false;
           break;
         default:

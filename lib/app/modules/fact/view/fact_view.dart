@@ -39,7 +39,9 @@ class FactView extends GetView<FactController> {
                   shrinkWrap: true,
                   gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                     crossAxisCount: 2,
-                    childAspectRatio: 1 / 1.35,
+                    // childAspectRatio: 1 / 1.35, // 가로 / 세로 비율
+                    childAspectRatio:
+                        Get.width / (Get.height / 1.8), // 가로 / 세로 비율
                     mainAxisSpacing: 20.w,
                     crossAxisSpacing: 20.w,
                   ),
@@ -85,40 +87,13 @@ class CardWidget extends GetView<FactController> {
         children: [
           ClipRRect(
             borderRadius: BorderRadius.circular(8).r,
-            // child: Image.network(
-            //   controller.factData[index].image,
-            //   width: double.infinity,
-            //   height: 150.w,
-            //   fit: BoxFit.cover,
-            // ),
             child: SizedBox(
-              height: 150.w,
+              height: 125.w,
               child: Stack(
+                fit: StackFit.expand,
                 children: [
                   Hero(
                     tag: controller.factData[index].idx,
-                    // child: Container(
-                    //   decoration: BoxDecoration(
-                    //     borderRadius: BorderRadius.circular(8).r,
-                    //     image: DecorationImage(
-                    //       image: CachedNetworkImageProvider(
-                    //         controller.factData[index].image,
-                    //         maxWidth: 600,
-                    //       ),
-                    //       fit: BoxFit.cover,
-                    //     ),
-                    //   ),
-                    // ),
-                    // child: Container(
-                    //   decoration: BoxDecoration(
-                    //     image: DecorationImage(
-                    //       image: NetworkImage(
-                    //         controller.factData[index].image,
-                    //       ),
-                    //       fit: BoxFit.cover,
-                    //     ),
-                    //   ),
-                    // ),
                     child: Image.network(
                       controller.factData[index].image,
                       cacheWidth: 300,
@@ -135,30 +110,13 @@ class CardWidget extends GetView<FactController> {
                       },
                     ),
                   ),
-                  // `CachedNetworkImage` 위젯 오류 이슈 있는듯함
-                  // CachedNetworkImage(
-                  //   imageUrl: controller.factData[index].image,
-                  //   // width: double.infinity,
-                  //   height: 150.w,
-                  //   fit: BoxFit.cover,
-                  //   placeholder: (context, url) {
-                  //     return Center(
-                  //       child: CircularProgressIndicator(
-                  //         color: ColorPath.PrimaryColor.withOpacity(0.1),
-                  //       ),
-                  //     );
-                  //   },
-                  //   errorWidget: (context, url, error) {
-                  //     return const Icon(Icons.error);
-                  //   },
-                  // ),
                   Positioned(
                     top: 10,
                     left: 10,
                     child: Icon(
                       Icons.article_rounded,
                       size: 20.w,
-                      color: Colors.black54,
+                      color: Colors.black38,
                     ),
                   ),
                 ],
@@ -179,53 +137,4 @@ class CardWidget extends GetView<FactController> {
       ),
     );
   }
-
-  // @override
-  // Widget build(BuildContext context) {
-  //   return Column(
-  //     children: [
-  //       GlobalInkWellWidget(
-  //         borderRadius: 8.r,
-  //         onTap: onTap,
-  //         child: Hero(
-  //           tag: controller.factData[index].idx,
-  //           child: Container(
-  //             alignment: Alignment.bottomLeft,
-  //             height: 130.w,
-  //             decoration: BoxDecoration(
-  //               image: DecorationImage(
-  //                 image: NetworkImage(
-  //                   controller.factData[index].image,
-  //                   scale: 0.5,
-  //                 ),
-  //                 fit: BoxFit.cover,
-  //               ),
-  //               borderRadius: BorderRadius.circular(8).r,
-  //             ),
-  //             child: Container(
-  //               margin: const EdgeInsets.all(10).w,
-  //               padding: const EdgeInsets.symmetric(
-  //                 horizontal: 6,
-  //                 vertical: 2,
-  //               ).w,
-  //               decoration: BoxDecoration(
-  //                 color: ColorPath.PrimaryColor.withOpacity(
-  //                   0.8,
-  //                 ),
-  //                 borderRadius: BorderRadius.circular(4).r,
-  //               ),
-  //               child: Text(
-  //                 controller.factData[index].title,
-  //                 style: TextPath.Heading3F16W600.copyWith(
-  //                   color: ColorPath.TextWhite,
-  //                 ),
-  //               ),
-  //             ),
-  //           ),
-  //         ),
-  //       ),
-  //       SizedBox(height: 10.w),
-  //     ],
-  //   );
-  // }
 }

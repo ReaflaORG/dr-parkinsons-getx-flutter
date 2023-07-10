@@ -59,7 +59,91 @@ class ViewMySymptomsView extends GetView<ViewMySymptomsController> {
                     alignment: Alignment.center,
                     child: TextButton(
                       onPressed: () {
-                        controller.deleteMySymptomsData();
+                        Get.dialog(
+                          AlertDialog(
+                            title: Text(
+                              '정말 삭제 하시겠습니까?',
+                              style: TextPath.Heading2F18W600.copyWith(
+                                color: ColorPath.TextGrey1H212121,
+                              ),
+                            ),
+                            shape: const RoundedRectangleBorder(
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(16)),
+                            ),
+                            content: Column(
+                              mainAxisSize: MainAxisSize.min,
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                Padding(
+                                  padding: const EdgeInsets.all(20).w,
+                                  child: const Text(
+                                    '삭제하려는 내 증상 기록의 정보는 복구가 불가능합니다.',
+                                  ),
+                                ),
+                                Row(
+                                  children: [
+                                    Expanded(
+                                      flex: 1,
+                                      child: InkWell(
+                                        onTap: () {
+                                          Get.back();
+                                        },
+                                        child: Container(
+                                          alignment: Alignment.center,
+                                          decoration: BoxDecoration(
+                                            color: ColorPath.Background1HECEFF1,
+                                            borderRadius:
+                                                const BorderRadius.only(
+                                              bottomLeft: Radius.circular(16),
+                                            ),
+                                          ),
+                                          height: 48.w,
+                                          child: Text(
+                                            '취소',
+                                            style:
+                                                TextPath.TextF14W500.copyWith(
+                                              color: ColorPath.TextGrey1H212121,
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                    Expanded(
+                                      flex: 1,
+                                      child: InkWell(
+                                        onTap: () async {
+                                          await controller
+                                              .deleteMySymptomsData();
+                                        },
+                                        child: Container(
+                                          alignment: Alignment.center,
+                                          decoration: BoxDecoration(
+                                            color: ColorPath.PrimaryColor,
+                                            borderRadius:
+                                                const BorderRadius.only(
+                                              bottomRight: Radius.circular(16),
+                                            ),
+                                          ),
+                                          height: 48.w,
+                                          child: Text(
+                                            '삭제',
+                                            style:
+                                                TextPath.TextF14W500.copyWith(
+                                              color: ColorPath.BackgroundWhite,
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                )
+                              ],
+                            ),
+                            contentPadding: EdgeInsets.zero,
+                          ),
+                        );
                       },
                       child: Text(
                         '삭제하기',
@@ -83,7 +167,7 @@ class ViewMySymptomsView extends GetView<ViewMySymptomsController> {
                         controller.getMySymptomsData();
                       },
                       child: Text(
-                        '편집하기',
+                        '수정하기',
                         style: TextPath.TextF14W600.copyWith(
                           color: ColorPath.TextGrey1H212121,
                         ),
