@@ -835,19 +835,34 @@ class MissionItemNotEnptyWidget extends GetView<HomeController> {
                               color: ColorPath.TextGrey1H212121,
                             ),
                           ),
+                          // Expanded(
+                          //   child: Row(
+                          //     mainAxisAlignment: MainAxisAlignment.end,
+                          //     children: [
+                          //       Text(
+                          //         controller.convertToTimeFormat(controller
+                          //             .homeData.value!.mission[0].mission_time),
+                          //         style: TextPath.Heading2F18W600.copyWith(
+                          //           color: ColorPath.TextGrey1H212121,
+                          //         ),
+                          //       ),
+                          //     ],
+                          //   ),
+                          // ),
                           Expanded(
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.end,
                               children: [
                                 Text(
-                                  '${controller.getDeffMinit(controller.homeData.value!.mission[0].mission_time)}',
-                                  style: TextPath.Heading1F24W600.copyWith(
+                                  controller.getDeffMinit2(controller
+                                      .homeData.value!.mission[0].mission_time),
+                                  style: TextPath.Heading2F18W600.copyWith(
                                     color: ColorPath.TextGrey1H212121,
                                   ),
                                 ),
                                 SizedBox(width: 5.w),
                                 Text(
-                                  '분 전',
+                                  '남음',
                                   style: TextPath.TextF13W500.copyWith(
                                     color: ColorPath.TextGrey1H212121,
                                   ),

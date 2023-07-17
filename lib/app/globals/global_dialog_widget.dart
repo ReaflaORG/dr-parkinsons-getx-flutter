@@ -644,11 +644,12 @@ Future<dynamic> GlobalMakeAlarm({
                     InkWell(
                       onTap: () {
                         Future<TimeOfDay?> selectedTime = showTimePicker(
-                          initialEntryMode: TimePickerEntryMode.input,
+                          initialEntryMode: TimePickerEntryMode.dial,
                           context: context,
                           initialTime: TimeOfDay.now(),
                         );
-                        //여기서 사용자가 시간을 선택할 때까지 멈춤
+
+                        // 사용자가 시간을 선택할 때까지 멈춤
                         selectedTime.then((timeofDay) {
                           if (timeofDay != null) {
                             String temp_string =
@@ -887,11 +888,12 @@ Future<dynamic> GlobalMissionUpdateAlarm({
                   InkWell(
                     onTap: () {
                       Future<TimeOfDay?> selectedTime = showTimePicker(
-                        initialEntryMode: TimePickerEntryMode.input,
+                        initialEntryMode: TimePickerEntryMode.dial,
                         context: Get.overlayContext as BuildContext,
                         initialTime: TimeOfDay.now(),
                       );
-                      // 여기서 사용자가 시간을 선택할 때까지 멈춤
+
+                      // 사용자가 시간을 선택할 때까지 멈춤
                       selectedTime.then((timeofDay) {
                         if (timeofDay != null) {
                           String temp_string =

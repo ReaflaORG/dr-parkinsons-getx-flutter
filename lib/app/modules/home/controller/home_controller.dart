@@ -140,8 +140,6 @@ class HomeController extends GetxController {
 
   /// 미션 남은 시간 계산
   int getDeffMinit(int time) {
-    // Logger().d(time);
-
     int now = int.parse(DateFormat('HHmm').format(DateTime.now()));
     int now_m = int.parse(DateFormat('mm').format(DateTime.now()));
 
@@ -163,6 +161,55 @@ class HomeController extends GetxController {
     } else {
       return ((time_h - now_h) * 60) + (time_m - now_m);
     }
+  }
+
+  /// 미션 남은 시간 계산 (몇시간 몇분 남았는지)
+  String getDeffMinit2(int time) {
+    int now = int.parse(DateFormat('HHmm').format(DateTime.now()));
+    int now_m = int.parse(DateFormat('mm').format(DateTime.now()));
+
+    int now_add = 0;
+
+    int now_h = (now ~/ 100) + now_add;
+
+    int time_h = time ~/ 100; // 시간
+    int time_m = time % 100;
+
+    if (time - now < 0) {
+      return '-1';
+    }
+
+    if (time_h - now_h <= 0) {
+      int minuteDiff = time_m - now_m;
+      if (minuteDiff >= 60) {
+        int hour = minuteDiff ~/ 60;
+        int minute = minuteDiff % 60;
+        return formatTime(hour, minute);
+      } else {
+        return formatTime(0, minuteDiff);
+      }
+    } else {
+      int hourDiff = time_h - now_h;
+      int minuteDiff = time_m - now_m;
+
+      if (minuteDiff < 0) {
+        hourDiff -= 1;
+        minuteDiff += 60;
+      }
+
+      return formatTime(hourDiff, minuteDiff);
+    }
+  }
+
+  String formatTime(int hour, int minute) {
+    String hourString = hour.toString();
+    String minuteString = minute.toString();
+
+    if (hour == 0) {
+      return '$minuteString분';
+    }
+
+    return '$hourString시간 $minuteString분';
   }
 
   @override
