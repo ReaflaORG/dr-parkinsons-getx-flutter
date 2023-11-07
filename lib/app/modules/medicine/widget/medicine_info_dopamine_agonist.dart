@@ -29,7 +29,7 @@ class MedicineInfoDopamineAgonistPage extends StatelessWidget {
         ),
         SizedBox(height: 20.w),
         const MedicineItemTitleWidget(text: '종류'),
-        const MedicineItemLabel1Widget(text: '1. 로파티롤'),
+        const MedicineItemLabel1Widget(text: '1. 로피니롤'),
         const MedicineItemLabel2Widget(text: '일반형'),
         const MedicineImageItem(
           assest: 'assets/images/medicine/pill0301.webp',

@@ -45,7 +45,7 @@ class MedicineInfoDopaminePage extends StatelessWidget {
               '소장상부에서 흡수되어 복용 1시간후 최고 혈중농도 도달한다. 신속한 작용을 위해서 가능하다면 식전 30분~ 1시간 또는 식후 1-2시간후 복용 권장한다.',
         ),
         SizedBox(height: 20.w),
-        const MedicineItemLabel1Widget(text: '퍼킨슨 일반정'),
+        const MedicineItemLabel1Widget(text: '퍼킨정'),
         const MedicineImageItem(
           assest: 'assets/images/medicine/pill0101.webp',
           text: '레보도파 100mg, 카르비도파수화물 27mg',
