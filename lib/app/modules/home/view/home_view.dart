@@ -279,7 +279,241 @@ class HomeView extends GetView<HomeController> {
                         ),
                       ],
                     ),
-                    SizedBox(height: 42.w),
+                    SizedBox(height: 10.w),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Expanded(
+                          child: Container(
+                            width: double.infinity,
+                            height: 150.w,
+                            decoration: BoxDecoration(
+                              color: const Color(0XFF00b1b4),
+                              borderRadius: BorderRadius.circular(5).r,
+                            ),
+                            child: GlobalInkWellWidget(
+                              borderRadius: 5.r,
+                              onTap: () async {
+                                if (!await launchUrl(
+                                  Uri.parse(
+                                    'http://www.ebookat.co.kr/ebook/ecatalog5.php?Dir=131&catimage=&callmode=admin',
+                                  ),
+                                )) {
+                                  throw '웹 사이트를 열 수 없습니다.';
+                                }
+                              },
+                              child: Padding(
+                                padding: const EdgeInsets.all(10).w,
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    SizedBox(
+                                      width: 50.w,
+                                      height: 50.w,
+                                      child: CircleAvatar(
+                                        backgroundColor:
+                                            ColorPath.BackgroundWhite,
+                                        child: Image.asset(
+                                          'assets/images/main_banner_1.webp',
+                                          width: 40.w,
+                                          // cacheWidth: 76,
+                                          // cacheHeight: 76,
+                                        ),
+                                      ),
+                                    ),
+                                    SizedBox(height: 5.w),
+                                    SizedBox(
+                                      height: 60.w,
+                                      child: Text.rich(
+                                        TextSpan(
+                                          text: '파킨슨병\r\n',
+                                          style: TextPath.TextF13W600.copyWith(
+                                            color: ColorPath.TextWhite,
+                                          ),
+                                          children: [
+                                            TextSpan(
+                                              text: '환자를위한 \r\n',
+                                              style:
+                                                  TextPath.TextF13W600.copyWith(
+                                                color: ColorPath.TextWhite,
+                                              ),
+                                            ),
+                                            TextSpan(
+                                              text: '운동',
+                                              style:
+                                                  TextPath.TextF16W700.copyWith(
+                                                color: ColorPath.TextWhite,
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                        textAlign: TextAlign.center,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                        SizedBox(width: 10.w),
+                        Expanded(
+                          child: Container(
+                            width: double.infinity,
+                            height: 150.w,
+                            decoration: BoxDecoration(
+                              color: const Color(0XFF07c3ff),
+                              borderRadius: BorderRadius.circular(5).r,
+                            ),
+                            child: GlobalInkWellWidget(
+                              borderRadius: 5.r,
+                              onTap: () async {
+                                if (!await launchUrl(
+                                  Uri.parse(
+                                    'https://parkinson.co.kr',
+                                  ),
+                                )) {
+                                  throw '웹 사이트를 열 수 없습니다.';
+                                }
+                              },
+                              child: Padding(
+                                padding: const EdgeInsets.all(10).w,
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    ClipRRect(
+                                      borderRadius: BorderRadius.circular(
+                                        100,
+                                      ).r,
+                                      child: SizedBox(
+                                        width: 50.w,
+                                        height: 50.w,
+                                        child: CircleAvatar(
+                                          backgroundColor:
+                                              ColorPath.BackgroundWhite,
+                                          child: Image.asset(
+                                            'assets/images/main_banner_4.jpg',
+                                            width: 40.w,
+                                            // cacheWidth: 76,
+                                            // cacheHeight: 76,
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                    SizedBox(height: 5.w),
+                                    SizedBox(
+                                      height: 60.w,
+                                      child: Text.rich(
+                                        TextSpan(
+                                          text: '운동의 중요성!\r\n',
+                                          style: TextPath.TextF13W600.copyWith(
+                                            color: ColorPath.TextWhite,
+                                          ),
+                                          children: [
+                                            TextSpan(
+                                              text: '파킨슨병\r\n',
+                                              style:
+                                                  TextPath.TextF16W700.copyWith(
+                                                color: ColorPath.TextWhite,
+                                              ),
+                                            ),
+                                            TextSpan(
+                                              text: '운동연구소',
+                                              style:
+                                                  TextPath.TextF16W700.copyWith(
+                                                color: ColorPath.TextWhite,
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                        textAlign: TextAlign.center,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                        SizedBox(width: 10.w),
+                        Expanded(
+                          child: Container(
+                            width: double.infinity,
+                            height: 150.w,
+                            decoration: BoxDecoration(
+                              color: const Color(0XFF0074b3),
+                              borderRadius: BorderRadius.circular(5).r,
+                            ),
+                            child: GlobalInkWellWidget(
+                              borderRadius: 5.r,
+                              onTap: () async {
+                                if (!await launchUrl(
+                                  Uri.parse(
+                                    'https://m.youtube.com/@TV-gt9hq',
+                                  ),
+                                )) {
+                                  throw '웹 사이트를 열 수 없습니다.';
+                                }
+                              },
+                              child: Padding(
+                                padding: const EdgeInsets.all(10).w,
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    SizedBox(
+                                      width: 50.w,
+                                      height: 50.w,
+                                      child: ClipRRect(
+                                        borderRadius: BorderRadius.circular(
+                                          100,
+                                        ).r,
+                                        child: CircleAvatar(
+                                          backgroundColor:
+                                              ColorPath.BackgroundWhite,
+                                          child: Image.asset(
+                                            'assets/images/main_banner_21.webp',
+                                            width: 45.w,
+                                            // cacheWidth: 76,
+                                            // cacheHeight: 76,
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                    SizedBox(height: 5.w),
+                                    Text.rich(
+                                      TextSpan(
+                                        text: '파킨슨 병의\r\n',
+                                        style: TextPath.TextF13W600.copyWith(
+                                          color: ColorPath.TextWhite,
+                                        ),
+                                        children: [
+                                          TextSpan(
+                                            text: '모든것 시즌2\r\n',
+                                            style:
+                                                TextPath.TextF13W600.copyWith(
+                                              color: ColorPath.TextWhite,
+                                            ),
+                                          ),
+                                          TextSpan(
+                                            text: '파킨슨TV',
+                                            style:
+                                                TextPath.TextF16W700.copyWith(
+                                              color: ColorPath.TextWhite,
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                      textAlign: TextAlign.center,
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                    SizedBox(height: 20.w),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [

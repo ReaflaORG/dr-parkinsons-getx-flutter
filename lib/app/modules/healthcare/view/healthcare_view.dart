@@ -120,7 +120,7 @@ class HealthCareView extends GetView<HealthCareController> {
               SizedBox(height: 20.w),
               Container(
                 padding: const EdgeInsets.symmetric(
-                  vertical: 40,
+                  vertical: 30,
                   horizontal: 20,
                 ).w,
                 decoration: BoxDecoration(

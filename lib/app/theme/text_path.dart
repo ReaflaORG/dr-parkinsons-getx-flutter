@@ -232,6 +232,22 @@ class TextPath {
   /// fontSize: 13
   ///
   /// fontWeight: Medium 500
+  static TextStyle TextF13W600 = TextStyle(
+    color: ColorPath.TextGrey1H212121,
+    fontFamily: 'Pretendard',
+    fontSize: 13.0.sp,
+    fontWeight: FontWeight.w600,
+    fontStyle: FontStyle.normal,
+    decoration: TextDecoration.none,
+    height: 1.3,
+    letterSpacing: 0,
+  );
+
+  /// fontFamily: SUIT
+  ///
+  /// fontSize: 13
+  ///
+  /// fontWeight: Medium 500
   static TextStyle TextF13W500Expand = TextStyle(
     color: ColorPath.TextGrey1H212121,
     fontFamily: 'Pretendard',
