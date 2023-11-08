@@ -436,8 +436,8 @@ class DiagnosisController extends GetxController {
           questionText: '꿈을 꿀 때 다음에 일이 발생한다.',
           questionSubText: '(다음을 눌러 진단을 이어서 해주세요)',
           answers: [
-            AnswerModel(surveyQuizId: 306, answerScore: 0, answerText: '예'),
-            AnswerModel(surveyQuizId: 306, answerScore: 0, answerText: '아니요'),
+            // AnswerModel(surveyQuizId: 306, answerScore: 0, answerText: '예'),
+            // AnswerModel(surveyQuizId: 306, answerScore: 0, answerText: '아니요'),
           ],
         ),
         SurveyQuizModel(
@@ -569,9 +569,13 @@ class DiagnosisController extends GetxController {
 
   /// 유저가 다음 문제로 이동하는 함수
   void nextQuestion() {
-    if (survey.value.quizes[questionNumber.value].surveyQuizId == 306) {
-      questionNumber.value += 1;
-      return;
+    if (survey_id.value == 3 && questionNumber.value == 4) {
+      if (survey.value.quizes[questionNumber.value + 1].surveyQuizId == 306) {
+        survey.value.quizes[questionNumber.value + 1].userAnswer = 1;
+        survey.refresh();
+        questionNumber.value += 1;
+        return;
+      }
     }
 
     //! questionNumber.value => 현재 문제 번호
@@ -583,6 +587,12 @@ class DiagnosisController extends GetxController {
     if (questionNumber.value >= survey.value.quizes.length - 1) {
       // 반목문으로 quzie에 저장된 유저 답을 기반으로 계산
       for (int i = 0; i < survey.value.quizes.length; i++) {
+        // 스코어 점수 계산에서 306번 문항은 제외
+        if (survey_id.value == 3 &&
+            survey.value.quizes[i].surveyQuizId == 306) {
+          continue;
+        }
+
         if (survey_id.value == 3) {
           if (i != 5) {
             score.value += survey.value.quizes[i]
