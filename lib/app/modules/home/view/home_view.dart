@@ -332,7 +332,7 @@ class HomeView extends GetView<HomeController> {
                                           ),
                                           children: [
                                             TextSpan(
-                                              text: '환자를위한 \r\n',
+                                              text: '환자를 위한 \r\n',
                                               style:
                                                   TextPath.TextF13W600.copyWith(
                                                 color: ColorPath.TextWhite,
