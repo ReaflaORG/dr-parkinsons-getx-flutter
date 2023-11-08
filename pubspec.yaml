@@ -1,11 +1,11 @@
 name: dr_parkinsons
 description: A new Flutter project.
-publish_to: "REAFLA"
+publish_to: 'REAFLA'
 
 version: 13.0.1+19
 
 environment:
-  sdk: ">=2.19.2 <3.0.0"
+  sdk: '>=2.19.2 <3.0.0'
 
 dependencies:
   flutter:
