@@ -436,8 +436,8 @@ class DiagnosisController extends GetxController {
           questionText: '꿈을 꿀 때 다음에 일이 발생한다.',
           questionSubText: '(다음을 눌러 진단을 이어서 해주세요)',
           answers: [
-            // AnswerModel(surveyQuizId: 306, answerScore: 0, answerText: '예'),
-            // AnswerModel(surveyQuizId: 306, answerScore: 0, answerText: '아니요'),
+            AnswerModel(surveyQuizId: 306, answerScore: 0, answerText: '예'),
+            AnswerModel(surveyQuizId: 306, answerScore: 0, answerText: '아니요'),
           ],
         ),
         SurveyQuizModel(
