@@ -5,10 +5,8 @@ import 'dart:async';
 import 'package:dr_parkinsons/app/globals/global_toast_widget.dart';
 import 'package:dr_parkinsons/app/models/welfare_model.dart';
 import 'package:dr_parkinsons/app/modules/main/controller/main_controller.dart';
-import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../../globals/global_dialog_widget.dart';
 import '../../../models/base_response_model.dart';
 import '../../../models/healthcare_btn_model.dart';
 import '../../../provider/provider.dart';
@@ -43,7 +41,7 @@ class HealthCareController extends GetxController {
       color: ColorPath.SecondaryLightColor,
       icon: 'assets/images/icons/medical_treatment/medical_treatment_15.webp',
       onClick: () {
-        GlobalReadyModal(context: Get.overlayContext as BuildContext);
+        Get.toNamed('${Routes.DIAGNOSIS}/1');
       },
     ),
     HealthCareBtnModel(

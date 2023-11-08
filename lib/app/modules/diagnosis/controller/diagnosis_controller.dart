@@ -20,7 +20,89 @@ class DiagnosisController extends GetxController {
   List<Survey> surveyList = [
     Survey(
       surveyId: 1,
-      quizes: [],
+      quizes: [
+        SurveyQuizModel(
+          surveyId: 1,
+          surveyQuizId: 1,
+          questionText: '입술, 턱, 손, 팔, 또는 다리가 가만히 있을 때 떨립니까?',
+          answers: [
+            AnswerModel(surveyQuizId: 1, answerScore: 1, answerText: '예'),
+            AnswerModel(surveyQuizId: 1, answerScore: 0, answerText: '아니요'),
+          ],
+        ),
+        SurveyQuizModel(
+          surveyId: 1,
+          surveyQuizId: 2,
+          questionText: '걸을 때 발을 끌거나 걸음의 폭이 좁아졌습니까?',
+          answers: [
+            AnswerModel(surveyQuizId: 1, answerScore: 1, answerText: '예'),
+            AnswerModel(surveyQuizId: 1, answerScore: 0, answerText: '아니요'),
+          ],
+        ),
+        SurveyQuizModel(
+          surveyId: 1,
+          surveyQuizId: 3,
+          questionText: '평소 일상 활동에서 움직임이 느려졌습니까? (예: 머리 빗기, 양말 신기, 목욕, 식사 등)',
+          answers: [
+            AnswerModel(surveyQuizId: 1, answerScore: 1, answerText: '예'),
+            AnswerModel(surveyQuizId: 1, answerScore: 0, answerText: '아니요'),
+          ],
+        ),
+        SurveyQuizModel(
+          surveyId: 1,
+          surveyQuizId: 4,
+          questionText: '스스로 혹은 다른 사람들이 보기에 걸을 때 팔을 잘 흔들지 않습니까?',
+          answers: [
+            AnswerModel(surveyQuizId: 1, answerScore: 1, answerText: '예'),
+            AnswerModel(surveyQuizId: 1, answerScore: 0, answerText: '아니요'),
+          ],
+        ),
+        SurveyQuizModel(
+          surveyId: 1,
+          surveyQuizId: 5,
+          questionText: '목소리가 작아졌습니까?',
+          answers: [
+            AnswerModel(surveyQuizId: 1, answerScore: 1, answerText: '예'),
+            AnswerModel(surveyQuizId: 1, answerScore: 0, answerText: '아니요'),
+          ],
+        ),
+        SurveyQuizModel(
+          surveyId: 1,
+          surveyQuizId: 6,
+          questionText: '얼굴이 무표정 해졌습니까?',
+          answers: [
+            AnswerModel(surveyQuizId: 1, answerScore: 1, answerText: '예'),
+            AnswerModel(surveyQuizId: 1, answerScore: 0, answerText: '아니요'),
+          ],
+        ),
+        SurveyQuizModel(
+          surveyId: 1,
+          surveyQuizId: 7,
+          questionText: '전보다 냄새를 잘 못 맡습니까?',
+          answers: [
+            AnswerModel(surveyQuizId: 1, answerScore: 1, answerText: '예'),
+            AnswerModel(surveyQuizId: 1, answerScore: 0, answerText: '아니요'),
+          ],
+        ),
+        SurveyQuizModel(
+          surveyId: 1,
+          surveyQuizId: 8,
+          questionText: '꿈을 꿀 때 말하거나 소리를 지르거나 욕하거나 크게 웃는 일이 발생합니까?',
+          answers: [
+            AnswerModel(surveyQuizId: 1, answerScore: 1, answerText: '예'),
+            AnswerModel(surveyQuizId: 1, answerScore: 0, answerText: '아니요'),
+          ],
+        ),
+        SurveyQuizModel(
+          surveyId: 1,
+          surveyQuizId: 9,
+          questionText: '걷기 시작하거나 방향을 바꿀 때 발이 바닥에 붙은 것같이 잘 안떨어진 적이 있습니까?',
+          answers: [
+            AnswerModel(surveyQuizId: 1, answerScore: 1, answerText: '예'),
+            AnswerModel(surveyQuizId: 1, answerScore: 0, answerText: '아니요'),
+          ],
+        ),
+      ],
       nameOfSurvey: '파킨슨 자가진단',
     ),
     Survey(
@@ -450,6 +532,15 @@ class DiagnosisController extends GetxController {
 
   String handleResultValue() {
     switch (survey_id.value) {
+      case 1:
+        if (score.value >= 3) {
+          //파킨슨증상
+          return "${AuthService.to.userData.value.userName ?? '사용자'}님의 점수는 ${score.value}점으로\r\n파킨슨증상이 의심이 되니\r\n\r\n신경과 전문의와 상의하십시오.";
+        } else {
+          //정상
+          return "${AuthService.to.userData.value.userName ?? '사용자'}님의 점수는 ${score.value}점으로\r\n파킨슨증상이 의심되지 않습니다.\r\n\r\n경과를 관찰해보세요.";
+        }
+
       case 2:
         if (score.value >= 18) {
           //우울증
