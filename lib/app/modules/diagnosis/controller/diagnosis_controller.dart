@@ -533,7 +533,7 @@ class DiagnosisController extends GetxController {
   String handleResultValue() {
     switch (survey_id.value) {
       case 1:
-        if (score.value >= 3) {
+        if (score.value >= 2) {
           //파킨슨증상
           return "${AuthService.to.userData.value.userName ?? '사용자'}님의 점수는 ${score.value}점으로\r\n파킨슨증상이 의심이 되니\r\n\r\n신경과 전문의와 상의하십시오.";
         } else {
