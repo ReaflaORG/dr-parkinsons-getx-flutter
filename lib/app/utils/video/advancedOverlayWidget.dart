@@ -3,7 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:video_player/video_player.dart';
-import 'package:wakelock/wakelock.dart';
+import 'package:wakelock_plus/wakelock_plus.dart';
 
 import '../../theme/text_path.dart';
 
@@ -29,7 +29,7 @@ class AdvancedOverlayWidget extends StatelessWidget {
   Future setAllOrientations() async {
     // await SystemChrome.setEnabledSystemUIOverlays(SystemUiOverlayStyle);
     SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
-    await Wakelock.disable();
+    await WakelockPlus.disable();
   }
 
   @override

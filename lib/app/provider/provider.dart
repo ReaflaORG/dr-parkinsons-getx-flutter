@@ -30,9 +30,9 @@ class Provider with DioMixin implements Dio {
             // contentType: Headers.jsonContentType,
             // responseType: ResponseType.json,
             maxRedirects: 5,
-            connectTimeout: 60000,
-            sendTimeout: 60 * 1000,
-            receiveTimeout: 60 * 1000,
+            connectTimeout: const Duration(milliseconds: 60000),
+            sendTimeout: const Duration(milliseconds: 60 * 1000),
+            receiveTimeout: const Duration(milliseconds: 60 * 1000),
             followRedirects: false,
             validateStatus: (status) {
               return status! < 500;
@@ -48,7 +48,7 @@ class Provider with DioMixin implements Dio {
         onResponse: (response, handler) {
           return handler.next(response);
         },
-        onError: (DioError e, handler) {
+        onError: (DioException e, handler) {
           return handler.next(e);
         },
       ));
@@ -86,7 +86,7 @@ class Provider with DioMixin implements Dio {
         statusCode: response.statusCode!,
         data: response.data!,
       );
-    } on DioError catch (e) {
+    } on DioException catch (e) {
       throw Exception(e);
     }
   }

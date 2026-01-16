@@ -1,3 +1,10 @@
+plugins {
+    id "com.android.application"
+    id "kotlin-android"
+    id "dev.flutter.flutter-gradle-plugin"
+    id "com.google.gms.google-services"
+}
+
 def localProperties = new Properties()
 def localPropertiesFile = rootProject.file('local.properties')
 if (localPropertiesFile.exists()) {
@@ -19,12 +26,12 @@ if (flutterRoot == null) {
 
 def flutterCompileSdkVersion = localProperties.getProperty('flutter.flutterCompileSdkVersion')
 if (flutterCompileSdkVersion == null) {
-    flutterCompileSdkVersion = '33'
+    flutterCompileSdkVersion = '36'
 }
 
 def flutterTargetSdkVersion = localProperties.getProperty('flutter.flutterTargetSdkVersion')
 if (flutterTargetSdkVersion == null) {
-    flutterTargetSdkVersion = '33'
+    flutterTargetSdkVersion = '36'
 }
 
 def flutterMinSdkVersion = localProperties.getProperty('flutter.flutterMinSdkVersion')
@@ -42,18 +49,15 @@ if (flutterVersionName == null) {
     flutterVersionName = '1.0'
 }
 
-apply plugin: 'com.android.application'
-apply plugin: 'kotlin-android'
-apply plugin: 'com.google.gms.google-services'
-apply from: "$flutterRoot/packages/flutter_tools/gradle/flutter.gradle"
-
 android {
-    compileSdkVersion flutterCompileSdkVersion.toInteger()
+    namespace "com.gilhospital.parkinsons"
+    compileSdkVersion 36
     ndkVersion flutter.ndkVersion
 
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
+        coreLibraryDesugaringEnabled true
     }
 
     kotlinOptions {
@@ -133,5 +137,11 @@ flutter {
 dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     // https://firebase.google.com/support/release-notes/android
-    implementation platform('com.google.firebase:firebase-bom:31.3.0')
+    implementation platform('com.google.firebase:firebase-bom:33.7.0')
+    // Android 15 Edge-to-edge 디스플레이 지원
+    implementation 'androidx.core:core-ktx:1.12.0'
+    // reCAPTCHA Enterprise SDK 보안 취약점 패치 (18.4.0 이상 필요)
+    implementation 'com.google.android.recaptcha:recaptcha:18.8.0'
+    // Core library desugaring 지원
+    coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs:2.1.4'
 }

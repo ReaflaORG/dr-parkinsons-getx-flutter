@@ -1,6 +1,6 @@
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
-import 'package:wakelock/wakelock.dart';
+import 'package:wakelock_plus/wakelock_plus.dart';
 
 /// 유틸 서비스
 class UtilsService extends GetxService {
@@ -20,7 +20,7 @@ class UtilsService extends GetxService {
         DeviceOrientation.landscapeLeft,
         DeviceOrientation.landscapeRight,
       ]),
-      Wakelock.enable(),
+      WakelockPlus.enable(),
     ]);
   }
 
@@ -34,7 +34,7 @@ class UtilsService extends GetxService {
       SystemChrome.setPreferredOrientations([
         DeviceOrientation.portraitUp,
       ]),
-      Wakelock.disable(),
+      WakelockPlus.disable(),
     ]);
   }
 

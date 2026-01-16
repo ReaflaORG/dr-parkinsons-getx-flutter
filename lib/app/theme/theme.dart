@@ -126,21 +126,21 @@ AppBarTheme appBarThemeData() => AppBarTheme(
         size: 32,
       ),
       toolbarHeight: 60,
-      toolbarTextStyle: TextTheme(
-        bodyText2: TextStyle(
-          color: ColorPath.BlackColor,
-          fontSize: 18,
-          height: 1.1,
-        ),
-      ).bodyText2,
-      titleTextStyle: TextTheme(
-        headline6: TextStyle(
-          color: ColorPath.BlackColor,
-          fontSize: 18,
-          height: 1.1,
-        ),
-      ).headline6,
-      systemOverlayStyle: SystemUiOverlayStyle.light,
+      toolbarTextStyle: TextStyle(
+        color: ColorPath.BlackColor,
+        fontSize: 18,
+        height: 1.1,
+      ),
+      titleTextStyle: TextStyle(
+        color: ColorPath.BlackColor,
+        fontSize: 18,
+        height: 1.1,
+      ),
+      systemOverlayStyle: const SystemUiOverlayStyle(
+        statusBarIconBrightness: Brightness.dark,
+        statusBarBrightness: Brightness.light,
+        systemNavigationBarIconBrightness: Brightness.dark,
+      ),
     );
 
 /// Text Selection ▼
@@ -227,121 +227,32 @@ InputDecorationTheme inputDecorationThemeData() => InputDecorationTheme(
     );
 
 /// Text ▼
-TextTheme textThemeData() => TextTheme(
-      // displayLarge:
-      // displayMedium:,
-      // displaySmall:,
-      // headlineLarge:,
-      // headlineMedium:,
-      // headlineSmall:,
-      // titleLarge:,
-      // titleMedium:,
-      // titleSmall:,
-      // bodyLarge:,
-      // bodyMedium:,
-      // bodySmall:,
-      // labelLarge:,
-      // labelMedium:,
-      // labelSmall:,
-      // heading1: TextStyle(
-      //   FontFamily,
-      //   color: ColorPath.BlackColor as Color,
-      //   fontSize: 18.0,
-      //   fontWeight: FontWeight.normal,
-      //   height: 1.1,
-      // ),
-      headline1: TextStyle(
-        fontFamily: FontFamily,
-        color: ColorPath.BlackColor,
-        fontSize: 18.0,
-        fontWeight: FontWeight.normal,
-        height: 1.1,
-      ),
-      headline2: TextStyle(
-        fontFamily: FontFamily,
-        color: ColorPath.BlackColor,
-        fontSize: 60.0,
-        fontWeight: FontWeight.normal,
-        height: 1.1,
-      ),
-      headline3: TextStyle(
-        fontFamily: FontFamily,
-        color: ColorPath.BlackColor,
-        fontSize: 48.0,
-        fontWeight: FontWeight.normal,
-        height: 1.1,
-      ),
-      headline4: TextStyle(
-        fontFamily: FontFamily,
-        color: ColorPath.BlackColor,
-        fontSize: 34.0,
-        fontWeight: FontWeight.normal,
-        height: 1.1,
-      ),
-      headline5: TextStyle(
-        fontFamily: FontFamily,
-        color: ColorPath.BlackColor,
-        fontSize: 24.0,
-        fontWeight: FontWeight.normal,
-        height: 1.1,
-      ),
-      headline6: TextStyle(
-        fontFamily: FontFamily,
-        color: ColorPath.BlackColor,
-        fontSize: 20.0,
-        fontWeight: FontWeight.normal,
-        height: 1.1,
-      ),
-      subtitle1: TextStyle(
-        fontFamily: FontFamily,
-        color: ColorPath.BlackColor,
-        fontSize: 16.0,
-        fontWeight: FontWeight.normal,
-        height: 1.1,
-      ),
-      subtitle2: TextStyle(
-        fontFamily: FontFamily,
-        color: ColorPath.BlackColor,
-        fontSize: 14.0,
-        fontWeight: FontWeight.normal,
-        height: 1.1,
-      ),
-      bodyText1: TextStyle(
-        fontFamily: FontFamily,
-        color: ColorPath.BlackColor,
-        fontSize: PrimaryFontSize,
-        fontWeight: FontWeight.normal,
-        height: 1.1,
-      ),
-      // 텍스트 메인
-      bodyText2: TextStyle(
-        fontFamily: FontFamily,
-        color: ColorPath.BlackColor,
-        fontSize: PrimaryFontSize,
-        fontWeight: FontWeight.normal,
-        height: 1.1,
-      ),
+TextTheme textThemeData() {
+  final baseStyle = TextStyle(
+    fontFamily: FontFamily,
+    color: ColorPath.BlackColor,
+    fontWeight: FontWeight.normal,
+    height: 1.1,
+  );
 
-      caption: TextStyle(
-        fontFamily: FontFamily,
-        color: ColorPath.BlackColor,
-        fontWeight: FontWeight.normal,
-        height: 1.1,
-      ),
-      button: TextStyle(
-        fontFamily: FontFamily,
-        color: ColorPath.BlackColor,
-        fontSize: PrimaryFontSize,
-        fontWeight: FontWeight.normal,
-        height: 1.1,
-      ),
-      overline: TextStyle(
-        fontFamily: FontFamily,
-        color: ColorPath.BlackColor,
-        fontWeight: FontWeight.normal,
-        height: 1.1,
-      ),
-    );
+  return TextTheme(
+    displayLarge: baseStyle.copyWith(fontSize: 60.0),
+    displayMedium: baseStyle.copyWith(fontSize: 48.0),
+    displaySmall: baseStyle.copyWith(fontSize: 34.0),
+    headlineLarge: baseStyle.copyWith(fontSize: 24.0),
+    headlineMedium: baseStyle.copyWith(fontSize: 20.0),
+    headlineSmall: baseStyle.copyWith(fontSize: 18.0),
+    titleLarge: baseStyle.copyWith(fontSize: 20.0),
+    titleMedium: baseStyle.copyWith(fontSize: 16.0),
+    titleSmall: baseStyle.copyWith(fontSize: 14.0),
+    bodyLarge: baseStyle.copyWith(fontSize: PrimaryFontSize),
+    bodyMedium: baseStyle.copyWith(fontSize: PrimaryFontSize),
+    bodySmall: baseStyle.copyWith(fontSize: 12.0),
+    labelLarge: baseStyle.copyWith(fontSize: PrimaryFontSize),
+    labelMedium: baseStyle.copyWith(fontSize: 12.0),
+    labelSmall: baseStyle.copyWith(fontSize: 10.0),
+  );
+}
 
 /// Button ▼
 ButtonThemeData buttonThemeData() => ButtonThemeData(

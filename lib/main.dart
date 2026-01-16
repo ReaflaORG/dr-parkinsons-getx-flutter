@@ -56,11 +56,12 @@ Future<void> initialize() async {
   // 가로모드 방지
   SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
 
-  // Status 텍스트 색상
+  // Status 텍스트 색상 (Android 15 호환: statusBarColor 제거)
   SystemChrome.setSystemUIOverlayStyle(
-    SystemUiOverlayStyle.dark.copyWith(
-      statusBarColor: Colors.white,
+    const SystemUiOverlayStyle(
+      statusBarIconBrightness: Brightness.dark, // 다크 아이콘 (밝은 배경용)
       statusBarBrightness: Brightness.light,
+      systemNavigationBarIconBrightness: Brightness.dark,
     ),
   );
 

@@ -26,7 +26,8 @@ class SignInController extends GetxController {
   // Controller ▼
 
   /// 슬라이드 컨트롤러
-  Rx<CarouselController> carouselController = CarouselController().obs;
+  Rx<CarouselSliderController> carouselController =
+      CarouselSliderController().obs;
 
   // Data ▼
 
